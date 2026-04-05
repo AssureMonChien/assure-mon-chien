@@ -1,0 +1,151 @@
+---
+import PageRace from "../../layouts/PageRace.astro";
+---
+
+<PageRace
+  title="Assurance Berger Allemand — Comparatif 2026"
+  description="Comparez les meilleures assurances santé pour votre Berger Allemand. Dysplasie, myélopathie, coûts réels, avis d'experts. Guide indépendant avril 2026."
+  raceName="Berger Allemand"
+  slug="berger-allemand"
+  dateModified="2026-04-04"
+  heroSubtitle="Race de travail polyvalente et fidèle, le Berger Allemand est malheureusement parmi les plus touchés par la dysplasie et les maladies dégénératives en France."
+  imageUrl="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?q=80&w=1200&auto=format&fit=crop"
+  imageAlt="Berger Allemand debout dans un pré, regard alerte, robe noire et fauve"
+  heroBadge="DYSPLASIE FRÉQUENTE · SUIVI LONG TERME"
+  riskScore={76}
+  alertText="Le Berger Allemand est la race la plus touchée par la <strong>dysplasie de hanche</strong> en France : près de <strong>1 chien sur 5</strong> est concerné. La <strong>myélopathie dégénérative</strong>, incurable et invalidante, peut survenir dès 5 ans. Les frais cumulés sur la vie d'un chien atteint dépassent régulièrement <strong>10 000 €</strong>. Souscrire avant 2 ans garantit la couverture des pathologies héréditaires."
+  alertSource="Source : Société Centrale Canine, données FCI 2024"
+  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=berger-allemand&ref=assuremochien"
+  offres={[
+    {
+      nom: "SantéVet",
+      featured: true,
+      badge: "MEILLEUR CHOIX",
+      prix: "à partir de 30 €/mois",
+      sousTexte: "Formule Confort — remboursement jusqu'à 100 %",
+      points: [
+        "Chirurgie orthopédique couverte dès J1",
+        "Maladies dégénératives et chroniques incluses",
+        "Hospitalisations et soins intensifs",
+        "Kinésithérapie vétérinaire remboursée",
+        "Remboursement sous 48 h",
+      ],
+      url: "https://www.santeVet.com/assurance-chien/?race=berger-allemand&ref=assuremochien",
+      cta: "Voir l'offre →",
+    },
+    {
+      nom: "Lassie",
+      featured: false,
+      prix: "à partir de 24 €/mois",
+      sousTexte: "Formule Essentielle — bon rapport qualité/prix",
+      points: [
+        "Accidents et maladies couverts",
+        "Hospitalisation remboursée à 80 %",
+        "Application mobile intuitive",
+        "Sans engagement de durée",
+        "Devis en 90 secondes",
+      ],
+      url: "https://www.lassie.fr/?ref=assuremochien",
+      cta: "Voir l'offre →",
+    },
+  ]}
+  risks={[
+    {
+      nom: "Dysplasie de hanche",
+      score: 80,
+      prix: "1 500 – 6 000 €",
+      description: "Malformation héréditaire du cotyle, le Berger Allemand est la race la plus fréquemment touchée en France. Arthrose progressive, douleur chronique, parfois prothèse totale.",
+    },
+    {
+      nom: "Myélopathie dégénérative",
+      score: 55,
+      prix: "1 000 – 4 000 €",
+      description: "Maladie neurologique dégénérative progressive provoquant une paralysie progressive des membres postérieurs. Incurable, elle nécessite un soutien médical prolongé.",
+    },
+    {
+      nom: "Torsion de l'estomac",
+      score: 62,
+      prix: "2 000 – 5 000 €",
+      description: "Urgence vitale liée à la morphologie thoracique profonde du Berger. L'estomac se tord après un repas copieux suivi d'effort. Intervention chirurgicale en moins de 6 heures.",
+    },
+    {
+      nom: "Insuffisance pancréatique exocrine (IPE)",
+      score: 50,
+      prix: "500 – 2 000 €/an",
+      description: "Absence ou insuffisance des enzymes digestives pancréatiques, spécifique à la race. Entraîne amaigrissement malgré une bonne alimentation. Traitement enzymatique à vie.",
+    },
+  ]}
+  pathologies={[
+    {
+      nom: "Dysplasie de hanche et du coude",
+      description: "Anomalies héréditaires des articulations coxo-fémorales et du coude. Bilatérale dans 60 % des cas. Arthrose progressive, boiterie et douleur. Score HD obligatoire en élevage sérieux. Chirurgie (prothèse, ostéotomie) en forme sévère.",
+      cout: "1 500 – 6 000 €",
+    },
+    {
+      nom: "Myélopathie dégénérative",
+      description: "Dégénérescence progressive de la moelle épinière thoraco-lombaire. Débute par une faiblesse des postérieurs et évolue vers la paralysie complète en 1 à 3 ans. Aucun traitement curatif. Kinésithérapie et chariot de soutien pour maintenir la qualité de vie.",
+      cout: "1 000 – 4 000 €",
+    },
+    {
+      nom: "Insuffisance pancréatique exocrine (IPE)",
+      description: "Le Berger Allemand représente 70 % des cas d'IPE diagnostiqués chez le chien. Diarrhée chronique, perte de poids, appétit excessif. Diagnostic par dosage de la TLI sérique. Supplémentation enzymatique à vie (Creon vétérinaire).",
+      cout: "500 – 2 000 €/an",
+    },
+    {
+      nom: "Dilatation-torsion de l'estomac",
+      description: "Urgence chirurgicale absolue : l'estomac se gonfle de gaz et se tord sur lui-même. Choc hémodynamique rapide. Pronostic lié au délai d'intervention (< 6 h). Gastropexie préventive possible lors de la stérilisation.",
+      cout: "2 000 – 5 000 €",
+    },
+    {
+      nom: "Fistules périanales",
+      description: "Ulcérations et trajets fistuleux douloureux autour de l'anus, probablement d'origine immune. Très fréquentes chez le Berger Allemand. Traitement : ciclosporine, immunosuppresseurs, chirurgie en dernier recours.",
+      cout: "400 – 2 500 €",
+    },
+    {
+      nom: "Hémangiosarcome splénique",
+      description: "Tumeur maligne développée sur la rate, pouvant provoquer une hémorragie interne soudaine. Splénectomie d'urgence nécessaire, suivie de chimiothérapie. Pronostic sombre sans traitement immédiat.",
+      cout: "2 500 – 8 000 €",
+    },
+  ]}
+  comparatif={[
+    {
+      nom: "SantéVet",
+      featured: true,
+      url: "https://www.santeVet.com/assurance-chien/?race=berger-allemand&ref=assuremochien",
+      prix: "18 €/mois",
+      remboursement: "100 %",
+      carenceMaladie: "30 j",
+      prevention: "150 €/an",
+      dysplasie: true,
+      vaccins: "Premium",
+      appMobile: true,
+      rembDelai: "48 h",
+    },
+    {
+      nom: "AssurOPoil",
+      featured: false,
+      url: "https://www.assuropoil.fr/?ref=assuremochien",
+      prix: "15 €/mois",
+      remboursement: "100 %",
+      carenceMaladie: "30 j",
+      prevention: null,
+      dysplasie: true,
+      vaccins: null,
+      appMobile: false,
+      rembDelai: "5–10 j",
+    },
+    {
+      nom: "Lassie",
+      featured: false,
+      url: "https://www.lassie.fr/?ref=assuremochien",
+      prix: "20 €/mois",
+      remboursement: "80 %",
+      carenceMaladie: "45 j",
+      prevention: "100 €/an",
+      dysplasie: true,
+      vaccins: "Premium",
+      appMobile: true,
+      rembDelai: "72 h",
+    },
+  ]}
+/>
