@@ -1,0 +1,1468 @@
+---
+interface Offre {
+  nom: string;
+  featured?: boolean;
+  badge?: string;
+  prix: string;
+  sousTexte?: string;
+  points: string[];
+  url: string;
+  cta: string;
+}
+
+interface Risque {
+  nom: string;
+  score: number;   // 0–100
+  prix: string;
+  description: string;
+}
+
+interface Pathologie {
+  nom: string;
+  description: string;
+  cout?: string;
+}
+
+interface ComparatifOffre {
+  nom: string;
+  url: string;
+  featured?: boolean;
+  prix: string;
+  remboursement: string;
+  carenceMaladie: string;
+  prevention: string | null;   // null → ✗
+  dysplasie: boolean;
+  vaccins: string | null;      // null → ✗
+  appMobile: boolean;
+  rembDelai: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  raceName: string;
+  slug: string;
+  heroSubtitle: string;
+  imageUrl: string;
+  imageAlt: string;
+  heroBadge?: string;
+  riskScore: number;
+  alertText: string;
+  alertSource?: string;
+  dateModified?: string;  // ISO 8601, ex. "2026-04-04"
+  offres: Offre[];
+  risks: Risque[];
+  comparatif: ComparatifOffre[];
+  pathologies: Pathologie[];
+  affiliateUrl: string;
+}
+
+const {
+  raceName,
+  slug,
+  heroSubtitle,
+  imageUrl,
+  imageAlt,
+  heroBadge = "RACE POPULAIRE · FRAIS ÉLEVÉS",
+  riskScore,
+  alertText,
+  alertSource,
+  dateModified = "2026-04-04",
+  offres,
+  risks,
+  comparatif,
+  pathologies,
+  affiliateUrl,
+} = Astro.props;
+
+const siteUrl   = "https://assure-mon-chien.fr";
+const pageUrl   = `${siteUrl}/races/${slug}`;
+const metaTitle = `${raceName} : Assurance & Mutuelle — Guide 2026 | Assure Mon Chien`;
+const metaDesc  = Astro.props.description
+  ?? `Assurance ${raceName} : comparez les meilleures mutuelles, découvrez les pathologies fréquentes et obtenez un devis gratuit. Guide indépendant mis à jour avril 2026.`;
+
+const jsonldArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": metaTitle,
+  "description": metaDesc,
+  "image": imageUrl,
+  "url": pageUrl,
+  "datePublished": "2026-01-01",
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Assure Mon Chien",
+    "url": siteUrl,
+    "logo": { "@type": "ImageObject", "url": `${siteUrl}/favicon.svg` }
+  }
+};
+
+const jsonldFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": `Pourquoi assurer son ${raceName} ?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Le ${raceName} est prédisposé à des pathologies coûteuses (dysplasie, cancers). Une assurance santé rembourse jusqu'à 100 % des frais vétérinaires et évite d'arbitrer entre votre budget et la santé de votre chien.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `Quel est le prix d'une assurance pour un ${raceName} ?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Le tarif varie selon l'âge, la formule choisie et la région. Pour un ${raceName}, comptez en moyenne entre 18 € et 50 €/mois. Les formules premium couvrent la chirurgie, les maladies chroniques et la prévention.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quand souscrire une assurance chien ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le plus tôt possible : dès l'acquisition, idéalement avant 1 an. Les assureurs excluent les maladies déclarées avant la souscription. Attendre l'apparition d'une pathologie rend la couverture impossible ou très onéreuse."
+      }
+    }
+  ]
+};
+
+const jsonldBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Races", "item": `${siteUrl}/races` },
+    { "@type": "ListItem", "position": 3, "name": raceName, "item": pageUrl }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- ── SEO de base ── -->
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDesc} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- ── Open Graph ── -->
+    <meta property="og:type"        content="article" />
+    <meta property="og:title"       content={metaTitle} />
+    <meta property="og:description" content={metaDesc} />
+    <meta property="og:image"       content={imageUrl} />
+    <meta property="og:url"         content={pageUrl} />
+    <meta property="og:site_name"   content="Assure Mon Chien" />
+    <meta property="og:locale"      content="fr_FR" />
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={metaTitle} />
+    <meta name="twitter:description" content={metaDesc} />
+    <meta name="twitter:image"       content={imageUrl} />
+
+    <!-- ── JSON-LD ── -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonldArticle)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonldFaq)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonldBreadcrumb)} />
+
+    <style is:global>
+  /* ══ RESET & TOKENS ══ */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --green-nav:    #0F6E56;
+    --green:        #1D9E75;
+    --green-dark:   #157a5b;
+    --green-light:  #e8f7f2;
+    --yellow:       #F9CB42;
+    --red-risk:     #E55A4E;
+    --bg:           #F7F9F8;
+    --white:        #ffffff;
+    --text:         #1a1a1a;
+    --text-muted:   #5a6a63;
+    --border:       #d4ede5;
+    --max-width:    1080px;
+    --radius:       8px;
+  }
+
+  html {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  body {
+    margin: 0;
+    padding-bottom: 72px;
+  }
+
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 1.5rem;
+    color: var(--green-nav);
+    margin: 0 0 1.25rem;
+  }
+
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* ══ HEADER ══ */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--green-nav);
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  }
+
+  .header-inner {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .logo:hover { text-decoration: none; opacity: .9; }
+
+  .header-nav {
+    display: flex;
+    gap: .25rem;
+    flex: 1;
+  }
+
+  .header-nav a {
+    color: rgba(255,255,255,.85);
+    font-size: .9rem;
+    padding: .3rem .7rem;
+    border-radius: 5px;
+    transition: background .15s;
+  }
+  .header-nav a:hover {
+    background: rgba(255,255,255,.15);
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .btn-devis {
+    background: var(--green);
+    color: var(--white);
+    font-weight: 700;
+    font-size: .875rem;
+    padding: .45rem 1.1rem;
+    border-radius: 5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background .15s;
+    text-decoration: none;
+  }
+  .btn-devis:hover { background: var(--green-dark); text-decoration: none; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--green-nav);
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding: .5rem 1.25rem .75rem;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    color: rgba(255,255,255,.9);
+    padding: .6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    font-size: .95rem;
+  }
+  .mobile-nav a:last-child { border-bottom: none; }
+
+  /* ══ HERO ══ */
+  .hero {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    filter: brightness(.55);
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 40, 28, .85) 0%,
+      rgba(10, 40, 28, .25) 55%,
+      transparent 100%
+    );
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    padding-inline: 1.5rem;
+    max-width: calc(var(--max-width) + 2.5rem);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .6rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: #1a1000;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    padding: .25rem .7rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--white);
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,.8);
+    margin: 0;
+    max-width: 560px;
+  }
+
+  /* ══ TRUST BAR ══ */
+  .trust-bar {
+    background: var(--green-nav);
+    color: rgba(255,255,255,.8);
+    font-size: .8rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+    padding: .55rem 1rem;
+    letter-spacing: .03em;
+  }
+  .trust-sep { opacity: .4; }
+
+  /* ══ BARRE DE RISQUE ══ */
+  .risk-bar-section {
+    background: var(--white);
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .risk-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .risk-bar-label {
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .risk-bar-track {
+    flex: 1;
+    height: 10px;
+    background: #e0ece8;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .risk-bar-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 99px;
+    transition: width .6s ease;
+  }
+
+  .risk-bar-value {
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    flex-shrink: 0;
+    min-width: 2.5rem;
+    text-align: right;
+  }
+
+  /* ══ PAGE BODY ══ */
+  .page-body {
+    background: var(--bg);
+    padding: 2rem 0 3rem;
+  }
+
+  .page-body .wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* ══ ALERTE / ENCART "À SAVOIR" ══ */
+  .alert {
+    background: #E1F5EE;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .alert-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #0F6E56;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .alert-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .alert-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #1D9E75;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  .alert p {
+    margin: 0;
+    font-size: 13px;
+    color: #085041;
+    line-height: 1.7;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .alert p strong { color: #0F6E56; }
+
+  .alert-source {
+    font-size: 11px;
+    color: #5DCAA5;
+    margin-top: 10px;
+    border-top: 0.5px solid #9FE1CB;
+    padding-top: 8px;
+  }
+
+  /* ══ OFFRES ══ */
+  .offres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .offre-card {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    position: relative;
+  }
+
+  .offre-card--featured {
+    border-color: var(--green);
+    box-shadow: 0 4px 24px rgba(29,158,117,.18);
+  }
+
+  .offre-badge {
+    position: absolute;
+    top: -1px;
+    right: 1.25rem;
+    background: var(--green);
+    color: var(--white);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .07em;
+    padding: .2rem .65rem;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .offre-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .5rem;
+    padding-top: .5rem;
+  }
+
+  .offre-nom {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .offre-prix {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  .offre-sous-texte {
+    margin: 0;
+    font-size: .82rem;
+    color: var(--text-muted);
+  }
+
+  .offre-points {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    flex: 1;
+  }
+
+  .offre-points li {
+    font-size: .875rem;
+    color: var(--text-muted);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .offre-points li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .btn-offre {
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    font-size: .9rem;
+    padding: .65rem 1rem;
+    border-radius: 6px;
+    margin-top: .5rem;
+    transition: background .15s, color .15s, border-color .15s;
+    text-decoration: none;
+  }
+  .btn-offre:hover { text-decoration: none; }
+
+  .btn-offre--primary {
+    background: var(--green);
+    color: var(--white);
+    border: 2px solid var(--green);
+  }
+  .btn-offre--primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+  .btn-offre--outline {
+    background: transparent;
+    color: var(--green);
+    border: 2px solid var(--green);
+  }
+  .btn-offre--outline:hover { background: var(--green); color: var(--white); }
+
+  /* ══ RISKS ══ */
+  .risks-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .risk-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .risk-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .5rem;
+  }
+
+  .risk-card-nom {
+    font-weight: 700;
+    font-size: .9rem;
+    color: var(--text);
+  }
+
+  .risk-card-prix {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--red-risk);
+    white-space: nowrap;
+    background: #fdf0ef;
+    padding: .1rem .4rem;
+    border-radius: 4px;
+  }
+
+  .risk-card-track {
+    height: 7px;
+    background: #ffe0de;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .risk-card-fill {
+    height: 100%;
+    background: var(--red-risk);
+    border-radius: 99px;
+  }
+
+  .risk-card-desc {
+    margin: 0;
+    font-size: .82rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* ══ PATHOLOGIES ══ */
+  .patho-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .patho-item {
+    border-left: 4px solid var(--green);
+    background: var(--white);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: .75rem;
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .patho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .75rem;
+    margin-bottom: .4rem;
+  }
+
+  .patho-nom {
+    font-size: .95rem;
+    color: var(--green-nav);
+  }
+
+  .patho-cout {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--red-risk);
+    white-space: nowrap;
+    background: #fdf0ef;
+    padding: .1rem .4rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .patho-desc {
+    margin: 0;
+    font-size: .875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ══ TÉMOIGNAGES ══ */
+  .temoignages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .temoignage-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+  }
+
+  .temo-stars {
+    font-size: 1.1rem;
+    color: var(--yellow);
+    letter-spacing: .05em;
+  }
+
+  .temo-texte {
+    margin: 0;
+    font-size: .9rem;
+    color: var(--text);
+    line-height: 1.7;
+    font-style: italic;
+    flex: 1;
+  }
+
+  .temo-footer {
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+    border-top: 1px solid var(--border);
+    padding-top: .65rem;
+  }
+
+  .temo-prenom {
+    font-weight: 700;
+    font-size: .875rem;
+    color: var(--text);
+  }
+
+  .temo-race, .temo-date {
+    font-size: .78rem;
+    color: var(--text-muted);
+  }
+
+  /* ══ FOOTER AFFILIATION / COPYRIGHT ══ */
+  .footer-affiliation {
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding: .75rem 0;
+    font-size: 11px;
+    color: rgba(255,255,255,.5);
+    text-align: center;
+    line-height: 1.8;
+  }
+  .footer-affiliation a {
+    color: rgba(255,255,255,.5);
+    text-decoration: underline;
+  }
+  .footer-affiliation a:hover { color: rgba(255,255,255,.8); text-decoration: none; }
+
+  /* ══ TABLEAU COMPARATIF ══ */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  .comp-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: .875rem;
+  }
+
+  .comp-table thead tr {
+    background: var(--green-nav);
+    color: var(--white);
+  }
+
+  .comp-table th {
+    padding: .8rem 1rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: .8rem;
+    letter-spacing: .03em;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .comp-table th.col-featured {
+    background: #0d5f49;
+  }
+
+  .comp-badge {
+    display: block;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-top: .15rem;
+  }
+
+  .comp-table .col-critere {
+    width: 160px;
+    color: rgba(255,255,255,.7);
+    font-weight: 400;
+  }
+
+  .comp-table tbody tr:nth-child(odd) td,
+  .comp-table tbody tr:nth-child(odd) th[scope="row"] { background: var(--white); }
+  .comp-table tbody tr:nth-child(even) td,
+  .comp-table tbody tr:nth-child(even) th[scope="row"] { background: var(--bg); }
+
+  .comp-table tbody td,
+  .comp-table tbody th[scope="row"] {
+    padding: .65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .comp-table tbody th[scope="row"] {
+    color: var(--text-muted);
+    font-size: .82rem;
+  }
+
+  .comp-table tbody td.col-featured {
+    background: #E1F5EE !important;
+    font-weight: 600;
+  }
+
+  .comp-table tbody tr:last-child td,
+  .comp-table tbody tr:last-child th[scope="row"] { border-bottom: none; }
+
+  .cell-yes { color: var(--green); font-weight: 700; font-size: 1rem; }
+  .cell-no  { color: #E24B4A;      font-weight: 700; font-size: 1rem; }
+
+  .row-cta td { padding: .75rem 1rem; }
+
+  .btn-comp {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    padding: .45rem .9rem;
+    border-radius: 5px;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .btn-comp:hover { text-decoration: none; }
+  .btn-comp--primary {
+    background: var(--green);
+    color: var(--white);
+    border: 2px solid var(--green);
+  }
+  .btn-comp--primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+  .btn-comp--outline {
+    background: transparent;
+    color: var(--green);
+    border: 2px solid var(--green);
+  }
+  .btn-comp--outline:hover { background: var(--green); color: var(--white); }
+
+  .comp-note {
+    font-size: 11px;
+    color: #888780;
+    margin: .6rem 0 0;
+  }
+
+  /* ══ CONFIANCE ══ */
+  .confiance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .confiance-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+
+  .confiance-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .confiance-card strong {
+    font-size: .95rem;
+    color: var(--green-nav);
+  }
+
+  .confiance-card p {
+    margin: 0;
+    font-size: .83rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ══ SOURCES ══ */
+  .section-sources {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: .9rem 0;
+  }
+
+  .sources-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888780;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin: 0 0 .35rem;
+  }
+
+  .sources-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+    font-size: 11px;
+    margin: 0 0 .3rem;
+  }
+  .sources-links a {
+    color: #888780;
+    text-decoration: underline;
+  }
+  .sources-links a:hover { color: var(--green-dark); }
+  .sources-links span { color: #ccc; }
+
+  .sources-methodo {
+    font-size: 11px;
+    color: #888780;
+    margin: 0;
+  }
+
+  /* ══ FOOTER ══ */
+  .site-footer {
+    background: var(--green-nav);
+    color: var(--white);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+  .footer-brand p {
+    font-size: .82rem;
+    font-weight: 400;
+    opacity: .7;
+    margin: 0;
+    max-width: 300px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,.8);
+    font-size: .9rem;
+  }
+  .footer-links a:hover { color: var(--white); text-decoration: none; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding: .75rem 0;
+    font-size: .78rem;
+    opacity: .6;
+    text-align: center;
+  }
+
+  /* ══ STICKY CTA ══ */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 300;
+    background: var(--green-nav);
+    box-shadow: 0 -3px 16px rgba(0,0,0,.25);
+    transition: transform .25s ease;
+  }
+
+  .sticky-cta--hidden {
+    transform: translateY(100%);
+  }
+
+  .sticky-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+  }
+
+  .sticky-cta-text {
+    margin: 0;
+    color: rgba(255,255,255,.9);
+    font-size: .9rem;
+  }
+  .sticky-cta-text strong { color: var(--white); }
+
+  .btn-sticky {
+    background: var(--yellow);
+    color: #1a1000;
+    font-weight: 800;
+    font-size: .9rem;
+    padding: .6rem 1.4rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: filter .15s;
+    text-decoration: none;
+  }
+  .btn-sticky:hover { filter: brightness(1.08); text-decoration: none; }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 640px) {
+    .header-nav, .btn-devis { display: none; }
+    .nav-toggle { display: flex; }
+
+    .hero { height: 260px; }
+
+    .hero-content { bottom: 1.25rem; padding-inline: 1rem; }
+    .hero-title { font-size: 1.7rem; }
+
+    .risk-bar-label { font-size: .75rem; max-width: 120px; }
+
+    .risks-grid { grid-template-columns: 1fr; }
+
+    .confiance-grid { grid-template-columns: 1fr; }
+
+    .comp-table th, .comp-table td { padding: .55rem .65rem; font-size: .8rem; }
+
+    .sticky-cta-text { font-size: .82rem; }
+    .btn-sticky { font-size: .82rem; padding: .55rem 1rem; }
+  }
+
+  @media (max-width: 400px) {
+    .sticky-cta-text { display: none; }
+    .btn-sticky { width: 100%; text-align: center; }
+  }
+</style>
+  </head>
+
+  <body>
+
+    <!-- ══════════════════════════════════════════
+         HEADER / NAV
+    ══════════════════════════════════════════ -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <span aria-hidden="true">🐾</span> Assure Mon Chien
+        </a>
+        <nav class="header-nav" aria-label="Navigation principale">
+          <a href="/">Accueil</a>
+          <a href="/races">Races</a>
+          <a href="/guides">Guides</a>
+        </nav>
+        <a href={affiliateUrl} class="btn-devis" target="_blank" rel="noopener sponsored">
+          Devis gratuit
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
+        <a href="/">Accueil</a>
+        <a href="/races">Races</a>
+        <a href="/guides">Guides</a>
+        <a href={affiliateUrl} target="_blank" rel="noopener sponsored">Devis gratuit</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- ══════════════════════════════════════════
+           HERO IMMERSIF
+      ══════════════════════════════════════════ -->
+      <section class="hero" aria-label={`Photo de ${raceName}`}>
+        <img
+          src={imageUrl}
+          alt={imageAlt}
+          class="hero-bg"
+          loading="eager"
+          fetchpriority="high"
+          width="1200"
+          height="320"
+          decoding="async"
+        />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-badge">{heroBadge}</span>
+          <h1 class="hero-title">{raceName}</h1>
+          <p class="hero-subtitle">{heroSubtitle}</p>
+        </div>
+      </section>
+
+      <!-- Barre de confiance -->
+      <div class="trust-bar">
+        <span>Mis à jour 2026</span>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           BARRE DE RISQUE
+      ══════════════════════════════════════════ -->
+      <div class="risk-bar-section">
+        <div class="wrap">
+          <div class="risk-bar-inner">
+            <span class="risk-bar-label">Risque santé {raceName}</span>
+            <div class="risk-bar-track" role="progressbar" aria-valuenow={riskScore} aria-valuemin={0} aria-valuemax={100}>
+              <div class="risk-bar-fill" style={`width: ${riskScore}%`}></div>
+            </div>
+            <span class="risk-bar-value">{riskScore} %</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           CONTENU PRINCIPAL
+      ══════════════════════════════════════════ -->
+      <div class="page-body">
+        <div class="wrap">
+
+          <!-- Encart "À savoir" -->
+          <div class="alert" role="note">
+            <span class="alert-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="10" cy="10" r="9" stroke="white" stroke-width="1.5"/>
+                <line x1="10" y1="9" x2="10" y2="14" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="10" cy="6.5" r="1" fill="white"/>
+              </svg>
+            </span>
+            <div class="alert-body">
+              <div class="alert-label">À savoir avant d'assurer</div>
+              <p set:html={alertText}></p>
+              {alertSource && <div class="alert-source">{alertSource}</div>}
+            </div>
+          </div>
+
+          <!-- ── Meilleures offres ── -->
+          <section class="section-offres" aria-label="Meilleures offres">
+            <h2>Meilleures offres pour le {raceName}</h2>
+            <div class="offres-grid">
+              {offres.map((o) => (
+                <div class={`offre-card${o.featured ? " offre-card--featured" : ""}`}>
+                  {o.badge && <span class="offre-badge">{o.badge}</span>}
+                  <div class="offre-top">
+                    <span class="offre-nom">{o.nom}</span>
+                    <span class="offre-prix">{o.prix}</span>
+                  </div>
+                  {o.sousTexte && <p class="offre-sous-texte">{o.sousTexte}</p>}
+                  <ul class="offre-points">
+                    {o.points.map((pt) => <li>{pt}</li>)}
+                  </ul>
+                  <a
+                    href={o.url}
+                    class={o.featured ? "btn-offre btn-offre--primary" : "btn-offre btn-offre--outline"}
+                    target="_blank"
+                    rel="noopener sponsored"
+                  >
+                    {o.cta}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- ── Risques spécifiques ── -->
+          <section class="section-risks" aria-label="Risques spécifiques">
+            <h2>Risques spécifiques au {raceName}</h2>
+            <div class="risks-grid">
+              {risks.map((r) => (
+                <div class="risk-card">
+                  <div class="risk-card-top">
+                    <span class="risk-card-nom">{r.nom}</span>
+                    <span class="risk-card-prix">{r.prix}</span>
+                  </div>
+                  <div class="risk-card-track">
+                    <div class="risk-card-fill" style={`width: ${r.score}%`}></div>
+                  </div>
+                  <p class="risk-card-desc">{r.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- ── Tableau comparatif ── -->
+          <section class="section-comparatif" aria-label="Tableau comparatif des assurances">
+            <h2>Comparatif des assurances</h2>
+            <div class="table-scroll">
+              <table class="comp-table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-critere">Critère</th>
+                    {comparatif.map((o) => (
+                      <th scope="col" class={o.featured ? "col-featured" : ""}>
+                        {o.nom}
+                        {o.featured && <span class="comp-badge">Recommandé</span>}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Prix mensuel</th>
+                    {comparatif.map((o) => <td class={o.featured ? "col-featured" : ""}>{o.prix}</td>)}
+                  </tr>
+                  <tr>
+                    <th scope="row">Remboursement</th>
+                    {comparatif.map((o) => <td class={o.featured ? "col-featured" : ""}>{o.remboursement}</td>)}
+                  </tr>
+                  <tr>
+                    <th scope="row">Carence maladie</th>
+                    {comparatif.map((o) => <td class={o.featured ? "col-featured" : ""}>{o.carenceMaladie}</td>)}
+                  </tr>
+                  <tr>
+                    <th scope="row">Prévention</th>
+                    {comparatif.map((o) => (
+                      <td class={o.featured ? "col-featured" : ""}>
+                        {o.prevention ?? <span class="cell-no">✗</span>}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <th scope="row">Dysplasie couverte</th>
+                    {comparatif.map((o) => (
+                      <td class={o.featured ? "col-featured" : ""}>
+                        {o.dysplasie ? <span class="cell-yes">✓</span> : <span class="cell-no">✗</span>}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <th scope="row">Vaccins</th>
+                    {comparatif.map((o) => (
+                      <td class={o.featured ? "col-featured" : ""}>
+                        {o.vaccins ?? <span class="cell-no">✗</span>}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <th scope="row">App mobile</th>
+                    {comparatif.map((o) => (
+                      <td class={o.featured ? "col-featured" : ""}>
+                        {o.appMobile ? <span class="cell-yes">✓</span> : <span class="cell-no">✗</span>}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <th scope="row">Délai remboursement</th>
+                    {comparatif.map((o) => <td class={o.featured ? "col-featured" : ""}>{o.rembDelai}</td>)}
+                  </tr>
+                  <tr class="row-cta">
+                    <td></td>
+                    {comparatif.map((o) => (
+                      <td class={o.featured ? "col-featured" : ""}>
+                        <a
+                          href={o.url}
+                          class={o.featured ? "btn-comp btn-comp--primary" : "btn-comp btn-comp--outline"}
+                          target="_blank"
+                          rel="noopener sponsored"
+                        >
+                          Voir l'offre →
+                        </a>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="comp-note">Tarifs indicatifs avril 2026. Varient selon race, âge et région.</p>
+          </section>
+
+          <!-- ── Pathologies détaillées ── -->
+          <section class="section-patho" aria-label="Pathologies détaillées">
+            <h2>Pathologies détaillées</h2>
+            <ul class="patho-list">
+              {pathologies.map((p) => (
+                <li class="patho-item">
+                  <div class="patho-header">
+                    <strong class="patho-nom">{p.nom}</strong>
+                    {p.cout && <span class="patho-cout">{p.cout}</span>}
+                  </div>
+                  <p class="patho-desc">{p.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <!-- ── Pourquoi nous faire confiance ── -->
+          <section class="section-confiance" aria-label="Pourquoi nous faire confiance">
+            <h2>Pourquoi nous faire confiance</h2>
+            <div class="confiance-grid">
+              <div class="confiance-card">
+                <span class="confiance-icon" aria-hidden="true">🔍</span>
+                <strong>Guide indépendant</strong>
+                <p>Aucun assureur ne finance notre contenu. Nos recommandations reposent uniquement sur l'analyse objective des offres.</p>
+              </div>
+              <div class="confiance-card">
+                <span class="confiance-icon" aria-hidden="true">📅</span>
+                <strong>Données vérifiées avril 2026</strong>
+                <p>Prix, garanties et délais de carence sont vérifiés chaque trimestre directement sur les sites des assureurs.</p>
+              </div>
+              <div class="confiance-card">
+                <span class="confiance-icon" aria-hidden="true">✋</span>
+                <strong>Sans engagement</strong>
+                <p>Comparer est gratuit. Vous n'êtes jamais obligé de souscrire via nos liens — ils sont là pour votre commodité.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ── Sources & méthodologie ── -->
+    <aside class="section-sources">
+      <div class="wrap">
+        <p class="sources-title">Sources &amp; méthodologie</p>
+        <p class="sources-links">
+          <a href="https://www.scc.asso.fr" target="_blank" rel="noopener">scc.asso.fr</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.santevet.com" target="_blank" rel="noopener">santevet.com</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.assuropoil.fr" target="_blank" rel="noopener">assuropoil.fr</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.lassie.co" target="_blank" rel="noopener">lassie.co</a>
+        </p>
+        <p class="sources-methodo">Sélection basée sur prix, taux de remboursement, délai de carence et couverture des pathologies spécifiques à la race.</p>
+      </div>
+    </aside>
+
+    <!-- ══════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════ -->
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div class="footer-brand">
+          <span aria-hidden="true">🐾</span> Assure Mon Chien
+        </div>
+        <nav class="footer-links">
+          <a href="/">Accueil</a>
+          <a href="/races">Races</a>
+          <a href="/guides">Guides</a>
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/confidentialite">Confidentialité</a>
+          <a href="/affiliation">Affiliation</a>
+        </nav>
+      </div>
+      <div class="footer-affiliation">
+        <div class="wrap">
+          &copy; 2026 Gaëtan CHAUVELOT — Assure Mon Chien<br />
+          Commission perçue si souscription via nos liens, sans surcoût pour vous.
+        </div>
+      </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════
+         CTA STICKY
+    ══════════════════════════════════════════ -->
+    <div class="sticky-cta" id="sticky-cta">
+      <div class="sticky-cta-inner wrap">
+        <p class="sticky-cta-text">
+          Protégez votre <strong>{raceName}</strong> dès aujourd'hui
+        </p>
+        <a href={affiliateUrl} class="btn-sticky" target="_blank" rel="noopener sponsored">
+          Obtenir mon devis →
+        </a>
+      </div>
+    </div>
+
+    <script>
+      // Burger menu
+      const toggle = document.querySelector(".nav-toggle") as HTMLButtonElement;
+      const mobileNav = document.getElementById("mobile-nav");
+      toggle?.addEventListener("click", () => {
+        const open = mobileNav?.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      // Sticky CTA : masquer quand le header est visible
+      const stickyCta = document.getElementById("sticky-cta");
+      const header = document.querySelector(".site-header") as HTMLElement;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          stickyCta?.classList.toggle("sticky-cta--hidden", entry.isIntersecting);
+        },
+        { threshold: 0 }
+      );
+      if (header) observer.observe(header);
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Mentions légales | Assure Mon Chien"
+  description="Mentions légales du site Assure Mon Chien : éditeur, hébergeur, propriété intellectuelle et politique de liens affiliés."
+>
+  <div class="legal-page">
+    <h1>Mentions légales</h1>
+
+    <h2>Éditeur</h2>
+    <p>Gaëtan CHAUVELOT<br />
+    Email : <a href="mailto:assuremonchien@gmail.com">assuremonchien@gmail.com</a></p>
+
+    <h2>Hébergeur</h2>
+    <p>Vercel Inc.<br />
+    340 Pine Street, Suite 900<br />
+    San Francisco, CA 94104, USA<br />
+    <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>L'ensemble du contenu de ce site (textes, images, structure) est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation écrite préalable de l'éditeur.</p>
+
+    <h2>Liens externes</h2>
+    <p>Ce site contient des liens affiliés vers des assureurs partenaires. En cliquant sur ces liens, nous sommes susceptibles de percevoir une commission, sans aucun surcoût pour vous. Consultez notre <a href="/affiliation">politique d'affiliation</a> pour en savoir plus.</p>
+
+    <p class="legal-copyright">&copy; 2026 Gaëtan CHAUVELOT — Assure Mon Chien</p>
+  </div>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1a1a1a;
+  }
+
+  .legal-page h1 {
+    font-size: 1.75rem;
+    color: #0F6E56;
+    margin: 0 0 2rem;
+  }
+
+  .legal-page h2 {
+    font-size: 1.1rem;
+    color: #0F6E56;
+    margin: 2rem 0 .5rem;
+    padding-bottom: .3rem;
+    border-bottom: 1px solid #d4ede5;
+  }
+
+  .legal-page p {
+    margin: 0 0 1rem;
+  }
+
+  .legal-page a {
+    color: #1D9E75;
+  }
+
+  .legal-copyright {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #d4ede5;
+    font-size: 12px;
+    color: #999;
+  }
+</style>

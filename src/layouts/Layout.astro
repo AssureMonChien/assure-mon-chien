@@ -1,23 +1,322 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Trouvez la meilleure assurance pour votre chien. Comparez les offres, découvrez les races et consultez nos guides pratiques.",
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title} — Assure Mon Chien</title>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="e00607c6-424a-47f6-aa47-d80646551207"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a href="/" class="logo">
+          <span class="logo-icon">🐾</span>
+          <span class="logo-text">Assure Mon Chien</span>
+        </a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="main-nav">
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/races">Races</a></li>
+            <li><a href="/guides">Guides</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-icon">🐾</span>
+          <span class="logo-text">Assure Mon Chien</span>
+          <p>Votre guide pour assurer votre compagnon au meilleur prix.</p>
+        </div>
+        <nav class="footer-nav">
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/races">Races</a></li>
+            <li><a href="/guides">Guides</a></li>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/confidentialite">Confidentialité</a></li>
+            <li><a href="/affiliation">Affiliation</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p style="margin:0 0 .25rem;">&copy; 2026 Assure Mon Chien</p>
+        <p style="margin:0;">Commission perçue si souscription via nos liens, sans surcoût pour vous.</p>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector(".nav-toggle") as HTMLButtonElement;
+      const nav = document.getElementById("main-nav");
+      toggle?.addEventListener("click", () => {
+        const open = nav?.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+    </script>
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --green: #1D9E75;
+    --green-dark: #157a5b;
+    --green-light: #e8f7f2;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #555555;
+    --border: #d4ede5;
+    --header-height: 64px;
+    --max-width: 1100px;
+  }
+
+  html {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  a {
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Header ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--green);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    height: var(--header-height);
+  }
+
+  .header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo:hover {
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .logo-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  nav#main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  nav#main-nav ul li a {
+    color: var(--white);
+    font-weight: 500;
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    transition: background 0.15s;
+    display: block;
+  }
+
+  nav#main-nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    text-decoration: none;
+  }
+
+  /* Mobile toggle */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  /* ── Main ── */
+  main {
+    flex: 1;
+    width: 100%;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--green);
+    color: var(--white);
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 1.5rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .footer-brand .logo-text {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .footer-brand p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.85;
+    max-width: 280px;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-nav ul li a {
+    color: var(--white);
+    opacity: 0.85;
+    font-size: 0.95rem;
+    transition: opacity 0.15s;
+  }
+
+  .footer-nav ul li a:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    padding: 0.9rem 1.25rem;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    nav#main-nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      background: var(--green-dark);
+      padding: 0.75rem 1.25rem 1rem;
+    }
+
+    nav#main-nav.open {
+      display: block;
+    }
+
+    nav#main-nav ul {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    nav#main-nav ul li a {
+      padding: 0.65rem 0.5rem;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-inner {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
 </style>
