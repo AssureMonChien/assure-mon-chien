@@ -1,11 +1,613 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const races = [
+  {
+    nom: "Labrador Retriever",
+    slug: "labrador",
+    riskScore: 78,
+    imageUrl: "https://images.unsplash.com/photo-1554456854-55a089fd4cb2?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Labrador Retriever doré assis dans un jardin",
+    badge: "POPULAIRE",
+  },
+  {
+    nom: "Golden Retriever",
+    slug: "golden-retriever",
+    riskScore: 85,
+    imageUrl: "https://images.unsplash.com/photo-1633722715463-d30f4f325e24?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Golden Retriever courant dans un champ, pelage doré",
+    badge: "RISQUE ÉLEVÉ",
+  },
+  {
+    nom: "Berger Allemand",
+    slug: "berger-allemand",
+    riskScore: 76,
+    imageUrl: "https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Berger Allemand debout dans un pré, regard alerte",
+    badge: "DYSPLASIE",
+  },
+  {
+    nom: "Bouledogue Français",
+    slug: "bouledogue-francais",
+    riskScore: 88,
+    imageUrl: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Bouledogue Français bringé assis sur un canapé",
+    badge: "FRAIS ÉLEVÉS",
+  },
+  {
+    nom: "Beagle",
+    slug: "beagle",
+    riskScore: 62,
+    imageUrl: "https://images.unsplash.com/photo-1505628346881-b72b27e84530?q=80&w=600&auto=format&fit=crop",
+    imageAlt: "Beagle tricolore en pleine course dans un jardin",
+    badge: "ROBUSTE",
+  },
+];
+
+function riskColor(score: number) {
+  if (score >= 80) return "#e53e3e";
+  if (score >= 65) return "#d97706";
+  return "#1D9E75";
+}
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Assurance chien — Comparez les meilleures mutuelles 2026"
+  description="Trouvez la meilleure assurance santé pour votre chien selon sa race. Comparatif indépendant, pathologies fréquentes, tarifs réels. Guide 2026 mis à jour."
+>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Comparatif indépendant · Mis à jour avril 2026</div>
+      <h1>Trouvez la meilleure assurance<br class="hero-br" /> pour votre chien</h1>
+      <p class="hero-sub">Chaque race a ses pathologies spécifiques et ses coûts vétérinaires propres. Choisissez votre race et comparez les offres adaptées — sans jargon, sans surcoût.</p>
+      <div class="hero-actions">
+        <a href="#races" class="btn-primary">Voir les races →</a>
+        <a href="/guides" class="btn-ghost">Lire les guides</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">races analysées</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <span class="stat-num">3</span>
+          <span class="stat-label">assureurs comparés</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <span class="stat-num">100 %</span>
+          <span class="stat-label">indépendant</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Races ── -->
+  <section class="section" id="races">
+    <div class="wrap">
+      <h2 class="section-title">Choisissez votre race</h2>
+      <p class="section-sub">Cliquez sur votre race pour accéder au comparatif personnalisé avec les pathologies spécifiques et les offres adaptées.</p>
+      <div class="races-grid">
+        {races.map((race) => (
+          <a href={`/races/${race.slug}`} class="race-card">
+            <div class="race-img-wrap">
+              <img
+                src={race.imageUrl}
+                alt={race.imageAlt}
+                loading="lazy"
+                width="600"
+                height="400"
+                class="race-img"
+              />
+              <span class="race-badge">{race.badge}</span>
+            </div>
+            <div class="race-body">
+              <h3 class="race-name">{race.nom}</h3>
+              <div class="race-risk">
+                <span class="risk-label">Risque santé</span>
+                <div class="risk-bar-wrap">
+                  <div
+                    class="risk-bar-fill"
+                    style={`width:${race.riskScore}%; background:${riskColor(race.riskScore)}`}
+                  ></div>
+                </div>
+                <span class="risk-pct" style={`color:${riskColor(race.riskScore)}`}>
+                  {race.riskScore} %
+                </span>
+              </div>
+              <span class="race-cta">Voir le comparatif →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pourquoi comparer ── -->
+  <section class="section section-alt" id="pourquoi">
+    <div class="wrap">
+      <h2 class="section-title">Pourquoi comparer avant de souscrire ?</h2>
+      <p class="section-sub">Les écarts de prix et de couverture entre assureurs sont considérables. Un comparatif ciblé par race change tout.</p>
+      <div class="arguments-grid">
+        <div class="argument">
+          <div class="arg-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <circle cx="14" cy="14" r="13" stroke="#1D9E75" stroke-width="1.5"/>
+              <path d="M8 14l4 4 8-8" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Économisez jusqu'à 40 %</h3>
+          <p>Pour une même race et une même couverture, les tarifs varient du simple au double. Un comparatif ciblé vous fait économiser des centaines d'euros par an.</p>
+        </div>
+        <div class="argument">
+          <div class="arg-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <circle cx="14" cy="14" r="13" stroke="#1D9E75" stroke-width="1.5"/>
+              <path d="M14 7v7l4 2" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Souscrivez avant les symptômes</h3>
+          <p>Les assureurs excluent les maladies préexistantes. Souscrire tôt garantit la couverture des pathologies héréditaires de votre race, avant qu'elles n'apparaissent.</p>
+        </div>
+        <div class="argument">
+          <div class="arg-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <circle cx="14" cy="14" r="13" stroke="#1D9E75" stroke-width="1.5"/>
+              <path d="M9 14h10M14 9v10" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Couverture adaptée à votre race</h3>
+          <p>Un Bouledogue Français a besoin d'une couverture chirurgie brachycéphale. Un Golden Retriever, d'une couverture cancer. Notre guide cible ce qui compte vraiment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Comment ça marche ── -->
+  <section class="section" id="comment">
+    <div class="wrap">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <p class="section-sub">En 3 étapes simples, trouvez et souscrivez l'assurance idéale pour votre chien.</p>
+      <ol class="steps">
+        <li class="step">
+          <div class="step-num" aria-hidden="true">1</div>
+          <div class="step-content">
+            <h3>Choisissez votre race</h3>
+            <p>Sélectionnez la race de votre chien parmi notre sélection. Chaque fiche détaille les pathologies fréquentes, les coûts réels et les risques génétiques spécifiques.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num" aria-hidden="true">2</div>
+          <div class="step-content">
+            <h3>Comparez les offres</h3>
+            <p>Notre tableau comparatif met en regard les principaux assureurs sur les critères qui comptent : taux de remboursement, délai de carence, couverture des maladies héréditaires.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-num" aria-hidden="true">3</div>
+          <div class="step-content">
+            <h3>Souscrivez en ligne</h3>
+            <p>Cliquez sur l'offre choisie et souscrivez directement sur le site de l'assureur. La démarche prend moins de 5 minutes. Le tarif est identique à celui affiché sur leur site.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── Note confiance ── -->
+  <section class="section section-alt section-trust">
+    <div class="wrap">
+      <p class="trust-note">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="vertical-align:-2px; margin-right:5px;">
+          <circle cx="8" cy="8" r="7" stroke="#1D9E75" stroke-width="1.2"/>
+          <path d="M5 8l2 2 4-4" stroke="#1D9E75" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Site indépendant — Aucun assureur ne finance nos classements. Nous percevons une commission si vous souscrivez via nos liens, sans surcoût pour vous.
+        <a href="/affiliation">En savoir plus →</a>
+      </p>
+    </div>
+  </section>
+
 </Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #0a5c47 0%, #1D9E75 60%, #2bbf8d 100%);
+    color: #fff;
+    padding: 5rem 1.25rem 4rem;
+    text-align: center;
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 0.3rem 0.9rem;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.75rem, 5vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 1.1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-br {
+    display: none;
+  }
+  @media (min-width: 480px) {
+    .hero-br {
+      display: inline;
+    }
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    opacity: 0.88;
+    margin: 0 0 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: #0F6E56;
+    font-weight: 700;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .stat-num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .stat-sep {
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* ── Sections ── */
+  .section {
+    padding: 4rem 1.25rem;
+  }
+
+  .section-alt {
+    background: #f4fbf8;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 0.5rem;
+    text-align: center;
+    letter-spacing: -0.02em;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: #555;
+    font-size: 0.95rem;
+    margin: 0 auto 2.5rem;
+    max-width: 580px;
+    line-height: 1.65;
+  }
+
+  /* ── Race cards ── */
+  .races-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .race-card {
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #d4ede5;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .race-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+  }
+
+  .race-img-wrap {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: #e8f7f2;
+  }
+
+  .race-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .race-card:hover .race-img {
+    transform: scale(1.04);
+  }
+
+  .race-badge {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background: rgba(15, 110, 86, 0.85);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+  }
+
+  .race-body {
+    padding: 0.9rem 1rem 1rem;
+  }
+
+  .race-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.6rem;
+  }
+
+  .race-risk {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .risk-label {
+    font-size: 11px;
+    color: #777;
+    white-space: nowrap;
+  }
+
+  .risk-bar-wrap {
+    flex: 1;
+    height: 5px;
+    background: #e8f7f2;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .risk-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  .risk-pct {
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .race-cta {
+    font-size: 0.82rem;
+    color: #1D9E75;
+    font-weight: 600;
+  }
+
+  /* ── Arguments ── */
+  .arguments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .argument {
+    background: #fff;
+    border: 1px solid #d4ede5;
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+
+  .arg-icon {
+    width: 48px;
+    height: 48px;
+    background: #e8f7f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .argument h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0F6E56;
+    margin: 0 0 0.5rem;
+  }
+
+  .argument p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── Steps ── */
+  .steps {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 640px;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: #1D9E75;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.15rem;
+  }
+
+  .step-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0F6E56;
+    margin: 0 0 0.35rem;
+  }
+
+  .step-content p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── Trust note ── */
+  .section-trust {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .trust-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .trust-note a {
+    color: #1D9E75;
+    font-weight: 600;
+    margin-left: 0.25rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 3rem 1.25rem 2.5rem;
+    }
+
+    .stat-sep {
+      height: 24px;
+    }
+
+    .races-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .arguments-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section {
+      padding: 2.5rem 1.25rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .races-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
