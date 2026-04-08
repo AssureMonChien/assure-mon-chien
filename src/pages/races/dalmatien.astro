@@ -1,0 +1,113 @@
+---
+import PageRace from "../../layouts/PageRace.astro";
+---
+
+<PageRace
+  title="Assurance chien Dalmatien : Risques & Meilleures Offres 2026"
+  description="Le Dalmatien est prédisposé à la surdité héréditaire et aux calculs urinaires d'urate. Découvrez les meilleures assurances adaptées aux pathologies spécifiques de cette race iconique."
+  raceName="Dalmatien"
+  slug="dalmatien"
+  dateModified="2026-04-05"
+  heroSubtitle="Iconique et athletique, le Dalmatien est porteur de deux anomalies génétiques bien documentees : une surdite héréditaire silencieuse et une metabolisation des urates qui genere des calculs urinaires uniques dans le monde canin."
+  imageUrl="/images/races/dalmatien.webp"
+  imageAlt="Dalmatien tacheté de noir courant en pleine nature"
+  heroBadge="SURDITÉ HÉRÉDITAIRE · CALCULS URINAIRES"
+  riskScore={60}
+  alertText="Le Dalmatien est la seule race canine avec une <strong>mutation génétique SLC2A9</strong> provoquant une elimination anormale d'acide urique. Cette prédisposition aux <strong>calculs d'urate</strong> est héréditaire et non couverte comme exclusion si déclarée avant souscription. <strong>100 % des Dalmatiens</strong> sont porteurs. Seule l'alimentation adaptée et un suivi régulier limitent le risque d'obstruction urinaire urgente."
+  alertSource="Source : Bannasch et al., Mutations in SLC2A9 PLoS Genetics 2008 confirme 2023 ; Dalmatian Club of America Health Committee 2023"
+  introText="Le Dalmatien est une race active nécessitant plus de 2h d'exercice quotidien, un chien qui s'épanouit dans les familles sportives et les grands espaces. Son régime alimentaire doit etre controle en purines tout au long de sa vie pour limiter la formation de calculs uratiques, ce qui genere un coût alimentaire spécifique en plus des frais vétérinaires."
+  faq={[
+    { question: "Les calculs urinaires d'urate du Dalmatien sont-ils couverts par l'assurance ?", answer: "Oui, SanteVet couvre les episodes d'obstruction urinaire, la cystotomie et le suivi urologique à condition de souscrire avant tout episode diagnostique. La prédisposition etant universelle dans la race, une souscription précoce est particulierement strategique." },
+    { question: "Quand assurer son Dalmatien pour couvrir les pathologies génétiques ?", answer: "Des l'acquisition, avant tout bilan urologique ou audiologique. Le test BAER (surdite) et le premier dosage d'acide urique avant souscription peuvent créer des exclusions définitives. Souscrire avant ces examens est la seule strategie efficace." },
+    { question: "Quel budget mensuel pour assurer un Dalmatien ?", answer: "Entre 18 et 30 euros/mois selon la formule et l'âge. Le Dalmatien présente un profil de risque modéré avec des pathologies spécifiques mais prévisibles. Une formule avec bonne couverture urologique et neurologique est adaptée." },
+  ]}
+  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=dalmatien&ref=assuremochien"
+  offres={[
+    {
+      nom: "SantéVet",
+      featured: true,
+      badge: "MEILLEUR CHOIX",
+      prix: "à partir de 18 €/mois",
+      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
+      points: [
+        "Couverture calculs urinaires d'urate et cystotomie",
+        "Prise en charge bilan BAER pour la surdité héréditaire",
+        "Remboursement régime alimentaire thérapeutique urate",
+        "Couverture épilepsie et traitement antiépileptique",
+        "Remboursement sous 48 h",
+      ],
+      url: "https://www.santeVet.com/assurance-chien/?race=dalmatien&ref=assuremochien",
+      cta: "Voir l'offre →",
+    },
+    {
+      nom: "Lassie",
+      featured: false,
+      prix: "à partir de 20 €/mois",
+      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
+      points: [
+        "Accidents et maladies couverts",
+        "Hospitalisation remboursée à 80 %",
+        "Application mobile intuitive",
+        "Sans engagement de durée",
+        "Devis en 90 secondes",
+      ],
+      url: "https://www.lassie.fr/?ref=assuremochien",
+      cta: "Voir l'offre →",
+    },
+  ]}
+  risks={[
+    { nom: "Surdité héréditaire", score: 65, prix: "200–1 000 €", description: "Liée à la pigmentation (gène piébald). Surdité uni ou bilatérale détectable par BAER dès 5 semaines. Chiens sourds bilatéraux non reproducibles." },
+    { nom: "Urolithiase urate", score: 70, prix: "500–3 000 €", description: "Prédisposition unique à former des calculs d'urate d'ammonium (mutation SLC2A9). Obstructions urinaires récidivantes. Régime pauvre en purines à vie, cystotomie chirurgicale si obstruction." },
+    { nom: "Épilepsie idiopathique", score: 50, prix: "300–800 €/an", description: "Plus fréquente que dans la population générale canine. Antiépileptiques et bilans réguliers nécessaires." },
+    { nom: "Allergies cutanées", score: 55, prix: "200–800 €/an", description: "Hypersensibilités aux aliments et à l'environnement. Dermatite atopique, otites récidivantes. Traitement immunomodulateur à long terme." },
+  ]}
+  pathologies={[
+    { nom: "Surdité héréditaire (BAER)", description: "Dégénérescence de la strie vasculaire cochléaire liée au gène de dilution extrême (gène piébald). Surdité unilatérale (22 %) ou bilatérale (8 %) détectable par potentiels évoqués auditifs (BAER) dès 5 semaines. Test obligatoire avant toute reproduction.", coût: "200–1 000 €" },
+    { nom: "Urolithiase urate obstructive", description: "Mutation homozygote SLC2A9 propre à la race provoquant une hyperuricosurie. Formation de calculs d'urate d'ammonium dans les voies urinaires. Dysurie, hématurie, obstruction urétrale. Régime sans purines (agneau, riz) à vie. Cystotomie en cas d'obstruction.", coût: "500–3 000 €" },
+    { nom: "Épilepsie idiopathique", description: "Crises convulsives primaires récurrentes d'origine génétique, plus fréquentes dans la race que dans la population canine générale. Antiépileptiques (phénobarbital, bromure) à vie.", coût: "300–800 €/an" },
+    { nom: "Dermatite atopique", description: "Hypersensibilité chronique aux allergènes environnementaux (pollens, acariens) et alimentaires. Prurit intense, otites récidivantes, pyodermites secondaires. Apoquel, Cytopoint ou immunothérapie spécifique.", coût: "200–800 €/an" },
+    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale héréditaire. Arthrose progressive douloureuse. Surveillance radiographique recommandée. Chirurgie en forme sévère.", coût: "800–3 500 €" },
+    { nom: "Myélopathie dégénérative", description: "Dégénérescence progressive de la substance blanche médullaire. Parésie des membres pelviens évoluant vers la paralysie complète. Test ADN disponible (mutation SOD1). Pas de traitement curatif. Rééducation palliative.", coût: "500–2 000 €" },
+  ]}
+  comparatif={[
+    {
+      nom: "SantéVet",
+      featured: true,
+      url: "https://www.santeVet.com/assurance-chien/?race=dalmatien&ref=assuremochien",
+      prix: "à partir de 18 €/mois",
+      remboursement: "100 %",
+      carenceMaladie: "30 j",
+      prévention: "150 €/an",
+      dysplasie: true,
+      vaccins: "Premium",
+      appMobile: true,
+      rembDelai: "48 h",
+    },
+    {
+      nom: "AssurOPoil",
+      featured: false,
+      url: "https://www.assuropoil.fr/?ref=assuremochien",
+      prix: "à partir de 15 €/mois",
+      remboursement: "100 %",
+      carenceMaladie: "30 j",
+      prévention: null,
+      dysplasie: true,
+      vaccins: null,
+      appMobile: false,
+      rembDelai: "5–10 j",
+    },
+    {
+      nom: "Lassie",
+      featured: false,
+      url: "https://www.lassie.fr/?ref=assuremochien",
+      prix: "à partir de 20 €/mois",
+      remboursement: "80 %",
+      carenceMaladie: "45 j",
+      prévention: "100 €/an",
+      dysplasie: true,
+      vaccins: "Premium",
+      appMobile: true,
+      rembDelai: "72 h",
+    },
+  ]}
+/>

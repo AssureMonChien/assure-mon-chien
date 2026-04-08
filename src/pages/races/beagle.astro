@@ -3,26 +3,32 @@ import PageRace from "../../layouts/PageRace.astro";
 ---
 
 <PageRace
-  title="Assurance Beagle — Comparatif 2026"
+  title="Assurance Beagle : Comparatif 2026"
   description="Comparez les meilleures assurances santé pour votre Beagle. Épilepsie, otites, hypothyroïdie, coûts réels, avis d'experts. Guide indépendant avril 2026."
   raceName="Beagle"
   slug="beagle"
   dateModified="2026-04-04"
-  heroSubtitle="Robuste et joyeux, le Beagle est une des races les plus résistantes. Il reste cependant prédisposé à l'épilepsie, aux otites chroniques et à l'hypothyroïdie — des affections à long terme à prévoir."
-  imageUrl="https://images.unsplash.com/photo-1586117571391-596af19dff89?q=80&w=1200&auto=format&fit=crop"
+  heroSubtitle="Robuste et joyeux en apparence, le Beagle reserve quelques surprises : épilepsie héréditaire, otites chroniques et une gourmandise maladive qui masque souvent des troubles metaboliques sous-jacents."
+  imageUrl="/images/races/beagle.webp"
   imageAlt="Beagle tricolore en pleine course dans un jardin, oreilles au vent"
   heroBadge="RACE ROBUSTE · RISQUES CHRONIQUES"
   riskScore={62}
-  alertText="Le Beagle présente une prédisposition génétique à l'<strong>épilepsie primaire idiopathique</strong> : environ <strong>1 chien sur 4</strong> est concerné. Les crises répétées nécessitent un traitement antiépileptique à vie (<strong>300 – 800 €/an</strong>) et des bilans neurologiques réguliers. Les <strong>otites chroniques</strong> liées à ses longues oreilles tombantes peuvent engendrer des coûts importants si elles ne sont pas bien prises en charge dès le départ."
-  alertSource="Source : Beagle Health Survey, The Kennel Club UK, 2022"
+  alertText="L'<strong>épilepsie primaire du Beagle</strong> se déclare généralement entre <strong>1 et 3 ans</strong>. Passé ce seuil sans couverture, les assureurs appliquent une <strong>exclusion définitive</strong> sur toute pathologie neurologique. Un Beagle épileptique non assuré engendre <strong>300 a 800 euros/an</strong> de frais médicaux incompressibles à vie."
+  alertSource="Source : Beagle Health Survey The Kennel Club UK 2022 ; Societe Centrale Canine fiches races 2024"
+  introText="Le Beagle figure régulièrement dans le top 10 des races françaises (FACCO 2024). Sa tendance a suivre les odeurs le place dans une categorie a risque pour les accidents de route, ce qui justifie une couverture accidents solide."
+  faq={[
+    { question: "L'épilepsie du Beagle est-elle couverte par les assurances ?", answer: "Oui, à condition que le premier episode survienne apres la souscription. SanteVet couvre le traitement antiepileptique à vie et les bilans neurologiques, soit 300 à 800 euros/an entièrement remboursés en formule premium." },
+    { question: "A quel âge assurer son Beagle pour eviter les exclusions épilepsie ?", answer: "Avant 12 mois, avant toute crise. L'épilepsie primaire debute entre 1 et 3 ans chez le Beagle. Souscrire jeune garantit que la pathologie sera couverte lorsqu'elle apparaîtra." },
+    { question: "Quel budget mensuel pour assurer un Beagle ?", answer: "Entre 18 et 30 euros/mois. Le Beagle est une race de risque modéré. Les tarifs restent accessibles même avec une couverture maladies chroniques incluant épilepsie et otites récidivantes." },
+  ]}
   affiliateUrl="https://www.santeVet.com/assurance-chien/?race=beagle&ref=assuremochien"
   offres={[
     {
       nom: "SantéVet",
       featured: true,
       badge: "MEILLEUR CHOIX",
-      prix: "à partir de 22 €/mois",
-      sousTexte: "Formule Confort — remboursement jusqu'à 100 %",
+      prix: "à partir de 18 €/mois",
+      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
       points: [
         "Épilepsie et maladies neurologiques couvertes",
         "Maladies chroniques sans surprime",
@@ -36,8 +42,8 @@ import PageRace from "../../layouts/PageRace.astro";
     {
       nom: "Lassie",
       featured: false,
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Essentielle — bon rapport qualité/prix",
+      prix: "à partir de 20 €/mois",
+      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
       points: [
         "Accidents et maladies couverts",
         "Hospitalisation remboursée à 80 %",
@@ -79,32 +85,32 @@ import PageRace from "../../layouts/PageRace.astro";
     {
       nom: "Épilepsie primaire idiopathique",
       description: "Disorder neurologique héréditaire provoquant des crises convulsives sans lésion cérébrale identifiable. Débute généralement entre 1 et 5 ans. Traitement antiépileptique (phénobarbital, bromure de potassium) à vie. Bilan sanguin semestriel obligatoire pour surveiller la toxicité hépatique.",
-      cout: "300 – 800 €/an",
+      coût: "300 – 800 €/an",
     },
     {
       nom: "Hypothyroïdie",
       description: "Déficit en hormones thyroïdiennes d'origine immune (thyroïdite lymphocytaire) ou idiopathique. Prise de poids inexpliquée, somnolence, chute de poil, intolérance au froid. Diagnostic : dosage de la T4 libre. Lévothyroxine orale quotidienne à vie, très bien tolérée.",
-      cout: "150 – 500 €/an",
+      coût: "150 – 500 €/an",
     },
     {
       nom: "Otites chroniques à répétition",
       description: "La conformation auriculaire du Beagle (oreilles longues et tombantes, conduit étroit) crée un environnement humide et chaud propice aux infections. Micro-organismes : Malassezia, Pseudomonas, Staphylococcus. Traitement : nettoyage auriculaire, antibiotiques locaux, parfois ablation du conduit auditif en forme sévère.",
-      cout: "100 – 600 €/épisode",
+      coût: "100 – 600 €/épisode",
     },
     {
       nom: "Dysplasie de hanche",
       description: "Malformation articulaire coxo-fémorale héréditaire. Arthrose progressive douloureuse avec boiterie et difficulté à se lever. Prise en charge : anti-inflammatoires, compléments articulaires, physiothérapie. Chirurgie (prothèse, FHO) en forme sévère.",
-      cout: "1 000 – 4 000 €",
+      coût: "1 000 – 4 000 €",
     },
     {
       nom: "Hernie discale (IVDD)",
       description: "Dégénérescence prématurée des disques intervertébraux pouvant provoquer compression médullaire, douleur intense et parésie des membres. Plus fréquente après 5 ans. IRM diagnostique et chirurgie de décompression en forme modérée à sévère.",
-      cout: "1 500 – 5 000 €",
+      coût: "1 500 – 5 000 €",
     },
     {
       nom: "Syndrome de Musladin-Lueke (MLS)",
       description: "Maladie héréditaire autosomique récessive spécifique au Beagle. Affecte les tissus conjonctifs : peau épaisse et tendue, démarche anormale, doigts en extension, yeux bridés. Aucun traitement curatif. Test ADN disponible pour identifier les porteurs en élevage.",
-      cout: "200 – 800 €",
+      coût: "200 – 800 €",
     },
   ]}
   comparatif={[
@@ -112,10 +118,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "SantéVet",
       featured: true,
       url: "https://www.santeVet.com/assurance-chien/?race=beagle&ref=assuremochien",
-      prix: "14 €/mois",
+      prix: "à partir de 18 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: "150 €/an",
+      prévention: "150 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,
@@ -125,10 +131,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "AssurOPoil",
       featured: false,
       url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "12 €/mois",
+      prix: "à partir de 15 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: null,
+      prévention: null,
       dysplasie: true,
       vaccins: null,
       appMobile: false,
@@ -138,10 +144,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "Lassie",
       featured: false,
       url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "16 €/mois",
+      prix: "à partir de 20 €/mois",
       remboursement: "80 %",
       carenceMaladie: "45 j",
-      prevention: "100 €/an",
+      prévention: "100 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,

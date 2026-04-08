@@ -3,27 +3,33 @@ import PageRace from "../../layouts/PageRace.astro";
 ---
 
 <PageRace
-  title="Assurance Labrador Retriever — Comparatif 2026"
+  title="Assurance Labrador Retriever : Comparatif 2026"
   description="Comparez les meilleures assurances santé pour votre Labrador Retriever. Pathologies fréquentes, coûts réels, avis d'experts. Guide mis à jour en 2026."
   raceName="Labrador Retriever"
   slug="labrador"
   description="Assurance Labrador Retriever : comparez les meilleures mutuelles, découvrez les pathologies fréquentes (dysplasie, cancer) et obtenez un devis gratuit. Guide indépendant avril 2026."
   dateModified="2026-04-04"
-  heroSubtitle="Race adorée des familles françaises, mais prédisposée à de nombreuses pathologies coûteuses. Bien assurer votre Labrador, c'est éviter de mauvaises surprises."
-  imageUrl="https://images.unsplash.com/photo-1554456854-55a089fd4cb2?q=80&w=1200&auto=format&fit=crop"
+  heroSubtitle="Première race de France depuis 30 ans, le Labrador paie cette popularité d'une fragilité génétique : dysplasie et cancers frappent 1 chien sur 3 avant 8 ans."
+  imageUrl="/images/races/labrador.webp"
   imageAlt="Labrador Retriever doré assis dans un jardin verdoyant, vue de face"
   heroBadge="RACE POPULAIRE · FRAIS ÉLEVÉS"
   riskScore={78}
-  alertText="Le Labrador est génétiquement prédisposé à la <strong>dysplasie de hanche</strong> et aux <strong>cancers</strong> : 1 chien sur 4 développe une pathologie orthopédique avant l'âge de 5 ans. Une chirurgie peut dépasser <strong>5 000 €</strong>. Souscrire avant l'apparition des premiers symptômes est indispensable — les assureurs excluent les <strong>maladies antérieures à la souscription</strong>."
-  alertSource="Source : Société Centrale Canine, 2024"
+  alertText="Une chirurgie orthopédique pour dysplasie de hanche coûte en moyenne <strong>3 500 €</strong>, soit <strong>9 ans d'assurance SantéVet</strong> au tarif d'entrée. Pourtant, <strong>68 % des propriétaires</strong> de Labrador n'ont aucune couverture santé pour leur chien. La <strong>mutation POMC</strong>, propre à la race, amplifie l'obésité qui aggrave toutes les pathologies articulaires."
+  alertSource="Source : FACCO Enquête nationale 2024 ; OFA Hip Dysplasia Statistics, Labrador Retriever"
+  introText="Avec plus de 30 000 naissances annuelles, le Labrador est la race numéro un en France depuis trois décennies (FACCO 2024). Plébiscité par les familles pour sa douceur, il est souvent adopté sans anticiper les coûts vétérinaires que génèrent ses prédispositions génétiques : dysplasie de hanche et cancers en tête."
+  faq={[
+    { question: "La dysplasie de hanche du Labrador est-elle remboursée par l'assurance ?", answer: "Oui, à condition d'avoir souscrit avant tout diagnostic ou symptôme. SantéVet couvre la chirurgie orthopédique (y compris la prothèse totale de hanche) dès le premier jour du contrat. Les frais peuvent atteindre 6 000 €. Le remboursement à 100 % fait toute la différence." },
+    { question: "À quel âge assurer son Labrador pour couvrir la dysplasie ?", answer: "Idéalement avant 12 mois, avant toute radiographie de dépistage. Une fois un score HD-C ou HD-D établi, les assureurs excluent la pathologie comme préexistante. Souscrire jeune garantit une couverture complète sans exclusion arthropathique." },
+    { question: "Combien coûte une assurance pour un Labrador par mois ?", answer: "Les tarifs débutent à 18 €/mois pour une formule essentielle et montent selon l'âge et le niveau de couverture. Pour un Labrador adulte avec couverture chirurgie et maladies chroniques, comptez 25 à 40 €/mois, un investissement largement rentabilisé dès la première intervention orthopédique." },
+  ]}
   affiliateUrl="https://www.santeVet.com/assurance-chien/?race=labrador&ref=assuremochien"
   offres={[
     {
       nom: "SantéVet",
       featured: true,
       badge: "MEILLEUR CHOIX",
-      prix: "à partir de 32 €/mois",
-      sousTexte: "Formule Confort — remboursement jusqu'à 100 %",
+      prix: "à partir de 18 €/mois",
+      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
       points: [
         "Chirurgie orthopédique couverte dès J1",
         "Hospitalisations et soins intensifs inclus",
@@ -37,8 +43,8 @@ import PageRace from "../../layouts/PageRace.astro";
     {
       nom: "Lassie",
       featured: false,
-      prix: "à partir de 26 €/mois",
-      sousTexte: "Formule Essentielle — bon rapport qualité/prix",
+      prix: "à partir de 20 €/mois",
+      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
       points: [
         "Accidents et maladies couverts",
         "Hospitalisation remboursée à 80 %",
@@ -67,7 +73,7 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "Torsion de l'estomac",
       score: 58,
       prix: "2 000 – 5 000 €",
-      description: "Urgence vitale liée à la corpulence du Labrador. Intervention chirurgicale d'urgence indispensable en moins de 6 heures.",
+      description: "Urgence vitale liée à la corpulence du Labrador. Intervention chirurgicale d'urgence requise en moins de 6 heures.",
     },
     {
       nom: "Obésité et complications",
@@ -80,32 +86,32 @@ import PageRace from "../../layouts/PageRace.astro";
     {
       nom: "Dysplasie de hanche",
       description: "Malformation génétique du cotyle causant une arthrose progressive douloureuse. Très fréquente chez le Labrador, détectable par radiographie (score HD). Traitement : gestion médicale à vie ou prothèse totale de hanche.",
-      cout: "1 500 – 6 000 €",
+      coût: "1 500 – 6 000 €",
     },
     {
       nom: "Dysplasie du coude",
       description: "Anomalie de développement bilatérale dans 30 % des cas. Arthroscopie recommandée avant 18 mois pour limiter les séquelles. Suivi rhumatologique à vie.",
-      cout: "1 200 – 4 000 €",
+      coût: "1 200 – 4 000 €",
     },
     {
       nom: "Atrophie progressive de la rétine (APR)",
       description: "Dégénérescence héréditaire des photorécepteurs menant à la cécité totale. Aucun traitement curatif. Dépistage par test ADN disponible chez les éleveurs sérieux.",
-      cout: "300 – 1 200 €",
+      coût: "300 – 1 200 €",
     },
     {
       nom: "Dilatation-torsion de l'estomac",
-      description: "L'estomac se dilate et se tord après un repas copieux suivi d'effort. Urgence vitale en moins de 6 h. Chirurgie immédiate indispensable avec risque de récidive.",
-      cout: "2 000 – 5 000 €",
+      description: "L'estomac se dilate et se tord après un repas copieux suivi d'effort. Urgence vitale en moins de 6 h. Chirurgie immédiate requise, avec risque de récidive.",
+      coût: "2 000 – 5 000 €",
     },
     {
       nom: "Otites récidivantes",
       description: "Les grandes oreilles tombantes du Labrador limitent la ventilation du conduit auditif, favorisant les infections bactériennes et fongiques chroniques.",
-      cout: "80 – 600 €/épisode",
+      coût: "80 – 600 €/épisode",
     },
     {
       nom: "Myopathie du Labrador",
       description: "Maladie musculaire héréditaire spécifique à la race, provoquant faiblesse et tremblements dès le jeune âge. Test génétique disponible pour dépister les porteurs.",
-      cout: "400 – 1 500 €",
+      coût: "400 – 1 500 €",
     },
   ]}
   comparatif={[
@@ -113,10 +119,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "SantéVet",
       featured: true,
       url: "https://www.santeVet.com/assurance-chien/?race=labrador&ref=assuremochien",
-      prix: "18 €/mois",
+      prix: "à partir de 18 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: "150 €/an",
+      prévention: "150 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,
@@ -126,10 +132,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "AssurOPoil",
       featured: false,
       url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "15 €/mois",
+      prix: "à partir de 15 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: null,
+      prévention: null,
       dysplasie: true,
       vaccins: null,
       appMobile: false,
@@ -139,10 +145,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "Lassie",
       featured: false,
       url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "20 €/mois",
+      prix: "à partir de 20 €/mois",
       remboursement: "80 %",
       carenceMaladie: "45 j",
-      prevention: "100 €/an",
+      prévention: "100 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,

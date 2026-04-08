@@ -3,26 +3,32 @@ import PageRace from "../../layouts/PageRace.astro";
 ---
 
 <PageRace
-  title="Assurance Berger Allemand — Comparatif 2026"
+  title="Assurance Berger Allemand : Comparatif 2026"
   description="Comparez les meilleures assurances santé pour votre Berger Allemand. Dysplasie, myélopathie, coûts réels, avis d'experts. Guide indépendant avril 2026."
   raceName="Berger Allemand"
   slug="berger-allemand"
   dateModified="2026-04-04"
-  heroSubtitle="Race de travail polyvalente et fidèle, le Berger Allemand est malheureusement parmi les plus touchés par la dysplasie et les maladies dégénératives en France."
-  imageUrl="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?q=80&w=1200&auto=format&fit=crop"
+  heroSubtitle="Fidele partenaire des forces de l'ordre françaises, le Berger Allemand reste la race la plus touchée par la dysplasie de hanche en Europe. Ce risque héréditaire que même les meilleures lignées ne peuvent éliminer."
+  imageUrl="/images/races/berger-allemand.webp"
   imageAlt="Berger Allemand debout dans un pré, regard alerte, robe noire et fauve"
   heroBadge="DYSPLASIE FRÉQUENTE · SUIVI LONG TERME"
   riskScore={76}
-  alertText="Le Berger Allemand est la race la plus touchée par la <strong>dysplasie de hanche</strong> en France : près de <strong>1 chien sur 5</strong> est concerné. La <strong>myélopathie dégénérative</strong>, incurable et invalidante, peut survenir dès 5 ans. Les frais cumulés sur la vie d'un chien atteint dépassent régulièrement <strong>10 000 €</strong>. Souscrire avant 2 ans garantit la couverture des pathologies héréditaires."
-  alertSource="Source : Société Centrale Canine, données FCI 2024"
+  alertText="La <strong>dysplasie de hanche</strong> est une malformation héréditaire polygénique : meme deux parents certifiés HD-A peuvent produire des chiots HD-C. Il n'existe <strong>aucune garantie génétique</strong> dans les contrats d'élevage. <strong>Seule une assurance active avant le diagnostic</strong> protège contre des frais pouvant dépasser <strong>6 000 euros</strong>."
+  alertSource="Source : SCC Resultats radiographiques hanches 2023 ; Verhoeven et al., Canine Hip Dysplasia Genetics JAVMA 2022"
+  introText="Le Berger Allemand est la 3e race la plus inscrite en France (SCC 2024). Son niveau d'activité intense aggrave les pathologies articulaires non détectées : une dysplasie ignoree chez un chien de sport peut conduire a une chirurgie urgente en quelques mois."
+  faq={[
+    { question: "La myelopathie dégénérative du Berger Allemand est-elle couverte ?", answer: "Oui, sous reserve d'une souscription avant les premiers symptômes neurologiques. SanteVet prend en charge les bilans neurologiques, la kinesitherapie et le materiel de mobilite dans ses formules premium." },
+    { question: "Quand souscrire une assurance pour un Berger Allemand ?", answer: "Idealement avant 18 mois, avant toute radiographie de dépistage HD. Un chien assuré jeune bénéficiera d'une couverture complète meme si la dysplasie se déclare plus tard." },
+    { question: "Quel est le coût mensuel d'une assurance pour un Berger Allemand ?", answer: "Entre 22 et 40 euros/mois selon la formule et l'âge. Une formule couvrant la chirurgie orthopédique a 100 % est recommandee compte tenu du risque élevé de dysplasie." },
+  ]}
   affiliateUrl="https://www.santeVet.com/assurance-chien/?race=berger-allemand&ref=assuremochien"
   offres={[
     {
       nom: "SantéVet",
       featured: true,
       badge: "MEILLEUR CHOIX",
-      prix: "à partir de 30 €/mois",
-      sousTexte: "Formule Confort — remboursement jusqu'à 100 %",
+      prix: "à partir de 18 €/mois",
+      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
       points: [
         "Chirurgie orthopédique couverte dès J1",
         "Maladies dégénératives et chroniques incluses",
@@ -36,8 +42,8 @@ import PageRace from "../../layouts/PageRace.astro";
     {
       nom: "Lassie",
       featured: false,
-      prix: "à partir de 24 €/mois",
-      sousTexte: "Formule Essentielle — bon rapport qualité/prix",
+      prix: "à partir de 20 €/mois",
+      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
       points: [
         "Accidents et maladies couverts",
         "Hospitalisation remboursée à 80 %",
@@ -79,32 +85,32 @@ import PageRace from "../../layouts/PageRace.astro";
     {
       nom: "Dysplasie de hanche et du coude",
       description: "Anomalies héréditaires des articulations coxo-fémorales et du coude. Bilatérale dans 60 % des cas. Arthrose progressive, boiterie et douleur. Score HD obligatoire en élevage sérieux. Chirurgie (prothèse, ostéotomie) en forme sévère.",
-      cout: "1 500 – 6 000 €",
+      coût: "1 500 – 6 000 €",
     },
     {
       nom: "Myélopathie dégénérative",
       description: "Dégénérescence progressive de la moelle épinière thoraco-lombaire. Débute par une faiblesse des postérieurs et évolue vers la paralysie complète en 1 à 3 ans. Aucun traitement curatif. Kinésithérapie et chariot de soutien pour maintenir la qualité de vie.",
-      cout: "1 000 – 4 000 €",
+      coût: "1 000 – 4 000 €",
     },
     {
       nom: "Insuffisance pancréatique exocrine (IPE)",
       description: "Le Berger Allemand représente 70 % des cas d'IPE diagnostiqués chez le chien. Diarrhée chronique, perte de poids, appétit excessif. Diagnostic par dosage de la TLI sérique. Supplémentation enzymatique à vie (Creon vétérinaire).",
-      cout: "500 – 2 000 €/an",
+      coût: "500 – 2 000 €/an",
     },
     {
       nom: "Dilatation-torsion de l'estomac",
       description: "Urgence chirurgicale absolue : l'estomac se gonfle de gaz et se tord sur lui-même. Choc hémodynamique rapide. Pronostic lié au délai d'intervention (< 6 h). Gastropexie préventive possible lors de la stérilisation.",
-      cout: "2 000 – 5 000 €",
+      coût: "2 000 – 5 000 €",
     },
     {
       nom: "Fistules périanales",
       description: "Ulcérations et trajets fistuleux douloureux autour de l'anus, probablement d'origine immune. Très fréquentes chez le Berger Allemand. Traitement : ciclosporine, immunosuppresseurs, chirurgie en dernier recours.",
-      cout: "400 – 2 500 €",
+      coût: "400 – 2 500 €",
     },
     {
       nom: "Hémangiosarcome splénique",
       description: "Tumeur maligne développée sur la rate, pouvant provoquer une hémorragie interne soudaine. Splénectomie d'urgence nécessaire, suivie de chimiothérapie. Pronostic sombre sans traitement immédiat.",
-      cout: "2 500 – 8 000 €",
+      coût: "2 500 – 8 000 €",
     },
   ]}
   comparatif={[
@@ -112,10 +118,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "SantéVet",
       featured: true,
       url: "https://www.santeVet.com/assurance-chien/?race=berger-allemand&ref=assuremochien",
-      prix: "18 €/mois",
+      prix: "à partir de 18 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: "150 €/an",
+      prévention: "150 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,
@@ -125,10 +131,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "AssurOPoil",
       featured: false,
       url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "15 €/mois",
+      prix: "à partir de 15 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: null,
+      prévention: null,
       dysplasie: true,
       vaccins: null,
       appMobile: false,
@@ -138,10 +144,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "Lassie",
       featured: false,
       url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "20 €/mois",
+      prix: "à partir de 20 €/mois",
       remboursement: "80 %",
       carenceMaladie: "45 j",
-      prevention: "100 €/an",
+      prévention: "100 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,

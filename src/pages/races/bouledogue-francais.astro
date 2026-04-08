@@ -3,26 +3,32 @@ import PageRace from "../../layouts/PageRace.astro";
 ---
 
 <PageRace
-  title="Assurance Bouledogue Français — Comparatif 2026"
+  title="Assurance Bouledogue Français : Comparatif 2026"
   description="Comparez les meilleures assurances santé pour votre Bouledogue Français. Syndrome brachycéphale, hernie discale, coûts réels. Guide indépendant avril 2026."
   raceName="Bouledogue Français"
-  slug="bouledogue-francais"
+  slug="bouledogue-français"
   dateModified="2026-04-04"
-  heroSubtitle="Race au sommet de la popularité en France, le Bouledogue Français est aussi celle dont les frais vétérinaires sont les plus élevés. Son anatomie unique génère des pathologies structurelles coûteuses."
-  imageUrl="https://images.unsplash.com/photo-1521907236370-15adf2297445?q=80&w=1200&auto=format&fit=crop"
+  heroSubtitle="Attachant mais structurellement fragile, le Bouledogue Français figure parmi les races les plus coûteuses à soigner en France. Son anatomie brachycéphale génère des frais vétérinaires dès le plus jeune âge."
+  imageUrl="/images/races/bouledogue-français.webp"
   imageAlt="Bouledogue Français bringé assis sur un canapé, regard expressif"
   heroBadge="FRAIS VET. PARMI LES PLUS ÉLEVÉS · CHIRURGIE FRÉQUENTE"
   riskScore={88}
-  alertText="Le Bouledogue Français est la race avec le <strong>coût vétérinaire moyen le plus élevé de France</strong>. Son museau aplati provoque un <strong>syndrome brachycéphale</strong> nécessitant souvent une chirurgie des voies aériennes (1 500 – 4 000 €). Les <strong>hernies discales</strong> peuvent provoquer une paralysie soudaine. Ces pathologies <strong>structurelles</strong> sont fréquemment exclues si l'assurance est souscrite après leur apparition."
-  alertSource="Source : Étude vétérinaire Facco / Royal Canin, 2024"
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=bouledogue-francais&ref=assuremochien"
+  alertText="Le coût moyen des soins vétérinaires d'un Bouledogue Français sur 10 ans est estimé à <strong>8 500 euros</strong>, contre <strong>2 160 euros pour une décennie d'assurance SantéVet</strong>. La <strong>chirurgie brachycéphale</strong> seule atteint 3 500 euros et n'est couverte que si l'assurance est souscrite <strong>avant tout diagnostic de BOAS</strong>."
+  alertSource="Source : FECAVA Brachycephalic Breed Study 2023 ; FACCO Enquete nationale 2024"
+  introText="Devenu la 1re race la plus populaire en France en 2022 (FACCO), le Bouledogue Français séduit par son caractère comique. Sa morphologie aplatie génère des pathologies structurelles coûteuses que tout propriétaire doit anticiper avant l'achat."
+  faq={[
+    { question: "Le syndrome brachycéphale du Bouledogue est-il couvert par les assurances ?", answer: "Oui, SanteVet couvre la chirurgie brachycéphale si la souscription précède tout diagnostic de BOAS. Souscrivez avant 12 mois, avant toute consultation spécialisée. Le moindre antécédent médical documenté ferme la porte à la couverture chirurgicale." },
+    { question: "Pourquoi assurer son Bouledogue Français avant 1 an ?", answer: "Les signes de BOAS apparaissent souvent des les 6 premiers mois. Une fois le diagnostic pose, la chirurgie devient une exclusion. Assurer son Bouledogue a l'acquisition, idéalement entre 2 et 4 mois, est la seule strategie sans risque." },
+    { question: "Pourquoi l'assurance est-elle plus chere pour les races brachycephales ?", answer: "Les assureurs integrent le risque élevé de chirurgie et d'hospitalisation dans leurs calculs. Pour un Bouledogue, comptez 25 à 50 euros/mois, un surcoût justifié par des frais vétérinaires 2 a 3 fois plus élevés que la moyenne canine." },
+  ]}
+  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=bouledogue-français&ref=assuremochien"
   offres={[
     {
       nom: "SantéVet",
       featured: true,
       badge: "MEILLEUR CHOIX",
-      prix: "à partir de 38 €/mois",
-      sousTexte: "Formule Confort — remboursement jusqu'à 100 %",
+      prix: "à partir de 18 €/mois",
+      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
       points: [
         "Chirurgie brachycéphale couverte dès J1",
         "Hernies discales et pathologies spinales incluses",
@@ -30,14 +36,14 @@ import PageRace from "../../layouts/PageRace.astro";
         "Maladies chroniques sans surprime",
         "Remboursement sous 48 h",
       ],
-      url: "https://www.santeVet.com/assurance-chien/?race=bouledogue-francais&ref=assuremochien",
+      url: "https://www.santeVet.com/assurance-chien/?race=bouledogue-français&ref=assuremochien",
       cta: "Voir l'offre →",
     },
     {
       nom: "Lassie",
       featured: false,
-      prix: "à partir de 30 €/mois",
-      sousTexte: "Formule Essentielle — bon rapport qualité/prix",
+      prix: "à partir de 20 €/mois",
+      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
       points: [
         "Accidents et maladies couverts",
         "Hospitalisation remboursée à 80 %",
@@ -54,7 +60,7 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "Syndrome brachycéphale (BOAS)",
       score: 85,
       prix: "1 500 – 4 000 €",
-      description: "L'anatomie aplatie du Bouledogue obstrue les voies respiratoires. Ronflements, détresse respiratoire par temps chaud, intolérance à l'effort. Chirurgie corrective souvent indispensable.",
+      description: "L'anatomie aplatie du Bouledogue obstrue les voies respiratoires. Ronflements, détresse respiratoire par temps chaud, intolérance à l'effort. Chirurgie corrective souvent nécessaire.",
     },
     {
       nom: "Hernie discale (IVDD)",
@@ -79,43 +85,43 @@ import PageRace from "../../layouts/PageRace.astro";
     {
       nom: "Syndrome brachycéphale obstructif (BOAS)",
       description: "Ensemble de malformations anatomiques (narines sténosées, palais mou allongé, trachée hypoplasique) provoquant une obstruction des voies aériennes supérieures. Chirurgie corrective (naso-palatoplastie) recommandée dès 12 à 18 mois pour éviter les séquelles cardiaques.",
-      cout: "1 500 – 4 000 €",
+      coût: "1 500 – 4 000 €",
     },
     {
       nom: "Hernie discale cervicale et lombaire",
       description: "Les vertèbres chondrodystrophiques du Bouledogue vieillissent prématurément. Un nucléus pulposus extrudé peut comprimer la moelle épinière en quelques heures, entraînant paralysie et incontinence. IRM et chirurgie de décompression en urgence.",
-      cout: "2 000 – 7 000 €",
+      coût: "2 000 – 7 000 €",
     },
     {
       nom: "Dermatite des plis cutanés",
       description: "Les plis faciaux, du cou et de la queue piègent humidité et chaleur, créant un terreau idéal pour Malassezia et Staphylococcus. Traitement : nettoyage quotidien, antifongiques locaux, antibiotiques systémiques en cas de surinfection.",
-      cout: "200 – 800 €/an",
+      coût: "200 – 800 €/an",
     },
     {
       nom: "Luxation de la rotule",
       description: "Déplacement de la rotule hors de sa rainure trochléaire, provoquant boiterie intermittente et douleur. Fréquente chez les races de petit gabarit. Chirurgie corrective (trochléoplastie) en grade III–IV.",
-      cout: "800 – 2 500 €",
+      coût: "800 – 2 500 €",
     },
     {
       nom: "Ulcères cornéens et œil de cerise",
       description: "Les yeux proéminents sont sujets aux traumatismes et à la sécheresse cornéenne. L'œil de cerise (prolapsus de la glande de la troisième paupière) nécessite une repositionnement chirurgical. Ulcères non traités : risque de perforation oculaire.",
-      cout: "300 – 2 000 €",
+      coût: "300 – 2 000 €",
     },
     {
       nom: "Allergies alimentaires et cutanées",
       description: "Le Bouledogue est prédisposé aux hypersensibilités (pollens, acariens, protéines animales). Prurit chronique, otites récidivantes, troubles digestifs. Régime d'éviction, hydrolysats protéiques, immunothérapie ou médicaments ciblés (Cytopoint, Apoquel).",
-      cout: "400 – 1 500 €/an",
+      coût: "400 – 1 500 €/an",
     },
   ]}
   comparatif={[
     {
       nom: "SantéVet",
       featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=bouledogue-francais&ref=assuremochien",
-      prix: "22 €/mois",
+      url: "https://www.santeVet.com/assurance-chien/?race=bouledogue-français&ref=assuremochien",
+      prix: "à partir de 18 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: "150 €/an",
+      prévention: "150 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,
@@ -125,10 +131,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "AssurOPoil",
       featured: false,
       url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "19 €/mois",
+      prix: "à partir de 15 €/mois",
       remboursement: "100 %",
       carenceMaladie: "30 j",
-      prevention: null,
+      prévention: null,
       dysplasie: true,
       vaccins: null,
       appMobile: false,
@@ -138,10 +144,10 @@ import PageRace from "../../layouts/PageRace.astro";
       nom: "Lassie",
       featured: false,
       url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "24 €/mois",
+      prix: "à partir de 20 €/mois",
       remboursement: "80 %",
       carenceMaladie: "45 j",
-      prevention: "100 €/an",
+      prévention: "100 €/an",
       dysplasie: true,
       vaccins: "Premium",
       appMobile: true,

@@ -1,0 +1,672 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const races = [
+  { slug: "labrador",              nom: "Labrador Retriever",       taille: "grande",  risk: 73 },
+  { slug: "golden-retriever",      nom: "Golden Retriever",         taille: "grande",  risk: 68 },
+  { slug: "berger-allemand",       nom: "Berger Allemand",          taille: "grande",  risk: 80 },
+  { slug: "bouledogue-français",   nom: "Bouledogue Français",      taille: "petite",  risk: 88 },
+  { slug: "beagle",                nom: "Beagle",                   taille: "petite",  risk: 55 },
+  { slug: "berger-des-shetlands",  nom: "Berger des Shetlands",     taille: "petite",  risk: 65 },
+  { slug: "caniche",               nom: "Caniche",                  taille: "petite",  risk: 45 },
+  { slug: "husky-siberien",        nom: "Husky Sibérien",           taille: "grande",  risk: 60 },
+  { slug: "chihuahua",             nom: "Chihuahua",                taille: "petite",  risk: 50 },
+  { slug: "cavalier-king-charles", nom: "Cavalier King Charles",    taille: "petite",  risk: 75 },
+  { slug: "shih-tzu",              nom: "Shih Tzu",                 taille: "petite",  risk: 58 },
+  { slug: "yorkshire-terrier",     nom: "Yorkshire Terrier",        taille: "petite",  risk: 48 },
+  { slug: "border-collie",         nom: "Border Collie",            taille: "grande",  risk: 62 },
+  { slug: "cocker-spaniel",        nom: "Cocker Spaniel",           taille: "petite",  risk: 60 },
+  { slug: "rottweiler",            nom: "Rottweiler",               taille: "grande",  risk: 78 },
+  { slug: "dobermann",             nom: "Dobermann",                taille: "grande",  risk: 72 },
+  { slug: "boxer",                 nom: "Boxer",                    taille: "grande",  risk: 75 },
+  { slug: "dalmatien",             nom: "Dalmatien",                taille: "grande",  risk: 65 },
+  { slug: "carlin",                nom: "Carlin",                   taille: "petite",  risk: 85 },
+  { slug: "teckel",                nom: "Teckel",                   taille: "petite",  risk: 70 },
+  { slug: "saint-bernard",         nom: "Saint-Bernard",            taille: "grande",  risk: 82 },
+  { slug: "montagne-des-Pyrénées", nom: "Montagne des Pyrénées",    taille: "grande",  risk: 58 },
+  { slug: "malinois",              nom: "Malinois",                 taille: "grande",  risk: 55 },
+  { slug: "jack-russell",          nom: "Jack Russell",             taille: "petite",  risk: 52 },
+  { slug: "bichon-frise",          nom: "Bichon Frisé",             taille: "petite",  risk: 42 },
+  { slug: "samoyede",              nom: "Samoyède",                 taille: "grande",  risk: 60 },
+  { slug: "akita-inu",             nom: "Akita Inu",                taille: "grande",  risk: 65 },
+  { slug: "chow-chow",             nom: "Chow-Chow",                taille: "grande",  risk: 68 },
+  { slug: "setter-irlandais",      nom: "Setter Irlandais",         taille: "grande",  risk: 58 },
+  { slug: "epagneul-breton",       nom: "Épagneul Breton",          taille: "petite",  risk: 50 },
+];
+
+function riskLevel(score: number): "élevé" | "modéré" | "faible" {
+  if (score > 70) return "élevé";
+  if (score >= 40) return "modéré";
+  return "faible";
+}
+
+function riskLabel(score: number) {
+  if (score > 70) return "Risque élevé";
+  if (score >= 40) return "Risque modéré";
+  return "Risque faible";
+}
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Races", "item": "https://assuremochien.fr/races" },
+  ]
+});
+
+const jsonldItemList = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Assurance chien par race — 30 races couvertes",
+  "numberOfItems": races.length,
+  "itemListElement": races.map((r, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": r.nom,
+    "url": `https://assuremochien.fr/races/${r.slug}`,
+  }))
+});
+---
+
+<Layout
+  title="Assurance Chien par Race — 2026 | Assure Mon Chien"
+  description="Comparez les assurances chien selon la race de votre animal : pathologies spécifiques, risques héréditaires et tarifs réels. Comparatif indépendant 2026, 30 races analysées."
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldItemList} />
+
+  <!-- ── Hero ── -->
+  <section class="hero-races">
+    <div class="hero-inner">
+      <span class="hero-pill">30 RACES COUVERTES</span>
+      <h1>Quelle assurance pour votre race ?</h1>
+      <p class="hero-desc">Chaque race a ses fragilités génétiques propres. Trouvez la couverture vraiment adaptée à votre chien.</p>
+      <div class="search-wrap">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M11.5 11.5L16 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Labrador, Caniche, Berger…"
+          autocomplete="off"
+          aria-label="Rechercher une race"
+        />
+      </div>
+      <p class="hero-counter"><span id="counter-num">30</span> races disponibles</p>
+    </div>
+  </section>
+
+  <!-- ── Filtres ── -->
+  <div class="filters-bar" role="group" aria-label="Filtrer les races">
+    <div class="filter-group">
+      <span class="filter-group-label">Taille</span>
+      <div class="filter-pills" id="filter-taille">
+        <button class="pill pill-taille pill-all active" data-value="">Toutes</button>
+        <button class="pill pill-taille" data-value="petite">Petite</button>
+        <button class="pill pill-taille" data-value="moyenne">Moyenne</button>
+        <button class="pill pill-taille" data-value="grande">Grande</button>
+      </div>
+    </div>
+    <div class="filter-sep" aria-hidden="true"></div>
+    <div class="filter-group">
+      <span class="filter-group-label">Risque santé</span>
+      <div class="filter-pills" id="filter-risque">
+        <button class="pill pill-risque pill-all active" data-value="">Tous</button>
+        <button class="pill pill-risque pill-élevé" data-value="élevé">Élevé</button>
+        <button class="pill pill-risque pill-modéré" data-value="modéré">Modéré</button>
+        <button class="pill pill-risque pill-faible" data-value="faible">Faible</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Encart éditorial ── -->
+  <div class="editorial-wrap">
+    <div class="editorial">
+      <span class="editorial-icon" aria-hidden="true">💡</span>
+      <p>Les tarifs varient du simple au double. Le Bouledogue coûte 2× plus cher à assurer qu'un Épagneul en raison de ses chirurgies brachycéphales fréquentes et de ses soins respiratoires chroniques.</p>
+    </div>
+  </div>
+
+  <!-- ── Grille races ── -->
+  <section class="races-section">
+    <div class="races-wrap">
+      <div class="races-grid" id="races-grid">
+        {races.map((race) => (
+          <article
+            class="race-card"
+            data-nom={race.nom.toLowerCase()}
+            data-taille={race.taille}
+            data-risque={riskLevel(race.risk)}
+          >
+            <a href={`/races/${race.slug}`} class="card-link" tabindex="-1" aria-hidden="true">
+              <div class="card-img-wrap">
+                <img
+                  src={`/images/races/${race.slug}.webp`}
+                  alt={race.nom}
+                  loading="lazy"
+                  width="400"
+                  height="160"
+                  class="card-img"
+                />
+                <span class={`risk-badge risk-${riskLevel(race.risk)}`}>{riskLabel(race.risk)}</span>
+              </div>
+            </a>
+            <div class="card-body">
+              <h2 class="card-name">{race.nom}</h2>
+              <a href={`/races/${race.slug}`} class="card-btn">Voir le guide →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="no-result" id="no-result" hidden>
+        Aucune race ne correspond à votre recherche.
+        <button class="reset-btn" id="reset-btn">Réinitialiser les filtres</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Profils de coût ── -->
+  <section class="profiles-section">
+    <div class="profiles-wrap">
+      <h2 class="profiles-title">Quel budget selon le profil de votre chien ?</h2>
+      <div class="profiles-grid">
+        <div class="profile-card">
+          <div class="profile-dot dot-red"></div>
+          <h3>Brachycéphales</h3>
+          <p class="profile-races">Bouledogue Français, Carlin, Shih Tzu</p>
+          <p class="profile-price">25 – 45 €/mois</p>
+          <p class="profile-why">Chirurgies des voies respiratoires, problèmes oculaires et orthopédiques fréquents. Couverture chirurgie fortement recommandée.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-dot dot-orange"></div>
+          <h3>Grandes races sportives</h3>
+          <p class="profile-races">Labrador, Berger Allemand, Golden Retriever</p>
+          <p class="profile-price">18 – 30 €/mois</p>
+          <p class="profile-why">Dysplasies articulaires et cancers héréditaires. Souscrire avant 12 mois pour couvrir les problèmes préexistants.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-dot dot-green"></div>
+          <h3>Petites races résistantes</h3>
+          <p class="profile-races">Épagneul Breton, Jack Russell, Bichon Frisé</p>
+          <p class="profile-price">15 – 20 €/mois</p>
+          <p class="profile-why">Pathologies ciblées (otites, luxation rotule) mais longévité élevée. L'assurance rentabilise sur la durée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero-races {
+    background: #0F6E56;
+    padding: 3.5rem 1.25rem 3rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hero-pill {
+    display: inline-block;
+    background: #F9CB42;
+    color: #1A2E26;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    padding: .3rem .9rem;
+    border-radius: 20px;
+    margin-bottom: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .hero-races h1 {
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 .75rem;
+    letter-spacing: -.02em;
+    color: #fff;
+  }
+
+  .hero-desc {
+    font-size: .95rem;
+    opacity: .85;
+    margin: 0 auto 1.75rem;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 480px;
+  }
+
+  .search-wrap {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto 1rem;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: .9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+  }
+
+  #search-input {
+    width: 100%;
+    padding: .75rem 1rem .75rem 2.75rem;
+    border: none;
+    border-radius: 10px;
+    font-size: .95rem;
+    background: #fff;
+    color: #1a1a1a;
+    outline: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+  }
+
+  #search-input::placeholder { color: #aaa; }
+  #search-input:focus { box-shadow: 0 0 0 3px rgba(249,203,66,.5); }
+
+  .hero-counter {
+    font-size: .82rem;
+    color: rgba(255,255,255,.5);
+    margin: 0;
+  }
+
+  #counter-num { font-weight: 700; }
+
+  /* ── Filtres ── */
+  .filters-bar {
+    background: #fff;
+    border-bottom: 1px solid #E8E6E0;
+    padding: .9rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: .75rem 1.25rem;
+    position: sticky;
+    top: 64px;
+    z-index: 10;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .4rem;
+  }
+
+  .filter-group-label {
+    font-size: .75rem;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .filter-pills {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-sep {
+    width: 1px;
+    height: 28px;
+    background: #E8E6E0;
+    flex-shrink: 0;
+  }
+
+  .pill {
+    border: 1.5px solid #D0CEC8;
+    border-radius: 20px;
+    padding: .3rem .75rem;
+    font-size: .78rem;
+    font-weight: 600;
+    background: #fff;
+    color: #444;
+    cursor: pointer;
+    transition: background .12s, border-color .12s, color .12s;
+    line-height: 1.4;
+  }
+
+  .pill:hover { border-color: #aaa; }
+
+  /* Taille active */
+  .pill-taille.active {
+    background: #E1F5EE;
+    border-color: #1D9E75;
+    color: #0F6E56;
+  }
+
+  /* Risque actif */
+  .pill-élevé.active  { background: #FAECE7; border-color: #D85A30; color: #712B13; }
+  .pill-modéré.active { background: #FAEEDA; border-color: #BA7517; color: #633806; }
+  .pill-faible.active { background: #EAF3DE; border-color: #3B6D11; color: #27500A; }
+
+  /* "Tous / Toutes" actif */
+  .pill-all.active {
+    background: #E1F5EE;
+    border-color: #1D9E75;
+    color: #0F6E56;
+  }
+
+  /* ── Encart éditorial ── */
+  .editorial-wrap {
+    max-width: 1100px;
+    margin: 1.25rem auto 0;
+    padding: 0 1.25rem;
+  }
+
+  .editorial {
+    background: #fff;
+    border: 1px solid #E8E6E0;
+    border-radius: 10px;
+    padding: .85rem 1.1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+  }
+
+  .editorial-icon { font-size: 1.2rem; line-height: 1.5; flex-shrink: 0; }
+
+  .editorial p {
+    margin: 0;
+    font-size: .85rem;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  /* ── Races section ── */
+  .races-section { padding: 1.25rem 0 3rem; }
+
+  .races-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  /* ── Grille ── */
+  .races-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .races-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── Card ── */
+  .race-card {
+    background: #fff;
+    border: 0.5px solid #E8E6E0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .15s, transform .15s, box-shadow .15s;
+  }
+
+  .race-card:hover {
+    border-color: #1D9E75;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  }
+
+  .card-link { display: block; text-decoration: none; }
+
+  .card-img-wrap {
+    position: relative;
+    height: 140px;
+    overflow: hidden;
+    background: #e8f7f2;
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    transition: transform .25s;
+  }
+
+  .race-card:hover .card-img { transform: scale(1.04); }
+
+  /* Risk badge */
+  .risk-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 6px;
+    letter-spacing: .03em;
+    white-space: nowrap;
+  }
+
+  .risk-élevé  { background: #FAECE7; color: #712B13; }
+  .risk-modéré { background: #FAEEDA; color: #633806; }
+  .risk-faible { background: #EAF3DE; color: #27500A; }
+
+  /* Card body */
+  .card-body {
+    padding: .55rem .65rem .6rem;
+  }
+
+  .card-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 .45rem;
+    line-height: 1.3;
+  }
+
+  .card-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: .75rem;
+    font-weight: 600;
+    color: #1D9E75;
+    border: 1.5px solid #1D9E75;
+    border-radius: 6px;
+    padding: .3rem .5rem;
+    text-decoration: none;
+    transition: background .12s;
+    box-sizing: border-box;
+  }
+
+  .card-btn:hover { background: #E1F5EE; text-decoration: none; }
+
+  /* ── No result ── */
+  .no-result {
+    text-align: center;
+    color: #666;
+    font-size: .9rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+  }
+
+  .reset-btn {
+    background: none;
+    border: 1.5px solid #1D9E75;
+    border-radius: 20px;
+    color: #1D9E75;
+    font-size: .82rem;
+    font-weight: 600;
+    padding: .35rem .9rem;
+    cursor: pointer;
+    transition: background .12s;
+  }
+  .reset-btn:hover { background: #E1F5EE; }
+
+  /* ── Profiles section ── */
+  .profiles-section {
+    background: #f4fbf8;
+    padding: 3rem 1.25rem;
+    border-top: 1px solid #d4ede5;
+  }
+
+  .profiles-wrap { max-width: 1100px; margin: 0 auto; }
+
+  .profiles-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 800;
+    color: #0F6E56;
+    text-align: center;
+    margin: 0 0 1.75rem;
+    letter-spacing: -.02em;
+  }
+
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .profiles-grid { grid-template-columns: 1fr; }
+  }
+
+  .profile-card {
+    background: #fff;
+    border: 1px solid #d4ede5;
+    border-radius: 12px;
+    padding: 1.25rem 1.1rem;
+  }
+
+  .profile-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-bottom: .75rem;
+  }
+
+  .dot-red    { background: #D85A30; }
+  .dot-orange { background: #BA7517; }
+  .dot-green  { background: #3B6D11; }
+
+  .profile-card h3 {
+    font-size: .95rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 .25rem;
+  }
+
+  .profile-races {
+    font-size: .78rem;
+    color: #888;
+    margin: 0 0 .5rem;
+    font-style: italic;
+  }
+
+  .profile-price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 .5rem;
+  }
+
+  .profile-why {
+    font-size: .82rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── Responsive filters ── */
+  @media (max-width: 640px) {
+    .filters-bar { gap: .5rem .75rem; }
+    .filter-sep { display: none; }
+    .filter-group { gap: .35rem; }
+  }
+</style>
+
+<script>
+  function normalize(s: string) {
+    return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+
+  const grid = document.getElementById("races-grid") as HTMLElement;
+  const cards = Array.from(grid.querySelectorAll<HTMLElement>(".race-card"));
+  const noResult = document.getElementById("no-result") as HTMLElement;
+  const counterNum = document.getElementById("counter-num") as HTMLElement;
+  const searchInput = document.getElementById("search-input") as HTMLInputElement;
+  const resetBtn = document.getElementById("reset-btn") as HTMLButtonElement;
+
+  let activeTaille = "";
+  let activeRisque = "";
+
+  function applyFilters() {
+    const query = normalize(searchInput.value.trim());
+    let visible = 0;
+
+    for (const card of cards) {
+      const nom = normalize(card.dataset.nom ?? "");
+      const taille = card.dataset.taille ?? "";
+      const risque = card.dataset.risque ?? "";
+
+      const matchQuery = !query || nom.includes(query);
+      const matchTaille = !activeTaille || taille === activeTaille;
+      const matchRisque = !activeRisque || risque === activeRisque;
+
+      const show = matchQuery && matchTaille && matchRisque;
+      card.hidden = !show;
+      if (show) visible++;
+    }
+
+    counterNum.textContent = String(visible);
+    noResult.hidden = visible > 0;
+  }
+
+  // Taille pills
+  document.getElementById("filter-taille")!.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".pill-taille");
+    if (!btn) return;
+    document.querySelectorAll(".pill-taille").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    activeTaille = btn.dataset.value ?? "";
+    applyFilters();
+  });
+
+  // Risque pills
+  document.getElementById("filter-risque")!.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".pill-risque");
+    if (!btn) return;
+    document.querySelectorAll(".pill-risque").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    activeRisque = btn.dataset.value ?? "";
+    applyFilters();
+  });
+
+  // Search
+  searchInput.addEventListener("input", applyFilters);
+
+  // Reset
+  resetBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    activeTaille = "";
+    activeRisque = "";
+    document.querySelectorAll(".pill-taille").forEach((p, i) => p.classList.toggle("active", i === 0));
+    document.querySelectorAll(".pill-risque").forEach((p, i) => p.classList.toggle("active", i === 0));
+    applyFilters();
+  });
+</script>

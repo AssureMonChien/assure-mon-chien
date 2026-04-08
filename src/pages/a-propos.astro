@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="À propos — Assure Mon Chien"
+  description="Assure Mon Chien est un guide indépendant pour comparer les assurances santé chien par race. Découvrez notre mission, notre méthode et nos engagements éditoriaux."
+>
+  <div class="page-wrap">
+    <h1>À propos d'Assure Mon Chien</h1>
+
+    <section class="block">
+      <h2>Notre mission</h2>
+      <p>Assure Mon Chien est un guide comparatif indépendant créé pour aider les propriétaires de chiens à choisir une assurance santé adaptée à la race de leur animal. Chaque race a ses fragilités génétiques propres : un Bouledogue Français ne partage pas les mêmes risques qu'un Épagneul Breton. Notre objectif est de rendre cette information accessible, claire et actionnable.</p>
+    </section>
+
+    <section class="block">
+      <h2>Notre méthode</h2>
+      <p>Chaque fiche race est construite à partir de données vétérinaires publiées (registres OFA, études publiées dans le <em>Journal of Veterinary Internal Medicine</em>, données des clubs de race français) et de tarifs réels collectés auprès des principaux assureurs du marché. Nous mettons à jour nos contenus régulièrement pour refléter les évolutions tarifaires et les nouvelles données épidémiologiques.</p>
+      <p>Nos recommandations ne sont pas sponsorisées par les assureurs. Les classements reflètent notre analyse des garanties proposées, pas les budgets marketing des compagnies.</p>
+    </section>
+
+    <section class="block">
+      <h2>Transparence financière</h2>
+      <p>Assure Mon Chien perçoit une commission d'affiliation si vous souscrivez une assurance via un lien présent sur ce site. Cette commission est versée par l'assureur et n'entraîne aucun surcoût pour vous. Elle nous permet de financer la production de contenus gratuits et indépendants.</p>
+      <p>La présence d'un lien affilié n'influence pas nos analyses ni nos classements. Un assureur mal noté reste mal noté, qu'il verse une commission ou non. Pour en savoir plus, consultez notre <a href="/affiliation">page d'affiliation</a>.</p>
+    </section>
+
+    <section class="block">
+      <h2>Contact</h2>
+      <p>Pour toute question éditoriale ou signalement d'erreur, écrivez-nous à : <a href="mailto:contact@assuremochien.fr">contact@assuremochien.fr</a></p>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .page-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .block {
+    margin-bottom: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0F6E56;
+    margin: 0 0 0.6rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    margin: 0 0 0.85rem;
+  }
+
+  a {
+    color: #1D9E75;
+    font-weight: 600;
+  }
+</style>
