@@ -65,6 +65,36 @@ function riskColor(score: number) {
     </div>
   </section>
 
+  <!-- ── Profils ── -->
+  <section class="profiles-section">
+    <div class="profiles-wrap">
+      <h2 class="profiles-title">Quel budget selon le profil de votre chien ?</h2>
+      <div class="profiles-grid">
+        <div class="profile-card">
+          <div class="profile-dot dot-red"></div>
+          <h3>Brachycéphales</h3>
+          <p class="profile-races">Bouledogue Français, Carlin, Shih Tzu</p>
+          <p class="profile-price">25 – 45 €/mois</p>
+          <p class="profile-why">Races au crâne aplati, souvent sujettes à des difficultés respiratoires et des chirurgies coûteuses dès le plus jeune âge. Une formule avec couverture chirurgicale est indispensable.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-dot dot-orange"></div>
+          <h3>Grandes races sportives</h3>
+          <p class="profile-races">Labrador, Berger Allemand, Golden Retriever</p>
+          <p class="profile-price">18 – 30 €/mois</p>
+          <p class="profile-why">Prédisposées à la dysplasie et aux cancers héréditaires, souvent détectés après 2 ans. Souscrire avant 1 an permet d'éviter les exclusions pour pathologie préexistante.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-dot dot-green"></div>
+          <h3>Petites races résistantes</h3>
+          <p class="profile-races">Épagneul Breton, Jack Russell, Bichon Frisé</p>
+          <p class="profile-price">15 – 20 €/mois</p>
+          <p class="profile-why">Peu de pathologies graves, mais quelques fragilités articulaires fréquentes (otites, luxation de la rotule). Ces races vivent longtemps — souscrire jeune garantit un tarif bas toute leur vie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Races ── -->
   <section class="section" id="races">
     <div class="wrap">
@@ -196,6 +226,80 @@ function riskColor(score: number) {
 </Layout>
 
 <style>
+  /* ── Profils ── */
+  .profiles-section {
+    background: #f4fbf8;
+    padding: 3rem 1.25rem;
+    border-top: 1px solid #d4ede5;
+  }
+
+  .profiles-wrap { max-width: 1100px; margin: 0 auto; }
+
+  .profiles-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 800;
+    color: #0F6E56;
+    text-align: center;
+    margin: 0 0 1.75rem;
+    letter-spacing: -.02em;
+  }
+
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .profiles-grid { grid-template-columns: 1fr; }
+  }
+
+  .profile-card {
+    background: #fff;
+    border: 1px solid #d4ede5;
+    border-radius: 12px;
+    padding: 1.25rem 1.1rem;
+  }
+
+  .profile-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-bottom: .75rem;
+  }
+
+  .dot-red    { background: #D85A30; }
+  .dot-orange { background: #BA7517; }
+  .dot-green  { background: #3B6D11; }
+
+  .profile-card h3 {
+    font-size: .95rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 .25rem;
+  }
+
+  .profile-races {
+    font-size: .78rem;
+    color: #888;
+    margin: 0 0 .5rem;
+    font-style: italic;
+  }
+
+  .profile-price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 .5rem;
+  }
+
+  .profile-why {
+    font-size: .82rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.6;
+  }
+
   /* ── Hero ── */
   .hero {
     position: relative;
