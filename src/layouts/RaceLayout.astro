@@ -38,12 +38,16 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   -->
   <HeroBreed {nom} {slug} {title} {taille} {risque} />
 
-  <!--
-    CSS-only : KeyFigures — injecté après le Hero.
-    Astro collecte le <style is:global> dans le <head>.
-    Le div wrapper ne produit aucun contenu visible.
-  -->
-  <div class="key-figures-block"><KeyFigures /></div>
+  <div class="kf-block">
+    <KeyFigures
+      data={{
+        souscription: "12%",
+        coutAnnuel:   "600 €",
+        maladies:     "23%",
+        population:   "30 000",
+      }}
+    />
+  </div>
 
   <!--
     ═══════════════════════════════════════════════
@@ -73,14 +77,15 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   -->
   <div class="rc-wrap">
     <article class="race-article">
-      <slot />
+      <StyledTable>
+        <slot />
+      </StyledTable>
 
       <!--
         CSS-only injectors — placés APRÈS le slot pour styliser
         le contenu généré. Astro injecte leurs <style is:global>
         dans <head> quelle que soit leur position dans le DOM.
       -->
-      <StyledTable />
       <div class="illness-cards-block"><IllnessCards /></div>
       <div class="advice-box-block"><AdviceBox /></div>
       <div class="similar-breeds-block"><SimilarBreeds /></div>

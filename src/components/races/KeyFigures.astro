@@ -1,90 +1,107 @@
 ---
-/**
- * KeyFigures.astro
- *
- * Injecte des styles globaux pour embellir les blocs .key-figures / .figures-grid
- * déjà présents dans le contenu des pages races.
- * Pas de rendu HTML propre — les données viennent directement du slot.
- */
+interface Props {
+  data: {
+    souscription: string;
+    coutAnnuel:   string;
+    maladies:     string;
+    population:   string;
+  };
+}
+
+const { data } = Astro.props;
+
+const items = [
+  { value: data.souscription, label: 'Taux de souscription' },
+  { value: data.coutAnnuel,   label: 'Coût annuel moyen' },
+  { value: data.maladies,     label: 'Maladies fréquentes' },
+  { value: data.population,   label: 'Population en France' },
+];
 ---
-<style is:global>
-/* ═══════════════════════════════════════
-   KEY FIGURES — bloc chiffres clés
-   ═══════════════════════════════════════ */
-.race-article .key-figures {
-  background: linear-gradient(135deg, #f0fbf7, #e6f6f1) !important;
-  border: 1px solid #b6e3d1 !important;
-  border-radius: 16px !important;
-  padding: 1.75rem 1.5rem !important;
-  margin: 2.5rem 0 !important;
-  box-shadow: 0 4px 20px rgba(15, 110, 86, 0.07) !important;
+
+<section class="kf">
+  <h2 class="kf-title">Données clés 2026</h2>
+  <div class="kf-grid">
+    {items.map((item, i) => (
+      <div class="kf-item" style={`animation-delay:${0.06 + i * 0.07}s`}>
+        <span class="kf-value">{item.value}</span>
+        <span class="kf-label">{item.label}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+/* ── Section ── */
+.kf {
+  background: linear-gradient(135deg, #f0fbf7 0%, #e6f6f1 100%);
+  border: 1px solid #b6e3d1;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  margin: 2.5rem 0;
+  box-shadow: 0 4px 20px rgba(15, 110, 86, 0.07);
   animation: kfIn 0.5s ease-out both;
 }
 
-.race-article .key-figures h2 {
-  font-size: 0.78rem !important;
-  font-weight: 700 !important;
-  color: #0F6E56 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-  margin: 0 0 1.25rem !important;
-  border: none !important;
-  padding: 0 !important;
+/* ── Titre ── */
+.kf-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0f6e56;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 1.25rem;
 }
 
-/* Grille */
-.race-article .figures-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 0.85rem !important;
+/* ── Grille ── */
+.kf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
 }
 
 @media (max-width: 600px) {
-  .race-article .figures-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .kf-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Cellule */
-.race-article .figure {
-  background: #fff !important;
-  border: 1px solid #d1ede3 !important;
-  border-radius: 12px !important;
-  padding: 1rem 0.75rem !important;
-  text-align: center !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+/* ── Cellule ── */
+.kf-item {
+  background: #fff;
+  border: 1px solid #d1ede3;
+  border-radius: 12px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   animation: kfUp 0.4s ease-out both;
 }
 
-.race-article .figure:nth-child(1) { animation-delay: 0.06s; }
-.race-article .figure:nth-child(2) { animation-delay: 0.12s; }
-.race-article .figure:nth-child(3) { animation-delay: 0.18s; }
-.race-article .figure:nth-child(4) { animation-delay: 0.24s; }
-
-.race-article .figure:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 8px 22px rgba(15, 110, 86, 0.11) !important;
+.kf-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(15, 110, 86, 0.11);
 }
 
-/* Valeur */
-.race-article .figure-value {
-  display: block !important;
-  font-size: 1.55rem !important;
-  font-weight: 800 !important;
-  color: #0F6E56 !important;
-  line-height: 1.1 !important;
-  margin-bottom: 0.3rem !important;
-  letter-spacing: -0.02em !important;
+/* ── Valeur ── */
+.kf-value {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #0f6e56;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-/* Label */
-.race-article .figure-label {
-  font-size: 0.72rem !important;
-  color: #5a7a6e !important;
-  line-height: 1.35 !important;
+/* ── Label ── */
+.kf-label {
+  font-size: 0.72rem;
+  color: #5a7a6e;
+  line-height: 1.35;
 }
 
-/* Animations */
+/* ── Animations ── */
 @keyframes kfIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }

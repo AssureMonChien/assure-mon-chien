@@ -2,92 +2,110 @@
 /**
  * StyledTable.astro
  *
- * Injecte des styles globaux pour les tableaux .data-table dans les pages races.
- * Coins arrondis, header gradient, hover sur lignes, shadow, animation d'entrée.
- * Aucun rendu HTML — cible le contenu du slot via is:global.
+ * Wrapper autonome qui reçoit le contenu via <slot />.
+ * Cible les <table class="data-table"> à l'intérieur du wrapper
+ * via :global() dans un style scoped — aucun is:global, aucun !important.
  */
 ---
-<style is:global>
-/* ═══════════════════════════════════════════
-   STYLED TABLE — .data-table
-   ═══════════════════════════════════════════ */
 
-.race-article .data-table {
+<div class="st-wrap">
+  <slot />
+</div>
+
+<style>
+/* ── Wrapper ── */
+.st-wrap {
+  container-type: inline-size;
+}
+
+/* ── Table ── */
+.st-wrap :global(.data-table) {
   width: 100%;
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06) !important;
-  margin: 1rem 0 0.75rem !important;
-  font-size: 0.875rem !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+  margin: 1rem 0 0.75rem;
+  font-size: 0.875rem;
   animation: stIn 0.4s ease-out both;
 }
 
 /* ── En-tête ── */
-.race-article .data-table thead tr th {
-  background: linear-gradient(90deg, #0a5840 0%, #0f6e56 100%) !important;
-  color: #fff !important;
-  font-weight: 700 !important;
-  font-size: 0.78rem !important;
-  letter-spacing: 0.045em !important;
-  text-transform: uppercase !important;
-  padding: 0.65rem 0.95rem !important;
-  white-space: nowrap !important;
-  border: none !important;
+.st-wrap :global(.data-table thead tr th) {
+  background: linear-gradient(90deg, #0a5840 0%, #0f6e56 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  padding: 0.65rem 0.95rem;
+  white-space: nowrap;
+  border: none;
 }
 
-.race-article .data-table thead tr th:first-child {
-  border-top-left-radius: 12px !important;
+.st-wrap :global(.data-table thead tr th:first-child) {
+  border-top-left-radius: 12px;
 }
-.race-article .data-table thead tr th:last-child {
-  border-top-right-radius: 12px !important;
+.st-wrap :global(.data-table thead tr th:last-child) {
+  border-top-right-radius: 12px;
 }
 
 /* ── Corps ── */
-.race-article .data-table tbody tr {
-  transition: background 0.15s ease !important;
+.st-wrap :global(.data-table tbody tr) {
+  transition: background 0.15s ease;
 }
 
-.race-article .data-table tbody tr:nth-child(odd) td {
-  background: #ffffff !important;
+.st-wrap :global(.data-table tbody tr:nth-child(odd) td) {
+  background: #ffffff;
 }
 
-.race-article .data-table tbody tr:nth-child(even) td {
-  background: #f7fdfa !important;
+.st-wrap :global(.data-table tbody tr:nth-child(even) td) {
+  background: #f7fdfa;
 }
 
-.race-article .data-table tbody tr:hover td {
-  background: #e8f7f2 !important;
+.st-wrap :global(.data-table tbody tr:hover td) {
+  background: #e8f7f2;
 }
 
-.race-article .data-table tbody tr td {
-  padding: 0.55rem 0.95rem !important;
-  border-bottom: 1px solid #eff0ef !important;
-  vertical-align: top !important;
-  line-height: 1.5 !important;
-  color: #333 !important;
-  border-left: none !important;
-  border-right: none !important;
+.st-wrap :global(.data-table tbody tr td) {
+  padding: 0.55rem 0.95rem;
+  border-bottom: 1px solid #eff0ef;
+  border-left: none;
+  border-right: none;
+  vertical-align: top;
+  line-height: 1.5;
+  color: #333;
 }
 
-/* Dernière ligne : supprimer le séparateur + arrondir les coins */
-.race-article .data-table tbody tr:last-child td {
-  border-bottom: none !important;
+/* Dernière ligne — supprimer séparateur + coins arrondis */
+.st-wrap :global(.data-table tbody tr:last-child td) {
+  border-bottom: none;
 }
 
-.race-article .data-table tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 12px !important;
+.st-wrap :global(.data-table tbody tr:last-child td:first-child) {
+  border-bottom-left-radius: 12px;
 }
 
-.race-article .data-table tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 12px !important;
+.st-wrap :global(.data-table tbody tr:last-child td:last-child) {
+  border-bottom-right-radius: 12px;
 }
 
-/* Mise en valeur des totaux / montants en gras */
-.race-article .data-table td strong {
-  color: #0f6e56 !important;
-  font-weight: 700 !important;
+/* Montants en gras */
+.st-wrap :global(.data-table td strong) {
+  color: #0f6e56;
+  font-weight: 700;
+}
+
+/* ── Responsive ── */
+@container (max-width: 520px) {
+  .st-wrap :global(.data-table) {
+    font-size: 0.8rem;
+  }
+  .st-wrap :global(.data-table thead tr th),
+  .st-wrap :global(.data-table tbody tr td) {
+    padding: 0.45rem 0.6rem;
+  }
 }
 
 /* ── Animation d'entrée ── */
