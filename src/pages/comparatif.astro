@@ -1,0 +1,525 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Comparatif assurances chien 2026", "item": "https://assuremochien.fr/comparatif" },
+  ]
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quelle est la meilleure assurance chien en 2026 ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SantéVet se distingue par son remboursement à 100 %, sa couverture des maladies chroniques sans surprime et son délai de remboursement de 48 heures. Pour les races à risque élevé (Bouledogue, Cavalier King Charles, Rottweiler), c'est le choix le plus protecteur. Pour un petit budget sans pathologie héréditaire connue, AssurOPoil à 15 €/mois peut suffire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il une période de carence pour une assurance chien ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, toutes les assurances imposent une carence : 30 jours chez SantéVet et AssurOPoil, 45 jours chez Lassie. Pendant cette période, les maladies diagnostiquées ne sont pas couvertes. Les accidents, en revanche, sont généralement couverts dès le premier jour. Plus tôt vous souscrivez, plus vite vous êtes pleinement couvert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'assurance chien couvre-t-elle les maladies héréditaires ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, à condition de souscrire avant tout diagnostic. SantéVet, AssurOPoil et Lassie couvrent les maladies héréditaires (dysplasie, cardiopathies, épilepsie) si aucun symptôme ni diagnostic n'a été enregistré avant la souscription. C'est la raison principale pour assurer son chien dès le plus jeune âge, avant les premiers bilans vétérinaires de dépistage."
+      }
+    }
+  ]
+});
+---
+
+<Layout
+  title="Comparatif assurances chien 2026 — SantéVet, Lassie, AssurOPoil"
+  description="Comparatif indépendant des 3 meilleures assurances chien en 2026 : SantéVet, AssurOPoil et Lassie. Tarifs réels, remboursements, délais de carence et verdict par profil."
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldFaq} />
+
+  <!-- ── Hero ── -->
+  <section class="hero-comp">
+    <div class="hero-inner">
+      <h1>Comparatif assurances chien 2026</h1>
+      <p class="hero-desc">Analyse indépendante de SantéVet, AssurOPoil et Lassie — tarifs réels, garanties clés et verdict par profil de race. Mis à jour avril 2026.</p>
+    </div>
+  </section>
+
+  <!-- ── Tableau ── -->
+  <section class="table-section">
+    <div class="wrap">
+      <div class="table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th class="col-critere">Critère</th>
+              <th class="col-santeVet">
+                SantéVet
+                <span class="badge-recommande">Recommandé</span>
+              </th>
+              <th class="col-assu">AssurOPoil</th>
+              <th class="col-lassie">Lassie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="critere-label">Prix indicatif</td>
+              <td class="val-santeVet"><strong>18 €/mois</strong></td>
+              <td>15 €/mois</td>
+              <td>20 €/mois</td>
+            </tr>
+            <tr class="alt">
+              <td class="critere-label">Remboursement</td>
+              <td class="val-santeVet"><strong>100 %</strong></td>
+              <td>100 %</td>
+              <td>80 %</td>
+            </tr>
+            <tr>
+              <td class="critere-label">Carence maladie</td>
+              <td class="val-santeVet">30 j</td>
+              <td>30 j</td>
+              <td>45 j</td>
+            </tr>
+            <tr class="alt">
+              <td class="critere-label">Prévention incluse</td>
+              <td class="val-santeVet">150 €/an</td>
+              <td><span class="cross">✗</span></td>
+              <td>100 €/an</td>
+            </tr>
+            <tr>
+              <td class="critere-label">Couverture dysplasie</td>
+              <td class="val-santeVet"><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr class="alt">
+              <td class="critere-label">Vaccins remboursés</td>
+              <td class="val-santeVet">Premium</td>
+              <td><span class="cross">✗</span></td>
+              <td>Premium</td>
+            </tr>
+            <tr>
+              <td class="critere-label">Application mobile</td>
+              <td class="val-santeVet"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr class="alt">
+              <td class="critere-label">Délai remboursement</td>
+              <td class="val-santeVet"><strong>48 h</strong></td>
+              <td>5–10 j</td>
+              <td>72 h</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">* Tarifs indicatifs avril 2026. Peuvent varier selon l'âge et la race du chien.</p>
+
+      <!-- CTAs -->
+      <div class="ctas">
+        <a href="https://www.santeVet.com/assurance-chien/?ref=assuremochien" class="cta-primary" target="_blank" rel="noopener sponsored">
+          Voir l'offre SantéVet →
+        </a>
+        <a href="https://www.assuropoil.fr/?ref=assuremochien" class="cta-outline" target="_blank" rel="noopener sponsored">
+          Voir l'offre AssurOPoil →
+        </a>
+        <a href="https://www.lassie.fr/?ref=assuremochien" class="cta-outline" target="_blank" rel="noopener sponsored">
+          Voir l'offre Lassie →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Verdict ── -->
+  <section class="verdict-section">
+    <div class="wrap">
+      <h2 class="section-title">Pour qui chaque assurance ?</h2>
+      <div class="verdict-grid">
+        <div class="verdict-card verdict-green">
+          <div class="verdict-header">
+            <span class="verdict-name">SantéVet</span>
+            <span class="verdict-tag">Meilleur choix</span>
+          </div>
+          <p class="verdict-who">Races à risque élevé</p>
+          <p class="verdict-desc">Bouledogue Français, Cavalier King Charles, Rottweiler, Golden Retriever. Remboursement à 100 %, délai 48 h et couverture maladies chroniques sans surprime : le choix logique quand les frais vétérinaires peuvent dépasser 5 000 €.</p>
+        </div>
+        <div class="verdict-card verdict-neutral">
+          <div class="verdict-header">
+            <span class="verdict-name">AssurOPoil</span>
+          </div>
+          <p class="verdict-who">Petit budget</p>
+          <p class="verdict-desc">Races de risque modéré sans pathologies héréditaires documentées. À 15 €/mois avec 100 % de remboursement, c'est l'entrée de gamme la plus compétitive — à condition d'accepter l'absence d'application mobile et les délais de remboursement plus longs.</p>
+        </div>
+        <div class="verdict-card verdict-neutral">
+          <div class="verdict-header">
+            <span class="verdict-name">Lassie</span>
+          </div>
+          <p class="verdict-who">Application mobile prioritaire</p>
+          <p class="verdict-desc">Propriétaires qui gèrent tout depuis leur smartphone. Interface soignée, devis en 90 secondes, suivi des remboursements en temps réel. Le remboursement à 80 % et la carence de 45 jours restent des points de vigilance pour les races fragiles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq-section">
+    <div class="wrap">
+      <h2 class="section-title">Questions fréquentes</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt>
+            <button class="faq-btn" aria-expanded="false">
+              Quelle est la meilleure assurance chien en 2026 ?
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </button>
+          </dt>
+          <dd class="faq-answer" hidden>
+            SantéVet se distingue par son remboursement à 100 %, sa couverture des maladies chroniques sans surprime et son délai de remboursement de 48 heures. Pour les races à risque élevé (Bouledogue, Cavalier King Charles, Rottweiler), c'est le choix le plus protecteur. Pour un petit budget sans pathologie héréditaire connue, AssurOPoil à 15 €/mois peut suffire.
+          </dd>
+        </div>
+        <div class="faq-item">
+          <dt>
+            <button class="faq-btn" aria-expanded="false">
+              Y a-t-il une période de carence pour une assurance chien ?
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </button>
+          </dt>
+          <dd class="faq-answer" hidden>
+            Oui, toutes les assurances imposent une carence : 30 jours chez SantéVet et AssurOPoil, 45 jours chez Lassie. Pendant cette période, les maladies diagnostiquées ne sont pas couvertes. Les accidents sont généralement couverts dès le premier jour. Plus tôt vous souscrivez, plus vite vous êtes pleinement couvert.
+          </dd>
+        </div>
+        <div class="faq-item">
+          <dt>
+            <button class="faq-btn" aria-expanded="false">
+              L'assurance chien couvre-t-elle les maladies héréditaires ?
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </button>
+          </dt>
+          <dd class="faq-answer" hidden>
+            Oui, à condition de souscrire avant tout diagnostic. SantéVet, AssurOPoil et Lassie couvrent les maladies héréditaires (dysplasie, cardiopathies, épilepsie) si aucun symptôme ni diagnostic n'a été enregistré avant la souscription. C'est la raison principale pour assurer son chien dès le plus jeune âge, avant les premiers bilans vétérinaires de dépistage.
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero-comp {
+    background: #0F6E56;
+    padding: 3.5rem 1.25rem 3rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hero-comp h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 .85rem;
+    letter-spacing: -.02em;
+    color: #fff;
+  }
+
+  .hero-desc {
+    font-size: .95rem;
+    opacity: .85;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── Tableau ── */
+  .table-section {
+    padding: 3rem 1.25rem 1.5rem;
+  }
+
+  .wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #d4ede5;
+  }
+
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+    background: #fff;
+  }
+
+  .comp-table thead tr {
+    background: #0F6E56;
+    color: #fff;
+  }
+
+  .comp-table th {
+    padding: .9rem 1rem;
+    font-weight: 700;
+    text-align: left;
+    font-size: .82rem;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  .comp-table th.col-santeVet {
+    background: #0a5a45;
+    position: relative;
+  }
+
+  .badge-recommande {
+    display: inline-block;
+    background: #F9CB42;
+    color: #1A2E26;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 6px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-left: .4rem;
+    vertical-align: middle;
+  }
+
+  .comp-table td {
+    padding: .75rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+
+  .comp-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .comp-table tr.alt {
+    background: #fafafa;
+  }
+
+  .critere-label {
+    font-weight: 600;
+    color: #333;
+    font-size: .85rem;
+  }
+
+  .val-santeVet {
+    background: #E1F5EE;
+    border-left: 1.5px solid #1D9E75;
+    border-right: 1.5px solid #1D9E75;
+  }
+
+  .comp-table tr:last-child .val-santeVet {
+    border-bottom: 1.5px solid #1D9E75;
+  }
+
+  .check { color: #1D9E75; font-weight: 700; font-size: 1rem; }
+  .cross { color: #E24B4A; font-weight: 700; font-size: 1rem; }
+
+  .table-note {
+    font-size: 11px;
+    color: #999;
+    margin: .75rem 0 0;
+    text-align: right;
+  }
+
+  /* ── CTAs ── */
+  .ctas {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    justify-content: center;
+  }
+
+  .cta-primary {
+    background: #1D9E75;
+    color: #fff;
+    font-weight: 700;
+    font-size: .9rem;
+    padding: .75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .cta-primary:hover { opacity: .88; text-decoration: none; }
+
+  .cta-outline {
+    border: 2px solid #1D9E75;
+    color: #1D9E75;
+    background: transparent;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .cta-outline:hover { background: #E1F5EE; text-decoration: none; }
+
+  /* ── Verdict ── */
+  .verdict-section {
+    padding: 3rem 1.25rem;
+    background: #f4fbf8;
+    border-top: 1px solid #d4ede5;
+  }
+
+  .section-title {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-weight: 800;
+    color: #0F6E56;
+    text-align: center;
+    margin: 0 0 1.75rem;
+    letter-spacing: -.02em;
+  }
+
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .verdict-grid { grid-template-columns: 1fr; }
+  }
+
+  .verdict-card {
+    background: #fff;
+    border: 1px solid #d4ede5;
+    border-radius: 12px;
+    padding: 1.25rem 1.1rem;
+  }
+
+  .verdict-card.verdict-green {
+    border-color: #1D9E75;
+    box-shadow: 0 0 0 1px #1D9E75;
+  }
+
+  .verdict-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: .35rem;
+    flex-wrap: wrap;
+  }
+
+  .verdict-name {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1a1a1a;
+  }
+
+  .verdict-tag {
+    font-size: 9px;
+    font-weight: 800;
+    background: #E1F5EE;
+    color: #0F6E56;
+    border: 1px solid #1D9E75;
+    border-radius: 6px;
+    padding: 2px 6px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  .verdict-who {
+    font-size: .8rem;
+    font-weight: 700;
+    color: #1D9E75;
+    margin: 0 0 .5rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  .verdict-desc {
+    font-size: .85rem;
+    color: #444;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .faq-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 1rem 0;
+    font-size: .95rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .75rem;
+    line-height: 1.4;
+  }
+
+  .faq-btn:hover { color: #0F6E56; }
+  .faq-btn[aria-expanded="true"] { color: #0F6E56; }
+
+  .faq-chevron {
+    font-size: 1.1rem;
+    transition: transform .2s;
+    flex-shrink: 0;
+    color: #1D9E75;
+  }
+
+  .faq-btn[aria-expanded="true"] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    font-size: .9rem;
+    color: #444;
+    line-height: 1.7;
+    padding: 0 0 1rem;
+    margin: 0;
+  }
+
+  .faq-answer[hidden] { display: none; }
+</style>
+
+<script>
+  document.querySelectorAll(".faq-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!expanded));
+      const answer = btn.closest(".faq-item")?.querySelector(".faq-answer") as HTMLElement | null;
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>

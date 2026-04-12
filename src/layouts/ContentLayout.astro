@@ -1,0 +1,80 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  heroLabel?: string;
+  heroTitle: string;
+  heroDesc?: string;
+}
+
+const {
+  title,
+  description,
+  heroLabel = "ANALYSE",
+  heroTitle,
+  heroDesc,
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <section class="hero-content">
+    <div class="hero-inner">
+      <p class="hero-label">{heroLabel}</p>
+      <h1>{heroTitle}</h1>
+      {heroDesc && <p class="hero-desc">{heroDesc}</p>}
+    </div>
+  </section>
+
+  <div class="content-wrap">
+    <slot />
+  </div>
+</Layout>
+
+<style>
+  .hero-content {
+    background: #0F6E56;
+    padding: 3.5rem 1.25rem 3rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.18);
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin: 0 0 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+    color: #fff;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    opacity: 0.88;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .content-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 5rem;
+  }
+</style>

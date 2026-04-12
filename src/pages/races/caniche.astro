@@ -1,113 +1,169 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Caniche : Risques & Meilleures Offres 2026"
   description="Le Caniche est prédisposé à l'atrophie progressive de la rétine et à la maladie d'Addison. Découvrez les meilleures assurances adaptées aux risques héréditaires du Caniche."
-  raceName="Caniche"
+  nom="Caniche"
   slug="caniche"
-  dateModified="2026-04-05"
-  heroSubtitle="Race la plus intelligente selon Stanley Coren, le Caniche est aussi l'une des plus longévives. Cette longévité a un prix : des pathologies oculaires et endocriniennes qui apparaissent discretement apres 5 ans."
-  imageUrl="/images/races/caniche.webp"
-  imageAlt="Caniche blanc toiletté assis, regard vif et expressif"
-  heroBadge="RACE LONGÉVIVE · RISQUES OCULAIRES"
-  riskScore={55}
-  alertText="La <strong>maladie d'Addison</strong> (insuffisance surrenalienne) touche le Caniche le plus souvent entre <strong>4 et 7 ans</strong>, apres des mois de symptômes vagues. Au moment du diagnostic, les assureurs l'excluent comme <strong>maladie preexistante</strong>. Souscrire avant 3 ans garantit une prise en charge complète du traitement substitutif à vie (<strong>200-600 euros/an</strong>)."
-  alertSource="Source : Canine Addison's Disease Foundation Health Statistics 2023 ; Kennel Club UK Poodle Health Survey 2022"
-  introText="Avec plus de 15 000 naissances annuelles, le Caniche reste l'une des races les plus representees en France (FACCO 2024). Sa longevite exceptionnelle (14-17 ans) signifie des années supplementaires d'exposition aux maladies chroniques, ce qui rend une couverture assurance sur le long terme particulièrement rentable."
-  faq={[
-    { question: "L'atrophie progressive de la retine (APR) du Caniche est-elle couverte ?", answer: "L'APR etant héréditaire, elle est couverte si l'assurance est souscrite avant tout examen ophtalmologique revelant la pathologie. SanteVet prend en charge le suivi ophtalmologique et les soins palliatifs dans ses formules." },
-    { question: "A quel âge assurer son Caniche pour couvrir la maladie d'Addison ?", answer: "Avant 3 ans, avant l'apparition des premiers signes. La maladie d'Addison se manifeste par des épisodes vagues (fatigue, vomissements). Une simple consultation pour ces symptômes peut suffire à créer une exclusion chez certains assureurs." },
-    { question: "Quel budget mensuel pour assurer un Caniche ?", answer: "Entre 15 et 25 euros/mois selon la taille et la formule. Sa longévité rend la souscription précoce avantageuse. 15 ans de couverture à tarif fixe représentent une excellente protection contre les maladies chroniques." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=caniche&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture atrophie progressive de la rétine (APR)",
-        "Prise en charge maladie d'Addison et traitement hormonal",
-        "Remboursement des bilans ophtalmologiques annuels",
-        "Couverture épilepsie et antiépileptiques",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=caniche&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Atrophie progressive de la rétine (APR)", score: 65, prix: "300–1 200 €", description: "Dégénérescence héréditaire des photorécepteurs menant à la cécité. Plus fréquente chez le Caniche miniature et toy. Test ADN disponible." },
-    { nom: "Maladie d'Addison", score: 55, prix: "800–3 000 €", description: "Insuffisance surrénalienne auto-immune. Symptômes vagues (fatigue, vomissements) jusqu'à la crise potentiellement mortelle. Traitement hormonal substitutif à vie." },
-    { nom: "Dysplasie de hanche", score: 45, prix: "1 000–4 000 €", description: "Surtout chez le grand Caniche. Arthrose progressive nécessitant un suivi rhumatologique." },
-    { nom: "Épilepsie idiopathique", score: 50, prix: "300–800 €/an", description: "Le Caniche nain est prédisposé. Antiépileptiques et bilans réguliers nécessaires." },
-  ]}
-  pathologies={[
-    { nom: "Atrophie progressive de la rétine (APR)", description: "Dégénérescence héréditaire des photorécepteurs conduisant à une cécité progressive irréversible. Début par héméralopie (vision nocturne diminuée). Test ADN disponible pour les éleveurs.", coût: "300–1 200 €" },
-    { nom: "Maladie d'Addison", description: "Insuffisance surrénalienne corticotrope auto-immune. Symptômes insidieux (fatigue, vomissements intermittents) pouvant déboucher sur une crise d'Addison fatale. Traitement substitutif à vie (fludrocortisone, prednisolone).", coût: "800–3 000 €" },
-    { nom: "Épilepsie idiopathique", description: "Crises convulsives primaires récurrentes sans lésion identifiable. Plus fréquente chez le Caniche nain. Traitement antiépileptique à vie et surveillance neurologique.", coût: "300–800 €/an" },
-    { nom: "Dysplasie de hanche, grand Caniche", description: "Malformation articulaire coxo-fémorale héréditaire, surtout chez le grand Caniche. Arthrose progressive douloureuse. Chirurgie (prothèse totale de hanche, FHO) en forme sévère.", coût: "1 000–4 000 €" },
-    { nom: "Sébacéite granulomateuse", description: "Maladie inflammatoire des glandes sébacées spécifique au Caniche standard. Alopécie progressive, squames folliculaires. Traitement dermatologique à long terme (rétinoïdes, ciclosporine).", coût: "200–600 €/an" },
-    { nom: "Cataracte héréditaire", description: "Opacification précoce du cristallin dans certaines lignées de Caniche. Cécité progressive. Chirurgie par phacoémulsification pour restaurer la vision.", coût: "800–2 500 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=caniche&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="petite"
+  risque="faible"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Élu race la plus intelligente par le comportementaliste Stanley Coren, le Caniche est aussi l'une des races les plus longévives : 14 à 17 ans pour le Caniche toy ou nain, 12 à 15 ans pour le standard. Cette longévité exceptionnelle est une qualité précieuse, mais elle s'accompagne d'un risque accru de pathologies chroniques apparaissant progressivement après 5 ans. Atrophie rétinienne, maladie d'Addison, épilepsie idiopathique : ces affections se développent souvent insidieusement, bien avant que les signes cliniques n'alertent le propriétaire. Une couverture souscrite dès le plus jeune âge garantit une protection sur la durée entière de cette longue vie.</p>
+
+  <h2>Coût annuel d'un Caniche</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes qualité premium)</td><td>200 – 450 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires)</td><td>200 – 350 €</td></tr>
+      <tr><td>Toilettage professionnel (6 à 8 fois/an)</td><td>360 – 640 €</td></tr>
+      <tr><td>Bilan ophtalmologique annuel</td><td>60 – 120 €</td></tr>
+      <tr><td>Traitement maladie d'Addison (si diagnostiqué)</td><td>200 – 600 €/an</td></tr>
+      <tr><td>Assurance santé</td><td>180 – 300 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>80 – 150 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des dépenses animales 2024 ; Observatoire SantéVet des frais vétérinaires 2023</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Caniche</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Atrophie rétinienne progressive (PRA)</td><td>15 – 20 % (nain et toy surtout)</td><td>200 – 1 200 €</td></tr>
+      <tr><td>Luxation de la rotule</td><td>10 – 20 % (nain et toy)</td><td>800 – 2 500 €</td></tr>
+      <tr><td>Épilepsie idiopathique</td><td>5 – 8 % (nain principalement)</td><td>300 – 800 €/an</td></tr>
+      <tr><td>Maladie d'Addison</td><td>2 – 5 %</td><td>800 – 3 000 €</td></tr>
+      <tr><td>Dysplasie de hanche (grand Caniche)</td><td>5 – 12 %</td><td>1 000 – 4 000 €</td></tr>
+      <tr><td>Sébacéite granulomateuse (standard)</td><td>5 – 7 %</td><td>200 – 600 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Canine Addison's Disease Foundation Health Statistics 2023 ; Kennel Club UK Poodle Health Survey 2022 ; OFA Health Statistics Poodle 2024</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Caniche</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Examen ophtalmologique + ERG (électrorétinogramme)</td><td>80 – 200 €</td><td>Annuel dès 4 ans</td></tr>
+      <tr><td>Dosage ACTH stimulation (Addison)</td><td>150 – 250 €</td><td>Au diagnostic</td></tr>
+      <tr><td>Traitement substitutif Addison (fludrocortisone/mois)</td><td>20 – 60 €/mois</td><td>À vie</td></tr>
+      <tr><td>Chirurgie luxation de la rotule</td><td>800 – 2 500 €</td><td>Grade III–IV</td></tr>
+      <tr><td>Traitement antiépileptique (phénobarbital/mois)</td><td>15 – 40 €/mois</td><td>À vie si épilepsie</td></tr>
+      <tr><td>Dosage phénobarbital sérique</td><td>40 – 80 €</td><td>2 fois/an</td></tr>
+      <tr><td>Radiographie bassin + score OFA (dysplasie)</td><td>100 – 180 €</td><td>Dès 24 mois</td></tr>
+      <tr><td>Test ADN PRA prcd (atrophie rétinienne)</td><td>80 – 100 €</td><td>Une fois</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grilles tarifaires vétérinaires spécialistes France 2024 ; Clinique vétérinaire ENVT Toulouse</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Caniche présente un profil de risque financier particulier lié à sa longévité exceptionnelle : les pathologies chroniques se cumulent sur de nombreuses années. La maladie d'Addison est particulièrement insidieuse — elle se manifeste par des épisodes vagues (fatigue, nausées, perte d'appétit) pendant des mois avant de déboucher brutalement sur une crise d'Addison potentiellement fatale. Dépistée avant souscription, elle entraîne une exclusion permanente chez la plupart des assureurs. Or le traitement substitutif à vie (fludrocortisone, prednisolone) représente 200 à 600 € par an, auxquels s'ajoutent les bilans hormonaux réguliers. L'atrophie rétinienne progressive (PRA prcd) étant héréditaire et incurable, un Caniche nain non testé génétiquement par son éleveur peut développer une cécité progressive entre 5 et 10 ans avec des bilans ophtalmologiques réguliers à prévoir.</p>
+
+  <h2>Conseils de prévention pour un Caniche</h2>
+  <ul>
+    <li>Exiger le test ADN PRA prcd des deux parents à l'élevage (Caniche nain et toy surtout).</li>
+    <li>Examen ophtalmologique annuel à partir de 4 ans pour dépistage précoce.</li>
+    <li>Surveiller les signes discrets de maladie d'Addison : fatigue inexpliquée, vomissements intermittents, perte de poids progressive.</li>
+    <li>Dosage annuel de la glycémie et des électrolytes (sodium/potassium) après 5 ans pour dépistage précoce de l'Addison.</li>
+    <li>Pour le grand Caniche : radiographie bassin dès 2 ans pour évaluer la dysplasie de hanche.</li>
+    <li>Maintenir un poids idéal strict : l'obésité aggrave les luxations de rotule et la progression de l'arthrose.</li>
+    <li>Souscrire une assurance avant les 12 mois du chiot, avant tout bilan sanguin révélateur.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Caniche ?</h2>
+  <p>La longévité du Caniche est sa plus belle qualité et son plus grand défi financier. Sur 15 ans de vie, les probabilités d'au moins une pathologie chronique (Addison, épilepsie, PRA) sont élevées. Sans assurance, la prise en charge d'une maladie d'Addison représente 800 à 3 000 € au diagnostic puis 200 à 600 € par an à vie. Une chirurgie de rotule peut atteindre 2 500 €. Sur la durée totale de vie du chien, le cumul des frais non couverts peut facilement dépasser 10 000 €. Une assurance souscrite jeune, à tarif fixe, offre une protection linéaire pour l'ensemble de ces années.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Caniche ?</h2>
+  <p>Pour le Caniche, la priorité est la couverture des maladies chroniques sans limite de durée de traitement. Vérifiez explicitement la prise en charge de la maladie d'Addison (traitement hormonal substitutif à vie), de l'épilepsie (antiépileptiques + dosages sériques), et des pathologies ophtalmologiques (PRA, cataracte). Une formule avec remboursement à 80–100 % des frais réels et un plafond annuel d'au moins 2 000 € est recommandée. Évitez les contrats plafonnant le remboursement d'une même pathologie à 1 ou 2 ans. La longévité du Caniche rend le rapport qualité/prix d'une bonne assurance particulièrement avantageux sur le long terme.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Caniche</h2>
+  <p>Le Caniche est une race trans-générationnelle : il séduit autant les personnes âgées recherchant un compagnon intelligent et peu envahissant que les familles actives avec enfants. Sa capacité d'adaptation remarquable (appartement, maison, activités sportives) en fait l'une des races les plus polyvalentes. Son pelage non-mitorant (idéal pour les allergiques) est un atout majeur. Le propriétaire type de Caniche est prêt à investir dans le toilettage régulier et comprend l'importance du suivi vétérinaire sur le long terme. Le budget annuel hors imprévu tourne autour de 1 200 à 1 800 € pour un chien en bonne santé.</p>
+
+  <h2>Questions fréquentes sur l'assurance Caniche</h2>
+  <details>
+    <summary>La maladie d'Addison du Caniche est-elle couverte par l'assurance ?</summary>
+    <p>Oui, si la souscription précède tout symptôme et tout bilan sanguin révélant une anomalie. La maladie d'Addison, diagnostiquée avant la souscription ou pendant la période de carence, est généralement exclue définitivement. Souscrire avant 3 ans permet de couvrir cette pathologie qui se manifeste typiquement entre 4 et 7 ans.</p>
+  </details>
+  <details>
+    <summary>L'atrophie rétinienne progressive (PRA) est-elle remboursée ?</summary>
+    <p>Oui, dans les formules médico-chirurgicales complètes. La PRA ne se traite pas (pas de traitement curatif), mais les bilans ophtalmologiques de suivi et les soins palliatifs associés sont pris en charge. Si votre éleveur n'a pas fait le test ADN, la souscription précoce permet de couvrir la découverte diagnostique future.</p>
+  </details>
+  <details>
+    <summary>La chirurgie de luxation de rotule est-elle remboursée pour un Caniche ?</summary>
+    <p>Oui, la chirurgie correctrice (approfondissement trochléen, transposition de la tubérosité tibiale) est prise en charge dans les formules couvrant la chirurgie orthopédique. Pour un Caniche nain, comptez 800 à 2 000 € par genou. La souscription avant tout signe clinique est indispensable.</p>
+  </details>
+  <details>
+    <summary>Quelle taille de Caniche est la plus exposée aux risques de santé ?</summary>
+    <p>Le Caniche nain est le plus exposé aux luxations de rotule et à l'épilepsie idiopathique. Le Caniche toy partage ces risques avec une fragilité osseuse supplémentaire. Le Caniche standard est plus concerné par la dysplasie de hanche et la sébacéite granulomateuse. Les primes d'assurance varient peu selon la taille pour cette race.</p>
+  </details>
+  <details>
+    <summary>Combien coûte une assurance pour un Caniche par mois ?</summary>
+    <p>Entre 15 et 25 €/mois selon l'assureur, la formule et l'âge du chien. Compte tenu de la longévité du Caniche (14–17 ans), une assurance souscrite à 3 mois avec un tarif de 18 €/mois représente un investissement total d'environ 3 200 € pour une protection complète sur toute la vie du chien — très inférieur aux frais potentiels.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/bichon-frise">Bichon Frisé</a> — même gabarit compact, pelage bouclé similaire, profil de santé comparable avec risques cutanés en plus</li>
+    <li><a href="/races/maltais">Maltais</a> — petit chien de compagnie longévif, prédispositions dentaires et cutanées voisines</li>
+    <li><a href="/races/lagotto-romagnolo">Lagotto Romagnolo</a> — race bouclée intelligente aux aptitudes similaires, profil orthopédique comparable</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">3 000 €</span><span class="figure-label">coût diagnostic + traitement Addison</span></div>
+      <div class="figure"><span class="figure-value">20 %</span><span class="figure-label">prévalence PRA (Caniche nain)</span></div>
+      <div class="figure"><span class="figure-value">15 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">14–17 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Canine Addison's Disease Foundation, <em>Health Statistics Report</em>, 2023 — canineaddisons.org</li>
+    <li>Kennel Club UK, <em>Poodle Breed Health Survey</em>, 2022 — thekennelclub.org.uk</li>
+    <li>Orthopedic Foundation for Animals (OFA), <em>Poodle Health Statistics</em>, 2024 — ofa.org</li>
+    <li>Petersen-Jones S.M., "Advances in the Molecular Understanding of Canine Photoreceptor Diseases", <em>JSAP</em>, 2005</li>
+    <li>Société Centrale Canine (SCC), <em>Fiche de race Caniche</em>, 2024</li>
+    <li>FACCO, <em>Baromètre des animaux de compagnie en France</em>, 2024</li>
+    <li>SantéVet, <em>Observatoire des frais vétérinaires par race</em>, 2023</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

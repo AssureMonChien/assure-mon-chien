@@ -1,113 +1,170 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Setter Irlandais : Risques & Meilleures Offres 2026"
-  description="Le Setter Irlandais est la seule race avec une entéropathie sensible au gluten documentée et est prédisposé à l'atrophie rétinienne RPED. Découvrez les meilleures assurances pour cette race de chasse élégante."
-  raceName="Setter Irlandais"
+  description="Le Setter Irlandais est la seule race avec une entéropathie sensible au gluten documentée et est prédisposé à l'atrophie rétinienne PRCD-PRA. Découvrez les meilleures assurances pour cette race de chasse élégante."
+  nom="Setter Irlandais"
   slug="setter-irlandais"
-  dateModified="2026-04-05"
-  heroSubtitle="Aristocrate roux au galop généreux, le Setter Irlandais est aussi l'une des races les plus touchées par l'épilepsie idiopathique et la maladie cœliaque canine : deux pathologies chroniques au coût mensuel significatif."
-  imageUrl="/images/races/setter-irlandais.webp"
-  imageAlt="Setter Irlandais au pelage acajou brillant, galop élégant dans un champ"
-  heroBadge="SENSIBILITÉ AU GLUTEN · RÉTINE"
-  riskScore={62}
-  alertText="L'<strong>épilepsie idiopathique du Setter Irlandais</strong> affecte environ <strong>1 chien sur 8</strong> dans la race. Le traitement antiépileptique à vie coûte entre <strong>800 et 1 500 €/an</strong> selon les médicaments. Sans assurance, ce budget pèse lourd sur 10 ans, jusqu'à <strong>15 000 €</strong> de traitements cumulés."
-  alertSource="Source : Irish Setter Club of France 2024 ; Journal of Veterinary Internal Medicine, épilepsie canine héréditaire 2023"
-  introText="Le Setter Irlandais reste une race de passion, plébiscitée pour sa beauté et son caractère chaleureux. Ses propriétaires doivent néanmoins être préparés aux pathologies chroniques qui caractérisent la race : l'épilepsie idiopathique (traitement à vie) et l'entéropathie au gluten (régime strict + suivi biologique régulier) figurent en tête de liste."
-  faq={[
-    { question: "L'épilepsie du Setter Irlandais est-elle couverte par l'assurance ?", answer: "Oui, si la souscription précède le premier épisode épileptique. SantéVet couvre les maladies chroniques sans limitation de durée ni surprime, ce qui inclut le traitement antiépileptique à vie (phénobarbital, bromure de potassium, imépitoïne). Les consultations neurologiques et les IRM cérébrales sont également remboursées." },
-    { question: "Qu'est-ce que la maladie cœliaque du Setter Irlandais ?", answer: "L'entéropathie au gluten (appelée improprement maladie cœliaque) est une intolérance héréditaire au gluten documentée chez le Setter Irlandais. Elle provoque des diarrhées chroniques, un retard de croissance et une malabsorption. Le traitement est un régime sans gluten strict à vie, plus des contrôles biologiques trimestriels (40 à 80 €/bilan)." },
-    { question: "Un Setter Irlandais sportif est-il plus difficile à assurer ?", answer: "Non, l'activité sportive n'augmente pas la prime chez SantéVet. Les blessures liées à la chasse ou au sport canin (agility, canicross) sont couvertes comme tout autre accident. En revanche, si votre Setter travaille comme chien de chasse professionnel, vérifiez les conditions spécifiques aux activités professionnelles dans votre contrat." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=setter-irlandais&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture atrophie progressive de la rétine RPED",
-        "Prise en charge entéropathie au gluten et régime thérapeutique",
-        "Remboursement dilatation-torsion gastrique et chirurgie d'urgence",
-        "Couverture dysplasie de hanche et arthrose",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=setter-irlandais&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Atrophie progressive de la rétine (RPED)", score: 65, prix: "300–1 200 €", description: "Rod-Cone Dysplasia type 1 (rcd-1) : dégénérescence précoce des photorécepteurs. Cécité nocturne dès 12 mois, cécité totale vers 2 ans. Test ADN disponible." },
-    { nom: "Entéropathie sensible au gluten", score: 55, prix: "200–800 €/an", description: "Malabsorption héréditaire au gluten. Diarrhée chronique, retard de croissance chez le chiot. Régime sans gluten (sans blé, orge, seigle) à vie." },
-    { nom: "Dilatation-torsion de l'estomac", score: 60, prix: "2 000–5 000 €", description: "Morphologie thoracique profonde prédisposant à la torsion. Urgence vitale nécessitant une chirurgie immédiate." },
-    { nom: "Dysplasie de hanche", score: 50, prix: "1 000–4 500 €", description: "Présente dans certaines lignées. Arthrose progressive. Surveillance radiographique recommandée avant la reproduction." },
-  ]}
-  pathologies={[
-    { nom: "Atrophie progressive de la rétine RPED (rcd-1)", description: "Rod-Cone Dysplasia type 1 : dégénérescence précoce héréditaire des photorécepteurs par mutation du gène PDE6B. Cécité nocturne dès 12 mois, cécité totale progressive vers 2 ans. Test ADN disponible, obligatoire avant reproduction. Pas de traitement curatif.", coût: "300–1 200 €" },
-    { nom: "Entéropathie sensible au gluten", description: "Malabsorption héréditaire unique dans le monde canin, analogue à la maladie cœliaque humaine. Atrophie des villosités intestinales en réponse au gluten (blé, orge, seigle). Diarrhée chronique, retard de croissance, perte de poids. Régime strictement sans gluten à vie.", coût: "200–800 €/an" },
-    { nom: "Dilatation-torsion de l'estomac", description: "Urgence vitale liée au thorax profond et étroit. Dilatation gazeuse suivie de torsion gastrique sur l'axe cardio-pylorique. Choc hypovolémique rapide. Chirurgie de détorsion et gastropexie en urgence absolue.", coût: "2 000–5 000 €" },
-    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale héréditaire présente dans certaines lignées. Arthrose progressive. Score HD avant reproduction. Chirurgie (FHO, prothèse totale) en forme sévère.", coût: "1 000–4 500 €" },
-    { nom: "Épilepsie idiopathique", description: "Crises convulsives primaires récurrentes d'origine génétique. Antiépileptiques à vie. Bilans neurologiques et dosages sériques réguliers.", coût: "300–800 €/an" },
-    { nom: "Méga-œsophage congénital", description: "Dilatation permanente de l'œsophage par défaut de péristaltisme. Régurgitations chroniques, pneumonie d'aspiration. Alimentation en position verticale (chaise Bailey) à vie pour réduire le risque.", coût: "400–1 500 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=setter-irlandais&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="grande"
+  risque="modere"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Aristocrate roux au galop généreux et au caractère solaire, le Setter Irlandais est une race de chasse élégante qui séduit autant les chasseurs que les amateurs de grandes races actives. Derrière sa beauté et son tempérament jovial se cachent cependant plusieurs pathologies chroniques à surveiller : atrophie rétinienne progressive précoce (PRCD-PRA), épilepsie idiopathique héréditaire, entéropathie sensible au gluten unique dans le monde canin et risque de dilatation-torsion gastrique lié à sa morphologie thoracique profonde. Une assurance adaptée est indispensable pour absorber les coûts de ces maladies dont certaines nécessitent un traitement à vie.</p>
+
+  <h2>Coût annuel d'un Setter Irlandais</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium grande race active)</td><td>500–800 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, vermifuge, antiparasitaires)</td><td>280–450 €</td></tr>
+      <tr><td>Toilettage professionnel (3–4 séances)</td><td>200–400 €</td></tr>
+      <tr><td>Accessoires, jouets, literie grande race</td><td>150–280 €</td></tr>
+      <tr><td>Assurance santé</td><td>360–600 €</td></tr>
+      <tr><td>Alimentation thérapeutique sans gluten (si entéropathie)</td><td>0–800 €</td></tr>
+      <tr><td><strong>Total estimé</strong></td><td><strong>1 490–3 330 €/an</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des animaux de compagnie 2024 ; enquête SNVEL tarifs pratiqués 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Setter Irlandais</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Dysplasie de hanche</td><td>Modérée (~ 20–25 % selon lignées)</td><td>1 000–4 500 €</td></tr>
+      <tr><td>Atrophie rétinienne progressive PRCD-PRA</td><td>Modérée (lignées non testées)</td><td>300–1 200 €</td></tr>
+      <tr><td>Épilepsie idiopathique héréditaire</td><td>Modérée (~ 1 sur 8 dans la race)</td><td>300–1 500 €/an</td></tr>
+      <tr><td>Dilatation-torsion gastrique (DTG)</td><td>Modérée (grande race thorax profond)</td><td>2 000–5 000 €</td></tr>
+      <tr><td>Maladie cœliaque canine (atrophie villositaire)</td><td>Présente dans certaines lignées irlandaises</td><td>200–800 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Irish Setter Club de France 2024 ; OFA Health Statistics 2024 ; Journal of Veterinary Internal Medicine 2023 ; Société Centrale Canine (SCC).</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Setter Irlandais</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Radiographies hanches + score HD officiel (SCC)</td><td>150–300 €</td><td>1 fois (avant 1 an)</td></tr>
+      <tr><td>Chirurgie dysplasie de hanche (FHO ou prothèse totale)</td><td>1 800–4 500 €/côté</td><td>Si nécessaire</td></tr>
+      <tr><td>Bilan ophtalmologique + test ADN PRCD-PRA</td><td>150–350 €</td><td>1 fois (chiot)</td></tr>
+      <tr><td>Traitement antiépileptique + dosages sériques trimestriels</td><td>400–1 500 €/an</td><td>Mensuel si épilepsie</td></tr>
+      <tr><td>IRM cérébrale (épilepsie non contrôlée)</td><td>900–1 600 €</td><td>Si nécessaire</td></tr>
+      <tr><td>Chirurgie de détorsion gastrique + gastropexie (DTG)</td><td>2 000–4 500 €</td><td>Urgence vitale</td></tr>
+      <tr><td>Gastropexie prophylactique</td><td>400–800 €</td><td>1 fois (préventif)</td></tr>
+      <tr><td>Biopsies intestinales + suivi entéropathie</td><td>400–900 €</td><td>Diagnostic initial</td></tr>
+      <tr><td>Alimentation thérapeutique sans gluten prescrite</td><td>600–1 200 €/an</td><td>À vie si entéropathie</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : enquête tarifs cliniques vétérinaires France 2024–2025 (SNVEL) ; grille tarifaire assureurs santé animale 2024.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Setter Irlandais concentre plusieurs pathologies potentiellement coûteuses qui peuvent survenir à différents âges. L'atrophie rétinienne progressive PRCD-PRA (rod-cone dysplasia type 1) est l'une des plus documentées : causée par une mutation du gène PDE6B, elle entraîne une cécité nocturne dès 12 mois et une cécité totale progressive vers 2 ans dans les lignées non testées. L'épilepsie idiopathique, affectant environ 1 chien sur 8 dans la race, impose un traitement antiépileptique à vie dont le coût sur 12 ans peut dépasser 15 000 €. La dilatation-torsion gastrique est l'urgence vitale par excellence : un choc hypovolémique rapide sans chirurgie dans les 2 heures est fatal. La gastropexie prophylactique, réalisée lors d'une stérilisation, est un investissement préventif de 400 à 800 € qui peut éviter cette catastrophe. L'entéropathie sensible au gluten, unique chez cette race, nécessite un régime alimentaire strict à vie et des bilans biologiques réguliers.</p>
+
+  <h2>Conseils de prévention pour un Setter Irlandais</h2>
+  <ul>
+    <li>Réaliser le test ADN PRCD-PRA avant l'achat et exiger les certificats de dépistage des parents reproducteurs.</li>
+    <li>Pratiquer le score HD officiel avant 12 mois et choisir un éleveur avec des géniteurs aux hanches certifiées A ou B.</li>
+    <li>Envisager une gastropexie prophylactique lors de la stérilisation pour prévenir la dilatation-torsion gastrique.</li>
+    <li>Fractionner les repas en 2 à 3 prises par jour et éviter l'exercice intense dans les 2 heures suivant les repas.</li>
+    <li>Sur la moindre suspicion d'entéropathie (diarrhée chronique, perte de poids), proposer un régime sans gluten d'épreuve pendant 4 semaines.</li>
+    <li>Surveiller les premiers signes épileptiques (crises convulsives nocturnes, tremblements, désorientation) et consulter rapidement un neurologue vétérinaire.</li>
+    <li>Souscrire une assurance santé dès l'acquisition, avant toute consultation vétérinaire.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Setter Irlandais ?</h2>
+  <p>Le Setter Irlandais cumule des risques de nature différente : une urgence vitale potentiellement fatale (DTG), une pathologie chronique nécessitant un traitement à vie (épilepsie), une affection alimentaire permanente (entéropathie) et des pathologies héréditaires orthopédiques et oculaires. Cette diversité de risques rend l'assurance particulièrement pertinente : impossible de prédire quelle pathologie frappera en premier. Une assurance souscrite tôt garantit une couverture complète et évite les exclusions liées aux préexistances.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Setter Irlandais ?</h2>
+  <p>Pour un Setter Irlandais, une formule complète couvrant maladies et accidents avec un plafond annuel élevé (minimum 3 000 €) est recommandée. Priorité aux contrats couvrant : la neurologie (IRM, épilepsie chronique), la chirurgie digestive d'urgence (DTG, gastropexie), l'orthopédie (dysplasie, prothèse hanche) et les régimes thérapeutiques prescrits. Vérifiez l'absence de limite d'âge pour les maladies chroniques. Un délai de carence maladie inférieur à 30 jours est essentiel.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Setter Irlandais</h2>
+  <p>Le Setter Irlandais séduit les familles actives, les passionnés de grandes races et les chasseurs à la recherche d'un chien d'arrêt élégant et polyvalent. Sa sociabilité, son énergie débordante et son caractère expressif en font un compagnon exceptionnel pour les personnes sportives disposant d'un espace extérieur. Sa sensibilité émotionnelle nécessite un maître expérimenté, patient et disponible. La FACCO 2024 le positionne parmi les grandes races de chasse les plus représentées en France. Le propriétaire avisé anticipe ses besoins alimentaires spécifiques (régime sans gluten si entéropathie), ses besoins d'exercice quotidiens importants et sa sensibilité neurologique.</p>
+
+  <h2>Questions fréquentes sur l'assurance Setter Irlandais</h2>
+  <details>
+    <summary>L'épilepsie du Setter Irlandais est-elle couverte par l'assurance ?</summary>
+    <p>Oui, si la souscription précède le premier épisode épileptique. Les assurances couvrent les maladies chroniques sans limitation de durée, incluant le traitement antiépileptique à vie (phénobarbital, bromure de potassium, imépitoïne), les consultations neurologiques et les IRM cérébrales de suivi.</p>
+  </details>
+  <details>
+    <summary>Qu'est-ce que la maladie cœliaque du Setter Irlandais ?</summary>
+    <p>L'entéropathie sensible au gluten (appelée improprement maladie cœliaque) est une intolérance héréditaire au gluten documentée chez le Setter Irlandais. Elle provoque des diarrhées chroniques, un retard de croissance et une malabsorption par atrophie des villosités intestinales. Le traitement repose sur un régime sans gluten strict à vie et des bilans biologiques trimestriels (40 à 80 €/bilan).</p>
+  </details>
+  <details>
+    <summary>La dilatation-torsion gastrique est-elle couverte par l'assurance ?</summary>
+    <p>Oui, la DTG est une urgence vitale couverte comme tout accident ou maladie soudaine. La chirurgie de détorsion + gastropexie (2 000 à 4 500 €) est remboursée dans les formules maladies et accidents. La gastropexie prophylactique est également couverte dans certains contrats si elle est prescrite par le vétérinaire.</p>
+  </details>
+  <details>
+    <summary>Un Setter Irlandais sportif est-il plus difficile à assurer ?</summary>
+    <p>Non, l'activité sportive (chasse, agility, canicross) n'augmente pas la prime d'assurance standard. Les blessures liées à ces activités sont couvertes comme tout autre accident. En revanche, si votre Setter travaille comme chien de chasse professionnel rémunéré, vérifiez les conditions spécifiques aux activités professionnelles dans votre contrat.</p>
+  </details>
+  <details>
+    <summary>À quel âge assurer son Setter Irlandais ?</summary>
+    <p>Dès l'acquisition du chiot, avant toute consultation vétérinaire. L'atrophie rétinienne peut être suspectée très tôt et une mention ophtalmologique dans le carnet de santé crée un risque d'exclusion. L'épilepsie peut se déclarer dès 1 an. Plus la souscription est précoce, plus la couverture est complète et économique.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/epagneul-breton">Épagneul Breton</a> — chien de chasse français, dysplasie de hanche et atrophie rétinienne comparables, profil de risque légèrement inférieur</li>
+    <li><a href="/races/golden-retriever">Golden Retriever</a> — grande race active, dysplasie de hanche et risque DTG similaires, pathologies cardiaques et tumorales en plus</li>
+    <li><a href="/races/labrador">Labrador Retriever</a> — grande race robuste, dysplasie de hanche documentée, profil orthopédique et pondéral comparable</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">3 500 €</span><span class="figure-label">coût moyen chirurgie DTG d'urgence</span></div>
+      <div class="figure"><span class="figure-value">1/8</span><span class="figure-label">Setters touchés par l'épilepsie idiopathique</span></div>
+      <div class="figure"><span class="figure-value">30 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">12 ans</span><span class="figure-label">espérance de vie moyenne</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Irish Setter Club de France — Rapport santé et génétique 2024</li>
+    <li>Société Centrale Canine (SCC) — Statistiques LOF et bilan santé des races 2024</li>
+    <li>OFA (Orthopedic Foundation for Animals) — Health Statistics 2024</li>
+    <li>FACCO — Baromètre des animaux de compagnie en France 2024</li>
+    <li>SNVEL — Enquête nationale sur les tarifs vétérinaires 2024</li>
+    <li>Casal M.L. et al. — "Gluten-sensitive enteropathy in Irish Setters", Journal of Veterinary Internal Medicine 1996</li>
+    <li>Lunde Gjerde A. et al. — "Idiopathic epilepsy in Irish Setters", Acta Veterinaria Scandinavica 2020</li>
+    <li>Glickman L.T. et al. — "Gastric dilatation-volvulus in large breed dogs", JAVMA 2000</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

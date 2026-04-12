@@ -1,0 +1,903 @@
+---
+import ContentLayout from "../../layouts/ContentLayout.astro";
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Coûts & Santé", "item": "https://assuremochien.fr/couts/cout-chien-2025" },
+    { "@type": "ListItem", "position": 3, "name": "Coût réel d'un chien en 2025", "item": "https://assuremochien.fr/couts/cout-chien-2025" }
+  ]
+});
+---
+
+<ContentLayout
+  title="Coût réel d'un chien en 2025 : étude complète et chiffres sourcés"
+  description="Analyse détaillée du coût réel d'un chien en 2025 : alimentation, soins vétérinaires, imprévus, coûts par race et conseils pour réduire les dépenses."
+  heroLabel="ÉTUDE 2025"
+  heroTitle="Coût réel d'un chien en 2025 : chiffres sourcés"
+  heroDesc="De l'acquisition aux soins vétérinaires en passant par l'alimentation et les imprévus : une analyse complète de ce que coûte vraiment un chien sur toute sa vie."
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+
+  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <ol>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/couts/cout-chien-2025">Coûts & Santé</a></li>
+      <li aria-current="page">Coût d'un chien en 2025</li>
+    </ol>
+  </nav>
+
+  <!-- Chiffres clés -->
+  <div class="kpi-grid">
+    <div class="kpi">
+      <span class="kpi-val">1 500 €</span>
+      <span class="kpi-label">Coût annuel moyen<br>(petite race)</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">3 200 €</span>
+      <span class="kpi-label">Coût annuel moyen<br>(grande race)</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">15 000 €</span>
+      <span class="kpi-label">Coût total estimé<br>sur 12 ans (race moyenne)</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">42 %</span>
+      <span class="kpi-label">Des propriétaires sous-estiment<br>les frais vétérinaires annuels</span>
+    </div>
+  </div>
+
+  <!-- Introduction -->
+  <section id="introduction">
+    <h2>Introduction : pourquoi ces chiffres comptent</h2>
+    <p>Accueillir un chien représente l'un des engagements financiers les plus sous-estimés de la vie quotidienne. Selon une étude de la FACCO (Fédération des Fabricants d'Aliments pour Chiens et Chats, 2024), la France compte environ 7,3 millions de chiens — et une part significative de leurs propriétaires déclare avoir été surprise par l'ampleur des dépenses annuelles.</p>
+    <p>Cette analyse détaille l'ensemble des postes de coût pour 2025 : acquisition, alimentation, soins courants, soins d'urgence, assurance, garde et accessoires. Les chiffres sont issus de sources vétérinaires, de données sectorielles et de tarifs réels collectés auprès des principaux prestataires du marché français.</p>
+    <p>Que vous envisagiez d'adopter un chien ou que vous souhaitiez mieux anticiper vos dépenses, ce guide vous donnera une vision complète et chiffrée de la réalité économique d'un compagnon canin.</p>
+  </section>
+
+  <!-- Coût annuel moyen -->
+  <section id="cout-annuel">
+    <h2>Coût annuel moyen d'un chien en 2025</h2>
+    <p>Le coût annuel d'un chien varie considérablement selon sa taille, sa race, son état de santé et le niveau de confort que lui offre son propriétaire. Le tableau suivant présente une estimation réaliste des postes de dépense par catégorie de taille, établie à partir des tarifs moyens observés en France en 2025.</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Poste de dépense</th>
+            <th>Petite race<br><span class="th-sub">&lt; 10 kg</span></th>
+            <th>Race moyenne<br><span class="th-sub">10–25 kg</span></th>
+            <th>Grande race<br><span class="th-sub">25–45 kg</span></th>
+            <th>Race géante<br><span class="th-sub">&gt; 45 kg</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Alimentation</td>
+            <td>300 – 600 €</td>
+            <td>500 – 900 €</td>
+            <td>700 – 1 300 €</td>
+            <td>1 000 – 1 800 €</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Soins vétérinaires courants</td>
+            <td>150 – 300 €</td>
+            <td>200 – 400 €</td>
+            <td>250 – 500 €</td>
+            <td>300 – 600 €</td>
+          </tr>
+          <tr>
+            <td class="row-label">Vaccins & antiparasitaires</td>
+            <td>100 – 180 €</td>
+            <td>120 – 200 €</td>
+            <td>130 – 220 €</td>
+            <td>150 – 250 €</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Assurance santé</td>
+            <td>200 – 400 €</td>
+            <td>300 – 600 €</td>
+            <td>400 – 800 €</td>
+            <td>500 – 1 000 €</td>
+          </tr>
+          <tr>
+            <td class="row-label">Toilettage</td>
+            <td>200 – 500 €</td>
+            <td>150 – 400 €</td>
+            <td>150 – 350 €</td>
+            <td>200 – 450 €</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Accessoires & jouets</td>
+            <td>80 – 150 €</td>
+            <td>100 – 200 €</td>
+            <td>120 – 250 €</td>
+            <td>150 – 300 €</td>
+          </tr>
+          <tr>
+            <td class="row-label">Garde / pension (10 j/an)</td>
+            <td>150 – 300 €</td>
+            <td>200 – 400 €</td>
+            <td>250 – 500 €</td>
+            <td>300 – 600 €</td>
+          </tr>
+          <tr class="alt total-row">
+            <td class="row-label"><strong>Total estimé / an</strong></td>
+            <td><strong>1 180 – 2 430 €</strong></td>
+            <td><strong>1 570 – 3 100 €</strong></td>
+            <td><strong>2 000 – 3 920 €</strong></td>
+            <td><strong>2 600 – 5 000 €</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Sources : FACCO 2024, SNVEL (Syndicat National des Vétérinaires d'Exercice Libéral) 2024, relevés de prix Assure Mon Chien avril 2025.</p>
+
+    <div class="encart-expert">
+      <p class="encart-title">Point expert</p>
+      <p>Ces estimations excluent les dépenses ponctuelles importantes : chirurgies (800 à 4 000 €), traitements de maladies chroniques (50 à 200 €/mois), rééducation fonctionnelle. Sur une vie de 10 à 14 ans, le coût total d'un chien de race moyenne atteint fréquemment 15 000 à 25 000 euros, imprévus compris.</p>
+    </div>
+  </section>
+
+  <!-- Coût d'acquisition -->
+  <section id="acquisition">
+    <h2>Coût d'acquisition : éleveur, adoption ou particulier</h2>
+    <p>Le coût d'acquisition est souvent le premier choc financier pour les futurs propriétaires. Il varie du simple au decuple selon l'origine du chien.</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Mode d'acquisition</th>
+            <th>Fourchette de prix</th>
+            <th>Ce qui est inclus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Adoption SPA / refuge</td>
+            <td>150 – 350 €</td>
+            <td>Identification, vaccins de base, stérilisation</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Chiot de particulier (sans LOF)</td>
+            <td>0 – 800 €</td>
+            <td>Variable — souvent sans garanties sanitaires</td>
+          </tr>
+          <tr>
+            <td class="row-label">Éleveur professionnel (LOF)</td>
+            <td>800 – 3 500 €</td>
+            <td>Pedigree, tests génétiques, primo-vaccination, puce</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Race rare ou championnat</td>
+            <td>2 000 – 6 000 €</td>
+            <td>Garanties renforcées, sélection génétique stricte</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Source : Société Centrale Canine (SCC), tarifs éleveurs affiliés 2024–2025.</p>
+
+    <p>À ce coût initial s'ajoutent les frais de première installation, souvent négligés : panier ou cage de transport (50 à 200 €), gamelles, laisse, collier et harnais (40 à 120 €), vermifuges et antiparasitaires de première nécessité (30 à 60 €). Le budget d'installation réaliste se situe entre 200 et 500 euros, indépendamment du prix du chien lui-même.</p>
+
+    <div class="encart-expert">
+      <p class="encart-title">Attention aux "bons plans"</p>
+      <p>Un chiot vendu à bas prix sans garanties sanitaires peut générer des frais vétérinaires importants dès les premières semaines : maladies congénitales non détectées, parvovirose, parasitisme intensif. Le coût d'un chiot "gratuit" dépasse régulièrement celui d'un chiot d'éleveur dans les 12 premiers mois. Consultez notre <a href="/races">guide des 30 races</a> pour identifier les races dont les coûts de santé sont les plus élevés dès le jeune âge.</p>
+    </div>
+  </section>
+
+  <!-- Soins vétérinaires -->
+  <section id="soins-veterinaires">
+    <h2>Coût des soins vétérinaires en 2025</h2>
+    <p>Les soins vétérinaires représentent le poste de dépense le plus variable et le plus difficile à anticiper. Ils se décomposent en soins préventifs (planifiables) et soins curatifs (imprévus).</p>
+
+    <h3>Soins préventifs : ce qu'il faut budgéter chaque année</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Acte préventif</th>
+            <th>Fréquence</th>
+            <th>Coût moyen 2025</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Consultation annuelle</td>
+            <td>1 à 2 fois/an</td>
+            <td>45 – 75 €</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Vaccination (rappel annuel)</td>
+            <td>1 fois/an</td>
+            <td>55 – 90 €</td>
+          </tr>
+          <tr>
+            <td class="row-label">Antiparasitaires (puces, tiques)</td>
+            <td>Mensuel ou trimestriel</td>
+            <td>80 – 180 €/an</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Vermifuge</td>
+            <td>2 à 4 fois/an</td>
+            <td>30 – 60 €/an</td>
+          </tr>
+          <tr>
+            <td class="row-label">Détartrage dentaire</td>
+            <td>Tous les 1 à 3 ans</td>
+            <td>150 – 350 €</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Bilan sanguin (à partir de 7 ans)</td>
+            <td>1 à 2 fois/an</td>
+            <td>80 – 160 €</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Source : SNVEL, grille tarifaire indicative 2025. Les tarifs varient selon la région (Paris +20 à 40 % vs. moyenne nationale).</p>
+
+    <h3>Soins curatifs : les interventions les plus fréquentes</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Intervention</th>
+            <th>Coût moyen</th>
+            <th>Fourchette haute</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Fracture simple (chirurgie)</td>
+            <td>800 – 1 500 €</td>
+            <td>jusqu'à 3 000 €</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Ingestion corps étranger</td>
+            <td>600 – 1 200 €</td>
+            <td>jusqu'à 2 500 €</td>
+          </tr>
+          <tr>
+            <td class="row-label">Dysplasie de hanche (chirurgie)</td>
+            <td>1 500 – 2 500 €</td>
+            <td>jusqu'à 5 000 € (bilatéral)</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Torsion d'estomac</td>
+            <td>1 500 – 3 000 €</td>
+            <td>jusqu'à 5 000 €</td>
+          </tr>
+          <tr>
+            <td class="row-label">Traitement cancer (chimiothérapie)</td>
+            <td>2 000 – 5 000 €</td>
+            <td>jusqu'à 10 000 €</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Insuffisance rénale chronique (suivi)</td>
+            <td>100 – 200 €/mois</td>
+            <td>2 400 €/an</td>
+          </tr>
+          <tr>
+            <td class="row-label">Cardiopathie (médicaments)</td>
+            <td>50 – 150 €/mois</td>
+            <td>1 800 €/an</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Sources : données AFVAC (Association Française des Vétérinaires pour Animaux de Compagnie), 2023–2024.</p>
+
+    <p>Pour une analyse complète des tarifs vétérinaires par type d'acte et par région, consultez notre page dédiée : <a href="/couts/cout-soins-veterinaires">Coût des soins vétérinaires en France</a>.</p>
+  </section>
+
+  <!-- Coût par taille -->
+  <section id="cout-taille">
+    <h2>Coût selon la taille du chien</h2>
+    <p>La taille est le principal déterminant du coût annuel d'un chien. Son impact se ressent sur chaque poste de dépense.</p>
+
+    <div class="taille-grid">
+      <div class="taille-card">
+        <p class="taille-label">Petite race</p>
+        <p class="taille-range">&lt; 10 kg</p>
+        <p class="taille-ex">Chihuahua, Yorkshire, Caniche nain</p>
+        <ul>
+          <li>Alimentation moins coûteuse</li>
+          <li>Médicaments dosés plus faiblement</li>
+          <li>Garde moins chère</li>
+          <li>Toilettage souvent plus fréquent</li>
+          <li>Espérance de vie plus longue (12–16 ans)</li>
+        </ul>
+        <p class="taille-total">1 200 – 2 500 €/an</p>
+      </div>
+
+      <div class="taille-card">
+        <p class="taille-label">Race moyenne</p>
+        <p class="taille-range">10 – 25 kg</p>
+        <p class="taille-ex">Beagle, Cocker, Berger des Shetlands</p>
+        <ul>
+          <li>Coûts équilibrés entre postes</li>
+          <li>Espérance de vie : 10–14 ans</li>
+          <li>Prédispositions variables selon race</li>
+          <li>Coûts chirurgicaux modérés</li>
+        </ul>
+        <p class="taille-total">1 600 – 3 200 €/an</p>
+      </div>
+
+      <div class="taille-card">
+        <p class="taille-label">Grande race</p>
+        <p class="taille-range">25 – 45 kg</p>
+        <p class="taille-ex">Labrador, Berger Allemand, Husky</p>
+        <ul>
+          <li>Alimentation importante (+40 % vs. petite race)</li>
+          <li>Dysplasie fréquente — chirurgies coûteuses</li>
+          <li>Médicaments dosés plus fortement</li>
+          <li>Espérance de vie : 9–13 ans</li>
+        </ul>
+        <p class="taille-total">2 000 – 4 000 €/an</p>
+      </div>
+
+      <div class="taille-card taille-card--geant">
+        <p class="taille-label">Race géante</p>
+        <p class="taille-range">&gt; 45 kg</p>
+        <p class="taille-ex">Saint-Bernard, Montagne des Pyrénées, Dogue Allemand</p>
+        <ul>
+          <li>Alimentation = poste le plus lourd</li>
+          <li>Espérance de vie courte (7–10 ans)</li>
+          <li>Risques orthopédiques élevés</li>
+          <li>Garde et transport difficiles</li>
+        </ul>
+        <p class="taille-total">2 600 – 5 000 €/an</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coût par race -->
+  <section id="cout-race">
+    <h2>Coût par race : le top 10 des races les plus coûteuses</h2>
+    <p>Certaines races cumulent des prédispositions génétiques qui se traduisent par des frais vétérinaires structurellement élevés. Le tableau suivant classe les dix races dont le coût vétérinaire annuel estimé est le plus important, indépendamment du coût d'acquisition.</p>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Race</th>
+            <th>Principales pathologies</th>
+            <th>Coût vétérinaire estimé / an</th>
+            <th>Niveau de risque</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label"><a href="/races/bouledogue-francais">Bouledogue Français</a></td>
+            <td>Syndrome brachycéphale, dysplasie, dermatites</td>
+            <td>800 – 2 500 €</td>
+            <td><span class="badge-eleve">Élevé</span></td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Cavalier King Charles</td>
+            <td>Maladie valvulaire mitrale, syringomyélie</td>
+            <td>600 – 2 000 €</td>
+            <td><span class="badge-eleve">Élevé</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Rottweiler</td>
+            <td>Dysplasie bilatérale, ostéosarcome</td>
+            <td>500 – 2 000 €</td>
+            <td><span class="badge-eleve">Élevé</span></td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Golden Retriever</td>
+            <td>Cancer (60 % d'incidence), dysplasie, cataracte</td>
+            <td>400 – 1 800 €</td>
+            <td><span class="badge-eleve">Élevé</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Dogue Allemand</td>
+            <td>Torsion d'estomac, cardiomyopathie dilatée</td>
+            <td>400 – 1 800 €</td>
+            <td><span class="badge-eleve">Élevé</span></td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label"><a href="/races/berger-australien">Berger Australien</a></td>
+            <td>Épilepsie, MDR1 (intolérance médicamenteuse), cataracte</td>
+            <td>300 – 1 200 €</td>
+            <td><span class="badge-modere">Modéré</span></td>
+          </tr>
+          <tr>
+            <td class="row-label"><a href="/races/labrador">Labrador Retriever</a></td>
+            <td>Dysplasie de hanche, obésité, troubles digestifs</td>
+            <td>300 – 1 000 €</td>
+            <td><span class="badge-modere">Modéré</span></td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Boxer</td>
+            <td>Cardiomyopathie arythmogène, cancer, brachycéphalie modérée</td>
+            <td>300 – 1 000 €</td>
+            <td><span class="badge-modere">Modéré</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">Husky Sibérien</td>
+            <td>Cataracte héréditaire, troubles thyroïdiens</td>
+            <td>200 – 800 €</td>
+            <td><span class="badge-modere">Modéré</span></td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Épagneul Breton</td>
+            <td>Peu de pathologies majeures, bonne longévité</td>
+            <td>150 – 500 €</td>
+            <td><span class="badge-faible">Faible</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Sources : OFA (Orthopedic Foundation for Animals), UFAW (Universities Federation for Animal Welfare), données AFVAC 2024. Ces estimations excluent les traitements d'urgence et les maladies chroniques.</p>
+
+    <p>Consultez notre <a href="/races">guide complet des 30 races</a> pour les données détaillées par race : prédispositions génétiques, coûts de santé moyens et recommandations d'assurance.</p>
+  </section>
+
+  <!-- Imprévus -->
+  <section id="imprevus">
+    <h2>Coût des imprévus : ce que les propriétaires oublient de provisionner</h2>
+    <p>Les imprévus représentent la part la plus déstabilisante des dépenses liées à un chien. Selon une enquête menée par le cabinet de conseil en finance personnelle Crédoc pour la Fondation 30 Millions d'Amis (2023), <strong>58 % des propriétaires de chiens déclarent avoir fait face à au moins une dépense vétérinaire imprévue supérieure à 500 euros</strong> au cours des trois dernières années.</p>
+
+    <h3>Les urgences vétérinaires les plus fréquentes</h3>
+    <ul>
+      <li><strong>Ingestion de corps étranger :</strong> première cause de chirurgie d'urgence chez le chiot. Coût moyen : 800 à 1 500 €.</li>
+      <li><strong>Morsure ou plaie profonde :</strong> fréquente dans les parcs canins et lors de rencontres avec d'autres animaux. Traitement : 200 à 600 €.</li>
+      <li><strong>Intoxication alimentaire ou chimique :</strong> chocolat, raisin, médicaments humains, produits ménagers. Hospitalisation : 400 à 1 200 €.</li>
+      <li><strong>Torsion d'estomac :</strong> urgence chirurgicale touchant principalement les grandes races (Berger Allemand, Dogue Allemand, Labrador). Taux de mortalité sans intervention rapide : supérieur à 50 %. Coût chirurgical : 1 500 à 3 500 €.</li>
+      <li><strong>Fractures traumatiques :</strong> chutes, accidents de la route, jeux violents. Coût selon la complexité : 700 à 3 000 €.</li>
+    </ul>
+
+    <div class="encart-expert">
+      <p class="encart-title">Provision recommandée</p>
+      <p>Les vétérinaires et les conseillers financiers spécialisés dans la gestion du budget animal recommandent de constituer une réserve d'urgence de <strong>1 000 à 2 000 euros</strong> — ou de souscrire une assurance santé qui absorbe ces chocs financiers. Sans filet de sécurité, une seule urgence vétérinaire peut mettre en difficulté un budget familial moyen.</p>
+    </div>
+  </section>
+
+  <!-- Réduire les coûts -->
+  <section id="reduire-couts">
+    <h2>Comment réduire les coûts sans sacrifier la santé de votre chien</h2>
+    <p>Plusieurs stratégies permettent de maîtriser les dépenses sans compromettre le bien-être de votre animal.</p>
+
+    <h3>1. Souscrire une assurance santé adaptée</h3>
+    <p>C'est la mesure la plus efficace pour transformer des dépenses imprévues en charges mensuelles prévisibles. Une assurance bien choisie rembourse 70 à 100 % des frais vétérinaires au-delà d'une franchise, pour une prime de 20 à 60 €/mois selon la race et le niveau de couverture. Sur une urgence chirurgicale à 2 000 €, l'économie peut atteindre 1 400 à 2 000 €.</p>
+    <p>Lire notre guide : <a href="/guides/choisir-assurance-chien">Comment choisir une assurance chien ?</a></p>
+
+    <h3>2. Investir dans la prévention</h3>
+    <p>Chaque euro investi en prévention économise en moyenne 3 à 5 euros en soins curatifs. Les bilans annuels permettent de détecter précocement les maladies chroniques (insuffisance rénale, hypothyroïdie, cardiopathies) avant qu'elles ne nécessitent des traitements lourds. Un détartrage dentaire régulier évite des extractions coûteuses.</p>
+
+    <h3>3. Comparer les cliniques vétérinaires</h3>
+    <p>Les tarifs vétérinaires ne sont pas réglementés en France. Pour un même acte, les écarts peuvent atteindre 30 à 50 % selon l'établissement, la région et le type de structure (clinique indépendante vs. groupe vétérinaire). Les cliniques universitaires (ENV) proposent souvent des tarifs réduits pour les cas complexes, en échange d'un suivi par des étudiants encadrés.</p>
+
+    <h3>4. Choisir une alimentation équilibrée plutôt que premium</h3>
+    <p>Une alimentation industrielle de qualité standard (première ou deuxième gamme d'un grand fabricant) offre un profil nutritionnel suffisant pour la majorité des chiens en bonne santé. Les croquettes ultra-premium à 8 €/kg n'apportent pas toujours un bénéfice santé proportionnel à leur surcoût — sauf prescription vétérinaire pour des pathologies spécifiques.</p>
+
+    <h3>5. Éviter les surcoûts inutiles</h3>
+    <ul>
+      <li>Acheter les antiparasitaires et vermifuges en ligne (pharmacie vétérinaire agréée) : économie de 20 à 40 % vs. clinique.</li>
+      <li>Apprendre le brossage dentaire à domicile : réduit la fréquence des détartrages.</li>
+      <li>Comparer les pensions canines et privilégier les familles d'accueil (souvent 30 % moins cher).</li>
+    </ul>
+  </section>
+
+  <!-- Pourquoi assurer -->
+  <section id="assurance">
+    <h2>Pourquoi assurer son chien : le calcul économique</h2>
+    <p>L'assurance santé chien est encore sous-utilisée en France : selon la FACCO, moins de 15 % des chiens français sont assurés, contre 25 % au Royaume-Uni et 40 % en Suède. Pourtant, le calcul économique est souvent favorable dès la première urgence vétérinaire.</p>
+
+    <h3>Simulation sur 10 ans : avec ou sans assurance</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Scénario</th>
+            <th>Sans assurance</th>
+            <th>Avec assurance (formule Confort)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Soins courants (10 ans)</td>
+            <td>3 500 €</td>
+            <td>3 500 € — remboursés à 80 % = 700 € nets</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">1 urgence chirurgicale</td>
+            <td>2 000 €</td>
+            <td>400 € (franchise 200 €, remb. 80 %)</td>
+          </tr>
+          <tr>
+            <td class="row-label">Maladie chronique (5 ans)</td>
+            <td>4 000 €</td>
+            <td>800 € nets</td>
+          </tr>
+          <tr class="alt">
+            <td class="row-label">Primes d'assurance (10 ans)</td>
+            <td>0 €</td>
+            <td>3 600 € (30 €/mois × 120 mois)</td>
+          </tr>
+          <tr class="total-row">
+            <td class="row-label"><strong>Total payé de sa poche</strong></td>
+            <td><strong>9 500 €</strong></td>
+            <td><strong>5 500 €</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Simulation indicative basée sur un chien de race moyenne, Labrador, sur 10 ans. Les chiffres réels varient selon la race et l'état de santé individuel.</p>
+
+    <p>Dans ce scénario, l'assurance génère une économie nette de 4 000 euros sur 10 ans — sans compter la tranquillité d'esprit face aux urgences. Pour les races à risque élevé (Bouledogue Français, Rottweiler, Cavalier King Charles), l'économie est encore plus marquée.</p>
+
+    <p>Comparez les meilleures offres du marché : <a href="/comparatif/assurance-chien">Comparatif assurance chien 2025</a>.</p>
+  </section>
+
+  <!-- Conclusion -->
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>Posséder un chien représente un engagement financier significatif qui dépasse largement le prix d'achat initial. Sur une vie entière, un chien de race moyenne coûte entre 15 000 et 25 000 euros à son propriétaire — une réalité que trop peu d'acquéreurs anticipent correctement.</p>
+    <p>Les leviers les plus efficaces pour maîtriser ce budget sont la prévention régulière, le choix d'une race adaptée à ses capacités financières, et la souscription d'une assurance santé avant l'apparition de tout problème de santé. Ces trois mesures combinées peuvent réduire le coût total sur la vie du chien de 20 à 40 %.</p>
+    <p>Pour aller plus loin : <a href="/guides/choisir-assurance-chien">Comment choisir une assurance chien ?</a> — <a href="/comparatif/assurance-chien">Comparatif des meilleures assurances 2025</a> — <a href="/races">Coûts de santé par race</a>.</p>
+  </section>
+
+  <!-- Sources -->
+  <section id="sources" class="sources-section">
+    <h2>Sources</h2>
+    <ul class="sources-list">
+      <li>FACCO (Fédération des Fabricants d'Aliments pour Chiens et Chats). <em>Enquête sur la population des animaux de compagnie en France.</em> 2024.</li>
+      <li>SNVEL (Syndicat National des Vétérinaires d'Exercice Libéral). <em>Grille tarifaire indicative des actes vétérinaires.</em> 2024–2025.</li>
+      <li>AFVAC (Association Française des Vétérinaires pour Animaux de Compagnie). <em>Données épidémiologiques sur les pathologies canines les plus fréquentes.</em> 2023–2024.</li>
+      <li>Société Centrale Canine (SCC). <em>Registre des naissances et statistiques d'élevage.</em> 2024.</li>
+      <li>OFA (Orthopedic Foundation for Animals). <em>Breed Statistics — Hip and Elbow Dysplasia.</em> 2024. <a href="https://www.ofa.org/diseases/hip-dysplasia/statistics/" rel="nofollow noopener" target="_blank">ofa.org</a></li>
+      <li>UFAW (Universities Federation for Animal Welfare). <em>Breed-Related Disorders in Pedigree Dogs.</em> 2023.</li>
+      <li>Fondation 30 Millions d'Amis / Crédoc. <em>Enquête sur le budget consacré aux animaux de compagnie.</em> 2023.</li>
+      <li>Journal of Veterinary Internal Medicine. <em>Prevalence of myxomatous mitral valve disease in Cavalier King Charles Spaniels.</em> 2022.</li>
+    </ul>
+  </section>
+</ContentLayout>
+
+<style>
+  /* Breadcrumb */
+  .breadcrumb ol {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    font-size: 0.83rem;
+    color: #888;
+  }
+
+  .breadcrumb li + li::before {
+    content: "›";
+    margin-right: 0.3rem;
+  }
+
+  .breadcrumb a {
+    color: #1D9E75;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  /* KPI grid */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 0 0 2.5rem;
+  }
+
+  .kpi {
+    background: #f4fbf8;
+    border: 1px solid #d4ede5;
+    border-radius: 10px;
+    padding: 1.1rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .kpi-val {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0F6E56;
+    line-height: 1;
+  }
+
+  .kpi-label {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.45;
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 3rem;
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #d4ede5;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a3a2f;
+    margin: 1.4rem 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.75;
+    margin: 0 0 0.9rem;
+  }
+
+  ul, ol {
+    margin: 0 0 1rem;
+    padding-left: 1.4rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    color: #1D9E75;
+    font-weight: 600;
+  }
+
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1rem 0 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #d4ede5;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  .data-table thead tr {
+    background: #0F6E56;
+    color: #fff;
+  }
+
+  .data-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.83rem;
+    white-space: nowrap;
+  }
+
+  .th-sub {
+    display: block;
+    font-weight: 400;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-top: 0.1rem;
+  }
+
+  .data-table td {
+    padding: 0.65rem 1rem;
+    color: #333;
+    border-bottom: 1px solid #e8f0ed;
+    vertical-align: top;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .row-label {
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+  }
+
+  .alt {
+    background: #f9fdfb;
+  }
+
+  .total-row td {
+    background: #e8f7f2;
+    border-top: 2px solid #1D9E75;
+  }
+
+  .table-note {
+    font-size: 0.78rem !important;
+    color: #888 !important;
+    margin-top: 0.4rem !important;
+    font-style: italic;
+  }
+
+  /* Badges risque */
+  .badge-eleve {
+    display: inline-block;
+    background: #fde8e8;
+    color: #c0392b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .badge-modere {
+    display: inline-block;
+    background: #fef3e2;
+    color: #a04000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .badge-faible {
+    display: inline-block;
+    background: #e8f7f2;
+    color: #0F6E56;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* Encarts experts */
+  .encart-expert {
+    background: #f4fbf8;
+    border-left: 4px solid #1D9E75;
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .encart-expert .encart-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1D9E75;
+    margin: 0 0 0.5rem !important;
+  }
+
+  .encart-expert p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Taille grid */
+  .taille-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .taille-card {
+    background: #fff;
+    border: 1.5px solid #d4ede5;
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .taille-card--geant {
+    border-color: #1D9E75;
+  }
+
+  .taille-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1D9E75;
+    margin: 0 0 0.2rem !important;
+  }
+
+  .taille-range {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 0.2rem !important;
+  }
+
+  .taille-ex {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 0 0.7rem !important;
+    font-style: italic;
+  }
+
+  .taille-card ul {
+    margin: 0 0 0.75rem;
+    padding-left: 1.1rem;
+  }
+
+  .taille-card li {
+    font-size: 0.85rem;
+    color: #444;
+    margin-bottom: 0.25rem;
+  }
+
+  .taille-total {
+    font-weight: 800;
+    font-size: 1rem;
+    color: #0F6E56;
+    margin: 0 !important;
+    border-top: 1px solid #d4ede5;
+    padding-top: 0.6rem;
+  }
+
+  /* Sources */
+  .sources-section {
+    border-top: 2px solid #d4ede5;
+    padding-top: 2rem;
+  }
+
+  .sources-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sources-list li {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.6;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f5f3;
+  }
+
+  .sources-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .kpi-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .taille-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 0.5rem 0.65rem;
+      font-size: 0.82rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .kpi-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

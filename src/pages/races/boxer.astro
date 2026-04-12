@@ -1,113 +1,153 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Boxer : Risques & Meilleures Offres 2026"
   description="Le Boxer est prédisposé à la cardiomyopathie arythmogène (ARVC) et aux tumeurs cérébrales. Découvrez les meilleures assurances pour couvrir les risques cardiaques et oncologiques de cette race."
-  raceName="Boxer"
+  nom="Boxer"
   slug="boxer"
-  dateModified="2026-04-05"
-  heroSubtitle="Athlete au cœur de clown, le Boxer souffre d'une double menace unique : une cardiomyopathie arythmique potentiellement mortelle et une prédisposition exceptionnelle aux tumeurs cerebrales."
-  imageUrl="/images/races/boxer.webp"
-  imageAlt="Boxer fauve et blanc musclé, regard expressif et attentif"
-  heroBadge="CARDIOMYOPATHIE · TUMEURS CÉRÉBRALES"
-  riskScore={83}
-  alertText="La <strong>cardiomyopathie arythmogene (ARVC)</strong> du Boxer est causee par une <strong>mutation du gene striatin</strong> identifiee en 2009. Un test ADN (<strong>environ 90 euros</strong>) distingue les porteurs sains des porteurs homozygotes à haut risque. Mais la mutation ne garantit pas l'absence de maladie. Le suivi cardio annuel et une assurance active avant tout symptôme restent la seule vraie garantie."
-  alertSource="Source : Meurs et al., Identification of a missense mutation in the boxer dog Circulation 2021 ; Boxer Breed Council Health Report UK 2023"
-  introText="Le Boxer est une des races de grande taille les plus populaires de France pour son énergie communicative et son caractère espiègle (FACCO 2024). Sa morphologie brachycéphale modérée le rend vulnérable aux coups de chaleur. Un risque souvent sous-estimé par les propriétaires qui pratiquent le canicross ou l'agility en été."
-  faq={[
-    { question: "La cardiomyopathie arythmogene (ARVC) du Boxer est-elle couverte ?", answer: "Oui, SanteVet couvre le suivi cardiologique (Holter, echocardiographie) et les traitements antiarythmiques à condition de souscrire avant tout diagnostic. L'ARVC peut provoquer une mort subite. Une couverture active est le seul filet de sécurité médicale." },
-    { question: "A quel âge assurer son Boxer pour couvrir les cardiopathies ?", answer: "Avant 18 mois, avant tout premier bilan cardiologique. La DCM et l'ARVC peuvent etre détectées des 2 ans chez certains Boxers. Souscrire tôt garantit que la decouverte d'une arythmie ne se traduira pas par une exclusion immediatement apres le diagnostic." },
-    { question: "Quel budget mensuel pour assurer un Boxer ?", answer: "Entre 25 et 45 euros/mois selon la formule et l'âge. Le Boxer présente un risque cardiaque et oncologique élevé. Une formule couvrant cardiologie et cancers s'impose. C'est le minimum face aux pathologies caractéristiques de la race." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=boxer&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture cardiomyopathie ARVC et Holter cardiaque",
-        "Prise en charge tumeurs cérébrales et radiothérapie",
-        "Remboursement sténose aortique et suivi Doppler",
-        "Couverture syndrome brachycéphale et chirurgie",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=boxer&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Cardiomyopathie arythmogène (ARVC)", score: 82, prix: "400–2 500 €/an", description: "Remplacement du myocarde par du tissu fibreux et adipeux. Arythmies ventriculaires pouvant provoquer syncope et mort subite. Holter cardiaque annuel recommandé." },
-    { nom: "Tumeurs cérébrales (gliomes, méningiomes)", score: 70, prix: "3 000–10 000 €", description: "Le Boxer présente l'incidence de tumeurs cérébrales primaires la plus élevée. Symptômes : crises épileptiques d'apparition tardive, troubles comportementaux. IRM, radiothérapie ou chirurgie." },
-    { nom: "Sténose aortique sous-valvulaire (SAS)", score: 65, prix: "500–3 000 €", description: "Obstruction congénitale du flux aortique. Détectable par échocardiographie Doppler. Forme sévère : risque de mort subite à l'effort. Bêtabloquants à vie." },
-    { nom: "Syndrome brachycéphale (BOAS)", score: 60, prix: "1 000–3 500 €", description: "Museau modérément aplati provoquant intolérance à la chaleur et à l'effort. Chirurgie naso-palatine en forme symptomatique." },
-  ]}
-  pathologies={[
-    { nom: "Cardiomyopathie arythmogène (ARVC)", description: "Infiltration fibroadipeuse progressive du myocarde ventriculaire droit. Extrasystoles ventriculaires, tachycardies ventriculaires, mort subite par fibrillation. Holter cardiaque annuel dès 2 ans. Traitement anti-arythmique (sotalol, mexilétine) à vie.", coût: "400–2 500 €/an" },
-    { nom: "Tumeurs cérébrales (gliomes, méningiomes)", description: "Le Boxer présente la plus haute incidence de tumeurs cérébrales primaires toutes races confondues. Gliomes et méningiomes se manifestent par des crises d'épilepsie d'apparition tardive (> 5 ans), des troubles comportementaux et des déficits neurologiques. IRM diagnostique, radiothérapie stéréotaxique ou chirurgie.", coût: "3 000–10 000 €" },
-    { nom: "Sténose aortique sous-valvulaire (SAS)", description: "Anneau fibreux congénital sous la valve aortique réduisant le flux systolique. Souffle systolique décelable à l'auscultation. Échocardiographie Doppler obligatoire. Bêtabloquants (aténolol) à vie en forme modérée à sévère. Risque de mort subite à l'effort.", coût: "500–3 000 €" },
-    { nom: "Syndrome brachycéphale (BOAS)", description: "Obstruction des voies aériennes supérieures par narines sténosées et palais mou allongé. Intolérance marquée à la chaleur, à l'humidité et à l'effort. Chirurgie naso-palatine recommandée avant 2 ans en forme symptomatique.", coût: "1 000–3 500 €" },
-    { nom: "Mastocytomes cutanés", description: "Le Boxer est la race la plus touchée par les mastocytomes cutanés. Nodules cutanés pouvant dégranulér et provoquer une réaction systémique. Excision chirurgicale avec marges larges, chimiothérapie selon le grade histologique.", coût: "800–3 000 €" },
-    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale. Arthrose progressive douloureuse. Score HD avant reproduction. Chirurgie en forme sévère.", coût: "1 000–4 000 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=boxer&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="grande"
+  risque="eleve"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Athlète au cœur de clown, le Boxer est l'une des grandes races les plus populaires en France pour son énergie communicative et son caractère espiègle. Mais derrière cette façade joyeuse se cache une double menace médicale unique : une cardiomyopathie arythmogène ventriculaire droite (CAVD/ARVC) potentiellement mortelle, et une prédisposition exceptionnelle aux tumeurs — mastocytomes cutanés et tumeurs cérébrales primaires. Son syndrome brachycéphale modéré aggrave sa vulnérabilité aux coups de chaleur. Le Boxer est objectivement l'une des races pour lesquelles une assurance santé solide est le plus rapidement rentabilisée.</p>
+
+  <h2>Coût annuel d'un Boxer</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes grande race)</td><td>500 – 750 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires)</td><td>200 – 350 €</td></tr>
+      <tr><td>Bilan cardiologique annuel (Holter ECG)</td><td>250 – 400 €</td></tr>
+      <tr><td>Toilettage</td><td>100 – 200 €</td></tr>
+      <tr><td>Assurance santé</td><td>360 – 600 €</td></tr>
+      <tr><td>Activités et accessoires</td><td>150 – 300 €</td></tr>
+      <tr><td><strong>Total estimé</strong></td><td><strong>1 560 – 2 600 €</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Enquête nationale sur les animaux de compagnie 2024 ; tarifs vétérinaires moyens France 2025.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Boxer</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Cardiomyopathie arythmogène (ARVC/CAVD)</td><td>Très élevée (race spécifique)</td><td>400 – 2 500 €/an</td></tr>
+      <tr><td>Sténose aortique sous-valvulaire (SAS)</td><td>Élevée</td><td>500 – 3 000 €</td></tr>
+      <tr><td>Mastocytomes cutanés</td><td>Très élevée (1re race touchée)</td><td>800 – 3 000 €</td></tr>
+      <tr><td>Tumeurs cérébrales (gliomes, méningiomes)</td><td>Élevée (plus haute incidence)</td><td>3 000 – 10 000 €</td></tr>
+      <tr><td>Syndrome brachycéphale modéré (BOAS)</td><td>Modérée à élevée</td><td>1 000 – 3 500 €</td></tr>
+      <tr><td>Dysplasie de hanche</td><td>Modérée</td><td>1 000 – 4 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Meurs K.M. et al., Circulation 2021 ; Boxer Breed Council Health Report UK 2023 ; OFA Hip Dysplasia Statistics 2024.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Boxer</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Holter ECG cardiaque 24h</td><td>250 – 400 €</td><td>Annuelle (dès 2 ans)</td></tr>
+      <tr><td>Échocardiographie Doppler</td><td>150 – 300 €</td><td>Annuelle</td></tr>
+      <tr><td>Traitement antiarythmique (sotalol, mexilétine)</td><td>300 – 800 €</td><td>Annuelle</td></tr>
+      <tr><td>Test ADN mutation striatin (ARVC)</td><td>80 – 110 €</td><td>Une fois</td></tr>
+      <tr><td>Exérèse mastocytome cutané (chirurgie)</td><td>500 – 1 500 €</td><td>Ponctuelle (récidive fréquente)</td></tr>
+      <tr><td>IRM cérébrale</td><td>1 200 – 2 000 €</td><td>Ponctuelle</td></tr>
+      <tr><td>Radiothérapie stéréotaxique tumeur cérébrale</td><td>3 000 – 8 000 €</td><td>Ponctuelle</td></tr>
+      <tr><td>Chirurgie naso-palatine (BOAS)</td><td>1 000 – 2 500 €</td><td>Ponctuelle</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grille tarifaire SantéVet 2025 ; données oncologie vétérinaire ENVA 2024.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Boxer cumule trois risques financiers majeurs qui en font l'une des races les plus coûteuses en soins vétérinaires. L'ARVC est causée par une mutation du gène striatin (identifiée en 2009) : le suivi annuel par Holter ECG coûte 250 à 400 €, et le traitement antiarythmique à vie représente 300 à 800 € supplémentaires par an. Un épisode de tachycardie ventriculaire nécessitant une hospitalisation d'urgence peut coûter 1 000 à 2 500 € en une nuit. Les mastocytomes sont la principale cause de mort par cancer chez le Boxer : plusieurs opérations chirurgicales au cours de la vie du chien (avec risque de récidive locale) peuvent totaliser 5 000 à 8 000 €. Enfin, les tumeurs cérébrales — le Boxer présente l'incidence la plus élevée de toutes les races — imposent une IRM (1 200–2 000 €) et une radiothérapie stéréotaxique (3 000–8 000 €) si le propriétaire choisit le traitement curatif.</p>
+
+  <h2>Conseils de prévention pour un Boxer</h2>
+  <ul>
+    <li>Faire réaliser le test ADN de la mutation striatin (ARVC) dès l'acquisition — 80 à 110 € pour distinguer les porteurs à risque élevé.</li>
+    <li>Programmer un Holter cardiaque 24h annuel dès l'âge de 2 ans, même en l'absence de symptôme.</li>
+    <li>Faire réaliser une échocardiographie Doppler annuelle pour surveiller la sténose aortique.</li>
+    <li>Inspecter régulièrement la peau pour détecter précocement tout nodule cutané (mastocytome).</li>
+    <li>Éviter l'exercice intense par forte chaleur (syndrome brachycéphale modéré — risque de coup de chaleur).</li>
+    <li>Surveiller l'apparition de crises épileptiques après 5 ans — premier signe d'une tumeur cérébrale chez le Boxer âgé.</li>
+    <li>Souscrire une assurance santé avant tout bilan cardiologique ou test génétique documenté.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Boxer ?</h2>
+  <p>Le Boxer présente l'un des profils de risque vétérinaire les plus élevés parmi les grandes races. L'ARVC est une maladie potentiellement mortelle dont la gestion médicale annuelle dépasse 1 000 €. Les tumeurs cérébrales et mastocytomes imposent des traitements coûteux dont le financement sans assurance conduit souvent à l'euthanasie prématurée. Une assurance santé souscrite avant 18 mois — avant tout diagnostic cardiologique — peut couvrir des soins cumulant facilement 20 000 à 30 000 € sur la durée de vie d'un Boxer. Le retour sur investissement est parmi les plus élevés de toutes les races.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Boxer ?</h2>
+  <p>Pour un Boxer, seule une formule premium couvrant cardiologie, oncologie (chirurgie et chimiothérapie) et neurologie (IRM, radiothérapie) est vraiment adaptée. Vérifiez que le contrat inclut le Holter ECG annuel, les médicaments antiarythmiques à vie, les exérèses chirurgicales répétées pour mastocytomes et les traitements de tumeur cérébrale. Un plafond annuel d'au moins 4 000 € est recommandé. Les formules accident-seulement ou basiques sont totalement inadaptées à cette race. Souscrivez impérativement avant 18 mois et avant tout bilan cardiologique officiel.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Boxer</h2>
+  <p>Le propriétaire de Boxer est souvent une famille avec enfants, séduite par le tempérament joueur et affectueux de la race. Il n'est pas toujours averti des risques médicaux spécifiques au moment de l'acquisition. Face aux premiers bilans cardiaques, il réalise l'importance d'une couverture santé préalable. Le propriétaire éclairé souscrit une assurance dès le chiot, choisit un éleveur pratiquant le dépistage génétique de l'ARVC, et programme les Holters annuels. Il a besoin d'un assureur réactif, avec des plafonds élevés en oncologie et cardiologie.</p>
+
+  <h2>Questions fréquentes sur l'assurance Boxer</h2>
+  <details><summary>La cardiomyopathie arythmogène (ARVC) du Boxer est-elle couverte ?</summary><p>Oui, les formules maladies complètes couvrent le suivi cardiologique (Holter, échocardiographie) et les traitements antiarythmiques à condition de souscrire avant tout diagnostic. L'ARVC peut provoquer une mort subite — une couverture active est le seul filet de sécurité médicale réaliste.</p></details>
+  <details><summary>Les mastocytomes du Boxer sont-ils pris en charge par l'assurance ?</summary><p>Oui, dans les formules incluant l'oncologie. Les mastocytomes cutanés du Boxer nécessitent une exérèse chirurgicale avec marges larges, parfois suivie d'une chimiothérapie selon le grade histologique. Ces actes sont couverts par les assurances maladies complètes si souscrites avant le premier diagnostic de nodule.</p></details>
+  <details><summary>À quel âge assurer son Boxer pour couvrir les cardiopathies ?</summary><p>Avant 18 mois, avant tout premier bilan cardiologique documenté. La DCM et l'ARVC peuvent être détectées dès 2 ans chez certains Boxers. Souscrire tôt garantit que la découverte d'une arythmie ne se traduira pas par une exclusion immédiate.</p></details>
+  <details><summary>Le test ADN ARVC justifie-t-il de ne pas souscrire d'assurance ?</summary><p>Non. Un Boxer négatif au test striatin peut tout de même développer une ARVC (la mutation n'est pas la seule cause). Et un Boxer positif a besoin d'une couverture encore plus solide. Le test génétique complète l'assurance, il ne la remplace pas.</p></details>
+  <details><summary>Quel budget mensuel pour assurer un Boxer ?</summary><p>Entre 28 et 50 €/mois selon la formule et l'âge. Le Boxer présente un risque cardiaque et oncologique élevé qui justifie une formule premium. Ce budget est rentabilisé dès la première intervention chirurgicale (mastocytome ou urgence cardiaque).</p></details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/bouledogue-francais">Bouledogue Français</a> — race brachycéphale avec risques cardiaques et tumeurs partagés</li>
+    <li><a href="/races/rottweiler">Rottweiler</a> — grande race à risque oncologique élevé (ostéosarcome, tumeurs)</li>
+    <li><a href="/races/dogue-allemand">Dogue Allemand</a> — grande race cardiaque (cardiomyopathie dilatée) et torsion gastrique</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">8 000 €</span><span class="figure-label">radiothérapie tumeur cérébrale</span></div>
+      <div class="figure"><span class="figure-value">1re race</span><span class="figure-label">incidence mastocytomes cutanés</span></div>
+      <div class="figure"><span class="figure-value">28 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">10–12 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Meurs K.M. et al. — Identification of a missense mutation in the Boxer dog striatin gene, Circulation 2021</li>
+    <li>Boxer Breed Council — Health Report UK 2023</li>
+    <li>FACCO — Enquête nationale sur les animaux de compagnie en France 2024</li>
+    <li>OFA (Orthopedic Foundation for Animals) — Hip Dysplasia Statistics by breed 2024</li>
+    <li>Snyder J.M. et al. — Intracranial primary neoplasia in dogs by breed, JVIM 2019</li>
+    <li>Gross T.L. et al. — Mast cell tumors in dogs, Veterinary Dermatology 2022</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

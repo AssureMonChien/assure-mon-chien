@@ -1,0 +1,194 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Guides assurance chien"
+  description="Nos guides pratiques pour choisir, comparer et souscrire une assurance santé pour votre chien. Conseils pour chiots, chiens seniors et toutes les races."
+>
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">GUIDES PRATIQUES</p>
+      <h1>Tout savoir sur l'assurance chien</h1>
+      <p class="hero-sub">Des conseils experts pour protéger votre compagnon au meilleur prix.</p>
+    </div>
+  </section>
+
+  <div class="guides-wrap">
+    <div class="guides-grid">
+
+      <article class="guide-card">
+        <div class="guide-icon">🛡️</div>
+        <div class="guide-body">
+          <h2><a href="/guides/choisir-assurance-chien">Comment choisir une assurance chien ?</a></h2>
+          <p>Garanties, franchises, plafonds, délais de carence : tout ce qu'il faut comparer avant de signer. Un guide complet pour ne pas se tromper.</p>
+          <a href="/guides/choisir-assurance-chien" class="btn-read">Lire le guide →</a>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <div class="guide-icon">🐶</div>
+        <div class="guide-body">
+          <h2><a href="/guides/assurance-chiot">Assurance chiot : le guide complet</a></h2>
+          <p>À quel âge assurer son chiot ? Quelles garanties privilégier ? Comment éviter les exclusions liées aux maladies congénitales ? Toutes les réponses.</p>
+          <a href="/guides/assurance-chiot" class="btn-read">Lire le guide →</a>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <div class="guide-icon">🐾</div>
+        <div class="guide-body">
+          <h2><a href="/guides/assurance-chien-senior">Assurance chien sénior : ce qu'il faut savoir</a></h2>
+          <p>Un chien de plus de 7 ans coûte en moyenne 3 fois plus cher en soins vétérinaires. Comment trouver une couverture adaptée malgré les restrictions d'âge ?</p>
+          <a href="/guides/assurance-chien-senior" class="btn-read">Lire le guide →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="encart">
+      <p>💡 <strong>Conseil :</strong> avant de choisir une formule, consultez la fiche de votre race sur notre <a href="/races">guide des races</a>. Les prédispositions génétiques de votre chien doivent dicter les garanties à prioriser.</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .hero {
+    background: #0F6E56;
+    color: #fff;
+    padding: 3.5rem 1.25rem 3rem;
+    text-align: center;
+  }
+
+  .hero-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.18);
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin: 0 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 800;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    opacity: 0.88;
+    margin: 0;
+  }
+
+  .guides-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  .guides-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .guide-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: #fff;
+    border: 1.5px solid #d4ede5;
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    transition: box-shadow 0.15s;
+  }
+
+  .guide-card:hover {
+    box-shadow: 0 4px 18px rgba(29,158,117,0.12);
+  }
+
+  .guide-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .guide-body {
+    flex: 1;
+  }
+
+  .guide-body h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0F6E56;
+    margin: 0 0 0.5rem;
+  }
+
+  .guide-body h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .guide-body h2 a:hover {
+    text-decoration: underline;
+  }
+
+  .guide-body p {
+    font-size: 0.93rem;
+    color: #444;
+    line-height: 1.65;
+    margin: 0 0 0.85rem;
+  }
+
+  .btn-read {
+    display: inline-block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #1D9E75;
+    text-decoration: none;
+    border: 1.5px solid #1D9E75;
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .btn-read:hover {
+    background: #1D9E75;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .encart {
+    margin-top: 2.5rem;
+    background: #e8f7f2;
+    border-left: 4px solid #1D9E75;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.92rem;
+    color: #1a4a3a;
+    line-height: 1.6;
+  }
+
+  .encart a {
+    color: #1D9E75;
+    font-weight: 600;
+  }
+
+  @media (max-width: 540px) {
+    .guide-card {
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1.25rem;
+    }
+  }
+</style>

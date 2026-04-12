@@ -1,113 +1,169 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Samoyède : Risques & Meilleures Offres 2026"
   description="Le Samoyède est prédisposé à la néphrite héréditaire et au diabète sucré. Découvrez les meilleures assurances pour couvrir les maladies chroniques de cette race nordique au sourire légendaire."
-  raceName="Samoyède"
+  nom="Samoyède"
   slug="samoyede"
-  dateModified="2026-04-05"
-  heroSubtitle="Ambassadeur du grand nord avec son pelage blanc immaculé, le Samoyède est aussi porteur de pathologies cardiaques héréditaires et rénales spécifiques à la race, dont le traitement peut dépasser 5 000 €."
-  imageUrl="/images/races/samoyede.webp"
-  imageAlt="Samoyède blanc souriant dans la neige, fourrure épaisse et brillante"
-  heroBadge="MALADIES RÉNALES · DIABÈTE"
-  riskScore={65}
-  alertText="La <strong>glomérulopathie familiale du Samoyède</strong>, maladie rénale héréditaire spécifique à la race, peut conduire à une insuffisance rénale chronique nécessitant <strong>500 à 1 200 €/mois</strong> de traitement. Sans assurance souscrite avant les premiers symptômes, cette pathologie sera systématiquement exclue comme préexistante."
-  alertSource="Source : Samoyed Club of America Health Survey 2023 ; Bases de données GRCS Club du Samoyède France"
-  introText="Le Samoyède fascine par sa beauté majestueuse, mais ses propriétaires doivent anticiper des soins spécifiques liés à sa double origine nordique et aux sélections génétiques qui ont accompagné sa popularisation en Europe. La myélopathie dégénérative et les glaucomes héréditaires figurent parmi les priorités à couvrir."
-  faq={[
-    { question: "La glomérulopathie du Samoyède est-elle couverte par l'assurance ?", answer: "Oui, si vous souscrivez avant tout diagnostic ou symptôme rénal. SantéVet couvre les maladies chroniques sans limitation de durée ni surprime annuelle. La glomérulopathie familiale étant héréditaire, le dépistage génétique chez le reproducteur est recommandé. Mais il ne conduit pas à une exclusion automatique chez le chiot non-testé." },
-    { question: "Le toilettage intensif du Samoyède est-il pris en charge ?", answer: "Le toilettage esthétique n'est pas couvert par les assurances santé. En revanche, les soins dermatologiques médicaux liés aux problèmes cutanés (pyodermites, dermatites) sont pris en charge. La gestion du pelage double couche nécessite un toilettage régulier chez un professionnel. Prévoir 80 à 150 €/session hors assurance." },
-    { question: "À quel âge les pathologies graves du Samoyède apparaissent-elles ?", answer: "La glomérulopathie familiale peut se manifester dès 6 mois dans les cas sévères, mais souvent entre 3 et 6 ans. Le glaucome héréditaire apparaît généralement entre 2 et 5 ans. Ces délais justifient une souscription dès le jeune âge (avant 12 mois) pour éviter toute exclusion pour préexistence." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=samoyede&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture néphrite héréditaire et suivi rénal",
-        "Prise en charge diabète sucré et insulinothérapie quotidienne",
-        "Remboursement glaucome héréditaire et traitement ophtalmologique",
-        "Couverture dysplasie de hanche et arthrose",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=samoyede&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Néphrite héréditaire (syndrome néphrotique)", score: 60, prix: "500–3 000 €/an", description: "Glomérulopathie liée au chromosome X chez les mâles Samoyèdes (analogue au syndrome d'Alport). Insuffisance rénale progressive avant 3 ans chez les mâles atteints. Test génétique disponible." },
-    { nom: "Diabète sucré", score: 65, prix: "400–1 200 €/an", description: "Incidence élevée dans la race. Polyurie/polydipsie, perte de poids. Insuline quotidienne, surveillance glycémique régulière à vie." },
-    { nom: "Glaucome héréditaire", score: 55, prix: "800–3 000 €", description: "Augmentation de la pression intraoculaire héréditaire. Douleur oculaire intense, cécité irréversible sans traitement précoce. Collyres et éventuellement chirurgie." },
-    { nom: "Dysplasie de hanche", score: 50, prix: "1 000–4 500 €", description: "Présente dans la race, surveillance radiographique recommandée. Arthrose progressive nécessitant un suivi rhumatologique." },
-  ]}
-  pathologies={[
-    { nom: "Néphrite héréditaire (syndrome de Fanconi-like)", description: "Glomérulopathie héréditaire liée à l'X causant une dégénérescence progressive de la membrane basale glomérulaire. Les mâles homozygotes développent une insuffisance rénale chronique sévère avant 3 ans. Les femelles hétérozygotes sont porteuses asymptomatiques. Test génétique disponible.", coût: "500–3 000 €/an" },
-    { nom: "Diabète sucré", description: "Incidence significativement élevée dans la race. Diabète insulino-dépendant, polyurie/polydipsie, perte de poids malgré polyphagie, cataracte diabétique. Insulinothérapie quotidienne sous-cutanée à vie. Courbes glycémiques régulières.", coût: "400–1 200 €/an" },
-    { nom: "Glaucome héréditaire", description: "Augmentation héréditaire de la pression intraoculaire par blocage de l'écoulement de l'humeur aqueuse. Douleur oculaire intense, mydriase, œdème cornéen, cécité irréversible. Traitement d'urgence (mannitol IV, collyres hypotenseurs), chirurgie en forme réfractaire.", coût: "800–3 000 €" },
-    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale héréditaire. Arthrose progressive douloureuse. Surveillance radiographique recommandée avant reproduction. Chirurgie (prothèse totale, FHO) en forme sévère.", coût: "1 000–4 500 €" },
-    { nom: "Hypothyroïdie", description: "Insuffisance thyroïdienne auto-immune. Léthargie, prise de poids, alopécie bilatérale symétrique. Lévothyroxine sodique orale à vie avec contrôles T4 semestriels.", coût: "200–500 €/an" },
-    { nom: "Rétinopathie héréditaire", description: "Dégénérescence progressive des photorécepteurs rétiniens héréditaire. Héméralopie précoce évoluant vers la cécité totale. Test ADN recommandé pour les reproducteurs.", coût: "300–1 200 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=samoyede&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="grande"
+  risque="modere"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Avec son sourire permanent et son pelage blanc immaculé, le Samoyède est l'un des chiens les plus attachants qui soit. Mais derrière cette apparence lumineuse se cachent des fragilités médicales héréditaires d'une gravité réelle : une néphropathie liée à l'X pouvant conduire à l'insuffisance rénale avant 3 ans chez les mâles, un diabète sucré plus fréquent que dans la plupart des races, et une hémophilie A spécifique. Ces pathologies chroniques nécessitent un suivi vétérinaire régulier et coûteux. Anticiper avec une assurance santé adaptée est la décision la plus protectrice que puisse prendre un propriétaire de Samoyède conscient de ces risques.</p>
+
+  <h2>Coût annuel d'un Samoyède</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium grande race)</td><td>600 – 900 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires, vermifuges)</td><td>250 – 400 €</td></tr>
+      <tr><td>Assurance santé</td><td>216 – 480 €</td></tr>
+      <tr><td>Toilettage professionnel (4 à 6 séances/an)</td><td>350 – 600 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>150 – 250 €</td></tr>
+      <tr><td>Suivi rénal ou diabétologique si pathologie</td><td>500 – 2 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO/TNS Sofres, enquête budget animal de compagnie 2023 ; grille tarifaire CHV France 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Samoyède</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Néphropathie héréditaire liée à l'X (syndrome néphrotique)</td><td>Spécifique à la race (mâles ++)</td><td>500 – 3 000 €/an</td></tr>
+      <tr><td>Diabète sucré insulino-dépendant</td><td>Élevée dans la race</td><td>400 – 1 200 €/an</td></tr>
+      <tr><td>Hémophilie A</td><td>Modérée (liée à l'X)</td><td>500 – 3 000 €/épisode</td></tr>
+      <tr><td>Dysplasie de hanche</td><td>Modérée</td><td>1 000 – 4 500 €</td></tr>
+      <tr><td>Uvéite héréditaire</td><td>Modérée</td><td>300 – 1 500 €</td></tr>
+      <tr><td>Hypothyroïdie</td><td>Modérée</td><td>200 – 500 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Samoyed Club of America Health Survey 2023 ; Club du Samoyède France (GRCS) 2024 ; OFA Kidney Disease Statistics Samoyed breed.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Samoyède</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Bilan rénal complet (créatinine, SDMA, protéinurie)</td><td>80 – 150 €</td><td>2 fois/an si néphropathie</td></tr>
+      <tr><td>Insulinothérapie mensuelle (diabète)</td><td>40 – 90 €/mois</td><td>Vie entière si diabète</td></tr>
+      <tr><td>Courbe glycémique (diabète)</td><td>60 – 120 €</td><td>Tous les 3 mois</td></tr>
+      <tr><td>Test de coagulation (hémophilie A)</td><td>80 – 180 €</td><td>Annuel ou avant chirurgie</td></tr>
+      <tr><td>Transfusion plasma frais congelé (épisode hémorragique)</td><td>300 – 800 €/épisode</td><td>Si saignement sévère</td></tr>
+      <tr><td>Radiographies de hanche (score HD)</td><td>150 – 280 €</td><td>1 fois</td></tr>
+      <tr><td>Consultation ophtalmologique (uvéite)</td><td>80 – 150 €</td><td>Annuel si traitement</td></tr>
+      <tr><td>Dosage T4 libre (hypothyroïdie)</td><td>55 – 85 €</td><td>2 fois/an si traitement</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grille tarifaire vétérinaire France 2024 ; SNVEL ; CHV Alfort, Nantes, Lyon tarifs de référence.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Samoyède présente deux pathologies financièrement très lourdes. La néphropathie héréditaire liée à l'X (analogue au syndrome d'Alport humain) est causée par une mutation du gène COL4A5. Les mâles hémizygotes développent une insuffisance rénale chronique sévère avant 3 ans avec une protéinurie massive et une azotémie progressive. Le traitement de support rénal (régime hypoprotéique, inhibiteurs de l'enzyme de conversion, érythropoïétine) représente 500 à 1 200 € par mois en phase avancée. Le diabète sucré, nettement surreprésenté dans la race, implique une insulinothérapie quotidienne à vie (environ 600 €/an) et des bilans glycémiques trimestriels. L'hémophilie A, liée à l'X elle aussi, expose à des saignements peropératoires graves : tout acte chirurgical doit être préparé avec une transfusion préventive. Sur la vie entière du chien (12 à 14 ans), les frais médicaux cumulés peuvent dépasser 20 000 € en cas de néphropathie ou de diabète non assuré.</p>
+
+  <h2>Conseils de prévention pour un Samoyède</h2>
+  <ul>
+    <li>Demander un test génétique pour la néphropathie liée à l'X (mutation COL4A5) chez le reproducteur et, idéalement, chez le chiot mâle avant l'acquisition.</li>
+    <li>Bilan rénal (créatinine, SDMA, protéinurie) annuel dès l'âge de 1 an chez les mâles, pour détecter précocement une glomérulopathie débutante.</li>
+    <li>Surveiller la glycémie en cas de polydipsie, polyurie ou perte de poids chez un Samoyède adulte — signes précoces de diabète.</li>
+    <li>Informer tout vétérinaire d'une éventuelle hémophilie A (ou risque génétique) avant toute chirurgie ou extraction dentaire.</li>
+    <li>Radiographies de hanche avant 18 mois pour dépistage de la dysplasie coxo-fémorale.</li>
+    <li>Examen ophtalmologique annuel pour dépistage de l'uvéite héréditaire, particulièrement après 2 ans.</li>
+    <li>Souscrire une assurance santé avant tout bilan spécialisé pour éviter toute exclusion pour préexistence sur les pathologies les plus coûteuses.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Samoyède ?</h2>
+  <p>Le Samoyède présente un risque médical et financier significatif lié à ses pathologies héréditaires. La néphropathie liée à l'X peut engager des frais mensuels supérieurs à 1 000 € en phase sévère. Le diabète, l'hémophilie et les pathologies oculaires constituent des surcoûts additionnels imprévisibles. Une assurance santé souscrite dès l'acquisition permet de financer ces soins sans arbitrage douloureux entre la qualité de vie du chien et le budget familial. Pour une race dont l'espérance de vie est de 12 à 14 ans, les économies réalisées sur la prime d'assurance ne compensent jamais les frais engagés sans couverture.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Samoyède ?</h2>
+  <p>Pour un Samoyède, une formule couvrant les maladies chroniques sans limitation de durée est prioritaire : diabète sucré, néphropathie, uvéite. Vérifiez que les médicaments onéreux (insuline, inhibiteurs ECA, érythropoïétine) sont inclus dans les postes remboursés. Une couverture des actes spécialisés (ophtalmologie, néphrologie) est indispensable. Choisissez un plafond annuel d'au moins 4 000 € pour absorber les épisodes aigus et les traitements continus. Les formules excluant les maladies génétiques ou héréditaires de race sont à proscrire absolument pour cette race.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Samoyède</h2>
+  <p>Le propriétaire de Samoyède est souvent séduit par la beauté et le caractère jovial de la race avant d'en mesurer les exigences pratiques : toilettage intensif (brossage quotidien obligatoire), besoin d'exercice important et fragilités médicales héréditaires. Il vit généralement en maison avec jardin, souvent en zone péri-urbaine ou rurale, et consacre un budget significatif à son animal. Les propriétaires avertis rejoignent le Club du Samoyède France et participent aux enquêtes de santé. La popularité croissante de la race en France (SCC 2024) attire également des primo-propriétaires moins préparés aux spécificités médicales et au coût réel de la race.</p>
+
+  <h2>Questions fréquentes sur l'assurance Samoyède</h2>
+  <details>
+    <summary>La néphropathie héréditaire du Samoyède est-elle couverte par l'assurance ?</summary>
+    <p>Oui, si vous souscrivez avant tout signe clinique ou bilan rénal anormal. Les assurances couvrent les maladies héréditaires non diagnostiquées au moment de la souscription. La néphropathie liée à l'X étant progressive, une détection précoce par dosage SDMA (marqueur sensible d'insuffisance rénale) avant la souscription peut créer une exclusion. Souscrire avant tout bilan spécialisé est impératif.</p>
+  </details>
+  <details>
+    <summary>Le diabète du Samoyède est-il remboursé sur la durée ?</summary>
+    <p>Oui, sous réserve de souscrire avant le diagnostic. Les meilleures formules couvrent l'insulinothérapie à vie, les consultations de suivi diabétologique, les courbes glycémiques et les hospitalisations pour cétoacidose diabétique. Préférez les contrats sans limitation de durée ni de montant annuel insuffisant pour les maladies chroniques.</p>
+  </details>
+  <details>
+    <summary>L'hémophilie A du Samoyède est-elle prise en charge chirurgicalement ?</summary>
+    <p>Les formules premium couvrent les transfusions de plasma frais congelé et les soins liés aux épisodes hémorragiques, y compris en contexte chirurgical. Il est essentiel d'informer votre vétérinaire de ce risque avant tout acte invasif afin de préparer un protocole de coagulation adapté, dont les coûts supplémentaires sont remboursés.</p>
+  </details>
+  <details>
+    <summary>À quel âge souscrire une assurance pour un Samoyède ?</summary>
+    <p>Idéalement avant 6 mois, avant tout bilan vétérinaire spécialisé. La néphropathie liée à l'X peut se manifester dès 6 mois dans les formes sévères chez les mâles. Le diabète apparaît généralement entre 3 et 8 ans. Une souscription précoce garantit la couverture de l'ensemble de ces pathologies sans exclusion.</p>
+  </details>
+  <details>
+    <summary>Quel budget mensuel prévoir pour assurer un Samoyède ?</summary>
+    <p>Entre 18 et 42 €/mois selon la formule, l'âge et le taux de remboursement. Face à des frais potentiels de 1 000 €/mois en cas de néphropathie sévère, une prime de 30–40 €/mois pour une formule complète est un investissement largement rentable. Les formules intégrant un plafond annuel de 5 000 € ou plus sont recommandées pour cette race.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/husky-siberien">Husky Sibérien</a> — grand nordique partageant les prédispositions oculaires et les besoins d'exercice importants</li>
+    <li><a href="/races/chow-chow">Chow-Chow</a> — grande race à pelage dense avec des risques orthopédiques et thyroïdiens comparables</li>
+    <li><a href="/races/montagne-des-pyrenees">Montagne des Pyrénées</a> — grand chien blanc aux pathologies orthopédiques et auto-immunes proches</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">1 200 €</span><span class="figure-label">coût traitement rénal/mois (stade avancé)</span></div>
+      <div class="figure"><span class="figure-value">élevée</span><span class="figure-label">prévalence diabète vs autres races</span></div>
+      <div class="figure"><span class="figure-value">18 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">12–14 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Samoyed Club of America — Health Survey 2023</li>
+    <li>Club du Samoyède France (GRCS) — registres de santé de la race 2024</li>
+    <li>OFA (Orthopedic Foundation for Animals) — Kidney Disease Statistics Samoyed breed, 2023</li>
+    <li>Jansen B et al. — Samoyed hereditary glomerulopathy : clinical and morphological studies, Can J Vet Res 1986</li>
+    <li>Greco DS — Diabetes mellitus in dogs and cats, Vet Clin North Am Small Anim Pract 2001</li>
+    <li>Bruns CM et al. — Hemophilia A in dogs, J Vet Intern Med 2010</li>
+    <li>FACCO/TNS Sofres — enquête nationale sur les animaux de compagnie 2023</li>
+    <li>SNVEL — grille tarifaire vétérinaire indicative France, 2024</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

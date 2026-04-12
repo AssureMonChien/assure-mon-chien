@@ -1,113 +1,168 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
-  title="Assurance chien Dalmatien : Risques & Meilleures Offres 2026"
-  description="Le Dalmatien est prédisposé à la surdité héréditaire et aux calculs urinaires d'urate. Découvrez les meilleures assurances adaptées aux pathologies spécifiques de cette race iconique."
-  raceName="Dalmatien"
+<RaceLayout
+  title="Assurance Dalmatien : Risques & Meilleures Offres 2026"
+  description="Le Dalmatien est prédisposé à la surdité congénitale, aux calculs uratiques et à l'atrophie rétinienne. Découvrez les meilleures assurances pour cette race athlétique et élégante."
+  nom="Dalmatien"
   slug="dalmatien"
-  dateModified="2026-04-05"
-  heroSubtitle="Iconique et athletique, le Dalmatien est porteur de deux anomalies génétiques bien documentees : une surdite héréditaire silencieuse et une metabolisation des urates qui genere des calculs urinaires uniques dans le monde canin."
-  imageUrl="/images/races/dalmatien.webp"
-  imageAlt="Dalmatien tacheté de noir courant en pleine nature"
-  heroBadge="SURDITÉ HÉRÉDITAIRE · CALCULS URINAIRES"
-  riskScore={60}
-  alertText="Le Dalmatien est la seule race canine avec une <strong>mutation génétique SLC2A9</strong> provoquant une elimination anormale d'acide urique. Cette prédisposition aux <strong>calculs d'urate</strong> est héréditaire et non couverte comme exclusion si déclarée avant souscription. <strong>100 % des Dalmatiens</strong> sont porteurs. Seule l'alimentation adaptée et un suivi régulier limitent le risque d'obstruction urinaire urgente."
-  alertSource="Source : Bannasch et al., Mutations in SLC2A9 PLoS Genetics 2008 confirme 2023 ; Dalmatian Club of America Health Committee 2023"
-  introText="Le Dalmatien est une race active nécessitant plus de 2h d'exercice quotidien, un chien qui s'épanouit dans les familles sportives et les grands espaces. Son régime alimentaire doit etre controle en purines tout au long de sa vie pour limiter la formation de calculs uratiques, ce qui genere un coût alimentaire spécifique en plus des frais vétérinaires."
-  faq={[
-    { question: "Les calculs urinaires d'urate du Dalmatien sont-ils couverts par l'assurance ?", answer: "Oui, SanteVet couvre les episodes d'obstruction urinaire, la cystotomie et le suivi urologique à condition de souscrire avant tout episode diagnostique. La prédisposition etant universelle dans la race, une souscription précoce est particulierement strategique." },
-    { question: "Quand assurer son Dalmatien pour couvrir les pathologies génétiques ?", answer: "Des l'acquisition, avant tout bilan urologique ou audiologique. Le test BAER (surdite) et le premier dosage d'acide urique avant souscription peuvent créer des exclusions définitives. Souscrire avant ces examens est la seule strategie efficace." },
-    { question: "Quel budget mensuel pour assurer un Dalmatien ?", answer: "Entre 18 et 30 euros/mois selon la formule et l'âge. Le Dalmatien présente un profil de risque modéré avec des pathologies spécifiques mais prévisibles. Une formule avec bonne couverture urologique et neurologique est adaptée." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=dalmatien&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture calculs urinaires d'urate et cystotomie",
-        "Prise en charge bilan BAER pour la surdité héréditaire",
-        "Remboursement régime alimentaire thérapeutique urate",
-        "Couverture épilepsie et traitement antiépileptique",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=dalmatien&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Surdité héréditaire", score: 65, prix: "200–1 000 €", description: "Liée à la pigmentation (gène piébald). Surdité uni ou bilatérale détectable par BAER dès 5 semaines. Chiens sourds bilatéraux non reproducibles." },
-    { nom: "Urolithiase urate", score: 70, prix: "500–3 000 €", description: "Prédisposition unique à former des calculs d'urate d'ammonium (mutation SLC2A9). Obstructions urinaires récidivantes. Régime pauvre en purines à vie, cystotomie chirurgicale si obstruction." },
-    { nom: "Épilepsie idiopathique", score: 50, prix: "300–800 €/an", description: "Plus fréquente que dans la population générale canine. Antiépileptiques et bilans réguliers nécessaires." },
-    { nom: "Allergies cutanées", score: 55, prix: "200–800 €/an", description: "Hypersensibilités aux aliments et à l'environnement. Dermatite atopique, otites récidivantes. Traitement immunomodulateur à long terme." },
-  ]}
-  pathologies={[
-    { nom: "Surdité héréditaire (BAER)", description: "Dégénérescence de la strie vasculaire cochléaire liée au gène de dilution extrême (gène piébald). Surdité unilatérale (22 %) ou bilatérale (8 %) détectable par potentiels évoqués auditifs (BAER) dès 5 semaines. Test obligatoire avant toute reproduction.", coût: "200–1 000 €" },
-    { nom: "Urolithiase urate obstructive", description: "Mutation homozygote SLC2A9 propre à la race provoquant une hyperuricosurie. Formation de calculs d'urate d'ammonium dans les voies urinaires. Dysurie, hématurie, obstruction urétrale. Régime sans purines (agneau, riz) à vie. Cystotomie en cas d'obstruction.", coût: "500–3 000 €" },
-    { nom: "Épilepsie idiopathique", description: "Crises convulsives primaires récurrentes d'origine génétique, plus fréquentes dans la race que dans la population canine générale. Antiépileptiques (phénobarbital, bromure) à vie.", coût: "300–800 €/an" },
-    { nom: "Dermatite atopique", description: "Hypersensibilité chronique aux allergènes environnementaux (pollens, acariens) et alimentaires. Prurit intense, otites récidivantes, pyodermites secondaires. Apoquel, Cytopoint ou immunothérapie spécifique.", coût: "200–800 €/an" },
-    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale héréditaire. Arthrose progressive douloureuse. Surveillance radiographique recommandée. Chirurgie en forme sévère.", coût: "800–3 500 €" },
-    { nom: "Myélopathie dégénérative", description: "Dégénérescence progressive de la substance blanche médullaire. Parésie des membres pelviens évoluant vers la paralysie complète. Test ADN disponible (mutation SOD1). Pas de traitement curatif. Rééducation palliative.", coût: "500–2 000 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=dalmatien&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="grande"
+  risque="modere"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Le Dalmatien, rendu célèbre par son pelage à pois unique, est bien plus qu'un chien de cinéma : c'est un athlète endurant, curieux et sensible qui demande une activité physique soutenue. Mais derrière cette silhouette racée se cachent des particularités médicales uniques : une surdité congénitale héréditaire touchant 30 % des individus, un métabolisme de l'acide urique atypique responsable de calculs rénaux douloureux, et une prédisposition aux pathologies ophtalmologiques. Ces spécificités font du Dalmatien un chien dont les frais vétérinaires peuvent surprendre des propriétaires non préparés.</p>
+
+  <h2>Coût annuel d'un Dalmatien</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes faibles en purines)</td><td>600 – 900 €</td></tr>
+      <tr><td>Visites vétérinaires de routine</td><td>150 – 300 €</td></tr>
+      <tr><td>Vaccinations et rappels</td><td>80 – 130 €</td></tr>
+      <tr><td>Antiparasitaires</td><td>100 – 180 €</td></tr>
+      <tr><td>Test BAER (dépistage surdité)</td><td>80 – 150 €</td></tr>
+      <tr><td>Analyses urinaires de contrôle</td><td>80 – 200 €</td></tr>
+      <tr><td>Assurance santé</td><td>200 – 400 €</td></tr>
+      <tr><td>Accessoires, sport, jouets</td><td>150 – 250 €</td></tr>
+      <tr><td><strong>Total estimé</strong></td><td><strong>1 440 – 2 510 €/an</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Estimation 2025 basée sur les données FACCO et tarifs moyens vétérinaires français.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Dalmatien</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Surdité congénitale unilatérale</td><td>Très élevée (≈ 30 %)</td><td>80 – 200 € (dépistage BAER)</td></tr>
+      <tr><td>Surdité bilatérale</td><td>Élevée (≈ 5 %)</td><td>Variable (gestion comportementale)</td></tr>
+      <tr><td>Urolithiase uratique (calculs rénaux)</td><td>Élevée (prédisposition génétique universelle)</td><td>500 – 4 000 €</td></tr>
+      <tr><td>Atrophie rétinienne progressive (PRA)</td><td>Modérée</td><td>200 – 1 500 €</td></tr>
+      <tr><td>Dysplasie de hanche</td><td>Modérée (15-25 %)</td><td>1 500 – 6 000 €</td></tr>
+      <tr><td>Dermatite atopique</td><td>Modérée</td><td>300 – 1 200 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Dalmatian Health Inc. ; OFA Statistics Dalmatian 2024 ; BAER Testing Database Dalmatians.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Dalmatien</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Test BAER (dépistage surdité)</td><td>80 – 200 €</td><td>Une fois (chiot)</td></tr>
+      <tr><td>Analyse urinaire + cystographie</td><td>80 – 250 €</td><td>Annuel si antécédents</td></tr>
+      <tr><td>Lithotripsie ou chirurgie calculs rénaux</td><td>800 – 4 000 €</td><td>Si calculs obstructifs</td></tr>
+      <tr><td>Urohydropropulsion (évacuation calculs)</td><td>300 – 800 €</td><td>Si nécessaire</td></tr>
+      <tr><td>Examen ophtalmologique spécialisé</td><td>80 – 180 €</td><td>Annuel recommandé</td></tr>
+      <tr><td>Radiographie dysplasie hanche</td><td>150 – 300 €</td><td>Une fois (12-18 mois)</td></tr>
+      <tr><td>Traitement dermatite atopique</td><td>300 – 1 200 €</td><td>Annuel si chronique</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Tarifs moyens cliniques vétérinaires françaises 2024-2025.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>L'urolithiase uratique est le risque financier le plus imprévisible du Dalmatien. Contrairement aux autres races, le Dalmatien est génétiquement incapable de transformer l'acide urique en allantoïne soluble : tous les individus, sans exception, forment des précipités d'urate d'ammonium dans leurs voies urinaires. Un épisode obstructif aigu constitue une urgence chirurgicale à 1 500 – 4 000 €. Une alimentation strictement pauvre en purines (viandes blanches, évitement des abats, de l'anchois) réduit le risque sans l'éliminer. Par ailleurs, un Dalmatien sourd unilatéral nécessite une gestion comportementale spécifique et ne peut participer à certaines activités sportives ou professionnelles.</p>
+
+  <h2>Conseils de prévention pour un Dalmatien</h2>
+  <ul>
+    <li>Faire réaliser un test BAER (dépistage auditif) sur le chiot avant 6 semaines pour détecter toute surdité</li>
+    <li>Adopter une alimentation strictement pauvre en purines dès l'acquisition pour réduire le risque de calculs uratiques</li>
+    <li>Maintenir une hydratation optimale (eau fraîche disponible en permanence, alimentation humide possible)</li>
+    <li>Contrôle urinaire annuel (pH, cristaux) chez le vétérinaire pour dépister les urolithes avant obstruction</li>
+    <li>Examen ophtalmologique annuel pour surveiller l'atrophie rétinienne</li>
+    <li>Radiographies de hanche entre 12 et 18 mois si destiné à la reproduction</li>
+    <li>Souscrire une assurance santé dès l'acquisition, avant tout diagnostic de calculs ou de surdité</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Dalmatien ?</h2>
+  <p>La prédisposition universelle du Dalmatien aux calculs uratiques le distingue de toutes les autres races : tous les individus sont à risque, sans exception. Un seul épisode obstructif peut coûter 2 000 à 4 000 € en urgence. Couplée à la surdité (dépistage et suivi comportemental spécialisé) et aux possibles chirurgies orthopédiques, la note vétérinaire sur la vie d'un Dalmatien non assuré peut dépasser 10 000 €. Une assurance active avant tout diagnostic protège contre ces dépenses imprévues.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Dalmatien ?</h2>
+  <p>Privilégiez une formule couvrant les chirurgies urinaires et la lithotripsie sans exclusion pour les pathologies génétiques. Les calculs uratiques étant une prédisposition de race connue, certains assureurs les excluent d'emblée — vérifiez les conditions générales. Une couverture incluant les spécialistes (ophtalmologie, chirurgie) et les hospitalisations d'urgence est idéale. Un tarif autour de 20 – 35 €/mois pour un Dalmatien adulte est un investissement largement rentabilisé dès le premier épisode de calculs obstructifs.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Dalmatien</h2>
+  <p>Le propriétaire de Dalmatien est souvent une personne active pratiquant la course à pied, le vélo ou l'équitation — le Dalmatien est historiquement un chien de carrosse endurant. Il vit généralement en maison avec espace extérieur. Séduit par l'élégance unique du pelage à pois, il découvre parfois tardivement les spécificités diététiques de la race. Un propriétaire bien informé sur l'alimentation pauvre en purines et le dépistage BAER sera capable de prévenir une grande partie des pathologies coûteuses de son compagnon.</p>
+
+  <h2>Questions fréquentes sur l'assurance Dalmatien</h2>
+  <details>
+    <summary>Les calculs rénaux du Dalmatien sont-ils couverts par l'assurance ?</summary>
+    <p>Cela dépend du contrat. Certains assureurs excluent les "prédispositions de race" connues. Il est impératif de vérifier que l'urolithiase uratique n'est pas listée comme exclusion dans les conditions générales. Les meilleures formules couvrent les calculs rénaux sans restriction de race, y compris la chirurgie et l'hospitalisation d'urgence.</p>
+  </details>
+  <details>
+    <summary>La surdité du Dalmatien est-elle un problème pour l'assurance ?</summary>
+    <p>La surdité congénitale est une condition héréditaire non évolutive qui ne génère généralement pas de frais vétérinaires directs. Elle n'est pas un motif d'exclusion ou de surprime dans la plupart des contrats. En revanche, elle nécessite une gestion comportementale spécifique qui peut impliquer un comportementaliste (parfois remboursé en formule premium).</p>
+  </details>
+  <details>
+    <summary>Quelle alimentation pour éviter les calculs chez un Dalmatien ?</summary>
+    <p>Une alimentation strictement pauvre en purines est indispensable : viandes blanches (poulet, dinde), pas d'abats, pas d'anchois ni de sardines. L'hydratation est cruciale. Certaines croquettes vétérinaires spécifiques (Royal Canin Urinary, Hill's u/d) sont formulées pour les races à risque uratique. Consultez votre vétérinaire pour un plan alimentaire personnalisé.</p>
+  </details>
+  <details>
+    <summary>Tous les Dalmatiens sont-ils sourds ?</summary>
+    <p>Non, mais environ 30 % sont sourds d'une oreille (surdité unilatérale) et 5 % des deux oreilles (bilatérale). Le test BAER est le seul moyen fiable de le détecter. Un Dalmatien sourd unilatéral peut mener une vie normale ; un sourd bilatéral nécessite une adaptation et une communication par signaux visuels.</p>
+  </details>
+  <details>
+    <summary>Combien coûte en moyenne une assurance pour un Dalmatien ?</summary>
+    <p>Entre 18 et 35 €/mois pour un adulte selon la formule. Compte tenu des risques spécifiques de la race (calculs uratiques, chirurgies potentielles), une formule intermédiaire à 25-30 €/mois couvrant la chirurgie et les hospitalisations d'urgence représente le meilleur rapport protection/coût.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/setter-irlandais">Setter Irlandais</a> — chien athlète de même gabarit, risques articulaires comparables</li>
+    <li><a href="/races/boxer">Boxer</a> — grande race active avec risques cardiaques et orthopédiques</li>
+    <li><a href="/races/labrador">Labrador</a> — grande race familiale, risques de dysplasie similaires</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">30 %</span><span class="figure-label">sourds unilatéraux dans la race</span></div>
+      <div class="figure"><span class="figure-value">4 000 €</span><span class="figure-label">chirurgie calculs obstructifs</span></div>
+      <div class="figure"><span class="figure-value">18 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">11-13 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Dalmatian Health Inc. — BAER Testing & Urate Statistics 2024</li>
+    <li>Giger U. et al., "Purine metabolism in Dalmatians", Journal of Heredity, 2018</li>
+    <li>OFA — Hip Dysplasia Statistics, Dalmatian 2024</li>
+    <li>Société Centrale Canine (SCC) — Fiches races, Dalmatien 2024</li>
+    <li>FACCO — Enquête nationale sur les animaux de compagnie 2024</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

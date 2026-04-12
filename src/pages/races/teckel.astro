@@ -1,113 +1,169 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Teckel : Risques & Meilleures Offres 2026"
   description="Le Teckel est la race mondiale la plus touchée par les hernies discales : 1 sur 4 sera paralysé. Découvrez les meilleures assurances pour couvrir ce risque majeur et les soins post-opératoires."
-  raceName="Teckel"
+  nom="Teckel"
   slug="teckel"
-  dateModified="2026-04-05"
-  heroSubtitle="Champion du monde de hernie discale, le Teckel vit avec une epee de Damocles vertebrale : 1 chien sur 4 sera un jour paralyse, souvent du jour au lendemain, sans signe avant-coureur."
-  imageUrl="/images/races/teckel.webp"
-  imageAlt="Teckel poil ras fauve, corps allongé et pattes courtes dans un jardin"
-  heroBadge="HERNIE DISCALE N°1 MONDIAL · PARALYSIE"
-  riskScore={78}
-  alertText="Une <strong>hernie discale Hansen type I</strong> du Teckel peut evoluer d'une douleur dorsale modérée a une <strong>paralysie complète en moins de 12 heures</strong>. La fenêtre chirurgicale optimale est de <strong>24 a 48 heures</strong> après les premiers signes. Passé ce délai, les chances de recuperation motrice tombent sous 50 %. Une assurance avec remboursement rapide n'est pas un luxe : c'est une condition de survie fonctionnelle."
-  alertSource="Source : IWGPD International Working Group on Paraplegia in Dogs 2023 ; Jeffery et al., Disc Herniation Prognosis in Dachshunds JVIM 2021"
-  introText="Le Teckel est la race qui illustre le mieux le décalage entre une silhouette anodine et une fragilité structurelle réelle. En France, les cliniques vétérinaires spécialisées voient leurs admissions en urgence IVDD doubler chaque décennie (donnees ANMV). L'IVDD est aujourd'hui la pathologie vétérinaire urgente la plus fréquente en neurologie canine."
-  faq={[
-    { question: "La hernie discale (IVDD) du Teckel est-elle remboursee par l'assurance ?", answer: "Oui, SanteVet couvre l'IRM diagnostique, la chirurgie de décompression et la reeducation neurologique post-operatoire. Ces frais cumulés atteignent 5 000-8 000 euros, entièrement remboursés à 100 % en formule Confort, sous reserve de souscription avant tout episode." },
-    { question: "A quel âge assurer son Teckel pour couvrir les hernies discales ?", answer: "Des l'acquisition du chiot, idéalement avant 6 mois. Le premier episode peut survenir des 3 ans chez le Teckel standard. Tout antecedent de douleur dorsale mentionne en consultation avant souscription peut exclure définitivement les pathologies spinales." },
-    { question: "Quel budget mensuel pour assurer un Teckel ?", answer: "Entre 22 et 38 euros/mois selon la formule et l'âge. Le profil IVDD du Teckel justifie pleinement une formule avec couverture neurologie et chirurgie. Le ratio prime/risque est l'un des plus favorables de toutes les races." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=teckel&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture hernie discale Hansen type I et chirurgie d'urgence",
-        "Prise en charge IRM diagnostique médullaire",
-        "Remboursement rééducation neurologique post-opératoire",
-        "Couverture cataracte héréditaire et phacoémulsification",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=teckel&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Hernie discale Hansen type I (IVDD)", score: 85, prix: "2 000–7 000 €", description: "Extrusion du noyau discal calcifié en urgence. Compression médullaire brutale provoquant paralysie des postérieurs, douleur intense, incontinence. IRM obligatoire, chirurgie de décompression en urgence." },
-    { nom: "Acanthosis nigricans", score: 55, prix: "200–600 €/an", description: "Hyperpigmentation et hyperkératose des aisselles, spécifique au Teckel poil ras. Origine hormonale et immune. Traitement dermatologique à long terme." },
-    { nom: "Dysplasie de hanche", score: 45, prix: "800–3 500 €", description: "Moins fréquente que dans les grandes races mais présente. Arthrose progressive, douleur à la mobilisation." },
-    { nom: "Cataracte héréditaire précoce", score: 50, prix: "800–2 500 €", description: "Opacification du cristallin dès 2–3 ans dans certaines lignées. Chirurgie par phacoémulsification pour restaurer la vision." },
-  ]}
-  pathologies={[
-    { nom: "Hernie discale Hansen type I (IVDD)", description: "Extrusion brutale du noyau discal calcifié dans le canal rachidien. Compression médullaire aiguë provoquant douleur intense, parésie puis paralysie flasque des membres postérieurs, incontinence vésicale et fécale. IRM obligatoire pour localiser le niveau. Hémi-laminectomie ou foraminotomie en urgence dans les 24 heures.", coût: "2 000–7 000 €" },
-    { nom: "Hernie discale cervicale et thoracique", description: "Localisation cervicale ou thoracolombaire des hernies de type Hansen I. Douleur cervicale intense, raideur, parésie quadripodale. Chirurgie de décompression cervicale (fenestration ventrale) ou hémi-laminectomie thoracolombaire.", coût: "1 500–5 000 €" },
-    { nom: "Acanthosis nigricans", description: "Hyperpigmentation et hyperkératose symétrique des aisselles, spécifique au Teckel poil ras. Origine multifactorielle (hormonale, friction, immune). Traitement dermatologique : vitamine E, shampoings kératolitiques, mélatonine.", coût: "200–600 €/an" },
-    { nom: "Cataracte héréditaire", description: "Opacification progressive du cristallin héréditaire, parfois précoce (2–3 ans) dans certaines lignées. Chirurgie par phacoémulsification ultrasonique avec pose d'implant intra-oculaire pour restaurer la vision.", coût: "800–2 500 €" },
-    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale héréditaire. Arthrose progressive douloureuse. Moins fréquente que dans les grandes races. Surveillance radiographique. Chirurgie en forme sévère.", coût: "800–3 500 €" },
-    { nom: "Diabète sucré", description: "Incidence supérieure à la moyenne dans la race. Polyurie/polydipsie, perte de poids malgré polyphagie. Insulinothérapie quotidienne à vie, surveillance glycémique régulière et courbes glycémiques.", coût: "400–1 200 €/an" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=teckel&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="petite"
+  risque="eleve"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Champion du monde de hernie discale, le Teckel vit avec une épée de Damoclès vertébrale que chaque propriétaire doit connaître et anticiper. Sa conformation chondrodystrophique — corps très long, pattes courtes, disques intervertébraux fragiles — en fait la race statistiquement la plus touchée par la hernie discale de type Hansen I dans le monde. Mais au-delà de la neurologie, le Teckel est aussi prédisposé à l'acanthosis nigricans, à l'épilepsie de Lafora et au diabète sucré. Autant de pathologies chroniques dont le coût cumulé sur la vie du chien justifie amplement une couverture d'assurance solide souscrite dès l'acquisition.</p>
+
+  <h2>Coût annuel d'un Teckel</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium petite/moyenne race)</td><td>270–450 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, vermifuge, antiparasitaires)</td><td>230–380 €</td></tr>
+      <tr><td>Toilettage professionnel (selon variété : poil ras, poil dur, poil long)</td><td>100–320 €</td></tr>
+      <tr><td>Accessoires, jouets, literie (rampes, protège-dos)</td><td>150–300 €</td></tr>
+      <tr><td>Assurance santé</td><td>264–456 €</td></tr>
+      <tr><td>Compléments articulaires préventifs</td><td>80–180 €</td></tr>
+      <tr><td><strong>Total estimé</strong></td><td><strong>1 094–2 086 €/an</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des animaux de compagnie 2024 ; enquête SNVEL tarifs pratiqués 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Teckel</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Hernie discale Hansen type I (IVDD)</td><td>Très élevée (~ 25 % des Teckels)</td><td>2 000–7 000 €</td></tr>
+      <tr><td>Acanthosis nigricans (hyperpigmentation)</td><td>Élevée (spécifique au poil ras)</td><td>200–600 €/an</td></tr>
+      <tr><td>Épilepsie progressive de Lafora</td><td>Modérée (lignées à poil dur)</td><td>400–1 200 €/an</td></tr>
+      <tr><td>Diabète sucré</td><td>Modérée (supérieure à la moyenne)</td><td>400–1 200 €/an</td></tr>
+      <tr><td>Cécité progressive (APR / cataracte héréditaire)</td><td>Modérée (~ 5–8 %)</td><td>800–2 500 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : IWGPD International Working Group on Paraplegia in Dogs 2023 ; Jeffery N.D. et al., JVIM 2021 ; OFA Health Statistics 2024 ; SCC.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Teckel</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>IRM diagnostique médullaire (localisation hernie)</td><td>900–1 600 €</td><td>Chaque épisode IVDD</td></tr>
+      <tr><td>Hémi-laminectomie thoracolombaire (chirurgie IVDD)</td><td>1 500–4 500 €</td><td>Si indiqué en urgence</td></tr>
+      <tr><td>Hospitalisation post-opératoire (3–5 jours)</td><td>500–1 200 €</td><td>Après chirurgie</td></tr>
+      <tr><td>Rééducation neurologique (physiothérapie, hydrothérapie)</td><td>600–1 800 €</td><td>4–8 semaines</td></tr>
+      <tr><td>Traitement médical IVDD (corticoïdes, repos strict)</td><td>200–600 €</td><td>Si grade I–II</td></tr>
+      <tr><td>Phacoémulsification cataracte + implant</td><td>1 500–2 500 €/œil</td><td>Si cataracte</td></tr>
+      <tr><td>Insulinothérapie diabète + suivi glycémique</td><td>400–1 200 €/an</td><td>Mensuel si diabète</td></tr>
+      <tr><td>Traitement antiépileptique (Lafora)</td><td>300–900 €/an</td><td>Mensuel si épilepsie</td></tr>
+      <tr><td>Traitement dermatologique acanthosis nigricans</td><td>150–450 €/an</td><td>Suivi régulier</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : enquête tarifs cliniques vétérinaires France 2024–2025 (SNVEL) ; grille tarifaire assureurs santé animale 2024.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Teckel est la race présentant le profil IVDD le plus sévère du monde canin. Environ 25 % des Teckels développeront au cours de leur vie au moins un épisode de hernie discale cliniquement significatif, et une majorité d'entre eux nécessiteront une IRM d'urgence et une chirurgie décompressive. La fenêtre thérapeutique optimale est de 24 à 48 heures après les premiers signes neurologiques : au-delà, le pronostic de récupération motrice tombe sous 50 %. La combinaison IRM + chirurgie + hospitalisation + rééducation dépasse régulièrement 6 000 à 8 000 € par épisode. L'épilepsie de Lafora, spécifique aux lignées poil dur, évolue vers une démence progressive et nécessite des antiépileptiques à vie. Le diabète sucré, plus fréquent dans cette race que chez d'autres, impose une insulinothérapie quotidienne et un suivi biologique trimestriel dont le coût annuel dépasse 800 €.</p>
+
+  <h2>Conseils de prévention pour un Teckel</h2>
+  <ul>
+    <li>Installer des rampes d'accès au canapé et au lit pour éliminer les sauts répétés, principal facteur déclenchant des hernies discales.</li>
+    <li>Maintenir un poids corporel optimal : chaque kilogramme superflu augmente la pression sur les disques intervertébraux de manière significative.</li>
+    <li>Éviter les escaliers à répétition et les exercices avec torsions axiales violentes (arrêts brusques, jeux brutaux).</li>
+    <li>Réaliser une radiographie de la colonne à 3–4 ans pour détecter des calcifications discales précoces asymptomatiques.</li>
+    <li>Choisir un éleveur testant le gène Lafora (test ADN disponible pour les lignées poil dur) et la glycémie des parents.</li>
+    <li>Surveiller tout signe neurologique (dos voûté, cri à la manipulation, faiblesse des pattes arrière) : appeler le vétérinaire immédiatement.</li>
+    <li>Souscrire une assurance santé dès l'acquisition, couvrant la neurologie et la chirurgie d'urgence.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Teckel ?</h2>
+  <p>Aucune autre race ne justifie autant l'assurance que le Teckel. La probabilité d'un épisode IVDD est de 1 sur 4 sur la vie du chien. Une seule intervention chirurgicale d'urgence (IRM + hémi-laminectomie + rééducation) dépasse 6 000 €. Sans assurance active au moment de la crise, le choix entre traiter et euthanasier se pose de façon dramatique. L'assurance garantit que la décision thérapeutique soit guidée uniquement par le bien-être de l'animal et le pronostic médical, jamais par une contrainte financière.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Teckel ?</h2>
+  <p>Pour un Teckel, une formule couvrant les maladies et la chirurgie à 100 % avec un plafond annuel élevé (minimum 4 000 €) est indispensable. Vérifiez que le contrat couvre explicitement : la neurologie (IRM, chirurgie spinale), la rééducation post-opératoire, les maladies chroniques (diabète, épilepsie) et la dermatologie (acanthosis nigricans). Évitez tout contrat excluant les maladies vertébrales ou les pathologies héréditaires. La carence maladie doit être inférieure à 30 jours et la souscription doit précéder tout symptôme.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Teckel</h2>
+  <p>Le Teckel séduit par sa personnalité affirmée, son courage et son attachement indéfectible à son maître. Prisé en appartement comme en maison, il convient aussi bien aux célibataires qu'aux familles. Son élevage en trois variétés de poil (poil ras, poil dur, poil long) et trois tailles (standard, nain, kaninchen) offre une grande diversité. La FACCO 2024 le place régulièrement dans le top 10 des races les plus populaires en France. Le propriétaire avisé adapte son mobilier (rampes), surveille attentivement le poids de son chien et est prêt à réagir rapidement en cas de signe neurologique — quelques heures peuvent faire la différence entre une récupération complète et une paralysie permanente.</p>
+
+  <h2>Questions fréquentes sur l'assurance Teckel</h2>
+  <details>
+    <summary>La hernie discale (IVDD) du Teckel est-elle remboursée par l'assurance ?</summary>
+    <p>Oui, l'IRM diagnostique, la chirurgie de décompression et la rééducation neurologique post-opératoire sont couverts par les formules maladies. Ces frais cumulés atteignent 5 000 à 8 000 €. La couverture est active sous réserve de souscription avant tout épisode neurologique documenté.</p>
+  </details>
+  <details>
+    <summary>À quel âge assurer son Teckel pour couvrir les hernies discales ?</summary>
+    <p>Dès l'acquisition du chiot, idéalement avant 6 mois. Le premier épisode peut survenir dès 3 ans chez le Teckel standard. Tout antécédent de douleur dorsale mentionné en consultation avant souscription peut entraîner l'exclusion définitive des pathologies spinales.</p>
+  </details>
+  <details>
+    <summary>Quel budget mensuel pour assurer un Teckel ?</summary>
+    <p>Entre 22 et 38 €/mois selon la formule et l'âge. Le profil IVDD du Teckel justifie une formule complète avec couverture neurologie et chirurgie. Le ratio prime/risque est l'un des plus favorables de toutes les races, compte tenu de la probabilité élevée d'un épisode IVDD.</p>
+  </details>
+  <details>
+    <summary>L'épilepsie de Lafora du Teckel est-elle prise en charge ?</summary>
+    <p>Oui, l'épilepsie de Lafora, pathologie neurodégénérative progressive spécifique aux Teckels à poil dur, est couverte comme toute maladie neurologique. Le traitement antiépileptique à vie (phénobarbital, potassium de bromure) et les consultations neurologiques de suivi sont remboursés dans les formules maladies.</p>
+  </details>
+  <details>
+    <summary>Mon Teckel est paralysé : l'assurance peut-elle couvrir la rééducation ?</summary>
+    <p>Oui, la physiothérapie et l'hydrothérapie post-chirurgicales sont couvertes dans les formules incluant les soins de suite. La rééducation est essentielle pour récupérer la motricité après une hémi-laminectomie. Certaines formules incluent également les appareillages (chariot roulant) en cas de paralysie irréversible.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/basset-hound">Basset Hound</a> — race chondrodystrophique également exposée aux hernies discales IVDD, profil de risque comparable</li>
+    <li><a href="/races/jack-russell">Jack Russell Terrier</a> — petite race robuste et active, prédispositions orthopédiques similaires</li>
+    <li><a href="/races/carlin">Carlin</a> — petite race à risque élevé, hemivertèbres et pathologies neurologiques communes</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">6 500 €</span><span class="figure-label">coût moyen IVDD (IRM + chirurgie + rééducation)</span></div>
+      <div class="figure"><span class="figure-value">25 %</span><span class="figure-label">des Teckels développeront une IVDD</span></div>
+      <div class="figure"><span class="figure-value">22 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">14 ans</span><span class="figure-label">espérance de vie moyenne</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>IWGPD — International Working Group on Paraplegia in Dogs, consensus report 2023</li>
+    <li>Jeffery N.D. et al. — "Predictors of recovery from thoracolumbar disc herniation in Dachshunds", JVIM 2021</li>
+    <li>Société Centrale Canine (SCC) — Statistiques LOF et santé des races 2024</li>
+    <li>OFA (Orthopedic Foundation for Animals) — Health Statistics Database 2024</li>
+    <li>FACCO — Baromètre des animaux de compagnie en France 2024</li>
+    <li>SNVEL — Enquête nationale sur les tarifs vétérinaires 2024</li>
+    <li>Kathmann I. et al. — "Daily controlled physiotherapy increases voluntary locomotion in dogs after acute dorsolateral thoracolumbar IVDD", JVIM 2006</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

@@ -1,0 +1,544 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://assuremochien.fr/guides" },
+    { "@type": "ListItem", "position": 3, "name": "Comment choisir une assurance chien ?", "item": "https://assuremochien.fr/guides/choisir-assurance-chien" }
+  ]
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "L'assurance chien est-elle obligatoire en France ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, l'assurance santé chien n'est pas obligatoire en France. Seule la responsabilité civile est obligatoire pour les propriétaires de chiens de 1re et 2e catégorie. L'assurance santé est optionnelle mais fortement recommandée pour les races à prédispositions génétiques marquées."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le prix moyen d'une assurance chien en 2026 ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les tarifs moyens se situent entre 20 et 80 euros par mois selon la race, l'âge et le niveau de garantie. Une formule accidents seule coûte entre 10 et 25 €/mois. Une formule accidents + maladies : 25 à 60 €/mois."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on assurer un chien âgé de plus de 8 ans ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, mais les options se réduisent significativement après 8 ans. La plupart des assureurs refusent les nouvelles souscriptions au-delà de cet âge ou proposent des formules seniors avec des garanties réduites et des franchises plus élevées."
+      }
+    }
+  ]
+});
+---
+
+<Layout
+  title="Comment choisir une assurance chien ?"
+  description="Guide complet pour choisir une assurance santé chien : garanties, franchises, plafonds, délais de carence, exclusions. Tous les critères à comparer en 2026."
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldFaq} />
+
+  <!-- ── Hero ── -->
+  <section class="hero-guide">
+    <div class="hero-inner">
+      <p class="hero-label">GUIDE PRATIQUE</p>
+      <h1>Comment choisir une assurance chien ?</h1>
+      <p class="hero-desc">Accidents, maladies, hospitalisations : une visite chez le vétérinaire peut rapidement dépasser 1 000 euros. L'assurance santé chien permet d'amortir ces coûts, mais toutes les formules ne se valent pas. Voici les critères essentiels pour faire le bon choix.</p>
+    </div>
+  </section>
+
+  <!-- ── Contenu ── -->
+  <div class="guide-wrap">
+
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <ol>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/guides">Guides</a></li>
+        <li aria-current="page">Choisir une assurance chien</li>
+      </ol>
+    </nav>
+
+    <div class="toc">
+      <p class="toc-title">Dans ce guide</p>
+      <ol>
+        <li><a href="#garanties">Les types de garanties</a></li>
+        <li><a href="#plafonds">Plafonds et franchises</a></li>
+        <li><a href="#carences">Délais de carence</a></li>
+        <li><a href="#exclusions">Les exclusions courantes</a></li>
+        <li><a href="#race">Choisir selon la race</a></li>
+        <li><a href="#souscrire">Quand et comment souscrire</a></li>
+      </ol>
+    </div>
+
+    <section id="garanties">
+      <h2>1. Les types de garanties</h2>
+      <p>Les contrats d'assurance chien se structurent généralement en trois niveaux de couverture :</p>
+      <ul>
+        <li><strong>Accidents uniquement :</strong> la formule la plus économique, qui couvre les fractures, plaies, intoxications et urgences traumatiques. Elle n'intervient pas sur les maladies. Adaptée aux jeunes chiens en bonne santé de races peu fragiles.</li>
+        <li><strong>Accidents + maladies :</strong> la formule intermédiaire et la plus souscrite. Elle couvre les consultations, analyses, hospitalisations et interventions chirurgicales liées à une maladie diagnostiquée. C'est le niveau recommandé pour la majorité des propriétaires.</li>
+        <li><strong>Formule complète avec prévention :</strong> en plus des soins curatifs, cette formule rembourse une partie des actes préventifs (vaccins, antiparasitaires, détartrage, stérilisation). Le tarif est plus élevé, mais la couverture est totale.</li>
+      </ul>
+      <p>Pour des races à risque élevé — Bouledogue Français, Rottweiler, Cavalier King Charles — une formule accidents + maladies est le minimum indispensable. Ces chiens sont statistiquement plus exposés aux pathologies cardiaques, orthopédiques et respiratoires qui génèrent des frais importants.</p>
+
+      <div class="encart-cta">
+        <p>SantéVet propose les trois niveaux de couverture avec remboursement jusqu'à 100 % des frais réels.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Obtenir un devis SantéVet</a>
+      </div>
+    </section>
+
+    <section id="plafonds">
+      <h2>2. Plafonds et franchises : ce que cachent les contrats</h2>
+      <p>Le taux de remboursement affiché — souvent 70 %, 80 % ou 100 % — ne suffit pas à évaluer un contrat. Deux autres paramètres sont tout aussi déterminants.</p>
+
+      <h3>Les plafonds de remboursement</h3>
+      <p>Chaque assureur fixe un plafond annuel au-delà duquel il ne rembourse plus rien. Ce plafond peut être :</p>
+      <ul>
+        <li><strong>Global :</strong> un montant unique pour l'ensemble des frais (ex. 2 000 €/an). Pratique mais vite consommé en cas de chirurgie orthopédique.</li>
+        <li><strong>Par acte :</strong> un plafond distinct par type de soin (ex. 600 € par acte chirurgical). Attention aux interventions complexes qui dépassent ce seuil.</li>
+        <li><strong>Par famille de soins :</strong> certains assureurs distinguent les actes médicaux, chirurgicaux, et les hospitalisations avec des plafonds séparés.</li>
+      </ul>
+      <p>Un plafond annuel inférieur à 1 500 € est insuffisant pour un chien de grande race ou une race à risque. Pour un Labrador ou un Berger Allemand, prévoyez au minimum 2 000 à 3 000 € de plafond annuel.</p>
+
+      <h3>La franchise</h3>
+      <p>La franchise est la somme restant à votre charge à chaque sinistre, indépendamment du taux de remboursement. Elle peut être :</p>
+      <ul>
+        <li><strong>Absolue :</strong> vous payez toujours X euros par sinistre (ex. 50 € à chaque consultation). C'est le modèle le plus courant.</li>
+        <li><strong>Relative :</strong> si vos frais dépassent le seuil de franchise, tout est remboursé. En dessous, rien ne l'est.</li>
+        <li><strong>Nulle :</strong> certaines formules premium n'appliquent aucune franchise, mais leur prime mensuelle est plus élevée.</li>
+      </ul>
+      <p>Une franchise élevée (100 € ou plus) peut sembler acceptable sur les petits soins, mais elle s'applique aussi aux factures importantes. Sur une opération de dysplasie à 2 500 €, une franchise de 150 € reste marginale. Sur des consultations répétées à 80 €, elle peut annuler tout remboursement.</p>
+
+      <div class="encart-cta">
+        <p>Avec SantéVet, choisissez votre franchise dès la souscription selon votre budget.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Voir les formules SantéVet</a>
+      </div>
+    </section>
+
+    <section id="carences">
+      <h2>3. Délais de carence : la clause à ne pas ignorer</h2>
+      <p>Le délai de carence est la période entre la date de souscription et le moment où les garanties entrent réellement en vigueur. Pendant ce délai, aucun remboursement n'est possible.</p>
+
+      <p>Les délais varient fortement d'un assureur à l'autre :</p>
+      <ul>
+        <li><strong>Accidents :</strong> souvent 0 à 3 jours. Certains assureurs couvrent les accidents dès le lendemain de la souscription.</li>
+        <li><strong>Maladies :</strong> généralement 30 à 90 jours selon les formules et les assureurs.</li>
+        <li><strong>Maladies héréditaires et dysplasies :</strong> les délais les plus longs — jusqu'à 12 mois chez certains assureurs pour les affections orthopédiques.</li>
+        <li><strong>Cancer :</strong> certains contrats appliquent un délai spécifique de 6 à 12 mois pour les affections tumorales.</li>
+      </ul>
+
+      <p>Ce délai a une conséquence directe : ne souscrivez pas une assurance <em>après</em> qu'un problème de santé a été diagnostiqué. Une pathologie détectée avant la fin du délai de carence sera considérée comme une affection préexistante et exclue définitivement du contrat.</p>
+
+      <div class="points-cles">
+        <p class="pk-title">Points clés</p>
+        <ul>
+          <li>Souscrivez dès l'acquisition de votre chien, de préférence avant les premiers symptômes.</li>
+          <li>Demandez les délais par type de pathologie avant de signer — ils ne sont pas toujours mis en avant dans les publicités.</li>
+          <li>SantéVet applique l'un des délais les plus courts du marché pour les accidents (dès 48h).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="exclusions">
+      <h2>4. Les exclusions courantes : ce que votre contrat ne couvrira pas</h2>
+      <p>Chaque contrat liste des exclusions — des situations ou pathologies non remboursées. Voici les plus fréquentes et leurs implications concrètes.</p>
+
+      <h3>Les affections préexistantes</h3>
+      <p>C'est l'exclusion la plus importante. Toute maladie ou anomalie connue avant la souscription (ou diagnostiquée pendant le délai de carence) ne sera jamais remboursée. Cela inclut les maladies chroniques comme l'épilepsie, le diabète, l'hypothyroïdie ou les affections dermatologiques récurrentes.</p>
+      <p>Certains assureurs demandent un bilan vétérinaire à l'entrée, d'autres se fient à la déclaration sur l'honneur. Dans tous les cas, un sinistre lié à une pathologie préexistante non déclarée peut entraîner la résiliation du contrat.</p>
+
+      <h3>Les soins esthétiques et d'hygiène</h3>
+      <p>Le toilettage, le coupage des griffes, le nettoyage des oreilles en dehors d'un contexte médical, la coupe de poils : ces soins sont systématiquement exclus, même dans les formules les plus complètes.</p>
+
+      <h3>La gestation et la reproduction</h3>
+      <p>Les frais liés à la saillie, la gestation, l'accouchement et les soins aux chiots ne sont pas couverts. Certains assureurs étendent cette exclusion à la stérilisation (sauf si elle est incluse dans un module prévention).</p>
+
+      <h3>Les traitements non reconnus</h3>
+      <p>Acupuncture, ostéopathie, homéopathie, phytothérapie : ces médecines alternatives sont exclues des formules standard. Quelques assureurs proposent des avenants spécifiques, mais ils restent l'exception.</p>
+
+      <h3>Les maladies héréditaires selon les formules</h3>
+      <p>Attention : certaines formules d'entrée de gamme excluent explicitement les maladies héréditaires, génétiques ou congénitales. Pour les races à risque (Bouledogue, Golden Retriever, Cavalier King Charles), cette exclusion peut vider le contrat de toute utilité.</p>
+
+      <div class="encart-cta">
+        <p>SantéVet couvre les maladies héréditaires sans exclusion de race sur ses formules Confort et Premium.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Comparer les formules SantéVet</a>
+      </div>
+    </section>
+
+    <section id="race">
+      <h2>5. Adapter son choix à la race de son chien</h2>
+      <p>La race est le critère le plus souvent négligé lors de la souscription — et pourtant le plus déterminant pour l'utilisation réelle du contrat.</p>
+
+      <h3>Les races à haut risque vétérinaire</h3>
+      <p>Certaines races cumulent plusieurs prédispositions génétiques lourdes qui se traduisent par des frais vétérinaires élevés dès le jeune âge :</p>
+      <ul>
+        <li><strong>Bouledogue Français :</strong> syndrome brachycéphale (difficultés respiratoires), dysplasie de hanche, problèmes dermatologiques chroniques. Coût chirurgical moyen : 1 500 à 3 500 €.</li>
+        <li><strong>Rottweiler :</strong> dysplasie de hanche et du coude très fréquente, ostéosarcome. Une opération de dysplasie bilatérale peut dépasser 4 000 €.</li>
+        <li><strong>Cavalier King Charles :</strong> maladie valvulaire mitrale (90 % des chiens touchés avant 10 ans selon les études OFA), syringomyélie. Suivi cardiaque régulier indispensable.</li>
+        <li><strong>Golden Retriever :</strong> taux de cancer parmi les plus élevés de toutes les races (environ 60 % selon certaines études), dysplasie de hanche, pathologies articulaires.</li>
+      </ul>
+
+      <h3>Les races à risque modéré</h3>
+      <p>Des races comme le Labrador Retriever, le Husky Sibérien ou le Berger Australien présentent des prédispositions importantes (dysplasie, cataracte héréditaire, troubles digestifs) mais moins systématiques que les races précédentes. Une formule accidents + maladies avec un bon plafond annuel est suffisante.</p>
+
+      <h3>Les races à risque faible</h3>
+      <p>Certaines races comme le Berger des Shetlands ou l'Épagneul Breton sont réputées robustes et présentent peu de pathologies héréditaires lourdes. Une formule accidents peut suffire pour les premières années, à condition de réévaluer à partir de 7 ans.</p>
+
+      <p>Consultez notre <a href="/races">guide des 30 races</a> pour connaître les prédispositions spécifiques de votre chien et les garanties prioritaires à inclure dans votre contrat.</p>
+
+      <div class="encart-cta">
+        <p>SantéVet adapte ses tarifs à la race et à l'âge de votre chien, sans surprime cachée.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Simuler mon tarif SantéVet</a>
+      </div>
+    </section>
+
+    <section id="souscrire">
+      <h2>6. Quand et comment souscrire ?</h2>
+
+      <h3>Le meilleur moment pour souscrire</h3>
+      <p>La règle d'or : souscrivez le plus tôt possible, idéalement dans les 8 premières semaines suivant l'acquisition de votre chien. Un chiot en bonne santé présentera peu d'antécédents médicaux, les délais de carence s'écouleront pendant sa période de croissance, et vous bénéficierez des tarifs jeunes — souvent 20 à 35 % moins chers qu'à 5 ans.</p>
+
+      <p>L'âge limite de souscription varie selon les assureurs :</p>
+      <ul>
+        <li>La plupart des assureurs refusent les nouvelles souscriptions au-delà de 8 ou 10 ans.</li>
+        <li>Certains proposent des formules seniors pour les chiens entre 8 et 12 ans, mais avec des exclusions renforcées et des franchises élevées.</li>
+        <li>Passé 12 ans, il est très difficile de trouver une couverture pour un nouveau contrat.</li>
+      </ul>
+
+      <h3>Les étapes de souscription</h3>
+      <ol>
+        <li><strong>Comparez les offres :</strong> utilisez notre <a href="/comparatif">comparatif assurance chien</a> pour évaluer les garanties, les tarifs et les franchises des principales enseignes.</li>
+        <li><strong>Vérifiez les exclusions spécifiques à votre race :</strong> demandez la liste complète des exclusions par écrit avant de signer.</li>
+        <li><strong>Lisez les conditions générales :</strong> focalisez-vous sur les sections "délais de carence", "plafonds par acte", "exclusions" et "résiliation".</li>
+        <li><strong>Souscrivez en ligne ou par téléphone :</strong> la plupart des assureurs proposent une souscription immédiate. Munissez-vous du carnet de santé de votre chien, de son certificat de naissance ou LOF, et de votre carte de puce (numéro de tatouage ou puce).</li>
+      </ol>
+
+      <h3>Comment résilier un contrat insatisfaisant ?</h3>
+      <p>Depuis la loi Hamon, vous pouvez résilier votre assurance chien à tout moment après la première année, sans frais ni justification. Il suffit d'envoyer une lettre recommandée à votre assureur. Le nouveau contrat prend effet dès que l'ancien est résilié. Attention : les pathologies déjà diagnostiquées sous l'ancien contrat seront considérées comme préexistantes par le nouvel assureur.</p>
+
+      <div class="encart-cta">
+        <p>Souscription en ligne en 3 minutes. SantéVet couvre plus de 300 000 chiens en France.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Souscrire chez SantéVet</a>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h2>Questions fréquentes</h2>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">L'assurance chien est-elle obligatoire en France ?</button>
+        <div class="faq-a" hidden>
+          <p>Non, l'assurance santé chien n'est pas obligatoire en France. Seule la responsabilité civile — couvrant les dommages causés par votre chien à des tiers — est obligatoire pour les propriétaires de chiens de 1re et 2e catégorie (races considérées comme dangereuses). L'assurance santé est optionnelle mais fortement recommandée pour les races à prédispositions génétiques marquées.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Quel est le prix moyen d'une assurance chien en 2026 ?</button>
+        <div class="faq-a" hidden>
+          <p>Le tarif dépend de la race, de l'âge, du niveau de garantie et de la franchise choisie. En 2026, les tarifs moyens se situent entre 20 et 80 euros par mois. Une formule accidents seule coûte entre 10 et 25 €/mois. Une formule accidents + maladies : 25 à 60 €/mois. Une formule complète avec prévention : 50 à 100 €/mois pour les races à risque élevé.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Peut-on assurer un chien âgé de plus de 8 ans ?</button>
+        <div class="faq-a" hidden>
+          <p>Oui, mais les options se réduisent significativement après 8 ans. La plupart des assureurs refusent les nouvelles souscriptions au-delà de cet âge ou proposent des formules seniors avec des garanties réduites, des franchises plus élevées et des exclusions renforcées. La solution idéale reste de souscrire dès le plus jeune âge et de maintenir le contrat tout au long de la vie du chien.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      answer.hidden = open;
+    });
+  });
+</script>
+
+<style>
+  /* ── Hero ── */
+  .hero-guide {
+    background: #0F6E56;
+    padding: 3.5rem 1.25rem 3rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.18);
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin: 0 0 1rem;
+  }
+
+  .hero-guide h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+    color: #fff;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    opacity: 0.88;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── Contenu ── */
+  .guide-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  .breadcrumb ol {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    font-size: 0.83rem;
+    color: #888;
+  }
+
+  .breadcrumb li + li::before {
+    content: "›";
+    margin-right: 0.3rem;
+  }
+
+  .breadcrumb a {
+    color: #1D9E75;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .toc {
+    background: #F7F9F8;
+    border-left: 3px solid #1D9E75;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 0 32px;
+    position: static;
+  }
+
+  .toc-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0F6E56;
+    margin: 0 0 0.6rem;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .toc li {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .toc a {
+    color: #1D9E75;
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    text-decoration: underline;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #d4ede5;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a3a2f;
+    margin: 1.4rem 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.75;
+    margin: 0 0 0.9rem;
+  }
+
+  ul, ol {
+    margin: 0 0 1rem;
+    padding-left: 1.4rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    color: #1D9E75;
+    font-weight: 600;
+  }
+
+  .encart-cta {
+    background: #e8f7f2;
+    border: 1px solid #b2ddd0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .encart-cta p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #1a4a3a;
+    flex: 1;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #1D9E75;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 7px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .cta-btn:hover {
+    background: #157a5b;
+  }
+
+  .points-cles {
+    background: #fff;
+    border: 1.5px solid #1D9E75;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .pk-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1D9E75;
+    margin: 0 0 0.5rem !important;
+  }
+
+  .points-cles ul {
+    margin: 0;
+  }
+
+  .faq-section {
+    border-top: 2px solid #d4ede5;
+    padding-top: 2rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e8f0ed;
+    padding: 0.1rem 0;
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: #0F6E56;
+    padding: 0.9rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .faq-q::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #1D9E75;
+    flex-shrink: 0;
+  }
+
+  .faq-q[aria-expanded="true"]::after {
+    content: "−";
+  }
+
+  .faq-a {
+    padding: 0 0 1rem;
+  }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.93rem;
+  }
+
+  @media (max-width: 540px) {
+    .encart-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

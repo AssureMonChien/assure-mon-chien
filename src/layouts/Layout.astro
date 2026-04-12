@@ -1,4 +1,6 @@
 ---
+import Menu from "../components/Menu.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -35,13 +37,7 @@ const {
           <span></span>
           <span></span>
         </button>
-        <nav id="main-nav">
-          <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/races">Races</a></li>
-            <li><a href="/guides">Guides</a></li>
-          </ul>
-        </nav>
+        <Menu />
       </div>
     </header>
 
@@ -60,7 +56,8 @@ const {
           <ul>
             <li><a href="/">Accueil</a></li>
             <li><a href="/races">Races</a></li>
-            <li><a href="/guides">Guides</a></li>
+            <li><a href="/comparatif/assurance-chien">Comparatif</a></li>
+            <li><a href="/guides/choisir-assurance-chien">Guides</a></li>
             <li><a href="/mentions-legales">Mentions légales</a></li>
             <li><a href="/confidentialite">Confidentialité</a></li>
             <li><a href="/affiliation">Affiliation</a></li>
@@ -74,11 +71,17 @@ const {
     </footer>
 
     <script>
+      /* Burger mobile — ouvre/ferme le menu mobile du composant Menu */
       const toggle = document.querySelector(".nav-toggle") as HTMLButtonElement;
-      const nav = document.getElementById("main-nav");
+      const menuMobile = document.querySelector(".menu-mobile") as HTMLElement | null;
+
       toggle?.addEventListener("click", () => {
-        const open = nav?.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", String(open));
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+        toggle.classList.toggle("open", !isOpen);
+        if (menuMobile) {
+          menuMobile.classList.toggle("visible", !isOpen);
+        }
       });
     </script>
   </body>
@@ -167,29 +170,7 @@ const {
     line-height: 1;
   }
 
-  nav#main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  nav#main-nav ul li a {
-    color: var(--white);
-    font-weight: 500;
-    padding: 0.4rem 0.85rem;
-    border-radius: 6px;
-    transition: background 0.15s;
-    display: block;
-  }
-
-  nav#main-nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.18);
-    text-decoration: none;
-  }
-
-  /* Mobile toggle */
+  /* ── Burger ── */
   .nav-toggle {
     display: none;
     flex-direction: column;
@@ -200,6 +181,7 @@ const {
     border: none;
     cursor: pointer;
     padding: 0;
+    z-index: 110;
   }
 
   .nav-toggle span {
@@ -208,6 +190,17 @@ const {
     background: var(--white);
     border-radius: 2px;
     transition: transform 0.2s, opacity 0.2s;
+  }
+
+  /* Burger → croix quand ouvert */
+  .nav-toggle.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
   }
 
   /* ── Main ── */
@@ -290,29 +283,21 @@ const {
       display: flex;
     }
 
-    nav#main-nav {
-      display: none;
+    /* Le menu mobile du composant est masqué par défaut,
+       visible uniquement quand .visible est ajouté par le burger */
+    .menu-mobile {
+      display: none !important;
       position: absolute;
       top: var(--header-height);
       left: 0;
       right: 0;
       background: var(--green-dark);
-      padding: 0.75rem 1.25rem 1rem;
+      padding: 0.5rem 1.25rem 1rem;
+      z-index: 99;
     }
 
-    nav#main-nav.open {
-      display: block;
-    }
-
-    nav#main-nav ul {
-      flex-direction: column;
-      gap: 0;
-    }
-
-    nav#main-nav ul li a {
-      padding: 0.65rem 0.5rem;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .menu-mobile.visible {
+      display: block !important;
     }
 
     .footer-inner {

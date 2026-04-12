@@ -1,113 +1,169 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Bichon Frisé : Risques & Meilleures Offres 2026"
   description="Le Bichon Frisé est prédisposé aux allergies cutanées chroniques, à la luxation de la rotule et à la cataracte. Découvrez les meilleures assurances pour ce petit chien joyeux et longévif."
-  raceName="Bichon Frisé"
+  nom="Bichon Frisé"
   slug="bichon-frise"
-  dateModified="2026-04-05"
-  heroSubtitle="Derrière son allure de peluche vivante, le Bichon Frisé cache une fragilité cutanée et dentaire chronique qui génère des visites vétérinaires régulières et des frais récurrents souvent négligés lors de l'adoption."
-  imageUrl="/images/races/bichon-frise.webp"
-  imageAlt="Bichon Frisé blanc comme neige, pelage bouclé impeccable"
-  heroBadge="RACE LONGÉVIVE · ALLERGIES FRÉQUENTES"
-  riskScore={50}
-  alertText="Les soins dentaires annuels d'un Bichon Frisé (détartrage sous anesthésie) coûtent en moyenne <strong>350 € par an</strong>. Ajoutez les dermatites atopiques récurrentes (<strong>200 à 800 €/épisode</strong>) et les calculs urinaires (<strong>600 à 2 000 €</strong>) : sur 12 ans de vie, la facture atteint facilement <strong>6 000 à 10 000 €</strong>."
-  alertSource="Source : Club Français du Bichon Frisé 2024 ; Baromètre Santévet des dépenses vétérinaires par race 2023"
-  introText="Le Bichon Frisé est souvent perçu comme un chien d'appartement sans contraintes médicales majeures. La réalité est plus nuancée : sa peau atopique, ses dents fragiles et sa prédisposition aux calculs urinaires font de lui un patient vétérinaire assidu, dont les frais annuels surprennent fréquemment les propriétaires."
-  faq={[
-    { question: "L'assurance couvre-t-elle les soins dentaires du Bichon Frisé ?", answer: "Les détartrages préventifs ne sont généralement pas couverts, mais les soins dentaires médicaux (extraction suite à infection, traitement de stomatite) le sont dans les formules Confort et Premium de SantéVet. Vérifiez les conditions spécifiques à la prévention dentaire selon la formule choisie." },
-    { question: "Mon Bichon Frisé a des allergies cutanées : est-ce pris en charge ?", answer: "Oui, la dermatite atopique est couverte par SantéVet dès la souscription (hors période de carence). Les consultations allergologiques, les tests cutanés et les traitements immunomodulateurs sont remboursés selon votre formule. Les rechutes chroniques sont traitées sans surprime annuelle." },
-    { question: "Combien coûte une assurance pour un Bichon Frisé par mois ?", answer: "Pour un Bichon Frisé de moins de 5 ans, comptez 16 à 25 €/mois selon la formule. La formule Confort SantéVet (18 €/mois) couvre les accidents, maladies chroniques et urgences, un excellent équilibre pour les pathologies récurrentes du Bichon. Le tarif augmente progressivement avec l'âge du chien." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=bichon-frise&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture dermatite atopique et immunothérapie spécifique",
-        "Prise en charge luxation de la rotule et chirurgie",
-        "Remboursement maladie de Legg-Calvé-Perthes et FHO",
-        "Couverture cataracte héréditaire et phacoémulsification",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=bichon-frise&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Dermatite atopique", score: 65, prix: "300–1 200 €/an", description: "Allergie environnementale chronique (pollens, acariens). Prurit intense, otites récidivantes, pyodermites. Apoquel, Cytopoint ou immunothérapie à long terme." },
-    { nom: "Luxation de la rotule", score: 58, prix: "500–2 000 €", description: "Fréquente dans la race. Boiterie intermittente. Chirurgie en grade III–IV avant les lésions articulaires irréversibles." },
-    { nom: "Maladie de Legg-Calvé-Perthes", score: 45, prix: "1 000–3 000 €", description: "Nécrose aseptique de la tête fémorale chez le chiot. Chirurgie FHO nécessaire." },
-    { nom: "Cataracte héréditaire", score: 50, prix: "800–2 500 €", description: "Opacification précoce du cristallin dans certaines lignées. Chirurgie par phacoémulsification pour restaurer la vision." },
-  ]}
-  pathologies={[
-    { nom: "Dermatite atopique chronique", description: "Hypersensibilité aux allergènes environnementaux (pollens, acariens, moisissures) et alimentaires. Prurit intense, léchage des pattes, otites récidivantes, pyodermites secondaires. Apoquel (oclacitinib), Cytopoint (lokivetmab) ou immunothérapie désensibilisante à long terme.", coût: "300–1 200 €/an" },
-    { nom: "Luxation de la rotule", description: "Déplacement médial de la patella hors du sillon trochléen. Boiterie intermittente caractéristique. Chirurgie correctrice (approfondissement trochléen, transposition de la tubérosité tibiale) en grade III–IV.", coût: "500–2 000 €" },
-    { nom: "Maladie de Legg-Calvé-Perthes", description: "Nécrose ischémique aseptique de la tête fémorale chez le chiot. Boiterie progressive unilatérale avec atrophie musculaire. Chirurgie FHO suivie de rééducation fonctionnelle.", coût: "1 000–3 000 €" },
-    { nom: "Cataracte héréditaire", description: "Opacification progressive du cristallin d'origine génétique. Peut débuter précocement (2–3 ans) dans certaines lignées de Bichon. Chirurgie par phacoémulsification avec implant intra-oculaire pour restaurer la vision.", coût: "800–2 500 €" },
-    { nom: "Lithiases urinaires (oxalate de calcium)", description: "Formation de calculs d'oxalate de calcium dans les voies urinaires, plus fréquente chez les mâles castrés. Dysurie, hématurie. Régime urinaire préventif, cystotomie chirurgicale en cas d'obstruction.", coût: "500–2 000 €" },
-    { nom: "Collapsus trachéal", description: "Aplatissement des anneaux cartilagineux trachéaux. Toux sèche chronique et dyspnée. Traitement médical (bronchodilatateurs, antitussifs) ou stent trachéal intraluminal en forme sévère.", coût: "500–2 500 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=bichon-frise&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="petite"
+  risque="faible"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Sous son pelage blanc bouclé et son caractère pétillant, le Bichon Frisé cache une fragilité cutanée qui surprend souvent lors de la première consultation vétérinaire. Sa peau atopique, ses prédispositions aux allergies alimentaires et ses articulations délicates font de lui un patient vétérinaire plus assidu que son apparence ne le laisse suggérer. Si son profil de santé global reste favorable comparé à d'autres races, les coûts récurrents liés à la dermatite atopique et aux soins dentaires s'accumulent au fil des années et méritent une anticipation sérieuse dès l'adoption.</p>
+
+  <h2>Coût annuel d'un Bichon Frisé</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes hypoallergéniques ou qualité premium)</td><td>250 – 420 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires)</td><td>200 – 350 €</td></tr>
+      <tr><td>Soins dentaires (détartrage annuel sous anesthésie)</td><td>200 – 400 €</td></tr>
+      <tr><td>Traitements dermatologiques récurrents</td><td>150 – 600 €</td></tr>
+      <tr><td>Toilettage professionnel (6 à 8 fois/an)</td><td>360 – 600 €</td></tr>
+      <tr><td>Assurance santé</td><td>192 – 300 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>80 – 150 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des dépenses animales 2024 ; Club Français du Bichon Frisé 2024 ; Observatoire SantéVet 2023</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Bichon Frisé</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Dermatite atopique chronique</td><td>20 – 30 %</td><td>300 – 1 200 €/an</td></tr>
+      <tr><td>Luxation de la rotule</td><td>15 – 25 %</td><td>800 – 2 500 €</td></tr>
+      <tr><td>Cataracte héréditaire</td><td>10 – 15 %</td><td>800 – 2 500 €/œil</td></tr>
+      <tr><td>Maladie de Legg-Calvé-Perthes</td><td>8 – 12 % (surtout chiots)</td><td>1 000 – 3 000 €</td></tr>
+      <tr><td>Allergies alimentaires</td><td>15 – 20 %</td><td>200 – 600 €/an</td></tr>
+      <tr><td>Lithiases urinaires (oxalate de calcium)</td><td>8 – 12 % (mâles surtout)</td><td>500 – 2 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Club Français du Bichon Frisé, Enquête santé 2023 ; Banfield Pet Hospital State of Pet Health Report 2024 ; OFA Health Statistics Bichon Frisé 2024</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Bichon Frisé</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Consultation allergologue + tests intradermiques</td><td>150 – 300 €</td><td>Au diagnostic</td></tr>
+      <tr><td>Immunothérapie désensibilisante (ASIT)</td><td>300 – 600 €/an</td><td>Sur 2–3 ans</td></tr>
+      <tr><td>Traitement Apoquel (oclacitinib, par mois)</td><td>40 – 80 €/mois</td><td>Selon sévérité</td></tr>
+      <tr><td>Injection Cytopoint (lokivetmab)</td><td>80 – 150 €</td><td>Toutes les 4–8 semaines</td></tr>
+      <tr><td>Chirurgie luxation de la rotule</td><td>800 – 2 500 €</td><td>Grade III–IV</td></tr>
+      <tr><td>Chirurgie FHO (Legg-Calvé-Perthes)</td><td>1 000 – 3 000 €</td><td>Une fois si indiqué</td></tr>
+      <tr><td>Phacoémulsification cataracte (par œil)</td><td>800 – 2 500 €</td><td>Cas symptomatiques</td></tr>
+      <tr><td>Cystotomie pour calculs urinaires</td><td>600 – 2 000 €</td><td>Si obstruction</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grilles tarifaires vétérinaires spécialistes France 2024 ; Clinique vétérinaire universitaire ENVL Lyon</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le principal piège financier du Bichon Frisé réside dans la nature chronique et récurrente de ses pathologies cutanées. La dermatite atopique n'est pas guérissable : elle se gère sur le long terme avec des traitements immunomodulateurs (Apoquel, Cytopoint) ou une immunothérapie désensibilisante. Ces traitements coûtent entre 300 et 1 200 € par an, indéfiniment. Ajoutez les consultations dermatologiques, les bilans allergologiques et les pyodermites secondaires à traiter : la facture annuelle peut facilement atteindre 1 500 € en cas d'atopie sévère. La maladie de Legg-Calvé-Perthes, qui touche les chiots de 5 à 12 mois, nécessite une chirurgie FHO dont le coût (1 000–3 000 €) dépasse souvent le prix d'achat du chien. La cataracte héréditaire, enfin, peut apparaître dès 2–3 ans dans certaines lignées, rendant la vigilance ophtalmologique précoce indispensable.</p>
+
+  <h2>Conseils de prévention pour un Bichon Frisé</h2>
+  <ul>
+    <li>Adopter chez un éleveur pratiquant le test de la cataracte héréditaire (examen ophtalmologique des reproducteurs).</li>
+    <li>Alimentation de qualité premium ou hypoallergénique dès le départ pour limiter les sensibilisations alimentaires.</li>
+    <li>Brossage régulier du pelage pour détecter précocement les lésions cutanées (rougeurs, léchages intenses).</li>
+    <li>Examen ophtalmologique annuel à partir de 2 ans pour dépistage de la cataracte.</li>
+    <li>Surveiller la démarche du chiot entre 5 et 12 mois : toute boiterie unilatérale évoque la maladie de Legg-Calvé-Perthes.</li>
+    <li>Détartrage dentaire annuel sous anesthésie : les petites races accumulent le tartre très rapidement.</li>
+    <li>Souscrire une assurance dès l'acquisition du chiot, avant tout signe de dermatite ou d'allergie.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Bichon Frisé ?</h2>
+  <p>Le Bichon Frisé est souvent considéré comme un chien "sans problèmes de santé majeurs", ce qui conduit de nombreux propriétaires à négliger l'assurance. Pourtant, la gestion de sa dermatite atopique sur 12 à 15 ans de vie représente un coût cumulé de 3 000 à 18 000 € selon la sévérité. Une chirurgie de rotule ou une FHO en début de vie peut représenter plusieurs milliers d'euros imprévus. Une assurance souscrite avant tout signe clinique permet de traiter cette race correctement, sans sacrifier la qualité des soins pour des raisons budgétaires, tout en gardant la sérénité d'un propriétaire bien protégé.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Bichon Frisé ?</h2>
+  <p>Pour le Bichon Frisé, privilégiez une formule couvrant les maladies chroniques récurrentes et les traitements dermatologiques au long cours. La prise en charge de la dermatite atopique doit inclure les médicaments immunomodulateurs (Apoquel, Cytopoint, ciclosporine), les consultations spécialisées et l'immunothérapie. Vérifiez la couverture de la chirurgie orthopédique (luxation de la rotule, FHO) et ophtalmologique (cataracte). Un plafond annuel d'au moins 2 000 € avec remboursement à 80 % des frais réels offre une protection adaptée à ce profil de race.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Bichon Frisé</h2>
+  <p>Le Bichon Frisé est adopté en grande majorité par des personnes vivant en appartement, des seniors recherchant un compagnon affectueux et peu encombrant, et des familles avec jeunes enfants sensibles au pelage non-mitorant. Son caractère joyeux et son niveau d'énergie modéré en font un chien idéal pour les citadins. Le propriétaire type est souvent surpris par les frais de toilettage réguliers (obligatoires pour prévenir les nœuds et les problèmes cutanés) et par les coûts dermatologiques que cette race peut engendrer. Budget annuel hors imprévu : 1 200 à 2 000 €.</p>
+
+  <h2>Questions fréquentes sur l'assurance Bichon Frisé</h2>
+  <details>
+    <summary>La dermatite atopique du Bichon Frisé est-elle couverte par l'assurance ?</summary>
+    <p>Oui, si souscrite avant tout diagnostic de dermatite ou allergie. Les traitements immunomodulateurs (Apoquel, Cytopoint), les consultations allergologiques et l'immunothérapie désensibilisante sont pris en charge dans les formules complètes. Attention à la période de carence (30–45 jours selon l'assureur) pendant laquelle les maladies diagnostiquées ne sont pas couvertes.</p>
+  </details>
+  <details>
+    <summary>Qu'est-ce que la maladie de Legg-Calvé-Perthes et est-elle remboursée ?</summary>
+    <p>C'est une nécrose ischémique aseptique de la tête fémorale qui touche les chiots de petites races entre 5 et 12 mois. Elle provoque une boiterie douloureuse unilatérale nécessitant une chirurgie FHO (1 000–3 000 €). Elle est couverte dans les formules médico-chirurgicales, à condition que le signe clinique apparaisse après la fin de la période de carence.</p>
+  </details>
+  <details>
+    <summary>La cataracte héréditaire est-elle prise en charge ?</summary>
+    <p>Oui, la chirurgie par phacoémulsification (800–2 500 € par œil) est couverte dans les formules complètes. Comme pour toutes les maladies héréditaires, la souscription doit précéder toute consultation ophtalmologique diagnostique. Un examen préalable révélant une opacité du cristallin créerait une exclusion permanente pour la cataracte.</p>
+  </details>
+  <details>
+    <summary>Les allergies alimentaires sont-elles couvertes ?</summary>
+    <p>Oui, les investigations diagnostiques (régime d'exclusion, tests) et les traitements des réactions allergiques sont pris en charge. En revanche, l'alimentation thérapeutique prescrite par le vétérinaire est généralement remboursée seulement dans les formules Premium incluant la nutrition thérapeutique — vérifiez votre contrat.</p>
+  </details>
+  <details>
+    <summary>Combien coûte une assurance pour un Bichon Frisé par mois ?</summary>
+    <p>Entre 16 et 25 €/mois selon l'assureur, l'âge et la formule. La formule intermédiaire (18–20 €/mois) offre le meilleur équilibre pour cette race : couverture des maladies chroniques, chirurgie orthopédique et ophtalmologique incluses, avec un rapport coût/protection très favorable compte tenu de sa longévité de 12–15 ans.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/caniche">Caniche</a> — même famille des bichons, pelage bouclé similaire, prédispositions oculaires et endocriniennes voisines</li>
+    <li><a href="/races/maltais">Maltais</a> — petit chien blanc longévif, sensibilité cutanée et dentaire comparable</li>
+    <li><a href="/races/coton-de-tulear">Coton de Tuléar</a> — morphologie et tempérament très proches, profil de santé globalement similaire</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">2 500 €</span><span class="figure-label">coût chirurgie cataracte (par œil)</span></div>
+      <div class="figure"><span class="figure-value">30 %</span><span class="figure-label">prévalence dermatite atopique</span></div>
+      <div class="figure"><span class="figure-value">16 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">12–15 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Club Français du Bichon Frisé, <em>Enquête santé de la race</em>, 2023</li>
+    <li>Banfield Pet Hospital, <em>State of Pet Health Report</em>, 2024 — banfield.com</li>
+    <li>Orthopedic Foundation for Animals (OFA), <em>Bichon Frisé Health Statistics</em>, 2024 — ofa.org</li>
+    <li>Favrot C. et al., "A prospective study on the clinical features of chronic canine atopic dermatitis", <em>Veterinary Dermatology</em>, 2010</li>
+    <li>Société Centrale Canine (SCC), <em>Fiche de race Bichon Frisé</em>, 2024</li>
+    <li>FACCO, <em>Baromètre des animaux de compagnie en France</em>, 2024</li>
+    <li>SantéVet, <em>Observatoire des frais vétérinaires par race</em>, 2023</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

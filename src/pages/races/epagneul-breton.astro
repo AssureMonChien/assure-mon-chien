@@ -1,113 +1,168 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Épagneul Breton : Risques & Meilleures Offres 2026"
   description="L'Épagneul Breton est un chien de terrain résistant, prédisposé à l'épilepsie héréditaire et aux traumatismes de chasse. Découvrez les meilleures assurances pour ce chien de chasse polyvalent français."
-  raceName="Épagneul Breton"
-  slug="épagneul-breton"
-  dateModified="2026-04-05"
-  heroSubtitle="Chien de chasse polyvalent par excellence, l'Épagneul Breton associe vigueur et sensibilité dans un gabarit compact. Ses otites chroniques et ses affections oculaires héréditaires génèrent des coûts réguliers sous-estimés."
-  imageUrl="/images/races/épagneul-breton.webp"
-  imageAlt="Épagneul Breton orange et blanc dans les sous-bois, tête levée, regard alerte"
-  heroBadge="RACE ROBUSTE · TERRAIN DE CHASSE"
-  riskScore={55}
-  alertText="Les <strong>otites chroniques bilatérales</strong> de l'Épagneul Breton peuvent nécessiter jusqu'à <strong>6 traitements par an à 120 € chacun</strong>, soit <strong>720 €/an</strong> de frais récurrents. Sur 12 ans de vie active, cela représente plus de <strong>8 000 €</strong> en soins auriculaires seuls, sans compter les chirurgies (ablation du conduit auditif : 1 500 à 3 000 €)."
-  alertSource="Source : Club de l'Épagneul Breton France 2024 ; Enquête santé des races de chasse SNVEL 2023"
-  introText="L'Épagneul Breton est la première race française de chiens courants par le nombre d'inscriptions au LOF. Cette popularité s'accompagne d'une connaissance approfondie de ses prédispositions médicales : otites récurrentes liées à ses oreilles tombantes, luxation du cristallin héréditaire et épilepsie familiale font partie du tableau clinique à anticiper."
-  faq={[
-    { question: "L'assurance couvre-t-elle les otites récurrentes de l'Épagneul Breton ?", answer: "Oui, les otites sont couvertes par SantéVet comme toute maladie. Après la période de carence (généralement 15 jours pour les maladies), chaque épisode d'otite est remboursé (consultation + traitement). Pour les otites chroniques récurrentes, la couverture est maintenue sans surprime ni plafond annuel dans la formule Confort." },
-    { question: "Mon Épagneul Breton chasse régulièrement : faut-il une assurance spéciale ?", answer: "Non, une assurance standard comme SantéVet couvre les accidents de chasse (blessures par ronces, chutes, coupures). Les morsures par gibier ou les accidents en forêt sont traités comme tout autre accident. Si votre chien participe à des concours de chasse ou travaille professionnellement, vérifiez les conditions d'exclusion pour activité professionnelle." },
-    { question: "La luxation du cristallin de l'Épagneul Breton est-elle remboursée ?", answer: "Oui, la chirurgie de luxation du cristallin (extraction + implant intraoculaire : 800 à 1 500 € par œil) est couverte par SantéVet dans les formules Confort et Premium. Comme cette pathologie est héréditaire, il faut impérativement souscrire avant tout signe ophtalmologique (larmoiement, rougeur, blépharospasme)." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=épagneul-breton&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture épilepsie idiopathique et antiépileptiques à vie",
-        "Prise en charge traumatismes de terrain et corps étrangers",
-        "Remboursement dysplasie de hanche et arthrose",
-        "Couverture atrophie progressive de la rétine APR",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=épagneul-breton&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Épilepsie idiopathique héréditaire", score: 55, prix: "300–800 €/an", description: "Présente dans certaines lignées. Crises généralisées récurrentes nécessitant un traitement antiépileptique à vie et un suivi neurologique." },
-    { nom: "Dysplasie de hanche", score: 50, prix: "1 000–4 500 €", description: "Fréquence modérée mais significative dans les lignées de travail. Arthrose progressive douloureuse. Score HD recommandé avant reproduction." },
-    { nom: "Atrophie progressive de la rétine (APR)", score: 45, prix: "300–1 200 €", description: "Dégénérescence héréditaire des photorécepteurs. Évolution lente vers la cécité nocturne puis totale. Test ADN disponible." },
-    { nom: "Traumatismes de terrain", score: 60, prix: "300–2 000 €/incident", description: "Lacérations profondes, corps étrangers (épillets), fractures lors de la chasse. Bien que non héréditaires, ces accidents justifient à eux seuls une couverture accidents solide." },
-  ]}
-  pathologies={[
-    { nom: "Épilepsie idiopathique héréditaire", description: "Crises convulsives primaires récurrentes d'origine génétique, présentes dans certaines lignées de l'Épagneul Breton. Traitement antiépileptique à vie (phénobarbital, bromure de potassium). Bilans neurologiques et dosages sériques réguliers. Peut interrompre une carrière de chasse.", coût: "300–800 €/an" },
-    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale héréditaire. Fréquence modérée mais significative dans les lignées de travail intensif. Arthrose progressive douloureuse. Score HD avant reproduction. Chirurgie (FHO, prothèse totale) en forme sévère.", coût: "1 000–4 500 €" },
-    { nom: "Atrophie progressive de la rétine (APR)", description: "Dégénérescence héréditaire progressive des photorécepteurs rétiniens. Héméralopie (cécité nocturne) précédant une cécité totale en quelques années. Test ADN disponible pour les reproducteurs.", coût: "300–1 200 €" },
-    { nom: "Traumatismes et corps étrangers (épillets)", description: "Les épillets de graminées (foxtails) peuvent pénétrer la peau, les oreilles, les narines ou les poumons du chien de chasse et migrer dans les tissus profonds. Abcès, fistules, pleurite. Extraction chirurgicale souvent nécessaire.", coût: "300–2 000 €/incident" },
-    { nom: "Otites du chasseur", description: "Otites bactériennes et fongiques récidivantes favorisées par les végétaux et l'humidité lors de la chasse. Douleur auriculaire, prurit, odeur. Nettoyage régulier, traitement antibiotique/antifongique local.", coût: "100–400 €/épisode" },
-    { nom: "Hypothyroïdie", description: "Insuffisance thyroïdienne auto-immune, fréquence modérée dans la race. Léthargie paradoxale chez un chien de travail, prise de poids, alopécie. Lévothyroxine sodique orale à vie.", coût: "200–500 €/an" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=épagneul-breton&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  nom="Épagneul Breton"
+  slug="epagneul-breton"
+  taille="petite"
+  risque="faible"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Première race française de chiens d'arrêt par le nombre d'inscriptions au LOF, l'Épagneul Breton est un chien de chasse polyvalent d'une robustesse remarquable. Compact, infatigable et d'une docilité exemplaire, il est également apprécié comme chien de famille. Ses prédispositions médicales — dysplasie de hanche modérée, atrophie rétinienne progressive, dermatite atopique et otites récurrentes liées à ses oreilles tombantes — sont gérables lorsqu'elles sont détectées précocement. Un suivi vétérinaire régulier et une couverture d'assurance adaptée permettent à ce compagnon actif de mener une carrière de chasse longue et épanouissante.</p>
+
+  <h2>Coût annuel d'un Épagneul Breton</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium race active)</td><td>350–550 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, vermifuge, antiparasitaires)</td><td>250–400 €</td></tr>
+      <tr><td>Toilettage professionnel (2–3 séances)</td><td>100–200 €</td></tr>
+      <tr><td>Accessoires, jouets, équipement de chasse</td><td>150–300 €</td></tr>
+      <tr><td>Assurance santé</td><td>216–360 €</td></tr>
+      <tr><td>Nettoyage auriculaire préventif + produits</td><td>60–120 €</td></tr>
+      <tr><td><strong>Total estimé</strong></td><td><strong>1 126–1 930 €/an</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des animaux de compagnie 2024 ; enquête SNVEL tarifs pratiqués 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes de l'Épagneul Breton</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Dysplasie de hanche (modérée)</td><td>Modérée (~ 15–20 % des radiographies)</td><td>1 000–4 500 €</td></tr>
+      <tr><td>Atrophie rétinienne progressive (PRA)</td><td>Modérée (présente dans certaines lignées)</td><td>300–1 200 €</td></tr>
+      <tr><td>Dermatite atopique</td><td>Modérée (~ 10–15 %)</td><td>400–1 500 €/an</td></tr>
+      <tr><td>Otites (oreilles tombantes)</td><td>Élevée (récurrente)</td><td>100–500 €/épisode</td></tr>
+      <tr><td>Épilepsie idiopathique légère</td><td>Faible à modérée (lignées concernées)</td><td>300–800 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Club de l'Épagneul Breton France 2024 ; OFA Health Statistics 2024 ; Société Centrale Canine (SCC) ; enquête SNVEL 2023.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Épagneul Breton</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Radiographies hanches + score HD officiel</td><td>150–300 €</td><td>1 fois (avant 1 an)</td></tr>
+      <tr><td>Chirurgie dysplasie de hanche (FHO ou prothèse totale)</td><td>1 500–4 500 €/côté</td><td>Si nécessaire</td></tr>
+      <tr><td>Consultation + traitement otite (otoscopie, nettoyage, traitement)</td><td>80–200 €/épisode</td><td>2–6 fois/an</td></tr>
+      <tr><td>Traitement dermatite atopique (immunothérapie, oclacitinib)</td><td>400–1 200 €/an</td><td>Mensuel si atopie</td></tr>
+      <tr><td>Bilan ophtalmologique + test ADN PRA</td><td>150–350 €</td><td>1 fois (chiot)</td></tr>
+      <tr><td>Traitement antiépileptique (phénobarbital + suivi sérologie)</td><td>300–700 €/an</td><td>Mensuel si épilepsie</td></tr>
+      <tr><td>Extraction corps étranger (épillet migrant)</td><td>300–1 500 €</td><td>Selon occurrence</td></tr>
+      <tr><td>Compléments nutritionnels et anti-inflammatoires arthrose</td><td>200–500 €/an</td><td>Selon évolution HD</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : enquête tarifs cliniques vétérinaires France 2024–2025 (SNVEL) ; grille tarifaire assureurs santé animale 2024.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>L'Épagneul Breton présente un profil de risque globalement faible par rapport aux races brachycéphales ou chondrodystrophiques, mais plusieurs pathologies peuvent générer des coûts significatifs. Les otites chroniques bilatérales sont la pathologie la plus fréquente et la plus coûteuse sur le long terme : traitées 4 à 6 fois par an à 120–200 € l'épisode, elles représentent 500 à 1 200 € annuels. Si une ablation du conduit auditif devient nécessaire, le coût chirurgical atteint 1 500 à 3 000 €. La dysplasie de hanche, même modérée, peut nécessiter une prothèse totale à 4 500 € par hanche en forme sévère. La dermatite atopique, si elle est non contrôlée, impose un traitement médicamenteux à vie. Les traumatismes liés à la chasse (épillets migrants, lacérations profondes, fractures) sont imprévisibles mais peuvent générer 500 à 2 000 € par incident.</p>
+
+  <h2>Conseils de prévention pour un Épagneul Breton</h2>
+  <ul>
+    <li>Nettoyer les oreilles hebdomadairement avec un nettoyant auriculaire vétérinaire pour prévenir les otites chroniques.</li>
+    <li>Inspecter le pelage et les orifices (oreilles, narines, espaces interdigitaux) après chaque sortie en campagne pour détecter les épillets.</li>
+    <li>Réaliser une radiographie des hanches avant 12 mois et choisir un éleveur réalisant le bilan HD officiel (SCC) sur les parents.</li>
+    <li>Tester les reproducteurs pour le gène PRA (test ADN optigen disponible) pour éviter la cécité dans la descendance.</li>
+    <li>Surveiller les premiers signes d'atopie (prurit, rougeur des pattes, otites récurrentes) et consulter tôt pour éviter la chronicisation.</li>
+    <li>Maintenir un poids corporel optimal pour préserver les articulations des hanches lors des efforts de chasse.</li>
+    <li>Souscrire une assurance santé dès l'acquisition, couvrant accidents, maladies chroniques et traumatismes de terrain.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Épagneul Breton ?</h2>
+  <p>Bien que son profil de risque soit globalement faible, l'Épagneul Breton est un chien actif exposé à des incidents imprévisibles lors de la chasse. Un épillet migrant vers la cavité thoracique, une fracture lors d'un plongeon en sous-bois ou une dysplasie évolutive nécessitant une prothèse totale peuvent générer des frais de 2 000 à 5 000 € en une seule intervention. L'assurance offre la tranquillité d'esprit indispensable pour un chien de travail dont l'activité physique intense multiplie les risques d'accident.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Épagneul Breton ?</h2>
+  <p>Pour un Épagneul Breton, une formule maladies et accidents avec couverture orthopédique (dysplasie, chirurgie hanche) est prioritaire. Vérifiez que le contrat couvre les accidents de chasse (corps étrangers, fractures, lacérations), les otites chroniques et les maladies chroniques (épilepsie, atopie). Un plafond annuel de 2 000 à 3 000 € est généralement suffisant. La carence maladie inférieure à 30 jours est un critère important pour couvrir les pathologies survenant dès les premières années.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Épagneul Breton</h2>
+  <p>L'Épagneul Breton est avant tout le chien des chasseurs et des amateurs de nature. Sa polyvalence à la chasse (arrêt, rapport sur toutes catégories de gibier), son intelligence et sa docilité en font également un excellent chien de famille actif. La FACCO 2024 le classe parmi les races les plus présentes dans les régions rurales et péri-urbaines de l'ouest et du centre de la France. Le propriétaire type est un chasseur ou un sportif qui pratique régulièrement des activités en plein air avec son chien. Il connaît généralement bien les risques spécifiques à sa race et est attentif aux signes de fatigue ou de boiterie après les sorties de chasse.</p>
+
+  <h2>Questions fréquentes sur l'assurance Épagneul Breton</h2>
+  <details>
+    <summary>L'assurance couvre-t-elle les otites récurrentes de l'Épagneul Breton ?</summary>
+    <p>Oui, les otites sont couvertes comme toute maladie. Après la période de carence, chaque épisode d'otite (consultation + traitement) est remboursé. Pour les otites chroniques récurrentes, la couverture est maintenue sans surprime dans les formules maladies, y compris en cas de chirurgie (ablation du conduit auditif).</p>
+  </details>
+  <details>
+    <summary>Mon Épagneul Breton chasse régulièrement : faut-il une assurance spéciale ?</summary>
+    <p>Non, une assurance standard couvre les accidents de chasse (blessures par ronces, chutes, coupures, corps étrangers). Les conditions d'exclusion portent généralement sur l'activité professionnelle rémunérée, non sur la chasse loisir. Vérifiez les conditions générales de votre contrat si votre chien participe à des concours de chasse rémunérés.</p>
+  </details>
+  <details>
+    <summary>La dysplasie de hanche de l'Épagneul Breton est-elle couverte par l'assurance ?</summary>
+    <p>Oui, la dysplasie de hanche est une maladie héréditaire couverte sous réserve de souscription avant tout diagnostic radiographique officiel. La chirurgie (FHO, triple ostéotomie pelvienne, prothèse totale) et le traitement médical de l'arthrose secondaire sont remboursés dans les formules maladies.</p>
+  </details>
+  <details>
+    <summary>L'atrophie rétinienne progressive (PRA) est-elle remboursée ?</summary>
+    <p>Oui, le suivi ophtalmologique et les consultations liés à la PRA sont couverts. La PRA est une maladie génétique progressive sans traitement curatif actuellement. L'assurance couvre les bilans ophtalmologiques annuels, les aides visuelles et les consultations de suivi de la progression.</p>
+  </details>
+  <details>
+    <summary>Les épillets et corps étrangers sont-ils pris en charge ?</summary>
+    <p>Oui, les corps étrangers (dont les épillets migrants) sont couverts comme accidents. L'extraction chirurgicale d'un épillet profond (abcès, pleurésie, fistule) peut coûter de 500 à 2 000 €. La radiographie et l'échographie de localisation sont également remboursées dans les formules accidents et maladies.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/setter-irlandais">Setter Irlandais</a> — chien de chasse élégant, dysplasie de hanche et atrophie rétinienne comparables</li>
+    <li><a href="/races/cocker-spaniel">Cocker Spaniel</a> — chien de chasse avec oreilles tombantes, profil d'otites et d'atopie similaire</li>
+    <li><a href="/races/border-collie">Border Collie</a> — race de berger active, prédispositions oculaires héréditaires documentées, profil sportif comparable</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">4 500 €</span><span class="figure-label">coût prothèse totale de hanche</span></div>
+      <div class="figure"><span class="figure-value">20 %</span><span class="figure-label">prévalence dysplasie de hanche</span></div>
+      <div class="figure"><span class="figure-value">18 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">13 ans</span><span class="figure-label">espérance de vie moyenne</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Club de l'Épagneul Breton France — Rapport santé et génétique 2024</li>
+    <li>Société Centrale Canine (SCC) — Statistiques LOF, bilan santé des races 2024</li>
+    <li>OFA (Orthopedic Foundation for Animals) — Hip Dysplasia Statistics 2024</li>
+    <li>FACCO — Baromètre des animaux de compagnie en France 2024</li>
+    <li>SNVEL — Enquête nationale sur les tarifs vétérinaires 2023–2024</li>
+    <li>Petersen-Jones S.M. — "Advances in the molecular understanding of canine photoreceptor diseases", JSAP 2005</li>
+    <li>Griffin C.E. — "Canine atopic dermatitis", Veterinary Dermatology 2001</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

@@ -1,113 +1,169 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Cocker Spaniel : Risques & Meilleures Offres 2026"
   description="Le Cocker Spaniel est prédisposé aux otites chroniques, à l'atrophie progressive de la rétine et à la néphropathie familiale. Découvrez les meilleures assurances pour cette race sensible."
-  raceName="Cocker Spaniel"
+  nom="Cocker Spaniel"
   slug="cocker-spaniel"
-  dateModified="2026-04-05"
-  heroSubtitle="Séduisant avec ses grandes oreilles soyeuses, le Cocker Spaniel fait partie des races les plus touchées par les otites chroniques en France. Une pathologie banalisée qui peut évoluer vers des chirurgies coûteuses."
-  imageUrl="/images/races/cocker-spaniel.webp"
-  imageAlt="Cocker Spaniel anglais roux aux oreilles soyeuses dans l'herbe"
-  heroBadge="OTITES CHRONIQUES · RÉTINE"
-  riskScore={70}
-  alertText="Une <strong>ablation totale du conduit auditif (TECA)</strong> chez un Cocker Spaniel avec otites chroniques sévères coûte entre <strong>2 000 et 4 000 euros par oreille</strong>. La <strong>nephropathie familiale</strong>, spécifique au Cocker Anglais, nécessite une dialyse palliative a <strong>500-800 euros/mois</strong> en phase terminale. Ces deux pathologies héréditaires sont couvertes par SanteVet si la souscription intervient avant tout diagnostic."
-  alertSource="Source : Cocker Spaniel Club Health Survey UK 2022 ; Familial Nephropathy in Cocker Spaniels JAVMA 2021"
-  introText="Le Cocker Spaniel Anglais est une race de chasse appréciée et un compagnon familial reconnu pour sa douceur (FACCO 2024). Sa prédisposition aux otites crée un cercle vicieux : infections récurrentes traitées superficiellement, evolution vers l'otite chronique, puis vers des interventions chirurgicales lourdes que peu de propriétaires anticipent."
-  faq={[
-    { question: "Les otites chroniques du Cocker Spaniel sont-elles remboursees ?", answer: "Oui, SanteVet couvre les consultations, traitements et chirurgies lies aux otites chroniques, y compris l'ablation du conduit auditif si necessaire. Le remboursement a 100 % en formule Confort evite de differer les soins qui aggravent la pathologie." },
-    { question: "Quand assurer son Cocker Spaniel pour couvrir la nephropathie familiale ?", answer: "Avant 2 ans, avant tout bilan renal. La nephropathie familiale est détectable par test ADN depuis 2020. Une fois diagnostiquée, elle devient une exclusion permanente. SanteVet couvre l'intégralité du suivi renal si la souscription précède le diagnostic." },
-    { question: "Quel budget mensuel pour assurer un Cocker Spaniel ?", answer: "Entre 20 et 35 euros/mois selon la formule et l'âge. Le profil du Cocker, associant otites chroniques et risque de néphropathie, justifie une formule avec bonne couverture médecine spécialisée." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=cocker-spaniel&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture otites chroniques et traitements récurrents",
-        "Prise en charge néphropathie familiale et suivi rénal",
-        "Remboursement atrophie progressive de la rétine",
-        "Couverture dysplasie de hanche et chirurgie",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=cocker-spaniel&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Otites chroniques", score: 78, prix: "100–600 €/épisode", description: "Prédisposition anatomique majeure. Infections bactériennes et fongiques récidivantes, parfois évolution vers l'otite moyenne ou interne nécessitant une ablation chirurgicale du conduit." },
-    { nom: "Atrophie progressive de la rétine (GPRA)", score: 65, prix: "300–1 200 €", description: "Dégénérescence héréditaire des photorécepteurs conduisant à la cécité progressive. Test ADN disponible pour les éleveurs sérieux." },
-    { nom: "Néphropathie familiale", score: 55, prix: "500–2 500 €/an", description: "Dysplasie rénale héréditaire propre au Cocker Anglais. Insuffisance rénale chronique précoce (2–4 ans). Test ADN disponible depuis 2020." },
-    { nom: "Dysplasie de hanche", score: 48, prix: "1 000–4 000 €", description: "Présente dans certaines lignées, surtout chez le mâle. Arthrose progressive nécessitant un suivi radiographique." },
-  ]}
-  pathologies={[
-    { nom: "Otites chroniques récidivantes", description: "Prédisposition anatomique majeure liée aux longues oreilles pendantes obstruant la ventilation du conduit auditif. Otites bactériennes (Pseudomonas, Staphylocoque) et fongiques (Malassezia) récidivantes. En cas d'échec médical : ablation totale du conduit auditif (TECA).", coût: "100–600 €/épisode" },
-    { nom: "Atrophie progressive de la rétine (GPRA)", description: "Dégénérescence héréditaire généralisée des photorécepteurs conduisant à une cécité progressive irréversible. Héméralopie précoce (vision nocturne diminuée). Test ADN disponible. Pas de traitement curatif.", coût: "300–1 200 €" },
-    { nom: "Néphropathie familiale", description: "Dysplasie rénale héréditaire spécifique au Cocker Spaniel Anglais. Anomalie structurelle congénitale du parenchyme rénal provoquant une insuffisance rénale chronique progressive dès 2–4 ans. Test ADN disponible depuis 2020.", coût: "500–2 500 €/an" },
-    { nom: "Dysplasie de hanche", description: "Malformation articulaire coxo-fémorale héréditaire, surtout chez le mâle Cocker. Arthrose progressive douloureuse. Score HD avant reproduction. Chirurgie en forme sévère.", coût: "1 000–4 000 €" },
-    { nom: "Entropion et ectropion palpébral", description: "Déformations des paupières provoquant soit un frottement ciliaire sur la cornée (entropion), soit une exposition excessive de la conjonctive (ectropion). Chirurgie correctrice (blépharoplastie) nécessaire.", coût: "400–1 500 €" },
-    { nom: "Épilepsie idiopathique", description: "Crises convulsives primaires récurrentes, fréquence modérée dans la race. Traitement antiépileptique à vie. Bilans neurologiques et dosages sériques réguliers nécessaires.", coût: "300–800 €/an" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=cocker-spaniel&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="petite"
+  risque="modere"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Avec ses oreilles longues et soyeuses tombant de chaque côté du museau, le Cocker Spaniel séduit par son allure douce et son tempérament équilibré. Ce que beaucoup de futurs propriétaires ignorent, c'est que cette morphologie caractéristique est précisément à l'origine de sa principale fragilité : les otites chroniques récidivantes, souvent sous-traitées, qui évoluent silencieusement vers des chirurgies lourdes. Ajoutez la néphropathie familiale propre au Cocker Anglais et l'atrophie rétinienne progressive, et vous obtenez un chien dont le suivi vétérinaire demande une vraie anticipation financière.</p>
+
+  <h2>Coût annuel d'un Cocker Spaniel</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes qualité premium)</td><td>350 – 550 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires)</td><td>250 – 400 €</td></tr>
+      <tr><td>Traitements otiques récurrents</td><td>150 – 500 €</td></tr>
+      <tr><td>Toilettage professionnel (5 à 8 fois/an)</td><td>400 – 700 €</td></tr>
+      <tr><td>Assurance santé</td><td>240 – 420 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>100 – 200 €</td></tr>
+      <tr><td>Bilan rénal annuel (Cocker Anglais)</td><td>80 – 180 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des dépenses animales 2024 ; Observatoire SantéVet des frais vétérinaires 2023</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Cocker Spaniel</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Otites chroniques récidivantes</td><td>Très fréquente (première cause de consultation)</td><td>100 – 600 €/épisode</td></tr>
+      <tr><td>Entropion / Ectropion palpébral</td><td>15 – 25 %</td><td>400 – 1 500 €</td></tr>
+      <tr><td>Atrophie rétinienne progressive (PRA/GPRA)</td><td>10 – 20 % selon lignées</td><td>200 – 1 200 €</td></tr>
+      <tr><td>Néphropathie familiale (Cocker Anglais)</td><td>5 – 15 % en l'absence de test ADN</td><td>500 – 2 500 €/an</td></tr>
+      <tr><td>Dermatite séborrhéique</td><td>15 – 20 %</td><td>200 – 800 €/an</td></tr>
+      <tr><td>Épilepsie idiopathique</td><td>5 – 10 %</td><td>300 – 800 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Cocker Spaniel Club Health Survey UK 2022 ; Familial Nephropathy in Cocker Spaniels, JAVMA 2021 ; SCC Fiche race 2024</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Cocker Spaniel</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Consultation + traitement otite aiguë</td><td>60 – 120 €</td><td>2 à 6 fois/an</td></tr>
+      <tr><td>Culture bactérienne + antibiogramme auditif</td><td>80 – 150 €</td><td>Otites récidivantes</td></tr>
+      <tr><td>Ablation totale conduit auditif (TECA)</td><td>2 000 – 4 000 €/oreille</td><td>Otites chroniques sévères</td></tr>
+      <tr><td>Blépharoplastie (entropion/ectropion)</td><td>400 – 1 500 €</td><td>Une fois si indiqué</td></tr>
+      <tr><td>Bilan rénal complet (urée, créatinine, SDMA, UPC)</td><td>80 – 180 €</td><td>Annuel après 2 ans</td></tr>
+      <tr><td>Traitement insuffisance rénale chronique (par mois)</td><td>50 – 200 €/mois</td><td>À vie</td></tr>
+      <tr><td>Examen ophtalmologique + fond d'œil</td><td>60 – 120 €</td><td>Annuel après 4 ans</td></tr>
+      <tr><td>Test ADN néphropathie familiale</td><td>80 – 100 €</td><td>Une fois</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grilles tarifaires vétérinaires spécialistes France 2024 ; Syndicat National des Vétérinaires Praticiens</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Cocker Spaniel présente deux risques financiers majeurs souvent sous-estimés lors de l'adoption. D'abord, les otites chroniques : la morphologie particulière des oreilles pendantes et velues crée un milieu chaud, humide et peu ventilé, terrain idéal pour les infections bactériennes (Pseudomonas, Staphylococcus) et fongiques (Malassezia). Non traitées agressivement dès le départ, elles évoluent vers l'otite chronique hyperplasique, puis vers la nécessité d'une ablation totale du conduit auditif (TECA) — à 2 000–4 000 € par oreille. Ensuite, la néphropathie familiale : spécifique au Cocker Anglais, cette dysplasie rénale héréditaire provoque une insuffisance rénale chronique progressive dès 2 à 4 ans. Elle est aujourd'hui détectable par test ADN, mais les chiens issus d'élevages non testés peuvent être porteurs. En phase terminale, le suivi dialytique peut coûter 500 à 800 €/mois.</p>
+
+  <h2>Conseils de prévention pour un Cocker Spaniel</h2>
+  <ul>
+    <li>Nettoyer régulièrement les oreilles (1 à 2 fois par semaine) avec un nettoyant auriculaire adapté pour limiter la macération.</li>
+    <li>Sécher soigneusement les oreilles après chaque bain ou sortie sous la pluie.</li>
+    <li>Exiger le test ADN néphropathie familiale des deux parents pour un Cocker Anglais.</li>
+    <li>Bilan rénal annuel (créatinine, SDMA, rapport protéines/créatinine urinaire) dès l'âge de 2 ans.</li>
+    <li>Examen ophtalmologique annuel pour dépistage précoce de la PRA et des déformations palpébrales.</li>
+    <li>Contrôle du poids : l'obésité aggrave les arthropathies et la progression rénale.</li>
+    <li>Souscrire une assurance avant les 12 mois du chiot, avant tout diagnostic otique ou rénal.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Cocker Spaniel ?</h2>
+  <p>Les otites chroniques du Cocker Spaniel ont tendance à être banalisées par les propriétaires, qui les traitent ponctuellement sans s'attaquer au cycle infectieux de fond. Sans assurance, le coût de cette gestion au cas par cas peut dépasser 800 € par an, avant d'aboutir à une ablation chirurgicale à 4 000–8 000 € (les deux oreilles). La néphropathie familiale, détectée souvent trop tard, génère un suivi médical lourd. Une assurance souscrite avant tout diagnostic couvre l'ensemble de ces pathologies chroniques et vous permet de traiter convenablement sans arbitrage financier.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Cocker Spaniel ?</h2>
+  <p>Pour le Cocker Spaniel, privilégiez une formule couvrant les maladies chroniques récurrentes sans plafond par acte. La couverture des otites doit inclure les traitements médicaux répétés ET la chirurgie (TECA) en cas d'évolution sévère. Vérifiez également la prise en charge de la néphropathie familiale (suivi rénal, traitement substitutif) et des pathologies oculaires (entropion, PRA). Un remboursement à 80–100 % des frais réels avec un plafond annuel d'au moins 2 500 € est recommandé. Souscrivez dès l'acquisition du chiot.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Cocker Spaniel</h2>
+  <p>Le Cocker Spaniel est très apprécié des familles actives avec enfants, des amateurs de randonnée et des propriétaires qui souhaitent un chien polyvalent, bon chasseur comme compagnon de canapé. Sa sociabilité et son énergie modérée en font un chien accessible aux primo-propriétaires, à condition d'être préparé à l'entretien régulier du pelage et des oreilles. Son budget vétérinaire annuel peut surprendre : il est conseillé de prévoir au minimum 500 à 800 € par an hors assurance, avec des pics possibles en cas d'otites chroniques ou de problèmes oculaires.</p>
+
+  <h2>Questions fréquentes sur l'assurance Cocker Spaniel</h2>
+  <details>
+    <summary>Les otites chroniques récidivantes sont-elles bien couvertes par l'assurance ?</summary>
+    <p>Oui, si la souscription précède tout diagnostic d'otite chronique. Les formules complètes couvrent les consultations, les traitements médicaux répétés et la chirurgie (TECA). Attention : certains assureurs plafonnent le remboursement des otites à un certain nombre d'épisodes par an — vérifiez les conditions générales.</p>
+  </details>
+  <details>
+    <summary>La néphropathie familiale du Cocker Anglais est-elle couverte ?</summary>
+    <p>Oui, à condition de souscrire avant tout bilan rénal anormal et avant 2 ans de préférence. La néphropathie familiale, une fois diagnostiquée, est généralement exclue comme maladie préexistante. Le test ADN disponible depuis 2020 permet aux éleveurs sérieux d'éviter cette pathologie — exigez-le à l'achat.</p>
+  </details>
+  <details>
+    <summary>La chirurgie d'entropion est-elle remboursée ?</summary>
+    <p>Oui, la blépharoplastie correctrice est prise en charge dans les formules médico-chirurgicales. Son coût (400–1 500 €) est souvent supérieur à une année d'assurance, ce qui justifie la souscription précoce. Elle est généralement réalisée entre 6 et 18 mois selon la sévérité.</p>
+  </details>
+  <details>
+    <summary>À quel âge assurer son Cocker Spaniel ?</summary>
+    <p>Dès l'acquisition, idéalement avant 4 mois. Les premières otites peuvent apparaître dès 6–12 mois. Un diagnostic même bénin avant souscription peut créer une exclusion permanente pour toutes les pathologies otiques. La souscription précoce garantit les meilleures conditions tarifaires et de couverture.</p>
+  </details>
+  <details>
+    <summary>Combien coûte une assurance pour un Cocker Spaniel par mois ?</summary>
+    <p>Entre 20 et 35 €/mois selon l'assureur, l'âge et la formule. Compte tenu du risque otique élevé et de la néphropathie potentielle, une formule intermédiaire à complète est recommandée. Le rapport coût/protection est très favorable pour cette race.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/cavalier-king-charles">Cavalier King Charles</a> — gabarit similaire, même tempérament doux, risques cardiaques et oculaires à surveiller</li>
+    <li><a href="/races/setter-irlandais">Setter Irlandais</a> — même origine de chasse, prédispositions oculaires et orthopédiques partagées</li>
+    <li><a href="/races/basset-hound">Basset Hound</a> — même morphologie à oreilles pendantes, risques otiques comparables, gabarit plus imposant</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">4 000 €</span><span class="figure-label">coût TECA par oreille</span></div>
+      <div class="figure"><span class="figure-value">15 %</span><span class="figure-label">prévalence néphropathie familiale</span></div>
+      <div class="figure"><span class="figure-value">20 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">12–15 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Cocker Spaniel Club (UK), <em>Health Survey Results</em>, 2022 — cockerspanielclub.co.uk</li>
+    <li>Lees G.E. et al., "Familial Nephropathy in English Cocker Spaniels", <em>JAVMA</em>, 2021</li>
+    <li>Bedford P.G.C., "Hereditary and Congenital Eye Disease in the Dog", <em>Veterinary Record</em>, 2005</li>
+    <li>Société Centrale Canine (SCC), <em>Fiche de race Cocker Spaniel Anglais</em>, 2024</li>
+    <li>FACCO, <em>Baromètre des animaux de compagnie en France</em>, 2024</li>
+    <li>SantéVet, <em>Observatoire des frais vétérinaires par race</em>, 2023</li>
+    <li>Syndicat National des Vétérinaires Praticiens Français — snvel.fr</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

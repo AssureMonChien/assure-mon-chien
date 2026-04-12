@@ -1,0 +1,527 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://assuremochien.fr/guides" },
+    { "@type": "ListItem", "position": 3, "name": "Assurance chiot : le guide complet", "item": "https://assuremochien.fr/guides/assurance-chiot" }
+  ]
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "À partir de quel âge peut-on assurer un chiot ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La plupart des assureurs acceptent les chiots à partir de 2 mois, conformément à l'âge légal de cession en France. Il est conseillé de souscrire dans les jours suivant l'adoption pour profiter des tarifs jeunes et éviter les exclusions pour pathologies préexistantes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les vaccins du chiot sont-ils remboursés par l'assurance ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les vaccins ne sont remboursés que dans les formules incluant un module prévention. Les formules standard (accidents + maladies) ne couvrent pas les actes préventifs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "La stérilisation est-elle prise en charge par l'assurance chiot ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La stérilisation est considérée comme un acte préventif ou de convenance, exclu des formules standard. Elle peut être partiellement remboursée dans les formules avec module prévention (forfait annuel de prévention)."
+      }
+    }
+  ]
+});
+---
+
+<Layout
+  title="Assurance chiot : le guide complet 2026"
+  description="Tout savoir sur l'assurance santé pour chiot : à quel âge souscrire, quelles garanties choisir, comment éviter les exclusions pour maladies congénitales. Guide 2026."
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldFaq} />
+
+  <!-- ── Hero ── -->
+  <section class="hero-guide">
+    <div class="hero-inner">
+      <p class="hero-label">GUIDE PRATIQUE</p>
+      <h1>Assurance chiot : le guide complet</h1>
+      <p class="hero-desc">Assurer son chiot dès les premières semaines, c'est s'assurer que les maladies héréditaires, les accidents de croissance et les premières urgences vétérinaires seront couverts — avant qu'il ne soit trop tard pour souscrire sans exclusion.</p>
+    </div>
+  </section>
+
+  <!-- ── Contenu ── -->
+  <div class="guide-wrap">
+
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <ol>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/guides">Guides</a></li>
+        <li aria-current="page">Assurance chiot</li>
+      </ol>
+    </nav>
+
+    <div class="toc">
+      <p class="toc-title">Dans ce guide</p>
+      <ol>
+        <li><a href="#age-souscrire">À quel âge assurer son chiot ?</a></li>
+        <li><a href="#garanties-prioritaires">Les garanties prioritaires</a></li>
+        <li><a href="#maladies-congenitales">Maladies congénitales et héréditaires</a></li>
+        <li><a href="#vaccinauon">Premiers vaccins et prévention</a></li>
+        <li><a href="#tarifs-chiot">Combien coûte une assurance chiot ?</a></li>
+        <li><a href="#choisir">Comment choisir la bonne formule ?</a></li>
+      </ol>
+    </div>
+
+    <section id="age-souscrire">
+      <h2>1. À quel âge assurer son chiot ?</h2>
+      <p>La quasi-totalité des assureurs fixent un âge minimum de souscription entre 2 et 3 mois — l'âge légal de cession d'un chiot en France (article L.214-8 du Code rural). Vous pouvez donc souscrire dès la semaine de votre adoption.</p>
+
+      <p>L'âge idéal de souscription est entre 8 et 12 semaines. Plus vous attendez, plus vous prenez le risque qu'un problème de santé soit diagnostiqué avant la fin des délais de carence, le transformant en affection préexistante définitivement exclue.</p>
+
+      <h3>Ce qui se passe si vous attendez</h3>
+      <p>Un chiot est un être fragile qui vit des dizaines d'interactions physiques par jour : escaliers, jeux avec d'autres animaux, objets ingérés, chutes. Une fracture, une intoxication ou une invagination intestinale peut survenir à n'importe quel moment entre 2 et 18 mois. Les frais associés à ces urgences dépassent souvent 1 000 à 2 500 euros.</p>
+      <p>De plus, certaines maladies héréditaires se manifestent progressivement au cours de la première année. Si elles apparaissent après la souscription mais pendant le délai de carence pour les maladies (souvent 30 à 90 jours), elles seront exclues. Si elles apparaissent <em>après</em> le délai de carence, elles sont couvertes — d'où l'intérêt de souscrire le plus tôt possible.</p>
+
+      <div class="encart-cta">
+        <p>SantéVet accepte les souscriptions dès 2 mois. Délai d'attente accidents : 48h seulement.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Assurer mon chiot avec SantéVet</a>
+      </div>
+    </section>
+
+    <section id="garanties-prioritaires">
+      <h2>2. Les garanties prioritaires pour un chiot</h2>
+      <p>Les besoins d'un chiot ne sont pas les mêmes que ceux d'un chien adulte. Voici les garanties à prioriser absolument.</p>
+
+      <h3>La chirurgie d'urgence</h3>
+      <p>Les chiots sont des explorateurs impulsifs : ingestion de corps étrangers (jouets, chaussettes, os), torsion d'estomac chez les grandes races, fractures des membres. Ces urgences nécessitent souvent une intervention chirurgicale immédiate. Les frais : entre 800 et 3 000 euros selon la complexité. Assurez-vous que votre contrat couvre les actes chirurgicaux sans restriction de plafond trop basse.</p>
+
+      <h3>L'hospitalisation</h3>
+      <p>Une parvovirose, une leptospirose ou une intoxication grave peut entraîner une hospitalisation de plusieurs jours en clinique vétérinaire. Une nuit en soins intensifs coûte entre 200 et 400 euros. Recherchez un contrat qui couvre l'hospitalisation sans limitation de durée ou avec un plafond journalier suffisant.</p>
+
+      <h3>Les examens complémentaires</h3>
+      <p>Radio, échographie, bilan sanguin, endoscopie : les analyses diagnostiques représentent une part importante de la facture vétérinaire. Certains contrats les excluent ou les plafonnent séparément. Vérifiez que ces actes sont bien inclus dans votre formule.</p>
+
+      <h3>La prévention (optionnelle mais utile)</h3>
+      <p>Pour un chiot, la première année concentre plusieurs actes préventifs importants : primo-vaccination (2 à 3 injections selon le protocole), antiparasitaires internes et externes, identification (puce électronique), stérilisation. Si votre budget le permet, une formule avec module prévention peut rembourser une partie significative de ces frais.</p>
+
+      <div class="encart-cta">
+        <p>Les formules SantéVet Chiot couvrent les actes chirurgicaux, l'hospitalisation et les examens dès les premières semaines.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Voir les formules chiot SantéVet</a>
+      </div>
+    </section>
+
+    <section id="maladies-congenitales">
+      <h2>3. Maladies congénitales et héréditaires : le point crucial</h2>
+      <p>C'est l'enjeu central de l'assurance chiot. Les maladies héréditaires sont des pathologies génétiquement transmises qui se développent souvent dans les premiers mois ou années de vie. Leur prise en charge par l'assureur dépend de trois facteurs.</p>
+
+      <h3>La formule choisie</h3>
+      <p>Certaines formules d'entrée de gamme excluent explicitement les "maladies congénitales, héréditaires ou génétiques". Cette exclusion peut anéantir l'utilité du contrat pour des races comme le Bouledogue Français (syndrome brachycéphale), le Cavalier King Charles (maladie valvulaire) ou le Golden Retriever (dysplasie, cancer). Lisez attentivement les conditions générales avant de signer.</p>
+
+      <h3>La date d'apparition des symptômes</h3>
+      <p>Même dans les contrats qui couvrent les maladies héréditaires, la règle de la préexistence s'applique : si la pathologie est diagnostiquée ou si des symptômes sont mentionnés dans le carnet de santé avant la fin du délai de carence, elle sera exclue. C'est pourquoi il est impératif de souscrire avant le premier diagnostic.</p>
+
+      <h3>La race et les prédispositions documentées</h3>
+      <p>Certains assureurs excluent des pathologies spécifiques selon la race — par exemple, la dysplasie de hanche pour les races connues pour cette prédisposition, ou le syndrome brachycéphale pour les races à museau court. Avant de souscrire, demandez explicitement si les pathologies connues de votre race sont couvertes.</p>
+
+      <div class="points-cles">
+        <p class="pk-title">Points clés</p>
+        <ul>
+          <li>Choisissez une formule qui couvre explicitement les maladies héréditaires.</li>
+          <li>Souscrivez avant tout diagnostic — même un "peut-être" mentionné par le vétérinaire peut créer une exclusion.</li>
+          <li>Pour les races à risque, optez pour une formule Confort ou Premium, pas une formule accidents seule.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="vaccinauon">
+      <h2>4. Premiers vaccins et prévention : ce qui est couvert</h2>
+      <p>Le protocole vaccinal d'un chiot représente un investissement de 150 à 300 euros sur la première année, selon le nombre d'injections et les valences choisies. Voici comment l'assurance intervient.</p>
+
+      <h3>Les vaccins obligatoires et recommandés</h3>
+      <p>En France, aucun vaccin n'est légalement obligatoire pour les chiens (sauf la rage pour les voyages internationaux). Cependant, les vétérinaires recommandent systématiquement la vaccination contre :</p>
+      <ul>
+        <li><strong>Maladie de Carré :</strong> virose grave, souvent mortelle chez les chiots non vaccinés.</li>
+        <li><strong>Parvovirose :</strong> gastro-entérite hémorragique très contagieuse, taux de mortalité élevé sans traitement.</li>
+        <li><strong>Hépatite de Rubarth (CAV2) :</strong> atteinte hépatique grave.</li>
+        <li><strong>Leptospirose :</strong> maladie bactérienne transmissible à l'humain, rappel annuel nécessaire.</li>
+        <li><strong>Toux du chenil (Bordetella) :</strong> recommandé si contact avec d'autres chiens.</li>
+      </ul>
+
+      <h3>Ce que couvre l'assurance</h3>
+      <p>Les formules standard (accidents + maladies) ne remboursent généralement pas les vaccins, considérés comme des actes préventifs. Les formules complètes ou avec module prévention remboursent un forfait annuel (50 à 150 € selon les contrats) pour les actes de prévention incluant les vaccins, les antiparasitaires et parfois la stérilisation.</p>
+      <p>Si votre chiot doit être hospitalisé pour une maladie qu'il aurait pu éviter avec un vaccin (parvovirose par exemple), certains assureurs peuvent invoquer une faute de l'assuré pour réduire ou refuser le remboursement. Maintenez votre protocole vaccinal à jour.</p>
+
+      <div class="encart-cta">
+        <p>Le module prévention SantéVet rembourse jusqu'à 100 € par an pour les vaccins et antiparasitaires.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Ajouter la prévention à mon contrat</a>
+      </div>
+    </section>
+
+    <section id="tarifs-chiot">
+      <h2>5. Combien coûte une assurance chiot en 2026 ?</h2>
+      <p>Les tarifs pour les chiots sont généralement parmi les plus bas du marché, car les jeunes chiens présentent statistiquement moins de pathologies chroniques. Voici les fourchettes de prix observées en 2026 selon la formule et la race.</p>
+
+      <h3>Formule accidents seule</h3>
+      <p>Entre 10 et 20 €/mois pour les petites races, 15 à 30 €/mois pour les grandes races. Insuffisante pour les races à risque héréditaire élevé.</p>
+
+      <h3>Formule accidents + maladies</h3>
+      <p>La plus recommandée : entre 20 et 45 €/mois selon la race, l'âge et le niveau de remboursement (70 % vs 100 %). Pour un Labrador chiot : environ 28 à 38 €/mois. Pour un Bouledogue Français chiot : 40 à 60 €/mois compte tenu des prédispositions connues.</p>
+
+      <h3>Formule complète avec prévention</h3>
+      <p>Entre 45 et 80 €/mois pour la plupart des races. Sur la première année, le module prévention peut rembourser 100 à 200 € de frais préventifs, ce qui réduit le coût net.</p>
+
+      <div class="points-cles">
+        <p class="pk-title">Économiser sur l'assurance chiot</p>
+        <ul>
+          <li>Optez pour une franchise plus élevée (ex. 100 €) pour réduire la prime mensuelle de 10 à 20 %.</li>
+          <li>Comparez les plafonds annuels : une formule à 30 €/mois avec 3 000 € de plafond vaut mieux qu'une formule à 25 €/mois avec 1 500 € de plafond.</li>
+          <li>Souscrivez en ligne — les offres web sont souvent 10 à 15 % moins chères que par téléphone.</li>
+        </ul>
+      </div>
+
+      <div class="encart-cta">
+        <p>Simulez le tarif exact pour votre chiot en 2 minutes sur SantéVet.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Calculer mon tarif chiot</a>
+      </div>
+    </section>
+
+    <section id="choisir">
+      <h2>6. Comment choisir la bonne formule pour votre chiot ?</h2>
+      <p>La règle est simple : la formule doit couvrir les risques réels de votre race, pas les risques d'une race générique. Voici une grille de décision.</p>
+
+      <h3>Race à risque élevé (Bouledogue, Rottweiler, Cavalier King Charles, Golden Retriever)</h3>
+      <p>Minimum recommandé : formule accidents + maladies avec couverture des maladies héréditaires, plafond annuel de 2 500 € ou plus, taux de remboursement à 80 % minimum. Si votre budget le permet : formule Confort ou Premium avec couverture à 100 % des frais réels.</p>
+
+      <h3>Race à risque modéré (Labrador, Berger Allemand, Husky, Boxer)</h3>
+      <p>Une formule accidents + maladies avec un plafond de 2 000 € et un taux de 70 à 80 % est généralement suffisante pour les premières années. Réévaluez à 5-6 ans selon les pathologies diagnostiquées.</p>
+
+      <h3>Race à risque faible (Berger des Shetlands, Épagneul Breton, Teckel jeune)</h3>
+      <p>Une formule accidents seule peut suffire dans les premières années, à condition de disposer d'une réserve personnelle pour les soins médicaux courants. Planifiez la souscription d'une formule complète avant les 5 ans du chien.</p>
+
+      <p>Consultez notre <a href="/races">guide des 30 races</a> pour les recommandations spécifiques à votre chien, ou notre <a href="/comparatif">comparatif assureurs</a> pour évaluer les meilleures offres du marché.</p>
+
+      <div class="encart-cta">
+        <p>SantéVet propose des formules adaptées à chaque race, avec couverture des maladies héréditaires dès la formule Confort.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Trouver la formule pour mon chiot</a>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h2>Questions fréquentes</h2>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">À partir de quel âge peut-on assurer un chiot ?</button>
+        <div class="faq-a" hidden>
+          <p>La plupart des assureurs acceptent les chiots à partir de 2 mois, conformément à l'âge légal de cession en France. Certains assureurs descendent à 6 semaines pour les formules spécifiques chiots. Il est conseillé de souscrire dans les jours suivant l'adoption pour profiter des tarifs jeunes et éviter les exclusions pour pathologies préexistantes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Les vaccins du chiot sont-ils remboursés par l'assurance ?</button>
+        <div class="faq-a" hidden>
+          <p>Les vaccins ne sont remboursés que dans les formules incluant un module prévention. Les formules standard (accidents + maladies) ne couvrent pas les actes préventifs. En revanche, si votre chiot contracte une maladie contre laquelle il a été vacciné mais développe des complications, les soins curatifs seront pris en charge (sauf exclusion spécifique).</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">La stérilisation est-elle prise en charge par l'assurance chiot ?</button>
+        <div class="faq-a" hidden>
+          <p>La stérilisation est considérée comme un acte préventif ou de convenance, exclu des formules standard. Elle peut être partiellement remboursée dans les formules avec module prévention (forfait annuel de prévention). Les complications post-opératoires liées à une stérilisation sont généralement couvertes en tant que soins médicaux d'urgence.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      answer.hidden = open;
+    });
+  });
+</script>
+
+<style>
+  /* ── Hero ── */
+  .hero-guide {
+    background: #0F6E56;
+    padding: 3.5rem 1.25rem 3rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.18);
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin: 0 0 1rem;
+  }
+
+  .hero-guide h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+    color: #fff;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    opacity: 0.88;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── Contenu ── */
+  .guide-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  .breadcrumb ol {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    font-size: 0.83rem;
+    color: #888;
+  }
+
+  .breadcrumb li + li::before {
+    content: "›";
+    margin-right: 0.3rem;
+  }
+
+  .breadcrumb a {
+    color: #1D9E75;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .toc {
+    background: #F7F9F8;
+    border-left: 3px solid #1D9E75;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 0 32px;
+    position: static;
+  }
+
+  .toc-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0F6E56;
+    margin: 0 0 0.6rem;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .toc li {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .toc a {
+    color: #1D9E75;
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    text-decoration: underline;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #d4ede5;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a3a2f;
+    margin: 1.4rem 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.75;
+    margin: 0 0 0.9rem;
+  }
+
+  ul, ol {
+    margin: 0 0 1rem;
+    padding-left: 1.4rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    color: #1D9E75;
+    font-weight: 600;
+  }
+
+  .encart-cta {
+    background: #e8f7f2;
+    border: 1px solid #b2ddd0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .encart-cta p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #1a4a3a;
+    flex: 1;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #1D9E75;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 7px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .cta-btn:hover {
+    background: #157a5b;
+  }
+
+  .points-cles {
+    background: #fff;
+    border: 1.5px solid #1D9E75;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .pk-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1D9E75;
+    margin: 0 0 0.5rem !important;
+  }
+
+  .points-cles ul {
+    margin: 0;
+  }
+
+  .faq-section {
+    border-top: 2px solid #d4ede5;
+    padding-top: 2rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e8f0ed;
+    padding: 0.1rem 0;
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: #0F6E56;
+    padding: 0.9rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .faq-q::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #1D9E75;
+    flex-shrink: 0;
+  }
+
+  .faq-q[aria-expanded="true"]::after {
+    content: "−";
+  }
+
+  .faq-a {
+    padding: 0 0 1rem;
+  }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.93rem;
+  }
+
+  @media (max-width: 540px) {
+    .encart-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

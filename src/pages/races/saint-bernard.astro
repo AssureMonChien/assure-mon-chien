@@ -1,113 +1,168 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Saint-Bernard : Risques & Meilleures Offres 2026"
   description="Le Saint-Bernard présente jusqu'à 47 % de dysplasie de hanche. Découvrez les meilleures assurances pour couvrir les pathologies coûteuses de cette grande race de sauvetage."
-  raceName="Saint-Bernard"
+  nom="Saint-Bernard"
   slug="saint-bernard"
-  dateModified="2026-04-05"
-  heroSubtitle="Légende des Alpes et géant au cœur d'or, le Saint-Bernard concentre dans sa masse imposante les risques des grandes races : dysplasie record, torsion gastrique et ostéosarcome font de chaque année une vigilance vétérinaire intense."
-  imageUrl="/images/races/saint-bernard.webp"
-  imageAlt="Saint-Bernard roux et blanc imposant dans un paysage enneigé"
-  heroBadge="GRANDE RACE · DYSPLASIE SÉVÈRE"
-  riskScore={75}
-  alertText="La <strong>dysplasie de hanche bilaterale</strong> touche jusqu'a <strong>47 % des Saint-Bernards</strong> selon les registres radiographiques, le taux le plus élevé parmi les grandes races. Deux prothèses totales de hanche atteignent <strong>16 000 euros</strong>. Une assurance à 40 euros/mois représente <strong>480 euros par an</strong>, soit un ratio de 1 pour 33 par rapport au pire scenario chirurgical."
-  alertSource="Source : OFA Hip Dysplasia Statistics Saint Bernard breed 47.7 % affected ; Saint Bernard Club of America Health Survey 2023"
-  introText="Le Saint-Bernard est une race emblématique en France, appréciée des amateurs de grandes races pour son calme et sa douceur (SCC 2024). Sa taille exceptionnelle (70-90 kg) signifie des frais vétérinaires majorés sur chaque acte : anesthésie, chirurgie, hospitalisation : tout coûte proportionnellement plus cher que pour une race de taille standard."
-  faq={[
-    { question: "La dysplasie de hanche du Saint-Bernard est-elle couverte a 100 % ?", answer: "Oui, sous reserve de souscription avant tout examen radiographique. SanteVet couvre la chirurgie orthopédique incluant les prothèses totales de hanche, jusqu'à 8 000 euros par hanche, rembourses a 100 % en formule Confort." },
-    { question: "A quel âge assurer son Saint-Bernard pour couvrir la dysplasie ?", answer: "Avant 12 mois, avant tout bilan radiographique. Avec un taux de dysplasie de 47 % dans la race, souscrire avant le premier examen HD est une nécessité absolue. Un score HD-D avant souscription exclut toute chirurgie orthopédique." },
-    { question: "Quel budget mensuel pour assurer un Saint-Bernard ?", answer: "Entre 35 et 60 euros/mois selon la formule et l'âge, parmi les tarifs les plus élevés du marche pour les grandes races. Ce surcout est largement justifie face a des frais vétérinaires potentiels de 15 000 a 20 000 euros sur la vie du chien." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=saint-bernard&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture dysplasie de hanche et prothèse totale bilatérale",
-        "Prise en charge dilatation-torsion gastrique en urgence",
-        "Remboursement ostéosarcome et chimiothérapie",
-        "Couverture entropion/ectropion et chirurgie correctrice",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=saint-bernard&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Dysplasie de hanche et du coude", score: 80, prix: "2 000–8 000 €", description: "Le Saint-Bernard figure parmi les races avec le taux de dysplasie le plus élevé (OFA). Prothèse totale de hanche souvent nécessaire. Coûts très élevés en raison de la taille." },
-    { nom: "Dilatation-torsion de l'estomac", score: 68, prix: "2 000–5 000 €", description: "Urgence vitale liée au thorax profond et aux repas copieux. L'estomac se dilate et se tord en quelques heures. Chirurgie immédiate, gastropexie préventive possible." },
-    { nom: "Ostéosarcome", score: 60, prix: "3 000–12 000 €", description: "Cancer osseux malin plus fréquent dans les grandes races. Touche préférentiellement les os longs. Amputation et chimiothérapie, pronostic réservé." },
-    { nom: "Entropion et ectropion palpébral", score: 55, prix: "400–1 500 €", description: "Déformations des paupières liées à la peau abondante du visage. Irritation cornéenne chronique et risque d'ulcère. Chirurgie correctrice nécessaire." },
-  ]}
-  pathologies={[
-    { nom: "Dysplasie de hanche et du coude", description: "Taux de dysplasie de hanche parmi les plus élevés (registre OFA : jusqu'à 47 %). Incongruence articulaire progressive, arthrose sévère douloureuse. Prothèse totale de hanche bilatérale souvent nécessaire. Coût majeur lié au gabarit (50–90 kg).", coût: "2 000–8 000 €" },
-    { nom: "Dilatation-torsion de l'estomac", description: "Urgence vitale liée à la morphologie thoracique profonde. Dilation gazeuse de l'estomac suivie de torsion sur l'axe cardio-pylorique. Choc hypovolémique rapide, nécrose gastrique. Chirurgie immédiate de détorsion, résection partielle si nécrose, et gastropexie préventive.", coût: "2 000–5 000 €" },
-    { nom: "Ostéosarcome", description: "Tumeur osseuse maligne primitive. Douleur intense d'apparition brutale, boiterie aiguë sur os longs (humérus, radius, fémur, tibia). Amputation + chimiothérapie adjuvante. Survie médiane 10–12 mois avec traitement complet.", coût: "3 000–12 000 €" },
-    { nom: "Entropion et ectropion palpébral", description: "Déformations des paupières liées à la peau abondante du visage du Saint-Bernard. Entropion : frottement ciliaire sur la cornée. Ectropion : exposition conjonctivale. Chirurgie correctrice (blépharoplastie) nécessaire avant les lésions cornéennes.", coût: "400–1 500 €" },
-    { nom: "Épilepsie idiopathique", description: "Crises convulsives primaires récurrentes dans la race. Antiépileptiques à vie. Bilans neurologiques et dosages sériques réguliers.", coût: "300–800 €/an" },
-    { nom: "Ostéochondrose dissécante (OCD)", description: "Nécrose du cartilage articulaire chez le jeune chien en croissance rapide. Localisation préférentielle : épaule, coude, grasset. Boiterie unilatérale progressive. Chirurgie arthroscopique d'exérèse du fragment cartilagineux.", coût: "1 500–4 000 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=saint-bernard&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="grande"
+  risque="eleve"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Légende vivante des Alpes et géant au cœur d'or, le Saint-Bernard impressionne par sa stature et sa douceur proverbiale. Mais cette masse imposante — 60 à 90 kg selon les individus — concentre dans un même corps les risques les plus lourds des grandes races : dysplasie de hanche avec l'un des taux les plus élevés de l'espèce canine, dilatation-torsion gastrique mortelle en quelques heures, ostéosarcome et syndrome de Wobbler. Chaque acte vétérinaire est majoré par le gabarit. Une assurance adaptée n'est pas un luxe pour cette race : c'est une nécessité financière documentée par les statistiques orthopédiques mondiales.</p>
+
+  <h2>Coût annuel d'un Saint-Bernard</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium très grande race)</td><td>900 – 1 400 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires, vermifuges)</td><td>300 – 500 €</td></tr>
+      <tr><td>Assurance santé</td><td>420 – 720 €</td></tr>
+      <tr><td>Toilettage (3 à 4 séances/an)</td><td>200 – 400 €</td></tr>
+      <tr><td>Accessoires, literie grande race</td><td>200 – 400 €</td></tr>
+      <tr><td>Suivi orthopédique ou oncologique si pathologie</td><td>1 000 – 5 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO/TNS Sofres, enquête budget animal de compagnie 2023 ; grille tarifaire CHV France 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Saint-Bernard</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Dysplasie de hanche bilatérale</td><td>Très élevée (47,7 % selon OFA)</td><td>2 000 – 8 000 €</td></tr>
+      <tr><td>Dysplasie du coude</td><td>Élevée</td><td>1 500 – 5 000 €</td></tr>
+      <tr><td>Dilatation-torsion gastrique (DTG)</td><td>Élevée (grande race thorax profond)</td><td>2 000 – 5 000 €</td></tr>
+      <tr><td>Ostéosarcome</td><td>Modérée à élevée (très grande race)</td><td>3 000 – 12 000 €</td></tr>
+      <tr><td>Entropion / ectropion palpébral</td><td>Modérée</td><td>400 – 1 500 €</td></tr>
+      <tr><td>Syndrome de Wobbler (myélopathie cervicale)</td><td>Modérée</td><td>2 000 – 8 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : OFA Hip Dysplasia by Breed — Saint Bernard 47,7 % affected, 2023 ; Saint Bernard Club of America Health Survey 2023.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Saint-Bernard</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Radiographies de hanche et coude (scores HD/ED)</td><td>200 – 350 €</td><td>1 fois (dépistage)</td></tr>
+      <tr><td>Prothèse totale de hanche (par hanche)</td><td>3 500 – 5 500 €</td><td>Si dysplasie sévère</td></tr>
+      <tr><td>Chirurgie DTG (détorsion + gastropexie)</td><td>2 000 – 4 500 €</td><td>Urgence vitale</td></tr>
+      <tr><td>Gastropexie préventive (pendant stérilisation)</td><td>300 – 600 €</td><td>1 fois recommandé</td></tr>
+      <tr><td>Amputation membre + chimiothérapie (ostéosarcome)</td><td>5 000 – 12 000 €</td><td>Si ostéosarcome</td></tr>
+      <tr><td>IRM cervicale + chirurgie Wobbler (décompression)</td><td>3 000 – 7 000 €</td><td>Si syndrome de Wobbler</td></tr>
+      <tr><td>Chirurgie correctrice entropion/ectropion</td><td>500 – 1 500 €</td><td>Si déformation sévère</td></tr>
+      <tr><td>Arthroscopie dysplasie du coude (OCD, FCP)</td><td>1 500 – 3 000 €/coude</td><td>Si forme chirurgicale</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grille tarifaire vétérinaire France 2024 ; SNVEL ; CHV Alfort, Nantes, Vetagro-Sup Lyon.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Saint-Bernard cumule les risques des très grandes races à un niveau rarement atteint. Son taux de dysplasie de hanche de 47,7 % (registre OFA, 2023) signifie que près d'un Saint-Bernard sur deux présentera une anomalie articulaire nécessitant un suivi au minimum, une chirurgie dans les cas sévères. Deux prothèses totales de hanche représentent un investissement de 7 000 à 11 000 €. La dilatation-torsion gastrique (DTG) est une urgence vitale : sans chirurgie dans les 4 à 6 heures, le taux de mortalité dépasse 80 %. L'intervention coûte entre 2 000 et 4 500 €. L'ostéosarcome touche préférentiellement les os longs des très grandes races : le protocole complet (amputation + chimiothérapie) dépasse 10 000 €. Le syndrome de Wobbler (myélopathie cervicale spondylomyélopathique), nécessitant une IRM et souvent une décompression neurochirurgicale, représente 3 000 à 8 000 €. Sur la courte vie du Saint-Bernard (8 à 10 ans), les frais vétérinaires cumulés peuvent atteindre 15 000 à 25 000 € sans assurance.</p>
+
+  <h2>Conseils de prévention pour un Saint-Bernard</h2>
+  <ul>
+    <li>Radiographies de hanche et de coude avant 18 mois avec notation HD/ED officielle SCC pour dépister la dysplasie et adapter la gestion de la croissance.</li>
+    <li>Envisager une gastropexie préventive lors de la stérilisation pour réduire de 95 % le risque de DTG mortelle.</li>
+    <li>Fractionner les repas en 2 à 3 prises quotidiennes, éviter tout exercice intense dans les 2 heures suivant les repas pour limiter le risque de torsion gastrique.</li>
+    <li>Surveiller tout signe de boiterie ou de douleur osseuse brutale après 5 ans : peut évoquer un ostéosarcome débutant nécessitant une radiographie urgente.</li>
+    <li>Bilan ophtalmologique annuel pour détecter l'entropion ou l'ectropion avant les complications cornéennes chroniques.</li>
+    <li>Attention aux signes de syndrome de Wobbler : ataxie des membres postérieurs, démarche chaloupée, faiblesse progressive — consultation neurologique urgente.</li>
+    <li>Souscrire une assurance avant 12 mois, avant tout bilan radiographique ou spécialisé susceptible de créer une exclusion pour préexistence.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Saint-Bernard ?</h2>
+  <p>Avec un taux de dysplasie de hanche de 47,7 %, un risque de DTG mortelle parmi les plus élevés des grandes races, et une prédisposition à l'ostéosarcome, le Saint-Bernard est objectivement l'une des races canines les plus coûteuses à soigner en France. Une assurance souscrite avant 12 mois protège contre des frais imprévisibles pouvant dépasser 10 000 € sur une seule urgence chirurgicale. À 40–55 €/mois de prime, l'assurance représente un ratio de protection exceptionnel face aux risques documentés de cette race emblématique.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Saint-Bernard ?</h2>
+  <p>Pour un Saint-Bernard, une formule avec plafond annuel élevé (minimum 5 000 €, idéalement sans plafond) et couverture chirurgie orthopédique incluant les prothèses est prioritaire. La couverture des urgences vitales (DTG, ostéosarcome) est indispensable. Vérifiez que l'oncologie (chimiothérapie, amputation) est explicitement incluse. Les contrats plafonnant les remboursements orthopédiques à des montants inférieurs à 3 000 € sont insuffisants pour cette race. Une formule intégrant la neurochirurgie (syndrome de Wobbler) est un plus significatif.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Saint-Bernard</h2>
+  <p>Le propriétaire de Saint-Bernard est généralement amoureux des grandes races calmes et affectueuses. Il vit en maison avec grand jardin, souvent en zone rurale ou péri-urbaine, et a la capacité financière d'assumer les coûts spécifiques à une très grande race. Il est souvent conscient des risques orthopédiques mais peut sous-estimer le risque de DTG ou d'ostéosarcome. En France, le Saint-Bernard reste une race relativement rare (quelques centaines d'inscriptions SCC annuelles), appréciée des familles avec enfants pour sa douceur proverbiale. Les propriétaires avertis s'affilient au Saint Bernard Club Suisse-Romand France et participent aux programmes de dépistage orthopédique.</p>
+
+  <h2>Questions fréquentes sur l'assurance Saint-Bernard</h2>
+  <details>
+    <summary>La dysplasie de hanche du Saint-Bernard est-elle couverte à 100 % ?</summary>
+    <p>Oui, sous réserve de souscription avant tout examen radiographique. Les meilleures formules couvrent la chirurgie orthopédique incluant les prothèses totales de hanche, jusqu'à des plafonds élevés. Avec un taux de dysplasie de 47,7 % dans la race, souscrire avant le premier examen HD est une nécessité absolue. Un score HD-C ou HD-D diagnostiqué avant souscription exclut définitivement toute chirurgie orthopédique liée.</p>
+  </details>
+  <details>
+    <summary>La torsion gastrique (DTG) est-elle une urgence remboursée par l'assurance ?</summary>
+    <p>Oui, la DTG est une urgence chirurgicale couverte par toutes les formules incluant les chirurgies. La détorsion + gastropexie représente 2 000 à 4 500 €. Sans assurance, ce montant peut être difficile à mobiliser en urgence nocturne. Certains assureurs proposent aussi la gastropexie préventive dans leurs postes prévention — vérifiez ce point au moment de choisir votre formule.</p>
+  </details>
+  <details>
+    <summary>L'ostéosarcome du Saint-Bernard est-il couvert par l'assurance chien ?</summary>
+    <p>Oui, les meilleures formules couvrent le traitement complet de l'ostéosarcome : consultations oncologiques, biopsies, examens d'imagerie, amputation et chimiothérapie adjuvante. Vérifiez que l'oncologie n'est pas exclue ou plafonnée à des montants insuffisants (moins de 5 000 €). Le coût complet du traitement peut atteindre 10 000 à 12 000 €.</p>
+  </details>
+  <details>
+    <summary>À quel âge souscrire une assurance pour un Saint-Bernard ?</summary>
+    <p>Avant 12 mois, impérativement avant tout bilan radiographique. La DTG peut survenir dès 3–4 ans. L'ostéosarcome apparaît généralement entre 5 et 8 ans. La dysplasie peut être radiographiquement détectée dès 6–9 mois. Toute consultation spécialisée avant la souscription peut créer une exclusion définitive sur la pathologie concernée.</p>
+  </details>
+  <details>
+    <summary>Quel budget mensuel prévoir pour assurer un Saint-Bernard ?</summary>
+    <p>Entre 35 et 65 €/mois selon la formule, l'âge et le taux de remboursement. C'est l'une des primes les plus élevées du marché pour les grandes races, pleinement justifiée face à des frais potentiels de 15 000 à 25 000 € sur la vie du chien. Une formule premium à 50 €/mois représente 600 €/an contre des frais orthopédiques potentiels de 10 000 € pour les seules prothèses de hanche.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/montagne-des-pyrenees">Montagne des Pyrénées</a> — grande race blanche aux pathologies orthopédiques similaires et au tempérament proche</li>
+    <li><a href="/races/rottweiler">Rottweiler</a> — grande race partageant les risques de dysplasie, d'ostéosarcome et de DTG</li>
+    <li><a href="/races/malinois">Malinois</a> — race athlétique aux pathologies orthopédiques documentées et aux besoins médicaux spécifiques</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">47,7 %</span><span class="figure-label">prévalence dysplasie de hanche (OFA)</span></div>
+      <div class="figure"><span class="figure-value">4 500 €</span><span class="figure-label">coût chirurgie DTG urgence</span></div>
+      <div class="figure"><span class="figure-value">35 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">8–10 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>OFA (Orthopedic Foundation for Animals) — Hip Dysplasia Statistics by Breed : Saint Bernard 47,7 % affected, 2023</li>
+    <li>Saint Bernard Club of America — Health Survey and breed health statistics 2023</li>
+    <li>Glickman LT et al. — Non-dietary risk factors for gastric dilatation-volvulus in large and giant breed dogs, JAVMA 2000</li>
+    <li>Brodey RS, Riser WH — Canine osteosarcoma : a clinicopathologic study of 194 cases, Clin Orthop Relat Res 1969</li>
+    <li>da Costa RC — Cervical spondylomyelopathy (Wobbler syndrome) in dogs, Vet Clin North Am Small Anim Pract 2010</li>
+    <li>SCC (Société Centrale Canine) — Statistiques d'inscriptions races géantes France 2024</li>
+    <li>SNVEL — grille tarifaire vétérinaire indicative France, 2024</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

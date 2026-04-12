@@ -1,0 +1,1657 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+
+interface Maladie {
+  nom: string;
+  frequence: string;
+  cout: string;
+  description: string;
+}
+interface FaqItem { q: string; a: string; }
+interface RaceSimilaire { slug: string; nom: string; }
+
+interface RaceData {
+  slug: string;
+  nom: string;
+  taille: 'petite' | 'moyenne' | 'grande' | 'geante';
+  risque: 'faible' | 'modere' | 'eleve';
+  description: string;
+  intro: string;
+  coutAlimentation: string;
+  coutSoinsVet: string;
+  coutVaccins: string;
+  coutAssurance: string;
+  coutToilettage: string;
+  coutAccessoires: string;
+  coutGarde: string;
+  coutTotal: string;
+  maladies: Maladie[];
+  risquesFinanciers: string;
+  conseils: string[];
+  assuranceReco: string;
+  assurancePasCher: string;
+  profil: string;
+  faq: FaqItem[];
+  racesSimilaires: RaceSimilaire[];
+  esperanceVie: string;
+  coutVetAnnuel: string;
+  coutVieEstime: string;
+  prixAcquisition: string;
+  sources: string[];
+}
+
+export function getStaticPaths() {
+  const races: RaceData[] = [
+    {
+      slug: "labrador",
+      nom: "Labrador Retriever",
+      taille: "grande",
+      risque: "modere",
+      description: "Tout savoir sur l'assurance Labrador Retriever : coûts annuels, dysplasie, obésité, risques financiers et conseils pour bien assurer votre chien.",
+      intro: "Le Labrador Retriever est l'une des races les plus populaires de France, appréciée pour son caractère doux et son adaptabilité. Sa robustesse générale masque cependant des prédispositions réelles à la dysplasie de hanche et à l'obésité, deux pathologies pouvant générer des frais vétérinaires substantiels dès le milieu de vie.",
+      coutAlimentation: "700 – 1 100 €",
+      coutSoinsVet: "250 – 500 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "350 – 600 €",
+      coutToilettage: "100 – 200 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 450 €",
+      coutTotal: "1 880 – 3 260 €",
+      maladies: [
+        { nom: "Dysplasie de hanche", frequence: "20–25 % des Labradors", cout: "1 500 – 3 500 € par opération", description: "Malformation de l'articulation coxo-fémorale entraînant douleur et boiterie progressive. Dépistage radiographique recommandé à 12–18 mois." },
+        { nom: "Obésité", frequence: "Jusqu'à 60 % des adultes non castrés", cout: "300 – 800 €/an en régimes et suivi", description: "Le Labrador possède une mutation du gène POMC qui réduit la sensation de satiété. L'obésité aggrave les pathologies articulaires et cardiaques." },
+        { nom: "Rupture du ligament croisé crânial", frequence: "Fréquente chez les sujets en surpoids", cout: "1 800 – 3 000 € par genou", description: "Lésion traumatique ou dégénérative du genou, souvent aggravée par l'excès de poids. Chirurgie (TPLO ou TTA) généralement nécessaire." },
+      ],
+      risquesFinanciers: "La principale menace financière pour un propriétaire de Labrador est la combinaison dysplasie + chirurgie orthopédique, qui peut atteindre 4 000 à 6 000 € sur plusieurs interventions. À cela s'ajoute un risque élevé d'obésité nécessitant un suivi nutritionnel régulier.",
+      conseils: ["Dépistage radiographique de la dysplasie à 12 mois", "Contrôle strict des rations alimentaires dès le chiotage", "Exercice quotidien régulier sans effort excessif avant 12 mois", "Bilan de santé annuel à partir de 6 ans"],
+      assuranceReco: "Optez pour une formule accidents + maladies couvrant les pathologies orthopédiques avec un plafond annuel d'au moins 2 500 €. La dysplasie et les ruptures ligamentaires doivent être explicitement couvertes.",
+      assurancePasCher: "Une formule à franchise élevée (100–150 €) permet de réduire la prime mensuelle de 15 à 20 % tout en conservant la couverture sur les chirurgies importantes.",
+      profil: "Convient aux familles actives, aux sportifs et aux propriétaires débutants. Nécessite un espace extérieur et 1 à 2 heures d'exercice quotidien.",
+      faq: [
+        { q: "Le Labrador est-il une race chère à assurer ?", a: "La prime mensuelle pour un Labrador se situe entre 28 et 50 €/mois selon la formule. C'est une race à risque modéré — moins coûteuse à assurer qu'un Bouledogue Français, mais dont les frais vétérinaires peuvent rapidement dépasser 2 000 € en cas de dysplasie." },
+        { q: "À quel âge assurer son Labrador ?", a: "Dès l'adoption, idéalement entre 8 et 12 semaines. Souscrire avant le premier bilan vétérinaire évite que la dysplasie soit qualifiée de pathologie préexistante si elle est détectée lors d'un dépistage précoce." },
+        { q: "L'assurance couvre-t-elle la dysplasie du Labrador ?", a: "Oui, à condition de souscrire avant tout diagnostic. Les formules Confort et Premium des principaux assureurs (SantéVet, AssurOPoil) couvrent la dysplasie de hanche sans exclusion de race, à condition qu'aucun symptôme n'ait été constaté avant la souscription." },
+      ],
+      racesSimilaires: [{ slug: "golden-retriever", nom: "Golden Retriever" }, { slug: "berger-australien", nom: "Berger Australien" }, { slug: "berger-des-shetlands", nom: "Berger des Shetlands" }],
+      esperanceVie: "10 – 14 ans",
+      coutVetAnnuel: "300 – 1 000 €",
+      coutVieEstime: "18 000 – 28 000 €",
+      prixAcquisition: "800 – 1 800 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024 — ofa.org", "AFVAC, Pathologies courantes du Labrador Retriever, 2023", "FACCO, Enquête démographique sur les chiens en France, 2024"],
+    },
+    {
+      slug: "golden-retriever",
+      nom: "Golden Retriever",
+      taille: "grande",
+      risque: "eleve",
+      description: "Assurance Golden Retriever : taux de cancer, dysplasie et coûts vétérinaires élevés. Guide complet pour bien protéger votre Golden.",
+      intro: "Le Golden Retriever est réputé pour son caractère affectueux et sa fiabilité auprès des familles. Mais cette race présente un taux de cancer parmi les plus élevés de toutes les espèces canines — environ 60 % des Goldens meurent d'un cancer — ce qui en fait l'une des races les plus coûteuses en soins vétérinaires.",
+      coutAlimentation: "700 – 1 100 €",
+      coutSoinsVet: "300 – 700 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "400 – 700 €",
+      coutToilettage: "200 – 400 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 500 €",
+      coutTotal: "2 080 – 3 810 €",
+      maladies: [
+        { nom: "Cancer (hémangiosarcome, ostéosarcome, lymphome)", frequence: "~60 % des Golden Retrievers affectés au cours de leur vie", cout: "2 000 – 10 000 € selon le type et le traitement", description: "Le Golden présente un profil génétique particulièrement susceptible aux tumeurs malignes. Le dépistage précoce et la chirurgie d'exérèse restent les traitements de référence." },
+        { nom: "Dysplasie de hanche et du coude", frequence: "20–30 % selon les lignées", cout: "1 500 – 4 000 € par articulation", description: "Malformation articulaire héréditaire entraînant douleur et dégénérescence progressive. Les lignées issues d'éleveurs sérieux avec tests OFA/PennHIP sont moins touchées." },
+        { nom: "Hypothyroïdie", frequence: "Fréquente après 4 ans", cout: "300 – 600 €/an en suivi et traitement hormonal", description: "Insuffisance de production de la glande thyroïde se manifestant par une prise de poids, une alopécie et une fatigue. Traitement quotidien à vie par lévothyroxine." },
+      ],
+      risquesFinanciers: "Le risque financier majeur du Golden Retriever est le cancer, qui peut entraîner des dépenses de 3 000 à 12 000 € selon le type de traitement. La combinaison dysplasie + cancer en milieu de vie peut dépasser 15 000 € sur la durée de vie de l'animal.",
+      conseils: ["Dépistage génétique avant l'achat chez un éleveur avec certifications OFA", "Suivi vétérinaire semestriel à partir de 5 ans pour détection précoce des tumeurs", "Exercice modéré, poids contrôlé pour préserver les articulations", "Éviter les lignées sans certificats de santé"],
+      assuranceReco: "La formule Premium ou Confort est indispensable pour couvrir les traitements oncologiques. Vérifiez que le cancer est couvert sans plafond spécifique limité — certaines formules plafonnent les affections tumorales à 1 500 € par an.",
+      assurancePasCher: "Pour réduire la prime, comparez les formules avec plafond annuel de 3 000 € et franchise à 100 €. Même une couverture partielle permet d'absorber les chirurgies d'exérèse tumorale.",
+      profil: "Race idéale pour les familles avec enfants. Nécessite un propriétaire disposé à investir dans le suivi de santé. Déconseillé aux personnes à budget vétérinaire très contraint.",
+      faq: [
+        { q: "Pourquoi le Golden Retriever est-il si touché par le cancer ?", a: "Des études génomiques (Morris Animal Foundation, Golden Retriever Lifetime Study, 2022) ont identifié plusieurs mutations génétiques spécifiques à la race qui augmentent la susceptibilité aux tumeurs malignes, notamment l'hémangiosarcome et le lymphome." },
+        { q: "L'assurance couvre-t-elle le cancer chez le Golden Retriever ?", a: "Oui, si souscrite avant tout diagnostic. Vérifiez que le contrat ne comporte pas d'exclusion ou de plafond spécifique pour les affections néoplasiques. SantéVet Confort couvre les traitements oncologiques sans exclusion de race." },
+        { q: "Combien coûte une chimiothérapie pour un Golden Retriever ?", a: "Un protocole de chimiothérapie complète pour un lymphome coûte entre 3 000 et 8 000 €. La chirurgie d'exérèse d'un hémangiosarcome splénique : 1 500 à 3 000 €. Ces montants justifient une couverture assurance avec plafond suffisant." },
+      ],
+      racesSimilaires: [{ slug: "labrador", nom: "Labrador Retriever" }, { slug: "setter-irlandais", nom: "Setter Irlandais" }, { slug: "berger-australien", nom: "Berger Australien" }],
+      esperanceVie: "10 – 12 ans",
+      coutVetAnnuel: "400 – 1 800 €",
+      coutVieEstime: "22 000 – 38 000 €",
+      prixAcquisition: "1 000 – 2 500 €",
+      sources: ["Morris Animal Foundation, Golden Retriever Lifetime Study, 2022 — morrisanimalfoundation.org", "OFA Hip Dysplasia Statistics 2024", "Dobson JM, Breed-predispositions to cancer in pedigree dogs, ISRN Vet Sci, 2013"],
+    },
+    {
+      slug: "berger-allemand",
+      nom: "Berger Allemand",
+      taille: "grande",
+      risque: "modere",
+      description: "Assurance Berger Allemand : dysplasie, myélopathie dégénérative et coûts vétérinaires. Guide complet pour protéger votre chien.",
+      intro: "Le Berger Allemand est l'une des races de travail les plus répandues au monde, alliant intelligence, loyauté et polyvalence. Ses prédispositions héréditaires à la dysplasie de hanche et à la myélopathie dégénérative en font cependant une race dont les frais vétérinaires augmentent significativement après 6 ans.",
+      coutAlimentation: "700 – 1 100 €",
+      coutSoinsVet: "250 – 500 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "350 – 600 €",
+      coutToilettage: "150 – 300 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 450 €",
+      coutTotal: "1 930 – 3 360 €",
+      maladies: [
+        { nom: "Dysplasie de hanche", frequence: "20–35 % selon les lignées", cout: "1 500 – 4 000 € par articulation", description: "Pathologie orthopédique héréditaire parmi les plus documentées dans la race. Le dépistage par les éleveurs sérieux réduit le risque mais ne l'élimine pas." },
+        { nom: "Myélopathie dégénérative (DM)", frequence: "~2 % des Bergers Allemands porteurs du gène SOD1", cout: "200 – 800 €/an en suivi et rééducation", description: "Maladie neurodégénérative progressive touchant la moelle épinière, conduisant à une paralysie progressive des membres postérieurs. Aucun traitement curatif disponible." },
+        { nom: "Insuffisance pancréatique exocrine (EPI)", frequence: "Plus fréquente que dans toute autre race", cout: "150 – 400 €/mois en enzymes pancréatiques", description: "Incapacité du pancréas à produire suffisamment d'enzymes digestives, entraînant malabsorption et amaigrissement malgré un appétit vorace." },
+      ],
+      risquesFinanciers: "La myélopathie dégénérative peut entraîner une paralysie complète nécessitant un chariot orthopédique (300 à 600 €) et des soins infirmiers intensifs. L'EPI représente un coût mensuel incompressible tout au long de la vie adulte.",
+      conseils: ["Exiger les certifications OFA ou HD/ED avant l'achat", "Test génétique SOD1 disponible pour dépister la myélopathie", "Supplémentation enzymatique à surveiller dès les premiers signes digestifs", "Maintenir un poids de forme strict pour préserver les articulations"],
+      assuranceReco: "Une formule accidents + maladies avec couverture des affections chroniques est indispensable. Vérifiez que l'EPI (traitement à vie) et les pathologies neurologiques sont couverts sans limite de durée.",
+      assurancePasCher: "Une couverture partielle à 70 % avec franchise de 100 € reste économiquement intéressante compte tenu du coût des chirurgies orthopédiques.",
+      profil: "Race pour propriétaires expérimentés, actifs, disposant d'espace. Idéale pour les activités sportives canines (agility, schutzhund, canicross).",
+      faq: [
+        { q: "Le Berger Allemand est-il sujet à la dysplasie ?", a: "Oui — c'est l'une des races les plus touchées. Selon les registres OFA 2024, environ 20 % des Bergers Allemands testés présentent une dysplasie de hanche. Ce taux monte à 35 % dans les lignées sans sélection rigoureuse." },
+        { q: "Qu'est-ce que la myélopathie dégénérative du Berger Allemand ?", a: "C'est une maladie neurologique héréditaire liée à une mutation du gène SOD1. Elle débute vers 8–9 ans par une faiblesse des membres postérieurs et évolue vers une paralysie complète en 6 à 18 mois. Il n'existe pas de traitement curatif, seulement palliatif." },
+        { q: "À quel âge les problèmes de santé du Berger Allemand apparaissent-ils ?", a: "La dysplasie se manifeste entre 6 mois et 2 ans. L'EPI se déclare souvent entre 1 et 3 ans. La myélopathie dégénérative apparaît rarement avant 8 ans. L'assurance doit donc être souscrite dès le chiotage." },
+      ],
+      racesSimilaires: [{ slug: "malinois", nom: "Malinois" }, { slug: "berger-australien", nom: "Berger Australien" }, { slug: "labrador", nom: "Labrador Retriever" }],
+      esperanceVie: "9 – 13 ans",
+      coutVetAnnuel: "300 – 1 200 €",
+      coutVieEstime: "20 000 – 32 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024", "Zeng R et al., Breed distribution of SOD1 alleles previously associated with canine degenerative myelopathy, J Vet Intern Med, 2014", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "bouledogue-francais",
+      nom: "Bouledogue Français",
+      taille: "moyenne",
+      risque: "eleve",
+      description: "Assurance Bouledogue Français : BOAS, dysplasie, coûts chirurgicaux élevés. Guide complet pour bien assurer votre Bouledogue.",
+      intro: "Le Bouledogue Français est devenu la race la plus vendue en France ces cinq dernières années. Sa conformation brachycéphale (museau écrasé) engendre cependant des problèmes respiratoires structurels et des coûts chirurgicaux parmi les plus élevés du marché canin. C'est sans doute la race dont l'assurance est la plus indispensable.",
+      coutAlimentation: "400 – 700 €",
+      coutSoinsVet: "400 – 900 €",
+      coutVaccins: "120 – 200 €",
+      coutAssurance: "450 – 800 €",
+      coutToilettage: "150 – 300 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "200 – 400 €",
+      coutTotal: "1 820 – 3 500 €",
+      maladies: [
+        { nom: "Syndrome brachycéphale obstructif (BOAS)", frequence: "Touche la quasi-totalité des Bouledogues Français à des degrés variables", cout: "1 500 – 4 000 € pour la chirurgie correctrice", description: "Obstruction des voies respiratoires supérieures due aux narines sténosées, au palais mou allongé et à la trachée hypoplasique. Chirurgie souvent incontournable pour améliorer la qualité de vie." },
+        { nom: "Dysplasie de hanche", frequence: "Environ 30–40 % des individus testés", cout: "1 500 – 3 500 € par articulation", description: "Malformation coxo-fémorale fréquente dans la race, aggravée par la conformation atypique du bassin. Peut nécessiter une prothèse totale de hanche." },
+        { nom: "Dermatites des plis cutanés", frequence: "Très fréquentes, récurrentes tout au long de la vie", cout: "200 – 600 €/an en soins dermatologiques", description: "Les nombreux plis de peau constituent des foyers d'infection fongique et bactérienne. Nécessite des soins réguliers et parfois un traitement antibiotique ou antifongique au long cours." },
+      ],
+      risquesFinanciers: "Le Bouledogue Français cumule plusieurs sources de dépenses importantes : la chirurgie BOAS (souvent incontournable dès 1–2 ans), les soins dermatologiques récurrents et la dysplasie. Le budget vétérinaire sur vie peut dépasser 20 000 € pour les individus les plus touchés.",
+      conseils: ["Vérifier les certifications BOAS de l'éleveur avant l'achat (grade 0 ou 1 recommandé)", "Éviter les individus présentant un brachycéphalisme extrême (narines quasi-fermées)", "Protéger les plis cutanés avec des soins quotidiens d'hygiène", "Ne pas surcharger en poids — l'obésité aggrave fortement le BOAS"],
+      assuranceReco: "La formule Premium est vivement recommandée pour cette race. Vérifiez que le BOAS et la dysplasie sont couverts sans exclusion de race et que le plafond annuel dépasse 3 000 €.",
+      assurancePasCher: "Certaines formules d'entrée de gamme excluent explicitement les maladies brachycéphales. Lisez les conditions générales avec attention avant de souscrire une formule moins chère.",
+      profil: "Race adaptée aux appartements et aux propriétaires peu sportifs. Déconseillée pour les personnes ne pouvant pas consacrer un budget vétérinaire significatif.",
+      faq: [
+        { q: "Combien coûte une opération BOAS pour un Bouledogue Français ?", a: "La chirurgie correctrice du syndrome brachycéphale (rhinoplastie + palatoplastie) coûte entre 1 500 et 4 000 € selon la gravité et la clinique. Elle est souvent nécessaire avant 2 ans pour améliorer significativement la qualité de vie." },
+        { q: "Les assureurs couvrent-ils les maladies liées à la brachycéphalie ?", a: "Oui, les principales assurances (SantéVet, AssurOPoil) couvrent le BOAS sans exclusion de race dans leurs formules Confort et Premium, à condition que la souscription ait lieu avant tout diagnostic. Quelques formules d'entrée de gamme l'excluent — lisez les conditions générales." },
+        { q: "Un Bouledogue Français peut-il voyager en avion ?", a: "La plupart des compagnies aériennes interdisent désormais le transport en soute des races brachycéphales en raison des risques respiratoires à haute altitude. Certaines autorisent le transport en cabine sous conditions de poids. Vérifiez la politique de chaque compagnie avant de réserver." },
+      ],
+      racesSimilaires: [{ slug: "carlin", nom: "Carlin" }, { slug: "boxer", nom: "Boxer" }, { slug: "chihuahua", nom: "Chihuahua" }],
+      esperanceVie: "10 – 12 ans",
+      coutVetAnnuel: "600 – 2 500 €",
+      coutVieEstime: "20 000 – 40 000 €",
+      prixAcquisition: "1 500 – 4 000 €",
+      sources: ["Packer RMA et al., Impact of facial conformation on canine health, PLoS ONE, 2015", "OFA Hip Dysplasia Statistics 2024", "AFVAC, Brachycéphalie chez le chien, guide clinique, 2023"],
+    },
+    {
+      slug: "beagle",
+      nom: "Beagle",
+      taille: "moyenne",
+      risque: "modere",
+      description: "Assurance Beagle : épilepsie, hypothyroïdie et coûts vétérinaires. Guide pour bien assurer votre Beagle en 2025.",
+      intro: "Le Beagle est une race robuste et joviale, idéale pour les familles actives. Son profil de santé est globalement favorable, mais des prédispositions à l'épilepsie idiopathique et à l'hypothyroïdie nécessitent une surveillance régulière et peuvent générer des frais récurrents non négligeables.",
+      coutAlimentation: "400 – 700 €",
+      coutSoinsVet: "200 – 400 €",
+      coutVaccins: "120 – 200 €",
+      coutAssurance: "280 – 500 €",
+      coutToilettage: "80 – 150 €",
+      coutAccessoires: "80 – 160 €",
+      coutGarde: "200 – 380 €",
+      coutTotal: "1 360 – 2 490 €",
+      maladies: [
+        { nom: "Épilepsie idiopathique", frequence: "2–4 % des Beagles", cout: "500 – 1 500 €/an en traitement anticonvulsivant", description: "Forme d'épilepsie héréditaire sans cause structurelle identifiable. Le traitement médicamenteux (phénobarbital, potassium de bromure) est efficace mais nécessite un suivi régulier et des bilans sanguins semestriels." },
+        { nom: "Hypothyroïdie", frequence: "Fréquente après 4 ans", cout: "200 – 500 €/an en suivi et lévothyroxine", description: "Déficit hormonal thyroïdien se manifestant par une prise de poids, une léthargie et des problèmes dermatologiques. Traitement simple et efficace mais à vie." },
+        { nom: "Glaucome", frequence: "Prédisposition documentée dans la race", cout: "600 – 1 500 € pour le bilan et le traitement initial", description: "Augmentation de la pression intraoculaire pouvant conduire à la cécité si non traitée rapidement. Les formes chroniques nécessitent un traitement médical à vie." },
+      ],
+      risquesFinanciers: "L'épilepsie idiopathique représente la charge financière la plus régulière : 500 à 1 500 €/an pour le traitement et le suivi biologique. Une crise non contrôlée peut nécessiter une hospitalisation d'urgence (300 à 800 €).",
+      conseils: ["Bilan neurologique à la moindre crise convulsive", "Surveillance du poids — race prédisposée à l'obésité", "Contrôle hormonal thyroïdien à partir de 4 ans", "Exercice quotidien suffisant pour maintenir un poids de forme"],
+      assuranceReco: "Une formule accidents + maladies couvrant les affections chroniques (épilepsie, hypothyroïdie) avec remboursement des traitements à vie est recommandée.",
+      assurancePasCher: "Le Beagle est une race à risque modéré — des formules intermédiaires à 25–35 €/mois offrent une couverture satisfaisante pour la plupart des propriétaires.",
+      profil: "Idéal pour les familles, les propriétaires actifs, les jardins clôturés (fugue fréquente). Peu adapté aux appartements sans sorties régulières.",
+      faq: [
+        { q: "Le Beagle est-il une race facile à assurer ?", a: "Oui — le Beagle est une race à risque modéré avec des primes d'assurance accessibles (25 à 45 €/mois). Ses principales pathologies sont l'épilepsie et l'hypothyroïdie, toutes deux prises en charge par les formules standards." },
+        { q: "L'épilepsie du Beagle est-elle héréditaire ?", a: "Oui, l'épilepsie idiopathique du Beagle a une base génétique bien documentée. Elle se manifeste généralement entre 6 mois et 5 ans. Les éleveurs sérieux excluent de la reproduction les individus atteints." },
+        { q: "Combien de temps vit un Beagle en bonne santé ?", a: "L'espérance de vie moyenne du Beagle est de 12 à 15 ans, parmi les plus longues des races de taille moyenne. Un suivi vétérinaire régulier et une alimentation contrôlée permettent d'atteindre facilement ces âges." },
+      ],
+      racesSimilaires: [{ slug: "cocker-spaniel", nom: "Cocker Spaniel" }, { slug: "epagneul-breton", nom: "Épagneul Breton" }, { slug: "jack-russell", nom: "Jack Russell" }],
+      esperanceVie: "12 – 15 ans",
+      coutVetAnnuel: "200 – 800 €",
+      coutVieEstime: "15 000 – 25 000 €",
+      prixAcquisition: "600 – 1 500 €",
+      sources: ["Podell M et al., Epilepsy in beagles, J Vet Intern Med, 1995", "Dixon RM et al., Hypothyroidism in dogs, Vet Clin North Am, 2022", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "berger-des-shetlands",
+      nom: "Berger des Shetlands",
+      taille: "petite",
+      risque: "faible",
+      description: "Assurance Berger des Shetlands : MDR1, santé et coûts. Guide pour bien protéger votre Sheltie.",
+      intro: "Le Berger des Shetlands (Sheltie) est une race agile, intelligente et robuste, présentant un excellent profil de santé général. Sa principale caractéristique médicale est la mutation MDR1 (multidrug resistance), qui rend certains individus sensibles à des médicaments courants — un point crucial à communiquer à tout vétérinaire.",
+      coutAlimentation: "250 – 450 €",
+      coutSoinsVet: "150 – 300 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "180 – 350 €",
+      coutToilettage: "200 – 400 €",
+      coutAccessoires: "70 – 140 €",
+      coutGarde: "150 – 300 €",
+      coutTotal: "1 110 – 2 130 €",
+      maladies: [
+        { nom: "Mutation MDR1 (ABCB1)", frequence: "Environ 15 % des Shelties porteurs homozygotes, 30 % hétérozygotes", cout: "Test génétique : 60–120 €. Urgence toxicologique : 300–800 €", description: "La mutation MDR1 rend la barrière hémato-encéphalique perméable à certains médicaments (ivermectine, lopéramide, vincristine). Un surdosage peut être fatal. Test génétique recommandé avant tout traitement." },
+        { nom: "Cataracte héréditaire", frequence: "Documentée dans la race, fréquence modérée", cout: "800 – 2 000 € par opération", description: "Opacification du cristallin d'origine génétique, pouvant conduire à une cécité partielle ou totale. La chirurgie par phacoémulsification est efficace si pratiquée tôt." },
+        { nom: "Maladie de von Willebrand type III", frequence: "Rare mais documentée dans la race", cout: "200 – 600 € pour le diagnostic et la gestion des saignements", description: "Trouble de la coagulation héréditaire pouvant provoquer des saignements prolongés lors d'interventions chirurgicales. Test génétique disponible." },
+      ],
+      risquesFinanciers: "Le Sheltie est une race globalement peu coûteuse en soins vétérinaires. Le risque principal est la réaction toxique à des médicaments contenant des molécules P-glycoprotéines substrats, qui peut nécessiter une hospitalisation d'urgence coûteuse.",
+      conseils: ["Réaliser le test génétique MDR1 dès le chiotage", "Informer systématiquement le vétérinaire du statut MDR1", "Brossage du poil plusieurs fois par semaine pour éviter les nœuds", "Contrôle oculaire annuel à partir de 3 ans"],
+      assuranceReco: "Une formule accidents + maladies d'entrée de gamme suffit généralement pour cette race robuste. Assurez-vous que les réactions médicamenteuses (toxicologie) sont couvertes.",
+      assurancePasCher: "Avec un profil de risque faible, des formules à 15–25 €/mois offrent une couverture suffisante pour la majorité des imprévus.",
+      profil: "Race idéale pour les familles actives, les sportifs canins (agility) et les propriétaires souhaitant une race intelligente et facile à éduquer.",
+      faq: [
+        { q: "Qu'est-ce que la mutation MDR1 chez le Berger des Shetlands ?", a: "La mutation MDR1 (gène ABCB1) altère la protéine P-glycoprotéine qui protège le cerveau de certaines molécules. Les individus porteurs homozygotes (MDR1 -/-) peuvent présenter des signes neurologiques graves (tremblements, coma) après administration d'ivermectine, lopéramide ou de certains agents de chimiothérapie." },
+        { q: "Comment tester mon Sheltie pour MDR1 ?", a: "Un simple test génétique salivaire ou sanguin, disponible auprès de laboratoires spécialisés (Antagene, Laboklin, Orivet), permet de déterminer le statut MDR1 de votre chien en 2 à 3 semaines pour un coût de 60 à 120 €." },
+        { q: "Le Berger des Shetlands est-il cher à assurer ?", a: "Non — le Sheltie est une race à faible risque vétérinaire. Les primes d'assurance se situent entre 15 et 30 €/mois. Son toilettage fréquent représente la principale dépense régulière hors alimentation." },
+      ],
+      racesSimilaires: [{ slug: "border-collie", nom: "Border Collie" }, { slug: "berger-australien", nom: "Berger Australien" }, { slug: "caniche", nom: "Caniche" }],
+      esperanceVie: "12 – 15 ans",
+      coutVetAnnuel: "150 – 500 €",
+      coutVieEstime: "13 000 – 22 000 €",
+      prixAcquisition: "800 – 1 500 €",
+      sources: ["Mealey KL et al., Ivermectin sensitivity in collies, J Am Vet Med Assoc, 2001", "OFA Eye Certification Registry 2024", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "caniche",
+      nom: "Caniche",
+      taille: "petite",
+      risque: "faible",
+      description: "Assurance Caniche : ARP, maladie d'Addison, santé et coûts. Guide pour bien protéger votre Caniche.",
+      intro: "Le Caniche — qu'il soit nain, moyen ou grand — est l'une des races les plus longévives et les plus robustes du marché canin. Son intelligence remarquable et son faible taux de perte de poils en font une race prisée. Ses prédispositions les plus sérieuses concernent l'atrophie rétinienne progressive et la maladie d'Addison.",
+      coutAlimentation: "200 – 400 €",
+      coutSoinsVet: "150 – 300 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "160 – 320 €",
+      coutToilettage: "400 – 800 €",
+      coutAccessoires: "70 – 130 €",
+      coutGarde: "150 – 280 €",
+      coutTotal: "1 240 – 2 420 €",
+      maladies: [
+        { nom: "Atrophie rétinienne progressive (ARP)", frequence: "Documentée dans toutes les variétés de Caniche", cout: "200 – 500 € pour le diagnostic ophtalmique. Test génétique : 80–130 €", description: "Dégénérescence progressive des photorécepteurs conduisant à une cécité totale en quelques années. Aucun traitement disponible. Le test génétique permet de dépister les porteurs avant reproduction." },
+        { nom: "Maladie d'Addison (hypoadrénocorticisme)", frequence: "Le Caniche est la race la plus prédisposée", cout: "500 – 1 500 €/an en traitement hormonal substitutif", description: "Insuffisance surrénalienne se manifestant par des vomissements récurrents, une léthargie et des épisodes de faiblesse. La crise aiguë d'Addison constitue une urgence vitale nécessitant une hospitalisation." },
+        { nom: "Luxation de la rotule", frequence: "Fréquente chez le Caniche nain", cout: "600 – 1 800 € par genou selon le grade", description: "Déplacement de la rotule hors de sa gorge trochléenne entraînant une boiterie intermittente. La chirurgie correctrice est recommandée pour les grades 3 et 4." },
+      ],
+      risquesFinanciers: "La maladie d'Addison représente le coût le plus structurel : 500 à 1 500 €/an en hormones et bilans réguliers tout au long de la vie. Une crise aiguë d'Addison peut coûter 800 à 2 000 € en soins d'urgence.",
+      conseils: ["Test génétique ARP recommandé avant reproduction", "Connaître les signes d'une crise d'Addison (vomissements, faiblesse, collapsus)", "Toilettage professionnel toutes les 6–8 semaines", "Bilan hormonal si léthargie inexpliquée"],
+      assuranceReco: "Une formule couvrant les maladies chroniques avec remboursement des traitements à vie est prioritaire. La maladie d'Addison nécessite un suivi mensuel qui peut rapidement dépasser les plafonds de certaines formules d'entrée de gamme.",
+      assurancePasCher: "Compte tenu de la longévité du Caniche (15–18 ans), un contrat souscrit tôt à 15–25 €/mois représente un excellent rapport coût/protection sur l'ensemble de la vie de l'animal.",
+      profil: "Race polyvalente adaptée aux appartements comme aux maisons. Convient à tous types de propriétaires. Allergie : le Caniche est l'une des races les moins allergisantes.",
+      faq: [
+        { q: "Le Caniche est-il une race saine ?", a: "Oui — le Caniche est considéré comme l'une des races les plus robustes et longévives. Son espérance de vie moyenne est de 14 à 18 ans. Ses principales pathologies (ARP, Addison) sont gérables médicalement si détectées tôt." },
+        { q: "Combien coûte un traitement pour la maladie d'Addison chez un Caniche ?", a: "Le traitement substitutif (Percorten-V ou Florinef + Hydrocortisone) coûte entre 500 et 1 500 €/an selon le poids du chien et le protocole choisi. Des bilans électrolytiques réguliers (tous les 1 à 3 mois) s'y ajoutent." },
+        { q: "Doit-on obligatoirement toiletter un Caniche chez un professionnel ?", a: "Le toilettage est indispensable tous les 6 à 8 semaines pour éviter le feutrage. Si vous ne le faites pas vous-même, comptez 50 à 120 € par séance selon la variété et le type de coupe souhaité." },
+      ],
+      racesSimilaires: [{ slug: "bichon-frise", nom: "Bichon Frisé" }, { slug: "yorkshire-terrier", nom: "Yorkshire Terrier" }, { slug: "shih-tzu", nom: "Shih Tzu" }],
+      esperanceVie: "14 – 18 ans",
+      coutVetAnnuel: "150 – 800 €",
+      coutVieEstime: "16 000 – 30 000 €",
+      prixAcquisition: "800 – 2 500 €",
+      sources: ["Oberbauer AM et al., Genetics of canine Addison's disease, J Vet Intern Med, 2002", "OFA Eye Certification Registry 2024", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "husky-siberien",
+      nom: "Husky Sibérien",
+      taille: "grande",
+      risque: "modere",
+      description: "Assurance Husky Sibérien : cataracte héréditaire, santé et coûts vétérinaires. Guide complet pour bien assurer votre Husky.",
+      intro: "Le Husky Sibérien est une race nordique robuste, sélectionnée pour l'endurance en conditions extrêmes. Sa constitution athlétique masque quelques prédispositions génétiques, notamment oculaires, et un métabolisme particulier qui nécessite une alimentation adaptée. Sa longévité et sa résistance générale en font une race à risque modéré.",
+      coutAlimentation: "600 – 1 000 €",
+      coutSoinsVet: "200 – 400 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "300 – 550 €",
+      coutToilettage: "200 – 400 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 450 €",
+      coutTotal: "1 780 – 3 210 €",
+      maladies: [
+        { nom: "Cataracte héréditaire juvénile", frequence: "6–12 % des Huskys selon les études ACES", cout: "800 – 2 000 € par œil pour la phacoémulsification", description: "Opacification précoce du cristallin d'origine génétique, apparaissant parfois dès 6 mois. Test ACES (certification oculaire) recommandé chez les reproducteurs." },
+        { nom: "Atrophie rétinienne progressive (ARP)", frequence: "Documentée dans la race", cout: "300 – 600 € pour le bilan ophtalmique complet", description: "Dégénérescence progressive des photorécepteurs rétiniens. La forme XL (liée au chromosome X) est spécifique au Husky Sibérien mâle." },
+        { nom: "Troubles thyroïdiens (hypothyroïdie)", frequence: "Modérément fréquente, notamment chez les femelles après 5 ans", cout: "250 – 500 €/an en traitement et suivi hormonal", description: "Insuffisance thyroïdienne entraînant prise de poids, alopécie symétrique et léthargie. Traitement efficace par lévothyroxine quotidienne." },
+      ],
+      risquesFinanciers: "La cataracte héréditaire juvénile peut nécessiter une chirurgie sur les deux yeux avant 3 ans (jusqu'à 4 000 €). Les troubles thyroïdiens génèrent un coût annuel modéré mais récurrent sur le long terme.",
+      conseils: ["Certification oculaire ACES annuelle pour les reproducteurs", "Test génétique ARP disponible chez les laboratoires spécialisés", "Alimentation adaptée aux races nordiques à métabolisme rapide", "Clôture sécurisée indispensable — race grande fugueuse"],
+      assuranceReco: "Une formule accidents + maladies avec couverture des affections ophtalmiques est recommandée. Vérifiez que la cataracte héréditaire est incluse sans exclusion de race.",
+      assurancePasCher: "Le Husky est une race à risque modéré avec des primes raisonnables (25–45 €/mois). Une formule intermédiaire offre un bon rapport qualité-prix.",
+      profil: "Race pour propriétaires actifs et sportifs. Nécessite minimum 2 heures d'exercice quotidien. Fortement déconseillée en appartement sans jardin.",
+      faq: [
+        { q: "La cataracte du Husky est-elle héréditaire ?", a: "Oui — la cataracte juvénile héréditaire (HC) du Husky Sibérien est une affection génétique bien documentée. Elle peut se développer dès 6 mois à 6 ans. Un test génétique et une certification oculaire annuelle (CANINTEST ou ACES) permettent d'identifier les porteurs." },
+        { q: "Le Husky Sibérien est-il une race résistante ?", a: "Oui, dans l'ensemble. La race a été sélectionnée pour une endurance maximale dans des conditions climatiques difficiles. Son espérance de vie moyenne est de 12 à 15 ans. Ses principales vulnérabilités sont oculaires et thyroïdiennes." },
+        { q: "Faut-il assurer un Husky Sibérien ?", a: "Oui. Même avec un profil de santé favorable, la cataracte héréditaire juvénile peut nécessiter une chirurgie coûteuse sur les deux yeux (jusqu'à 4 000 €) avant 3 ans. Une assurance souscrite dès le chiotage couvre ce risque pour 25 à 45 €/mois." },
+      ],
+      racesSimilaires: [{ slug: "samoyede", nom: "Samoyède" }, { slug: "malinois", nom: "Malinois" }, { slug: "berger-australien", nom: "Berger Australien" }],
+      esperanceVie: "12 – 15 ans",
+      coutVetAnnuel: "200 – 800 €",
+      coutVieEstime: "18 000 – 30 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["OFA Eye Certification Registry 2024", "Mellersh CS et al., Mutations in HSF4 are associated with hereditary cataracts in the dog, Hum Mol Genet, 2006", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "malinois",
+      nom: "Malinois",
+      taille: "grande",
+      risque: "faible",
+      description: "Assurance Malinois : santé, coûts et conseils pour bien protéger votre Berger Belge Malinois.",
+      intro: "Le Malinois (Berger Belge Malinois) est un chien de travail d'élite, reconnu pour sa robustesse physique exceptionnelle et son endurance. Sa constitution athlétique et la sélection rigoureuse en font l'une des races les plus saines du panel canin. Les risques vétérinaires majeurs restent liés aux accidents de travail et aux traumatismes.",
+      coutAlimentation: "650 – 1 050 €",
+      coutSoinsVet: "200 – 400 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "280 – 480 €",
+      coutToilettage: "100 – 200 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 450 €",
+      coutTotal: "1 710 – 2 990 €",
+      maladies: [
+        { nom: "Épilepsie idiopathique", frequence: "Présente dans certaines lignées, fréquence modérée", cout: "500 – 1 200 €/an en traitement et surveillance", description: "Affection neurologique héréditaire documentée dans la race. Les éleveurs sérieux excluent les individus atteints de la reproduction." },
+        { nom: "Dysplasie de hanche", frequence: "Plus faible que chez le Berger Allemand (~10 %)", cout: "1 500 – 3 500 € par articulation", description: "Malformation coxo-fémorale moins fréquente que dans les races voisines, mais présente dans les lignées non certifiées." },
+        { nom: "Traumatismes et blessures musculaires", frequence: "Fréquentes chez les chiens de travail ou sport", cout: "300 – 1 500 € selon la gravité", description: "La haute intensité d'entraînement du Malinois le rend vulnérable aux entorses, déchirures musculaires et blessures aux coussinets." },
+      ],
+      risquesFinanciers: "Le Malinois est l'une des races les moins coûteuses en frais vétérinaires structurels. Le principal risque financier est traumatologique (accidents, sport intensif) et neurologique (épilepsie dans certaines lignées).",
+      conseils: ["Dépistage OFA/HD chez les reproducteurs", "Échauffement et récupération structurés pour les chiens de sport", "Éviter les exercices en rotation avant 18 mois (croissance)", "Contrôle neurologique si comportement inhabituel"],
+      assuranceReco: "Une formule accidents + maladies standard suffit pour la majorité des Malinois. Le faible taux de pathologies héréditaires permet de souscrire une formule moins coûteuse.",
+      assurancePasCher: "Avec un profil de risque faible, une formule à 20–30 €/mois offre une protection satisfaisante pour cette race robuste.",
+      profil: "Réservé aux propriétaires très expérimentés ou aux professionnels (police, armée, sport canin). Déconseillé aux propriétaires débutants ou sédentaires.",
+      faq: [
+        { q: "Le Malinois est-il une race saine ?", a: "Oui — c'est l'une des races les plus robustes. Sa sélection pour le travail intensif a produit des individus athlétiques avec peu de pathologies héréditaires graves. L'épilepsie et la dysplasie existent mais restent moins fréquentes que chez le Berger Allemand." },
+        { q: "Combien coûte annuellement l'entretien d'un Malinois ?", a: "Le budget annuel d'un Malinois se situe entre 1 700 et 3 000 €, incluant alimentation, soins vétérinaires, assurance et activités sportives. L'activité physique intensive peut nécessiter des bilans ostéo-articulaires réguliers." },
+        { q: "Faut-il assurer un Malinois ?", a: "Oui, surtout si le chien pratique des activités de sport ou de travail intensif. Les traumatismes musculaires et articulaires sont les principaux risques. Une formule accidents seule peut suffire pour les jeunes adultes en bonne santé." },
+      ],
+      racesSimilaires: [{ slug: "berger-allemand", nom: "Berger Allemand" }, { slug: "border-collie", nom: "Border Collie" }, { slug: "berger-australien", nom: "Berger Australien" }],
+      esperanceVie: "12 – 14 ans",
+      coutVetAnnuel: "200 – 700 €",
+      coutVieEstime: "16 000 – 26 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024", "AFVAC, Guide des pathologies héréditaires canines, 2023", "FACCO, Enquête démographique 2024"],
+    },
+    {
+      slug: "border-collie",
+      nom: "Border Collie",
+      taille: "moyenne",
+      risque: "faible",
+      description: "Assurance Border Collie : anomalie de l'œil du Colley, épilepsie et coûts. Guide pour bien assurer votre Border Collie.",
+      intro: "Le Border Collie est unanimement reconnu comme la race canine la plus intelligente. Sa robustesse générale est bonne, mais certaines pathologies héréditaires méritent attention : l'anomalie de l'œil du Colley (CEA), l'épilepsie et la sensibilité à certains médicaments via la mutation MDR1.",
+      coutAlimentation: "450 – 800 €",
+      coutSoinsVet: "180 – 380 €",
+      coutVaccins: "120 – 200 €",
+      coutAssurance: "240 – 430 €",
+      coutToilettage: "150 – 300 €",
+      coutAccessoires: "80 – 160 €",
+      coutGarde: "200 – 380 €",
+      coutTotal: "1 420 – 2 650 €",
+      maladies: [
+        { nom: "Anomalie de l'œil du Colley (CEA)", frequence: "50–70 % des Border Collies porteurs (beaucoup asymptomatiques)", cout: "200 – 600 € pour le bilan ophtalmique complet", description: "Malformation congénitale du fond d'œil touchant la choroïde, le nerf optique et parfois la rétine. Les formes légères n'altèrent pas la vision ; les formes sévères peuvent provoquer un décollement de rétine." },
+        { nom: "Épilepsie idiopathique", frequence: "2–3 % des Border Collies", cout: "500 – 1 500 €/an en traitement anticonvulsivant", description: "Épilepsie héréditaire se manifestant généralement entre 1 et 5 ans. Le traitement médicamenteux contrôle efficacement les crises dans la majorité des cas." },
+        { nom: "Mutation MDR1 (ABCB1)", frequence: "Présente dans une fraction de la population", cout: "Test : 60–120 €. Urgence toxicologique : 300–800 €", description: "Comme chez le Sheltie, certains Border Collies portent la mutation MDR1 rendant le cerveau perméable à certaines molécules médicamenteuses. Test génétique recommandé avant tout traitement." },
+      ],
+      risquesFinanciers: "L'épilepsie idiopathique représente la charge la plus régulière (500 à 1 500 €/an). La CEA nécessite un suivi ophtalmique régulier mais rarement une intervention coûteuse. Le risque de toxicité médicamenteuse MDR1 constitue une urgence potentielle.",
+      conseils: ["Certification ophtalmique CEA recommandée pour tous les reproducteurs", "Test génétique MDR1 avant tout traitement antiparasitaire ou de chimiothérapie", "Bilan neurologique à la moindre crise convulsive", "Exercice intense quotidien (minimum 2h) pour le bien-être mental et physique"],
+      assuranceReco: "Une formule accidents + maladies couvrant les pathologies oculaires et neurologiques est recommandée. Les frais liés à l'épilepsie peuvent s'accumuler sur plusieurs années.",
+      assurancePasCher: "Avec un profil de risque faible, des formules à 20–35 €/mois sont généralement suffisantes pour un Border Collie sain et actif.",
+      profil: "Race pour propriétaires très actifs, expérimentés en éducation canine. Idéale pour le sport (agility, frisbee, herding). Déconseillée aux propriétaires sédentaires.",
+      faq: [
+        { q: "Qu'est-ce que l'anomalie de l'œil du Colley (CEA) ?", a: "La CEA est une malformation congénitale du fond d'œil héritée de manière autosomique récessive. Elle touche la choroïde, le coroïde et parfois la rétine. Les formes légères (grade 1-2) n'altèrent pas la vision ; les formes sévères (grade 5 avec décollement de rétine) peuvent provoquer une cécité partielle." },
+        { q: "Le Border Collie est-il une race facile à entretenir médicalement ?", a: "Dans l'ensemble oui. C'est une race à risque faible avec peu de pathologies héréditaires graves. Ses principaux défis médicaux sont l'épilepsie (gérable médicalement) et la CEA (souvent asymptomatique). Son coût vétérinaire annuel estimé est de 180 à 600 €." },
+        { q: "Peut-on assurer un Border Collie épileptique ?", a: "Si l'épilepsie a été diagnostiquée avant la souscription, elle sera considérée comme pathologie préexistante et exclue par tout nouvel assureur. En revanche, un Border Collie assuré dès le chiotage et développant l'épilepsie après la période de carence bénéficiera d'une couverture continue." },
+      ],
+      racesSimilaires: [{ slug: "berger-des-shetlands", nom: "Berger des Shetlands" }, { slug: "malinois", nom: "Malinois" }, { slug: "berger-australien", nom: "Berger Australien" }],
+      esperanceVie: "12 – 15 ans",
+      coutVetAnnuel: "180 – 600 €",
+      coutVieEstime: "15 000 – 25 000 €",
+      prixAcquisition: "800 – 1 800 €",
+      sources: ["OFA Eye Certification Registry 2024", "Mealey KL et al., MDR1 mutation in Border Collies, J Vet Pharmacol, 2005", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "cavalier-king-charles",
+      nom: "Cavalier King Charles",
+      taille: "petite",
+      risque: "eleve",
+      description: "Assurance Cavalier King Charles : maladie valvulaire mitrale, syringomyélie et coûts élevés. Guide complet.",
+      intro: "Le Cavalier King Charles Spaniel est l'une des races les plus affectueuses et les plus populaires en Europe. Malheureusement, c'est aussi l'une des races dont le profil de santé est le plus préoccupant : la quasi-totalité des individus développent une maladie valvulaire mitrale avant l'âge de 10 ans, et une proportion significative souffre de syringomyélie, deux pathologies aux coûts de suivi élevés.",
+      coutAlimentation: "250 – 450 €",
+      coutSoinsVet: "350 – 800 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "400 – 750 €",
+      coutToilettage: "250 – 500 €",
+      coutAccessoires: "70 – 140 €",
+      coutGarde: "150 – 300 €",
+      coutTotal: "1 580 – 3 130 €",
+      maladies: [
+        { nom: "Maladie valvulaire mitrale (MVD)", frequence: "Environ 50 % avant 5 ans ; quasi-totalité avant 10 ans (études OFA/CKCS Health)", cout: "500 – 2 000 €/an en suivi cardiologique et médicaments", description: "Dégénérescence progressive de la valve mitrale entraînant une insuffisance cardiaque congestive. Le protocole ACVIM 2019 recommande un échocardiogramme annuel à partir de 2 ans." },
+        { nom: "Syringomyélie / malformation de Chiari", frequence: "Environ 25–35 % des Cavaliers présentent des signes cliniques", cout: "800 – 2 500 € pour l'IRM et le traitement initial ; 300 – 800 €/an pour le suivi", description: "Formation de cavités liquidiennes (syrinx) dans la moelle épinière due à une malformation de la fosse postérieure crânienne. Se manifeste par des douleurs, une hypersensibilité cervicale et des grattages incontrôlables." },
+        { nom: "Otites récurrentes", frequence: "Très fréquentes (conduits étroits, poils denses)", cout: "200 – 500 €/an en traitements répétés", description: "Les oreilles tombantes et les conduits étroits favorisent l'accumulation de cérumen et le développement d'infections bactériennes ou fongiques récurrentes." },
+      ],
+      risquesFinanciers: "La MVD représente le coût le plus lourd et le plus certain : le suivi cardiologique annuel et les médicaments (Vetmedin, Benazépril) peuvent coûter 500 à 2 000 €/an à partir de 5 ans. La syringomyélie, si clinique, ajoute 300 à 800 €/an supplémentaires.",
+      conseils: ["Échocardiogramme annuel dès 2 ans (protocole ACVIM 2019)", "IRM cérébrale recommandée avant reproduction pour dépister la malformation de Chiari", "Acheter uniquement chez des éleveurs avec certifications cardiaques et neurologiques", "Nettoyage des oreilles hebdomadaire"],
+      assuranceReco: "La formule Premium est indispensable pour cette race. Vérifiez que la MVD et la syringomyélie sont couvertes sans exclusion de race et que le plafond annuel est d'au moins 3 000 €.",
+      assurancePasCher: "Il n'existe pas de formule vraiment économique adaptée au Cavalier King Charles. Toute formule excluant les maladies cardiaques héréditaires est inadaptée à cette race.",
+      profil: "Race affectueuse, idéale pour les familles, les personnes âgées et les appartements. Nécessite cependant un propriétaire prêt à investir dans un suivi médical sérieux.",
+      faq: [
+        { q: "À quel âge le Cavalier King Charles développe-t-il une maladie cardiaque ?", a: "Selon les études de l'CKCS Health (2022), 50 % des Cavaliers ont un souffle cardiaque détectable avant 5 ans, et pratiquement tous en ont un avant 10 ans. La progression vers l'insuffisance cardiaque congestive est variable mais inévitable dans la majorité des cas." },
+        { q: "Qu'est-ce que la syringomyélie chez le Cavalier King Charles ?", a: "C'est une malformation congénitale où le crâne est trop petit pour le cerveau (malformation de Chiari-like), créant une obstruction du flux de liquide céphalorachidien et des cavités dans la moelle épinière. Le chien gratte souvent la tête, le cou ou l'épaule sans raison apparente." },
+        { q: "L'assurance rembourse-t-elle la maladie cardiaque héréditaire du Cavalier ?", a: "Oui, si souscrite avant tout diagnostic. SantéVet Confort et Premium couvrent la MVD sans exclusion de race. L'IRM pour la syringomyélie est remboursée comme acte diagnostique dans la plupart des formules complètes." },
+      ],
+      racesSimilaires: [{ slug: "cocker-spaniel", nom: "Cocker Spaniel" }, { slug: "bichon-frise", nom: "Bichon Frisé" }, { slug: "caniche", nom: "Caniche" }],
+      esperanceVie: "9 – 14 ans",
+      coutVetAnnuel: "500 – 2 000 €",
+      coutVieEstime: "18 000 – 35 000 €",
+      prixAcquisition: "1 200 – 3 000 €",
+      sources: ["Boswood A et al., Effect of Pimobendan in Dogs with Preclinical Myxomatous Mitral Valve Disease, J Vet Intern Med, 2016 (EPIC Study)", "Rusbridge C, Syringomyelia in the Cavalier King Charles Spaniel, J Small Anim Pract, 2007", "CKCS Health Registry, Annual Report 2022"],
+    },
+    {
+      slug: "rottweiler",
+      nom: "Rottweiler",
+      taille: "grande",
+      risque: "eleve",
+      description: "Assurance Rottweiler : dysplasie bilatérale, ostéosarcome et coûts vétérinaires élevés. Guide complet.",
+      intro: "Le Rottweiler est une race de travail puissante, loyale et très attachée à sa famille. Mais sa stature imposante s'accompagne de prédispositions orthopédiques et oncologiques significatives : la dysplasie bilatérale de hanche et du coude, ainsi qu'un taux d'ostéosarcome parmi les plus élevés de toutes les races, en font l'une des plus coûteuses à soigner.",
+      coutAlimentation: "800 – 1 300 €",
+      coutSoinsVet: "300 – 700 €",
+      coutVaccins: "130 – 220 €",
+      coutAssurance: "450 – 800 €",
+      coutToilettage: "100 – 200 €",
+      coutAccessoires: "120 – 230 €",
+      coutGarde: "280 – 520 €",
+      coutTotal: "2 180 – 3 970 €",
+      maladies: [
+        { nom: "Dysplasie de hanche et du coude", frequence: "25–40 % selon les études OFA (l'une des plus touchées)", cout: "1 500 – 5 000 € par articulation (prothèse totale de hanche possible)", description: "Le Rottweiler présente l'un des taux de dysplasie de hanche les plus élevés parmi les grandes races. La dysplasie du coude (OCD, FCP) est également fréquente et peut nécessiter plusieurs interventions." },
+        { nom: "Ostéosarcome (cancer osseux)", frequence: "Le Rottweiler est l'une des races les plus touchées (5–10× la moyenne canine)", cout: "3 000 – 10 000 € selon le traitement (amputation + chimio)", description: "Tumeur maligne osseuse hautement agressive, souvent localisée aux membres. Le traitement standard inclut l'amputation du membre et la chimiothérapie adjuvante." },
+        { nom: "Cardiomyopathie dilatée (DCM)", frequence: "Présente dans la race, moins fréquente que chez le Dobermann", cout: "400 – 1 200 €/an en suivi cardiologique et médicaments", description: "Dilatation du myocarde entraînant une insuffisance cardiaque progressive. Le suivi échocardiographique régulier à partir de 5 ans est recommandé." },
+      ],
+      risquesFinanciers: "L'ostéosarcome constitue le risque financier le plus dévastateur : amputation + chimiothérapie peuvent dépasser 8 000 €. La dysplasie bilatérale peut nécessiter deux interventions chirurgicales pour un coût total de 5 000 à 10 000 €.",
+      conseils: ["Certifications OFA obligatoires avant tout achat chez un éleveur sérieux", "Dépistage radiographique de la dysplasie à 12 et 24 mois", "Surveillance des boiteries et douleurs osseuses après 5 ans", "Éviter le surpoids — aggrave massivement la dysplasie"],
+      assuranceReco: "La formule Premium est indispensable. Vérifiez que l'ostéosarcome (traitements oncologiques, amputation) est couvert sans plafond limité. Un plafond annuel de 4 000 € minimum est recommandé.",
+      assurancePasCher: "Toute formule économique excluant le cancer ou plafonnant les chirurgies orthopédiques à moins de 2 000 € est inadaptée au profil de risque du Rottweiler.",
+      profil: "Race pour propriétaires expérimentés, à l'aise avec les chiens de grande taille et disposant d'un budget vétérinaire conséquent. Excellent chien de famille et de protection.",
+      faq: [
+        { q: "Le Rottweiler est-il une race chère à assurer ?", a: "Oui — le Rottweiler est l'une des races les plus coûteuses à assurer, avec des primes de 40 à 80 €/mois. Ce coût est justifié par son taux de dysplasie élevé et son risque d'ostéosarcome, l'un des cancers osseux les plus coûteux à traiter." },
+        { q: "L'ostéosarcome est-il couvert par l'assurance chien ?", a: "Oui, si souscrit avant tout diagnostic. Les formules Confort et Premium couvrent les traitements oncologiques incluant l'ostéosarcome. Vérifiez l'absence de plafond spécifique sur les affections cancéreuses." },
+        { q: "À quel âge opère-t-on la dysplasie chez un Rottweiler ?", a: "La chirurgie est généralement réalisée entre 12 et 24 mois pour les formes sévères (grade D/E). Elle peut être reportée en cas de forme modérée avec traitement conservateur. Les résultats sont meilleurs chez les sujets jeunes avec un poids maîtrisé." },
+      ],
+      racesSimilaires: [{ slug: "dobermann", nom: "Dobermann" }, { slug: "berger-allemand", nom: "Berger Allemand" }, { slug: "boxer", nom: "Boxer" }],
+      esperanceVie: "8 – 11 ans",
+      coutVetAnnuel: "400 – 2 000 €",
+      coutVieEstime: "22 000 – 40 000 €",
+      prixAcquisition: "1 000 – 2 500 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024 — Rottweiler ranked among top 5 most affected breeds", "Brodey RS, Abt DA, Results of surgical treatment in 65 dogs with osteosarcoma, J Am Vet Med Assoc, 1976", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "akita-inu",
+      nom: "Akita Inu",
+      taille: "grande",
+      risque: "modere",
+      description: "Assurance Akita Inu : uvéite pigmentaire, hypothyroïdie et coûts vétérinaires. Guide complet.",
+      intro: "L'Akita Inu est une race japonaise ancienne, symbole de loyauté et de dignité. Sa robustesse générale est réelle, mais certaines affections héréditaires spécifiques à la race méritent attention : l'uvéite pigmentaire de l'Akita (AKA uvéite) et les maladies auto-immunes en font une race à surveillance médicale particulière.",
+      coutAlimentation: "700 – 1 100 €",
+      coutSoinsVet: "250 – 500 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "320 – 580 €",
+      coutToilettage: "200 – 400 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 450 €",
+      coutTotal: "1 950 – 3 440 €",
+      maladies: [
+        { nom: "Uvéite pigmentaire de l'Akita", frequence: "Spécifique à la race, prévalence estimée à 4–10 %", cout: "500 – 2 000 € pour la prise en charge ophtalmique", description: "Inflammation uvéale chronique conduisant à la formation de cystes iriens pigmentés, un glaucome secondaire et une cécité potentielle. Surveillance ophtalmique annuelle indispensable." },
+        { nom: "Hypothyroïdie", frequence: "Fréquente dans la race", cout: "250 – 500 €/an en traitement et suivi", description: "Insuffisance thyroïdienne se manifestant par une prise de poids, une alopécie bilatérale symétrique et une léthargie. Traitement quotidien efficace par lévothyroxine." },
+        { nom: "Pemphigus foliacé", frequence: "L'Akita est la race la plus prédisposée à cette dermatose auto-immune", cout: "400 – 1 500 €/an en immunosuppresseurs et suivi", description: "Maladie cutanée auto-immune se manifestant par des pustules, des croûtes et une alopécie symétrique, notamment sur le nez, les oreilles et les coussinets." },
+      ],
+      risquesFinanciers: "L'uvéite pigmentaire peut conduire à un glaucome secondaire nécessitant un traitement médical à vie (300–600 €/an) ou une chirurgie oculaire coûteuse. Le pemphigus, si présent, nécessite un traitement immunosuppresseur prolongé.",
+      conseils: ["Certification ophtalmique annuelle CAES/ACES", "Dépistage thyroïdien à partir de 4 ans", "Attention aux vaccins — certains Akita présentent des réactions vaccinales ; discuter du protocole avec votre vétérinaire", "Éviter les croisements avec des individus présentant des antécédents d'uvéite"],
+      assuranceReco: "Une formule accidents + maladies couvrant les pathologies ophtalmiques et auto-immunes est indispensable. Vérifiez que l'uvéite et le pemphigus sont inclus sans exclusion de race.",
+      assurancePasCher: "Le profil de risque modéré permet des formules à 30–45 €/mois offrant une protection raisonnable.",
+      profil: "Race pour propriétaires expérimentés et responsables. Indépendant et dominateur, l'Akita nécessite une socialisation précoce et une éducation ferme.",
+      faq: [
+        { q: "L'Akita Inu est-il sujet à des maladies graves ?", a: "L'Akita présente plusieurs prédispositions spécifiques : l'uvéite pigmentaire (oculaire), l'hypothyroïdie et le pemphigus foliacé (auto-immun). Ces affections sont gérables médicalement mais nécessitent un suivi régulier et des traitements à long terme." },
+        { q: "Peut-on vacciner un Akita Inu normalement ?", a: "Avec précaution. Certains Akita présentent des réactions vaccinales atypiques (fièvre, prostration, réactions cutanées). Discutez du protocole vaccinal avec votre vétérinaire — l'espacement des valences et la surveillance post-vaccinale peuvent être recommandés." },
+        { q: "Combien coûte un Akita Inu en France ?", a: "Le prix d'acquisition chez un éleveur certifié se situe entre 1 000 et 2 500 €. Le budget annuel d'entretien est estimé entre 1 950 et 3 440 €, incluant l'alimentation, les soins et l'assurance." },
+      ],
+      racesSimilaires: [{ slug: "chow-chow", nom: "Chow-Chow" }, { slug: "samoyede", nom: "Samoyède" }, { slug: "husky-siberien", nom: "Husky Sibérien" }],
+      esperanceVie: "10 – 13 ans",
+      coutVetAnnuel: "250 – 900 €",
+      coutVieEstime: "18 000 – 30 000 €",
+      prixAcquisition: "1 000 – 2 500 €",
+      sources: ["OFA Eye Certification Registry 2024", "Herring IP et al., Uveodermatologic syndrome in an Akita, J Am Anim Hosp Assoc, 2002", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "bichon-frise",
+      nom: "Bichon Frisé",
+      taille: "petite",
+      risque: "faible",
+      description: "Assurance Bichon Frisé : luxation patellaire, santé et coûts. Guide pour bien protéger votre Bichon.",
+      intro: "Le Bichon Frisé est une race joyeuse et robuste, prisée pour son caractère enjoué et son pelage hypoallergénique. Son profil de santé est globalement très favorable, avec une longévité remarquable. Quelques pathologies mineures à modérées méritent cependant attention, notamment articulaires et urinaires.",
+      coutAlimentation: "180 – 350 €",
+      coutSoinsVet: "130 – 280 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "140 – 280 €",
+      coutToilettage: "500 – 900 €",
+      coutAccessoires: "60 – 120 €",
+      coutGarde: "150 – 280 €",
+      coutTotal: "1 270 – 2 400 €",
+      maladies: [
+        { nom: "Luxation de la rotule", frequence: "Fréquente chez les petites races dont le Bichon", cout: "600 – 1 800 € par genou selon le grade", description: "Déplacement intermittent ou permanent de la rotule, entraînant une boiterie caractéristique. La chirurgie est indiquée pour les grades 3 et 4." },
+        { nom: "Urolithiases (calculs urinaires)", frequence: "Prédisposition documentée dans la race", cout: "500 – 1 500 € pour le diagnostic et le traitement", description: "Formation de calculs dans la vessie ou l'urètre, pouvant provoquer une obstruction urinaire. Le régime alimentaire adapté réduit le risque de récidive." },
+        { nom: "Cataracte", frequence: "Peut apparaître dès 5–6 ans", cout: "800 – 2 000 € par œil", description: "Opacification du cristallin réduisant progressivement l'acuité visuelle. La chirurgie par phacoémulsification est efficace si pratiquée avant cécité complète." },
+      ],
+      risquesFinanciers: "Le Bichon Frisé est une race à faible risque financier. La luxation patellaire constitue la dépense la plus probable. Le coût principal récurrent est le toilettage professionnel, indispensable pour cette race.",
+      conseils: ["Surveillance des boiteries intermittentes (luxation de rotule)", "Alimentation adaptée aux petites races avec contrôle du calcium et des oxalates", "Toilettage professionnel toutes les 6–8 semaines obligatoire", "Brossage quotidien pour prévenir le feutrage"],
+      assuranceReco: "Une formule accidents + maladies d'entrée de gamme suffit généralement. La couverture de la luxation patellaire est le point clé à vérifier.",
+      assurancePasCher: "Avec un profil de risque faible, des formules à 12–20 €/mois offrent une protection adéquate pour la plupart des Bichons.",
+      profil: "Race idéale pour les appartements, les familles avec enfants et les personnes allergiques. Convient parfaitement aux propriétaires peu sportifs.",
+      faq: [
+        { q: "Le Bichon Frisé est-il une race saine ?", a: "Oui — le Bichon Frisé est considéré comme l'une des races les plus saines. Son espérance de vie de 14 à 17 ans et son faible taux de pathologies héréditaires graves en font un excellent compagnon à coût médical modéré." },
+        { q: "Combien coûte le toilettage d'un Bichon Frisé ?", a: "Une séance de toilettage professionnel coûte entre 50 et 80 € selon la région et la taille du chien. Comptez 6 à 8 séances par an, soit 300 à 640 €/an. C'est le principal poste de dépense régulière pour cette race." },
+        { q: "Comment détecter une luxation de rotule chez un Bichon ?", a: "La luxation de rotule se manifeste par une boiterie intermittente : le chien marche normalement puis «saute» sur 3 pattes pendant quelques secondes avant de reprendre sa démarche normale. Une consultation vétérinaire permet le diagnostic et la graduation de la sévérité." },
+      ],
+      racesSimilaires: [{ slug: "caniche", nom: "Caniche" }, { slug: "shih-tzu", nom: "Shih Tzu" }, { slug: "yorkshire-terrier", nom: "Yorkshire Terrier" }],
+      esperanceVie: "14 – 17 ans",
+      coutVetAnnuel: "130 – 500 €",
+      coutVieEstime: "14 000 – 26 000 €",
+      prixAcquisition: "700 – 2 000 €",
+      sources: ["OFA Patella Luxation Statistics 2024", "AFVAC, Guide des pathologies des petites races, 2023", "FACCO, Enquête démographique 2024"],
+    },
+    {
+      slug: "boxer",
+      nom: "Boxer",
+      taille: "grande",
+      risque: "eleve",
+      description: "Assurance Boxer : cardiomyopathie, cancer et coûts vétérinaires élevés. Guide pour bien assurer votre Boxer.",
+      intro: "Le Boxer est une race énergique, attachante et excellente avec les enfants. Son profil médical est cependant préoccupant à partir de la cinquième année : la cardiomyopathie arythmogène du Boxer (ARVC), la prédisposition marquée aux tumeurs et la brachycéphalie modérée en font une race à surveillance cardiologique régulière.",
+      coutAlimentation: "700 – 1 100 €",
+      coutSoinsVet: "300 – 650 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "400 – 750 €",
+      coutToilettage: "100 – 200 €",
+      coutAccessoires: "120 – 230 €",
+      coutGarde: "250 – 480 €",
+      coutTotal: "2 000 – 3 620 €",
+      maladies: [
+        { nom: "Cardiomyopathie arythmogène (ARVC)", frequence: "Environ 30–40 % des Boxers adultes développent des arythmies", cout: "400 – 1 500 €/an en suivi Holter et médicaments antiarythmiques", description: "Maladie cardiaque héréditaire spécifique au Boxer, se manifestant par des arythmies ventriculaires pouvant provoquer une syncope ou une mort subite. Surveillance électrocardiographique annuelle à partir de 3 ans recommandée." },
+        { nom: "Tumeurs (mastocytomes, gliomes)", frequence: "Le Boxer a l'un des taux de cancer les plus élevés parmi les races moyennes-grandes", cout: "500 – 5 000 € selon le type et le stade", description: "Le Boxer est particulièrement prédisposé aux mastocytomes cutanés et aux tumeurs cérébrales. L'examen cutané régulier permet une détection précoce des mastocytomes." },
+        { nom: "Sténose sous-aortique (SAS)", frequence: "Plus fréquente que dans d'autres races", cout: "300 – 800 € pour le diagnostic échocardiographique ; traitement variable", description: "Obstruction partielle du flux sanguin sous la valve aortique, pouvant entraîner une insuffisance cardiaque et une mort subite en cas de forme sévère." },
+      ],
+      risquesFinanciers: "La cardiomyopathie arythmogène nécessite un suivi Holter annuel (200–400 €) et un traitement médicamenteux permanent si arythmies sévères. Un cancer traité chirurgicalement + chimiothérapie peut coûter 3 000 à 8 000 €.",
+      conseils: ["ECG et échocardiographie annuels à partir de 3 ans", "Enregistrement Holter si arythmies détectées", "Surveillance cutanée mensuelle pour les mastocytomes", "Éviter les efforts intenses par forte chaleur (brachycéphalie modérée)"],
+      assuranceReco: "Une formule Premium couvrant les pathologies cardiaques et oncologiques avec un plafond annuel de 3 000 € minimum est indispensable.",
+      assurancePasCher: "Toute formule excluant les pathologies cardiaques héréditaires est inadaptée au Boxer.",
+      profil: "Race idéale pour les familles actives avec enfants. Nécessite un propriétaire attentif au suivi cardiologique et prêt à investir dans la santé de son chien.",
+      faq: [
+        { q: "Qu'est-ce que la cardiomyopathie arythmogène du Boxer (ARVC) ?", a: "L'ARVC est une maladie cardiaque héréditaire spécifique au Boxer, causée par une mutation du gène de la striafine. Elle provoque des contractions ventriculaires prématurées pouvant dégénérer en fibrillation ventriculaire et mort subite. Un enregistrement Holter 24h est l'examen de référence pour son dépistage." },
+        { q: "Le Boxer est-il une race prédisposée au cancer ?", a: "Oui — le Boxer figure parmi les races avec les taux de cancer les plus élevés. Les mastocytomes cutanés sont les plus fréquents (grade 1 à 3). Les tumeurs cérébrales, notamment les gliomes, sont également surreprésentées dans cette race." },
+        { q: "Combien vit un Boxer en bonne santé ?", a: "L'espérance de vie moyenne du Boxer est de 9 à 11 ans. C'est relativement court pour une race de cette taille, en raison des pathologies cardiaques et oncologiques fréquentes. Un suivi vétérinaire rigoureux peut contribuer à améliorer la qualité et la durée de vie." },
+      ],
+      racesSimilaires: [{ slug: "dobermann", nom: "Dobermann" }, { slug: "bouledogue-francais", nom: "Bouledogue Français" }, { slug: "rottweiler", nom: "Rottweiler" }],
+      esperanceVie: "9 – 11 ans",
+      coutVetAnnuel: "400 – 1 800 €",
+      coutVieEstime: "18 000 – 32 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["Meurs KM et al., Familial ventricular arrhythmias in Boxers, J Vet Intern Med, 1999", "Dobson JM, Breed-predispositions to cancer in pedigree dogs, ISRN Vet Sci, 2013", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "carlin",
+      nom: "Carlin",
+      taille: "petite",
+      risque: "eleve",
+      description: "Assurance Carlin : BOAS sévère, entropion et coûts chirurgicaux. Guide complet pour votre Carlin.",
+      intro: "Le Carlin est une race brachycéphale attachante et adaptée à la vie en appartement. Mais son conformation extrême — museau très court, plis cutanés abondants, yeux proéminents — génère des problèmes de santé structurels sévères qui nécessitent souvent des interventions chirurgicales dès le jeune âge.",
+      coutAlimentation: "250 – 450 €",
+      coutSoinsVet: "400 – 900 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "430 – 780 €",
+      coutToilettage: "150 – 300 €",
+      coutAccessoires: "70 – 140 €",
+      coutGarde: "150 – 300 €",
+      coutTotal: "1 560 – 3 060 €",
+      maladies: [
+        { nom: "Syndrome brachycéphale obstructif (BOAS) sévère", frequence: "Affecte la grande majorité des Carlins — l'un des cas les plus graves parmi les brachycéphales", cout: "1 500 – 4 000 € pour la chirurgie correctrice", description: "Le Carlin présente l'un des syndromes brachycéphales les plus sévères : narines quasi-fermées, voile du palais très allongé et trachée hypoplasique. La chirurgie correctrice est souvent indispensable avant 2 ans." },
+        { nom: "Entropion et problèmes oculaires", frequence: "Très fréquents en raison des yeux proéminents et des plis cutanés périorbitaires", cout: "300 – 800 € par correction chirurgicale", description: "Le repliement des paupières vers l'intérieur (entropion) irrite la cornée et peut provoquer des ulcères cornéens graves. Les yeux proéminents sont également sujets aux traumatismes et aux sécheresses oculaires." },
+        { nom: "Myélite du Carlin (PDE)", frequence: "Unique à la race — prévalence estimée entre 1 et 2 %", cout: "800 – 2 500 € pour le diagnostic (IRM) et prise en charge", description: "Méningo-encéphalite nécrosante spécifique à la race, d'origine génétique, entraînant des convulsions, des troubles de l'équilibre et une détérioration neurologique progressive. Pronostic réservé." },
+      ],
+      risquesFinanciers: "Le Carlin cumule des coûts élevés dès le jeune âge : chirurgie BOAS, correction oculaire, soins des plis cutanés. Sur la durée de vie, le budget vétérinaire peut facilement dépasser 15 000 €.",
+      conseils: ["Ne jamais acheter un Carlin avec des narines quasi-fermées visible à l'œil nu", "Exiger un test BOAS grading chez l'éleveur avant l'achat", "Nettoyage quotidien des plis cutanés et des commissures des yeux", "Éviter les efforts physiques intensifs et les fortes chaleurs"],
+      assuranceReco: "La formule Premium est indispensable. Vérifiez que le BOAS, les corrections oculaires et les pathologies neurologiques sont couvertes. Un plafond annuel de 3 000 € est le minimum recommandé.",
+      assurancePasCher: "Il n'existe pas de formule adaptée et vraiment économique pour le Carlin. Toute formule excluant les maladies brachycéphales est inadaptée à cette race.",
+      profil: "Adapté aux appartements et aux propriétaires peu sportifs. Déconseillé aux personnes ne pouvant pas consacrer un budget vétérinaire important.",
+      faq: [
+        { q: "Le Carlin souffre-t-il de ses difficultés respiratoires ?", a: "Oui — le brachycéphalisme modéré à sévère du Carlin provoque une gêne respiratoire chronique. Les chiens touchés se fatiguent rapidement, ronflent bruyamment et peuvent présenter des épisodes de cyanose (bleuissement des muqueuses) à l'effort. La chirurgie correctrice améliore significativement leur qualité de vie." },
+        { q: "Qu'est-ce que la myélite du Carlin ?", a: "La PDE (Pug Dog Encephalitis) est une méningo-encéphalite nécrosante d'origine génétique spécifique au Carlin. Elle se manifeste entre 2 et 7 ans par des crises épileptiques, des troubles de l'équilibre et une perte de conscience. Malheureusement, le pronostic est généralement défavorable." },
+        { q: "Peut-on faire assurer un Carlin avec BOAS ?", a: "Oui, si souscrit avant tout diagnostic de BOAS. Les formules SantéVet Confort et Premium couvrent le syndrome brachycéphale sans exclusion de race dans la mesure où aucun diagnostic n'a été posé avant la souscription." },
+      ],
+      racesSimilaires: [{ slug: "bouledogue-francais", nom: "Bouledogue Français" }, { slug: "shih-tzu", nom: "Shih Tzu" }, { slug: "chihuahua", nom: "Chihuahua" }],
+      esperanceVie: "12 – 15 ans",
+      coutVetAnnuel: "500 – 2 000 €",
+      coutVieEstime: "18 000 – 38 000 €",
+      prixAcquisition: "1 000 – 3 000 €",
+      sources: ["Packer RMA et al., Impact of facial conformation on canine health, PLoS ONE, 2015", "Rusbridge C et al., Vet Rec, Pug dog encephalitis, 2004", "AFVAC, Guide brachycéphalie, 2023"],
+    },
+    {
+      slug: "chihuahua",
+      nom: "Chihuahua",
+      taille: "petite",
+      risque: "faible",
+      description: "Assurance Chihuahua : luxation patellaire, hydrocéphalie et coûts vétérinaires. Guide pour bien assurer votre Chihuahua.",
+      intro: "Le Chihuahua est la plus petite race du monde, mais sa personnalité est immense. Race généralement robuste et longévive, elle présente quelques prédispositions propres aux très petites races : luxation de la rotule, risque d'hydrocéphalie et hypoglycémie chez les chiots minuscules.",
+      coutAlimentation: "150 – 300 €",
+      coutSoinsVet: "120 – 280 €",
+      coutVaccins: "110 – 180 €",
+      coutAssurance: "130 – 260 €",
+      coutToilettage: "80 – 150 €",
+      coutAccessoires: "60 – 110 €",
+      coutGarde: "120 – 250 €",
+      coutTotal: "770 – 1 530 €",
+      maladies: [
+        { nom: "Luxation de la rotule", frequence: "Très fréquente chez les petits Chihuahuas", cout: "600 – 1 500 € par genou", description: "Déplacement intermittent de la rotule, se manifestant par une démarche sautillante caractéristique. La chirurgie est conseillée pour les grades 3 et 4 afin d'éviter l'arthrose prématurée." },
+        { nom: "Hydrocéphalie", frequence: "Plus fréquente chez les chiots à crâne en forme de pomme (type extrême)", cout: "500 – 2 000 € pour le diagnostic (IRM) et la prise en charge médicale", description: "Accumulation de liquide céphalorachidien dans les ventricules cérébraux, entraînant une hypertension intracrânienne. Se manifeste par des convulsions, des troubles de l'équilibre et un développement retardé." },
+        { nom: "Hypoglycémie (chiots)", frequence: "Fréquente chez les chiots de moins de 500 g", cout: "100 – 400 € en urgence", description: "Chute brutale du taux de sucre sanguin chez les très jeunes chiots, pouvant provoquer des convulsions et un coma. Prévention par repas très fréquents et surveillance de l'état général." },
+      ],
+      risquesFinanciers: "Le Chihuahua est l'une des races les moins coûteuses à entretenir. Le principal risque chirurgical est la luxation de rotule (600 à 1 500 €). L'hydrocéphalie, rare, constitue l'urgence neurologique la plus coûteuse.",
+      conseils: ["Alimentation fractionnée pour les chiots très petits (éviter l'hypoglycémie)", "Éviter les sauts de hauteur (escaliers, canapé) pour préserver les genoux", "Radiographies des genoux recommandées si boiterie", "Prudence avec les chiens plus grands — traumatismes courants"],
+      assuranceReco: "Une formule accidents + maladies standard suffit. Vérifiez la couverture de la luxation patellaire et des urgences neurologiques.",
+      assurancePasCher: "Avec un budget vétérinaire annuel modeste, une formule à 10–18 €/mois offre une protection suffisante pour la plupart des Chihuahuas en bonne santé.",
+      profil: "Race idéale pour les appartements, les personnes âgées et les propriétaires sédentaires. Attention aux traumatismes — le Chihuahua est fragile physiquement malgré son tempérament volontaire.",
+      faq: [
+        { q: "Le Chihuahua est-il une race fragile ?", a: "Le Chihuahua est robuste médicalement (longévité de 14 à 17 ans) mais physiquement fragile (petite taille, os fins). Il est particulièrement vulnérable aux traumatismes, chutes et morsures d'autres chiens. Les frais vétérinaires annuels restent parmi les plus faibles de toutes les races." },
+        { q: "Faut-il assurer un Chihuahua ?", a: "Oui, même si le risque vétérinaire est faible. Un traumatisme (fracture lors d'une chute) ou une chirurgie de luxation patellaire peut représenter 1 000 à 2 000 €. Une assurance à 12–18 €/mois couvre ces risques à moindre coût." },
+        { q: "Le Chihuahua peut-il avoir des problèmes cardiaques ?", a: "Oui — comme beaucoup de petites races, le Chihuahua peut développer une maladie valvulaire mitrale (insuffisance mitrale) à partir de 8–10 ans. Le suivi cardiologique régulier à partir de 6 ans est recommandé." },
+      ],
+      racesSimilaires: [{ slug: "yorkshire-terrier", nom: "Yorkshire Terrier" }, { slug: "carlin", nom: "Carlin" }, { slug: "bichon-frise", nom: "Bichon Frisé" }],
+      esperanceVie: "14 – 17 ans",
+      coutVetAnnuel: "120 – 450 €",
+      coutVieEstime: "10 000 – 20 000 €",
+      prixAcquisition: "600 – 2 000 €",
+      sources: ["OFA Patella Luxation Statistics 2024", "AFVAC, Guide des petites races, 2023", "Bagley RS, Hydrocephalus in dogs and cats, Vet Clin North Am, 1996"],
+    },
+    {
+      slug: "chow-chow",
+      nom: "Chow-Chow",
+      taille: "grande",
+      risque: "modere",
+      description: "Assurance Chow-Chow : entropion, dysplasie et santé. Guide complet pour bien assurer votre Chow-Chow.",
+      intro: "Le Chow-Chow est une race ancienne d'origine chinoise, imposante et indépendante. Son profil médical est marqué par des prédispositions oculaires (entropion), orthopédiques (dysplasie) et par sa langue bleue caractéristique. Sa robustesse générale est bonne mais ses particularités anatomiques nécessitent un suivi spécialisé.",
+      coutAlimentation: "650 – 1 050 €",
+      coutSoinsVet: "250 – 550 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "320 – 580 €",
+      coutToilettage: "400 – 800 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 450 €",
+      coutTotal: "2 100 – 3 840 €",
+      maladies: [
+        { nom: "Entropion", frequence: "Très fréquent dans la race — l'une des plus touchées", cout: "300 – 800 € par correction chirurgicale", description: "Repliement des paupières vers l'intérieur irritant la cornée. Le Chow-Chow, avec ses nombreux plis cutanés péri-orbitaires, est particulièrement prédisposé. La correction chirurgicale est souvent nécessaire." },
+        { nom: "Dysplasie de hanche", frequence: "Fréquente dans la race", cout: "1 500 – 4 000 € par articulation", description: "Malformation coxo-fémorale héréditaire pouvant entraîner une claudication progressive et une arthrose sévère. Le dépistage OFA est recommandé avant reproduction." },
+        { nom: "Myopathie héréditaire du Chow-Chow", frequence: "Rare mais spécifique à la race", cout: "200 – 600 € pour le diagnostic neuromusculaire", description: "Affection musculaire héréditaire autosomique récessive se manifestant par une faiblesse musculaire progressive et des difficultés de déglutition. Pronostic variable." },
+      ],
+      risquesFinanciers: "L'entropion bilatéral peut nécessiter plusieurs corrections chirurgicales (600 à 1 600 €). La dysplasie de hanche, si sévère, représente un coût chirurgical important. Le toilettage professionnel est un poste récurrent et indispensable pour cette race à pelage dense.",
+      conseils: ["Examen ophtalmique à l'achat pour vérifier l'absence d'entropion sévère", "Certification OFA chez les reproducteurs", "Toilettage professionnel régulier (4–6 fois/an minimum)", "Surveillance de la déglutition en cas de signes de myopathie"],
+      assuranceReco: "Une formule accidents + maladies couvrant les corrections oculaires et la dysplasie est recommandée. Le toilettage étant une dépense prévisible, concentrez la couverture sur les soins curatifs.",
+      assurancePasCher: "Une formule intermédiaire à 30–45 €/mois offre un bon rapport pour ce profil de risque modéré.",
+      profil: "Race pour propriétaires expérimentés, à l'aise avec les chiens indépendants. Nécessite une socialisation précoce très rigoureuse.",
+      faq: [
+        { q: "Pourquoi le Chow-Chow a-t-il la langue bleue ?", a: "La pigmentation bleue-noire de la langue et des muqueuses buccales du Chow-Chow est une caractéristique génétique de la race, liée à une forte concentration de mélanine dans ces tissus. C'est l'un des critères de standard de la race. Elle n'a aucune signification pathologique." },
+        { q: "Le Chow-Chow est-il agressif ?", a: "Le Chow-Chow est une race territoriale et indépendante qui peut se montrer méfiant envers les inconnus et peu tolérant avec d'autres animaux. Une socialisation précoce et rigoureuse entre 2 et 16 semaines est déterminante pour son comportement adulte." },
+        { q: "Combien coûte le toilettage d'un Chow-Chow ?", a: "Le toilettage d'un Chow-Chow (pelage double, dense) coûte entre 80 et 150 € par séance professionnelle. Comptez 5 à 7 séances par an, soit 400 à 1 000 €/an de toilettage." },
+      ],
+      racesSimilaires: [{ slug: "akita-inu", nom: "Akita Inu" }, { slug: "samoyede", nom: "Samoyède" }, { slug: "husky-siberien", nom: "Husky Sibérien" }],
+      esperanceVie: "11 – 13 ans",
+      coutVetAnnuel: "250 – 900 €",
+      coutVieEstime: "18 000 – 32 000 €",
+      prixAcquisition: "1 000 – 2 500 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024", "Ackerman N, Inherited Eye Disease in the Chow Chow, J Am Anim Hosp Assoc, 1983", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "cocker-spaniel",
+      nom: "Cocker Spaniel",
+      taille: "moyenne",
+      risque: "modere",
+      description: "Assurance Cocker Spaniel : otites, atrophie rétinienne et coûts vétérinaires. Guide complet.",
+      intro: "Le Cocker Spaniel Anglais est une race gaie, affectueuse et dotée d'un beau pelage soyeux. Ses oreilles tombantes, caractéristiques de la race, favorisent malheureusement les infections auditives chroniques — premier motif de consultation vétérinaire chez cette race. Les pathologies oculaires héréditaires méritent également attention.",
+      coutAlimentation: "400 – 700 €",
+      coutSoinsVet: "200 – 450 €",
+      coutVaccins: "120 – 200 €",
+      coutAssurance: "280 – 500 €",
+      coutToilettage: "400 – 700 €",
+      coutAccessoires: "80 – 160 €",
+      coutGarde: "200 – 380 €",
+      coutTotal: "1 680 – 3 090 €",
+      maladies: [
+        { nom: "Otites chroniques récurrentes", frequence: "Premier motif de consultation vétérinaire dans la race", cout: "200 – 600 €/an en traitements répétés", description: "Les oreilles pendantes du Cocker réduisent la ventilation du conduit auditif externe, favorisant la prolifération bactérienne et fongique. Dans les cas graves, une otite chronique nécessite une ablation du conduit auditif (TECA)." },
+        { nom: "Atrophie rétinienne progressive (ARP)", frequence: "Documentée dans la race — test génétique disponible", cout: "200 – 500 € pour le diagnostic ophtalmique", description: "Dégénérescence progressive des photorécepteurs conduisant à une cécité nocturne puis totale. Aucun traitement disponible — le test génétique permet d'identifier les porteurs." },
+        { nom: "Glaucome primaire", frequence: "Prédisposition documentée dans la race", cout: "600 – 2 000 € pour le diagnostic et le traitement initial", description: "Augmentation de la pression intraoculaire pouvant conduire à une cécité irréversible si non traitée rapidement. Surveillance de la pression oculaire recommandée à partir de 4 ans." },
+      ],
+      risquesFinanciers: "Les otites chroniques représentent la dépense la plus régulière (200 à 600 €/an). Dans les cas d'otite très sévère nécessitant une ablation du conduit, la facture peut atteindre 2 000 à 3 000 €.",
+      conseils: ["Nettoyage hebdomadaire des oreilles avec un nettoyant vétérinaire adapté", "Séchage des oreilles après chaque baignade", "Test génétique ARP avant reproduction", "Contrôle de la pression intraoculaire annuel à partir de 4 ans"],
+      assuranceReco: "Une formule couvrant les pathologies oculaires et les otites chroniques (traitements répétés) est recommandée. Vérifiez que les traitements récurrents de même pathologie sont bien pris en charge chaque année.",
+      assurancePasCher: "Une formule intermédiaire à 25–40 €/mois offre une bonne couverture pour le profil de risque modéré du Cocker.",
+      profil: "Race idéale pour les familles, les appartements et les propriétaires de tous niveaux. Son entretien du pelage nécessite un investissement régulier en toilettage.",
+      faq: [
+        { q: "Pourquoi le Cocker Spaniel fait-il autant d'otites ?", a: "Les oreilles tombantes du Cocker créent un environnement chaud et humide, pauvre en ventilation, dans le conduit auditif — idéal pour la prolifération bactérienne et fongique. À cela s'ajoute une tendance aux allergies cutanées qui entretient l'inflammation des conduits auditifs." },
+        { q: "L'atrophie rétinienne progressive du Cocker est-elle curable ?", a: "Non — il n'existe pas de traitement pour l'ARP. La progression vers la cécité totale est inéluctable, mais souvent sur plusieurs années. Les chiens atteints s'adaptent bien à la cécité si leur environnement reste stable." },
+        { q: "Combien coûte une ablation du conduit auditif chez un Cocker ?", a: "La TECA (Total Ear Canal Ablation) est indiquée pour les otites chroniques très sévères réfractaires aux traitements. L'intervention coûte entre 1 500 et 3 000 € selon la sévérité et la clinique. Elle est définitive et résout efficacement les otites récurrentes." },
+      ],
+      racesSimilaires: [{ slug: "epagneul-breton", nom: "Épagneul Breton" }, { slug: "setter-irlandais", nom: "Setter Irlandais" }, { slug: "cavalier-king-charles", nom: "Cavalier King Charles" }],
+      esperanceVie: "12 – 15 ans",
+      coutVetAnnuel: "200 – 800 €",
+      coutVieEstime: "16 000 – 28 000 €",
+      prixAcquisition: "700 – 1 800 €",
+      sources: ["OFA Eye Certification Registry 2024", "Rosser EJ, Diagnosis of food allergy in dogs, J Am Vet Med Assoc, 1993", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "dalmatien",
+      nom: "Dalmatien",
+      taille: "grande",
+      risque: "modere",
+      description: "Assurance Dalmatien : surdité congénitale, urolithiases et coûts vétérinaires. Guide complet.",
+      intro: "Le Dalmatien est une race élégante et énergique, reconnaissable à sa robe tachetée unique. Deux caractéristiques médicales méritent une attention particulière : un taux de surdité congénitale parmi les plus élevés de toutes les races, et une prédisposition unique à former des calculs d'urate dues à un métabolisme particulier de l'acide urique.",
+      coutAlimentation: "650 – 1 050 €",
+      coutSoinsVet: "200 – 450 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "300 – 550 €",
+      coutToilettage: "100 – 200 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 450 €",
+      coutTotal: "1 730 – 3 110 €",
+      maladies: [
+        { nom: "Surdité congénitale (BAER)", frequence: "8–10 % des Dalmatiens souffrent de surdité bilatérale ; 20–25 % de surdité unilatérale", cout: "Test BAER : 100–200 €. Adaptation comportementale et éducative spécifique nécessaire", description: "La surdité congénitale est liée à la dégénérescence des cellules cochléaires associée au gène de la pigmentation blanche (locus de merle et taches noires). Le test BAER doit être réalisé à 5–6 semaines." },
+        { nom: "Urolithiases (calculs d'urate)", frequence: "Affecte une proportion significative — tous les Dalmatiens ont un métabolisme de l'acide urique atypique", cout: "600 – 2 000 € pour le traitement d'une obstruction urinaire", description: "Le Dalmatien excrète des quantités élevées d'acide urique dans les urines, favorisant la formation de calculs d'urate. Une alimentation pauvre en purines réduit le risque. L'obstruction urinaire est une urgence chirurgicale." },
+        { nom: "Hypothyroïdie", frequence: "Présente dans la race, fréquence modérée", cout: "250 – 500 €/an en suivi hormonal et lévothyroxine", description: "Insuffisance thyroïdienne se manifestant par une prise de poids et des troubles cutanés. Traitement efficace par hormonothérapie quotidienne à vie." },
+      ],
+      risquesFinanciers: "Une obstruction urinaire par calculs d'urate constitue l'urgence la plus coûteuse (600 à 2 000 € en chirurgie d'urgence). Le Dalmatien sourd unilatéral ne représente pas de surcoût médical mais nécessite une adaptation de l'éducation.",
+      conseils: ["Test BAER obligatoire à 5–6 semaines chez l'éleveur", "Alimentation pauvre en purines (éviter abats, viande rouge en grande quantité)", "Hydratation abondante pour prévenir la formation de calculs", "Surveiller les signes de difficultés urinaires (mictions fréquentes, sang dans les urines)"],
+      assuranceReco: "Une formule accidents + maladies couvrant les urgences urinaires est prioritaire. La surdité n'étant pas une pathologie traitable médicalement, la couverture doit se concentrer sur les calculs urinaires.",
+      assurancePasCher: "Le Dalmatien est une race à risque modéré — une formule à 25–40 €/mois offre une protection satisfaisante.",
+      profil: "Race pour propriétaires actifs nécessitant beaucoup d'exercice quotidien. Convient aux sportifs et familles avec grands jardins.",
+      faq: [
+        { q: "Comment savoir si mon Dalmatien est sourd ?", a: "Le test BAER (Brain Auditory Evoked Response) est le seul moyen fiable de tester l'audition d'un chiot Dalmatien. Il doit être réalisé entre 5 et 8 semaines. Les éleveurs sérieux font tester l'ensemble de la portée avant la vente." },
+        { q: "Pourquoi le Dalmatien est-il sujet aux calculs urinaires ?", a: "Le Dalmatien possède une mutation génétique affectant le transporteur SLC2A9, responsable de la réabsorption de l'acide urique dans les reins. Il excrète donc de grandes quantités d'urate dans ses urines, favorisant la formation de calculs. Tous les Dalmatiens sont porteurs de cette particularité métabolique." },
+        { q: "Quelle alimentation pour prévenir les calculs chez un Dalmatien ?", a: "Une alimentation pauvre en purines est recommandée : évitez les abats, les sardines, les anchois et les grandes quantités de viande rouge. Privilégiez les croquettes spécifiquement formulées pour le Dalmatien avec une teneur réduite en purine. L'hydratation abondante est également essentielle." },
+      ],
+      racesSimilaires: [{ slug: "setter-irlandais", nom: "Setter Irlandais" }, { slug: "boxer", nom: "Boxer" }, { slug: "labrador", nom: "Labrador Retriever" }],
+      esperanceVie: "11 – 13 ans",
+      coutVetAnnuel: "200 – 700 €",
+      coutVieEstime: "16 000 – 28 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["Strain GM, Deafness prevalence and pigmentation and gender associations in dog breeds at risk, Vet J, 2004", "Safra N et al., Genome-wide association mapping in dogs enables identification of the homologous human disorder, PNAS, 2011", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "dobermann",
+      nom: "Dobermann",
+      taille: "grande",
+      risque: "eleve",
+      description: "Assurance Dobermann : cardiomyopathie dilatée, VWD et coûts vétérinaires. Guide complet.",
+      intro: "Le Dobermann est une race élégante, intelligente et fidèle, dont la réputation en matière de travail et de sport canin est mondiale. Sa principale vulnérabilité médicale est sévère : la cardiomyopathie dilatée occulte (DCM) touche une proportion alarmante de Dobermanns adultes et constitue la première cause de mort prématurée dans la race.",
+      coutAlimentation: "700 – 1 100 €",
+      coutSoinsVet: "300 – 700 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "420 – 780 €",
+      coutToilettage: "80 – 160 €",
+      coutAccessoires: "120 – 230 €",
+      coutGarde: "250 – 480 €",
+      coutTotal: "2 000 – 3 660 €",
+      maladies: [
+        { nom: "Cardiomyopathie dilatée (DCM)", frequence: "50–60 % des Dobermanns adultes selon les études européennes (Martin MWS et al.)", cout: "400 – 1 500 €/an en suivi échocardiographique, Holter et médicaments", description: "Dilatation progressive du myocarde entraînant une insuffisance cardiaque congestive. La phase occulte (sans symptômes) peut durer 2 à 4 ans avant les premiers signes cliniques. Dépistage annuel par échocardiographie + Holter à partir de 3–4 ans recommandé." },
+        { nom: "Maladie de von Willebrand type I (VWD1)", frequence: "Porteurs fréquents dans la race ; formes symptomatiques moins communes", cout: "300 – 800 € pour le diagnostic et la gestion des saignements chirurgicaux", description: "Trouble de la coagulation héréditaire réduisant la capacité à former un caillot primaire. Les chirurgies doivent être planifiées avec le vétérinaire pour anticiper les risques hémorragiques." },
+        { nom: "Hypothyroïdie", frequence: "Fréquente chez le Dobermann adulte", cout: "250 – 500 €/an en traitement et suivi", description: "Insuffisance thyroïdienne classique se manifestant par une prise de poids, une alopécie et une léthargie. Traitement quotidien efficace par lévothyroxine." },
+      ],
+      risquesFinanciers: "La DCM occulte puis clinique est le risque financier dominant : suivi annuel 400–800 €, traitement médicamenteux de l'insuffisance cardiaque congestive 600–1 500 €/an. La mort subite par arythmie ventriculaire est un risque réel dans les cas non suivis.",
+      conseils: ["Échocardiographie + Holter annuels à partir de 3–4 ans (dépistage précoce de la DCM)", "Test génétique VWD disponible — informer le vétérinaire du statut avant toute chirurgie", "Dépistage thyroïdien à partir de 4 ans", "Éviter les efforts intenses et la chaleur en phase d'insuffisance cardiaque"],
+      assuranceReco: "La formule Premium est indispensable pour cette race. La DCM et ses traitements doivent être explicitement couverts. Un plafond annuel de 3 000 € minimum est recommandé.",
+      assurancePasCher: "Toute formule excluant les pathologies cardiaques héréditaires est totalement inadaptée au Dobermann.",
+      profil: "Race pour propriétaires expérimentés, actifs, disposant d'espace. Excellent chien de sport et de travail. Suivi cardiologique régulier non négociable.",
+      faq: [
+        { q: "Qu'est-ce que la cardiomyopathie dilatée occulte du Dobermann ?", a: "La DCM occulte est la phase asymptomatique de la cardiomyopathie dilatée, pendant laquelle le cœur se dilate progressivement sans signe clinique apparent. Elle précède l'insuffisance cardiaque congestive ou la mort subite par fibrillation ventriculaire. Seul un suivi annuel par échocardiographie et Holter 24h permet de la détecter." },
+        { q: "À quel âge commence le dépistage cardiaque chez le Dobermann ?", a: "Les recommandations de l'European Society of Veterinary Cardiology (ESVC) préconisent un dépistage annuel à partir de 3 ans (mâles) et 4 ans (femelles) incluant une échocardiographie et un enregistrement Holter 24h. Ce protocole augmente significativement les chances de détecter la DCM avant la phase clinique." },
+        { q: "Combien vit un Dobermann ?", a: "L'espérance de vie moyenne du Dobermann est de 9 à 12 ans. La DCM en est la principale cause de décès prématuré, souvent entre 7 et 11 ans. Un suivi cardiologique rigoureux peut détecter la DCM en phase occulte et retarder la progression avec un traitement adapté." },
+      ],
+      racesSimilaires: [{ slug: "rottweiler", nom: "Rottweiler" }, { slug: "malinois", nom: "Malinois" }, { slug: "berger-allemand", nom: "Berger Allemand" }],
+      esperanceVie: "9 – 12 ans",
+      coutVetAnnuel: "400 – 1 800 €",
+      coutVieEstime: "20 000 – 36 000 €",
+      prixAcquisition: "1 000 – 2 500 €",
+      sources: ["Martin MWS et al., Dobermann cardiomyopathy prevalence, Vet J, 2010", "Kaneps AJ et al., Von Willebrand disease in Dobermann Pinschers, J Vet Intern Med, 1988", "ESVC Dobermann DCM Screening Protocol 2022"],
+    },
+    {
+      slug: "epagneul-breton",
+      nom: "Épagneul Breton",
+      taille: "moyenne",
+      risque: "faible",
+      description: "Assurance Épagneul Breton : épilepsie, atrophie rétinienne et coûts vétérinaires. Guide pour bien assurer votre Épagneul Breton.",
+      intro: "L'Épagneul Breton est la race de chasse française la plus populaire — et l'une des plus robustes. Son profil de santé est globalement excellent avec une longévité remarquable. Deux prédispositions méritent surveillance : l'épilepsie idiopathique dans certaines lignées et l'atrophie rétinienne progressive.",
+      coutAlimentation: "450 – 750 €",
+      coutSoinsVet: "180 – 380 €",
+      coutVaccins: "120 – 200 €",
+      coutAssurance: "220 – 420 €",
+      coutToilettage: "100 – 200 €",
+      coutAccessoires: "80 – 160 €",
+      coutGarde: "200 – 380 €",
+      coutTotal: "1 350 – 2 490 €",
+      maladies: [
+        { nom: "Épilepsie idiopathique", frequence: "Présente dans certaines lignées de la race", cout: "400 – 1 200 €/an en anticonvulsivants et suivi", description: "Forme d'épilepsie héréditaire sans cause structurelle identifiable, se manifestant entre 6 mois et 5 ans. Le phénobarbital ou le bromure de potassium contrôlent efficacement les crises dans la majorité des cas." },
+        { nom: "Atrophie rétinienne progressive (ARP)", frequence: "Documentée dans la race — prévalence modérée", cout: "200 – 500 € pour le bilan ophtalmique complet", description: "Dégénérescence progressive des photorécepteurs conduisant à une cécité nocturne puis totale. Test génétique disponible pour identifier les porteurs avant reproduction." },
+        { nom: "Luxation du cristallin", frequence: "Présente dans certaines lignées de terriers et chiens de chasse", cout: "800 – 2 500 € par œil (chirurgie urgente recommandée)", description: "Déplacement partiel ou total du cristallin hors de sa position normale, constituant une urgence ophtalmologique pouvant conduire à un glaucome secondaire." },
+      ],
+      risquesFinanciers: "L'Épagneul Breton est l'une des races les moins coûteuses médicalement. Le principal risque récurrent est l'épilepsie (500 à 1 200 €/an si présente). Une luxation du cristallin constitue l'urgence la plus coûteuse.",
+      conseils: ["Exiger des certifications oculaires et neurologiques pour les reproducteurs", "Test génétique ARP disponible avant reproduction", "Surveillance des parterres et zones humides (leptospirose lors des sorties de chasse)", "Vaccination leptospirose à maintenir à jour impérativement"],
+      assuranceReco: "Une formule accidents + maladies standard suffit généralement pour cette race robuste. La couverture des pathologies neurologiques est le point clé.",
+      assurancePasCher: "Avec un profil de risque faible, une formule à 18–30 €/mois offre une protection adéquate.",
+      profil: "Race idéale pour les chasseurs, les familles actives et les propriétaires ayant accès à la nature. Nécessite beaucoup d'exercice quotidien.",
+      faq: [
+        { q: "L'Épagneul Breton est-il une race saine ?", a: "Oui — l'Épagneul Breton est considéré comme l'une des races françaises les plus robustes. Son espérance de vie de 12 à 15 ans, ses faibles taux de pathologies héréditaires graves et son tempérament équilibré en font un compagnon fiable à coût médical modéré." },
+        { q: "Faut-il vacciner un Épagneul Breton contre la leptospirose ?", a: "Oui, absolument. La leptospirose est une maladie bactérienne grave transmissible à l'humain, contractée dans les zones humides et les terres agricoles — les environnements de chasse typiques. La vaccination annuelle est indispensable pour les chiens de chasse ou de campagne." },
+        { q: "Combien coûte un Épagneul Breton chez un éleveur ?", a: "Le prix d'un chiot Épagneul Breton chez un éleveur affilié (RSCEB) se situe entre 700 et 1 500 € selon les lignées et les aptitudes au travail. Le budget annuel d'entretien est estimé entre 1 350 et 2 490 €." },
+      ],
+      racesSimilaires: [{ slug: "cocker-spaniel", nom: "Cocker Spaniel" }, { slug: "setter-irlandais", nom: "Setter Irlandais" }, { slug: "beagle", nom: "Beagle" }],
+      esperanceVie: "12 – 15 ans",
+      coutVetAnnuel: "180 – 600 €",
+      coutVieEstime: "14 000 – 24 000 €",
+      prixAcquisition: "700 – 1 500 €",
+      sources: ["OFA Eye Certification Registry 2024", "AFVAC, Guide des pathologies héréditaires canines, 2023", "RSCEB (Réunion des Éleveurs du Spaniel Club Breton), Protocole santé 2023"],
+    },
+    {
+      slug: "jack-russell",
+      nom: "Jack Russell Terrier",
+      taille: "petite",
+      risque: "faible",
+      description: "Assurance Jack Russell Terrier : santé robuste, luxation patellaire et coûts. Guide pour bien protéger votre Jack Russell.",
+      intro: "Le Jack Russell Terrier est une petite bombe d'énergie, reconnue pour son caractère tonique et sa robustesse constitutionnelle remarquable. C'est l'une des races à plus faible risque médical, avec une espérance de vie parmi les plus longues du monde canin. Quelques prédispositions mineures méritent surveillance.",
+      coutAlimentation: "200 – 380 €",
+      coutSoinsVet: "130 – 280 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "150 – 280 €",
+      coutToilettage: "60 – 120 €",
+      coutAccessoires: "60 – 120 €",
+      coutGarde: "130 – 260 €",
+      coutTotal: "840 – 1 630 €",
+      maladies: [
+        { nom: "Luxation de la rotule", frequence: "Présente dans la race, moins fréquente que chez d'autres petites races", cout: "600 – 1 500 € par genou", description: "Déplacement intermittent de la rotule, généralement bien toléré aux grades 1–2. La chirurgie est recommandée pour les grades 3–4 afin de prévenir l'arthrose précoce." },
+        { nom: "Surdité congénitale", frequence: "Liée aux individus à robe blanche prédominante (gène MITF)", cout: "Test BAER : 100–200 €. Adaptation éducative spécifique", description: "La surdité unilatérale ou bilatérale est plus fréquente dans les lignées à robe blanche prédominante. Le test BAER permet le dépistage." },
+        { nom: "Atrophie rétinienne progressive (ARP)", frequence: "Documentée dans certaines lignées", cout: "200 – 500 € pour le bilan ophtalmique", description: "Dégénérescence progressive des photorécepteurs rétiniens conduisant à une cécité nocturne puis totale. Test génétique disponible." },
+      ],
+      risquesFinanciers: "Le Jack Russell est l'une des races les moins coûteuses médicalement. Ses frais vétérinaires annuels sont parmi les plus bas du marché canin. Le principal risque chirurgical est la luxation patellaire grade 3–4.",
+      conseils: ["Surveillance des boiteries intermittentes (luxation de rotule)", "Test BAER si pelage à prédominance blanche", "Enrichissement mental et physique pour canaliser l'énergie", "Clôtures sécurisées — excellent chasseur de terriers et grande fugue"],
+      assuranceReco: "Une formule accidents + maladies d'entrée de gamme suffit pour cette race très robuste.",
+      assurancePasCher: "Le Jack Russell est l'une des races les moins chères à assurer : 10–18 €/mois pour une couverture accidents + maladies standard.",
+      profil: "Race pour propriétaires actifs, tolérant l'indépendance et l'énergie débordante. Déconseillée aux personnes sédentaires ou cherchant un chien calme en appartement sans sorties.",
+      faq: [
+        { q: "Le Jack Russell est-il une race en bonne santé ?", a: "Oui — le Jack Russell Terrier est considéré comme l'une des races les plus saines et longévives (15 à 18 ans de vie moyenne). Sa robustesse est telle que les frais vétérinaires annuels restent parmi les plus bas de toutes les races." },
+        { q: "Combien vit un Jack Russell en bonne santé ?", a: "L'espérance de vie d'un Jack Russell bien entretenu est de 13 à 18 ans. Cette longévité exceptionnelle s'explique par la robustesse constitutionnelle de la race, sélectionnée pour le travail et non l'esthétique." },
+        { q: "Le Jack Russell s'entend-il avec les enfants ?", a: "Le Jack Russell peut très bien s'entendre avec les enfants, mais sa vivacité et son tempérament terrier (mordillements, impatience) nécessitent une socialisation précoce sérieuse et un encadrement de la relation enfant-chien. Il est déconseillé aux très jeunes enfants (moins de 5 ans) sans supervision constante." },
+      ],
+      racesSimilaires: [{ slug: "beagle", nom: "Beagle" }, { slug: "teckel", nom: "Teckel" }, { slug: "chihuahua", nom: "Chihuahua" }],
+      esperanceVie: "13 – 18 ans",
+      coutVetAnnuel: "130 – 400 €",
+      coutVieEstime: "10 000 – 20 000 €",
+      prixAcquisition: "500 – 1 500 €",
+      sources: ["OFA Patella Luxation Statistics 2024", "Strain GM, Deafness prevalence in white-coated dog breeds, Vet J, 2004", "AFVAC, Guide des petites races, 2023"],
+    },
+    {
+      slug: "montagne-des-pyrenees",
+      nom: "Montagne des Pyrénées",
+      taille: "geante",
+      risque: "modere",
+      description: "Assurance Montagne des Pyrénées : dysplasie, torsion d'estomac et coûts vétérinaires. Guide complet.",
+      intro: "La Montagne des Pyrénées est un chien de troupeau majestueux, réputé pour sa douceur et son calme. Sa stature imposante (jusqu'à 70 kg) génère cependant des frais vétérinaires significativement plus élevés que les races moyennes : alimentation importante, posologie médicamenteuse plus élevée et risques orthopédiques liés au poids.",
+      coutAlimentation: "1 000 – 1 700 €",
+      coutSoinsVet: "300 – 600 €",
+      coutVaccins: "150 – 250 €",
+      coutAssurance: "500 – 900 €",
+      coutToilettage: "400 – 800 €",
+      coutAccessoires: "150 – 280 €",
+      coutGarde: "300 – 580 €",
+      coutTotal: "2 800 – 5 110 €",
+      maladies: [
+        { nom: "Dysplasie de hanche et du coude", frequence: "Fréquente compte tenu du format de la race", cout: "2 000 – 5 000 € selon la sévérité et le nombre d'articulations concernées", description: "Malformation articulaire héréditaire amplifiée par le poids important de la race. Les prothèses totales de hanche sont parfois nécessaires dans les cas les plus sévères." },
+        { nom: "Torsion-dilatation d'estomac (TVE)", frequence: "Prédisposition élevée chez toutes les grandes races à poitrine profonde", cout: "1 500 – 4 000 € pour la chirurgie en urgence", description: "Urgence vitale par rotation de l'estomac sur son axe, comprimant les vaisseaux et conduisant au choc hypovolémique. Taux de mortalité sans intervention rapide : supérieur à 50 %. La gastropexie préventive est recommandée." },
+        { nom: "Hypothyroïdie", frequence: "Présente dans les grandes races, fréquence modérée", cout: "280 – 580 €/an en suivi et traitement hormonal", description: "Insuffisance thyroïdienne se manifestant par une prise de poids et des troubles cutanés. Traitement efficace par lévothyroxine quotidienne." },
+      ],
+      risquesFinanciers: "La TVE constitue l'urgence la plus coûteuse et la plus imprévisible (jusqu'à 4 000 €). La dysplasie sur une race de ce gabarit peut nécessiter des prothèses de hanche (jusqu'à 5 000 €). Le coût global sur vie est parmi les plus élevés des grandes races.",
+      conseils: ["Gastropexie préventive fortement recommandée lors de la stérilisation", "Éviter l'exercice intense dans l'heure suivant les repas", "Certifications OFA chez les reproducteurs", "Adapter le régime alimentaire pour contrôler le poids et prévenir la dysplasie"],
+      assuranceReco: "Une formule Premium avec plafond annuel élevé (4 000 €+) est indispensable pour les risques d'urgences chirurgicales. La TVE et la dysplasie doivent être couvertes.",
+      assurancePasCher: "Le profil de risque modéré à élevé de cette race géante rend difficile l'accès à des formules très économiques sans exclusions importantes.",
+      profil: "Race pour propriétaires expérimentés disposant d'espace extérieur important. Idéale en milieu rural ou pour la garde de troupeaux. Déconseillée en appartement.",
+      faq: [
+        { q: "Combien pèse une Montagne des Pyrénées adulte ?", a: "Une femelle adulte pèse entre 45 et 55 kg ; un mâle entre 55 et 70 kg. Ce poids important impacte directement tous les postes de coût : alimentation, médicaments, chirurgies et garde." },
+        { q: "La torsion d'estomac est-elle fréquente chez la Montagne des Pyrénées ?", a: "Oui — toutes les races à poitrine profonde et grande taille sont prédisposées à la TVE (Torsion-Volvulus de l'Estomac). La Montagne des Pyrénées figure parmi les races à risque élevé. La gastropexie préventive (fixation chirurgicale de l'estomac) est recommandée par de nombreux vétérinaires lors de la stérilisation." },
+        { q: "Quelle est l'espérance de vie de la Montagne des Pyrénées ?", a: "L'espérance de vie de la Montagne des Pyrénées est de 10 à 12 ans, dans la moyenne des races géantes. La qualité du suivi vétérinaire et le contrôle du poids influencent significativement cette espérance de vie." },
+      ],
+      racesSimilaires: [{ slug: "saint-bernard", nom: "Saint-Bernard" }, { slug: "samoyede", nom: "Samoyède" }, { slug: "labrador", nom: "Labrador Retriever" }],
+      esperanceVie: "10 – 12 ans",
+      coutVetAnnuel: "350 – 1 200 €",
+      coutVieEstime: "25 000 – 48 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024", "Glickman LT et al., Non-dietary risk factors for gastric dilatation-volvulus, J Am Vet Med Assoc, 2000", "AFVAC, Guide des races géantes, 2023"],
+    },
+    {
+      slug: "saint-bernard",
+      nom: "Saint-Bernard",
+      taille: "geante",
+      risque: "eleve",
+      description: "Assurance Saint-Bernard : torsion d'estomac, dysplasie sévère et coûts vétérinaires importants. Guide complet.",
+      intro: "Le Saint-Bernard est une race iconique, symbole de sauvetage en montagne. Sa masse imposante (jusqu'à 90 kg) en fait l'une des races dont les frais vétérinaires sont parmi les plus élevés. Dysplasie sévère, torsion d'estomac et entropion constituent les principales menaces médicales.",
+      coutAlimentation: "1 200 – 2 000 €",
+      coutSoinsVet: "350 – 750 €",
+      coutVaccins: "150 – 250 €",
+      coutAssurance: "550 – 1 000 €",
+      coutToilettage: "400 – 800 €",
+      coutAccessoires: "150 – 300 €",
+      coutGarde: "350 – 650 €",
+      coutTotal: "3 150 – 5 750 €",
+      maladies: [
+        { nom: "Dysplasie de hanche sévère", frequence: "Parmi les taux les plus élevés de toutes les races — OFA classe le Saint-Bernard comme l'une des 10 races les plus touchées", cout: "2 000 – 6 000 € par articulation (prothèse totale fréquente)", description: "Le format géant du Saint-Bernard amplifie considérablement les conséquences de la dysplasie. Les prothèses totales de hanche sont souvent nécessaires pour les grades D et E." },
+        { nom: "Torsion d'estomac (TVE)", frequence: "Risque très élevé pour cette race à poitrine très profonde", cout: "2 000 – 5 000 € pour la chirurgie d'urgence", description: "Urgence chirurgicale absolue. La taille du Saint-Bernard augmente considérablement le risque de TVE. La gastropexie préventive est fortement recommandée." },
+        { nom: "Entropion bilatéral", frequence: "Très fréquent dans la race, notamment avec la robe double à plis cutanés", cout: "300 – 900 € pour la correction chirurgicale", description: "Repliement des paupières vers l'intérieur irritant la cornée. Souvent présent dès le jeune âge, nécessite une correction chirurgicale pour préserver la vision." },
+      ],
+      risquesFinanciers: "Le Saint-Bernard cumule des risques sévères : dysplasie nécessitant parfois une double prothèse de hanche (6 000 à 12 000 €), TVE (urgence à 5 000 €) et une espérance de vie courte amplifiant la densité des soins sur moins d'années.",
+      conseils: ["Gastropexie préventive lors de la stérilisation", "Certifications OFA/PennHIP impératives avant l'achat", "Alimentation en deux repas fractionnés (évite la TVE)", "Éviter l'exercice dans les 2 heures suivant les repas"],
+      assuranceReco: "Formule Premium indispensable avec plafond annuel de 5 000 € minimum. La TVE, la dysplasie et les chirurgies orthopédiques doivent être intégralement couvertes.",
+      assurancePasCher: "Aucune formule économique n'est adaptée au profil de risque du Saint-Bernard. Investir dans une couverture complète est la seule approche raisonnable.",
+      profil: "Race pour propriétaires expérimentés disposant d'un grand espace et d'un budget vétérinaire conséquent. Déconseillée aux appartements et aux budgets contraints.",
+      faq: [
+        { q: "Combien mange un Saint-Bernard par jour ?", a: "Un Saint-Bernard adulte consomme entre 600 et 900 g de croquettes de qualité par jour, selon son poids (50–90 kg) et son niveau d'activité. Le budget alimentaire annuel se situe entre 1 200 et 2 000 €, ce qui en fait le poste le plus lourd de l'entretien." },
+        { q: "Quelle est l'espérance de vie d'un Saint-Bernard ?", a: "L'espérance de vie du Saint-Bernard est de 8 à 10 ans, courte pour un chien de compagnie. Ce paramètre impacte la stratégie d'assurance : les frais vétérinaires importants se concentrent sur une période relativement courte." },
+        { q: "La gastropexie préventive est-elle vraiment nécessaire chez le Saint-Bernard ?", a: "Oui — les vétérinaires recommandent fortement la gastropexie préventive lors de la stérilisation pour les races géantes à poitrine profonde. Elle réduit de 95 % le risque de torsion d'estomac. Pour une race comme le Saint-Bernard, c'est une précaution qui peut sauver la vie de l'animal." },
+      ],
+      racesSimilaires: [{ slug: "montagne-des-pyrenees", nom: "Montagne des Pyrénées" }, { slug: "labrador", nom: "Labrador Retriever" }, { slug: "berger-allemand", nom: "Berger Allemand" }],
+      esperanceVie: "8 – 10 ans",
+      coutVetAnnuel: "500 – 2 000 €",
+      coutVieEstime: "28 000 – 55 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024 — Saint-Bernard ranked among highest rates", "Glickman LT et al., Gastric dilatation-volvulus risk factors, J Am Vet Med Assoc, 2000", "AFVAC, Guide des races géantes, 2023"],
+    },
+    {
+      slug: "samoyede",
+      nom: "Samoyède",
+      taille: "grande",
+      risque: "modere",
+      description: "Assurance Samoyède : glomérulopathie familiale, dysplasie et coûts vétérinaires. Guide complet.",
+      intro: "Le Samoyède est une race nordique au pelage blanc immaculé, reconnue pour son caractère doux et sa sociabilité. Sa robustesse générale est bonne, mais certaines pathologies rénales et oculaires héréditaires spécifiques à la race méritent une surveillance régulière.",
+      coutAlimentation: "650 – 1 050 €",
+      coutSoinsVet: "220 – 480 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "320 – 580 €",
+      coutToilettage: "500 – 900 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 480 €",
+      coutTotal: "2 170 – 3 900 €",
+      maladies: [
+        { nom: "Glomérulopathie familiale du Samoyède (SHN)", frequence: "Maladie X-liée spécifique à la race, porteurs fréquents", cout: "300 – 1 000 €/an en suivi rénal et traitement de l'insuffisance", description: "Néphropathie héréditaire liée au chromosome X entraînant une insuffisance rénale progressive, souvent fatale avant 3 ans chez les mâles atteints. Les femelles porteuses développent une forme modérée." },
+        { nom: "Dysplasie de hanche", frequence: "Présente dans la race, incidence modérée", cout: "1 500 – 3 500 € par articulation", description: "Malformation articulaire héréditaire. Le dépistage OFA est recommandé dans les lignées d'élevage." },
+        { nom: "Cataracte héréditaire et anomalies oculaires", frequence: "Documentées dans la race — surveillance ophtalmique recommandée", cout: "800 – 2 000 € par intervention chirurgicale", description: "Opacification du cristallin d'origine génétique. Le contrôle ophtalmique annuel (certificat ACES) est recommandé pour les reproducteurs." },
+      ],
+      risquesFinanciers: "La glomérulopathie familiale, si l'individu est porteur et atteint, constitue un coût de suivi rénal important et un pronostic réservé chez les mâles. Le toilettage professionnel est le poste de dépense récurrente le plus lourd pour cette race.",
+      conseils: ["Test génétique SHN disponible — impératif avant reproduction", "Certification ophtalmique annuelle ACES pour les reproducteurs", "Brossage quotidien du pelage (au minimum) pour prévenir le feutrage", "Contrôle rénal annuel à partir de 3 ans pour les individus potentiellement porteurs"],
+      assuranceReco: "Une formule couvrant les pathologies rénales et oculaires avec remboursement des traitements chroniques est recommandée.",
+      assurancePasCher: "Le profil de risque modéré permet des formules à 30–45 €/mois offrant une couverture satisfaisante.",
+      profil: "Race pour propriétaires actifs disposant d'espace et de temps pour l'entretien du pelage. Adaptée aux familles avec enfants. Nécessite de l'exercice quotidien.",
+      faq: [
+        { q: "Qu'est-ce que la glomérulopathie familiale du Samoyède ?", a: "C'est une néphropathie héréditaire liée au chromosome X (syndrome de type Alport canin), causée par une mutation du gène COL4A5 codant pour le collagène de type IV de la membrane basale glomérulaire. Les mâles hémizygotes développent une insuffisance rénale progressive fatale avant 3 ans. Les femelles hétérozygotes développent une forme modérée." },
+        { q: "Combien coûte le toilettage d'un Samoyède ?", a: "Le Samoyède nécessite un toilettage professionnel tous les 2 à 3 mois minimum (coût : 80 à 130 €/séance) et un brossage quotidien à domicile. Le budget toilettage annuel est estimé entre 400 et 800 €, ce qui en fait le premier poste de coût récurrent après l'alimentation." },
+        { q: "Le Samoyède est-il adapté aux appartements ?", a: "Non — le Samoyède est un chien nordique avec des besoins importants en exercice (1 à 2 heures par jour minimum) et un pelage inadapté aux chaleurs des appartements mal ventilés. Il s'épanouit dans une maison avec jardin ou dans un environnement rural." },
+      ],
+      racesSimilaires: [{ slug: "husky-siberien", nom: "Husky Sibérien" }, { slug: "akita-inu", nom: "Akita Inu" }, { slug: "montagne-des-pyrenees", nom: "Montagne des Pyrénées" }],
+      esperanceVie: "12 – 14 ans",
+      coutVetAnnuel: "220 – 800 €",
+      coutVieEstime: "20 000 – 35 000 €",
+      prixAcquisition: "1 000 – 2 500 €",
+      sources: ["Jansen B et al., Familial glomerulopathy in Samoyed dogs, Can Vet J, 1986", "OFA Hip Dysplasia Statistics 2024", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "setter-irlandais",
+      nom: "Setter Irlandais",
+      taille: "grande",
+      risque: "modere",
+      description: "Assurance Setter Irlandais : entéropathie protéino-perdante, dysplasie et coûts. Guide complet.",
+      intro: "Le Setter Irlandais est une race élégante et exubérante, avec sa robe acajou caractéristique. Son profil de santé est globalement bon, mais deux pathologies méritent attention : une susceptibilité aux entéropathies avec perte de protéines et la dysplasie de hanche dans certaines lignées.",
+      coutAlimentation: "700 – 1 100 €",
+      coutSoinsVet: "220 – 480 €",
+      coutVaccins: "130 – 210 €",
+      coutAssurance: "300 – 560 €",
+      coutToilettage: "200 – 400 €",
+      coutAccessoires: "100 – 200 €",
+      coutGarde: "250 – 480 €",
+      coutTotal: "1 900 – 3 430 €",
+      maladies: [
+        { nom: "Entéropathie avec perte de protéines (PLE) / Maladie inflammatoire chronique intestinale (MICI)", frequence: "Documentée dans la race avec une sensibilité au gluten", cout: "300 – 800 €/an en régime hypoallergénique et suivi gastro-entérologique", description: "Intolérance au gluten (entéropathie gluten-sensible) documentée chez le Setter Irlandais, entraînant malabsorption et perte de poids malgré un appétit conservé. Régime sans gluten généralement très efficace." },
+        { nom: "Hypothyroïdie", frequence: "Présente dans la race, fréquence modérée", cout: "250 – 500 €/an", description: "Insuffisance thyroïdienne classique. Traitement simple et efficace à vie par lévothyroxine." },
+        { nom: "Dysplasie de hanche", frequence: "Présente dans certaines lignées", cout: "1 500 – 4 000 € par articulation", description: "Malformation articulaire héréditaire. Certifications OFA recommandées pour les reproducteurs." },
+      ],
+      risquesFinanciers: "La PLE/MICI représente le coût médical le plus régulier (300 à 800 €/an si présente). La dysplasie constitue le risque chirurgical le plus lourd. L'entretien du pelage est une dépense récurrente importante.",
+      conseils: ["Alimentation sans gluten recommandée si signes digestifs chroniques", "Certifications OFA pour les reproducteurs", "Contrôle thyroïdien à partir de 4 ans", "Sorties longues quotidiennes — race très active"],
+      assuranceReco: "Une formule accidents + maladies couvrant les pathologies digestives chroniques et la dysplasie est recommandée.",
+      assurancePasCher: "Un profil de risque modéré permet une formule à 25–40 €/mois.",
+      profil: "Race pour propriétaires très actifs disposant d'espace. Nécessite minimum 2 heures d'exercice par jour.",
+      faq: [
+        { q: "Le Setter Irlandais est-il intolérant au gluten ?", a: "Une sous-population de Setters Irlandais présente une entéropathie gluten-sensible (GSE), similaire à la maladie cœliaque humaine. Les individus atteints répondent très bien à un régime alimentaire strictement sans gluten (sans blé, orge, seigle). Le test de provocation au gluten avec biopsie intestinale confirme le diagnostic." },
+        { q: "Le Setter Irlandais convient-il aux familles avec enfants ?", a: "Oui — le Setter Irlandais est extrêmement affectueux, joueur et doux avec les enfants. Son énergie débordante nécessite cependant un cadre actif. Ce n'est pas un chien adapté aux familles sédentaires ou aux petits appartements." },
+        { q: "Combien coûte l'entretien du pelage d'un Setter Irlandais ?", a: "Le Setter Irlandais nécessite un brossage régulier (3 à 4 fois par semaine) et un toilettage professionnel 3 à 4 fois par an (60 à 90 €/séance). Le budget annuel de toilettage est estimé entre 180 et 360 €." },
+      ],
+      racesSimilaires: [{ slug: "epagneul-breton", nom: "Épagneul Breton" }, { slug: "cocker-spaniel", nom: "Cocker Spaniel" }, { slug: "labrador", nom: "Labrador Retriever" }],
+      esperanceVie: "11 – 14 ans",
+      coutVetAnnuel: "220 – 750 €",
+      coutVieEstime: "18 000 – 30 000 €",
+      prixAcquisition: "800 – 1 800 €",
+      sources: ["Hall EJ, Batt RM, Dietary modulation of gluten sensitivity in Irish Setter dogs, Gut, 1992", "OFA Hip Dysplasia Statistics 2024", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "shih-tzu",
+      nom: "Shih Tzu",
+      taille: "petite",
+      risque: "modere",
+      description: "Assurance Shih Tzu : problèmes oculaires, dysplasie et coûts vétérinaires. Guide pour bien assurer votre Shih Tzu.",
+      intro: "Le Shih Tzu est une race de salon élégante, affectueuse et adaptée à la vie en appartement. Comme toutes les races brachycéphales, il présente des prédispositions oculaires et respiratoires, ainsi qu'une susceptibilité aux maladies rénales héréditaires dans certaines lignées.",
+      coutAlimentation: "200 – 400 €",
+      coutSoinsVet: "200 – 450 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "250 – 480 €",
+      coutToilettage: "500 – 900 €",
+      coutAccessoires: "70 – 140 €",
+      coutGarde: "150 – 300 €",
+      coutTotal: "1 480 – 2 860 €",
+      maladies: [
+        { nom: "Kératoconjonctivite sèche et ulcères cornéens", frequence: "Très fréquente — yeux proéminents très exposés", cout: "200 – 600 €/an en collyres et soins ophtalmiques", description: "Les yeux globuleux du Shih Tzu sont exposés aux traumatismes, aux ulcères cornéens et à l'insuffisance lacrymale. Des soins quotidiens sont indispensables pour prévenir les complications graves." },
+        { nom: "Dysplasie de hanche", frequence: "Présente dans la race malgré sa petite taille", cout: "800 – 2 500 € par articulation", description: "Moins fréquente que chez les grandes races mais documentée chez le Shih Tzu. La chirurgie est recommandée pour les formes sévères." },
+        { nom: "Insuffisance rénale héréditaire (RD)", frequence: "Documentée dans certaines lignées de Shih Tzu", cout: "300 – 1 200 €/an en suivi rénal et gestion diététique", description: "Forme d'insuffisance rénale héréditaire pouvant se manifester dès le jeune âge. Contrôle rénal annuel recommandé pour les individus issus de lignées à risque." },
+      ],
+      risquesFinanciers: "Les soins oculaires quotidiens et récurrents représentent la charge la plus régulière. Le toilettage professionnel est le poste de dépense le plus important pour cette race, avec un coût annuel estimé entre 500 et 900 €.",
+      conseils: ["Nettoyage oculaire quotidien pour éviter les infections", "Surveillance des signes de difficultés respiratoires (BOAS modéré)", "Contrôle rénal annuel à partir de 4 ans", "Toilettage professionnel toutes les 6–8 semaines obligatoire"],
+      assuranceReco: "Une formule couvrant les pathologies oculaires et rénales est recommandée. Le remboursement des traitements récurrents est particulièrement important pour cette race.",
+      assurancePasCher: "Une formule intermédiaire à 20–35 €/mois offre une bonne couverture pour le profil modéré du Shih Tzu.",
+      profil: "Race idéale pour les appartements, les personnes seules et les familles calmes. Son entretien du pelage nécessite un investissement régulier en temps ou en budget toilettage.",
+      faq: [
+        { q: "Le Shih Tzu est-il brachycéphale ?", a: "Oui — le Shih Tzu est une race brachycéphale (museau court) qui peut présenter un syndrome brachycéphale obstructif (BOAS) de sévérité variable. La plupart des individus présentent une forme légère à modérée, bien tolérée, mais les cas sévères peuvent nécessiter une correction chirurgicale." },
+        { q: "Pourquoi les yeux du Shih Tzu nécessitent-ils autant d'entretien ?", a: "Les yeux globuleux et proéminents du Shih Tzu sont peu protégés par les paupières, exposant la cornée aux poils faciaux, à la sécheresse et aux traumatismes. Des soins quotidiens (collyre hydratant, nettoyage des sécrétions) sont indispensables pour prévenir les ulcères cornéens et les infections." },
+        { q: "Le Shih Tzu est-il difficile à toiletter ?", a: "Oui — la robe longue du Shih Tzu nécessite un brossage quotidien pour éviter les nœuds et un toilettage professionnel toutes les 6 à 8 semaines. C'est le principal poste de coût récurrent pour cette race (500 à 900 €/an)." },
+      ],
+      racesSimilaires: [{ slug: "carlin", nom: "Carlin" }, { slug: "bichon-frise", nom: "Bichon Frisé" }, { slug: "caniche", nom: "Caniche" }],
+      esperanceVie: "13 – 16 ans",
+      coutVetAnnuel: "200 – 750 €",
+      coutVieEstime: "15 000 – 28 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["OFA Hip Dysplasia Statistics 2024", "Barber PJ, Renal dysplasia in related Shih Tzus, J Small Anim Pract, 1999", "AFVAC, Guide des races brachycéphales, 2023"],
+    },
+    {
+      slug: "teckel",
+      nom: "Teckel",
+      taille: "petite",
+      risque: "modere",
+      description: "Assurance Teckel : hernies discales, acanthosis nigricans et coûts vétérinaires. Guide complet.",
+      intro: "Le Teckel (Dachshund) est une race iconique à la silhouette allongée et aux pattes courtes. Sa morphologie particulière — rachis long, membres très courts — le prédispose fortement aux hernies discales intervertébrales, pathologie neurologique coûteuse qui touche environ 25 % des individus au cours de leur vie.",
+      coutAlimentation: "200 – 400 €",
+      coutSoinsVet: "200 – 500 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "240 – 460 €",
+      coutToilettage: "80 – 200 €",
+      coutAccessoires: "80 – 150 €",
+      coutGarde: "150 – 300 €",
+      coutTotal: "1 060 – 2 200 €",
+      maladies: [
+        { nom: "Hernie discale intervertébrale (IVDD)", frequence: "25–30 % des Teckels développent une hernie discale au cours de leur vie", cout: "2 000 – 5 000 € pour la chirurgie de décompression médullaire", description: "La chondrodystrophie du Teckel provoque une dégénérescence précoce des disques intervertébraux, pouvant conduire à leur rupture et une compression médullaire sévère (paralysie des membres postérieurs). La chirurgie doit être réalisée dans les 24–48 heures pour maximiser les chances de récupération." },
+        { nom: "Acanthosis nigricans", frequence: "Spécifique au Teckel, forme primaire rare mais documentée", cout: "200 – 600 €/an en traitements dermatologiques", description: "Hyperpigmentation et épaississement cutané aissellaire d'origine héréditaire ou secondaire. La forme primaire est spécifique à la race." },
+        { nom: "Luxation de la rotule", frequence: "Fréquente chez les variétés naines et kaninchen", cout: "600 – 1 500 € par genou", description: "Déplacement intermittent de la rotule, plus fréquent dans les variétés les plus petites (Kaninchen et Nain)." },
+      ],
+      risquesFinanciers: "La hernie discale constitue le risque financier majeur du Teckel : une chirurgie de décompression peut coûter 2 000 à 5 000 €, et la rééducation post-opératoire ajoute 300 à 800 € supplémentaires. 25 % des individus seront concernés.",
+      conseils: ["Éviter les sauts de hauteur (canapé, escaliers) pour préserver les disques intervertébraux", "Rampe d'accès au canapé recommandée plutôt que les escaliers", "Maintenir un poids de forme strict — l'obésité amplifie le risque discal", "Surveillance des signes de douleur dorsale ou de parésie des membres postérieurs"],
+      assuranceReco: "La couverture des hernies discales (chirurgie neurochirurgicale + rééducation) est la priorité absolue pour cette race. Vérifiez que les pathologies orthopédiques et neurologiques sont couvertes sans exclusion.",
+      assurancePasCher: "Une formule intermédiaire à 20–35 €/mois couvrant la chirurgie discale offre un excellent rapport coût-protection pour le Teckel.",
+      profil: "Race adaptée aux appartements, aux personnes seules et aux familles. Attention à ne pas le laisser sauter de hauteur. Le Teckel est un excellent compagnon courageux et affectueux.",
+      faq: [
+        { q: "Pourquoi le Teckel est-il prédisposé aux hernies discales ?", a: "Le Teckel est une race chondrodystrophique : ses disques intervertébraux subissent une calcification et une dégénérescence précoce (parfois dès 2–3 ans) en raison d'une mutation génétique affectant le développement du cartilage. Cette dégénérescence prématurée augmente considérablement le risque de rupture discale." },
+        { q: "Mon Teckel a une paralysie des pattes arrière — que faire ?", a: "C'est une urgence vétérinaire. La paralysie des membres postérieurs chez le Teckel est un signe de compression médullaire sévère. Une chirurgie de décompression réalisée dans les 24 à 48 heures après l'apparition des signes neurologiques augmente significativement les chances de récupération complète." },
+        { q: "Un Teckel peut-il monter les escaliers ?", a: "La montée et descente répétées d'escaliers augmente les contraintes mécaniques sur la colonne vertébrale. Les propriétaires de Teckels sont conseillés d'installer des rampes d'accès et d'éviter les escaliers autant que possible, surtout après un épisode de douleur dorsale." },
+      ],
+      racesSimilaires: [{ slug: "jack-russell", nom: "Jack Russell" }, { slug: "beagle", nom: "Beagle" }, { slug: "chihuahua", nom: "Chihuahua" }],
+      esperanceVie: "12 – 16 ans",
+      coutVetAnnuel: "200 – 800 €",
+      coutVieEstime: "12 000 – 24 000 €",
+      prixAcquisition: "700 – 1 800 €",
+      sources: ["Priester WA, Canine intervertebral disc disease, Theriogenology, 1976", "Bergknut N et al., Intervertebral disc disease in dogs, Vet J, 2013", "AFVAC, Guide des pathologies héréditaires canines, 2023"],
+    },
+    {
+      slug: "yorkshire-terrier",
+      nom: "Yorkshire Terrier",
+      taille: "petite",
+      risque: "faible",
+      description: "Assurance Yorkshire Terrier : luxation patellaire, collapsus trachéal et coûts. Guide complet.",
+      intro: "Le Yorkshire Terrier est l'une des races toy les plus populaires en France, appréciée pour son caractère vif et son format compact. Sa robustesse générale est bonne, mais certaines prédispositions propres aux très petites races méritent attention : collapsus trachéal, luxation de la rotule et anomalie porto-systémique.",
+      coutAlimentation: "150 – 300 €",
+      coutSoinsVet: "150 – 320 €",
+      coutVaccins: "110 – 190 €",
+      coutAssurance: "150 – 290 €",
+      coutToilettage: "400 – 700 €",
+      coutAccessoires: "60 – 120 €",
+      coutGarde: "130 – 260 €",
+      coutTotal: "1 150 – 2 180 €",
+      maladies: [
+        { nom: "Collapsus trachéal", frequence: "Race parmi les plus touchées (petite taille + cou fin)", cout: "300 – 1 200 €/an en médicaments bronchospasmolytiques ; chirurgie possible 1 500–3 000 €", description: "Affaissement de la trachée entraînant une toux caractéristique en «oie» lors de l'effort ou de l'excitation. Les cas sévères nécessitent un stent trachéal ou une intervention chirurgicale." },
+        { nom: "Luxation de la rotule", frequence: "Très fréquente dans les races toy dont le Yorkshire", cout: "600 – 1 500 € par genou selon le grade", description: "Déplacement intermittent de la rotule produisant une démarche sautillante caractéristique. Chirurgie recommandée pour les grades 3–4." },
+        { nom: "Shunt porto-systémique (PSS)", frequence: "Documenté dans la race, plus fréquent que dans la moyenne canine", cout: "2 000 – 5 000 € pour la chirurgie corrective", description: "Communication vasculaire anormale entre le système porte et la circulation générale, entraînant une insuffisance hépatique et des signes neurologiques. La correction chirurgicale précoce améliore le pronostic." },
+      ],
+      risquesFinanciers: "Le PSS constitue l'urgence chirurgicale la plus coûteuse (2 000 à 5 000 €) chez le Yorkshire Terrier. Le collapsus trachéal génère un coût médical récurrent si chronique (300 à 1 200 €/an).",
+      conseils: ["Utiliser un harnais plutôt qu'un collier pour éviter la pression trachéale", "Éviter l'excitation intense et les efforts dans les chaleurs (collapsus trachéal)", "Contrôle hépatique annuel à partir de 2 ans si suspicion de PSS (enzyme hépatiques)", "Surveiller les boiteries intermittentes (luxation de rotule)"],
+      assuranceReco: "Une formule accidents + maladies couvrant la chirurgie trachéale et le PSS est recommandée. Vérifiez la couverture des pathologies hépatiques congénitales.",
+      assurancePasCher: "Avec un profil de risque faible, une formule à 12–20 €/mois offre une protection adéquate pour la plupart des Yorkshire.",
+      profil: "Race idéale pour les appartements, les personnes âgées et les propriétaires sédentaires. Excellent chien de compagnie malgré son petit format et sa grande personnalité.",
+      faq: [
+        { q: "Le Yorkshire Terrier est-il une race robuste ?", a: "Malgré sa petite taille, le Yorkshire Terrier est une race assez robuste avec une espérance de vie de 13 à 16 ans. Son principal défi médical est le collapsus trachéal, qui peut être invalidant dans les formes sévères mais est généralement bien contrôlé médicalement." },
+        { q: "Pourquoi faut-il utiliser un harnais plutôt qu'un collier pour un Yorkshire ?", a: "Le collier exerce une pression directe sur la trachée, augmentant le risque d'aggraver ou de déclencher un collapsus trachéal. Le harnais répartit la traction sur le thorax, soulageant complètement la trachée. Ce conseil s'applique à toutes les races toy prédisposées au collapsus trachéal." },
+        { q: "Qu'est-ce qu'un shunt porto-systémique chez le Yorkshire ?", a: "Un PSS est une connexion vasculaire anormale qui court-circuite le foie, laissant le sang intestinal riche en toxines passer directement dans la circulation générale sans être détoxifié. Les signes cliniques apparaissent généralement entre 6 mois et 2 ans : désorientation, crises épileptiques, retard de croissance. La chirurgie précoce donne les meilleurs résultats." },
+      ],
+      racesSimilaires: [{ slug: "chihuahua", nom: "Chihuahua" }, { slug: "bichon-frise", nom: "Bichon Frisé" }, { slug: "caniche", nom: "Caniche" }],
+      esperanceVie: "13 – 16 ans",
+      coutVetAnnuel: "150 – 600 €",
+      coutVieEstime: "12 000 – 24 000 €",
+      prixAcquisition: "700 – 2 000 €",
+      sources: ["Tangner CH, Hobson HP, A retrospective study of tracheal collapse, Vet Surg, 1982", "Tisdall PL et al., Portosystemic shunts in 63 dogs, Aust Vet J, 1994", "AFVAC, Guide des petites races, 2023"],
+    },
+    {
+      slug: "berger-australien",
+      nom: "Berger Australien",
+      taille: "moyenne",
+      risque: "modere",
+      description: "Assurance Berger Australien : MDR1, épilepsie et coûts vétérinaires. Guide complet pour bien protéger votre Aussie.",
+      intro: "Le Berger Australien est une race de travail polyvalente, intelligente et très appréciée pour le sport canin. Son profil de santé est globalement bon, mais la mutation MDR1, l'épilepsie héréditaire et la cataracte héréditaire sont des points de vigilance médicale importants à connaître dès l'acquisition.",
+      coutAlimentation: "450 – 800 €",
+      coutSoinsVet: "200 – 420 €",
+      coutVaccins: "120 – 200 €",
+      coutAssurance: "260 – 480 €",
+      coutToilettage: "200 – 400 €",
+      coutAccessoires: "80 – 160 €",
+      coutGarde: "200 – 400 €",
+      coutTotal: "1 510 – 2 860 €",
+      maladies: [
+        { nom: "Mutation MDR1 (ABCB1)", frequence: "50 % des Bergers Australiens sont porteurs hétérozygotes ou homozygotes du gène mutant", cout: "Test génétique : 60–120 €. Urgence toxicologique : 300–800 €", description: "La mutation MDR1 rend le cerveau perméable à certains médicaments (ivermectine, lopéramide, milbémycine). Les individus homozygotes (MDR1 -/-) présentent un risque vital lors de l'administration de ces molécules à dose standard." },
+        { nom: "Épilepsie idiopathique", frequence: "3–5 % des Bergers Australiens, fréquence plus élevée que la moyenne canine", cout: "400 – 1 500 €/an en traitement anticonvulsivant et surveillance", description: "Épilepsie héréditaire se manifestant généralement entre 6 mois et 3 ans. Plusieurs mutations génétiques impliquées ont été identifiées dans la race." },
+        { nom: "Cataracte héréditaire", frequence: "Documentée dans la race — certification ophtalmique recommandée", cout: "800 – 2 000 € par intervention", description: "Opacification du cristallin d'origine génétique. Le contrôle ophtalmique annuel (ACES) est recommandé pour les reproducteurs." },
+      ],
+      risquesFinanciers: "La mutation MDR1 est le risque le plus imprévisible : une administration standard d'ivermectine peut provoquer un coma mortel chez un individu MDR1 -/-. L'épilepsie représente le coût annuel le plus régulier si présente.",
+      conseils: ["Test génétique MDR1 obligatoire avant tout traitement antiparasitaire", "Informer systématiquement tous les vétérinaires du statut MDR1", "Certification ophtalmique annuelle ACES pour les reproducteurs", "Exiger les certifications génétiques MDR1, cataracte et épilepsie chez l'éleveur"],
+      assuranceReco: "Une formule accidents + maladies couvrant les pathologies neurologiques et ophtalmiques est recommandée. La couverture des urgences toxicologiques est un point important.",
+      assurancePasCher: "Avec un profil de risque modéré, une formule à 22–38 €/mois offre une couverture adaptée.",
+      profil: "Race pour propriétaires actifs pratiquant le sport canin (agility, frisbee, troupeau). Nécessite minimum 2 heures d'activité quotidienne mentale et physique.",
+      faq: [
+        { q: "Quel est le risque de la mutation MDR1 pour un Berger Australien ?", a: "La mutation MDR1 (ABCB1 -/-) chez les individus homozygotes provoque une hyperperméabilité de la barrière hémato-encéphalique à certains médicaments P-glycoprotéines substrats. L'ivermectine (antiparasitaire courant) peut provoquer une neurotoxicité sévère (tremblements, cécité, coma) à des doses normalement sûres. Le test génétique est indispensable avant tout traitement." },
+        { q: "Le Berger Australien est-il une race difficile à vivre ?", a: "Pour un propriétaire actif et expérimenté, non. Mais le Berger Australien est une race de travail avec des besoins en stimulation mentale et physique très élevés. Un Aussie sous-stimulé développe des comportements destructeurs et anxieux. C'est une race déconseillée aux propriétaires sédentaires ou aux appartements sans sorties fréquentes." },
+        { q: "Le Berger Australien est-il vraiment originaire d'Australie ?", a: "Malgré son nom, le Berger Australien a été développé aux États-Unis dans la seconde moitié du XIXe siècle, probablement à partir de chiens de berger importés d'Australie avec des troupeaux de moutons. Son histoire génétique implique des races comme le Collie, le Border Collie et d'autres chiens de travail européens." },
+      ],
+      racesSimilaires: [{ slug: "border-collie", nom: "Border Collie" }, { slug: "berger-des-shetlands", nom: "Berger des Shetlands" }, { slug: "malinois", nom: "Malinois" }],
+      esperanceVie: "13 – 15 ans",
+      coutVetAnnuel: "200 – 700 €",
+      coutVieEstime: "16 000 – 28 000 €",
+      prixAcquisition: "800 – 2 000 €",
+      sources: ["Mealey KL et al., Ivermectin sensitivity in collies, J Am Vet Med Assoc, 2001", "Oberbauer AM et al., Long-term genetic selection reduced prevalence of epilepsy in Australian Shepherd dogs, PLoS ONE, 2010", "OFA Eye Certification Registry 2024"],
+    },
+  ];
+
+  return races.map((race) => ({
+    params: { slug: race.slug },
+    props: { race },
+  }));
+}
+
+interface Props { race: RaceData; }
+const { race } = Astro.props;
+
+const risqueLabel = { faible: "Risque faible", modere: "Risque modéré", eleve: "Risque élevé" }[race.risque];
+const risqueColor = { faible: "#0a5a3f", modere: "#7a4a00", eleve: "#a00000" }[race.risque];
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Races", "item": "https://assuremochien.fr/races" },
+    { "@type": "ListItem", "position": 3, "name": race.nom, "item": `https://assuremochien.fr/races/${race.slug}` },
+  ],
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": race.faq.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+});
+---
+
+<RaceLayout
+  title={`Assurance ${race.nom} : tarifs, risques et conseils`}
+  description={race.description}
+  nom={race.nom}
+  slug={race.slug}
+  taille={race.taille}
+  risque={race.risque}
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldFaq} />
+
+  <!-- Chiffres clés -->
+  <div class="kpi-grid">
+    <div class="kpi">
+      <span class="kpi-val">{race.esperanceVie}</span>
+      <span class="kpi-label">Espérance de vie</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">{race.coutVetAnnuel}</span>
+      <span class="kpi-label">Frais vétérinaires / an</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">{race.coutVieEstime}</span>
+      <span class="kpi-label">Coût estimé sur la vie</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val" style={`color:${risqueColor}`}>{risqueLabel}</span>
+      <span class="kpi-label">Niveau de risque vétérinaire</span>
+    </div>
+  </div>
+
+  <!-- Introduction -->
+  <section id="intro">
+    <h2>Présentation</h2>
+    <p>{race.intro}</p>
+    <p>Avant d'aller plus loin, consultez notre <a href="/couts/cout-chien-2025">étude sur le coût réel d'un chien en 2025</a> pour positionner le {race.nom} dans le contexte général des dépenses canines.</p>
+  </section>
+
+  <!-- Coût annuel -->
+  <section id="cout-annuel">
+    <h2>Coût annuel d'un {race.nom}</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Poste de dépense</th>
+            <th>Estimation annuelle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="row-label">Alimentation</td><td>{race.coutAlimentation}</td></tr>
+          <tr class="alt"><td class="row-label">Soins vétérinaires courants</td><td>{race.coutSoinsVet}</td></tr>
+          <tr><td class="row-label">Vaccins & antiparasitaires</td><td>{race.coutVaccins}</td></tr>
+          <tr class="alt"><td class="row-label">Assurance santé</td><td>{race.coutAssurance}</td></tr>
+          <tr><td class="row-label">Toilettage</td><td>{race.coutToilettage}</td></tr>
+          <tr class="alt"><td class="row-label">Accessoires & jouets</td><td>{race.coutAccessoires}</td></tr>
+          <tr><td class="row-label">Garde / pension (10 j/an)</td><td>{race.coutGarde}</td></tr>
+          <tr class="total-row">
+            <td class="row-label"><strong>Total estimé / an</strong></td>
+            <td><strong>{race.coutTotal}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Prix d'acquisition chez un éleveur certifié : {race.prixAcquisition}. Sources : FACCO 2024, SNVEL 2025, relevés de prix Assure Mon Chien.</p>
+  </section>
+
+  <!-- Maladies fréquentes -->
+  <section id="maladies">
+    <h2>Maladies fréquentes du {race.nom}</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Pathologie</th>
+            <th>Fréquence</th>
+            <th>Coût moyen</th>
+          </tr>
+        </thead>
+        <tbody>
+          {race.maladies.map((m, i) => (
+            <tr class:list={[{ alt: i % 2 === 1 }]}>
+              <td class="row-label">{m.nom}</td>
+              <td>{m.frequence}</td>
+              <td>{m.cout}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    {race.maladies.map((m, i) => (
+      <div class="maladie-detail">
+        <p class="maladie-nom">{m.nom}</p>
+        <p>{m.description}</p>
+      </div>
+    ))}
+    <p>Pour des tarifs détaillés par type d'acte vétérinaire : <a href="/couts/cout-soins-veterinaires">Coût des soins vétérinaires en France</a>.</p>
+  </section>
+
+  <!-- Risques financiers -->
+  <section id="risques">
+    <h2>Risques financiers spécifiques</h2>
+    <div class="encart-expert">
+      <p class="encart-title">Analyse des risques</p>
+      <p>{race.risquesFinanciers}</p>
+    </div>
+  </section>
+
+  <!-- Prévention -->
+  <section id="prevention">
+    <h2>Conseils de prévention</h2>
+    <ul class="conseils-list">
+      {race.conseils.map((c) => <li>{c}</li>)}
+    </ul>
+  </section>
+
+  <!-- Pourquoi assurer -->
+  <section id="assurance">
+    <h2>Pourquoi assurer un {race.nom} ?</h2>
+    <p>{race.assuranceReco}</p>
+    <p>Comparez les meilleures offres du marché : <a href="/comparatif/assurance-chien">Comparatif assurance chien 2025</a>.</p>
+    <div class="cta-block">
+      <p>Obtenez un devis personnalisé pour votre {race.nom}</p>
+      <a href="/comparatif/assurance-chien" class="cta-btn">Comparer les assurances →</a>
+    </div>
+  </section>
+
+  <!-- Quel type d'assurance -->
+  <section id="type-assurance">
+    <h2>Quel type d'assurance choisir ?</h2>
+    <p>{race.assurancePasCher}</p>
+    <p>Pour les propriétaires souhaitant maîtriser leur budget tout en bénéficiant d'une couverture adaptée : <a href="/comparatif/assurance-chien-pas-cher">Assurance chien pas chère : les meilleures offres 2025</a>.</p>
+  </section>
+
+  <!-- Profil propriétaire -->
+  <section id="profil">
+    <h2>Profil type du propriétaire de {race.nom}</h2>
+    <div class="profil-card">
+      <p>{race.profil}</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section">
+    <h2>Questions fréquentes</h2>
+    {race.faq.map((item) => (
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">{item.q}</button>
+        <div class="faq-a" hidden>
+          <p>{item.a}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- Races similaires -->
+  <section id="races-similaires">
+    <h2>Races similaires</h2>
+    <div class="similaires-grid">
+      {race.racesSimilaires.map((r) => (
+        <a href={`/races/${r.slug}`} class="similaire-card">
+          <img src={`/images/races/${r.slug}.webp`} alt={r.nom} width="120" height="90" loading="lazy" />
+          <span>{r.nom}</span>
+        </a>
+      ))}
+    </div>
+    <p style="margin-top:1rem"><a href="/races">← Voir toutes les races</a></p>
+  </section>
+
+  <!-- Sources -->
+  <section id="sources" class="sources-section">
+    <h2>Sources</h2>
+    <ul class="sources-list">
+      {race.sources.map((s) => <li>{s}</li>)}
+      <li>FACCO (Fédération des Fabricants d'Aliments pour Chiens et Chats). Enquête démographique 2024.</li>
+      <li>SNVEL (Syndicat National des Vétérinaires d'Exercice Libéral). Grille tarifaire indicative 2025.</li>
+    </ul>
+  </section>
+</RaceLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      answer.hidden = open;
+    });
+  });
+</script>
+
+<style>
+  section { margin-bottom: 2.75rem; }
+
+  section[id] { scroll-margin-top: calc(var(--header-height) + 1rem); }
+
+  /* KPI */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .kpi {
+    background: #f4fbf8;
+    border: 1px solid #d4ede5;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .kpi-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0F6E56;
+    line-height: 1.2;
+  }
+
+  .kpi-label {
+    font-size: 0.75rem;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #d4ede5;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.75;
+    margin: 0 0 0.9rem;
+  }
+
+  ul, ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+  li { font-size: 0.95rem; color: #333; line-height: 1.7; margin-bottom: 0.4rem; }
+
+  a { color: #1D9E75; font-weight: 600; }
+
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 0.75rem 0 0.4rem;
+    border-radius: 10px;
+    border: 1px solid #d4ede5;
+  }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .data-table thead tr { background: #0F6E56; color: #fff; }
+  .data-table th { padding: 0.7rem 1rem; text-align: left; font-weight: 700; font-size: 0.83rem; }
+  .data-table td { padding: 0.6rem 1rem; color: #333; border-bottom: 1px solid #e8f0ed; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .row-label { font-weight: 600; color: #1a1a1a; }
+  .alt { background: #f9fdfb; }
+  .total-row td { background: #e8f7f2; border-top: 2px solid #1D9E75; }
+  .table-note { font-size: 0.78rem !important; color: #888 !important; font-style: italic; margin-top: 0.4rem !important; }
+
+  /* Maladie detail */
+  .maladie-detail {
+    background: #f9fdfb;
+    border-left: 3px solid #d4ede5;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .maladie-nom {
+    font-weight: 700;
+    color: #0F6E56;
+    margin: 0 0 0.3rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .maladie-detail p:last-child { margin-bottom: 0; }
+
+  /* Expert encart */
+  .encart-expert {
+    background: #f4fbf8;
+    border-left: 4px solid #1D9E75;
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: 0.75rem 0;
+  }
+
+  .encart-title {
+    font-size: 0.78rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1D9E75;
+    margin: 0 0 0.4rem !important;
+  }
+
+  .encart-expert p:last-child { margin-bottom: 0; }
+
+  /* Conseils */
+  .conseils-list li { margin-bottom: 0.5rem; }
+
+  /* CTA */
+  .cta-block {
+    background: #e8f7f2;
+    border: 1px solid #b2ddd0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-block p { margin: 0; font-size: 0.9rem; color: #1a4a3a; flex: 1; }
+
+  .cta-btn {
+    display: inline-block;
+    background: #1D9E75;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 7px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .cta-btn:hover { background: #157a5b; }
+
+  /* Profil card */
+  .profil-card {
+    background: #fff;
+    border: 1.5px solid #d4ede5;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+
+  .profil-card p { margin: 0; }
+
+  /* FAQ */
+  .faq-section { border-top: 2px solid #d4ede5; padding-top: 1.5rem; }
+  .faq-item { border-bottom: 1px solid #e8f0ed; }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0F6E56;
+    padding: 0.85rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .faq-q::after {
+    content: "+";
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #1D9E75;
+    flex-shrink: 0;
+  }
+
+  .faq-q[aria-expanded="true"]::after { content: "−"; }
+  .faq-a { padding: 0 0 0.75rem; }
+  .faq-a p { margin: 0; font-size: 0.92rem; }
+
+  /* Races similaires */
+  .similaires-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .similaire-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: #0F6E56;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: 1.5px solid #d4ede5;
+    border-radius: 10px;
+    padding: 0.6rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 130px;
+  }
+
+  .similaire-card:hover {
+    border-color: #1D9E75;
+    box-shadow: 0 2px 10px rgba(29,158,117,0.15);
+    text-decoration: none;
+  }
+
+  .similaire-card img {
+    width: 110px;
+    height: 82px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 7px;
+  }
+
+  /* Sources */
+  .sources-section { border-top: 2px solid #d4ede5; padding-top: 1.5rem; }
+  .sources-list { list-style: none; padding: 0; margin: 0; }
+  .sources-list li { font-size: 0.82rem; color: #666; padding: 0.4rem 0; border-bottom: 1px solid #f0f5f3; line-height: 1.5; }
+  .sources-list li:last-child { border-bottom: none; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-block { flex-direction: column; align-items: flex-start; }
+    .similaire-card { width: calc(50% - 0.5rem); }
+  }
+</style>

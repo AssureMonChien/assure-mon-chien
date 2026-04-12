@@ -1,0 +1,394 @@
+---
+const currentPath = Astro.url.pathname;
+
+const nav = [
+  {
+    label: "Comparatif",
+    href: "/comparatif/assurance-chien",
+    children: [
+      { label: "Assurance chien", href: "/comparatif/assurance-chien" },
+      { label: "Assurance chien pas cher", href: "/comparatif/assurance-chien-pas-cher" },
+      { label: "Assurance chiot", href: "/comparatif/assurance-chiot" },
+      { label: "Assurance chien sénior", href: "/comparatif/assurance-chien-senior" },
+    ],
+  },
+  {
+    label: "Races",
+    href: "/races",
+    children: [
+      { label: "Labrador", href: "/races/labrador" },
+      { label: "Bouledogue Français", href: "/races/bouledogue-francais" },
+      { label: "Berger Australien", href: "/races/berger-australien" },
+      { label: "Toutes les races →", href: "/races" },
+    ],
+  },
+  {
+    label: "Coûts & Santé",
+    href: "/couts/cout-chien-2025",
+    children: [
+      { label: "Coût d'un chien en 2025", href: "/couts/cout-chien-2025" },
+      { label: "Coût des soins vétérinaires", href: "/couts/cout-soins-veterinaires" },
+      { label: "Maladies fréquentes", href: "/couts/maladies-frequentes" },
+      { label: "Statistiques assurance chien", href: "/couts/statistiques-assurance-chien" },
+    ],
+  },
+  {
+    label: "Guides",
+    href: "/guides/choisir-assurance-chien",
+    children: [
+      { label: "Choisir une assurance chien", href: "/guides/choisir-assurance-chien" },
+      { label: "Franchise et exclusions", href: "/guides/franchise-exclusions" },
+      { label: "Remboursements vétérinaires", href: "/guides/remboursements-veterinaires" },
+      { label: "Que couvre une mutuelle chien ?", href: "/guides/que-couvre-mutuelle-chien" },
+    ],
+  },
+  {
+    label: "À propos",
+    href: "/a-propos/qui-sommes-nous",
+    children: [
+      { label: "Qui sommes-nous ?", href: "/a-propos/qui-sommes-nous" },
+      { label: "Méthodologie", href: "/a-propos/methodologie" },
+      { label: "Sources", href: "/a-propos/sources" },
+      { label: "Contact", href: "/a-propos/contact" },
+    ],
+  },
+];
+
+function isActive(href: string) {
+  return currentPath === href || currentPath.startsWith(href + "/");
+}
+
+function isSectionActive(item: typeof nav[0]) {
+  return item.children.some(c => isActive(c.href));
+}
+---
+
+<!-- ── Desktop nav ── -->
+<nav class="menu-desktop" aria-label="Navigation principale">
+  <ul class="menu-bar">
+    {nav.map((item) => (
+      <li class:list={["menu-item", { "is-active": isSectionActive(item) }]}>
+        <button
+          class="menu-trigger"
+          aria-haspopup="true"
+          aria-expanded="false"
+          data-trigger
+        >
+          {item.label}
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="mega-panel" role="region">
+          <ul class="mega-list">
+            {item.children.map((child) => (
+              <li>
+                <a
+                  href={child.href}
+                  class:list={["mega-link", { "is-current": isActive(child.href) }]}
+                >
+                  {child.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<!-- ── Mobile nav ── -->
+<nav class="menu-mobile" aria-label="Navigation mobile">
+  <ul class="accordion">
+    {nav.map((item, i) => (
+      <li class="accordion-item">
+        <button
+          class:list={["accordion-trigger", { "is-active": isSectionActive(item) }]}
+          aria-expanded="false"
+          aria-controls={`acc-panel-${i}`}
+          id={`acc-btn-${i}`}
+          data-accordion
+        >
+          {item.label}
+          <span class="acc-caret" aria-hidden="true"></span>
+        </button>
+        <ul
+          class="accordion-panel"
+          id={`acc-panel-${i}`}
+          role="region"
+          aria-labelledby={`acc-btn-${i}`}
+          hidden
+        >
+          {item.children.map((child) => (
+            <li>
+              <a
+                href={child.href}
+                class:list={["acc-link", { "is-current": isActive(child.href) }]}
+              >
+                {child.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  /* ── Desktop mega-menu ── */
+  const triggers = document.querySelectorAll<HTMLButtonElement>("[data-trigger]");
+
+  function closeAll() {
+    triggers.forEach((t) => {
+      t.setAttribute("aria-expanded", "false");
+      t.closest(".menu-item")?.classList.remove("open");
+    });
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = trigger.getAttribute("aria-expanded") === "true";
+      closeAll();
+      if (!isOpen) {
+        trigger.setAttribute("aria-expanded", "true");
+        trigger.closest(".menu-item")?.classList.add("open");
+      }
+    });
+  });
+
+  document.addEventListener("click", closeAll);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
+
+  /* ── Mobile accordion ── */
+  const accBtns = document.querySelectorAll<HTMLButtonElement>("[data-accordion]");
+
+  accBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const panelId = btn.getAttribute("aria-controls")!;
+      const panel = document.getElementById(panelId) as HTMLElement;
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+      /* close all */
+      accBtns.forEach((b) => {
+        b.setAttribute("aria-expanded", "false");
+        b.classList.remove("expanded");
+        const pid = b.getAttribute("aria-controls")!;
+        const p = document.getElementById(pid) as HTMLElement;
+        if (p) p.hidden = true;
+      });
+
+      /* open clicked if was closed */
+      if (!isOpen) {
+        btn.setAttribute("aria-expanded", "true");
+        btn.classList.add("expanded");
+        panel.hidden = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ════════════════════════════════
+     DESKTOP
+  ════════════════════════════════ */
+  .menu-desktop {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Masqué sur desktop — Layout gère l'affichage mobile via .visible */
+  .menu-mobile {
+    display: none;
+  }
+
+  .menu-bar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0;
+  }
+
+  /* Trigger button */
+  .menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .menu-trigger:hover,
+  .menu-item.is-active .menu-trigger {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .menu-item.open .menu-trigger {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  /* Caret */
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid rgba(255, 255, 255, 0.7);
+    transition: transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  .menu-item.open .caret {
+    transform: rotate(180deg);
+  }
+
+  /* Mega panel */
+  .mega-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background: #fff;
+    border: 1px solid #d4ede5;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 0.6rem 0;
+    min-width: 220px;
+    z-index: 200;
+  }
+
+  .menu-item {
+    position: relative;
+  }
+
+  .menu-item.open .mega-panel {
+    display: block;
+  }
+
+  .mega-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mega-link {
+    display: block;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    font-weight: 400;
+    text-decoration: none;
+    transition: background 0.12s, color 0.12s;
+    white-space: nowrap;
+  }
+
+  .mega-link:hover {
+    background: #e8f7f2;
+    color: #0F6E56;
+    text-decoration: none;
+  }
+
+  .mega-link.is-current {
+    color: #0F6E56;
+    font-weight: 700;
+    background: #f4fbf8;
+  }
+
+  /* ════════════════════════════════
+     MOBILE (≤ 640px)
+  ════════════════════════════════ */
+  @media (max-width: 640px) {
+    .menu-desktop {
+      display: none;
+    }
+
+    .menu-mobile {
+      display: block;
+      width: 100%;
+    }
+
+    .accordion {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.75rem 0.5rem;
+      text-align: left;
+    }
+
+    .accordion-trigger.is-active {
+      opacity: 0.85;
+    }
+
+    /* Caret mobile */
+    .acc-caret {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid rgba(255, 255, 255, 0.7);
+      transition: transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    .accordion-trigger.expanded .acc-caret {
+      transform: rotate(180deg);
+    }
+
+    .accordion-panel {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0.25rem 0.75rem;
+    }
+
+    .acc-link {
+      display: block;
+      padding: 0.55rem 0.5rem;
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: color 0.12s;
+    }
+
+    .acc-link:hover,
+    .acc-link.is-current {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .acc-link.is-current {
+      font-weight: 700;
+    }
+  }
+</style>

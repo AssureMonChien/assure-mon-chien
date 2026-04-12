@@ -1,113 +1,168 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Akita Inu : Risques & Meilleures Offres 2026"
   description="L'Akita Inu est prédisposé au syndrome de VKH, une maladie auto-immune causant la cécité, et au pemphigus folliaceus. Découvrez les meilleures assurances pour cette race japonaise noble."
-  raceName="Akita Inu"
+  nom="Akita Inu"
   slug="akita-inu"
-  dateModified="2026-04-05"
-  heroSubtitle="Symbole national japonais et chien de loyauté absolue, l'Akita Inu est aussi porteur de maladies auto-immunes rares et de pathologies oculaires héréditaires qui exigent une couverture médicale solide."
-  imageUrl="/images/races/akita-inu.webp"
-  imageAlt="Akita Inu japonais au port majestueux, fourrure rousse et blanche"
-  heroBadge="MALADIES AUTO-IMMUNES · UVÉITE"
-  riskScore={70}
-  alertText="L'<strong>uvéite pigmentaire</strong> de l'Akita Inu peut évoluer vers un glaucome et nécessiter une énucléation (<strong>800 à 1 500 €</strong>). La <strong>sensibilité aux anesthésiques et aux antiparasitaires</strong> (mutation MDR1) exige des protocoles adaptés plus coûteux. Sans assurance, ces spécificités médicales représentent un surcoût de <strong>30 à 50 %</strong> par rapport à d'autres races."
-  alertSource="Source : Akita Club de France 2024 ; Journal of Veterinary Internal Medicine, uvéite pigmentaire canine 2022"
-  introText="L'Akita Inu reste une race peu commune en France, mais ses propriétaires sont souvent confrontés à des défis vétérinaires spécifiques : une sensibilité médicamenteuse particulière, des uvéites auto-immunes douloureuses et une prédisposition à l'hypothyroïdie. La rareté des vétérinaires spécialisés en race asiatique rend les soins plus coûteux."
-  faq={[
-    { question: "L'Akita Inu est-il difficile à assurer à cause de sa sensibilité médicamenteuse ?", answer: "Non, la sensibilité médicamenteuse (pseudo-mutation MDR1) de l'Akita Inu n'est pas un motif d'exclusion chez SantéVet. Elle nécessite simplement des protocoles vétérinaires adaptés, qui sont couverts normalement. Mentionnez-la à votre vétérinaire dès la première consultation." },
-    { question: "Les maladies auto-immunes de l'Akita Inu sont-elles couvertes ?", answer: "Oui, les maladies auto-immunes (pemphigus, uvéite, syndrome VKH) sont couvertes par SantéVet dans les formules Confort et Premium. Ces pathologies étant chroniques et récurrentes, la couverture sans limitation de durée de SantéVet est particulièrement avantageuse pour la race." },
-    { question: "Où trouver un vétérinaire spécialisé en Akita Inu en France ?", answer: "Les CHV (Centres Hospitaliers Vétérinaires) disposent de spécialistes en dermatologie, ophtalmologie et médecine interne capables de traiter les pathologies spécifiques de l'Akita. SantéVet est accepté dans l'ensemble du réseau vétérinaire français, y compris les CHV, avec remboursement direct possible selon la clinique." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=akita-inu&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture syndrome VKH et immunosuppression lourde",
-        "Prise en charge pemphigus folliaceus et traitement dermatologique",
-        "Remboursement dysplasie de hanche et chirurgie grande race",
-        "Couverture myasthénie grave et traitements neuromusculaires",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=akita-inu&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Syndrome VKH (uvéo-méningo-encéphalite)", score: 65, prix: "1 000–5 000 €/an", description: "Maladie auto-immune caractéristique de la race. Uvéite bilatérale, dépigmentation de la peau et des muqueuses, troubles neurologiques. Immunosuppression lourde (corticoïdes, ciclosporine) à vie." },
-    { nom: "Pemphigus folliaceus", score: 58, prix: "500–2 000 €/an", description: "Dermatite auto-immune bulleuse spécifique à la race. Croûtes et pustules sur le museau, les oreilles, les coussinets. Traitement immunosuppresseur à vie." },
-    { nom: "Myasthénie grave", score: 48, prix: "400–2 000 €", description: "Trouble neuromusculaire auto-immun provoquant faiblesse musculaire progressive et mégaoesophage. Anticholinestérasiques à vie, risque de pneumonie d'aspiration." },
-    { nom: "Dysplasie de hanche", score: 55, prix: "1 500–6 000 €", description: "Taux élevé dans la race. Arthrose progressive nécessitant un suivi rhumatologique. Chirurgie en forme sévère." },
-  ]}
-  pathologies={[
-    { nom: "Syndrome VKH (uvéo-méningo-encéphalite)", description: "Uvéo-méningo-encéphalite auto-immune granulomateuse spécifique de la race. Atteinte oculaire bilatérale (uvéite, décollement de rétine), dépigmentation cutanée et des muqueuses (vitiligo, poliose), troubles méningés. Immunosuppression lourde (prednisolone + ciclosporine) à vie. Sans traitement précoce : cécité irréversible.", coût: "1 000–5 000 €/an" },
-    { nom: "Pemphigus folliaceus", description: "Dermatose auto-immune bulleuse caractéristique de l'Akita. Pustules et croûtes épaisses sur le museau, le planum nasal, les pavillons auriculaires et les coussinets. Signe de Nikolsky positif. Immunosuppression (prednisolone, azathioprine) à vie.", coût: "500–2 000 €/an" },
-    { nom: "Myasthénie grave", description: "Trouble de la transmission neuromusculaire auto-immune. Faiblesse musculaire progressive à l'effort, mégaoesophage, régurgitations, risque de pneumonie d'aspiration fatale. Anticholinestérasiques (pyridostigmine) à vie, immunosuppresseurs en forme généralisée.", coût: "400–2 000 €" },
-    { nom: "Dysplasie de hanche", description: "Taux de dysplasie coxo-fémorale élevé dans la race. Arthrose progressive douloureuse. Score HD avant reproduction. Chirurgie (FHO, prothèse totale bilatérale) en forme sévère, avec des coûts majorés par le gabarit.", coût: "1 500–6 000 €" },
-    { nom: "Hypothyroïdie", description: "Insuffisance thyroïdienne auto-immune. Léthargie, prise de poids, alopécie bilatérale symétrique, myxœdème. Lévothyroxine sodique orale à vie.", coût: "200–500 €/an" },
-    { nom: "Sébadénite (sebaceous adenitis)", description: "Maladie inflammatoire des glandes sébacées provoquant une alopécie progressive et des squames folliculaires. Traitement à base de rétinoïdes, ciclosporine et shampoings séborrhéiques.", coût: "200–800 €/an" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=akita-inu&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="grande"
+  risque="modere"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Symbole national japonais et chien de loyauté absolue, l'Akita Inu fascine autant qu'il exige. Derrière son port majestueux et son calme apparent se cachent des fragilités médicales bien documentées : maladies auto-immunes rares, pathologies oculaires héréditaires et une sensibilité médicamenteuse atypique. Ses propriétaires français sont souvent surpris par les coûts vétérinaires liés au syndrome VKH ou au pemphigus — des affections chroniques nécessitant une immunosuppression à vie. Anticiper ces risques dès l'acquisition reste la stratégie la plus sage pour préserver à la fois la santé du chien et l'équilibre du budget familial.</p>
+
+  <h2>Coût annuel d'un Akita Inu</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium grande race)</td><td>600 – 900 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, vermifuges, antiparasitaires)</td><td>250 – 400 €</td></tr>
+      <tr><td>Assurance santé</td><td>216 – 480 €</td></tr>
+      <tr><td>Toilettage (3 à 4 séances/an)</td><td>200 – 350 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>150 – 250 €</td></tr>
+      <tr><td>Suivi spécialisé (ophtalmologie, dermatologie) si pathologie</td><td>400 – 1 500 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO/TNS Sofres, enquête sur le budget animal de compagnie 2023 ; grille tarifaire CHV France 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes de l'Akita Inu</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Syndrome VKH (uvéo-méningo-encéphalite)</td><td>Élevée dans la race</td><td>1 000 – 5 000 €/an</td></tr>
+      <tr><td>Pemphigus folliaceus</td><td>Élevée dans la race</td><td>500 – 2 000 €/an</td></tr>
+      <tr><td>Myasthénie grave</td><td>Modérée</td><td>400 – 2 000 €</td></tr>
+      <tr><td>Dysplasie de hanche</td><td>Modérée à élevée</td><td>1 500 – 6 000 €</td></tr>
+      <tr><td>Hypothyroïdie</td><td>Modérée</td><td>200 – 500 €/an</td></tr>
+      <tr><td>Sébadénite (sebaceous adenitis)</td><td>Modérée</td><td>200 – 800 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Akita Club de France 2024 ; Journal of Veterinary Internal Medicine, uvéite pigmentaire canine 2022 ; OFA Health Statistics Akita breed.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Akita Inu</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Consultation ophtalmologique spécialisée</td><td>80 – 150 €</td><td>1 à 2 fois/an</td></tr>
+      <tr><td>Bilan immunologique (ANA, anticorps anti-thyroïde)</td><td>120 – 250 €</td><td>Annuel si suspicion</td></tr>
+      <tr><td>Traitement immunosuppresseur (prednisolone + ciclosporine/mois)</td><td>80 – 200 €/mois</td><td>Vie entière si VKH</td></tr>
+      <tr><td>Biopsie cutanée (pemphigus)</td><td>250 – 450 €</td><td>1 fois (diagnostic)</td></tr>
+      <tr><td>Radiographies de hanche (score HD)</td><td>150 – 280 €</td><td>1 fois</td></tr>
+      <tr><td>Prothèse totale de hanche</td><td>3 000 – 4 500 €/hanche</td><td>Si dysplasie sévère</td></tr>
+      <tr><td>Dosage T4 libre (hypothyroïdie)</td><td>55 – 85 €</td><td>2 fois/an si traitement</td></tr>
+      <tr><td>Évaluation neurologique (myasthénie)</td><td>150 – 300 €</td><td>Selon évolution</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grille tarifaire vétérinaire France 2024 ; Syndicat National des Vétérinaires Praticiens (SNVEL).</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>L'Akita Inu présente un profil médical atypique qui génère des surcoûts à plusieurs niveaux. Premièrement, le syndrome VKH est une maladie auto-immune chronique requérant une immunosuppression à vie : le seul traitement mensuel (prednisolone 20–40 mg + ciclosporine 100–200 mg) dépasse 100 € par mois sans assurance. Deuxièmement, la race présente une sensibilité aux anesthésiques et à certains antiparasitaires (ivermectine notamment), obligeant les vétérinaires à adapter les protocoles — ce qui peut majorer le coût de chaque acte de 20 à 30 %. Enfin, la rareté des spécialistes maîtrisant la médecine des races asiatiques en France impose parfois des déplacements vers les CHV, avec des frais de consultation spécialisée supérieurs. Sur la vie entière d'un Akita Inu (10 à 13 ans), les frais vétérinaires liés aux seules pathologies auto-immunes peuvent dépasser 25 000 € sans couverture assurantielle.</p>
+
+  <h2>Conseils de prévention pour un Akita Inu</h2>
+  <ul>
+    <li>Examen ophtalmologique annuel dès l'âge de 18 mois pour détecter précocement une uvéite ou une dépigmentation du fond d'œil évocatrice de VKH.</li>
+    <li>Bilan thyroïdien (T4 libre, TSH canine) tous les 2 ans après 3 ans, plus fréquemment si signes d'hypothyroïdie.</li>
+    <li>Signaler systématiquement la race à votre vétérinaire avant toute anesthésie pour adapter le protocole (éviter l'acépromazine, prudence avec les benzodiazépines).</li>
+    <li>Radiographies de hanches avant 18 mois pour dépistage de la dysplasie, idéalement avec notation HD officielle SCC.</li>
+    <li>Éviter les antiparasitaires à base d'ivermectine et de milbémycine à haute dose — préférer les molécules alternatives vérifiées pour la race.</li>
+    <li>Alimentation riche en acides gras oméga-3 pour soutenir la barrière cutanée et limiter les poussées de sébadénite et de pemphigus.</li>
+    <li>Souscrire une assurance santé avant les 12 mois du chien, avant tout bilan spécialisé susceptible de créer une préexistence.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Akita Inu ?</h2>
+  <p>L'Akita Inu cumule plusieurs facteurs de risque financier rarement réunis dans une seule race : maladies auto-immunes chroniques (VKH, pemphigus), pathologies orthopédiques de grande race (dysplasie), troubles neuromusculaires (myasthénie) et sensibilités médicamenteuses engendrant des surcoûts systémiques. Une assurance adaptée protège contre les dépenses imprévues et imprévisibles tout en permettant de financer des traitements longs sans arbitrage douloureux. Les formules couvrant les maladies chroniques sans limitation de durée sont particulièrement adaptées à cette race, dont plusieurs pathologies nécessitent un traitement immunosuppresseur à vie.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Akita Inu ?</h2>
+  <p>Pour un Akita Inu, privilégiez une formule couvrant les maladies chroniques sans plafond annuel trop bas, avec remboursement de la dermatologie spécialisée et de l'ophtalmologie. Vérifiez que les traitements immunosuppresseurs (ciclosporine, azathioprine) sont explicitement inclus. Une formule avec couverture orthopédique (dysplasie, chirurgie) est indispensable vu le gabarit de la race. Les carences standard (30 jours pour les maladies) imposent de souscrire dès l'arrivée du chiot. Évitez les contrats excluant les pathologies héréditaires ou les traitements au-delà de 12 mois consécutifs.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Akita Inu</h2>
+  <p>Le propriétaire d'un Akita Inu est généralement un passionné de races asiatiques, souvent informé et attentif au bien-être animal. Il vit dans un logement spacieux (maison avec jardin de préférence) et consacre du temps quotidien à l'éducation et à la socialisation de son chien. Il est prêt à investir dans des soins de qualité, mais peut être déstabilisé par des factures vétérinaires à quatre chiffres liées aux pathologies auto-immunes. En France, les propriétaires d'Akita Inu se concentrent en régions Île-de-France, Auvergne-Rhône-Alpes et Nouvelle-Aquitaine. La race est souvent choisie pour ses qualités de chien de famille discret et loyal, mais ses besoins médicaux spécifiques sont parfois sous-estimés à l'acquisition.</p>
+
+  <h2>Questions fréquentes sur l'assurance Akita Inu</h2>
+  <details>
+    <summary>L'Akita Inu est-il difficile à assurer à cause de sa sensibilité médicamenteuse ?</summary>
+    <p>Non, la sensibilité médicamenteuse de l'Akita Inu n'est pas un motif d'exclusion contractuelle. Elle nécessite simplement des protocoles vétérinaires adaptés, qui sont pris en charge normalement par l'assurance. Signalez cette particularité à votre vétérinaire dès la première consultation et conservez la trace des molécules à éviter dans le carnet de santé.</p>
+  </details>
+  <details>
+    <summary>Le syndrome VKH est-il couvert par l'assurance chien ?</summary>
+    <p>Oui, si la souscription précède tout diagnostic ou signe clinique (uvéite, dépigmentation). Le syndrome VKH étant une maladie chronique, les meilleures formules couvrent l'immunosuppression à vie sans limitation de durée. Une fois le diagnostic posé, si vous n'avez pas d'assurance, la pathologie sera exclue comme préexistante lors de toute souscription ultérieure.</p>
+  </details>
+  <details>
+    <summary>Les maladies auto-immunes de l'Akita Inu sont-elles toutes remboursées ?</summary>
+    <p>Les formules premium couvrent généralement le pemphigus folliaceus, la myasthénie grave et le syndrome VKH. Vérifiez que les immunosuppresseurs spécifiques (ciclosporine, azathioprine) figurent bien dans les postes couverts. Certains contrats excluent les "maladies héréditaires de race" dans leurs conditions générales : lisez attentivement les exclusions avant de signer.</p>
+  </details>
+  <details>
+    <summary>À quel âge souscrire une assurance pour un Akita Inu ?</summary>
+    <p>Idéalement avant 12 mois, avant tout examen ophtalmologique ou bilan dermatologique de routine. Les pathologies auto-immunes de l'Akita peuvent se déclarer dès 2–3 ans pour la sébadénite, et entre 3 et 5 ans pour le VKH. Souscrire tôt permet de bénéficier d'une couverture complète sans exclusion pour préexistence sur ces pathologies caractéristiques de la race.</p>
+  </details>
+  <details>
+    <summary>Quel est le coût mensuel d'une assurance pour un Akita Inu ?</summary>
+    <p>Entre 18 et 45 €/mois selon la formule, l'âge du chien et le taux de remboursement choisi. Pour une grande race avec profil de risque auto-immun, une formule à 25–35 €/mois offrant un remboursement à 80–100 % représente le meilleur équilibre entre protection et coût. Le budget mensuel est à comparer aux 80–200 € mensuels d'immunosuppresseurs en cas de syndrome VKH non assuré.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/chow-chow">Chow-Chow</a> — grande race asiatique aux prédispositions orthopédiques et dermatologiques comparables</li>
+    <li><a href="/races/samoyede">Samoyède</a> — grand nordique au profil auto-immun similaire avec hypothyroïdie et pathologies héréditaires</li>
+    <li><a href="/races/husky-siberien">Husky Sibérien</a> — race nordique de taille proche, partageant certaines prédispositions oculaires héréditaires</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">5 000 €</span><span class="figure-label">coût traitement VKH/an</span></div>
+      <div class="figure"><span class="figure-value">~20 %</span><span class="figure-label">prévalence dysplasie de hanche</span></div>
+      <div class="figure"><span class="figure-value">18 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">10–13 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Akita Club de France — guide de santé de la race 2024</li>
+    <li>OFA (Orthopedic Foundation for Animals) — statistiques dysplasie Akita breed, 2023</li>
+    <li>Journal of Veterinary Internal Medicine — uvéite pigmentaire et syndrome VKH canin, 2022</li>
+    <li>Gross TL et al. — Skin Diseases of the Dog and Cat (pemphigus folliaceus), 5e éd.</li>
+    <li>FACCO/TNS Sofres — enquête nationale sur les animaux de compagnie et leur budget, 2023</li>
+    <li>SNVEL — grille tarifaire vétérinaire indicative France, 2024</li>
+    <li>Dewey CW — A Practical Guide to Canine and Feline Neurology (myasthénie grave), 3e éd.</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

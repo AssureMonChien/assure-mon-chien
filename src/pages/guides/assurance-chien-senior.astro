@@ -1,0 +1,552 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://assuremochien.fr/guides" },
+    { "@type": "ListItem", "position": 3, "name": "Assurance chien sénior", "item": "https://assuremochien.fr/guides/assurance-chien-senior" }
+  ]
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "À partir de quel âge un chien est-il considéré comme sénior ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cela dépend de la taille de la race. Les petites races entrent en phase sénior vers 10-11 ans. Les races moyennes vers 8-9 ans. Les grandes races vers 7-8 ans. Les races géantes dès 6-7 ans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mon chien a 9 ans et n'a jamais été assuré. Est-il trop tard ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il n'est pas trop tard, mais les options se réduisent. Quelques assureurs acceptent encore des souscriptions jusqu'à 9 ou 10 ans. Le tarif sera plus élevé et les exclusions plus nombreuses. Les pathologies déjà diagnostiquées seront exclues d'emblée."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'euthanasie et les soins palliatifs sont-ils pris en charge ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'euthanasie seule n'est généralement pas remboursée. Les soins palliatifs et la gestion de la douleur en fin de vie peuvent être pris en charge selon les formules. Certains assureurs proposent des modules spécifiques 'fin de vie'."
+      }
+    }
+  ]
+});
+---
+
+<Layout
+  title="Assurance chien sénior : ce qu'il faut savoir (2026)"
+  description="Guide complet pour assurer un chien de plus de 7 ans : coût des soins, restrictions d'âge des assureurs, formules seniors, maladies chroniques. Données chiffrées 2026."
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldFaq} />
+
+  <!-- ── Hero ── -->
+  <section class="hero-guide">
+    <div class="hero-inner">
+      <p class="hero-label">GUIDE PRATIQUE</p>
+      <h1>Assurance chien sénior : ce qu'il faut savoir</h1>
+      <p class="hero-desc">À partir de 7 ans, un chien entre dans la catégorie sénior. Ses frais vétérinaires augmentent en moyenne de 200 à 300 % par rapport à un chien adulte. Trouver une assurance adaptée à cet âge n'est pas impossible, mais cela demande de connaître les règles du jeu.</p>
+    </div>
+  </section>
+
+  <!-- ── Contenu ── -->
+  <div class="guide-wrap">
+
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <ol>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/guides">Guides</a></li>
+        <li aria-current="page">Assurance chien sénior</li>
+      </ol>
+    </nav>
+
+    <div class="toc">
+      <p class="toc-title">Dans ce guide</p>
+      <ol>
+        <li><a href="#couts-senior">Les frais vétérinaires d'un chien sénior</a></li>
+        <li><a href="#restrictions-age">Les restrictions d'âge des assureurs</a></li>
+        <li><a href="#formules-senior">Les formules sénior disponibles</a></li>
+        <li><a href="#maladies-chroniques">Maladies chroniques et couverture</a></li>
+        <li><a href="#maintenir-contrat">Pourquoi maintenir son contrat dès le départ</a></li>
+        <li><a href="#conseils">Conseils pour bien choisir à 7 ans et plus</a></li>
+      </ol>
+    </div>
+
+    <section id="couts-senior">
+      <h2>1. Les frais vétérinaires d'un chien sénior : les chiffres</h2>
+      <p>Le vieillissement s'accompagne inévitablement d'une augmentation des besoins de soins. Selon les données collectées par les cliniques vétérinaires membres du réseau Vétorama (2024), les propriétaires de chiens séniors dépensent en moyenne :</p>
+
+      <ul>
+        <li><strong>Chiens de 7 à 10 ans :</strong> 800 à 1 500 €/an en soins vétérinaires (hors prévention).</li>
+        <li><strong>Chiens de 10 à 13 ans :</strong> 1 200 à 2 500 €/an, notamment en raison de maladies chroniques nécessitant un suivi régulier.</li>
+        <li><strong>Chiens de plus de 13 ans :</strong> jusqu'à 3 500 €/an pour les races grandes et celles présentant des pathologies multiples.</li>
+      </ul>
+
+      <p>Ces chiffres s'expliquent par l'accumulation de plusieurs phénomènes liés à l'âge :</p>
+      <ul>
+        <li>Augmentation des consultations de routine (bilans sanguins semestriels recommandés à partir de 8 ans).</li>
+        <li>Développement de maladies chroniques : insuffisance rénale, hypothyroïdie, diabète, maladies cardiaques.</li>
+        <li>Augmentation du risque cancéreux : selon une étude publiée dans le <em>Journal of Veterinary Internal Medicine</em> (2022), environ 50 % des chiens de plus de 10 ans développent une forme de cancer au cours de leur vie.</li>
+        <li>Arthrose et douleurs articulaires chroniques nécessitant des traitements prolongés (anti-inflammatoires, physiothérapie).</li>
+        <li>Risque accru de chirurgie d'urgence (tumeurs, obstruction intestinale, problèmes dentaires graves).</li>
+      </ul>
+
+      <div class="encart-cta">
+        <p>SantéVet propose des formules adaptées aux chiens séniors, avec maintien du contrat sans surprime d'âge pour les assurés depuis plusieurs années.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Découvrir les formules sénior SantéVet</a>
+      </div>
+    </section>
+
+    <section id="restrictions-age">
+      <h2>2. Les restrictions d'âge des assureurs : comprendre le marché</h2>
+      <p>Le vieillissement d'un chien représente un risque financier croissant pour les assureurs. En réponse, le marché a instauré des restrictions qui compliquent l'accès à l'assurance pour les chiens âgés.</p>
+
+      <h3>L'âge limite de souscription</h3>
+      <p>La plupart des assureurs français fixent un âge maximum pour les nouvelles souscriptions :</p>
+      <ul>
+        <li><strong>8 ans :</strong> seuil le plus courant. Au-delà, aucune nouvelle souscription n'est acceptée.</li>
+        <li><strong>9 à 10 ans :</strong> quelques assureurs proposent des formules sénior jusqu'à cet âge, généralement avec des garanties réduites.</li>
+        <li><strong>Pas de limite :</strong> rare, mais certains assureurs spécialisés acceptent des souscriptions tardives sous conditions (bilan vétérinaire obligatoire, exclusions renforcées).</li>
+      </ul>
+
+      <h3>Les surprimes d'âge</h3>
+      <p>Même dans les contrats existants, la prime mensuelle augmente avec l'âge du chien. Cette augmentation peut être :</p>
+      <ul>
+        <li><strong>Progressive :</strong> la prime augmente chaque année selon un barème d'âge défini dans les conditions générales. Des hausses de 10 à 30 % par an après 8 ans sont fréquentes.</li>
+        <li><strong>Par paliers :</strong> la prime reste stable de 7 à 9 ans, puis augmente significativement à partir de 10 ans.</li>
+        <li><strong>Plafonnée :</strong> certains assureurs garantissent un tarif stable à partir d'un certain âge — un avantage important si le contrat a été souscrit jeune.</li>
+      </ul>
+
+      <h3>Les exclusions renforcées avec l'âge</h3>
+      <p>Au-delà des exclusions standard, les contrats sénior ajoutent souvent des restrictions spécifiques :</p>
+      <ul>
+        <li>Plafonds réduits par acte et annuellement.</li>
+        <li>Franchises plus élevées (100 à 200 €).</li>
+        <li>Exclusion des maladies dégénératives (arthrose sévère, démence sénile).</li>
+        <li>Délais de carence plus longs pour les nouvelles souscriptions sénior.</li>
+      </ul>
+
+      <div class="points-cles">
+        <p class="pk-title">La leçon à retenir</p>
+        <ul>
+          <li>Un contrat souscrit à 2 ans et maintenu jusqu'à 12 ans vous protège bien mieux qu'un nouveau contrat souscrit à 8 ans.</li>
+          <li>Les pathologies diagnostiquées pendant les années précédentes restent couvertes dans un contrat maintenu, mais deviennent des préexistances dans un nouveau contrat.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="formules-senior">
+      <h2>3. Les formules sénior disponibles en 2026</h2>
+      <p>Si vous n'avez pas encore assuré votre chien et qu'il a plus de 7 ans, voici les options réalistes disponibles sur le marché français.</p>
+
+      <h3>Les formules sénior spécialisées</h3>
+      <p>Certains assureurs proposent des produits spécifiquement conçus pour les chiens âgés, avec des caractéristiques adaptées :</p>
+      <ul>
+        <li><strong>Bilan vétérinaire d'entrée :</strong> un examen obligatoire permet à l'assureur d'évaluer l'état de santé du chien et de définir les exclusions spécifiques à cet individu.</li>
+        <li><strong>Garanties recentrées sur les urgences :</strong> certaines formules sénior se concentrent sur les hospitalisations et les interventions chirurgicales, laissant de côté les consultations de routine.</li>
+        <li><strong>Plafond annuel réduit :</strong> souvent limité à 1 500 à 2 500 € pour les formules sénior d'entrée de gamme.</li>
+      </ul>
+
+      <h3>Les formules accidents + maladies standard avec limite d'âge</h3>
+      <p>Pour les chiens entre 7 et 9 ans, les formules standard restent accessibles chez la plupart des assureurs. Le prix est plus élevé qu'à 2 ans, mais les garanties sont les mêmes. C'est généralement la meilleure option si l'état de santé du chien est encore satisfaisant et qu'il ne présente pas de pathologie chronique déclarée.</p>
+
+      <h3>L'assurance responsabilité civile</h3>
+      <p>Si l'assurance santé est trop coûteuse ou inaccessible, l'assurance responsabilité civile reste disponible à tout âge et à des tarifs très bas (5 à 15 €/mois). Elle ne couvre pas les soins mais protège contre les dommages causés à des tiers par votre chien.</p>
+
+      <div class="encart-cta">
+        <p>Comparez les formules disponibles pour votre chien sénior. SantéVet maintient les contrats sans surprime d'âge jusqu'à un certain palier.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Simuler le tarif pour mon chien sénior</a>
+      </div>
+    </section>
+
+    <section id="maladies-chroniques">
+      <h2>4. Maladies chroniques : comment fonctionne la couverture ?</h2>
+      <p>Les maladies chroniques sont l'enjeu central de l'assurance sénior. Elles nécessitent un traitement prolongé — souvent à vie — et génèrent des frais récurrents importants.</p>
+
+      <h3>Les pathologies chroniques les plus fréquentes chez le chien sénior</h3>
+      <ul>
+        <li><strong>Insuffisance rénale chronique (IRC) :</strong> touche environ 1 chien sur 10 à partir de 10 ans selon les données de l'École Nationale Vétérinaire d'Alfort. Traitement mensuel : 80 à 200 €.</li>
+        <li><strong>Maladie valvulaire mitrale :</strong> très fréquente chez les petites races (Cavalier King Charles, Yorkshire, Caniche). Médicaments cardiaques : 50 à 150 €/mois.</li>
+        <li><strong>Hypothyroïdie :</strong> fréquente chez les chiens de plus de 6 ans, notamment le Golden Retriever, le Labrador et le Beagle. Traitement hormonal à vie : 30 à 70 €/mois.</li>
+        <li><strong>Diabète sucré :</strong> touche 0,2 à 0,5 % des chiens adultes. Insuline et suivis glycémiques réguliers : 80 à 200 €/mois.</li>
+        <li><strong>Arthrose chronique :</strong> selon une étude de l'Université de Liverpool (2019), environ 20 % des chiens de plus de 8 ans présentent une arthrose cliniquement significative. Anti-inflammatoires à long terme et physiothérapie.</li>
+      </ul>
+
+      <h3>Comment les assureurs traitent les maladies chroniques</h3>
+      <p>Une maladie chronique diagnostiquée avant la souscription est une affection préexistante et sera exclue. Mais une maladie chronique diagnostiquée <em>après</em> la souscription (et après les délais de carence) sera couverte tant que le contrat est maintenu actif.</p>
+      <p>C'est le principe fondamental de la continuité de contrat : si votre chien développe un diabète à 9 ans alors qu'il est assuré depuis ses 2 ans, ses injections d'insuline, ses bilans sanguins et ses consultations de suivi seront remboursés chaque année — jusqu'à la limite du plafond annuel.</p>
+
+      <h3>Le renouvellement annuel et les pathologies en cours</h3>
+      <p>Attention : lors du renouvellement annuel, l'assureur ne peut pas exclure rétroactivement une pathologie déclarée pendant la période de couverture. En revanche, si vous changez d'assureur, toutes les pathologies connues deviendront des préexistances pour le nouvel assureur.</p>
+
+      <div class="encart-cta">
+        <p>Chez SantéVet, les pathologies chroniques déclarées pendant la couverture restent remboursées sans requalification en préexistance au renouvellement.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Protéger mon chien contre les maladies chroniques</a>
+      </div>
+    </section>
+
+    <section id="maintenir-contrat">
+      <h2>5. Pourquoi maintenir son contrat dès le plus jeune âge</h2>
+      <p>Ce guide aborde souvent le cas d'un chien sénior dont le propriétaire cherche une assurance tardive. Mais la meilleure stratégie reste de souscrire tôt et de ne jamais résilier.</p>
+
+      <h3>L'accumulation des pathologies couvertes</h3>
+      <p>Chaque année, votre chien peut développer de nouvelles pathologies qui seront couvertes par votre contrat actif. Une fois couvertes, elles le restent tant que vous ne résiliez pas. Un chien de 12 ans assuré depuis ses 2 ans peut bénéficier d'une couverture sur une liste de pathologies bien plus large qu'un chien de 12 ans nouvellement assuré.</p>
+
+      <h3>La stabilité tarifaire</h3>
+      <p>Certains assureurs garantissent aux assurés de longue date des conditions tarifaires préférentielles. Un contrat maintenu depuis 5 ans peut bénéficier d'une prime plafonnée ou d'une progression plus douce qu'un nouveau contrat souscrit au même âge.</p>
+
+      <h3>La tranquillité d'esprit</h3>
+      <p>La vieillesse d'un chien est une période émotionnellement difficile pour les propriétaires. Savoir que les soins sont pris en charge permet de se concentrer sur le bien-être de l'animal plutôt que sur les arbitrages financiers difficiles.</p>
+
+      <div class="points-cles">
+        <p class="pk-title">Règle d'or</p>
+        <ul>
+          <li>Souscrivez entre 2 et 4 mois après l'adoption.</li>
+          <li>Ne résiliez jamais sauf si vous avez une offre équivalente garantie en remplacement.</li>
+          <li>Si vous résiliez, anticipez que toutes les pathologies connues deviendront des préexistances chez le nouvel assureur.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="conseils">
+      <h2>6. Conseils pratiques pour assurer un chien de 7 ans et plus</h2>
+
+      <h3>Évaluez l'état de santé actuel</h3>
+      <p>Avant de comparer les offres, demandez à votre vétérinaire un bilan de santé complet. Ce bilan vous permettra de connaître les pathologies éventuellement déjà présentes (qui seront exclues par tout nouvel assureur) et de déterminer le niveau de couverture réellement utile.</p>
+
+      <h3>Comparez les exclusions, pas seulement les prix</h3>
+      <p>Pour un chien sénior, la liste des exclusions est plus importante que le tarif mensuel. Un contrat à 50 €/mois avec peu d'exclusions vaut mieux qu'un contrat à 35 €/mois qui exclut les pathologies cardiaques, rénales et les cancers.</p>
+
+      <h3>Lisez attentivement la clause de renouvellement</h3>
+      <p>Certains assureurs se réservent le droit de ne pas renouveler un contrat après un certain âge ou en cas de sinistralité trop élevée. Recherchez des contrats avec garantie de renouvellement ou clause de maintien jusqu'à la fin de vie du chien.</p>
+
+      <h3>Anticipez les bilans réguliers</h3>
+      <p>À partir de 8 ans, la plupart des vétérinaires recommandent des bilans sanguins et urinaires semestriels pour détecter précocement les pathologies rénales, hépatiques et endocriniennes. Vérifiez que votre contrat couvre ces bilans de surveillance — certaines formules les excluent comme actes préventifs, d'autres les prennent en charge comme actes diagnostiques.</p>
+
+      <p>Pour trouver les meilleures offres du marché, consultez notre <a href="/comparatif">comparatif assureurs 2026</a> ou les fiches spécifiques à la race de votre chien dans notre <a href="/races">guide des 30 races</a>.</p>
+
+      <div class="encart-cta">
+        <p>SantéVet accompagne votre chien sénior avec des formules maintenues et des garanties stables. Devis en ligne en 2 minutes.</p>
+        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Obtenir un devis sénior SantéVet</a>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h2>Questions fréquentes</h2>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">À partir de quel âge un chien est-il considéré comme sénior ?</button>
+        <div class="faq-a" hidden>
+          <p>La définition varie selon la taille de la race. Les petites races (moins de 10 kg) entrent en phase sénior vers 10-11 ans. Les races moyennes (10-25 kg) vers 8-9 ans. Les grandes races (25-45 kg) vers 7-8 ans. Les races géantes (plus de 45 kg comme le Saint-Bernard ou la Montagne des Pyrénées) sont considérées comme séniors dès 6-7 ans. Ces chiens ont une espérance de vie plus courte et vieillissent plus rapidement.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Mon chien a 9 ans et n'a jamais été assuré. Est-il trop tard ?</button>
+        <div class="faq-a" hidden>
+          <p>Il n'est pas trop tard, mais les options se réduisent. Quelques assureurs acceptent encore des souscriptions jusqu'à 9 ou 10 ans selon les races et les formules. Le tarif sera plus élevé et les exclusions plus nombreuses. Si votre chien présente déjà des pathologies diagnostiquées, elles seront exclues d'emblée. Un bilan vétérinaire préalable est indispensable pour évaluer la pertinence économique de la démarche.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">L'euthanasie et les soins palliatifs sont-ils pris en charge ?</button>
+        <div class="faq-a" hidden>
+          <p>L'euthanasie en tant qu'acte isolé n'est généralement pas remboursée par les assurances chien. En revanche, les soins palliatifs et la gestion de la douleur en fin de vie (antalgiques, soins infirmiers, hospitalisations de confort) peuvent être pris en charge selon les formules. Certains assureurs proposent des modules spécifiques "fin de vie" incluant les frais d'euthanasie et de crémation. Vérifiez les conditions particulières de votre contrat.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      answer.hidden = open;
+    });
+  });
+</script>
+
+<style>
+  /* ── Hero ── */
+  .hero-guide {
+    background: #0F6E56;
+    padding: 3.5rem 1.25rem 3rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.18);
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin: 0 0 1rem;
+  }
+
+  .hero-guide h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+    color: #fff;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    opacity: 0.88;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ── Contenu ── */
+  .guide-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  .breadcrumb ol {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    font-size: 0.83rem;
+    color: #888;
+  }
+
+  .breadcrumb li + li::before {
+    content: "›";
+    margin-right: 0.3rem;
+  }
+
+  .breadcrumb a {
+    color: #1D9E75;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .toc {
+    background: #F7F9F8;
+    border-left: 3px solid #1D9E75;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 0 32px;
+    position: static;
+  }
+
+  .toc-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0F6E56;
+    margin: 0 0 0.6rem;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .toc li {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .toc a {
+    color: #1D9E75;
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    text-decoration: underline;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F6E56;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #d4ede5;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a3a2f;
+    margin: 1.4rem 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.75;
+    margin: 0 0 0.9rem;
+  }
+
+  ul, ol {
+    margin: 0 0 1rem;
+    padding-left: 1.4rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    color: #1D9E75;
+    font-weight: 600;
+  }
+
+  .encart-cta {
+    background: #e8f7f2;
+    border: 1px solid #b2ddd0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .encart-cta p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #1a4a3a;
+    flex: 1;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #1D9E75;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 7px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .cta-btn:hover {
+    background: #157a5b;
+  }
+
+  .points-cles {
+    background: #fff;
+    border: 1.5px solid #1D9E75;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .pk-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1D9E75;
+    margin: 0 0 0.5rem !important;
+  }
+
+  .points-cles ul {
+    margin: 0;
+  }
+
+  .faq-section {
+    border-top: 2px solid #d4ede5;
+    padding-top: 2rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e8f0ed;
+    padding: 0.1rem 0;
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: #0F6E56;
+    padding: 0.9rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .faq-q::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #1D9E75;
+    flex-shrink: 0;
+  }
+
+  .faq-q[aria-expanded="true"]::after {
+    content: "−";
+  }
+
+  .faq-a {
+    padding: 0 0 1rem;
+  }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.93rem;
+  }
+
+  @media (max-width: 540px) {
+    .encart-cta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

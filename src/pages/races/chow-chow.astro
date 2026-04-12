@@ -1,113 +1,168 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Chow-Chow : Risques & Meilleures Offres 2026"
   description="Le Chow-Chow présente l'un des taux de dysplasie de hanche les plus élevés et un entropion quasi systématique. Découvrez les meilleures assurances pour couvrir ces pathologies fréquentes."
-  raceName="Chow-Chow"
+  nom="Chow-Chow"
   slug="chow-chow"
-  dateModified="2026-04-05"
-  heroSubtitle="Lion d'appartement au tempérament indépendant, le Chow-Chow présente un profil médical atypique avec une forte prédisposition aux problèmes dermatologiques, oculaires et thyroïdiens qui nécessitent un suivi vétérinaire régulier."
-  imageUrl="/images/races/chow-chow.webp"
-  imageAlt="Chow-Chow à la crinière lion et la langue bleu-mauve distinctive"
-  heroBadge="DYSPLASIE MAJEURE · ENTROPION"
-  riskScore={72}
-  alertText="L'<strong>entropion</strong> (repli des paupières vers l'intérieur) touche jusqu'à <strong>25 % des Chow-Chow</strong> et nécessite une correction chirurgicale à <strong>600 – 1 200 €</strong> souvent avant 18 mois. Sans assurance souscrite dès le premier mois, cette pathologie fréquente sera exclue comme préexistante lors du premier diagnostic."
-  alertSource="Source : Club Français du Chow-Chow 2024 ; BSAVA Manual of Canine and Feline Ophthalmology, entropion statistics"
-  introText="Le Chow-Chow est l'une des races les plus anciennes du monde, mais cette ancienneté génétique n'a pas effacé certaines fragilités héréditaires. Ses propriétaires français découvrent souvent les particularités médicales de la race au moment des premières visites vétérinaires : entropion, hypothyroïdie, myopathie."
-  faq={[
-    { question: "L'entropion du Chow-Chow est-il couvert par l'assurance chien ?", answer: "Oui, si la souscription précède tout diagnostic d'entropion. SantéVet couvre la chirurgie correctrice (blépharoplastie) dès la fin de la période de carence standard. Comme l'entropion peut être détecté dès 3-4 mois chez les Chow-Chow, souscrire avant le premier examen ophtalmologique de routine est impératif." },
-    { question: "Mon Chow-Chow est hypothyroïdien : puis-je encore l'assurer ?", answer: "Un chien déjà diagnostiqué hypothyroïdien peut être assuré, mais cette pathologie sera exclue comme préexistante. La couverture s'applique à toutes les autres pathologies survenant après la souscription. Pour une couverture de l'hypothyroïdie, il faut souscrire avant tout diagnostic et tout traitement à la thyroxine." },
-    { question: "Le pelage épais du Chow-Chow génère-t-il des frais vétérinaires spécifiques ?", answer: "Le pelage dense du Chow-Chow peut masquer des problèmes cutanés (pyodermites inter-orteils, malassezia) jusqu'à un stade avancé. Ces dermatites sont couvertes par SantéVet. Les soins de toilettage préventifs restent à la charge du propriétaire, mais les traitements médicaux dermatologiques sont remboursés." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=chow-chow&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture dysplasie de hanche et prothèse totale",
-        "Prise en charge entropion sévère et chirurgie correctrice",
-        "Remboursement glaucome héréditaire et traitement ophtalmologique",
-        "Couverture hypothyroïdie et lévothyroxine à vie",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=chow-chow&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Dysplasie de hanche bilatérale", score: 75, prix: "1 500–7 000 €", description: "Taux parmi les plus élevés toutes races. Arthrose progressive sévère, boiterie. Score HD obligatoire en élevage sérieux. Prothèse totale de hanche en forme avancée." },
-    { nom: "Entropion sévère", score: 80, prix: "500–2 000 €", description: "Rotation pathologique des paupières vers l'intérieur, provoquant frottement ciliaire sur la cornée. Chirurgie correctrice obligatoire dès les premiers mois pour prévenir les ulcères." },
-    { nom: "Glaucome héréditaire", score: 60, prix: "800–3 000 €", description: "Augmentation de la pression intraoculaire conduisant à la cécité. Diagnostiqué plus précocement chez le Chow-Chow que dans d'autres races. Traitement médical et éventuelle chirurgie." },
-    { nom: "Hypothyroïdie", score: 65, prix: "200–500 €/an", description: "Insuffisance thyroïdienne fréquente dans la race. Prise de poids, léthargie, alopécie symétrique, épaississement de la peau. Lévothyroxine orale à vie." },
-  ]}
-  pathologies={[
-    { nom: "Dysplasie de hanche bilatérale", description: "Taux de dysplasie coxo-fémorale parmi les plus élevés toutes races confondues (registres OFA). Incongruence articulaire progressive et arthrose sévère précoce. Score HD obligatoire avant reproduction. Prothèse totale de hanche bilatérale en forme avancée.", coût: "1 500–7 000 €" },
-    { nom: "Entropion sévère", description: "Rotation pathologique des paupières supérieures et inférieures vers l'intérieur, provoquant un frottement constant des cils sur la cornée. Quasi systématique dans la race. Chirurgie correctrice (blépharoplastie de Hotz-Celsus) dès les premiers mois de vie pour prévenir les ulcères cornéens chroniques.", coût: "500–2 000 €" },
-    { nom: "Glaucome héréditaire", description: "Augmentation primitive de la pression intraoculaire héréditaire. Apparition plus précoce que dans d'autres races. Douleur oculaire intense, œdème cornéen, cécité irréversible sans traitement urgent. Collyres hypotenseurs et chirurgie en forme réfractaire.", coût: "800–3 000 €" },
-    { nom: "Hypothyroïdie", description: "Thyroïdite lymphocytaire auto-immune très fréquente dans la race. Prise de poids inexpliquée, léthargie, alopécie bilatérale symétrique, épaississement cutané myxœdémateux. Lévothyroxine sodique orale à vie.", coût: "200–500 €/an" },
-    { nom: "Myopathie du Chow-Chow", description: "Myopathie héréditaire spécifique à la race provoquant une faiblesse musculaire généralisée, une démarche en raideur ('rigide') et une mégaoesophage. Traitement symptomatique, pas de traitement curatif.", coût: "500–2 000 €" },
-    { nom: "Mélanome buccal", description: "Le Chow-Chow, avec sa muqueuse buccale pigmentée noire, présente un risque de mélanome buccal. Masse orale à croissance rapide, envahissement osseux et métastases ganglionnaires précoces. Chirurgie extensive, immunothérapie vaccinale.", coût: "1 000–5 000 €" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=chow-chow&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="grande"
+  risque="modere"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Lion d'appartement au tempérament indépendant et à la langue bleue-mauve légendaire, le Chow-Chow séduit par son allure unique. Mais cette race millénaire cache un profil médical complexe que tout futur propriétaire doit connaître : entropion quasi systématique, myopathie héréditaire rare et taux de dysplasie de hanche parmi les plus élevés toutes races confondues. Ses dermatites des plis et son hypothyroïdie fréquente s'ajoutent à une liste de pathologies chroniques coûteuses. Un suivi vétérinaire rigoureux et une assurance santé adaptée sont indispensables pour garantir la qualité de vie de ce chien au caractère si particulier.</p>
+
+  <h2>Coût annuel d'un Chow-Chow</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium grande race)</td><td>600 – 850 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires, vermifuges)</td><td>250 – 400 €</td></tr>
+      <tr><td>Assurance santé</td><td>216 – 540 €</td></tr>
+      <tr><td>Toilettage professionnel (4 à 6 séances/an)</td><td>300 – 500 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>150 – 250 €</td></tr>
+      <tr><td>Suivi dermatologique ou ophtalmologique si pathologie</td><td>300 – 1 500 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO/TNS Sofres, enquête budget animal de compagnie 2023 ; grille tarifaire CHV France 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Chow-Chow</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Entropion bilatéral (plis palpébraux)</td><td>Très élevée (jusqu'à 25 % de la race)</td><td>500 – 2 000 €</td></tr>
+      <tr><td>Myopathie héréditaire du Chow-Chow</td><td>Rare mais spécifique à la race</td><td>500 – 2 000 €</td></tr>
+      <tr><td>Dysplasie de hanche bilatérale</td><td>Très élevée (registres OFA)</td><td>1 500 – 7 000 €</td></tr>
+      <tr><td>Hypothyroïdie auto-immune</td><td>Élevée</td><td>200 – 500 €/an</td></tr>
+      <tr><td>Dermatites des plis cutanés</td><td>Élevée</td><td>200 – 800 €/an</td></tr>
+      <tr><td>Glaucome héréditaire</td><td>Modérée</td><td>800 – 3 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Club Français du Chow-Chow 2024 ; BSAVA Manual of Canine and Feline Ophthalmology ; OFA Hip Dysplasia Statistics Chow Chow breed.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Chow-Chow</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Consultation ophtalmologique spécialisée</td><td>80 – 150 €</td><td>1 à 2 fois/an</td></tr>
+      <tr><td>Chirurgie correctrice entropion (blépharoplastie)</td><td>500 – 1 200 €</td><td>1 à 2 fois (selon récidive)</td></tr>
+      <tr><td>Dosage T4 libre + TSH canine (hypothyroïdie)</td><td>55 – 90 €</td><td>2 fois/an si traitement</td></tr>
+      <tr><td>Lévothyroxine sodique mensuelle</td><td>15 – 35 €/mois</td><td>Vie entière si diagnostiquée</td></tr>
+      <tr><td>Radiographies de hanche (score HD)</td><td>150 – 280 €</td><td>1 fois</td></tr>
+      <tr><td>Prothèse totale de hanche</td><td>3 000 – 4 500 €/hanche</td><td>Si dysplasie sévère</td></tr>
+      <tr><td>Traitement dermatite des plis (antiseptiques, antifongiques)</td><td>80 – 200 €/épisode</td><td>2 à 6 fois/an</td></tr>
+      <tr><td>Tonométrie oculaire (dépistage glaucome)</td><td>40 – 80 €</td><td>Annuel après 3 ans</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grille tarifaire vétérinaire France 2024 ; SNVEL ; tarifs CHV de référence.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Chow-Chow concentre plusieurs risques financiers de première importance. L'entropion — rotation pathologique des paupières vers l'intérieur — touche jusqu'à 25 % de la race selon le Club Français du Chow-Chow. Non opéré précocement, il provoque des ulcères cornéens chroniques pouvant exiger des greffes de cornée à 800–1 500 €. La dysplasie de hanche bilatérale du Chow-Chow est l'une des plus sévères parmi les grandes races (registre OFA), et deux prothèses totales représentent un investissement de 6 000 à 9 000 €. Enfin, la myopathie héréditaire du Chow-Chow (Chow-Chow Hereditary Myopathy, CHM) est une affection neuromusculaire sans traitement curatif nécessitant un suivi symptomatique prolongé. Sur la vie entière de la race (9 à 12 ans), les frais orthopédiques et ophtalmologiques cumulés dépassent régulièrement 10 000 € sans assurance.</p>
+
+  <h2>Conseils de prévention pour un Chow-Chow</h2>
+  <ul>
+    <li>Examen ophtalmologique dès 3 mois pour détecter l'entropion avant les premières lésions cornéennes — la chirurgie précoce évite les complications.</li>
+    <li>Tonométrie oculaire annuelle à partir de 3 ans pour dépister un glaucome héréditaire débutant.</li>
+    <li>Radiographies de hanches avant 18 mois avec notation HD officielle SCC pour évaluer la dysplasie coxo-fémorale.</li>
+    <li>Nettoyage quotidien des plis cutanés faciaux (solution antiseptique douceur) pour prévenir les dermatites humides et les surinfections à Malassezia.</li>
+    <li>Bilan thyroïdien tous les 2 ans dès 3 ans, plus tôt si prise de poids inexpliquée ou alopécie symétrique.</li>
+    <li>Évaluation neurologique du chiot dès 4 mois si faiblesse musculaire ou démarche anormale, évocatrices de CHM.</li>
+    <li>Souscrire une assurance avant le premier examen ophtalmologique de routine pour ne pas créer de préexistence sur l'entropion.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Chow-Chow ?</h2>
+  <p>Le Chow-Chow présente un cumul de risques rarement prévisibles à l'acquisition : une chirurgie oculaire souvent nécessaire dans les premiers mois, une dysplasie de hanche parmi les plus sévères des grandes races, et une hypothyroïdie chronique nécessitant un traitement à vie. La myopathie héréditaire, bien que rare, est incurable et génère des frais de suivi continus. Une assurance santé souscrite avant les premiers examens de routine permet de couvrir l'ensemble de ces risques sans exclusion pour préexistence — c'est la seule façon de ne pas choisir entre la santé de son animal et son budget.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Chow-Chow ?</h2>
+  <p>Pour un Chow-Chow, une formule couvrant la chirurgie ophtalmologique (blépharoplastie pour entropion, traitement du glaucome), la chirurgie orthopédique (dysplasie, prothèse) et les maladies endocrinologiques (hypothyroïdie) est indispensable. Vérifiez que les soins dermatologiques chroniques sont inclus. Les formules limitant le remboursement des pathologies héréditaires ou excluant les soins ophtalmologiques spécialisés sont à éviter. Un plafond annuel d'au moins 3 000 € est recommandé pour cette race.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Chow-Chow</h2>
+  <p>Le propriétaire de Chow-Chow est souvent passionné par les races atypiques et l'esthétique animale. Il vit généralement en maison avec jardin et apprécie le caractère calme et peu aboyeur de la race. Il est souvent surpris par les besoins de toilettage intensif (brossage plurihebdomadaire, bains réguliers) et par la nécessité de soins vétérinaires spécialisés plus fréquents que pour d'autres races. La forte indépendance du Chow-Chow peut compliquer les examens vétérinaires, nécessitant parfois une légère sédation et majorant donc chaque acte. Les propriétaires avertis investissent dans une assurance dès l'acquisition pour ne pas être pris de court par les frais ophtalmologiques ou orthopédiques.</p>
+
+  <h2>Questions fréquentes sur l'assurance Chow-Chow</h2>
+  <details>
+    <summary>L'entropion du Chow-Chow est-il couvert par l'assurance chien ?</summary>
+    <p>Oui, à condition de souscrire avant tout diagnostic d'entropion. L'entropion pouvant être détecté dès 3–4 mois chez les chiots Chow-Chow, il est impératif de souscrire avant le premier examen ophtalmologique de routine. La chirurgie correctrice (blépharoplastie de Hotz-Celsus) est alors couverte dès la fin de la période de carence standard.</p>
+  </details>
+  <details>
+    <summary>La myopathie héréditaire du Chow-Chow est-elle prise en charge ?</summary>
+    <p>Les soins palliatifs et le suivi neurologique liés à la CHM sont couverts par les formules incluant les maladies héréditaires. En l'absence de traitement curatif, l'assurance prend en charge les consultations spécialisées, les traitements symptomatiques et les hospitalisations. Vérifiez que votre contrat ne comporte pas d'exclusion générale pour les maladies génétiques de race.</p>
+  </details>
+  <details>
+    <summary>Mon Chow-Chow est hypothyroïdien avant la souscription : puis-je encore l'assurer ?</summary>
+    <p>Oui, mais l'hypothyroïdie sera exclue comme pathologie préexistante. La couverture s'appliquera à toutes les autres pathologies survenant après la souscription. Pour bénéficier d'une couverture complète incluant l'hypothyroïdie, il faut impérativement souscrire avant tout diagnostic et avant tout début de traitement à la lévothyroxine.</p>
+  </details>
+  <details>
+    <summary>À quel âge souscrire une assurance pour un Chow-Chow ?</summary>
+    <p>Idéalement avant 3 mois, dès l'arrivée du chiot et avant le premier examen vétérinaire complet. L'entropion est détectable très tôt, et la dysplasie peut être radiographiquement évaluée dès 6 mois. Toute consultation spécialisée avant la souscription peut créer une exclusion définitive sur la pathologie concernée.</p>
+  </details>
+  <details>
+    <summary>Quel budget mensuel prévoir pour assurer un Chow-Chow ?</summary>
+    <p>Entre 20 et 45 €/mois selon la formule, l'âge et le taux de remboursement. Compte tenu du profil médical de la race — chirurgie oculaire, dysplasie de hanche sévère, hypothyroïdie chronique — une formule à 28–38 €/mois avec remboursement à 80–100 % représente un investissement judicieux face à des factures potentielles de plusieurs milliers d'euros.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/akita-inu">Akita Inu</a> — grande race asiatique aux prédispositions auto-immunes et dermatologiques proches</li>
+    <li><a href="/races/samoyede">Samoyède</a> — grand chien nordique à pelage dense partageant les risques orthopédiques et thyroïdiens</li>
+    <li><a href="/races/montagne-des-pyrenees">Montagne des Pyrénées</a> — grande race blanche avec profil orthopédique et dermatologique similaire</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">1 200 €</span><span class="figure-label">coût chirurgie entropion</span></div>
+      <div class="figure"><span class="figure-value">~25 %</span><span class="figure-label">prévalence entropion dans la race</span></div>
+      <div class="figure"><span class="figure-value">20 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">9–12 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Club Français du Chow-Chow — guide de santé et statistiques de race 2024</li>
+    <li>OFA (Orthopedic Foundation for Animals) — Hip Dysplasia by Breed : Chow Chow, 2023</li>
+    <li>BSAVA Manual of Canine and Feline Ophthalmology — entropion statistics and treatment, 4e éd.</li>
+    <li>Braund KG — Hereditary and congenital diseases of the nervous system, Chow-Chow myopathy</li>
+    <li>Graham PA et al. — Etiopathogenesis of canine hypothyroidism, J Small Anim Pract 2007</li>
+    <li>FACCO/TNS Sofres — enquête nationale sur les animaux de compagnie 2023</li>
+    <li>SNVEL — grille tarifaire vétérinaire indicative France, 2024</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

@@ -1,157 +1,206 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance Bouledogue Français : Comparatif 2026"
   description="Comparez les meilleures assurances santé pour votre Bouledogue Français. Syndrome brachycéphale, hernie discale, coûts réels. Guide indépendant avril 2026."
-  raceName="Bouledogue Français"
-  slug="bouledogue-français"
-  dateModified="2026-04-04"
-  heroSubtitle="Attachant mais structurellement fragile, le Bouledogue Français figure parmi les races les plus coûteuses à soigner en France. Son anatomie brachycéphale génère des frais vétérinaires dès le plus jeune âge."
-  imageUrl="/images/races/bouledogue-français.webp"
-  imageAlt="Bouledogue Français bringé assis sur un canapé, regard expressif"
-  heroBadge="FRAIS VET. PARMI LES PLUS ÉLEVÉS · CHIRURGIE FRÉQUENTE"
-  riskScore={88}
-  alertText="Le coût moyen des soins vétérinaires d'un Bouledogue Français sur 10 ans est estimé à <strong>8 500 euros</strong>, contre <strong>2 160 euros pour une décennie d'assurance SantéVet</strong>. La <strong>chirurgie brachycéphale</strong> seule atteint 3 500 euros et n'est couverte que si l'assurance est souscrite <strong>avant tout diagnostic de BOAS</strong>."
-  alertSource="Source : FECAVA Brachycephalic Breed Study 2023 ; FACCO Enquete nationale 2024"
-  introText="Devenu la 1re race la plus populaire en France en 2022 (FACCO), le Bouledogue Français séduit par son caractère comique. Sa morphologie aplatie génère des pathologies structurelles coûteuses que tout propriétaire doit anticiper avant l'achat."
-  faq={[
-    { question: "Le syndrome brachycéphale du Bouledogue est-il couvert par les assurances ?", answer: "Oui, SanteVet couvre la chirurgie brachycéphale si la souscription précède tout diagnostic de BOAS. Souscrivez avant 12 mois, avant toute consultation spécialisée. Le moindre antécédent médical documenté ferme la porte à la couverture chirurgicale." },
-    { question: "Pourquoi assurer son Bouledogue Français avant 1 an ?", answer: "Les signes de BOAS apparaissent souvent des les 6 premiers mois. Une fois le diagnostic pose, la chirurgie devient une exclusion. Assurer son Bouledogue a l'acquisition, idéalement entre 2 et 4 mois, est la seule strategie sans risque." },
-    { question: "Pourquoi l'assurance est-elle plus chere pour les races brachycephales ?", answer: "Les assureurs integrent le risque élevé de chirurgie et d'hospitalisation dans leurs calculs. Pour un Bouledogue, comptez 25 à 50 euros/mois, un surcoût justifié par des frais vétérinaires 2 a 3 fois plus élevés que la moyenne canine." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=bouledogue-français&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Chirurgie brachycéphale couverte dès J1",
-        "Hernies discales et pathologies spinales incluses",
-        "Hospitalisations et soins intensifs",
-        "Maladies chroniques sans surprime",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=bouledogue-français&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    {
-      nom: "Syndrome brachycéphale (BOAS)",
-      score: 85,
-      prix: "1 500 – 4 000 €",
-      description: "L'anatomie aplatie du Bouledogue obstrue les voies respiratoires. Ronflements, détresse respiratoire par temps chaud, intolérance à l'effort. Chirurgie corrective souvent nécessaire.",
-    },
-    {
-      nom: "Hernie discale (IVDD)",
-      score: 72,
-      prix: "2 000 – 7 000 €",
-      description: "Les vertèbres dites « en papillon » du Bouledogue fragilisent les disques intervertébraux. Une hernie peut provoquer une paralysie brutale des membres. Chirurgie neurologique d'urgence.",
-    },
-    {
-      nom: "Dermatite des plis cutanés",
-      score: 78,
-      prix: "200 – 800 €/an",
-      description: "Les nombreux plis de peau humides favorisent les infections bactériennes et fongiques chroniques. Nettoyage régulier et traitements locaux ou systémiques nécessaires à vie.",
-    },
-    {
-      nom: "Pathologies oculaires",
-      score: 65,
-      prix: "300 – 2 000 €",
-      description: "Les yeux globuleux et proéminents du Bouledogue sont exposés aux ulcères cornéens, aux ectropions et à l'œil de cerise (prolapsus de la glande nictitante). Chirurgie souvent requise.",
-    },
-  ]}
-  pathologies={[
-    {
-      nom: "Syndrome brachycéphale obstructif (BOAS)",
-      description: "Ensemble de malformations anatomiques (narines sténosées, palais mou allongé, trachée hypoplasique) provoquant une obstruction des voies aériennes supérieures. Chirurgie corrective (naso-palatoplastie) recommandée dès 12 à 18 mois pour éviter les séquelles cardiaques.",
-      coût: "1 500 – 4 000 €",
-    },
-    {
-      nom: "Hernie discale cervicale et lombaire",
-      description: "Les vertèbres chondrodystrophiques du Bouledogue vieillissent prématurément. Un nucléus pulposus extrudé peut comprimer la moelle épinière en quelques heures, entraînant paralysie et incontinence. IRM et chirurgie de décompression en urgence.",
-      coût: "2 000 – 7 000 €",
-    },
-    {
-      nom: "Dermatite des plis cutanés",
-      description: "Les plis faciaux, du cou et de la queue piègent humidité et chaleur, créant un terreau idéal pour Malassezia et Staphylococcus. Traitement : nettoyage quotidien, antifongiques locaux, antibiotiques systémiques en cas de surinfection.",
-      coût: "200 – 800 €/an",
-    },
-    {
-      nom: "Luxation de la rotule",
-      description: "Déplacement de la rotule hors de sa rainure trochléaire, provoquant boiterie intermittente et douleur. Fréquente chez les races de petit gabarit. Chirurgie corrective (trochléoplastie) en grade III–IV.",
-      coût: "800 – 2 500 €",
-    },
-    {
-      nom: "Ulcères cornéens et œil de cerise",
-      description: "Les yeux proéminents sont sujets aux traumatismes et à la sécheresse cornéenne. L'œil de cerise (prolapsus de la glande de la troisième paupière) nécessite une repositionnement chirurgical. Ulcères non traités : risque de perforation oculaire.",
-      coût: "300 – 2 000 €",
-    },
-    {
-      nom: "Allergies alimentaires et cutanées",
-      description: "Le Bouledogue est prédisposé aux hypersensibilités (pollens, acariens, protéines animales). Prurit chronique, otites récidivantes, troubles digestifs. Régime d'éviction, hydrolysats protéiques, immunothérapie ou médicaments ciblés (Cytopoint, Apoquel).",
-      coût: "400 – 1 500 €/an",
-    },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=bouledogue-français&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  nom="Bouledogue Français"
+  slug="bouledogue-francais"
+  taille="petite"
+  risque="eleve"
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    Devenu la race numéro un en France en 2022 (FACCO), le Bouledogue Français séduit par son caractère expressif et son gabarit urbain. Pourtant, il est aussi la race dont les frais vétérinaires sont statistiquement les plus élevés par rapport à son espérance de vie. Son anatomie brachycéphale — crâne aplati, narines sténosées, trachée hypoplasique — génère des pathologies structurelles dès les premiers mois de vie. Chirurgie des voies respiratoires, hernies discales, dermatites des plis, luxation de la rotule : autant de risques financiers majeurs que l'assurance santé permet d'anticiper sereinement.
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Bouledogue Français</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Alimentation (formule adaptée race brachycéphale)</td><td>400 – 700 €</td></tr>
+      <tr><td>Suivi vétérinaire annuel (vaccins, vermifuge, antiparasitaires)</td><td>250 – 450 €</td></tr>
+      <tr><td>Entretien des plis et hygiène cutanée</td><td>100 – 250 €</td></tr>
+      <tr><td>Accessoires, jouets, harnais adapté brachycéphale</td><td>100 – 200 €</td></tr>
+      <tr><td>Assurance santé (formule intermédiaire)</td><td>360 – 600 €</td></tr>
+      <tr><td>Imprévus vétérinaires (hors assurance)</td><td>300 – 1 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; FECAVA Brachycephalic Breed Study 2023 ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes du Bouledogue Français</h2>
+  <p>
+    La FECAVA (Fédération Européenne des Compagnons des Animaux de Compagnie) a publié en 2023 une étude alarmante : les races brachycéphales, Bouledogue Français en tête, ont une probabilité 3 fois supérieure aux autres races de subir une intervention chirurgicale avant 3 ans. Le syndrome BOAS (Brachycephalic Obstructive Airway Syndrome) nécessite une chirurgie correctrice chez 50 à 60 % des individus. Les hernies discales cervicales et lombaires touchent 20 à 30 % des Bouledogues après 3 ans. La luxation de la rotule et l'entropion complètent un tableau pathologique particulièrement lourd.
+  </p>
+  <table class="data-table">
+    <thead>
+      <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Syndrome BOAS (chirurgie)</td><td>50 – 60 % des individus</td><td>1 500 – 4 000 €</td></tr>
+      <tr><td>Hernie discale (IVDD)</td><td>20 – 30 % (> 3 ans)</td><td>2 000 – 7 000 €</td></tr>
+      <tr><td>Dermatite des plis cutanés</td><td>40 – 50 %</td><td>200 – 800 €/an</td></tr>
+      <tr><td>Luxation de la rotule (grades III-IV)</td><td>15 – 25 %</td><td>800 – 2 500 €</td></tr>
+      <tr><td>Entropion (chirurgie)</td><td>10 – 15 %</td><td>400 – 1 200 €</td></tr>
+      <tr><td>Allergies alimentaires/cutanées</td><td>25 – 35 %</td><td>400 – 1 500 €/an</td></tr>
+      <tr><td>Ulcères cornéens / œil de cerise</td><td>10 – 20 %</td><td>300 – 2 000 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FECAVA Brachycephalic Breed Study 2023 ; Packer R.M.A. et al., PLOS ONE 2015 ; SCC 2023 ; Liu N.C. et al., JAVMA 2017.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Bouledogue Français</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Chirurgie BOAS (naso-palatoplastie)</td><td>1 500 – 4 000 €</td></tr>
+      <tr><td>IRM rachis (bilan hernie discale)</td><td>900 – 1 800 €</td></tr>
+      <tr><td>Chirurgie décompression discale (IVDD)</td><td>2 000 – 6 000 €</td></tr>
+      <tr><td>Chirurgie luxation rotule (trochléoplastie)</td><td>800 – 2 500 €</td></tr>
+      <tr><td>Chirurgie entropion</td><td>400 – 1 200 €</td></tr>
+      <tr><td>Traitement dermatite plis (antifongiques + antibiotiques)</td><td>200 – 600 €/épisode</td></tr>
+      <tr><td>Allergie : immunothérapie ou Cytopoint annuel</td><td>600 – 1 500 €/an</td></tr>
+      <tr><td>Repositionnement chirurgical œil de cerise</td><td>400 – 900 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : CHVA France 2024 ; EnvA (École Nationale Vétérinaire d'Alfort) tarifs 2025 ; SNVEL ; VetAgro Sup Lyon 2025.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>
+    Le Bouledogue Français est la race dont le coût vétérinaire cumulé sur 10 ans est le plus élevé de France, estimé à 8 500 € en moyenne (FECAVA 2023), soit 3 à 4 fois la moyenne canine. La particularité de cette race est la précocité des interventions : la chirurgie BOAS se pratique idéalement entre 12 et 18 mois, la luxation de la rotule se déclare souvent avant 2 ans. Un Bouledogue qui cumule BOAS + hernie discale + allergie chronique peut mobiliser 8 000 à 15 000 € de frais vétérinaires entre 1 et 7 ans. Par ailleurs, les accouchements par césarienne sont quasi-systématiques (80 % des naissances) en raison de la morphologie brachycéphale — un coût supplémentaire de 600 à 1 200 € que les éleveurs répercutent sur le prix d'achat.
+  </p>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Bouledogue Français</h2>
+  <ul>
+    <li>Consulter un vétérinaire spécialiste en médecine brachycéphale dès 6 mois pour évaluer le degré de BOAS et planifier la chirurgie si nécessaire.</li>
+    <li>Ne jamais utiliser un collier : toujours un harnais pour ne pas exercer de pression sur les voies aériennes déjà compromises.</li>
+    <li>Éviter toute activité physique intense par chaleur ou humidité élevée : le Bouledogue ne peut pas thermoréguler efficacement et risque le coup de chaleur.</li>
+    <li>Nettoyer quotidiennement les plis faciaux, du cou et de la queue avec des lingettes antiseptiques vétérinaires pour prévenir les dermatites.</li>
+    <li>Surveiller la démarche dès les premiers mois : une boiterie intermittente ou un sautillement peut signaler une luxation de la rotule.</li>
+    <li>Effectuer un bilan ophtalmologique annuel pour détecter précocement entropion, ulcères cornéens et prolapsus de la glande nictitante.</li>
+    <li>Souscrire une assurance santé avant 4 mois, idéalement à l'acquisition, avant toute consultation spécialisée BOAS.</li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Bouledogue Français ?</h2>
+  <p>
+    Le Bouledogue Français est la race pour laquelle l'assurance santé est la plus rentable statistiquement. Un propriétaire sur deux fera face à une chirurgie BOAS avant les 2 ans de son chien. Un sur trois sera confronté à une hernie discale avant 7 ans. Ces deux seuls événements représentent 3 500 à 11 000 € de frais cumulés. Le coût moyen d'une décennie d'assurance (environ 3 600 à 6 000 €) est inférieur à la facture d'un seul épisode grave. Sans assurance, beaucoup de propriétaires renoncent aux soins nécessaires pour des raisons financières, ce qui aggrave les séquelles.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Bouledogue Français ?</h2>
+  <p>
+    Le Bouledogue exige une formule couvrant explicitement la chirurgie brachycéphale (BOAS), les maladies discales (IVDD) et les pathologies chroniques cutanées et allergiques. Attention aux exclusions "maladies congénitales" ou "malformations anatomiques" — certains assureurs utilisent ces formulations pour exclure le BOAS. Vérifiez que la chirurgie de décompression discale (jusqu'à 6 000 €) est bien incluse. Un plafond annuel d'au moins 5 000 € est recommandé. La souscription doit impérativement précéder toute consultation avec un spécialiste en médecine brachycéphale, car le moindre rapport médical documentant une obstruction respiratoire entraîne l'exclusion définitive du BOAS.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Profil type du propriétaire -->
+  <h2>Profil type du propriétaire d'un Bouledogue Français</h2>
+  <p>
+    Le propriétaire de Bouledogue Français est souvent urbain, en appartement ou en maison sans grand jardin. Il choisit cette race pour son caractère comique, son format compact et son côté affectueux. Ce profil est fréquemment surpris par l'ampleur des frais vétérinaires, car le Bouledogue semble robuste en apparence. Les propriétaires ayant souscrit une assurance avant les premiers problèmes témoignent unanimement d'un retour sur investissement rapide, souvent dès la première chirurgie.
+  </p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Bouledogue Français</h2>
+  <details>
+    <summary>Le syndrome brachycéphale (BOAS) est-il couvert par l'assurance ?</summary>
+    <p>Oui, à condition de souscrire avant toute consultation spécialisée et avant tout diagnostic documenté de BOAS. La chirurgie correctrice (naso-palatoplastie) coûte 1 500 à 4 000 €. Un contrat souscrit après le premier bilan respiratoire spécialisé exclura généralement cette pathologie.</p>
+  </details>
+  <details>
+    <summary>Pourquoi assurer son Bouledogue Français avant 4 mois ?</summary>
+    <p>Les signes de BOAS apparaissent dès les 6 premiers mois. Une fois le diagnostic posé, la chirurgie devient une exclusion. Souscrire à l'acquisition, idéalement entre 2 et 4 mois, est la seule stratégie sans risque d'exclusion.</p>
+  </details>
+  <details>
+    <summary>La hernie discale du Bouledogue est-elle remboursée ?</summary>
+    <p>Oui, les formules couvrant les maladies et chirurgies prennent en charge l'IRM diagnostique (900-1 800 €) et la décompression chirurgicale (2 000-6 000 €). La prise en charge doit être souscrite avant tout signe neurologique (parésie, douleur rachidienne).</p>
+  </details>
+  <details>
+    <summary>Combien coûte une assurance pour un Bouledogue Français ?</summary>
+    <p>Entre 25 et 50 €/mois selon l'âge et la formule. Les races brachycéphales supportent une surprime justifiée par un risque chirurgical 3 fois supérieur à la moyenne. Un investissement de 30 €/mois devient rentable dès la première chirurgie BOAS ou discale.</p>
+  </details>
+  <details>
+    <summary>Le coup de chaleur est-il couvert par l'assurance chien ?</summary>
+    <p>Oui, le coup de chaleur est une urgence vitale couverte par toutes les formules accidents et maladies. Le Bouledogue y est particulièrement exposé en été. L'hospitalisation en soins intensifs (perfusion, oxygénothérapie) peut coûter 500 à 2 000 €.</p>
+  </details>
+  <details>
+    <summary>L'entropion et l'œil de cerise du Bouledogue sont-ils couverts ?</summary>
+    <p>Oui, les chirurgies ophtalmologiques (entropion, repositionnement de la glande nictitante) sont couvertes par les formules incluant les maladies. L'entropion coûte 400 à 1 200 €, l'œil de cerise 400 à 900 €. Une souscription précoce évite l'exclusion pour "malformation congénitale".</p>
+  </details>
+
+  <!-- 11. Races similaires -->
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/carlin">Carlin</a></li>
+    <li><a href="/races/chihuahua">Chihuahua</a></li>
+    <li><a href="/races/boston-terrier">Boston Terrier</a></li>
+  </ul>
+
+  <!-- 12. Chiffres clés -->
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">60 %</span><span class="figure-label">des Bouledogues nécessitent une chirurgie BOAS avant 2 ans (FECAVA 2023)</span></div>
+      <div class="figure"><span class="figure-value">8 500 €</span><span class="figure-label">coût vétérinaire cumulé moyen sur 10 ans pour un Bouledogue Français</span></div>
+      <div class="figure"><span class="figure-value">3×</span><span class="figure-label">probabilité chirurgicale supérieure aux autres races avant 3 ans (FECAVA)</span></div>
+      <div class="figure"><span class="figure-value">N°1</span><span class="figure-label">race la plus populaire en France depuis 2022 (FACCO)</span></div>
+    </div>
+  </div>
+
+  <!-- 13. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>FECAVA (Federation of European Companion Animal Veterinary Associations), Brachycephalic Breed Health Study, 2023.</li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>Packer R.M.A. et al., "Impact of Facial Conformation on Canine Health: Corneal Ulceration", PLOS ONE, 2015.</li>
+    <li>Liu N.C. et al., "Conformational Risk Factors of Brachycephalic Obstructive Airway Syndrome (BOAS) in Pugs, French Bulldogs, and Bulldogs", JAVMA, 2017.</li>
+    <li>Meola S.D., "Brachycephalic Airway Syndrome", Topics in Companion Animal Medicine, 2013.</li>
+    <li>SCC (Société Centrale Canine), Statistiques démographiques et inscriptions 2023. scc.asso.fr</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+    <li>EnvA (École Nationale Vétérinaire d'Alfort), tarifs CHVA 2025.</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

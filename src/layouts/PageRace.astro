@@ -30,7 +30,7 @@ interface ComparatifOffre {
   prix: string;
   remboursement: string;
   carenceMaladie: string;
-  prevention: string | null;   // null → ✗
+  prévention: string | null;   // null → ✗
   dysplasie: boolean;
   vaccins: string | null;      // null → ✗
   appMobile: boolean;
@@ -1414,7 +1414,7 @@ const jsonldBreadcrumb = {
                     <th scope="row">Prévention</th>
                     {comparatif.map((o) => (
                       <td class={o.featured ? "col-featured" : ""}>
-                        {o.prevention ?? <span class="cell-no">✗</span>}
+                        {o.prévention ?? <span class="cell-no">✗</span>}
                       </td>
                     ))}
                   </tr>

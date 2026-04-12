@@ -1,113 +1,169 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Shih Tzu : Risques & Meilleures Offres 2026"
   description="Le Shih Tzu est brachycéphale et exposé aux ulcères cornéens et aux hernies discales. Découvrez les meilleures assurances adaptées aux risques spécifiques du Shih Tzu."
-  raceName="Shih Tzu"
+  nom="Shih Tzu"
   slug="shih-tzu"
-  dateModified="2026-04-05"
-  heroSubtitle="Petit lion a la criniere royale, le Shih Tzu impressionne par son élégance. Ses yeux saillants et son museau court font de chaque journée une vigilance ophtalmologique que tout propriétaire doit integrer."
-  imageUrl="/images/races/shih-tzu.webp"
-  imageAlt="Shih Tzu au pelage long et soyeux, nœud dans les cheveux"
-  heroBadge="BRACHYCÉPHALE · PROBLÈMES OCULAIRES"
-  riskScore={70}
-  alertText="Une <strong>proptose oculaire</strong> (luxation du globe) chez le Shih Tzu est une urgence chirurgicale a traiter en <strong>moins de 30 minutes</strong> pour espérer sauver l'œil. Coût : <strong>1 500 à 3 000 euros</strong>. Cette pathologie est imprevisible et peut survenir lors d'un jeu trop vigoureux. Sans assurance active, ce coût repose entierement sur le propriétaire."
-  alertSource="Source : British Veterinary Association BVA Brachycephalic Breed Health Report 2023 ; Societe Centrale Canine"
-  introText="Le Shih Tzu est très apprécié des seniors et des familles en appartement pour son caractère doux et ses besoins d'exercice modérés. Sa toilette exigeante crée un lien quotidien, ce qui permet souvent de détecter précocement les infections cutanées et oculaires qui, traitées tôt, restent peu coûteuses."
-  faq={[
-    { question: "Les urgences oculaires du Shih Tzu sont-elles couvertes par l'assurance ?", answer: "Oui, SanteVet couvre les urgences ophtalmologiques incluant la proptose et les ulceres corneens perforants. Ces interventions, qui peuvent atteindre 3 000 euros, sont remboursees a 100 % en formule Confort." },
-    { question: "A quel âge assurer son Shih Tzu ?", answer: "Dès l'acquisition, avant toute consultation ophtalmologique. Les pathologies oculaires et brachycéphales peuvent être documentées très tôt. Chaque consultation avant souscription crée un risque d'exclusion définitive." },
-    { question: "Quel budget mensuel pour assurer un Shih Tzu ?", answer: "Entre 20 et 35 euros/mois selon la formule et l'âge. Le Shih Tzu présente un profil de risque moyen a élevé avec ses pathologies brachycéphales et oculaires. Une formule avec couverture chirurgie et ophtalmologie est recommandee." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=shih-tzu&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture syndrome brachycéphale et chirurgie naso-palatine",
-        "Prise en charge ulcères cornéens et urgences ophtalmologiques",
-        "Remboursement hernie discale et chirurgie de décompression",
-        "Couverture insuffisance rénale héréditaire",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=shih-tzu&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Syndrome brachycéphale (BOAS)", score: 68, prix: "1 000–3 500 €", description: "Obstruction des voies respiratoires par narines sténosées et palais mou allongé. Chirurgie corrective souvent recommandée dès 12–18 mois." },
-    { nom: "Ulcères cornéens et proptose oculaire", score: 75, prix: "300–2 500 €", description: "Les yeux saillants sont vulnérables aux traumatismes. Une proptose (luxation du globe) est une urgence chirurgicale absolue en moins de 30 minutes." },
-    { nom: "Hernie discale cervicale", score: 60, prix: "1 500–5 000 €", description: "Conformation chondrodystrophique héréditaire fragilisant les disques. Compression médullaire soudaine pouvant causer paralysie et incontinence." },
-    { nom: "Insuffisance rénale héréditaire", score: 50, prix: "500–2 000 €/an", description: "Dysplasie rénale congénitale documentée dans la race. Insuffisance rénale chronique avant l'âge adulte dans les lignées atteintes." },
-  ]}
-  pathologies={[
-    { nom: "Syndrome brachycéphale (BOAS)", description: "Obstruction des voies aériennes supérieures par narines sténosées, palais mou hypertrophié et allongé, saccules laryngés évaginés. Intolérance à la chaleur et à l'effort. Chirurgie naso-palatine recommandée avant 2 ans.", coût: "1 000–3 500 €" },
-    { nom: "Ulcères cornéens et proptose oculaire", description: "Les yeux saillants (exophtalmie) du Shih Tzu sont extrêmement vulnérables aux traumatismes. Ulcères cornéens superficiels à profonds, risque de perforation en 24–48 h sans traitement. Proptose = urgence chirurgicale absolue.", coût: "300–2 500 €" },
-    { nom: "Hernie discale cervicale", description: "Dégénérescence chondrodystrophique précoce des disques intervertébraux. Compression médullaire cervicale aiguë avec douleur intense, parésie des membres, incontinence. IRM diagnostique, chirurgie de décompression en urgence.", coût: "1 500–5 000 €" },
-    { nom: "Insuffisance rénale héréditaire", description: "Dysplasie rénale congénitale caractérisée par une immaturité du parenchyme rénal. Polyurie/polydipsie, retard de croissance, insuffisance rénale chronique progressive avant 3 ans dans les lignées atteintes.", coût: "500–2 000 €/an" },
-    { nom: "Otites chroniques", description: "Prédisposition anatomique aux otites bactériennes et fongiques récidivantes liée aux poils excessifs dans le conduit. Douleur auriculaire, prurit, odeur. Nettoyage régulier et traitement antibiotique/antifongique.", coût: "100–500 €/épisode" },
-    { nom: "Plis cutanés faciaux infectés", description: "Les plis cutanés autour du museau créent un environnement humide propice aux dermatites intertrigo. Rougeur, odeur fétide, prolifération bactérienne et fongique. Nettoyage quotidien et antiseptiques topiques.", coût: "150–500 €/an" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=shih-tzu&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="petite"
+  risque="modere"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Petit lion à la crinière royale, le Shih Tzu associe douceur et élégance dans un format compact parfaitement adapté à la vie en appartement. Mais derrière ses yeux saillants et son museau court se cachent des fragilités médicales réelles : brachycéphalie modérée, vulnérabilité ophtalmologique marquée, hernie discale de type chondrodystrophique et pathologies rénales héréditaires dans certaines lignées. Un propriétaire averti, capable de détecter précocement les signes cliniques, peut considérablement limiter les complications et maîtriser le coût vétérinaire global de ce compagnon attachant et longévif.</p>
+
+  <h2>Coût annuel d'un Shih Tzu</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes premium petite race)</td><td>280–450 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, vermifuge, antiparasitaires)</td><td>230–380 €</td></tr>
+      <tr><td>Toilettage professionnel (6–8 séances, pelage long)</td><td>360–600 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>100–180 €</td></tr>
+      <tr><td>Assurance santé</td><td>240–420 €</td></tr>
+      <tr><td>Produits soins oculaires et nettoyage plis</td><td>80–150 €</td></tr>
+      <tr><td><strong>Total estimé</strong></td><td><strong>1 290–2 180 €/an</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des animaux de compagnie 2024 ; enquête SNVEL tarifs pratiqués 2024.</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Shih Tzu</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Entropion palpébral</td><td>Élevée (~ 25–35 %)</td><td>400–1 500 €</td></tr>
+      <tr><td>Syndrome brachycéphale (BOAS) modéré</td><td>Modérée à élevée</td><td>800–3 500 €</td></tr>
+      <tr><td>Luxation de la rotule</td><td>Modérée (~ 15–25 %)</td><td>600–2 500 €</td></tr>
+      <tr><td>Hernie discale cervicale (IVDD)</td><td>Modérée (race chondrodystrophique)</td><td>1 500–5 000 €</td></tr>
+      <tr><td>Kératite sèche (KCS)</td><td>Modérée (~ 15 %)</td><td>200–600 €/an</td></tr>
+      <tr><td>Reins polykystiques (PKD)</td><td>Présente dans certaines lignées</td><td>400–1 500 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Société Centrale Canine (SCC) 2024 ; British Veterinary Association BVA Brachycephalic Breed Health Report 2023 ; OFA Health Statistics Database 2024.</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Shih Tzu</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Chirurgie correctrice entropion (blépharoplastie)</td><td>400–1 500 €</td><td>1–2 fois</td></tr>
+      <tr><td>Rhinoplastie + palatoplastie BOAS</td><td>800–3 000 €</td><td>1 fois (avant 2 ans)</td></tr>
+      <tr><td>Traitement ulcère cornéen (collyres, suture conjonctivale)</td><td>200–800 €/épisode</td><td>Selon occurrence</td></tr>
+      <tr><td>Correction luxation de la rotule (grade III–IV)</td><td>1 200–2 500 €/côté</td><td>Si nécessaire</td></tr>
+      <tr><td>IRM diagnostique + chirurgie hernie discale cervicale</td><td>2 500–5 500 €</td><td>Si myélopathie</td></tr>
+      <tr><td>Traitement KCS (collyres ciclosporine à vie)</td><td>150–400 €/an</td><td>Mensuel si KCS</td></tr>
+      <tr><td>Échographie rénale + bilan sanguin PKD</td><td>150–350 €</td><td>Annuelle si suspicion</td></tr>
+      <tr><td>Consultation ophtalmologique spécialisée</td><td>120–250 €</td><td>Annuelle</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : enquête tarifs cliniques vétérinaires France 2024–2025 (SNVEL) ; grille tarifaire assureurs santé animale 2024.</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Shih Tzu présente un profil de risque modéré mais diversifié. L'entropion palpébral, fréquent en raison de la peau abondante du visage, nécessite une chirurgie correctrice qui, si elle est retardée, expose à des ulcères cornéens récidivants pouvant évoluer vers la perforation. La kératite sèche (KCS), pathologie auto-immune de la glande lacrymale, impose un traitement ophtalmologique à vie dont le coût cumulé sur 12 ans peut dépasser 5 000 €. La hernie discale de type chondrodystrophique (IVDD) est la complication la plus redoutée : une extrusion aiguë peut entraîner une paralysie du jour au lendemain, nécessitant une IRM et une chirurgie de décompression en urgence (2 500 à 5 500 €). Enfin, les reins polykystiques dans certaines lignées peuvent conduire à une insuffisance rénale chronique coûteuse avant l'âge de 5 ans.</p>
+
+  <h2>Conseils de prévention pour un Shih Tzu</h2>
+  <ul>
+    <li>Consulter un ophtalmologue vétérinaire dès 6 mois pour évaluer l'entropion et la production lacrymale (test de Schirmer).</li>
+    <li>Appliquer quotidiennement des collyres hydratants pour prévenir les ulcères en cas d'exophtalmie marquée.</li>
+    <li>Éviter les jeux brusques et les tiraillements du collier pour réduire le risque de proptose oculaire (luxation du globe).</li>
+    <li>Faire évaluer les voies aériennes dès 6–8 mois par un vétérinaire formé au BOAS ; opérer tôt réduit les complications.</li>
+    <li>Choisir un éleveur testant le PKD par échographie rénale sur les parents avant la mise en saillie.</li>
+    <li>Éviter les efforts prolongés par temps chaud et maintenir une fraîcheur ambiante en été.</li>
+    <li>Souscrire une assurance santé dès l'acquisition, avant toute consultation vétérinaire.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Shih Tzu ?</h2>
+  <p>Malgré son profil de risque modéré, le Shih Tzu accumule des pathologies dont plusieurs nécessitent des traitements à vie. La KCS seule représente plusieurs centaines d'euros par an en collyres et consultations. Une hernie discale aiguë ou une proptose oculaire peut survenir de façon imprévisible et générer 2 000 à 5 000 € en une seule urgence. L'assurance protège le budget familial et garantit que les décisions de soins restent guidées par le bien-être de l'animal, et non par une contrainte financière.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Shih Tzu ?</h2>
+  <p>Pour un Shih Tzu, une formule maladies et accidents avec couverture ophtalmologique et neurologie est recommandée. Vérifiez que le contrat inclut : les pathologies brachycéphales, les urgences ophtalmologiques (proptose, ulcères perforants), la hernie discale (IRM + chirurgie) et les maladies chroniques (KCS, insuffisance rénale). Un plafond annuel minimum de 2 500 € et une carence maladie inférieure à 30 jours sont des critères essentiels.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Shih Tzu</h2>
+  <p>Le Shih Tzu est particulièrement prisé des seniors, des personnes seules et des familles vivant en appartement. Son caractère doux, sa faible activité physique et son attachement profond à ses maîtres en font un compagnon idéal pour les personnes à mobilité réduite. Son toilettage exigeant crée un rituel quotidien qui favorise la détection précoce de problèmes cutanés et oculaires. La FACCO 2024 le classe parmi les races de petite taille les plus populaires en milieu urbain. Le propriétaire averti consacre en moyenne 30 minutes par jour aux soins du pelage et des yeux.</p>
+
+  <h2>Questions fréquentes sur l'assurance Shih Tzu</h2>
+  <details>
+    <summary>Les urgences oculaires du Shih Tzu sont-elles couvertes par l'assurance ?</summary>
+    <p>Oui, les urgences ophtalmologiques incluant la proptose (luxation du globe) et les ulcères cornéens perforants sont couverts comme toute pathologie accidentelle ou maladie. Ces interventions peuvent atteindre 2 500 à 3 000 €. La couverture est active après la période de carence accidents (souvent immédiate ou 1–3 jours).</p>
+  </details>
+  <details>
+    <summary>À quel âge assurer son Shih Tzu ?</summary>
+    <p>Dès l'acquisition du chiot, idéalement avant la première consultation vétérinaire. Les pathologies oculaires et brachycéphales peuvent être documentées très tôt dans le carnet de santé. Chaque mention clinique avant souscription crée un risque d'exclusion définitive de la pathologie concernée.</p>
+  </details>
+  <details>
+    <summary>Quel budget mensuel pour assurer un Shih Tzu ?</summary>
+    <p>Entre 20 et 35 €/mois selon la formule et l'âge du chien. Le Shih Tzu présente un profil de risque modéré. Une formule avec couverture chirurgie, ophtalmologie et maladies chroniques est recommandée pour couvrir l'ensemble des pathologies documentées dans la race.</p>
+  </details>
+  <details>
+    <summary>La kératite sèche (KCS) est-elle prise en charge par l'assurance ?</summary>
+    <p>Oui, la KCS est une maladie auto-immune couverte par les assurances animale dès lors qu'elle est diagnostiquée après la période de carence et qu'elle n'est pas documentée comme préexistante. Le traitement à base de ciclosporine ophtalmique est remboursé dans les formules maladies.</p>
+  </details>
+  <details>
+    <summary>Les reins polykystiques du Shih Tzu sont-ils couverts ?</summary>
+    <p>Oui, le suivi de l'insuffisance rénale chronique (bilans sanguins trimestriels, dialyse péritonéale, alimentation thérapeutique prescrite) est couvert dans les formules maladies. Pour les lignées à risque PKD connu, souscrivez avant tout bilan rénal pour éviter l'exclusion de la pathologie.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/bichon-frise">Bichon Frisé</a> — petite race robuste, profil de santé comparable, coûts de toilettage similaires</li>
+    <li><a href="/races/cavalier-king-charles">Cavalier King Charles</a> — brachycéphale avec pathologies cardiaques (MVD) coûteuses à surveiller avec l'âge</li>
+    <li><a href="/races/carlin">Carlin</a> — brachycéphale sévère, profil de risque plus élevé, pathologies BOAS et neurologiques communes</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">3 000 €</span><span class="figure-label">coût urgence proptose oculaire</span></div>
+      <div class="figure"><span class="figure-value">25 %</span><span class="figure-label">prévalence entropion palpébral</span></div>
+      <div class="figure"><span class="figure-value">20 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">13 ans</span><span class="figure-label">espérance de vie moyenne</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Société Centrale Canine (SCC) — Statistiques LOF et santé des races 2024</li>
+    <li>British Veterinary Association (BVA) — Brachycephalic Breed Health Report 2023</li>
+    <li>OFA (Orthopedic Foundation for Animals) — Canine Health Information Center 2024</li>
+    <li>FACCO — Baromètre des animaux de compagnie en France 2024</li>
+    <li>SNVEL — Enquête nationale sur les tarifs vétérinaires 2024</li>
+    <li>Pearce J.W. et al. — "Polycystic Kidney Disease in Shih Tzu dogs", JAVMA 2004</li>
+    <li>Kaswan R.L. et al. — "Keratoconjunctivitis sicca in small breeds", Veterinary Ophthalmology 2003</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>

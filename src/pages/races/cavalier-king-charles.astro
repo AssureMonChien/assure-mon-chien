@@ -1,113 +1,169 @@
 ---
-import PageRace from "../../layouts/PageRace.astro";
+import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
-<PageRace
+<RaceLayout
   title="Assurance chien Cavalier King Charles : Risques & Meilleures Offres 2026"
   description="Le Cavalier King Charles est touché à quasi 100 % par la cardiopathie mitrale et à 25–70 % par la syringomyélie. Découvrez les meilleures assurances pour couvrir ces pathologies inévitables."
-  raceName="Cavalier King Charles"
+  nom="Cavalier King Charles"
   slug="cavalier-king-charles"
-  dateModified="2026-04-05"
-  heroSubtitle="Visage d'ange et santé vulnerable : le Cavalier King Charles est la race pour laquelle une assurance n'est pas une option mais une nécessité absolue : la maladie cardiaque touche quasi 100 % des individus à 10 ans."
-  imageUrl="/images/races/cavalier-king-charles.webp"
-  imageAlt="Cavalier King Charles Spaniel roux et blanc allongé sur un canapé, regard doux"
-  heroBadge="RISQUE CARDIAQUE MAJEUR · SYRINGOMYÉLIE"
-  riskScore={92}
-  alertText="La <strong>maladie valvulaire mitrale (MVD)</strong> touche <strong>50 % des Cavaliers a 5 ans</strong> et <strong>quasi 100 % a 10 ans</strong>. Les assureurs acceptant encore un Cavalier apres 4-5 ans appliquent des <strong>majorations de prime de 40 a 80 %</strong> et excluent souvent les cardiopathies. Souscrire avant <strong>1 an</strong> est la seule façon de figer des conditions favorables."
-  alertSource="Source : Cavalier Health UK MVD Breeding Protocol Statistics 2023 ; Haggstrom et al., Journal of Veterinary Internal Medicine"
-  introText="Le Cavalier King Charles est l'un des chiens de compagnie les plus apprecies de France pour sa tendresse. Les propriétaires de Cavalier dépensent en moyenne 2 à 3 fois plus en frais vétérinaires que pour une race de santé standard. Une réalité que peu anticipent à l'achat."
-  faq={[
-    { question: "La maladie valvulaire mitrale du Cavalier King Charles est-elle couverte ?", answer: "Oui, à condition de souscrire avant tout souffle cardiaque détecte a l'auscultation. SanteVet couvre la médication cardiaque à vie, les échocardiographies et les hospitalisations, soit des frais pouvant atteindre 1 500 euros/an." },
-    { question: "Pourquoi assurer son Cavalier King Charles le plus tot possible ?", answer: "Parce que la MVD est inevitable dans cette race, et chaque mois d'attente risque de voir apparaitre un premier souffle bloquant la couverture cardiaque définitivement. Les chiots Cavalier doivent etre assurés des leur arrivee au foyer." },
-    { question: "Quel budget mensuel pour assurer un Cavalier King Charles ?", answer: "Entre 28 et 55 euros/mois, parmi les tarifs les plus élevés de toutes les races de compagnie. Face à des frais pouvant dépasser 3 000 euros/an en phase cardiaque avancée, c'est le meilleur investissement possible pour cette race." },
-  ]}
-  affiliateUrl="https://www.santeVet.com/assurance-chien/?race=cavalier-king-charles&ref=assuremochien"
-  offres={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      badge: "MEILLEUR CHOIX",
-      prix: "à partir de 18 €/mois",
-      sousTexte: "Formule Confort, remboursement jusqu'à 100 %",
-      points: [
-        "Couverture maladie valvulaire mitrale et traitement cardiaque à vie",
-        "Prise en charge syringomyélie et IRM diagnostique",
-        "Remboursement des bilans cardiaques échocardiographiques annuels",
-        "Couverture Épisodic Falling Syndrome",
-        "Remboursement sous 48 h",
-      ],
-      url: "https://www.santeVet.com/assurance-chien/?race=cavalier-king-charles&ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      prix: "à partir de 20 €/mois",
-      sousTexte: "Formule Essentielle, bon rapport qualité/prix",
-      points: [
-        "Accidents et maladies couverts",
-        "Hospitalisation remboursée à 80 %",
-        "Application mobile intuitive",
-        "Sans engagement de durée",
-        "Devis en 90 secondes",
-      ],
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      cta: "Voir l'offre →",
-    },
-  ]}
-  risks={[
-    { nom: "Maladie valvulaire mitrale (MVD)", score: 95, prix: "500–3 000 €/an", description: "Dégénérescence progressive du feuillet mitral conduisant à une régurgitation et à l'insuffisance cardiaque. Touche 50 % des chiens à 5 ans, quasi 100 % à 10 ans. Médication à vie." },
-    { nom: "Syringomyélie / Malformation de Chiari-like", score: 70, prix: "500–4 000 €", description: "Cavités de LCR dans la moelle épinière causant douleurs neuropathiques intenses, grattage de l'air. IRM diagnostique obligatoire. Traitement médical ou décompression chirurgicale." },
-    { nom: "Épisodic Falling Syndrome", score: 45, prix: "300–1 200 €", description: "Trouble paroxystique héréditaire provoquant des épisodes de rigidité musculaire et de chutes sans perte de conscience. Test ADN disponible." },
-    { nom: "Thrombocytopénie immune", score: 50, prix: "500–2 000 €", description: "Destruction des plaquettes par le système immunitaire. Saignements spontanés, pétéchies. Corticoïdes immunosuppresseurs en urgence." },
-  ]}
-  pathologies={[
-    { nom: "Maladie valvulaire mitrale (MVD)", description: "Dégénérescence myxomateuse progressive du feuillet mitral entraînant une régurgitation et une insuffisance cardiaque congestive. Bruit de souffle systolique mitral dès 2–3 ans. Protocole EPIC recommandé. Traitement à vie (Vetmedin, furosémide, bénazépril).", coût: "500–3 000 €/an" },
-    { nom: "Syringomyélie et malformation de Chiari-like", description: "Hernie des structures cérébelleuses à travers le foramen magnum, provoquant des cavités liquidiennesdans la moelle épinière. Douleur neuropathique intense, grattage de l'air, cris spontanés. IRM diagnostique. Traitement médical (gabapentine, oméprazole) ou décompression chirurgicale.", coût: "500–4 000 €" },
-    { nom: "Épisodic Falling Syndrome", description: "Trouble paroxystique héréditaire (mutation BCAN) provoquant des épisodes de rigidité musculaire en extension avec chutes sans perte de conscience. Diagnostiqué par test ADN. Clonazépam en traitement prophylactique.", coût: "300–1 200 €" },
-    { nom: "Macrothrombocytopénie héréditaire", description: "Plaquettes géantes en nombre réduit, caractéristique de la race (mutation TUBB1). Souvent subclinique et sans risque hémorragique significatif. Peut mimer une thrombocytopénie immune. Diagnostic différentiel important.", coût: "200–500 €" },
-    { nom: "Dysplasie de la hanche", description: "Malformation coxo-fémorale héréditaire. Arthrose progressive douloureuse. Suivi radiographique annuel recommandé. Chirurgie (FHO, prothèse totale) en forme sévère.", coût: "800–3 500 €" },
-    { nom: "Kératoconjonctivite sèche", description: "Insuffisance de production lacrymale provoquant une irritation cornéenne chronique, mucus excessif et ulcères. Cyclosporine collyre à vie ou tacrolimus pour stimuler la production lacrymale.", coût: "200–600 €/an" },
-  ]}
-  comparatif={[
-    {
-      nom: "SantéVet",
-      featured: true,
-      url: "https://www.santeVet.com/assurance-chien/?race=cavalier-king-charles&ref=assuremochien",
-      prix: "à partir de 18 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: "150 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "48 h",
-    },
-    {
-      nom: "AssurOPoil",
-      featured: false,
-      url: "https://www.assuropoil.fr/?ref=assuremochien",
-      prix: "à partir de 15 €/mois",
-      remboursement: "100 %",
-      carenceMaladie: "30 j",
-      prévention: null,
-      dysplasie: true,
-      vaccins: null,
-      appMobile: false,
-      rembDelai: "5–10 j",
-    },
-    {
-      nom: "Lassie",
-      featured: false,
-      url: "https://www.lassie.fr/?ref=assuremochien",
-      prix: "à partir de 20 €/mois",
-      remboursement: "80 %",
-      carenceMaladie: "45 j",
-      prévention: "100 €/an",
-      dysplasie: true,
-      vaccins: "Premium",
-      appMobile: true,
-      rembDelai: "72 h",
-    },
-  ]}
-/>
+  taille="petite"
+  risque="eleve"
+>
+
+<div class="race-article">
+
+  <p class="intro-text">Derrière le regard velouté du Cavalier King Charles se cache une réalité médicale que tout propriétaire devrait connaître avant l'adoption : cette race cumule deux maladies héréditaires quasi universelles — la valvulopathie mitrale et la syringomyélie liée à la malformation de Chiari. Les frais vétérinaires d'un Cavalier peuvent dépasser 2 000 € par an en phase cardiaque avancée. Anticiper par une assurance souscrite dès le plus jeune âge est la seule stratégie financièrement viable pour accompagner ce chien tout au long de sa vie.</p>
+
+  <h2>Coût annuel d'un Cavalier King Charles</h2>
+  <table class="data-table">
+    <thead><tr><th>Poste</th><th>Coût estimé/an</th></tr></thead>
+    <tbody>
+      <tr><td>Alimentation (croquettes qualité premium)</td><td>300 – 500 €</td></tr>
+      <tr><td>Soins vétérinaires courants (vaccins, antiparasitaires)</td><td>250 – 400 €</td></tr>
+      <tr><td>Bilan cardiologique annuel (auscultation + échocardiographie)</td><td>150 – 300 €</td></tr>
+      <tr><td>Traitement cardiaque (Vetmedin, furosémide, bénazépril)</td><td>400 – 1 200 €</td></tr>
+      <tr><td>Toilettage professionnel (4 à 6 fois/an)</td><td>250 – 400 €</td></tr>
+      <tr><td>Assurance santé</td><td>300 – 660 €</td></tr>
+      <tr><td>Accessoires, jouets, literie</td><td>100 – 200 €</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : FACCO Baromètre des dépenses animales 2024 ; SantéVet Observatoire des frais vétérinaires 2023</p>
+  <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
+
+  <h2>Maladies fréquentes du Cavalier King Charles</h2>
+  <table class="data-table">
+    <thead><tr><th>Maladie</th><th>Fréquence</th><th>Coût moyen</th></tr></thead>
+    <tbody>
+      <tr><td>Valvulopathie mitrale dégénérative (MVD)</td><td>50 % à 5 ans, ~100 % à 10 ans</td><td>500 – 3 000 €/an</td></tr>
+      <tr><td>Malformation de Chiari / Syringomyélie</td><td>25 – 70 % selon les lignées</td><td>500 – 4 000 €</td></tr>
+      <tr><td>Épisodic Falling Syndrome (EFS)</td><td>3 – 7 % estimés</td><td>300 – 1 200 €</td></tr>
+      <tr><td>Luxation de la rotule</td><td>15 – 20 %</td><td>800 – 2 500 €</td></tr>
+      <tr><td>Atrophie rétinienne progressive (PRA)</td><td>10 – 15 %</td><td>200 – 800 €</td></tr>
+      <tr><td>Kératoconjonctivite sèche</td><td>10 – 12 %</td><td>200 – 600 €/an</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Cavalier Health UK MVD Breeding Protocol Statistics 2023 ; Haggström et al., Journal of Veterinary Internal Medicine 2018 ; Club Français du Cavalier King Charles</p>
+  <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <h2>Coût des soins vétérinaires pour un Cavalier King Charles</h2>
+  <table class="data-table">
+    <thead><tr><th>Soin</th><th>Fourchette de prix</th><th>Fréquence</th></tr></thead>
+    <tbody>
+      <tr><td>Consultation cardiologique spécialisée</td><td>80 – 150 €</td><td>1 à 2 fois/an</td></tr>
+      <tr><td>Échocardiographie Doppler</td><td>150 – 280 €</td><td>Annuelle dès 5 ans</td></tr>
+      <tr><td>IRM cérébrale et médullaire (syringomyélie)</td><td>800 – 1 500 €</td><td>Au diagnostic</td></tr>
+      <tr><td>Décompression chirurgicale foramen magnum</td><td>2 500 – 4 000 €</td><td>Cas sévères</td></tr>
+      <tr><td>Traitement médical MVD (par mois)</td><td>40 – 120 €/mois</td><td>À vie après diagnostic</td></tr>
+      <tr><td>Chirurgie luxation de la rotule</td><td>800 – 2 500 €</td><td>Grade III–IV</td></tr>
+      <tr><td>Examen ophtalmologique complet</td><td>60 – 120 €</td><td>Annuel après 4 ans</td></tr>
+      <tr><td>Test génétique EFS / PRA</td><td>80 – 120 €</td><td>Une fois</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source : Grille tarifaire vétérinaires spécialistes France 2024 ; Clinique vétérinaire universitaire ENVA Maisons-Alfort</p>
+
+  <h2>Risques financiers spécifiques à la race</h2>
+  <p>Le Cavalier King Charles est statistiquement la race pour laquelle le risque d'exposition à des frais vétérinaires élevés est le plus prévisible. La valvulopathie mitrale dégénérative (MVD) n'est pas une éventualité mais une certitude : 100 % des Cavaliers développent cette cardiopathie à des degrés variables avant l'âge de 10 ans. Le protocole EPIC (Early treatment of Preclinical MVD) recommande d'initier le traitement dès l'apparition d'un agrandissement cardiaque, bien avant les symptômes cliniques. Parallèlement, la syringomyélie — cavités de liquide céphalorachidien dans la moelle épinière causant des douleurs neuropathiques intenses — touche entre 25 et 70 % des individus selon les études IRM systématiques. Ces deux conditions chroniques, cumulées sur une espérance de vie de 9 à 14 ans, génèrent des frais pouvant dépasser 25 000 € sur la durée de vie du chien sans assurance.</p>
+
+  <h2>Conseils de prévention pour un Cavalier King Charles</h2>
+  <ul>
+    <li>Exiger les résultats de l'échocardiographie des deux parents avant l'achat (protocole MVD Breeding Protocol : absence de souffle jusqu'à 2,5 ans chez les deux parents).</li>
+    <li>Première consultation cardiologique dès l'âge de 1 an pour établir un bilan de référence.</li>
+    <li>Surveiller le comportement neurologique : grattage de l'air, cris spontanés, sensibilité excessive du cou — signes possibles de syringomyélie.</li>
+    <li>Éviter l'obésité, qui aggrave considérablement la progression de l'insuffisance cardiaque.</li>
+    <li>Activité physique modérée et régulière, adaptée au stade cardiaque évalué par le vétérinaire.</li>
+    <li>Surveillance ophtalmologique annuelle à partir de 4 ans pour détecter la PRA précocement.</li>
+    <li>Souscrire une assurance santé avant les 12 mois du chiot, avant tout diagnostic cardiaque.</li>
+  </ul>
+
+  <h2>Pourquoi assurer un Cavalier King Charles ?</h2>
+  <p>La question n'est pas de savoir si votre Cavalier King Charles développera une pathologie cardiaque ou neurologique, mais quand. Avec une prévalence de 100 % pour la MVD à 10 ans, les frais vétérinaires associés sont inévitables : échocardiographies semestrielles, traitement médicamenteux à vie (Vetmedin, furosémide, bénazépril), hospitalisations pour décompensation. Une assurance souscrite avant les 12 mois du chiot, avant tout souffle détectable à l'auscultation, permet de figer des conditions tarifaires favorables et de couvrir l'intégralité de ces soins sans plafond de durée. Différer la souscription d'un seul mois peut suffire à exclure définitivement les cardiopathies du contrat.</p>
+  <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
+
+  <h2>Quel type d'assurance choisir pour un Cavalier King Charles ?</h2>
+  <p>Pour cette race, seule une formule complète couvrant les maladies chroniques sans limitation de durée répond aux besoins réels. Vérifiez impérativement : la prise en charge des cardiopathies (MVD) sans exclusion après diagnostic, la couverture de l'IRM et de la chirurgie neurologique (syringomyélie), et le remboursement des traitements à vie. Les formules "accidents seuls" ou avec plafonds bas par pathologie sont totalement inadaptées au profil de santé du Cavalier. Privilégiez un remboursement à 100 % des frais réels avec un plafond annuel d'au moins 3 000 €. Souscrivez impérativement avant 12 mois.</p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <h2>Profil type du propriétaire d'un Cavalier King Charles</h2>
+  <p>Le Cavalier King Charles séduit principalement les familles avec enfants en bas âge, les personnes âgées à la recherche d'un compagnon affectueux, et les citadins vivant en appartement. Sa nature douce et son besoin modéré d'exercice en font un chien idéal pour les modes de vie variés. Cependant, son profil médical exige un propriétaire prêt à s'investir dans un suivi vétérinaire régulier et à absorber des coûts de santé significatifs sur le long terme. Le budget annuel total d'un Cavalier en bonne santé dépasse facilement 1 500 € ; en phase cardiaque traitée, il peut atteindre 3 000 à 4 000 € par an.</p>
+
+  <h2>Questions fréquentes sur l'assurance Cavalier King Charles</h2>
+  <details>
+    <summary>La maladie valvulaire mitrale est-elle couverte par l'assurance ?</summary>
+    <p>Oui, à condition de souscrire avant tout souffle cardiaque détecté à l'auscultation. Une assurance souscrite sur un chiot sain couvre la MVD dès l'apparition des premiers signes, y compris le traitement à vie (Vetmedin, furosémide) et les échocardiographies de suivi.</p>
+  </details>
+  <details>
+    <summary>L'IRM pour la syringomyélie est-elle remboursée ?</summary>
+    <p>Oui, dans les formules complètes (Confort ou Premium). L'IRM cérébrale et médullaire, examen de référence pour diagnostiquer la syringomyélie, coûte entre 800 et 1 500 € et est prise en charge dès lors qu'elle est prescrite par le vétérinaire traitant.</p>
+  </details>
+  <details>
+    <summary>À quel âge faut-il absolument souscrire une assurance ?</summary>
+    <p>Avant les 12 mois du chiot, idéalement dès son arrivée au foyer à 2–3 mois. Chaque mois supplémentaire augmente le risque de détection d'un premier souffle qui exclurait définitivement la couverture cardiaque. Après 4–5 ans, la plupart des assureurs appliquent des majorations de 40 à 80 %.</p>
+  </details>
+  <details>
+    <summary>Combien coûte une assurance pour un Cavalier King Charles par mois ?</summary>
+    <p>Entre 28 et 55 €/mois selon l'assureur, l'âge et la formule choisie. C'est parmi les tarifs les plus élevés toutes races confondues, mais cela reste très inférieur aux frais réels engagés sur la durée de vie du chien, qui peuvent dépasser 20 000 €.</p>
+  </details>
+  <details>
+    <summary>Le traitement cardiaque à vie est-il pris en charge sans limite de durée ?</summary>
+    <p>Cela dépend de l'assureur. Certains contrats plafonnent le remboursement par pathologie dans le temps. Vérifiez explicitement que la couverture des maladies chroniques ne comporte pas de clause d'exclusion après 12 ou 24 mois de traitement continu. SantéVet, par exemple, ne plafonne pas dans le temps pour les maladies chroniques déclarées en cours de contrat.</p>
+  </details>
+
+  <h2>Races similaires</h2>
+  <ul>
+    <li><a href="/races/king-charles">King Charles Spaniel</a> — race sœur partageant les mêmes prédispositions cardiaques et neurologiques héréditaires</li>
+    <li><a href="/races/cocker-spaniel">Cocker Spaniel</a> — morphologie et gabarit proches, risque otique et oculaire similaire, tempérament doux comparable</li>
+    <li><a href="/races/bichon-frise">Bichon Frisé</a> — même taille et même besoin de compagnie, risque santé plus modéré mais profil de soins réguliers</li>
+  </ul>
+
+  <div class="key-figures">
+    <h2>Chiffres clés</h2>
+    <div class="figures-grid">
+      <div class="figure"><span class="figure-value">~100 %</span><span class="figure-label">prévalence MVD à 10 ans</span></div>
+      <div class="figure"><span class="figure-value">1 500 €</span><span class="figure-label">coût IRM syringomyélie</span></div>
+      <div class="figure"><span class="figure-value">28 €/mois</span><span class="figure-label">assurance dès</span></div>
+      <div class="figure"><span class="figure-value">9–14 ans</span><span class="figure-label">espérance de vie</span></div>
+    </div>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="sources-list">
+    <li>Haggström J. et al., "Effect of pimobendan or benazepril hydrochloride on survival times in dogs with congestive heart failure", <em>Journal of Veterinary Internal Medicine</em>, 2018</li>
+    <li>Cavalier Health UK, <em>MVD Breeding Protocol Statistics</em>, 2023 — cavalierhealth.org</li>
+    <li>Rusbridge C., "Syringomyelia in the Cavalier King Charles Spaniel", <em>Veterinary Record</em>, 2007</li>
+    <li>Société Centrale Canine (SCC), <em>Fichier LOF — statistiques de naissances Cavalier King Charles</em>, 2024</li>
+    <li>FACCO, <em>Baromètre des animaux de compagnie en France</em>, 2024</li>
+    <li>SantéVet, <em>Observatoire des frais vétérinaires par race</em>, 2023</li>
+    <li>Club Français du Cavalier King Charles Spaniel — cfckcs.fr</li>
+  </ul>
+
+</div>
+
+<style>
+.race-article { line-height: 1.7; color: #222; }
+.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
+.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
+.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
+.data-table tr:nth-child(even) td { background: #f4fbf8; }
+.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
+.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
+.race-article li { margin-bottom: 0.4rem; }
+.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
+.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
+.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
+.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.key-figures h2 { margin-top: 0; border: none; }
+.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+.figure { text-align: center; }
+.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
+.figure-label { font-size: 0.78rem; color: #666; }
+.sources-list { font-size: 0.8rem; color: #888; }
+.race-article a { color: #0F6E56; }
+</style>
+
+</RaceLayout>
