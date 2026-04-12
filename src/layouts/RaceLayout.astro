@@ -7,13 +7,13 @@ import RiskGauge      from "../components/races/RiskGauge.astro";
 import InsuranceCards from "../components/races/InsuranceCards.astro";
 
 /* ── Composants CSS-only (is:global, aucun HTML rendu) ── */
-import KeyFigures   from "../components/races/KeyFigures.astro";
-import StyledTable  from "../components/races/StyledTable.astro";
-import IllnessCards from "../components/races/IllnessCards.astro";
-import AdviceBox    from "../components/races/AdviceBox.astro";
+import KeyFigures    from "../components/races/KeyFigures.astro";
+import StyledTable   from "../components/races/StyledTable.astro";
+import IllnessCards  from "../components/races/IllnessCards.astro";
+import AdviceBox     from "../components/races/AdviceBox.astro";
 import SimilarBreeds from "../components/races/SimilarBreeds.astro";
-import FAQ          from "../components/races/FAQ.astro";
-import Sources      from "../components/races/Sources.astro";
+import FAQ           from "../components/races/FAQ.astro";
+import Sources       from "../components/races/Sources.astro";
 
 interface Props {
   title:       string;
@@ -31,21 +31,6 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
 
   <!--
     ═══════════════════════════════════════════════
-    INJECTEURS CSS-ONLY
-    Astro collecte leurs <style is:global> dans le
-    <head> du document. Aucun HTML visible produit.
-    ═══════════════════════════════════════════════
-  -->
-  <KeyFigures />
-  <StyledTable />
-  <IllnessCards />
-  <AdviceBox />
-  <SimilarBreeds />
-  <FAQ />
-  <Sources />
-
-  <!--
-    ═══════════════════════════════════════════════
     1. HERO — LCP optimisé
        • image eager + fetchpriority="high"
        • dimensions fixes (CLS = 0)
@@ -53,6 +38,13 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
     ═══════════════════════════════════════════════
   -->
   <HeroBreed {nom} {slug} {title} {taille} {risque} />
+
+  <!--
+    CSS-only : KeyFigures — injecté juste après le Hero.
+    Astro collecte le <style is:global> dans le <head>.
+    Le div wrapper ne produit aucun contenu visible.
+  -->
+  <div class="key-figures-block"><KeyFigures /></div>
 
   <!--
     ═══════════════════════════════════════════════
@@ -68,13 +60,26 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
     3. CONTENU DE LA PAGE RACE
        • slot = texte + tableaux + FAQ + sources
          fournis par chaque page .astro
-       • les composants CSS-only ci-dessus stylisent
+       • les composants CSS-only ci-dessous stylisent
          automatiquement tout ce contenu
     ═══════════════════════════════════════════════
   -->
   <div class="rc-wrap">
-    <article class="rc-article">
+    <article class="race-article">
+
+      <!--
+        CSS-only injectors — positionnés avant le slot pour
+        refléter l'ordre de la page. Astro injecte leurs styles
+        dans <head> quelle que soit leur position dans le DOM.
+      -->
+      <StyledTable />
+      <div class="illness-cards-block"><IllnessCards /></div>
+      <div class="advice-box-block"><AdviceBox /></div>
+      <div class="similar-breeds-block"><SimilarBreeds /></div>
+      <div class="faq-block"><FAQ /></div>
+
       <slot />
+
     </article>
   </div>
 
@@ -86,6 +91,11 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
     ═══════════════════════════════════════════════
   -->
   <InsuranceCards {risque} {nom} />
+
+  <!--
+    CSS-only : Sources — tout en bas, après les cartes assurance.
+  -->
+  <div class="sources-block"><Sources /></div>
 
 </Layout>
 
@@ -105,6 +115,27 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   .rc-wrap {
     padding: 2rem 1rem 2.5rem;
   }
+}
+
+/* ══════════════════════════════════════════════════════
+   CLASSES D'ANIMATION UTILITAIRES
+   Utilisables sur n'importe quel élément de la page race.
+   ══════════════════════════════════════════════════════ */
+.fade-in  { animation: fadeIn  0.45s ease-out both; }
+.slide-up { animation: slideUp 0.40s ease-out both; }
+.scale-in { animation: scaleIn 0.40s ease-out both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -151,7 +182,7 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   .race-article h2 { font-size: 1.15rem; }
 }
 
-/* ── Intro text base (AdviceBox.astro enrichit) ── */
+/* ── Intro text base (IllnessCards.astro enrichit) ── */
 .race-article .intro-text {
   font-size: 1.01rem;
   color: #444;
