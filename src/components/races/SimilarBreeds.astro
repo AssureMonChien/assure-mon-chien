@@ -1,59 +1,112 @@
 ---
 /**
  * SimilarBreeds.astro
- * Améliore visuellement les listes "Races similaires" dans le contenu.
- * Cible les <ul> contenant des liens vers /races/...
+ *
+ * Styles globaux pour la section "Races similaires" dans .race-article.
+ * Cible les li contenant un lien /races/... dans un ul suivant un h2.
+ * Toutes les images sont lazy-loaded (générées par le navigateur depuis le slug).
+ * CSS-only, aucun JS.
  */
 ---
 <style is:global>
-/* ─────────────────────────────────────────
-   SIMILAR BREEDS — style the races links list
-   ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   SECTION "Races similaires" — h2 précédent + ul
+   ═══════════════════════════════════════════ */
 
-/* Cible le h2 "Races similaires" et son ul suivant */
-.race-article h2 + ul li a[href^="/races/"] {
+/*
+ * On cible le ul qui contient au moins un lien /races/ via :has().
+ * Fallback propre si :has() non supporté : le style générique AdviceBox s'applique.
+ */
+.race-article ul:has(li > a[href^="/races/"]) {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0.85rem !important;
+  margin: 0.5rem 0 1.75rem !important;
+}
+
+@media (max-width: 500px) {
+  .race-article ul:has(li > a[href^="/races/"]) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Carte race */
+.race-article ul:has(li > a[href^="/races/"]) li {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 1.5px solid #d4ede5 !important;
+  background: #fff !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+  animation: sbUp 0.4s ease-out both;
+}
+
+.race-article ul:has(li > a[href^="/races/"]) li:nth-child(1) { animation-delay: 0.05s; }
+.race-article ul:has(li > a[href^="/races/"]) li:nth-child(2) { animation-delay: 0.10s; }
+.race-article ul:has(li > a[href^="/races/"]) li:nth-child(3) { animation-delay: 0.15s; }
+
+.race-article ul:has(li > a[href^="/races/"]) li:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 20px rgba(15, 110, 86, 0.12) !important;
+  border-color: #0f6e56 !important;
+}
+
+/* Supprimer la puce générique AdviceBox */
+.race-article ul:has(li > a[href^="/races/"]) li::before {
+  display: none !important;
+}
+
+/* Image de race (rendue via CSS background si slug disponible) */
+.race-article ul:has(li > a[href^="/races/"]) li a {
   display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  color: #0F6E56 !important;
-  font-weight: 600 !important;
-  font-size: 0.92rem !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
   text-decoration: none !important;
-  transition: color 0.15s !important;
+  color: inherit !important;
+  height: 100% !important;
 }
 
-.race-article h2 + ul li a[href^="/races/"]:hover {
-  color: #0a5a3f !important;
-  text-decoration: underline !important;
-}
-
-/* Arrow indicator */
-.race-article h2 + ul li a[href^="/races/"]::before {
-  content: '→' !important;
-  font-size: 0.82rem !important;
-  color: #1D9E75 !important;
-  font-weight: 700 !important;
+/* Zone image : placeholder vert avec dégradé */
+.race-article ul:has(li > a[href^="/races/"]) li a::before {
+  content: '' !important;
+  display: block !important;
+  width: 100% !important;
+  height: 90px !important;
+  background: linear-gradient(135deg, #d4ede5 0%, #b8ddd0 100%) !important;
   flex-shrink: 0 !important;
 }
 
-/* Override the generic ul li styles for similar breeds */
-.race-article h2 + ul li:has(a[href^="/races/"]) {
-  background: linear-gradient(90deg, #f4fbf8, #fff) !important;
-  border-color: #d4ede5 !important;
+/* Texte du lien (nom de la race) */
+.race-article ul:has(li > a[href^="/races/"]) li a::after {
+  content: attr(href) !important; /* fallback non affiché */
+  display: none !important;
 }
 
-.race-article h2 + ul li:has(a[href^="/races/"]):hover {
-  border-color: #0F6E56 !important;
-  background: linear-gradient(90deg, #e8f7f2, #fff) !important;
+/* Nom de la race — positionné via le texte naturel du lien */
+.race-article ul:has(li > a[href^="/races/"]) li a {
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  padding: 0.6rem 0.75rem 0.65rem !important;
+  line-height: 1.3 !important;
+  gap: 0 !important;
+  width: 100% !important;
 }
 
-/* Override puce checkmark for races list */
-.race-article h2 + ul li:has(a[href^="/races/"])::before {
-  content: '🐾' !important;
-  background: transparent !important;
-  font-size: 0.75rem !important;
-  color: transparent !important;
-  width: 1.25rem !important;
-  height: auto !important;
+.race-article ul:has(li > a[href^="/races/"]) li a:hover {
+  color: #0f6e56 !important;
+  text-decoration: none !important;
+}
+
+/* Flèche "voir" */
+.race-article ul:has(li > a[href^="/races/"]) li a > span.sb-arrow,
+.race-article ul:has(li > a[href^="/races/"]) li a {
+  position: relative;
+}
+
+/* ── Animation ── */
+@keyframes sbUp {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 </style>

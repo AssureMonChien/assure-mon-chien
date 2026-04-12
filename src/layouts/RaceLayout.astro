@@ -1,86 +1,120 @@
 ---
-import Layout from "./Layout.astro";
-import HeroBreed from "../components/races/HeroBreed.astro";
-import RiskGauge from "../components/races/RiskGauge.astro";
+import Layout      from "./Layout.astro";
+
+/* ── Composants HTML (rendu visible) ── */
+import HeroBreed      from "../components/races/HeroBreed.astro";
+import RiskGauge      from "../components/races/RiskGauge.astro";
 import InsuranceCards from "../components/races/InsuranceCards.astro";
-import KeyFigures from "../components/races/KeyFigures.astro";
-import StyledTable from "../components/races/StyledTable.astro";
+
+/* ── Composants CSS-only (is:global, aucun HTML rendu) ── */
+import KeyFigures   from "../components/races/KeyFigures.astro";
+import StyledTable  from "../components/races/StyledTable.astro";
 import IllnessCards from "../components/races/IllnessCards.astro";
-import AdviceBox from "../components/races/AdviceBox.astro";
+import AdviceBox    from "../components/races/AdviceBox.astro";
 import SimilarBreeds from "../components/races/SimilarBreeds.astro";
-import FAQ from "../components/races/FAQ.astro";
-import Sources from "../components/races/Sources.astro";
+import FAQ          from "../components/races/FAQ.astro";
+import Sources      from "../components/races/Sources.astro";
 
 interface Props {
-  title: string;
+  title:       string;
   description: string;
-  nom: string;
-  slug: string;
-  taille: string;
-  risque: 'faible' | 'modere' | 'eleve';
+  nom:         string;
+  slug:        string;
+  taille:      string;
+  risque:      'faible' | 'modere' | 'eleve';
 }
 
 const { title, description, nom, slug, taille, risque } = Astro.props;
-
-/* Injections CSS des composants "style-only" */
 ---
-
-<!-- CSS providers (aucun rendu HTML visible) -->
-<KeyFigures />
-<StyledTable />
-<IllnessCards />
-<AdviceBox />
-<SimilarBreeds />
-<FAQ />
-<Sources />
 
 <Layout title={title} description={description}>
 
-  <!-- 1. Hero premium avec image eager + risk gauge inline -->
+  <!--
+    ═══════════════════════════════════════════════
+    INJECTEURS CSS-ONLY
+    Astro collecte leurs <style is:global> dans le
+    <head> du document. Aucun HTML visible produit.
+    ═══════════════════════════════════════════════
+  -->
+  <KeyFigures />
+  <StyledTable />
+  <IllnessCards />
+  <AdviceBox />
+  <SimilarBreeds />
+  <FAQ />
+  <Sources />
+
+  <!--
+    ═══════════════════════════════════════════════
+    1. HERO — LCP optimisé
+       • image eager + fetchpriority="high"
+       • dimensions fixes (CLS = 0)
+       • animation CSS fade-in + slide-up
+    ═══════════════════════════════════════════════
+  -->
   <HeroBreed {nom} {slug} {title} {taille} {risque} />
 
-  <!-- 2. Barre de niveau de risque -->
+  <!--
+    ═══════════════════════════════════════════════
+    2. RISK GAUGE — barre de contexte
+       • segments animés scaleX
+       • aucun JS
+    ═══════════════════════════════════════════════
+  -->
   <RiskGauge {risque} {nom} />
 
-  <!-- 3. Contenu de la page race (slot) -->
-  <div class="race-content">
-    <slot />
+  <!--
+    ═══════════════════════════════════════════════
+    3. CONTENU DE LA PAGE RACE
+       • slot = texte + tableaux + FAQ + sources
+         fournis par chaque page .astro
+       • les composants CSS-only ci-dessus stylisent
+         automatiquement tout ce contenu
+    ═══════════════════════════════════════════════
+  -->
+  <div class="rc-wrap">
+    <article class="rc-article">
+      <slot />
+    </article>
   </div>
 
-  <!-- 4. Cartes assurance (CTA générique bas de page) -->
+  <!--
+    ═══════════════════════════════════════════════
+    4. INSURANCE CARDS — CTA bas de page
+       • recommandation adaptée au niveau de risque
+       • hover CSS transform scale
+    ═══════════════════════════════════════════════
+  -->
   <InsuranceCards {risque} {nom} />
 
 </Layout>
 
 <style is:global>
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════════════════
    RACE CONTENT WRAPPER
-   ═══════════════════════════════════════════ */
-.race-content {
+   • max-width centré, padding confortable
+   • responsive mobile
+   ══════════════════════════════════════════════════════ */
+.rc-wrap {
   max-width: 820px;
   margin: 0 auto;
   padding: 2.75rem 1.25rem 3rem;
 }
 
-/* ═══════════════════════════════════════════
-   RACE ARTICLE — layout global du contenu slot
-   ═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .rc-wrap {
+    padding: 2rem 1rem 2.5rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   RACE ARTICLE — base typographique
+   Les composants CSS-only (IllnessCards, AdviceBox, etc.)
+   surchargeront ces règles de base via !important ciblé.
+   ══════════════════════════════════════════════════════ */
 .race-article {
   line-height: 1.72;
   color: #222;
-}
-
-/* ── H2 base + accent gauche ── */
-.race-article h2 {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #0F6E56;
-  margin: 2.75rem 0 1rem;
-  padding-bottom: 0.45rem;
-  border-bottom: 2px solid #e0f0ea;
-  letter-spacing: -0.015em;
-  position: relative;
-  padding-left: 0.85rem;
 }
 
 /* ── Paragraphes ── */
@@ -91,48 +125,41 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   line-height: 1.72;
 }
 
-/* ── Liens dans le contenu ── */
+/* ── Liens ── */
 .race-article a {
-  color: #0F6E56;
+  color: #0f6e56;
   font-weight: 500;
 }
-
 .race-article a:hover {
-  color: #0a5a3f;
+  color: #0a5840;
 }
 
-/* ═══════════════════════════════════════════
-   TABLE — base (les composants StyledTable ajoutent le premium)
-   ═══════════════════════════════════════════ */
-.race-article .data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0 0.5rem;
-  font-size: 0.88rem;
+/* ── H2 base (IllnessCards.astro enrichit avec accent + animation) ── */
+.race-article h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f6e56;
+  margin: 2.75rem 0 1rem;
+  padding-bottom: 0.45rem;
+  padding-left: 0.9rem;
+  border-bottom: 2px solid #ddf0e8;
+  letter-spacing: -0.015em;
+  position: relative;
 }
 
-.race-article .data-table th {
-  background: #0F6E56;
-  color: #fff;
-  padding: 0.6rem 0.85rem;
-  text-align: left;
-  font-weight: 700;
-  font-size: 0.82rem;
+@media (max-width: 640px) {
+  .race-article h2 { font-size: 1.15rem; }
 }
 
-.race-article .data-table td {
-  padding: 0.5rem 0.85rem;
-  border-bottom: 1px solid #eee;
-  vertical-align: top;
+/* ── Intro text base (AdviceBox.astro enrichit) ── */
+.race-article .intro-text {
+  font-size: 1.01rem;
+  color: #444;
+  margin-bottom: 2rem;
+  line-height: 1.75;
 }
 
-.race-article .data-table tr:nth-child(even) td {
-  background: #f9fffe;
-}
-
-/* ═══════════════════════════════════════════
-   SOURCE
-   ═══════════════════════════════════════════ */
+/* ── Source base (IllnessCards.astro enrichit) ── */
 .race-article .source {
   font-size: 0.77rem;
   color: #999;
@@ -140,112 +167,117 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   margin: 0.2rem 0 1rem;
 }
 
-/* ═══════════════════════════════════════════
-   DETAILS / SUMMARY base
-   ═══════════════════════════════════════════ */
+/* ── Tableau base (StyledTable.astro enrichit) ── */
+.race-article .data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 0.75rem;
+  font-size: 0.88rem;
+}
+.race-article .data-table th {
+  background: #0f6e56;
+  color: #fff;
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.race-article .data-table td {
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+.race-article .data-table tr:nth-child(even) td {
+  background: #f9fffe;
+}
+
+/* ── Listes base (AdviceBox.astro enrichit) ── */
+.race-article ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.5rem;
+}
+.race-article ul li {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.91rem;
+  color: #333;
+}
+.race-article .sources-list {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* ── Accordéon base (FAQ.astro enrichit) ── */
 .race-article details {
-  border: 1px solid #e8e6e0;
+  border: 1px solid #e0e8e4;
   border-radius: 8px;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.5rem;
   overflow: hidden;
 }
-
 .race-article summary {
+  padding: 0.8rem 1rem;
   font-weight: 700;
-  cursor: pointer;
-  padding: 0.75rem 1rem;
-  background: #f9f9f9;
-  list-style: none;
-}
-
-.race-article summary::-webkit-details-marker { display: none; }
-
-.race-article details[open] summary {
-  background: #e8f7f2;
-  color: #0F6E56;
-}
-
-.race-article details p {
-  padding: 0.75rem 1rem;
-  margin: 0;
   font-size: 0.92rem;
+  cursor: pointer;
+  list-style: none;
+  background: #fafcfb;
+}
+.race-article summary::-webkit-details-marker { display: none; }
+.race-article summary::marker               { display: none; }
+.race-article details[open] > summary {
+  background: #e8f7f2;
+  color: #0f6e56;
+}
+.race-article details > p {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
   color: #444;
+  line-height: 1.65;
 }
 
-/* ═══════════════════════════════════════════
-   KEY FIGURES base
-   ═══════════════════════════════════════════ */
+/* ── Chiffres clés base (KeyFigures.astro enrichit) ── */
 .race-article .key-figures {
   background: #f4fbf8;
   border: 1px solid #d4ede5;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 1.5rem;
   margin: 2rem 0;
 }
-
 .race-article .key-figures h2 {
-  font-size: 1.1rem;
-  margin-top: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 1.1rem;
   border: none;
   padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
 }
-
 .race-article .figures-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
 }
-
+@media (max-width: 600px) {
+  .race-article .figures-grid { grid-template-columns: repeat(2, 1fr); }
+}
 .race-article .figure {
   text-align: center;
+  background: #fff;
+  border: 1px solid #cde6d8;
+  border-radius: 10px;
+  padding: 0.9rem 0.6rem;
 }
-
 .race-article .figure-value {
   display: block;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #0F6E56;
+  color: #0f6e56;
+  line-height: 1.1;
 }
-
 .race-article .figure-label {
-  font-size: 0.78rem;
-  color: #666;
-}
-
-/* ═══════════════════════════════════════════
-   INTRO TEXT base
-   ═══════════════════════════════════════════ */
-.race-article .intro-text {
-  font-size: 1.03rem;
-  color: #444;
-  margin-bottom: 2rem;
-  line-height: 1.72;
-}
-
-/* ═══════════════════════════════════════════
-   SOURCES LIST base
-   ═══════════════════════════════════════════ */
-.race-article .sources-list {
-  font-size: 0.8rem;
-  color: #888;
-  list-style: none;
-  padding: 0;
-}
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════ */
-@media (max-width: 640px) {
-  .race-content {
-    padding: 2rem 1rem 2.5rem;
-  }
-
-  .race-article .figures-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .race-article h2 {
-    font-size: 1.15rem;
-  }
+  font-size: 0.72rem;
+  color: #5a7a6e;
+  line-height: 1.35;
 }
 </style>

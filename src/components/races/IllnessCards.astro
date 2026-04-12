@@ -1,94 +1,113 @@
 ---
 /**
  * IllnessCards.astro
- * Ajoute un rendu card-like aux lignes du tableau des maladies fréquentes.
- * Enrichit aussi les h2 avec icônes et animations staggered.
+ *
+ * Styles globaux pour :
+ *   - .intro-text     → encart vert avec bordure gauche
+ *   - h2              → accent latéral + animation staggered
+ *   - .source         → bloc citation sobre
+ *   - p > a[href^="/"] → liens internes stylés en flèche
+ *
+ * Cible uniquement .race-article pour ne pas polluer les autres layouts.
  */
 ---
 <style is:global>
-/* ─────────────────────────────────────────
-   ILLNESS SECTION — h2 avec icône + entrée animée
-   ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   INTRO TEXT
+   ═══════════════════════════════════════════ */
+.race-article .intro-text {
+  position: relative !important;
+  padding: 1.25rem 1.4rem !important;
+  background: linear-gradient(135deg, #f2fbf7 0%, #eaf6f1 100%) !important;
+  border-left: 4px solid #0f6e56 !important;
+  border-radius: 0 12px 12px 0 !important;
+  font-size: 1.01rem !important;
+  line-height: 1.75 !important;
+  color: #3a3a3a !important;
+  margin-bottom: 2.5rem !important;
+  box-shadow: 0 2px 12px rgba(15, 110, 86, 0.06) !important;
+  animation: icFadeIn 0.45s ease-out both !important;
+}
+
+/* ═══════════════════════════════════════════
+   H2 — accent gauche + animation staggered
+   ═══════════════════════════════════════════ */
 .race-article h2 {
-  animation: h2SlideUp 0.4s ease-out both;
-  position: relative;
+  position: relative !important;
+  padding-left: 0.9rem !important;
+  animation: icSlideUp 0.4s ease-out both;
 }
 
-/* Accent de couleur gauche sur les h2 */
+/* Barre verticale gauche */
 .race-article h2::before {
-  content: '';
-  position: absolute;
-  left: -1.25rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 60%;
-  background: linear-gradient(180deg, #0F6E56, #1a9e7a);
-  border-radius: 2px;
-  opacity: 0.7;
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 15% !important;
+  height: 70% !important;
+  width: 4px !important;
+  background: linear-gradient(180deg, #0f6e56 0%, #1db880 100%) !important;
+  border-radius: 2px !important;
 }
 
-/* Délai progressif pour h2 successifs */
-.race-article h2:nth-of-type(1)  { animation-delay: 0.05s; }
-.race-article h2:nth-of-type(2)  { animation-delay: 0.10s; }
-.race-article h2:nth-of-type(3)  { animation-delay: 0.15s; }
-.race-article h2:nth-of-type(4)  { animation-delay: 0.20s; }
-.race-article h2:nth-of-type(5)  { animation-delay: 0.25s; }
-.race-article h2:nth-of-type(6)  { animation-delay: 0.28s; }
-.race-article h2:nth-of-type(7)  { animation-delay: 0.30s; }
-.race-article h2:nth-of-type(8)  { animation-delay: 0.32s; }
-.race-article h2:nth-of-type(9)  { animation-delay: 0.34s; }
-.race-article h2:nth-of-type(10) { animation-delay: 0.36s; }
-.race-article h2:nth-of-type(n+11) { animation-delay: 0.38s; }
+/* Délais échelonnés sur les 12 premiers h2 */
+.race-article h2:nth-of-type(1)  { animation-delay: 0.04s; }
+.race-article h2:nth-of-type(2)  { animation-delay: 0.08s; }
+.race-article h2:nth-of-type(3)  { animation-delay: 0.11s; }
+.race-article h2:nth-of-type(4)  { animation-delay: 0.14s; }
+.race-article h2:nth-of-type(5)  { animation-delay: 0.17s; }
+.race-article h2:nth-of-type(6)  { animation-delay: 0.19s; }
+.race-article h2:nth-of-type(7)  { animation-delay: 0.21s; }
+.race-article h2:nth-of-type(8)  { animation-delay: 0.23s; }
+.race-article h2:nth-of-type(9)  { animation-delay: 0.25s; }
+.race-article h2:nth-of-type(10) { animation-delay: 0.27s; }
+.race-article h2:nth-of-type(n+11) { animation-delay: 0.29s; }
 
-/* ─────────────────────────────────────────
-   Liens internes "voir plus" (→ ...)
-   ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   SOURCE — bloc citation sobre
+   ═══════════════════════════════════════════ */
+.race-article .source {
+  display: block !important;
+  font-size: 0.75rem !important;
+  color: #9a9a9a !important;
+  font-style: italic !important;
+  line-height: 1.55 !important;
+  margin: 0.2rem 0 1rem !important;
+  padding: 0.35rem 0.7rem !important;
+  background: #fafafa !important;
+  border-left: 3px solid #ddd !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+
+/* ═══════════════════════════════════════════
+   LIENS INTERNES → (flèche + underline discret)
+   ═══════════════════════════════════════════ */
 .race-article p > a[href^="/"] {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: #0F6E56;
-  font-weight: 600;
-  font-size: 0.88rem;
-  text-decoration: none;
-  border-bottom: 1.5px solid #0F6E5633;
-  padding-bottom: 1px;
-  transition: border-color 0.15s, color 0.15s;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #0f6e56 !important;
+  text-decoration: none !important;
+  border-bottom: 1.5px solid rgba(15, 110, 86, 0.25) !important;
+  padding-bottom: 1px !important;
+  transition: color 0.15s ease, border-color 0.15s ease !important;
 }
 
 .race-article p > a[href^="/"]:hover {
-  color: #0a5a3f;
-  border-bottom-color: #0F6E56;
-  text-decoration: none;
+  color: #0a5840 !important;
+  border-bottom-color: #0f6e56 !important;
+  text-decoration: none !important;
 }
 
-/* ─────────────────────────────────────────
-   Source italics
-   ───────────────────────────────────────── */
-.race-article .source {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.35rem;
-  font-size: 0.76rem;
-  color: #999;
-  font-style: italic;
-  margin: 0.2rem 0 0.9rem;
-  padding: 0.4rem 0.6rem;
-  background: #fafafa;
-  border-left: 3px solid #e0e0e0;
-  border-radius: 0 6px 6px 0;
+/* ── Animations ── */
+@keyframes icFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.race-article .source::before {
-  content: '📋';
-  font-style: normal;
-  font-size: 0.7rem;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-@keyframes h2SlideUp {
+@keyframes icSlideUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }

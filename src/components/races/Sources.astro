@@ -1,36 +1,48 @@
 ---
 /**
  * Sources.astro
- * Améliore visuellement le bloc sources en bas des pages races.
+ *
+ * Styles globaux pour le bloc sources en bas des pages races.
+ * Cible .sources-list dans .race-article.
+ * Complète et précise les règles de AdviceBox pour ce cas spécifique.
+ * CSS-only, aucun JS.
  */
 ---
 <style is:global>
-/* ─────────────────────────────────────────
-   SOURCES LIST
-   ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   SOURCES LIST — .race-article .sources-list
+   ═══════════════════════════════════════════ */
+
+/* Conteneur */
 .race-article .sources-list {
   list-style: none !important;
-  padding: 0 !important;
-  margin: 0.5rem 0 0 !important;
+  padding: 0.75rem 1rem !important;
+  margin: 0.5rem 0 2rem !important;
+  background: #f7f8f7 !important;
+  border: 1px solid #e2e8e4 !important;
+  border-radius: 10px !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.35rem !important;
-  background: #f8f8f8 !important;
-  border: 1px solid #e8e6e0 !important;
-  border-radius: 10px !important;
-  padding: 0.75rem 1rem !important;
+  gap: 0 !important;
+  animation: srcFade 0.4s ease-out both;
 }
 
+/* Item */
 .race-article .sources-list li {
-  font-size: 0.78rem !important;
+  position: relative !important;
+  padding: 0.32rem 0.5rem 0.32rem 1.5rem !important;
+  font-size: 0.77rem !important;
   color: #888 !important;
-  padding: 0.25rem 0 0.25rem 1.5rem !important;
+  line-height: 1.5 !important;
   background: transparent !important;
   border: none !important;
+  border-bottom: 1px dashed #e0e0e0 !important;
   border-radius: 0 !important;
-  border-bottom: 1px dashed #eee !important;
-  animation: srcFade 0.3s ease-out both !important;
+  /* Désactiver les overrides génériques de AdviceBox */
   transform: none !important;
+  box-shadow: none !important;
+  animation: none !important;
+  transition: color 0.12s ease !important;
 }
 
 .race-article .sources-list li:last-child {
@@ -38,37 +50,50 @@
 }
 
 .race-article .sources-list li:hover {
+  color: #555 !important;
+  background: transparent !important;
   transform: none !important;
   box-shadow: none !important;
-  color: #555 !important;
   border-color: transparent !important;
 }
 
-/* Override la puce générique des li */
+/* Puce tiret discret */
 .race-article .sources-list li::before {
-  content: '📎' !important;
+  content: '–' !important;
   position: absolute !important;
-  left: 0.8rem !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
+  left: 0.4rem !important;
+  top: 0.32rem !important;
+  /* Annuler les overrides de AdviceBox */
   background: transparent !important;
-  color: transparent !important;
+  color: #c0c0c0 !important;
+  font-size: 0.78rem !important;
+  font-weight: 400 !important;
   width: auto !important;
   height: auto !important;
   border-radius: 0 !important;
-  font-size: 0.68rem !important;
+  display: inline !important;
+  transform: none !important;
+  line-height: 1.5 !important;
 }
 
-/* Section "Sources" h2 */
+/* h2 "Sources" — sobre, ne pas surcharger visuellement */
 .race-article h2:last-of-type {
-  font-size: 1rem !important;
-  color: #888 !important;
-  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #999 !important;
   border-bottom-color: #eee !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
 }
 
+/* Supprimer l'accent gauche vert sur le h2 "Sources" */
+.race-article h2:last-of-type::before {
+  background: #ccc !important;
+}
+
+/* ── Animation ── */
 @keyframes srcFade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 </style>

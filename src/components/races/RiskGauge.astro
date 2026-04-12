@@ -7,41 +7,72 @@ interface Props {
 const { risque, nom } = Astro.props;
 
 const levels = [
-  { id: 'faible', label: 'Faible',  color: '#27AE60', desc: 'Pathologies rares, frais vétérinaires maîtrisables.' },
-  { id: 'modere', label: 'Modéré', color: '#F39C12', desc: 'Quelques prédispositions héréditaires à surveiller.' },
-  { id: 'eleve',  label: 'Élevé',  color: '#E74C3C', desc: 'Risques génétiques significatifs, couverture recommandée.' },
-];
+  {
+    id: 'faible',
+    label: 'Faible',
+    color: '#22c55e',
+    bgFill: '#dcfce7',
+    desc: 'Pathologies rares. Frais vétérinaires prévisibles et maîtrisables.',
+  },
+  {
+    id: 'modere',
+    label: 'Modéré',
+    color: '#f59e0b',
+    bgFill: '#fef3c7',
+    desc: 'Quelques prédispositions héréditaires à surveiller régulièrement.',
+  },
+  {
+    id: 'eleve',
+    label: 'Élevé',
+    color: '#ef4444',
+    bgFill: '#fee2e2',
+    desc: 'Risques génétiques significatifs. Couverture santé fortement recommandée.',
+  },
+] as const;
 
-const active = levels.findIndex(l => l.id === risque);
-const current = levels[active];
+const activeIdx = levels.findIndex(l => l.id === risque);
+const current = levels[activeIdx];
 ---
 
-<div class="rg-wrap" role="region" aria-label={`Niveau de risque santé pour le ${nom}`}>
+<div
+  class="rg"
+  role="region"
+  aria-label={`Niveau de risque santé du ${nom}`}
+>
   <div class="rg-inner">
-    <div class="rg-left">
-      <div class="rg-title">Niveau de risque santé</div>
-      <div class="rg-desc">{current.desc}</div>
+
+    <!-- Label + description -->
+    <div class="rg-info">
+      <p class="rg-label">Niveau de risque santé</p>
+      <p class="rg-desc">{current.desc}</p>
     </div>
 
+    <!-- Segments -->
     <div class="rg-segments" aria-hidden="true">
       {levels.map((l, i) => (
         <div
-          class:list={['rg-seg', i <= active ? 'rg-seg-on' : 'rg-seg-off']}
-          style={i <= active ? `background:${current.color}` : ''}
+          class:list={['rg-seg', i <= activeIdx ? 'rg-seg-on' : 'rg-seg-off']}
+          style={i <= activeIdx
+            ? `background:${current.color};animation-delay:${0.35 + i * 0.1}s`
+            : ''}
           title={l.label}
         ></div>
       ))}
-      <span class="rg-label" style={`color:${current.color}`}>{current.label}</span>
+      <span
+        class="rg-current-label"
+        style={`color:${current.color};background:${current.bgFill};border:1px solid ${current.color}33`}
+      >{current.label}</span>
     </div>
+
   </div>
 </div>
 
 <style>
-.rg-wrap {
+.rg {
   background: #f8fffe;
-  border-top: 1px solid #e0f0ea;
-  border-bottom: 3px solid #e0f0ea;
-  padding: 0.85rem 1.25rem;
+  border-top: 1px solid #ddf0e8;
+  border-bottom: 2px solid #ddf0e8;
+  padding: 0.8rem 1.25rem;
   animation: rgFade 0.4s ease-out 0.3s both;
 }
 
@@ -51,73 +82,75 @@ const current = levels[active];
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
-.rg-left {
+/* Texte */
+.rg-info {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.1rem;
 }
-
-.rg-title {
-  font-size: 0.78rem;
+.rg-label {
+  margin: 0;
+  font-size: 0.73rem;
   font-weight: 700;
   color: #555;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-
 .rg-desc {
-  font-size: 0.82rem;
+  margin: 0;
+  font-size: 0.8rem;
   color: #666;
 }
 
+/* Segments + badge */
 .rg-segments {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
+  flex-shrink: 0;
 }
 
 .rg-seg {
-  width: 40px;
-  height: 10px;
+  width: 38px;
+  height: 9px;
   border-radius: 5px;
 }
 
 .rg-seg-off {
-  background: #ddd;
+  background: #e2e8e5;
 }
 
 .rg-seg-on {
   transform-origin: left center;
-  animation: rgSegGrow 0.4s cubic-bezier(0.22,1,0.36,1) both;
+  animation: rgGrow 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.rg-seg-on:nth-child(1) { animation-delay: 0.35s; }
-.rg-seg-on:nth-child(2) { animation-delay: 0.45s; }
-.rg-seg-on:nth-child(3) { animation-delay: 0.55s; }
-
-.rg-label {
-  font-size: 0.8rem;
+.rg-current-label {
+  margin-left: 0.35rem;
+  font-size: 0.75rem;
   font-weight: 800;
-  margin-left: 0.4rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 20px;
   white-space: nowrap;
-  animation: rgFade 0.4s ease-out 0.6s both;
+  animation: rgFade 0.35s ease-out 0.6s both;
 }
 
+/* Animations */
 @keyframes rgFade {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes rgSegGrow {
-  from { transform: scaleX(0); opacity: 0.5; }
+@keyframes rgGrow {
+  from { transform: scaleX(0); opacity: 0.4; }
   to   { transform: scaleX(1); opacity: 1; }
 }
 
 @media (max-width: 480px) {
-  .rg-inner { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .rg-inner { flex-direction: column; align-items: flex-start; gap: 0.55rem; }
 }
 </style>

@@ -1,4 +1,12 @@
 ---
+/**
+ * InsuranceCards.astro
+ *
+ * Bloc HTML rendu directement dans le layout (pas dans le slot).
+ * Affiche 3 cartes de niveaux d'assurance adaptées au risque de la race.
+ * CSS-only, aucun JS. Hover via transform CSS.
+ */
+
 interface Props {
   risque: 'faible' | 'modere' | 'eleve';
   nom: string;
@@ -8,119 +16,128 @@ const { risque, nom } = Astro.props;
 
 const tiers = [
   {
-    level: 'Essentielle',
-    icon: '🛡️',
+    slug:  'essentielle',
+    icon:  '🛡️',
+    label: 'Essentielle',
     price: 'dès 15 €/mois',
-    desc: 'Accidents & urgences',
+    desc:  'Accidents & urgences',
     points: [
-      'Accidents couverts',
+      'Accidents et blessures',
       'Chirurgie d\'urgence',
-      'Hospitalisation de base',
+      'Hospitalisation courte',
     ],
-    highlighted: false,
-    cta: 'Voir les offres',
+    featured: false,
+    badge: null,
   },
   {
-    level: 'Confort',
-    icon: '⭐',
+    slug:  'confort',
+    icon:  '⭐',
+    label: 'Confort',
     price: 'dès 22 €/mois',
-    desc: 'Maladies & spécialistes',
+    desc:  'Maladies & spécialistes',
     points: [
       'Accidents + maladies chroniques',
       'Consultations spécialistes',
       'Remboursement 80–100 %',
       'Délai de carence réduit',
     ],
-    highlighted: true,
-    cta: 'Meilleur rapport',
+    featured: true,
+    badge: 'RECOMMANDÉ',
   },
   {
-    level: 'Premium',
-    icon: '💎',
+    slug:  'premium',
+    icon:  '💎',
+    label: 'Premium',
     price: 'dès 35 €/mois',
-    desc: 'Couverture totale',
+    desc:  'Couverture totale',
     points: [
-      'Tout soin couvert à 100 %',
-      'Prévention & vaccins',
+      'Tout soin remboursé à 100 %',
+      'Prévention & vaccins inclus',
       'Téléconsultation 7j/7',
       'Remboursement sous 48 h',
     ],
-    highlighted: false,
-    cta: 'Voir les offres',
+    featured: false,
+    badge: null,
   },
-];
+] as const;
 
-const recommendation = {
-  faible: 'Pour votre {nom}, une formule Essentielle ou Confort suffit dans la majorité des cas.',
-  modere: 'Pour votre {nom}, une formule Confort couvrant les maladies chroniques est recommandée.',
-  eleve:  'Pour votre {nom}, une formule Premium ou Confort+ est fortement conseillée vu les risques héréditaires.',
-}[risque].replace('{nom}', nom);
+const reco: Record<string, string> = {
+  faible: `Pour un ${nom}, une formule Essentielle ou Confort couvre l'essentiel des risques à un tarif raisonnable.`,
+  modere: `Pour un ${nom}, une formule Confort couvrant les maladies chroniques est recommandée.`,
+  eleve:  `Pour un ${nom}, une formule Confort ou Premium est fortement conseillée en raison des risques héréditaires importants.`,
+};
 ---
 
-<section class="ic-section" aria-label="Choisir son type d'assurance">
-  <div class="ic-wrap">
-    <div class="ic-header">
+<section class="ic">
+  <div class="ic-inner">
+
+    <header class="ic-header">
       <h2 class="ic-title">Quel niveau de couverture choisir ?</h2>
-      <p class="ic-rec">{recommendation}</p>
-    </div>
+      <p class="ic-reco">{reco[risque]}</p>
+    </header>
 
     <div class="ic-grid">
-      {tiers.map((tier) => (
-        <div class:list={['ic-card', tier.highlighted ? 'ic-card-featured' : '']}>
-          {tier.highlighted && <div class="ic-featured-badge">RECOMMANDÉ</div>}
-          <div class="ic-icon">{tier.icon}</div>
-          <div class="ic-level">{tier.level}</div>
-          <div class="ic-price">{tier.price}</div>
-          <div class="ic-desc">{tier.desc}</div>
+      {tiers.map((t) => (
+        <div class:list={['ic-card', t.featured && 'ic-card--featured']}>
+          {t.badge && <div class="ic-badge">{t.badge}</div>}
+          <div class="ic-icon" aria-hidden="true">{t.icon}</div>
+          <p class="ic-label">{t.label}</p>
+          <p class="ic-price">{t.price}</p>
+          <p class="ic-desc">{t.desc}</p>
           <ul class="ic-points">
-            {tier.points.map(p => <li>{p}</li>)}
+            {t.points.map(p => <li>{p}</li>)}
           </ul>
-          <a href="/comparatif/assurance-chien" class:list={['ic-btn', tier.highlighted ? 'ic-btn-featured' : '']}>
-            {tier.cta} →
+          <a
+            href="/comparatif/assurance-chien"
+            class:list={['ic-cta', t.featured && 'ic-cta--featured']}
+          >
+            Voir les offres →
           </a>
         </div>
       ))}
     </div>
 
-    <p class="ic-note">
-      Comparez toutes les offres →&nbsp;<a href="/comparatif/assurance-chien-pas-cher">Assurance chien pas chère</a>
+    <p class="ic-footer">
+      Comparez toutes les offres →&nbsp;
+      <a href="/comparatif/assurance-chien-pas-cher">Assurance chien pas chère</a>
     </p>
+
   </div>
 </section>
 
 <style>
-.ic-section {
-  background: linear-gradient(180deg, #fff 0%, #f4fbf8 100%);
+/* ── Section wrapper ── */
+.ic {
+  background: linear-gradient(180deg, #fff 0%, #f2fbf7 100%);
   border-top: 1px solid #d4ede5;
-  padding: 3rem 1.25rem;
+  padding: 3rem 1.25rem 2.5rem;
   animation: icFade 0.5s ease-out both;
 }
 
-.ic-wrap {
+.ic-inner {
   max-width: 820px;
   margin: 0 auto;
 }
 
-.ic-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
+/* ── Header ── */
+.ic-header { text-align: center; margin-bottom: 2rem; }
 
 .ic-title {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 800;
-  color: #0F6E56;
-  margin: 0 0 0.5rem;
+  color: #0f6e56;
   letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
 }
 
-.ic-rec {
-  font-size: 0.92rem;
+.ic-reco {
+  font-size: 0.9rem;
   color: #555;
-  margin: 0;
   line-height: 1.6;
+  margin: 0;
 }
 
+/* ── Grille 3 colonnes ── */
 .ic-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -129,18 +146,26 @@ const recommendation = {
 }
 
 @media (max-width: 640px) {
-  .ic-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
+  .ic-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
 }
 
+/* ── Carte ── */
 .ic-card {
-  background: #fff;
-  border: 1.5px solid #e0ede8;
-  border-radius: 16px;
-  padding: 1.4rem 1.1rem;
-  text-align: center;
   position: relative;
+  background: #fff;
+  border: 1.5px solid #dde9e3;
+  border-radius: 16px;
+  padding: 1.4rem 1.1rem 1.1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: icCardUp 0.4s ease-out both;
+  animation: icUp 0.4s ease-out both;
 }
 
 .ic-card:nth-child(1) { animation-delay: 0.05s; }
@@ -148,129 +173,117 @@ const recommendation = {
 .ic-card:nth-child(3) { animation-delay: 0.15s; }
 
 .ic-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(15,110,86,0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(15, 110, 86, 0.13);
 }
 
-.ic-card-featured {
-  border-color: #0F6E56 !important;
-  box-shadow: 0 4px 20px rgba(15,110,86,0.15);
+.ic-card--featured {
+  border-color: #0f6e56;
+  box-shadow: 0 4px 18px rgba(15, 110, 86, 0.14);
 }
 
-.ic-featured-badge {
+/* ── Badge ── */
+.ic-badge {
   position: absolute;
   top: -11px;
   left: 50%;
   transform: translateX(-50%);
-  background: #0F6E56;
+  background: #0f6e56;
   color: #fff;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 0.22rem 0.75rem;
+  letter-spacing: 0.09em;
+  padding: 0.2rem 0.7rem;
   border-radius: 20px;
   white-space: nowrap;
 }
 
-.ic-icon {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
-  display: block;
-}
+/* ── Contenu ── */
+.ic-icon  { font-size: 1.7rem; margin-bottom: 0.4rem; line-height: 1; }
+.ic-label { font-size: 0.88rem; font-weight: 800; color: #1a1a1a; margin: 0 0 0.15rem; }
+.ic-price { font-size: 1.05rem; font-weight: 800; color: #0f6e56; margin: 0 0 0.1rem; }
+.ic-desc  { font-size: 0.75rem; color: #888; margin: 0 0 1rem; }
 
-.ic-level {
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin-bottom: 0.2rem;
-}
-
-.ic-price {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #0F6E56;
-  margin-bottom: 0.15rem;
-}
-
-.ic-desc {
-  font-size: 0.78rem;
-  color: #888;
-  margin-bottom: 1rem;
-}
-
+/* ── Liste points ── */
 .ic-points {
   list-style: none;
   padding: 0;
   margin: 0 0 1.25rem;
+  width: 100%;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  text-align: left;
+  gap: 0.3rem;
 }
 
 .ic-points li {
-  font-size: 0.8rem;
+  font-size: 0.79rem;
   color: #444;
-  padding-left: 1.2rem;
+  padding-left: 1.15rem;
   position: relative;
+  line-height: 1.4;
 }
 
 .ic-points li::before {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #0F6E56;
+  color: #0f6e56;
   font-weight: 700;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
 }
 
-.ic-btn {
+/* ── CTA ── */
+.ic-cta {
   display: block;
   width: 100%;
   padding: 0.55rem 0.5rem;
   border-radius: 8px;
   font-size: 0.82rem;
   font-weight: 700;
+  text-align: center;
   text-decoration: none;
-  border: 1.5px solid #0F6E56;
-  color: #0F6E56;
+  border: 1.5px solid #0f6e56;
+  color: #0f6e56;
   background: transparent;
-  transition: background 0.15s, color 0.15s;
-  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.ic-btn:hover {
+.ic-cta:hover {
   background: #e8f7f2;
   text-decoration: none;
 }
 
-.ic-btn-featured {
-  background: #0F6E56 !important;
-  color: #fff !important;
+.ic-cta--featured {
+  background: #0f6e56;
+  color: #fff;
 }
 
-.ic-btn-featured:hover {
-  background: #0a5a3f !important;
+.ic-cta--featured:hover {
+  background: #0a5840;
+  color: #fff;
 }
 
-.ic-note {
+/* ── Footer ── */
+.ic-footer {
   text-align: center;
   font-size: 0.82rem;
   color: #666;
   margin: 1.5rem 0 0;
 }
 
-.ic-note a {
-  color: #0F6E56;
+.ic-footer a {
+  color: #0f6e56;
   font-weight: 600;
 }
 
+/* ── Animations ── */
 @keyframes icFade {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes icCardUp {
+@keyframes icUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }

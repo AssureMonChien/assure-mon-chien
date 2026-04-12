@@ -1,101 +1,179 @@
 ---
 /**
  * AdviceBox.astro
- * Transforme les listes ul/li de prévention en encarts visuels premium.
- * Style aussi le paragraphe intro-text.
+ *
+ * Styles globaux pour les listes ul/li dans .race-article :
+ *   - li génériques     → cartes avec puce ✓ verte animée
+ *   - li "races"        → fond vert pâle, lien avec flèche
+ *   - li ".sources-list" → liste compacte sobre, puce neutre
+ *
+ * Toutes les animations sont CSS-only, déclenchées au chargement.
  */
 ---
 <style is:global>
-/* ─────────────────────────────────────────
-   INTRO TEXT
-   ───────────────────────────────────────── */
-.race-article .intro-text {
-  font-size: 1.03rem !important;
-  color: #444 !important;
-  line-height: 1.75 !important;
-  padding: 1.25rem 1.5rem !important;
-  background: linear-gradient(135deg, #f4fbf8 0%, #eef8f4 100%) !important;
-  border-left: 4px solid #0F6E56 !important;
-  border-radius: 0 12px 12px 0 !important;
-  margin-bottom: 2.5rem !important;
-  animation: abFadeIn 0.45s ease-out both !important;
-  box-shadow: 0 2px 12px rgba(15,110,86,0.06) !important;
-}
-
-/* ─────────────────────────────────────────
-   ADVICE LISTS — ul dans les sections conseils
-   ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   LISTES GÉNÉRIQUES — ul li
+   (conseils de prévention, profil, etc.)
+   ═══════════════════════════════════════════ */
 .race-article ul {
   list-style: none !important;
   padding: 0 !important;
   margin: 0.5rem 0 1.5rem !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 0.5rem !important;
+  gap: 0.45rem !important;
 }
 
 .race-article ul li {
   position: relative !important;
-  padding: 0.65rem 0.85rem 0.65rem 2.5rem !important;
+  padding: 0.6rem 0.85rem 0.6rem 2.6rem !important;
   background: #fff !important;
-  border: 1px solid #e8e6e0 !important;
+  border: 1px solid #e8e4de !important;
   border-radius: 8px !important;
-  font-size: 0.92rem !important;
+  font-size: 0.91rem !important;
   color: #333 !important;
-  line-height: 1.5 !important;
-  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s !important;
-  animation: abSlideUp 0.35s ease-out both;
+  line-height: 1.55 !important;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease !important;
+  animation: abUp 0.35s ease-out both;
 }
 
+/* Délais échelonnés */
 .race-article ul li:nth-child(1) { animation-delay: 0.04s; }
 .race-article ul li:nth-child(2) { animation-delay: 0.08s; }
 .race-article ul li:nth-child(3) { animation-delay: 0.12s; }
 .race-article ul li:nth-child(4) { animation-delay: 0.16s; }
 .race-article ul li:nth-child(5) { animation-delay: 0.20s; }
 .race-article ul li:nth-child(6) { animation-delay: 0.24s; }
-.race-article ul li:nth-child(7) { animation-delay: 0.28s; }
-.race-article ul li:nth-child(n+8) { animation-delay: 0.30s; }
+.race-article ul li:nth-child(7) { animation-delay: 0.27s; }
+.race-article ul li:nth-child(n+8) { animation-delay: 0.29s; }
 
 .race-article ul li:hover {
-  border-color: #b8e6d4 !important;
-  box-shadow: 0 3px 10px rgba(15,110,86,0.08) !important;
+  border-color: #b8e2d0 !important;
+  box-shadow: 0 3px 10px rgba(15, 110, 86, 0.08) !important;
   transform: translateX(3px) !important;
 }
 
-/* Puce checkmark verte */
+/* Puce ✓ verte */
 .race-article ul li::before {
-  content: '✓';
+  content: '✓' !important;
   position: absolute !important;
-  left: 0.8rem !important;
+  left: 0.75rem !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  font-size: 0.82rem !important;
-  font-weight: 700 !important;
-  color: #0F6E56 !important;
-  background: #e8f7f2 !important;
-  width: 1.25rem !important;
-  height: 1.25rem !important;
-  border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  background: #e6f7f0 !important;
+  color: #0f6e56 !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  border-radius: 50% !important;
   line-height: 1 !important;
+  flex-shrink: 0 !important;
 }
 
-/* Sources list — différenciée */
-.race-article .sources-list li::before {
-  content: '›' !important;
-  background: #eee !important;
+/* ═══════════════════════════════════════════
+   LISTES "RACES SIMILAIRES"
+   li contenant un lien vers /races/...
+   ═══════════════════════════════════════════ */
+.race-article ul li:has(> a[href^="/races/"]) {
+  background: #f4fbf8 !important;
+  border-color: #cde9dc !important;
+}
+
+.race-article ul li:has(> a[href^="/races/"]):hover {
+  background: #e8f7f2 !important;
+  border-color: #0f6e56 !important;
+}
+
+/* Lien race : toute la ligne cliquable */
+.race-article ul li > a[href^="/races/"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: #0f6e56 !important;
+  text-decoration: none !important;
+  width: 100% !important;
+}
+
+.race-article ul li > a[href^="/races/"]:hover {
+  color: #0a5840 !important;
+  text-decoration: none !important;
+}
+
+/* Remplacer la puce ✓ par 🐾 pour les races */
+.race-article ul li:has(> a[href^="/races/"])::before {
+  content: '→' !important;
+  background: #d4ede5 !important;
+  color: #0f6e56 !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+}
+
+/* ═══════════════════════════════════════════
+   SOURCES LIST — .sources-list
+   ═══════════════════════════════════════════ */
+.race-article .sources-list {
+  background: #f7f7f7 !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1rem !important;
+  gap: 0 !important;
+}
+
+.race-article .sources-list li {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px dashed #e0e0e0 !important;
+  border-radius: 0 !important;
+  padding: 0.3rem 0.5rem 0.3rem 1.6rem !important;
+  font-size: 0.77rem !important;
   color: #888 !important;
+  transform: none !important;
+  box-shadow: none !important;
+  animation: abFade 0.3s ease-out both !important;
 }
 
-@keyframes abFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+.race-article .sources-list li:last-child {
+  border-bottom: none !important;
 }
 
-@keyframes abSlideUp {
+.race-article .sources-list li:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background: transparent !important;
+  color: #666 !important;
+}
+
+/* Puce neutre pour sources */
+.race-article .sources-list li::before {
+  content: '–' !important;
+  background: transparent !important;
+  color: #bbb !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  left: 0.5rem !important;
+}
+
+/* ── Animations ── */
+@keyframes abUp {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes abFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 </style>

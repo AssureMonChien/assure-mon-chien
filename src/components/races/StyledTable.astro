@@ -1,46 +1,60 @@
 ---
 /**
  * StyledTable.astro
- * Améliore visuellement les tableaux .data-table existants dans les pages races.
- * Fournit : ombres, coins arrondis, hover sur lignes, animations d'entrée.
+ *
+ * Injecte des styles globaux pour les tableaux .data-table dans les pages races.
+ * Coins arrondis, header gradient, hover sur lignes, shadow, animation d'entrée.
+ * Aucun rendu HTML — cible le contenu du slot via is:global.
  */
 ---
 <style is:global>
-/* ─────────────────────────────────────────
-   STYLED TABLE — enhance .data-table
-   ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   STYLED TABLE — .data-table
+   ═══════════════════════════════════════════ */
+
 .race-article .data-table {
   width: 100%;
   border-collapse: separate !important;
   border-spacing: 0 !important;
   border-radius: 12px !important;
   overflow: hidden !important;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06) !important;
-  margin: 1rem 0 0.5rem !important;
-  font-size: 0.88rem !important;
-  animation: tblFadeIn 0.45s ease-out both;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06) !important;
+  margin: 1rem 0 0.75rem !important;
+  font-size: 0.875rem !important;
+  animation: stIn 0.4s ease-out both;
 }
 
+/* ── En-tête ── */
 .race-article .data-table thead tr th {
-  background: linear-gradient(90deg, #0a5a3f, #0F6E56) !important;
+  background: linear-gradient(90deg, #0a5840 0%, #0f6e56 100%) !important;
   color: #fff !important;
   font-weight: 700 !important;
-  font-size: 0.82rem !important;
-  letter-spacing: 0.04em !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.045em !important;
   text-transform: uppercase !important;
-  padding: 0.65rem 0.9rem !important;
-  white-space: nowrap;
+  padding: 0.65rem 0.95rem !important;
+  white-space: nowrap !important;
+  border: none !important;
 }
 
 .race-article .data-table thead tr th:first-child {
-  border-top-left-radius: 12px;
+  border-top-left-radius: 12px !important;
 }
 .race-article .data-table thead tr th:last-child {
-  border-top-right-radius: 12px;
+  border-top-right-radius: 12px !important;
 }
 
+/* ── Corps ── */
 .race-article .data-table tbody tr {
-  transition: background 0.15s ease;
+  transition: background 0.15s ease !important;
+}
+
+.race-article .data-table tbody tr:nth-child(odd) td {
+  background: #ffffff !important;
+}
+
+.race-article .data-table tbody tr:nth-child(even) td {
+  background: #f7fdfa !important;
 }
 
 .race-article .data-table tbody tr:hover td {
@@ -48,29 +62,36 @@
 }
 
 .race-article .data-table tbody tr td {
-  padding: 0.55rem 0.9rem !important;
-  border-bottom: 1px solid #eee !important;
+  padding: 0.55rem 0.95rem !important;
+  border-bottom: 1px solid #eff0ef !important;
   vertical-align: top !important;
-  line-height: 1.45 !important;
+  line-height: 1.5 !important;
+  color: #333 !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 
+/* Dernière ligne : supprimer le séparateur + arrondir les coins */
 .race-article .data-table tbody tr:last-child td {
   border-bottom: none !important;
 }
 
 .race-article .data-table tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 12px;
+  border-bottom-left-radius: 12px !important;
 }
+
 .race-article .data-table tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 12px;
+  border-bottom-right-radius: 12px !important;
 }
 
-/* Ligne Total mise en valeur */
-.race-article .data-table tbody tr td strong {
-  color: #0F6E56;
+/* Mise en valeur des totaux / montants en gras */
+.race-article .data-table td strong {
+  color: #0f6e56 !important;
+  font-weight: 700 !important;
 }
 
-@keyframes tblFadeIn {
+/* ── Animation d'entrée ── */
+@keyframes stIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }

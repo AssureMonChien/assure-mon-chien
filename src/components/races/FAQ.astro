@@ -1,92 +1,108 @@
 ---
 /**
  * FAQ.astro
- * Améliore l'accordéon details/summary existant dans les pages races.
- * CSS-only, aucun JS, animation fluide via max-height.
+ *
+ * Styles globaux pour les accordéons details/summary dans .race-article.
+ * Accordéon CSS-only : ouverture/fermeture via l'attribut natif [open].
+ * Flèche animée via transform CSS sur summary::after.
+ * Aucun JS.
  */
 ---
 <style is:global>
-/* ─────────────────────────────────────────
-   FAQ ACCORDION — enhance details/summary
-   ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════
+   FAQ — details / summary
+   ═══════════════════════════════════════════ */
+
 .race-article details {
-  border: 1px solid #e0ede8 !important;
+  border: 1px solid #dde9e3 !important;
   border-radius: 10px !important;
-  margin-bottom: 0.55rem !important;
+  margin-bottom: 0.5rem !important;
   overflow: hidden !important;
   background: #fff !important;
-  transition: box-shadow 0.2s ease;
-  animation: faqFadeIn 0.4s ease-out both;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+  animation: faqIn 0.38s ease-out both;
 }
 
-.race-article details:nth-child(1) { animation-delay: 0.04s; }
-.race-article details:nth-child(2) { animation-delay: 0.08s; }
-.race-article details:nth-child(3) { animation-delay: 0.12s; }
-.race-article details:nth-child(4) { animation-delay: 0.16s; }
-.race-article details:nth-child(5) { animation-delay: 0.20s; }
-.race-article details:nth-child(n+6) { animation-delay: 0.22s; }
+/* Délais échelonnés */
+.race-article details:nth-of-type(1) { animation-delay: 0.04s; }
+.race-article details:nth-of-type(2) { animation-delay: 0.08s; }
+.race-article details:nth-of-type(3) { animation-delay: 0.12s; }
+.race-article details:nth-of-type(4) { animation-delay: 0.16s; }
+.race-article details:nth-of-type(5) { animation-delay: 0.19s; }
+.race-article details:nth-of-type(n+6) { animation-delay: 0.21s; }
 
 .race-article details:hover {
-  box-shadow: 0 4px 14px rgba(15,110,86,0.08) !important;
+  border-color: #b0d9c8 !important;
+  box-shadow: 0 3px 12px rgba(15, 110, 86, 0.07) !important;
 }
 
 .race-article details[open] {
-  border-color: #0F6E56 !important;
-  box-shadow: 0 4px 18px rgba(15,110,86,0.1) !important;
+  border-color: #0f6e56 !important;
+  box-shadow: 0 4px 16px rgba(15, 110, 86, 0.1) !important;
 }
 
+/* ── Summary ── */
 .race-article summary {
-  font-weight: 700 !important;
-  font-size: 0.93rem !important;
-  cursor: pointer !important;
-  padding: 0.85rem 1.1rem 0.85rem 1.25rem !important;
-  background: #fafcfb !important;
-  list-style: none !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   gap: 0.75rem !important;
+  padding: 0.85rem 1.1rem !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
   color: #1a1a1a !important;
-  transition: background 0.15s, color 0.15s !important;
+  background: #fafcfb !important;
+  cursor: pointer !important;
+  list-style: none !important;
   user-select: none !important;
   -webkit-user-select: none !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
 }
 
+/* Supprimer le triangle natif */
 .race-article summary::-webkit-details-marker { display: none !important; }
+.race-article summary::marker              { display: none !important; }
 
-.race-article details[open] summary {
-  background: linear-gradient(90deg, #e8f7f2, #f4fbf8) !important;
-  color: #0F6E56 !important;
+/* Fond actif */
+.race-article details[open] > summary {
+  background: linear-gradient(90deg, #e6f7f0 0%, #f2fbf7 100%) !important;
+  color: #0f6e56 !important;
 }
 
-/* Flèche CSS animée */
+/* Flèche CSS — triangle pur */
 .race-article summary::after {
   content: '' !important;
-  display: block !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
   width: 0 !important;
   height: 0 !important;
   border-left: 5px solid transparent !important;
   border-right: 5px solid transparent !important;
-  border-top: 6px solid #0F6E56 !important;
-  flex-shrink: 0 !important;
+  border-top: 6px solid #0f6e56 !important;
   transition: transform 0.25s ease !important;
+  opacity: 0.7 !important;
 }
 
-.race-article details[open] summary::after {
+.race-article details[open] > summary::after {
   transform: rotate(180deg) !important;
+  opacity: 1 !important;
 }
 
-.race-article details p {
-  padding: 0.85rem 1.25rem !important;
+/* ── Contenu déplié ── */
+.race-article details > p {
   margin: 0 !important;
-  font-size: 0.91rem !important;
+  padding: 0.85rem 1.1rem !important;
+  font-size: 0.9rem !important;
   color: #444 !important;
   line-height: 1.65 !important;
-  border-top: 1px solid #e8f0ec !important;
+  border-top: 1px solid #eaf3ee !important;
   background: #fff !important;
+  /* Pas d'animation sur le contenu pour rester CSS-only sans JS ;
+     l'ouverture native HTML est instantanée et suffit */
 }
 
-@keyframes faqFadeIn {
+/* ── Animation d'entrée ── */
+@keyframes faqIn {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
