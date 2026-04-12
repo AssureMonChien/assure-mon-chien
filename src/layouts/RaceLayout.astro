@@ -34,13 +34,12 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
     1. HERO — LCP optimisé
        • image eager + fetchpriority="high"
        • dimensions fixes (CLS = 0)
-       • animation CSS fade-in + slide-up
     ═══════════════════════════════════════════════
   -->
   <HeroBreed {nom} {slug} {title} {taille} {risque} />
 
   <!--
-    CSS-only : KeyFigures — injecté juste après le Hero.
+    CSS-only : KeyFigures — injecté après le Hero.
     Astro collecte le <style is:global> dans le <head>.
     Le div wrapper ne produit aucun contenu visible.
   -->
@@ -53,23 +52,32 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
        • aucun JS
     ═══════════════════════════════════════════════
   -->
-  <RiskGauge {risque} {nom} />
+  <div class="slide-up">
+    <RiskGauge {risque} {nom} />
+  </div>
 
   <!--
     ═══════════════════════════════════════════════
     3. CONTENU DE LA PAGE RACE
        • slot = texte + tableaux + FAQ + sources
          fournis par chaque page .astro
-       • les composants CSS-only ci-dessous stylisent
-         automatiquement tout ce contenu
+       • structure attendue dans le slot :
+           .section-intro     → intro-text
+           .section-maladies  → tableaux maladies
+           .section-conseils  → liste conseils
+           .section-similaires → ul races similaires
+           .section-faq       → accordéons FAQ
+       • les composants CSS-only (après slot) stylisent
+         automatiquement ce contenu via is:global
     ═══════════════════════════════════════════════
   -->
   <div class="rc-wrap">
     <article class="race-article">
+      <slot />
 
       <!--
-        CSS-only injectors — positionnés avant le slot pour
-        refléter l'ordre de la page. Astro injecte leurs styles
+        CSS-only injectors — placés APRÈS le slot pour styliser
+        le contenu généré. Astro injecte leurs <style is:global>
         dans <head> quelle que soit leur position dans le DOM.
       -->
       <StyledTable />
@@ -77,8 +85,6 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
       <div class="advice-box-block"><AdviceBox /></div>
       <div class="similar-breeds-block"><SimilarBreeds /></div>
       <div class="faq-block"><FAQ /></div>
-
-      <slot />
 
     </article>
   </div>
@@ -90,7 +96,9 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
        • hover CSS transform scale
     ═══════════════════════════════════════════════
   -->
-  <InsuranceCards {risque} {nom} />
+  <div class="fade-in">
+    <InsuranceCards {risque} {nom} />
+  </div>
 
   <!--
     CSS-only : Sources — tout en bas, après les cartes assurance.
