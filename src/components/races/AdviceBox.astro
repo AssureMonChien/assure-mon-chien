@@ -1,0 +1,101 @@
+---
+/**
+ * AdviceBox.astro
+ * Transforme les listes ul/li de prévention en encarts visuels premium.
+ * Style aussi le paragraphe intro-text.
+ */
+---
+<style is:global>
+/* ─────────────────────────────────────────
+   INTRO TEXT
+   ───────────────────────────────────────── */
+.race-article .intro-text {
+  font-size: 1.03rem !important;
+  color: #444 !important;
+  line-height: 1.75 !important;
+  padding: 1.25rem 1.5rem !important;
+  background: linear-gradient(135deg, #f4fbf8 0%, #eef8f4 100%) !important;
+  border-left: 4px solid #0F6E56 !important;
+  border-radius: 0 12px 12px 0 !important;
+  margin-bottom: 2.5rem !important;
+  animation: abFadeIn 0.45s ease-out both !important;
+  box-shadow: 0 2px 12px rgba(15,110,86,0.06) !important;
+}
+
+/* ─────────────────────────────────────────
+   ADVICE LISTS — ul dans les sections conseils
+   ───────────────────────────────────────── */
+.race-article ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0.5rem 0 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+.race-article ul li {
+  position: relative !important;
+  padding: 0.65rem 0.85rem 0.65rem 2.5rem !important;
+  background: #fff !important;
+  border: 1px solid #e8e6e0 !important;
+  border-radius: 8px !important;
+  font-size: 0.92rem !important;
+  color: #333 !important;
+  line-height: 1.5 !important;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s !important;
+  animation: abSlideUp 0.35s ease-out both;
+}
+
+.race-article ul li:nth-child(1) { animation-delay: 0.04s; }
+.race-article ul li:nth-child(2) { animation-delay: 0.08s; }
+.race-article ul li:nth-child(3) { animation-delay: 0.12s; }
+.race-article ul li:nth-child(4) { animation-delay: 0.16s; }
+.race-article ul li:nth-child(5) { animation-delay: 0.20s; }
+.race-article ul li:nth-child(6) { animation-delay: 0.24s; }
+.race-article ul li:nth-child(7) { animation-delay: 0.28s; }
+.race-article ul li:nth-child(n+8) { animation-delay: 0.30s; }
+
+.race-article ul li:hover {
+  border-color: #b8e6d4 !important;
+  box-shadow: 0 3px 10px rgba(15,110,86,0.08) !important;
+  transform: translateX(3px) !important;
+}
+
+/* Puce checkmark verte */
+.race-article ul li::before {
+  content: '✓';
+  position: absolute !important;
+  left: 0.8rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #0F6E56 !important;
+  background: #e8f7f2 !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* Sources list — différenciée */
+.race-article .sources-list li::before {
+  content: '›' !important;
+  background: #eee !important;
+  color: #888 !important;
+}
+
+@keyframes abFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes abSlideUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>

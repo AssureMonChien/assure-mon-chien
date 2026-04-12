@@ -1,0 +1,59 @@
+---
+/**
+ * SimilarBreeds.astro
+ * Améliore visuellement les listes "Races similaires" dans le contenu.
+ * Cible les <ul> contenant des liens vers /races/...
+ */
+---
+<style is:global>
+/* ─────────────────────────────────────────
+   SIMILAR BREEDS — style the races links list
+   ───────────────────────────────────────── */
+
+/* Cible le h2 "Races similaires" et son ul suivant */
+.race-article h2 + ul li a[href^="/races/"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  color: #0F6E56 !important;
+  font-weight: 600 !important;
+  font-size: 0.92rem !important;
+  text-decoration: none !important;
+  transition: color 0.15s !important;
+}
+
+.race-article h2 + ul li a[href^="/races/"]:hover {
+  color: #0a5a3f !important;
+  text-decoration: underline !important;
+}
+
+/* Arrow indicator */
+.race-article h2 + ul li a[href^="/races/"]::before {
+  content: '→' !important;
+  font-size: 0.82rem !important;
+  color: #1D9E75 !important;
+  font-weight: 700 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Override the generic ul li styles for similar breeds */
+.race-article h2 + ul li:has(a[href^="/races/"]) {
+  background: linear-gradient(90deg, #f4fbf8, #fff) !important;
+  border-color: #d4ede5 !important;
+}
+
+.race-article h2 + ul li:has(a[href^="/races/"]):hover {
+  border-color: #0F6E56 !important;
+  background: linear-gradient(90deg, #e8f7f2, #fff) !important;
+}
+
+/* Override puce checkmark for races list */
+.race-article h2 + ul li:has(a[href^="/races/"])::before {
+  content: '🐾' !important;
+  background: transparent !important;
+  font-size: 0.75rem !important;
+  color: transparent !important;
+  width: 1.25rem !important;
+  height: auto !important;
+}
+</style>

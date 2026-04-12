@@ -1,0 +1,77 @@
+---
+/**
+ * StyledTable.astro
+ * Améliore visuellement les tableaux .data-table existants dans les pages races.
+ * Fournit : ombres, coins arrondis, hover sur lignes, animations d'entrée.
+ */
+---
+<style is:global>
+/* ─────────────────────────────────────────
+   STYLED TABLE — enhance .data-table
+   ───────────────────────────────────────── */
+.race-article .data-table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06) !important;
+  margin: 1rem 0 0.5rem !important;
+  font-size: 0.88rem !important;
+  animation: tblFadeIn 0.45s ease-out both;
+}
+
+.race-article .data-table thead tr th {
+  background: linear-gradient(90deg, #0a5a3f, #0F6E56) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 0.65rem 0.9rem !important;
+  white-space: nowrap;
+}
+
+.race-article .data-table thead tr th:first-child {
+  border-top-left-radius: 12px;
+}
+.race-article .data-table thead tr th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.race-article .data-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.race-article .data-table tbody tr:hover td {
+  background: #e8f7f2 !important;
+}
+
+.race-article .data-table tbody tr td {
+  padding: 0.55rem 0.9rem !important;
+  border-bottom: 1px solid #eee !important;
+  vertical-align: top !important;
+  line-height: 1.45 !important;
+}
+
+.race-article .data-table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+.race-article .data-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+.race-article .data-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* Ligne Total mise en valeur */
+.race-article .data-table tbody tr td strong {
+  color: #0F6E56;
+}
+
+@keyframes tblFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>

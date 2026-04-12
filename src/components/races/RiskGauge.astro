@@ -1,0 +1,123 @@
+---
+interface Props {
+  risque: 'faible' | 'modere' | 'eleve';
+  nom: string;
+}
+
+const { risque, nom } = Astro.props;
+
+const levels = [
+  { id: 'faible', label: 'Faible',  color: '#27AE60', desc: 'Pathologies rares, frais vétérinaires maîtrisables.' },
+  { id: 'modere', label: 'Modéré', color: '#F39C12', desc: 'Quelques prédispositions héréditaires à surveiller.' },
+  { id: 'eleve',  label: 'Élevé',  color: '#E74C3C', desc: 'Risques génétiques significatifs, couverture recommandée.' },
+];
+
+const active = levels.findIndex(l => l.id === risque);
+const current = levels[active];
+---
+
+<div class="rg-wrap" role="region" aria-label={`Niveau de risque santé pour le ${nom}`}>
+  <div class="rg-inner">
+    <div class="rg-left">
+      <div class="rg-title">Niveau de risque santé</div>
+      <div class="rg-desc">{current.desc}</div>
+    </div>
+
+    <div class="rg-segments" aria-hidden="true">
+      {levels.map((l, i) => (
+        <div
+          class:list={['rg-seg', i <= active ? 'rg-seg-on' : 'rg-seg-off']}
+          style={i <= active ? `background:${current.color}` : ''}
+          title={l.label}
+        ></div>
+      ))}
+      <span class="rg-label" style={`color:${current.color}`}>{current.label}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.rg-wrap {
+  background: #f8fffe;
+  border-top: 1px solid #e0f0ea;
+  border-bottom: 3px solid #e0f0ea;
+  padding: 0.85rem 1.25rem;
+  animation: rgFade 0.4s ease-out 0.3s both;
+}
+
+.rg-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.rg-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.rg-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rg-desc {
+  font-size: 0.82rem;
+  color: #666;
+}
+
+.rg-segments {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.rg-seg {
+  width: 40px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.rg-seg-off {
+  background: #ddd;
+}
+
+.rg-seg-on {
+  transform-origin: left center;
+  animation: rgSegGrow 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.rg-seg-on:nth-child(1) { animation-delay: 0.35s; }
+.rg-seg-on:nth-child(2) { animation-delay: 0.45s; }
+.rg-seg-on:nth-child(3) { animation-delay: 0.55s; }
+
+.rg-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-left: 0.4rem;
+  white-space: nowrap;
+  animation: rgFade 0.4s ease-out 0.6s both;
+}
+
+@keyframes rgFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rgSegGrow {
+  from { transform: scaleX(0); opacity: 0.5; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .rg-inner { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+}
+</style>

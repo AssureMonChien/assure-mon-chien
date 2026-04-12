@@ -1,0 +1,95 @@
+---
+/**
+ * IllnessCards.astro
+ * Ajoute un rendu card-like aux lignes du tableau des maladies fréquentes.
+ * Enrichit aussi les h2 avec icônes et animations staggered.
+ */
+---
+<style is:global>
+/* ─────────────────────────────────────────
+   ILLNESS SECTION — h2 avec icône + entrée animée
+   ───────────────────────────────────────── */
+.race-article h2 {
+  animation: h2SlideUp 0.4s ease-out both;
+  position: relative;
+}
+
+/* Accent de couleur gauche sur les h2 */
+.race-article h2::before {
+  content: '';
+  position: absolute;
+  left: -1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(180deg, #0F6E56, #1a9e7a);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* Délai progressif pour h2 successifs */
+.race-article h2:nth-of-type(1)  { animation-delay: 0.05s; }
+.race-article h2:nth-of-type(2)  { animation-delay: 0.10s; }
+.race-article h2:nth-of-type(3)  { animation-delay: 0.15s; }
+.race-article h2:nth-of-type(4)  { animation-delay: 0.20s; }
+.race-article h2:nth-of-type(5)  { animation-delay: 0.25s; }
+.race-article h2:nth-of-type(6)  { animation-delay: 0.28s; }
+.race-article h2:nth-of-type(7)  { animation-delay: 0.30s; }
+.race-article h2:nth-of-type(8)  { animation-delay: 0.32s; }
+.race-article h2:nth-of-type(9)  { animation-delay: 0.34s; }
+.race-article h2:nth-of-type(10) { animation-delay: 0.36s; }
+.race-article h2:nth-of-type(n+11) { animation-delay: 0.38s; }
+
+/* ─────────────────────────────────────────
+   Liens internes "voir plus" (→ ...)
+   ───────────────────────────────────────── */
+.race-article p > a[href^="/"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #0F6E56;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border-bottom: 1.5px solid #0F6E5633;
+  padding-bottom: 1px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.race-article p > a[href^="/"]:hover {
+  color: #0a5a3f;
+  border-bottom-color: #0F6E56;
+  text-decoration: none;
+}
+
+/* ─────────────────────────────────────────
+   Source italics
+   ───────────────────────────────────────── */
+.race-article .source {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  color: #999;
+  font-style: italic;
+  margin: 0.2rem 0 0.9rem;
+  padding: 0.4rem 0.6rem;
+  background: #fafafa;
+  border-left: 3px solid #e0e0e0;
+  border-radius: 0 6px 6px 0;
+}
+
+.race-article .source::before {
+  content: '📋';
+  font-style: normal;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+@keyframes h2SlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>

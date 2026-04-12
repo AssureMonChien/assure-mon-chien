@@ -1,0 +1,90 @@
+---
+/**
+ * KeyFigures.astro
+ * Fournit un rendu CSS global premium pour les blocs .key-figures / .figures-grid
+ * déjà présents dans le contenu des pages races.
+ * Aucun HTML supplémentaire — uniquement des styles globaux.
+ */
+---
+<style is:global>
+/* ─────────────────────────────────────────
+   KEY FIGURES — enhance existing .key-figures blocks
+   ───────────────────────────────────────── */
+.race-article .key-figures {
+  background: linear-gradient(135deg, #f0fbf7 0%, #e8f7f2 100%) !important;
+  border: 1px solid #b8e6d4 !important;
+  border-radius: 16px !important;
+  padding: 1.75rem !important;
+  margin: 2.5rem 0 !important;
+  box-shadow: 0 4px 20px rgba(15,110,86,0.08) !important;
+  animation: kfFadeIn 0.5s ease-out both;
+}
+
+.race-article .key-figures h2 {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #0F6E56 !important;
+  margin: 0 0 1.25rem !important;
+  border: none !important;
+  padding: 0 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.race-article .figures-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1rem !important;
+}
+
+@media (min-width: 500px) {
+  .race-article .figures-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+.race-article .figure {
+  background: #fff !important;
+  border: 1px solid #d4ede5 !important;
+  border-radius: 12px !important;
+  padding: 1rem 0.75rem !important;
+  text-align: center !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: kfSlideUp 0.4s ease-out both;
+}
+
+.race-article .figure:nth-child(1) { animation-delay: 0.05s; }
+.race-article .figure:nth-child(2) { animation-delay: 0.10s; }
+.race-article .figure:nth-child(3) { animation-delay: 0.15s; }
+.race-article .figure:nth-child(4) { animation-delay: 0.20s; }
+
+.race-article .figure:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(15,110,86,0.12);
+}
+
+.race-article .figure-value {
+  display: block !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  color: #0F6E56 !important;
+  line-height: 1.1 !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.race-article .figure-label {
+  font-size: 0.73rem !important;
+  color: #666 !important;
+  line-height: 1.35 !important;
+}
+
+@keyframes kfFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes kfSlideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>

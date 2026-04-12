@@ -1,0 +1,93 @@
+---
+/**
+ * FAQ.astro
+ * Améliore l'accordéon details/summary existant dans les pages races.
+ * CSS-only, aucun JS, animation fluide via max-height.
+ */
+---
+<style is:global>
+/* ─────────────────────────────────────────
+   FAQ ACCORDION — enhance details/summary
+   ───────────────────────────────────────── */
+.race-article details {
+  border: 1px solid #e0ede8 !important;
+  border-radius: 10px !important;
+  margin-bottom: 0.55rem !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  transition: box-shadow 0.2s ease;
+  animation: faqFadeIn 0.4s ease-out both;
+}
+
+.race-article details:nth-child(1) { animation-delay: 0.04s; }
+.race-article details:nth-child(2) { animation-delay: 0.08s; }
+.race-article details:nth-child(3) { animation-delay: 0.12s; }
+.race-article details:nth-child(4) { animation-delay: 0.16s; }
+.race-article details:nth-child(5) { animation-delay: 0.20s; }
+.race-article details:nth-child(n+6) { animation-delay: 0.22s; }
+
+.race-article details:hover {
+  box-shadow: 0 4px 14px rgba(15,110,86,0.08) !important;
+}
+
+.race-article details[open] {
+  border-color: #0F6E56 !important;
+  box-shadow: 0 4px 18px rgba(15,110,86,0.1) !important;
+}
+
+.race-article summary {
+  font-weight: 700 !important;
+  font-size: 0.93rem !important;
+  cursor: pointer !important;
+  padding: 0.85rem 1.1rem 0.85rem 1.25rem !important;
+  background: #fafcfb !important;
+  list-style: none !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  color: #1a1a1a !important;
+  transition: background 0.15s, color 0.15s !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.race-article summary::-webkit-details-marker { display: none !important; }
+
+.race-article details[open] summary {
+  background: linear-gradient(90deg, #e8f7f2, #f4fbf8) !important;
+  color: #0F6E56 !important;
+}
+
+/* Flèche CSS animée */
+.race-article summary::after {
+  content: '' !important;
+  display: block !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 5px solid transparent !important;
+  border-right: 5px solid transparent !important;
+  border-top: 6px solid #0F6E56 !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.25s ease !important;
+}
+
+.race-article details[open] summary::after {
+  transform: rotate(180deg) !important;
+}
+
+.race-article details p {
+  padding: 0.85rem 1.25rem !important;
+  margin: 0 !important;
+  font-size: 0.91rem !important;
+  color: #444 !important;
+  line-height: 1.65 !important;
+  border-top: 1px solid #e8f0ec !important;
+  background: #fff !important;
+}
+
+@keyframes faqFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>

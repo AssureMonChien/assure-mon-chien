@@ -1,0 +1,280 @@
+---
+interface Props {
+  nom: string;
+  slug: string;
+  title: string;
+  taille: string;
+  risque: 'faible' | 'modere' | 'eleve';
+}
+
+const { nom, slug, taille, risque, title } = Astro.props;
+
+const risqueData = {
+  faible: { label: 'Risque faible',  bg: 'rgba(209,240,228,0.22)', color: '#a8ffd4', score: 28 },
+  modere: { label: 'Risque modéré', bg: 'rgba(254,243,205,0.18)', color: '#f9cb42',  score: 58 },
+  eleve:  { label: 'Risque élevé',  bg: 'rgba(253,232,232,0.18)', color: '#ff8080',  score: 84 },
+}[risque];
+
+const tailleLabel = ({ petite: 'Petite race', moyenne: 'Race moyenne', grande: 'Grande race' } as Record<string,string>)[taille] ?? taille;
+---
+
+<section class="hb" aria-label={`Guide race ${nom}`}>
+  <!-- Subtle pattern overlay -->
+  <div class="hb-pattern" aria-hidden="true"></div>
+
+  <div class="hb-inner">
+    <!-- LEFT: text -->
+    <div class="hb-text">
+      <nav class="hb-crumb" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/races">Toutes les races</a></li>
+          <li aria-current="page">{nom}</li>
+        </ol>
+      </nav>
+
+      <div class="hb-badges">
+        <span class="hb-badge hb-pill">GUIDE RACE</span>
+        <span class="hb-badge hb-taille">{tailleLabel}</span>
+        <span class="hb-badge hb-risque" style={`background:${risqueData.bg};color:${risqueData.color};border:1px solid ${risqueData.color}33`}>
+          {risqueData.label}
+        </span>
+      </div>
+
+      <h1 class="hb-title">{title}</h1>
+
+      <!-- Risk bar -->
+      <div class="hb-gauge-wrap" role="meter" aria-valuenow={risqueData.score} aria-valuemin={0} aria-valuemax={100} aria-label={`Niveau de risque santé : ${risqueData.score}/100`}>
+        <div class="hb-gauge-label">
+          <span>Risque santé</span>
+          <span class="hb-gauge-score">{risqueData.score} / 100</span>
+        </div>
+        <div class="hb-gauge-track">
+          <div class="hb-gauge-fill" style={`--score:${risqueData.score}%`}></div>
+          <div class="hb-gauge-glow" style={`--score:${risqueData.score}%`}></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: image -->
+    <div class="hb-img-wrap">
+      <div class="hb-img-ring" aria-hidden="true"></div>
+      <img
+        src={`/images/races/${slug}.webp`}
+        alt={`Photo ${nom}`}
+        width="300"
+        height="225"
+        loading="eager"
+        fetchpriority="high"
+        decoding="sync"
+        class="hb-img"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+/* ──────────────────────────────────────────
+   HERO BREED — premium, animé, CLS-stable
+   ────────────────────────────────────────── */
+.hb {
+  background: linear-gradient(135deg, #083d2b 0%, #0F6E56 55%, #1a8f6d 100%);
+  color: #fff;
+  padding: 2.75rem 1.25rem 2.25rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Motif de fond décoratif */
+.hb-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(249,203,66,0.06) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hb-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  animation: hbFadeIn 0.45s ease-out both;
+}
+
+/* ── Breadcrumb ── */
+.hb-crumb ol {
+  list-style: none;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: 0.77rem;
+  color: rgba(255,255,255,0.55);
+}
+.hb-crumb li + li::before {
+  content: '›';
+  margin-right: 0.25rem;
+  color: rgba(255,255,255,0.3);
+}
+.hb-crumb a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.hb-crumb a:hover { color: #fff; text-decoration: underline; }
+
+/* ── Badges ── */
+.hb-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+  animation: hbSlideUp 0.4s ease-out 0.08s both;
+}
+
+.hb-badge {
+  display: inline-block;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding: 0.22rem 0.65rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.hb-pill   { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+.hb-taille { background: rgba(249,203,66,0.2);   color: #f9cb42; }
+.hb-risque { font-size: 0.7rem; }
+
+/* ── H1 ── */
+.hb-title {
+  font-size: clamp(1.35rem, 3.2vw, 1.95rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.4rem;
+  color: #fff;
+  animation: hbSlideUp 0.4s ease-out 0.13s both;
+}
+
+/* ── Gauge ── */
+.hb-gauge-wrap {
+  animation: hbSlideUp 0.4s ease-out 0.18s both;
+}
+
+.hb-gauge-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 0.35rem;
+}
+
+.hb-gauge-score {
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+}
+
+.hb-gauge-track {
+  position: relative;
+  height: 8px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 280px;
+}
+
+.hb-gauge-fill {
+  position: absolute;
+  inset: 0;
+  width: var(--score);
+  background: linear-gradient(90deg, #f9cb42 0%, #ff7e45 100%);
+  border-radius: 4px;
+  transform-origin: left center;
+  animation: hbGrow 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.hb-gauge-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--score);
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(249,203,66,0.4));
+  border-radius: 4px;
+  animation: hbGrow 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+/* ── Image ── */
+.hb-img-wrap {
+  flex-shrink: 0;
+  position: relative;
+  animation: hbSlideIn 0.5s ease-out 0.1s both;
+}
+
+/* Anneau décoratif */
+.hb-img-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(249,203,66,0.3) 0%, rgba(255,255,255,0.08) 100%);
+  z-index: 0;
+}
+
+.hb-img {
+  position: relative;
+  z-index: 1;
+  width: 280px;
+  height: 210px;
+  object-fit: cover;
+  object-position: center 18%;
+  border-radius: 14px;
+  border: 2px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.3),
+    0 4px 12px rgba(0,0,0,0.15);
+  display: block;
+}
+
+/* ── Animations ── */
+@keyframes hbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes hbSlideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hbSlideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes hbGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .hb-inner {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+  .hb-img {
+    width: 100%;
+    height: 200px;
+  }
+  .hb-img-ring { display: none; }
+  .hb-gauge-track { max-width: 100%; }
+}
+</style>

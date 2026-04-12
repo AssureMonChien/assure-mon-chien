@@ -1,5 +1,15 @@
 ---
 import Layout from "./Layout.astro";
+import HeroBreed from "../components/races/HeroBreed.astro";
+import RiskGauge from "../components/races/RiskGauge.astro";
+import InsuranceCards from "../components/races/InsuranceCards.astro";
+import KeyFigures from "../components/races/KeyFigures.astro";
+import StyledTable from "../components/races/StyledTable.astro";
+import IllnessCards from "../components/races/IllnessCards.astro";
+import AdviceBox from "../components/races/AdviceBox.astro";
+import SimilarBreeds from "../components/races/SimilarBreeds.astro";
+import FAQ from "../components/races/FAQ.astro";
+import Sources from "../components/races/Sources.astro";
 
 interface Props {
   title: string;
@@ -10,157 +20,232 @@ interface Props {
   risque: 'faible' | 'modere' | 'eleve';
 }
 
-const { title, description, nom, slug, risque } = Astro.props;
+const { title, description, nom, slug, taille, risque } = Astro.props;
 
-const risqueLabel = { faible: "Risque faible", modere: "Risque modéré", eleve: "Risque élevé" }[risque];
-const risqueClass = `badge-${risque}`;
+/* Injections CSS des composants "style-only" */
 ---
 
-<Layout title={title} description={description}>
-  <section class="race-hero">
-    <div class="race-hero-inner">
-      <div class="race-hero-text">
-        <nav class="breadcrumb" aria-label="Fil d'Ariane">
-          <ol>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/races">Races</a></li>
-            <li aria-current="page">{nom}</li>
-          </ol>
-        </nav>
-        <div class="race-hero-badges">
-          <span class="hero-label">GUIDE RACE</span>
-          <span class:list={["risk-badge", risqueClass]}>{risqueLabel}</span>
-        </div>
-        <h1>Assurance {nom} : tarifs, risques et conseils</h1>
-      </div>
-      <div class="race-hero-img">
-        <img
-          src={`/images/races/${slug}.webp`}
-          alt={`Photo ${nom}`}
-          width="320"
-          height="240"
-          loading="eager"
-        />
-      </div>
-    </div>
-  </section>
+<!-- CSS providers (aucun rendu HTML visible) -->
+<KeyFigures />
+<StyledTable />
+<IllnessCards />
+<AdviceBox />
+<SimilarBreeds />
+<FAQ />
+<Sources />
 
+<Layout title={title} description={description}>
+
+  <!-- 1. Hero premium avec image eager + risk gauge inline -->
+  <HeroBreed {nom} {slug} {title} {taille} {risque} />
+
+  <!-- 2. Barre de niveau de risque -->
+  <RiskGauge {risque} {nom} />
+
+  <!-- 3. Contenu de la page race (slot) -->
   <div class="race-content">
     <slot />
   </div>
+
+  <!-- 4. Cartes assurance (CTA générique bas de page) -->
+  <InsuranceCards {risque} {nom} />
+
 </Layout>
 
-<style>
-  .race-hero {
-    background: #0F6E56;
-    color: #fff;
-    padding: 2.5rem 1.25rem 2rem;
-  }
+<style is:global>
+/* ═══════════════════════════════════════════
+   RACE CONTENT WRAPPER
+   ═══════════════════════════════════════════ */
+.race-content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.75rem 1.25rem 3rem;
+}
 
-  .race-hero-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
+/* ═══════════════════════════════════════════
+   RACE ARTICLE — layout global du contenu slot
+   ═══════════════════════════════════════════ */
+.race-article {
+  line-height: 1.72;
+  color: #222;
+}
 
-  .race-hero-text {
-    flex: 1;
-  }
+/* ── H2 base + accent gauche ── */
+.race-article h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0F6E56;
+  margin: 2.75rem 0 1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid #e0f0ea;
+  letter-spacing: -0.015em;
+  position: relative;
+  padding-left: 0.85rem;
+}
 
-  .breadcrumb ol {
-    list-style: none;
-    margin: 0 0 0.75rem;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.7);
-  }
+/* ── Paragraphes ── */
+.race-article p {
+  margin: 0 0 1rem;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.72;
+}
 
-  .breadcrumb li + li::before {
-    content: "›";
-    margin-right: 0.3rem;
-  }
+/* ── Liens dans le contenu ── */
+.race-article a {
+  color: #0F6E56;
+  font-weight: 500;
+}
 
-  .breadcrumb a {
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-  }
+.race-article a:hover {
+  color: #0a5a3f;
+}
 
-  .breadcrumb a:hover {
-    color: #fff;
-    text-decoration: underline;
-  }
+/* ═══════════════════════════════════════════
+   TABLE — base (les composants StyledTable ajoutent le premium)
+   ═══════════════════════════════════════════ */
+.race-article .data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 0.5rem;
+  font-size: 0.88rem;
+}
 
-  .race-hero-badges {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
-  }
+.race-article .data-table th {
+  background: #0F6E56;
+  color: #fff;
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
 
-  .hero-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    background: rgba(255,255,255,0.18);
-    padding: 0.25rem 0.7rem;
-    border-radius: 20px;
-  }
+.race-article .data-table td {
+  padding: 0.5rem 0.85rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
 
-  .risk-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.25rem 0.7rem;
-    border-radius: 20px;
-  }
+.race-article .data-table tr:nth-child(even) td {
+  background: #f9fffe;
+}
 
-  .badge-faible  { background: #d1f0e4; color: #0a5a3f; }
-  .badge-modere  { background: #fef3cd; color: #7a4a00; }
-  .badge-eleve   { background: #fde8e8; color: #a00000; }
+/* ═══════════════════════════════════════════
+   SOURCE
+   ═══════════════════════════════════════════ */
+.race-article .source {
+  font-size: 0.77rem;
+  color: #999;
+  font-style: italic;
+  margin: 0.2rem 0 1rem;
+}
 
-  .race-hero h1 {
-    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin: 0;
-    color: #fff;
-  }
+/* ═══════════════════════════════════════════
+   DETAILS / SUMMARY base
+   ═══════════════════════════════════════════ */
+.race-article details {
+  border: 1px solid #e8e6e0;
+  border-radius: 8px;
+  margin-bottom: 0.55rem;
+  overflow: hidden;
+}
 
-  .race-hero-img {
-    flex-shrink: 0;
-  }
+.race-article summary {
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  background: #f9f9f9;
+  list-style: none;
+}
 
-  .race-hero-img img {
-    width: 260px;
-    height: 195px;
-    object-fit: cover;
-    object-position: center 20%;
-    border-radius: 12px;
-    border: 3px solid rgba(255,255,255,0.2);
-  }
+.race-article summary::-webkit-details-marker { display: none; }
 
+.race-article details[open] summary {
+  background: #e8f7f2;
+  color: #0F6E56;
+}
+
+.race-article details p {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  font-size: 0.92rem;
+  color: #444;
+}
+
+/* ═══════════════════════════════════════════
+   KEY FIGURES base
+   ═══════════════════════════════════════════ */
+.race-article .key-figures {
+  background: #f4fbf8;
+  border: 1px solid #d4ede5;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.race-article .key-figures h2 {
+  font-size: 1.1rem;
+  margin-top: 0;
+  border: none;
+  padding: 0;
+}
+
+.race-article .figures-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.race-article .figure {
+  text-align: center;
+}
+
+.race-article .figure-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0F6E56;
+}
+
+.race-article .figure-label {
+  font-size: 0.78rem;
+  color: #666;
+}
+
+/* ═══════════════════════════════════════════
+   INTRO TEXT base
+   ═══════════════════════════════════════════ */
+.race-article .intro-text {
+  font-size: 1.03rem;
+  color: #444;
+  margin-bottom: 2rem;
+  line-height: 1.72;
+}
+
+/* ═══════════════════════════════════════════
+   SOURCES LIST base
+   ═══════════════════════════════════════════ */
+.race-article .sources-list {
+  font-size: 0.8rem;
+  color: #888;
+  list-style: none;
+  padding: 0;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 640px) {
   .race-content {
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 2.5rem 1.25rem 5rem;
+    padding: 2rem 1rem 2.5rem;
   }
 
-  @media (max-width: 640px) {
-    .race-hero-inner {
-      flex-direction: column-reverse;
-      gap: 1.25rem;
-    }
-
-    .race-hero-img img {
-      width: 100%;
-      height: 200px;
-    }
+  .race-article .figures-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+
+  .race-article h2 {
+    font-size: 1.15rem;
+  }
+}
 </style>
