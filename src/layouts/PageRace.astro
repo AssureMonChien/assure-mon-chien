@@ -217,7 +217,7 @@ const jsonldBreadcrumb = {
   h2 {
     font-size: 1.5rem;
     color: var(--green-nav);
-    margin: 0 0 1.25rem;
+    margin: 48px 0 16px;
   }
 
   ul { margin: 0; padding: 0; list-style: none; }
@@ -815,6 +815,21 @@ const jsonldBreadcrumb = {
     -webkit-overflow-scrolling: touch;
     border-radius: var(--radius);
     border: 1px solid var(--border);
+    position: relative;
+  }
+
+  /* Hint scroll mobile sous le tableau */
+  @media (max-width: 768px) {
+    .table-scroll::after {
+      content: "← Faites défiler →";
+      display: block;
+      font-size: 11px;
+      color: #888780;
+      text-align: right;
+      padding: 4px 8px 2px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
   }
 
   .comp-table {
@@ -899,6 +914,31 @@ const jsonldBreadcrumb = {
     font-style: italic;
   }
 
+  /* ══ PICTOS LISTES ══ */
+
+  /* Conseils de prévention — picto 💡 */
+  .section-conseils li::before,
+  .section-prevention li::before {
+    content: "💡";
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  /* Races similaires — picto 🐕 */
+  .section-similaires li::before,
+  .section-races-similaires li::before {
+    content: "🐕";
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  /* Sources — picto 📄 */
+  .section-sources li::before {
+    content: "📄";
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
   /* ── Intro text ── */
   .intro-text {
     font-size: .95rem;
@@ -958,7 +998,11 @@ const jsonldBreadcrumb = {
     line-height: 1.4;
   }
 
-  .faq-btn:hover { color: #0F6E56; }
+  .faq-btn:hover {
+    color: #0F6E56;
+    background: #F7F9F8;
+    border-radius: 6px;
+  }
 
   .faq-chevron {
     flex-shrink: 0;

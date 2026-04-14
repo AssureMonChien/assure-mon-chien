@@ -13,7 +13,7 @@ const { titre = "Conseils de prévention", conseils } = Astro.props;
   <ul class="ab-list">
     {conseils.map((c, i) => (
       <li class="ab-item" style={`animation-delay:${0.05 + i * 0.06}s`}>
-        <span class="ab-icon">✓</span>
+        <span class="ab-icon">💡</span>
         <span class="ab-text">{c}</span>
       </li>
     ))}
@@ -67,24 +67,15 @@ const { titre = "Conseils de prévention", conseils } = Astro.props;
 }
 
 .ab-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  background: #e6f7f0;
-  color: #0f6e56;
-  font-size: 0.75rem;
-  font-weight: 800;
-  border-radius: 50%;
+  font-size: 1rem;
   flex-shrink: 0;
+  line-height: 1;
 }
 
 .ab-text {
   flex: 1;
 }
 
-/* Animations */
 @keyframes abFadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }

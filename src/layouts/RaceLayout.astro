@@ -33,67 +33,54 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   -->
   <HeroBreed {nom} {slug} {title} {taille} {risque} />
 
-  <div class="kf-block">
-    <KeyFigures
-      data={{
-        souscription: "12%",
-        coutAnnuel:   "600 €",
-        maladies:     "23%",
-        population:   "30 000",
-      }}
-    />
-  </div>
+  <div class="page-content">
 
-  <!--
-    ═══════════════════════════════════════════════
-    2. RISK GAUGE — barre de contexte
-       • segments animés scaleX
-       • aucun JS
-    ═══════════════════════════════════════════════
-  -->
-  <div class="slide-up">
-    <RiskGauge {risque} {nom} />
-  </div>
+    <div class="kf-block">
+      <KeyFigures
+        data={{
+          souscription: "12%",
+          coutAnnuel:   "600 €",
+          maladies:     "23%",
+          population:   "30 000",
+        }}
+      />
+    </div>
 
-  <!--
-    ═══════════════════════════════════════════════
-    3. CONTENU DE LA PAGE RACE
-       • slot = texte + tableaux + FAQ + sources
-         fournis par chaque page .astro
-       • structure attendue dans le slot :
-           .section-intro     → intro-text
-           .section-maladies  → tableaux maladies
-           .section-conseils  → liste conseils
-           .section-similaires → ul races similaires
-           .section-faq       → accordéons FAQ
-       • les composants CSS-only (après slot) stylisent
-         automatiquement ce contenu via is:global
-    ═══════════════════════════════════════════════
-  -->
-  <div class="rc-wrap">
-    <article class="race-article">
-      <StyledTable>
-        <slot />
-      </StyledTable>
+    <!--
+      ═══════════════════════════════════════════════
+      2. RISK GAUGE — barre de contexte
+         • segments animés scaleX
+         • aucun JS
+      ═══════════════════════════════════════════════
+    -->
+    <div class="slide-up">
+      <RiskGauge {risque} {nom} />
+    </div>
 
-      <!--
-        CSS-only injectors — placés APRÈS le slot pour styliser
-        le contenu généré. Astro injecte leurs <style is:global>
-        dans <head> quelle que soit leur position dans le DOM.
-      -->
+    <!--
+      ═══════════════════════════════════════════════
+      3. CONTENU DE LA PAGE RACE
+         • slot = texte + tableaux + FAQ + sources
+           fournis par chaque page .astro
+      ═══════════════════════════════════════════════
+    -->
+    <div class="rc-wrap">
+      <article class="race-article">
+        <StyledTable>
+          <slot />
+        </StyledTable>
+      </article>
+    </div>
 
-    </article>
-  </div>
-
-  <!--
-    ═══════════════════════════════════════════════
-    4. INSURANCE CARDS — CTA bas de page
-       • recommandation adaptée au niveau de risque
-       • hover CSS transform scale
-    ═══════════════════════════════════════════════
-  -->
-  <div class="fade-in">
+    <!--
+      ═══════════════════════════════════════════════
+      4. INSURANCE CARDS — CTA bas de page
+         • recommandation adaptée au niveau de risque
+         • hover CSS transform scale
+      ═══════════════════════════════════════════════
+    -->
     <InsuranceCards {risque} {nom} />
+
   </div>
 
 
@@ -101,19 +88,50 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
 
 <style is:global>
 /* ══════════════════════════════════════════════════════
+   PAGE CONTENT — conteneur principal (hors hero)
+   • limite la largeur à 1100px
+   • centre horizontalement tous les blocs
+   ══════════════════════════════════════════════════════ */
+.page-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.page-content > * {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Espacement réduit entre RiskGauge et le contenu */
+.page-content > .rc-wrap {
+  margin-top: 1.5rem;
+}
+
+/* Espacement réduit avant le comparatif */
+.page-content > .cmp,
+.page-content > :last-child {
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .page-content {
+    padding: 0 1rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
    RACE CONTENT WRAPPER
    • max-width centré, padding confortable
    • responsive mobile
    ══════════════════════════════════════════════════════ */
 .rc-wrap {
-  max-width: 820px;
   margin: 0 auto;
-  padding: 2.75rem 1.25rem 3rem;
 }
 
 @media (max-width: 640px) {
   .rc-wrap {
-    padding: 2rem 1rem 2.5rem;
   }
 }
 
@@ -170,7 +188,7 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   font-size: 1.3rem;
   font-weight: 800;
   color: #0f6e56;
-  margin: 2.75rem 0 1rem;
+  margin: 2.5rem 0 1rem;
   padding-bottom: 0.45rem;
   padding-left: 0.9rem;
   border-bottom: 2px solid #ddf0e8;

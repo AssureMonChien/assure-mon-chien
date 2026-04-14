@@ -18,7 +18,7 @@ const { titre = "Sources", sources } = Astro.props;
   <ul class="src-list">
     {sources.map((s, i) => (
       <li class="src-item" style={`animation-delay:${0.04 + i * 0.05}s`}>
-        <span class="src-bullet" aria-hidden="true">–</span>
+        <span class="src-bullet" aria-hidden="true">📚</span>
         <a href={s.url} target="_blank" rel="noopener noreferrer" class="src-link">
           {s.label}
         </a>
