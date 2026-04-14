@@ -1,99 +1,109 @@
 ---
-/**
- * Sources.astro
- *
- * Styles globaux pour le bloc sources en bas des pages races.
- * Cible .sources-list dans .race-article.
- * Complète et précise les règles de AdviceBox pour ce cas spécifique.
- * CSS-only, aucun JS.
- */
+interface Source {
+  label: string;
+  url:   string;
+}
+
+interface Props {
+  titre?:  string;
+  sources: Source[];
+}
+
+const { titre = "Sources", sources } = Astro.props;
 ---
-<style is:global>
-/* ═══════════════════════════════════════════
-   SOURCES LIST — .race-article .sources-list
-   ═══════════════════════════════════════════ */
 
-/* Conteneur */
-.race-article .sources-list {
-  list-style: none !important;
-  padding: 0.75rem 1rem !important;
-  margin: 0.5rem 0 2rem !important;
-  background: #f7f8f7 !important;
-  border: 1px solid #e2e8e4 !important;
-  border-radius: 10px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0 !important;
-  animation: srcFade 0.4s ease-out both;
+<section class="src">
+  <h2 class="src-title">{titre}</h2>
+
+  <ul class="src-list">
+    {sources.map((s, i) => (
+      <li class="src-item" style={`animation-delay:${0.04 + i * 0.05}s`}>
+        <span class="src-bullet" aria-hidden="true">–</span>
+        <a href={s.url} target="_blank" rel="noopener noreferrer" class="src-link">
+          {s.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+/* ── Section ── */
+.src {
+  margin: 2.5rem 0 1rem;
+  animation: srcFadeIn 0.4s ease-out both;
 }
 
-/* Item */
-.race-article .sources-list li {
-  position: relative !important;
-  padding: 0.32rem 0.5rem 0.32rem 1.5rem !important;
-  font-size: 0.77rem !important;
-  color: #888 !important;
-  line-height: 1.5 !important;
-  background: transparent !important;
-  border: none !important;
-  border-bottom: 1px dashed #e0e0e0 !important;
-  border-radius: 0 !important;
-  /* Désactiver les overrides génériques de AdviceBox */
-  transform: none !important;
-  box-shadow: none !important;
-  animation: none !important;
-  transition: color 0.12s ease !important;
+/* ── Titre ── */
+.src-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin: 0 0 0.65rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #ececec;
 }
 
-.race-article .sources-list li:last-child {
-  border-bottom: none !important;
+/* ── Liste ── */
+.src-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #f8f8f7;
+  border: 1px solid #e8e8e6;
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.race-article .sources-list li:hover {
-  color: #555 !important;
-  background: transparent !important;
-  transform: none !important;
-  box-shadow: none !important;
-  border-color: transparent !important;
+/* ── Item ── */
+.src-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.28rem 0;
+  border-bottom: 1px dashed #e0e0de;
+  animation: srcUp 0.35s ease-out both;
 }
 
-/* Puce tiret discret */
-.race-article .sources-list li::before {
-  content: '–' !important;
-  position: absolute !important;
-  left: 0.4rem !important;
-  top: 0.32rem !important;
-  /* Annuler les overrides de AdviceBox */
-  background: transparent !important;
-  color: #c0c0c0 !important;
-  font-size: 0.78rem !important;
-  font-weight: 400 !important;
-  width: auto !important;
-  height: auto !important;
-  border-radius: 0 !important;
-  display: inline !important;
-  transform: none !important;
-  line-height: 1.5 !important;
+.src-item:last-child {
+  border-bottom: none;
 }
 
-/* h2 "Sources" — sobre, ne pas surcharger visuellement */
-.race-article h2:last-of-type {
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  color: #999 !important;
-  border-bottom-color: #eee !important;
-  letter-spacing: 0.04em !important;
-  text-transform: uppercase !important;
+/* ── Puce ── */
+.src-bullet {
+  color: #bbb;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
-/* Supprimer l'accent gauche vert sur le h2 "Sources" */
-.race-article h2:last-of-type::before {
-  background: #ccc !important;
+/* ── Lien ── */
+.src-link {
+  font-size: 0.77rem;
+  color: #777;
+  text-decoration: none;
+  line-height: 1.5;
+  transition: color 0.15s ease;
+  word-break: break-word;
 }
 
-/* ── Animation ── */
-@keyframes srcFade {
-  from { opacity: 0; transform: translateY(6px); }
+.src-link:hover {
+  color: #0f6e56;
+  text-decoration: underline;
+}
+
+/* ── Animations ── */
+@keyframes srcFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes srcUp {
+  from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 </style>

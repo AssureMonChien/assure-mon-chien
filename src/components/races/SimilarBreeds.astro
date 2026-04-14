@@ -1,112 +1,140 @@
 ---
-/**
- * SimilarBreeds.astro
- *
- * Styles globaux pour la section "Races similaires" dans .race-article.
- * Cible les li contenant un lien /races/... dans un ul suivant un h2.
- * Toutes les images sont lazy-loaded (générées par le navigateur depuis le slug).
- * CSS-only, aucun JS.
- */
+interface Breed {
+  nom:  string;
+  slug: string;
+}
+
+interface Props {
+  titre?: string;
+  races:  Breed[];
+}
+
+const { titre = "Races similaires", races } = Astro.props;
 ---
-<style is:global>
-/* ═══════════════════════════════════════════
-   SECTION "Races similaires" — h2 précédent + ul
-   ═══════════════════════════════════════════ */
 
-/*
- * On cible le ul qui contient au moins un lien /races/ via :has().
- * Fallback propre si :has() non supporté : le style générique AdviceBox s'applique.
- */
-.race-article ul:has(li > a[href^="/races/"]) {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 0.85rem !important;
-  margin: 0.5rem 0 1.75rem !important;
+<section class="sb">
+  <h2 class="sb-title">{titre}</h2>
+
+  <div class="sb-grid">
+    {races.map((race, i) => (
+      <a
+        class="sb-card"
+        href={`/races/${race.slug}`}
+        style={`animation-delay:${0.05 + i * 0.07}s`}
+      >
+        <div
+          class="sb-img"
+          style={`background-image:url('/images/races/${race.slug}.webp')`}
+          role="img"
+          aria-label={`Photo ${race.nom}`}
+        ></div>
+        <div class="sb-name">{race.nom}</div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+/* ── Section ── */
+.sb {
+  margin: 2.5rem 0;
+  animation: sbFadeIn 0.45s ease-out both;
 }
 
-@media (max-width: 500px) {
-  .race-article ul:has(li > a[href^="/races/"]) {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* Carte race */
-.race-article ul:has(li > a[href^="/races/"]) li {
-  padding: 0 !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1.5px solid #d4ede5 !important;
-  background: #fff !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-  animation: sbUp 0.4s ease-out both;
-}
-
-.race-article ul:has(li > a[href^="/races/"]) li:nth-child(1) { animation-delay: 0.05s; }
-.race-article ul:has(li > a[href^="/races/"]) li:nth-child(2) { animation-delay: 0.10s; }
-.race-article ul:has(li > a[href^="/races/"]) li:nth-child(3) { animation-delay: 0.15s; }
-
-.race-article ul:has(li > a[href^="/races/"]) li:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 8px 20px rgba(15, 110, 86, 0.12) !important;
-  border-color: #0f6e56 !important;
-}
-
-/* Supprimer la puce générique AdviceBox */
-.race-article ul:has(li > a[href^="/races/"]) li::before {
-  display: none !important;
-}
-
-/* Image de race (rendue via CSS background si slug disponible) */
-.race-article ul:has(li > a[href^="/races/"]) li a {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  text-decoration: none !important;
-  color: inherit !important;
-  height: 100% !important;
-}
-
-/* Zone image : placeholder vert avec dégradé */
-.race-article ul:has(li > a[href^="/races/"]) li a::before {
-  content: '' !important;
-  display: block !important;
-  width: 100% !important;
-  height: 90px !important;
-  background: linear-gradient(135deg, #d4ede5 0%, #b8ddd0 100%) !important;
-  flex-shrink: 0 !important;
-}
-
-/* Texte du lien (nom de la race) */
-.race-article ul:has(li > a[href^="/races/"]) li a::after {
-  content: attr(href) !important; /* fallback non affiché */
-  display: none !important;
-}
-
-/* Nom de la race — positionné via le texte naturel du lien */
-.race-article ul:has(li > a[href^="/races/"]) li a {
-  font-size: 0.86rem !important;
-  font-weight: 700 !important;
-  color: #1a1a1a !important;
-  padding: 0.6rem 0.75rem 0.65rem !important;
-  line-height: 1.3 !important;
-  gap: 0 !important;
-  width: 100% !important;
-}
-
-.race-article ul:has(li > a[href^="/races/"]) li a:hover {
-  color: #0f6e56 !important;
-  text-decoration: none !important;
-}
-
-/* Flèche "voir" */
-.race-article ul:has(li > a[href^="/races/"]) li a > span.sb-arrow,
-.race-article ul:has(li > a[href^="/races/"]) li a {
+/* ── Titre ── */
+.sb-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f6e56;
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.45rem;
+  padding-left: 0.9rem;
+  border-bottom: 2px solid #ddf0e8;
+  letter-spacing: -0.015em;
   position: relative;
 }
 
-/* ── Animation ── */
+.sb-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 4px;
+  background: linear-gradient(180deg, #0f6e56 0%, #1db880 100%);
+  border-radius: 2px;
+}
+
+/* ── Grille ── */
+.sb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+
+@media (max-width: 540px) {
+  .sb-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 340px) {
+  .sb-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Carte ── */
+.sb-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px solid #d4ede5;
+  text-decoration: none;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  animation: sbUp 0.4s ease-out both;
+}
+
+.sb-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(15, 110, 86, 0.13);
+  border-color: #0f6e56;
+}
+
+/* ── Image ── */
+.sb-img {
+  width: 100%;
+  height: 90px;
+  background-size: cover;
+  background-position: center 18%;
+  background-color: #d4ede5;
+  background-image: linear-gradient(135deg, #0f6e56 0%, #1db880 100%);
+}
+
+/* ── Nom ── */
+.sb-name {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.sb-card:hover .sb-name {
+  color: #0f6e56;
+}
+
+/* ── Animations ── */
+@keyframes sbFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes sbUp {
-  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 </style>

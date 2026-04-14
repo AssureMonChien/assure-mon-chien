@@ -1,108 +1,154 @@
 ---
-/**
- * FAQ.astro
- *
- * Styles globaux pour les accordéons details/summary dans .race-article.
- * Accordéon CSS-only : ouverture/fermeture via l'attribut natif [open].
- * Flèche animée via transform CSS sur summary::after.
- * Aucun JS.
- */
+interface FAQItem {
+  question: string;
+  reponse:  string;
+}
+
+interface Props {
+  titre?: string;
+  items:  FAQItem[];
+}
+
+const { titre = "Questions fréquentes", items } = Astro.props;
 ---
-<style is:global>
-/* ═══════════════════════════════════════════
-   FAQ — details / summary
-   ═══════════════════════════════════════════ */
 
-.race-article details {
-  border: 1px solid #dde9e3 !important;
-  border-radius: 10px !important;
-  margin-bottom: 0.5rem !important;
-  overflow: hidden !important;
-  background: #fff !important;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
-  animation: faqIn 0.38s ease-out both;
+<section class="faq">
+  <h2 class="faq-title">{titre}</h2>
+
+  <div class="faq-list">
+    {items.map((item, i) => (
+      <details class="faq-item" style={`animation-delay:${0.05 + i * 0.07}s`}>
+        <summary class="faq-q">
+          <span class="faq-q-text">{item.question}</span>
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </summary>
+        <p class="faq-a">{item.reponse}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+/* ── Section ── */
+.faq {
+  margin: 2.5rem 0;
+  animation: faqFadeIn 0.45s ease-out both;
 }
 
-/* Délais échelonnés */
-.race-article details:nth-of-type(1) { animation-delay: 0.04s; }
-.race-article details:nth-of-type(2) { animation-delay: 0.08s; }
-.race-article details:nth-of-type(3) { animation-delay: 0.12s; }
-.race-article details:nth-of-type(4) { animation-delay: 0.16s; }
-.race-article details:nth-of-type(5) { animation-delay: 0.19s; }
-.race-article details:nth-of-type(n+6) { animation-delay: 0.21s; }
-
-.race-article details:hover {
-  border-color: #b0d9c8 !important;
-  box-shadow: 0 3px 12px rgba(15, 110, 86, 0.07) !important;
+/* ── Titre ── */
+.faq-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f6e56;
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.45rem;
+  padding-left: 0.9rem;
+  border-bottom: 2px solid #ddf0e8;
+  letter-spacing: -0.015em;
+  position: relative;
 }
 
-.race-article details[open] {
-  border-color: #0f6e56 !important;
-  box-shadow: 0 4px 16px rgba(15, 110, 86, 0.1) !important;
+.faq-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 4px;
+  background: linear-gradient(180deg, #0f6e56 0%, #1db880 100%);
+  border-radius: 2px;
 }
 
-/* ── Summary ── */
-.race-article summary {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  gap: 0.75rem !important;
-  padding: 0.85rem 1.1rem !important;
-  font-size: 0.92rem !important;
-  font-weight: 700 !important;
-  color: #1a1a1a !important;
-  background: #fafcfb !important;
-  cursor: pointer !important;
-  list-style: none !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
-  transition: background 0.15s ease, color 0.15s ease !important;
+/* ── Liste ── */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-/* Supprimer le triangle natif */
-.race-article summary::-webkit-details-marker { display: none !important; }
-.race-article summary::marker              { display: none !important; }
-
-/* Fond actif */
-.race-article details[open] > summary {
-  background: linear-gradient(90deg, #e6f7f0 0%, #f2fbf7 100%) !important;
-  color: #0f6e56 !important;
+/* ── Item ── */
+.faq-item {
+  border: 1.5px solid #d4ede5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  animation: faqUp 0.4s ease-out both;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Flèche CSS — triangle pur */
-.race-article summary::after {
-  content: '' !important;
-  display: inline-block !important;
-  flex-shrink: 0 !important;
-  width: 0 !important;
-  height: 0 !important;
-  border-left: 5px solid transparent !important;
-  border-right: 5px solid transparent !important;
-  border-top: 6px solid #0f6e56 !important;
-  transition: transform 0.25s ease !important;
-  opacity: 0.7 !important;
+.faq-item:hover {
+  border-color: #0f6e56;
+  box-shadow: 0 4px 14px rgba(15, 110, 86, 0.08);
 }
 
-.race-article details[open] > summary::after {
-  transform: rotate(180deg) !important;
-  opacity: 1 !important;
+.faq-item[open] {
+  border-color: #0f6e56;
 }
 
-/* ── Contenu déplié ── */
-.race-article details > p {
-  margin: 0 !important;
-  padding: 0.85rem 1.1rem !important;
-  font-size: 0.9rem !important;
-  color: #444 !important;
-  line-height: 1.65 !important;
-  border-top: 1px solid #eaf3ee !important;
-  background: #fff !important;
-  /* Pas d'animation sur le contenu pour rester CSS-only sans JS ;
-     l'ouverture native HTML est instantanée et suffit */
+/* ── Question (summary) ── */
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  font-size: 0.93rem;
+  color: #1a1a1a;
+  background: #fafcfb;
+  user-select: none;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-/* ── Animation d'entrée ── */
-@keyframes faqIn {
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::marker               { display: none; }
+
+.faq-item[open] .faq-q {
+  background: linear-gradient(90deg, #eaf7f2 0%, #f4fbf8 100%);
+  color: #0f6e56;
+}
+
+.faq-q-text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* ── Chevron ── */
+.faq-chevron {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  border-right: 2px solid #0f6e56;
+  border-bottom: 2px solid #0f6e56;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-bottom: 3px;
+}
+
+.faq-item[open] .faq-chevron {
+  transform: rotate(-135deg);
+  margin-bottom: -3px;
+}
+
+/* ── Réponse ── */
+.faq-a {
+  margin: 0;
+  padding: 0.85rem 1rem 1rem;
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.7;
+  border-top: 1px solid #e8f3ee;
+}
+
+/* ── Animations ── */
+@keyframes faqFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes faqUp {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }

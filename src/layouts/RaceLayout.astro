@@ -9,11 +9,6 @@ import InsuranceCards from "../components/races/InsuranceCards.astro";
 /* ── Composants CSS-only (is:global, aucun HTML rendu) ── */
 import KeyFigures    from "../components/races/KeyFigures.astro";
 import StyledTable   from "../components/races/StyledTable.astro";
-import IllnessCards  from "../components/races/IllnessCards.astro";
-import AdviceBox     from "../components/races/AdviceBox.astro";
-import SimilarBreeds from "../components/races/SimilarBreeds.astro";
-import FAQ           from "../components/races/FAQ.astro";
-import Sources       from "../components/races/Sources.astro";
 
 interface Props {
   title:       string;
@@ -86,10 +81,6 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
         le contenu généré. Astro injecte leurs <style is:global>
         dans <head> quelle que soit leur position dans le DOM.
       -->
-      <div class="illness-cards-block"><IllnessCards /></div>
-      <div class="advice-box-block"><AdviceBox /></div>
-      <div class="similar-breeds-block"><SimilarBreeds /></div>
-      <div class="faq-block"><FAQ /></div>
 
     </article>
   </div>
@@ -105,10 +96,6 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
     <InsuranceCards {risque} {nom} />
   </div>
 
-  <!--
-    CSS-only : Sources — tout en bas, après les cartes assurance.
-  -->
-  <div class="sources-block"><Sources /></div>
 
 </Layout>
 
