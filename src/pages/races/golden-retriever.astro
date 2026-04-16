@@ -20,19 +20,23 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Golden Retriever</h2>
-  <table class="data-table">
-    <thead>
-      <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Alimentation (grande taille, qualité premium)</td><td>650 – 1 100 €</td></tr>
-      <tr><td>Suivi vétérinaire annuel (vaccins, vermifuge, antiparasitaires)</td><td>250 – 450 €</td></tr>
-      <tr><td>Toilettage et entretien du pelage</td><td>200 – 400 €</td></tr>
-      <tr><td>Accessoires, jouets, literie</td><td>100 – 200 €</td></tr>
-      <tr><td>Assurance santé (formule intermédiaire)</td><td>300 – 540 €</td></tr>
-      <tr><td>Imprévus vétérinaires (hors assurance)</td><td>200 – 800 €</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (grande taille, qualité premium)</td><td>650 – 1 100 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, vermifuge, antiparasitaires)</td><td>250 – 450 €</td></tr>
+        <tr><td>Toilettage et entretien du pelage</td><td>200 – 400 €</td></tr>
+        <tr><td>Accessoires, jouets, literie</td><td>100 – 200 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>300 – 540 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>200 – 800 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   <p class="source">Source : FACCO Enquête nationale 2024 ; SantéVet grille tarifaire 2025 ; estimations vétérinaires françaises 2024-2025.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
@@ -41,40 +45,48 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p>
     La Morris Animal Foundation a suivi plus de 3 000 Golden Retrievers dans son étude longitudinale (Golden Retriever Lifetime Study, 2012-2023). Résultat sans appel : 57 à 60 % des Golden meurent d'un cancer. L'hémangiosarcome (tumeur vasculaire maligne) et le lymphome sont les deux cancers les plus représentés. La dysplasie de hanche touche entre 19 et 25 % des individus selon l'OFA. L'hypothyroïdie, l'ichtyose et les dermatites atopiques complètent un tableau pathologique exigeant un suivi vétérinaire rigoureux.
   </p>
-  <table class="data-table">
-    <thead>
-      <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Cancer (toutes formes)</td><td>57 – 60 % (sur durée de vie)</td><td>2 000 – 12 000 €</td></tr>
-      <tr><td>Hémangiosarcome</td><td>5 – 7 % des Golden</td><td>3 000 – 10 000 €</td></tr>
-      <tr><td>Lymphome malin</td><td>5 – 8 %</td><td>3 000 – 8 000 €</td></tr>
-      <tr><td>Ostéosarcome</td><td>2 – 3 %</td><td>4 000 – 10 000 €</td></tr>
-      <tr><td>Dysplasie de hanche</td><td>19 – 25 % (OFA)</td><td>1 500 – 6 000 €</td></tr>
-      <tr><td>Hypothyroïdie</td><td>8 – 10 %</td><td>150 – 400 €/an</td></tr>
-      <tr><td>Ichtyose</td><td>50 % porteurs (dont 35 % symptomatiques)</td><td>150 – 600 €/an</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cancer (toutes formes)</td><td>57 – 60 % (sur durée de vie)</td><td>2 000 – 12 000 €</td></tr>
+        <tr><td>Hémangiosarcome</td><td>5 – 7 % des Golden</td><td>3 000 – 10 000 €</td></tr>
+        <tr><td>Lymphome malin</td><td>5 – 8 %</td><td>3 000 – 8 000 €</td></tr>
+        <tr><td>Ostéosarcome</td><td>2 – 3 %</td><td>4 000 – 10 000 €</td></tr>
+        <tr><td>Dysplasie de hanche</td><td>19 – 25 % (OFA)</td><td>1 500 – 6 000 €</td></tr>
+        <tr><td>Hypothyroïdie</td><td>8 – 10 %</td><td>150 – 400 €/an</td></tr>
+        <tr><td>Ichtyose</td><td>50 % porteurs (dont 35 % symptomatiques)</td><td>150 – 600 €/an</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   <p class="source">Source : Morris Animal Foundation, Golden Retriever Lifetime Study 2023 ; OFA Hip Dysplasia Statistics 2024 ; SCC 2023.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
   <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Golden Retriever</h2>
-  <table class="data-table">
-    <thead>
-      <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Bilan oncologique complet (scanner, biopsies)</td><td>600 – 1 800 €</td></tr>
-      <tr><td>Chimiothérapie protocole CHOP (lymphome, 6 mois)</td><td>3 000 – 7 000 €</td></tr>
-      <tr><td>Splénectomie d'urgence (hémangiosarcome)</td><td>1 500 – 4 000 €</td></tr>
-      <tr><td>Chimiothérapie post-splénectomie</td><td>1 500 – 3 500 €</td></tr>
-      <tr><td>Prothèse totale de hanche</td><td>3 000 – 6 000 € / hanche</td></tr>
-      <tr><td>IRM (bilan neurologique ou oncologique)</td><td>900 – 1 800 €</td></tr>
-      <tr><td>Lévothyroxine (hypothyroïdie, traitement annuel)</td><td>150 – 350 €/an</td></tr>
-      <tr><td>Scintigraphie osseuse (ostéosarcome)</td><td>600 – 1 200 €</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bilan oncologique complet (scanner, biopsies)</td><td>600 – 1 800 €</td></tr>
+        <tr><td>Chimiothérapie protocole CHOP (lymphome, 6 mois)</td><td>3 000 – 7 000 €</td></tr>
+        <tr><td>Splénectomie d'urgence (hémangiosarcome)</td><td>1 500 – 4 000 €</td></tr>
+        <tr><td>Chimiothérapie post-splénectomie</td><td>1 500 – 3 500 €</td></tr>
+        <tr><td>Prothèse totale de hanche</td><td>3 000 – 6 000 € / hanche</td></tr>
+        <tr><td>IRM (bilan neurologique ou oncologique)</td><td>900 – 1 800 €</td></tr>
+        <tr><td>Lévothyroxine (hypothyroïdie, traitement annuel)</td><td>150 – 350 €/an</td></tr>
+        <tr><td>Scintigraphie osseuse (ostéosarcome)</td><td>600 – 1 200 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   <p class="source">Source : CHVA (Centres Hospitaliers Vétérinaires Associés) 2024 ; École Nationale Vétérinaire d'Alfort tarifs 2025 ; SNVEL.</p>
 
   <!-- 5. Risques financiers spécifiques -->
@@ -85,7 +97,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Golden Retriever</h2>
-  <ul>
+  <ul class="section-prevention">
     <li>Exiger les résultats HD et ED des deux parents ainsi que le statut ichtyose (test ADN) avant l'achat du chiot.</li>
     <li>Faire effectuer un bilan ophtalmologique annuel dès 4 ans pour détecter précocement les uvéites pigmentaires.</li>
     <li>Pratiquer un dépistage radiographique HD entre 12 et 18 mois avant tout symptôme orthopédique.</li>
@@ -117,30 +129,72 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Golden Retriever</h2>
-  <details>
-    <summary>Le cancer du Golden Retriever est-il couvert par les assurances ?</summary>
-    <p>Oui, les formules premium couvrent chimiothérapie, radiothérapie et chirurgie oncologique, à condition de souscrire avant tout diagnostic. Lymphomes et hémangiosarcomes représentent des traitements de 5 000 à 12 000 € que seule une couverture préventive permet d'absorber sans sacrifice financier.</p>
-  </details>
-  <details>
-    <summary>Pourquoi assurer son Golden Retriever avant 2 ans ?</summary>
-    <p>Les cancers du Golden apparaissent typiquement après 6 ans, mais les assureurs majorent les primes de 30 à 60 % passé 5 ans, et certains appliquent des exclusions ciblées. Souscrire avant 2 ans fige des conditions avantageuses sans surprime liée aux antécédents statistiques de la race.</p>
-  </details>
-  <details>
-    <summary>Quel budget mensuel pour assurer un Golden Retriever ?</summary>
-    <p>Comptez entre 20 et 45 €/mois selon l'âge et la formule. Une couverture cancers, chirurgie et maladies chroniques à 100 % est fortement recommandée, avec un retour sur investissement rapide dès le premier traitement oncologique.</p>
-  </details>
-  <details>
-    <summary>L'ichtyose du Golden Retriever est-elle couverte par l'assurance ?</summary>
-    <p>L'ichtyose est une maladie héréditaire : certains assureurs l'excluent dans leurs conditions générales. Vérifiez que votre contrat ne comporte pas d'exclusion générale sur les maladies congénitales ou héréditaires. Les formules haut de gamme la prennent généralement en charge.</p>
-  </details>
-  <details>
-    <summary>La dysplasie de hanche du Golden Retriever est-elle remboursée ?</summary>
-    <p>Oui, sous réserve de souscription avant tout diagnostic radiographique. La dysplasie touche 19 à 25 % des Golden (OFA 2024). La prothèse totale de hanche coûte 3 000 à 6 000 € par hanche. Une assurance couvrant l'orthopédie est donc prioritaire pour cette race.</p>
-  </details>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-golden-retriever-0" id="faq-btn-golden-retriever-0">
+          <span>Le cancer du Golden Retriever est-il couvert par les assurances ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-golden-retriever-0" hidden>
+        <p>Oui, les formules premium couvrent chimiothérapie, radiothérapie et chirurgie oncologique, à condition de souscrire avant tout diagnostic. Lymphomes et hémangiosarcomes représentent des traitements de 5 000 à 12 000 € que seule une couverture préventive permet d'absorber sans sacrifice financier.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-golden-retriever-1" id="faq-btn-golden-retriever-1">
+          <span>Pourquoi assurer son Golden Retriever avant 2 ans ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-golden-retriever-1" hidden>
+        <p>Les cancers du Golden apparaissent typiquement après 6 ans, mais les assureurs majorent les primes de 30 à 60 % passé 5 ans, et certains appliquent des exclusions ciblées. Souscrire avant 2 ans fige des conditions avantageuses sans surprime liée aux antécédents statistiques de la race.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-golden-retriever-2" id="faq-btn-golden-retriever-2">
+          <span>Quel budget mensuel pour assurer un Golden Retriever ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-golden-retriever-2" hidden>
+        <p>Comptez entre 20 et 45 €/mois selon l'âge et la formule. Une couverture cancers, chirurgie et maladies chroniques à 100 % est fortement recommandée, avec un retour sur investissement rapide dès le premier traitement oncologique.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-golden-retriever-3" id="faq-btn-golden-retriever-3">
+          <span>L'ichtyose du Golden Retriever est-elle couverte par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-golden-retriever-3" hidden>
+        <p>L'ichtyose est une maladie héréditaire : certains assureurs l'excluent dans leurs conditions générales. Vérifiez que votre contrat ne comporte pas d'exclusion générale sur les maladies congénitales ou héréditaires. Les formules haut de gamme la prennent généralement en charge.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-golden-retriever-4" id="faq-btn-golden-retriever-4">
+          <span>La dysplasie de hanche du Golden Retriever est-elle remboursée ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-golden-retriever-4" hidden>
+        <p>Oui, sous réserve de souscription avant tout diagnostic radiographique. La dysplasie touche 19 à 25 % des Golden (OFA 2024). La prothèse totale de hanche coûte 3 000 à 6 000 € par hanche. Une assurance couvrant l'orthopédie est donc prioritaire pour cette race.</p>
+      </dd>
+    </div>
+  </dl>
 
   <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
-  <ul>
+  <ul class="section-similaires">
     <li><a href="/races/labrador">Labrador Retriever</a></li>
     <li><a href="/races/berger-australien">Berger Australien</a></li>
     <li><a href="/races/berger-allemand">Berger Allemand</a></li>
@@ -159,7 +213,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 13. Sources -->
   <h2>Sources</h2>
-  <ul class="sources-list">
+  <ul class="sources-list section-sources-list">
     <li>Morris Animal Foundation, Golden Retriever Lifetime Study — Annual Report 2023. morrisanimalfoundation.org</li>
     <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
     <li>OFA (Orthopedic Foundation for Animals), Hip Dysplasia Statistics by Breed — Golden Retriever, 2024. ofa.org</li>

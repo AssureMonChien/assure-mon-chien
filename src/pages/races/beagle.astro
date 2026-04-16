@@ -20,19 +20,23 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Beagle</h2>
-  <table class="data-table">
-    <thead>
-      <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Alimentation (format moyen, qualité premium)</td><td>350 – 600 €</td></tr>
-      <tr><td>Suivi vétérinaire annuel (vaccins, vermifuge, antiparasitaires)</td><td>200 – 400 €</td></tr>
-      <tr><td>Nettoyage auriculaire et hygiène (oreilles)</td><td>60 – 150 €</td></tr>
-      <tr><td>Accessoires, jouets, clôture ou longe (fugue)</td><td>100 – 250 €</td></tr>
-      <tr><td>Assurance santé (formule intermédiaire)</td><td>250 – 420 €</td></tr>
-      <tr><td>Imprévus vétérinaires (hors assurance)</td><td>150 – 500 €</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (format moyen, qualité premium)</td><td>350 – 600 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, vermifuge, antiparasitaires)</td><td>200 – 400 €</td></tr>
+        <tr><td>Nettoyage auriculaire et hygiène (oreilles)</td><td>60 – 150 €</td></tr>
+        <tr><td>Accessoires, jouets, clôture ou longe (fugue)</td><td>100 – 250 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>250 – 420 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>150 – 500 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   <p class="source">Source : FACCO Enquête nationale 2024 ; The Kennel Club UK Beagle Health Survey 2022 ; SantéVet grille tarifaire 2025.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
@@ -41,39 +45,47 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p>
     Selon la grande enquête de santé du Kennel Club UK publiée en 2022 et portant sur plus de 1 300 Beagles, l'épilepsie primaire idiopathique est la pathologie héréditaire la plus fréquente de la race : elle touche environ 5 % des individus et se déclare généralement entre 1 et 5 ans. Les otites chroniques affectent 20 à 30 % des Beagles en raison de la morphologie auriculaire. L'hypothyroïdie, sous-diagnostiquée, concernerait 5 à 8 % des adultes. Le syndrome de Musladin-Lueke, spécifique au Beagle, est plus rare mais sans traitement curatif.
   </p>
-  <table class="data-table">
-    <thead>
-      <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Épilepsie primaire idiopathique</td><td>~5 % (héréditaire)</td><td>300 – 800 €/an</td></tr>
-      <tr><td>Otites chroniques</td><td>20 – 30 %</td><td>100 – 600 €/épisode</td></tr>
-      <tr><td>Hypothyroïdie</td><td>5 – 8 % (adultes)</td><td>150 – 500 €/an</td></tr>
-      <tr><td>Dysplasie de hanche</td><td>5 – 8 %</td><td>1 000 – 4 000 €</td></tr>
-      <tr><td>Hernie discale (IVDD)</td><td>4 – 6 % (> 5 ans)</td><td>1 500 – 5 000 €</td></tr>
-      <tr><td>Syndrome de Musladin-Lueke (MLS)</td><td>&lt; 1 % (porteurs : 5–8 %)</td><td>200 – 800 €</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Épilepsie primaire idiopathique</td><td>~5 % (héréditaire)</td><td>300 – 800 €/an</td></tr>
+        <tr><td>Otites chroniques</td><td>20 – 30 %</td><td>100 – 600 €/épisode</td></tr>
+        <tr><td>Hypothyroïdie</td><td>5 – 8 % (adultes)</td><td>150 – 500 €/an</td></tr>
+        <tr><td>Dysplasie de hanche</td><td>5 – 8 %</td><td>1 000 – 4 000 €</td></tr>
+        <tr><td>Hernie discale (IVDD)</td><td>4 – 6 % (> 5 ans)</td><td>1 500 – 5 000 €</td></tr>
+        <tr><td>Syndrome de Musladin-Lueke (MLS)</td><td>&lt; 1 % (porteurs : 5–8 %)</td><td>200 – 800 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   <p class="source">Source : The Kennel Club UK, Beagle Health Survey 2022 ; SCC Fiche race 2024 ; OFA Hip Dysplasia Statistics 2024.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
   <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Beagle</h2>
-  <table class="data-table">
-    <thead>
-      <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Bilan neurologique (EEG, IRM cérébrale)</td><td>800 – 1 800 €</td></tr>
-      <tr><td>Traitement antiépileptique annuel (phénobarbital)</td><td>150 – 400 €/an</td></tr>
-      <tr><td>Bilan sanguin semestriel (surveillance hépatique antiépileptiques)</td><td>80 – 180 €/an</td></tr>
-      <tr><td>Traitement otite chronique (consultation + traitement local)</td><td>80 – 250 €/épisode</td></tr>
-      <tr><td>Ablation chirurgicale du conduit auditif (otite sévère)</td><td>800 – 2 000 €</td></tr>
-      <tr><td>Dosage T4 libre (hypothyroïdie)</td><td>60 – 120 €</td></tr>
-      <tr><td>Lévothyroxine orale (traitement annuel hypothyroïdie)</td><td>120 – 350 €/an</td></tr>
-      <tr><td>IRM rachis + chirurgie décompression discale (IVDD)</td><td>2 500 – 6 500 €</td></tr>
-    </tbody>
-  </table>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bilan neurologique (EEG, IRM cérébrale)</td><td>800 – 1 800 €</td></tr>
+        <tr><td>Traitement antiépileptique annuel (phénobarbital)</td><td>150 – 400 €/an</td></tr>
+        <tr><td>Bilan sanguin semestriel (surveillance hépatique antiépileptiques)</td><td>80 – 180 €/an</td></tr>
+        <tr><td>Traitement otite chronique (consultation + traitement local)</td><td>80 – 250 €/épisode</td></tr>
+        <tr><td>Ablation chirurgicale du conduit auditif (otite sévère)</td><td>800 – 2 000 €</td></tr>
+        <tr><td>Dosage T4 libre (hypothyroïdie)</td><td>60 – 120 €</td></tr>
+        <tr><td>Lévothyroxine orale (traitement annuel hypothyroïdie)</td><td>120 – 350 €/an</td></tr>
+        <tr><td>IRM rachis + chirurgie décompression discale (IVDD)</td><td>2 500 – 6 500 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   <p class="source">Source : CHVA France 2024 ; SNVEL ; VetAgro Sup Lyon 2025 ; grilles tarifaires cliniques vétérinaires françaises 2024-2025.</p>
 
   <!-- 5. Risques financiers spécifiques -->
@@ -84,7 +96,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Beagle</h2>
-  <ul>
+  <ul class="section-prevention">
     <li>Nettoyer les oreilles hebdomadairement avec un nettoyant auriculaire vétérinaire adapté pour prévenir les otites chroniques.</li>
     <li>Faire doser la T4 libre dès 4 ans en cas de prise de poids inexpliquée, léthargie ou chute de poil symétrique.</li>
     <li>Demander un test ADN pour le syndrome de Musladin-Lueke (MLS) à l'éleveur avant l'achat du chiot.</li>
@@ -116,30 +128,72 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Beagle</h2>
-  <details>
-    <summary>L'épilepsie primaire du Beagle est-elle couverte par l'assurance ?</summary>
-    <p>Oui, à condition que la première crise survienne après la souscription. Les formules couvrant les maladies chroniques prennent en charge le traitement antiépileptique à vie (300 à 800 €/an) et les bilans neurologiques. Souscrire avant 12 mois est la stratégie la plus sûre.</p>
-  </details>
-  <details>
-    <summary>À quel âge assurer son Beagle pour éviter les exclusions épilepsie ?</summary>
-    <p>Avant 12 mois, avant toute crise. L'épilepsie primaire débute entre 1 et 5 ans chez le Beagle. Toute souscription postérieure à la première crise entraîne l'exclusion définitive de toutes les pathologies neurologiques.</p>
-  </details>
-  <details>
-    <summary>Les otites chroniques du Beagle sont-elles remboursées ?</summary>
-    <p>Oui, les soins d'otologie (consultations, traitements locaux, lavages auriculaires) sont couverts par les formules maladies. Une otite récidivante coûte 80 à 250 € par épisode. Pour un Beagle touché 3 à 4 fois par an, le remboursement est significatif.</p>
-  </details>
-  <details>
-    <summary>Quel budget mensuel pour assurer un Beagle ?</summary>
-    <p>Entre 18 et 30 €/mois selon l'âge et la formule. Le Beagle présente un risque modéré qui se traduit par des primes accessibles, même avec une couverture maladies chroniques incluant épilepsie et hypothyroïdie.</p>
-  </details>
-  <details>
-    <summary>Le syndrome de Musladin-Lueke est-il couvert par l'assurance ?</summary>
-    <p>Le MLS est une maladie héréditaire rare : vérifiez que votre contrat ne l'exclut pas dans une clause générale "maladies congénitales". Les frais liés au MLS (suivi orthopédique, gestion de la douleur) peuvent atteindre 200 à 800 €.</p>
-  </details>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-beagle-0" id="faq-btn-beagle-0">
+          <span>L'épilepsie primaire du Beagle est-elle couverte par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-beagle-0" hidden>
+        <p>Oui, à condition que la première crise survienne après la souscription. Les formules couvrant les maladies chroniques prennent en charge le traitement antiépileptique à vie (300 à 800 €/an) et les bilans neurologiques. Souscrire avant 12 mois est la stratégie la plus sûre.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-beagle-1" id="faq-btn-beagle-1">
+          <span>À quel âge assurer son Beagle pour éviter les exclusions épilepsie ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-beagle-1" hidden>
+        <p>Avant 12 mois, avant toute crise. L'épilepsie primaire débute entre 1 et 5 ans chez le Beagle. Toute souscription postérieure à la première crise entraîne l'exclusion définitive de toutes les pathologies neurologiques.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-beagle-2" id="faq-btn-beagle-2">
+          <span>Les otites chroniques du Beagle sont-elles remboursées ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-beagle-2" hidden>
+        <p>Oui, les soins d'otologie (consultations, traitements locaux, lavages auriculaires) sont couverts par les formules maladies. Une otite récidivante coûte 80 à 250 € par épisode. Pour un Beagle touché 3 à 4 fois par an, le remboursement est significatif.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-beagle-3" id="faq-btn-beagle-3">
+          <span>Quel budget mensuel pour assurer un Beagle ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-beagle-3" hidden>
+        <p>Entre 18 et 30 €/mois selon l'âge et la formule. Le Beagle présente un risque modéré qui se traduit par des primes accessibles, même avec une couverture maladies chroniques incluant épilepsie et hypothyroïdie.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-beagle-4" id="faq-btn-beagle-4">
+          <span>Le syndrome de Musladin-Lueke est-il couvert par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-beagle-4" hidden>
+        <p>Le MLS est une maladie héréditaire rare : vérifiez que votre contrat ne l'exclut pas dans une clause générale "maladies congénitales". Les frais liés au MLS (suivi orthopédique, gestion de la douleur) peuvent atteindre 200 à 800 €.</p>
+      </dd>
+    </div>
+  </dl>
 
   <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
-  <ul>
+  <ul class="section-similaires">
     <li><a href="/races/basset-hound">Basset Hound</a></li>
     <li><a href="/races/jack-russell">Jack Russell Terrier</a></li>
     <li><a href="/races/cocker-spaniel">Cocker Spaniel</a></li>
@@ -158,7 +212,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 
   <!-- 13. Sources -->
   <h2>Sources</h2>
-  <ul class="sources-list">
+  <ul class="sources-list section-sources-list">
     <li>The Kennel Club UK, Beagle Health Survey 2022. thekennelclub.org.uk</li>
     <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
     <li>SCC (Société Centrale Canine), Fiche race Beagle 2024. scc.asso.fr</li>

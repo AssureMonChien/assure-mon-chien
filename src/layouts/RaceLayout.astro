@@ -86,6 +86,18 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
 
 </Layout>
 
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const answerId = btn.getAttribute('aria-controls');
+      const answer = document.getElementById(answerId);
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
 <style is:global>
 /* ══════════════════════════════════════════════════════
    PAGE CONTENT — conteneur principal (hors hero)
@@ -283,6 +295,106 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   font-size: 0.9rem;
   color: #444;
   line-height: 1.65;
+}
+
+/* ── Accordéon JS (faq-item system) ── */
+.faq-list {
+  margin: 0;
+  padding: 0;
+}
+.faq-item {
+  border: 1px solid #e0e8e4;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+.faq-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  background: #fafcfb;
+  border: none;
+  text-align: left;
+  color: #222;
+  gap: 0.5rem;
+}
+.faq-btn:hover {
+  background: #f0f9f5;
+}
+.faq-btn[aria-expanded="true"] {
+  background: #e8f7f2;
+  color: #0f6e56;
+}
+.chevron {
+  flex-shrink: 0;
+  color: #0f6e56;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+.faq-btn[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+.faq-answer {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.65;
+}
+.faq-answer p {
+  margin: 0;
+}
+
+/* ── Pictos listes ── */
+.section-prevention {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.5rem;
+}
+.section-prevention li {
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  font-size: 0.91rem;
+  color: #333;
+}
+.section-prevention li::before {
+  content: "💡";
+  font-size: 0.95rem;
+  margin-right: 8px;
+}
+
+.section-similaires {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.5rem;
+}
+.section-similaires li {
+  padding: 0.4rem 0;
+  font-size: 0.91rem;
+}
+.section-similaires li::before {
+  content: "🐕";
+  font-size: 0.85rem;
+  margin-right: 8px;
+}
+
+.section-sources-list li::before {
+  content: "📄";
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+/* ── Tableaux mobile ── */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0 0.75rem;
 }
 
 /* ── Chiffres clés base (KeyFigures.astro enrichit) ── */
