@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Cavalier King Charles : Risques & Meilleures Offres 2026"
-  description="Le Cavalier King Charles est touché à quasi 100 % par la cardiopathie mitrale et à 25–70 % par la syringomyélie. Découvrez les meilleures assurances pour couvrir ces pathologies inévitables."
+  title="Assurance Cavalier King Charles : MVD & Syringomyélie | 2026"
+  description="Cavalier King Charles : MVD (~100 % à 10 ans), syringomyélie (25–70 %). Pathologies quasi universelles. Comparez les meilleures assurances. Guide 2026."
   nom="Cavalier King Charles"
   slug="cavalier-king-charles"
   taille="petite"
   risque="eleve"
+  kf={[
+    { value: "~100 %", label: "valvulopathie mitrale (MVD) à 10 ans" },
+    { value: "300 – 480 €", label: "assurance annuelle" },
+    { value: "25 – 70 %", label: "syringomyélie (IRM)" },
+    { value: "8 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Derrière le regard velouté du Cavalier King Charles se cache une réalité médicale que tout propriétaire devrait connaître avant l'adoption : cette race cumule deux maladies héréditaires quasi universelles — la valvulopathie mitrale et la syringomyélie liée à la malformation de Chiari. Les frais vétérinaires d'un Cavalier peuvent dépasser 2 000 € par an en phase cardiaque avancée. Anticiper par une assurance souscrite dès le plus jeune âge est la seule stratégie financièrement viable pour accompagner ce chien tout au long de sa vie.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Cavalier King Charles</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -35,7 +43,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Baromètre des dépenses animales 2024 ; SantéVet Observatoire des frais vétérinaires 2023</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Cavalier King Charles</h2>
+  <p>
+    Le Cavalier King Charles présente le taux de valvulopathie mitrale dégénérative (MVD) le plus élevé de toutes les races canines, documenté par Haggström et al. (Journal of Veterinary Medicine, 2018) : 50 % des individus sont atteints à 5 ans, pratiquement 100 % à 10 ans. La malformation de Chiari et la syringomyélie, liées à la morphologie crânienne brachycéphale, touchent 25 à 70 % des individus selon les lignées étudiées par IRM — une pathologie douloureuse chronique souvent sous-diagnostiquée car ses signes (grattage répété, hypersensibilité cervicale) peuvent rester discrets.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -54,6 +66,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Cavalier Health UK MVD Breeding Protocol Statistics 2023 ; Haggström et al., Journal of Veterinary Internal Medicine 2018 ; Club Français du Cavalier King Charles</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Cavalier King Charles</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -74,9 +87,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : Grille tarifaire vétérinaires spécialistes France 2024 ; Clinique vétérinaire universitaire ENVA Maisons-Alfort</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>Le Cavalier King Charles est statistiquement la race pour laquelle le risque d'exposition à des frais vétérinaires élevés est le plus prévisible. La valvulopathie mitrale dégénérative (MVD) n'est pas une éventualité mais une certitude : 100 % des Cavaliers développent cette cardiopathie à des degrés variables avant l'âge de 10 ans. Le protocole EPIC (Early treatment of Preclinical MVD) recommande d'initier le traitement dès l'apparition d'un agrandissement cardiaque, bien avant les symptômes cliniques. Parallèlement, la syringomyélie — cavités de liquide céphalorachidien dans la moelle épinière causant des douleurs neuropathiques intenses — touche entre 25 et 70 % des individus selon les études IRM systématiques. Ces deux conditions chroniques, cumulées sur une espérance de vie de 9 à 14 ans, génèrent des frais pouvant dépasser 25 000 € sur la durée de vie du chien sans assurance.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Cavalier King Charles</h2>
   <ul class="section-prevention">
     <li>Exiger les résultats de l'échocardiographie des deux parents avant l'achat (protocole MVD Breeding Protocol : absence de souffle jusqu'à 2,5 ans chez les deux parents).</li>
@@ -88,17 +103,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance santé avant les 12 mois du chiot, avant tout diagnostic cardiaque.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Cavalier King Charles ?</h2>
   <p>La question n'est pas de savoir si votre Cavalier King Charles développera une pathologie cardiaque ou neurologique, mais quand. Avec une prévalence de 100 % pour la MVD à 10 ans, les frais vétérinaires associés sont inévitables : échocardiographies semestrielles, traitement médicamenteux à vie (Vetmedin, furosémide, bénazépril), hospitalisations pour décompensation. Une assurance souscrite avant les 12 mois du chiot, avant tout souffle détectable à l'auscultation, permet de figer des conditions tarifaires favorables et de couvrir l'intégralité de ces soins sans plafond de durée. Différer la souscription d'un seul mois peut suffire à exclure définitivement les cardiopathies du contrat.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Cavalier King Charles ?</h2>
   <p>Pour cette race, seule une formule complète couvrant les maladies chroniques sans limitation de durée répond aux besoins réels. Vérifiez impérativement : la prise en charge des cardiopathies (MVD) sans exclusion après diagnostic, la couverture de l'IRM et de la chirurgie neurologique (syringomyélie), et le remboursement des traitements à vie. Les formules "accidents seuls" ou avec plafonds bas par pathologie sont totalement inadaptées au profil de santé du Cavalier. Privilégiez un remboursement à 100 % des frais réels avec un plafond annuel d'au moins 3 000 €. Souscrivez impérativement avant 12 mois.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Cavalier King Charles</h2>
   <p>Le Cavalier King Charles séduit principalement les familles avec enfants en bas âge, les personnes âgées à la recherche d'un compagnon affectueux, et les citadins vivant en appartement. Sa nature douce et son besoin modéré d'exercice en font un chien idéal pour les modes de vie variés. Cependant, son profil médical exige un propriétaire prêt à s'investir dans un suivi vétérinaire régulier et à absorber des coûts de santé significatifs sur le long terme. Le budget annuel total d'un Cavalier en bonne santé dépasse facilement 1 500 € ; en phase cardiaque traitée, il peut atteindre 3 000 à 4 000 € par an.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Cavalier King Charles</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -163,6 +182,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/king-charles">King Charles Spaniel</a> — race sœur partageant les mêmes prédispositions cardiaques et neurologiques héréditaires</li>
@@ -173,13 +193,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">~100 %</span><span class="figure-label">prévalence MVD à 10 ans</span></div>
-      <div class="figure"><span class="figure-value">1 500 €</span><span class="figure-label">coût IRM syringomyélie</span></div>
-      <div class="figure"><span class="figure-value">28 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">9–14 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">~100 %</span><span class="figure-label">des Cavaliers développent une MVD avant 10 ans (Haggström 2018)</span></div>
+      <div class="figure"><span class="figure-value">3 000 €</span><span class="figure-label">coût annuel traitement insuffisance cardiaque congestive stade C</span></div>
+      <div class="figure"><span class="figure-value">25 – 70 %</span><span class="figure-label">des Cavaliers affectés par la syringomyélie selon les lignées (IRM)</span></div>
+      <div class="figure"><span class="figure-value">8 000</span><span class="figure-label">naissances de Cavaliers King Charles par an en France</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Haggström J. et al., "Effect of pimobendan or benazepril hydrochloride on survival times in dogs with congestive heart failure", <em>Journal of Veterinary Internal Medicine</em>, 2018</li>

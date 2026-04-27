@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Shih Tzu : Risques & Meilleures Offres 2026"
-  description="Le Shih Tzu est brachycéphale et exposé aux ulcères cornéens et aux hernies discales. Découvrez les meilleures assurances adaptées aux risques spécifiques du Shih Tzu."
+  title="Assurance Shih Tzu : Entropion & BOAS | Comparatif 2026"
+  description="Shih Tzu : entropion (25–35 %), BOAS modéré, luxation de rotule, hernie discale cervicale. Morphologie brachycéphale. Comparez les assurances. Guide 2026."
   nom="Shih Tzu"
   slug="shih-tzu"
   taille="petite"
   risque="modere"
+  kf={[
+    { value: "25 – 35 %", label: "entropion palpébral" },
+    { value: "200 – 380 €", label: "assurance annuelle" },
+    { value: "15 – 25 %", label: "luxation de rotule" },
+    { value: "12 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Petit lion à la crinière royale, le Shih Tzu associe douceur et élégance dans un format compact parfaitement adapté à la vie en appartement. Mais derrière ses yeux saillants et son museau court se cachent des fragilités médicales réelles : brachycéphalie modérée, vulnérabilité ophtalmologique marquée, hernie discale de type chondrodystrophique et pathologies rénales héréditaires dans certaines lignées. Un propriétaire averti, capable de détecter précocement les signes cliniques, peut considérablement limiter les complications et maîtriser le coût vétérinaire global de ce compagnon attachant et longévif.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Shih Tzu</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -35,7 +43,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Baromètre des animaux de compagnie 2024 ; enquête SNVEL tarifs pratiqués 2024.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Shih Tzu</h2>
+  <p>
+    Selon le Shih Tzu Club UK (2023) et les données vétérinaires de la WSAVA, l'entropion palpébral touche 25 à 35 % des Shih Tzu en raison du faciès brachycéphale et des plis cutanés péri-orbitaires sélectionnés par l'élevage, pouvant provoquer des lésions cornéennes irréversibles en l'absence de correction chirurgicale précoce. Le syndrome brachycéphale obstructif (BOAS) de forme modérée, la luxation de la rotule et la hernie discale cervicale — liée à la morphologie chondrodystrophique de la race — constituent un ensemble de pathologies morphologiques justifiant une surveillance vétérinaire régulière.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -54,6 +66,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Société Centrale Canine (SCC) 2024 ; British Veterinary Association BVA Brachycephalic Breed Health Report 2023 ; OFA Health Statistics Database 2024.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Shih Tzu</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -74,9 +87,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : enquête tarifs cliniques vétérinaires France 2024–2025 (SNVEL) ; grille tarifaire assureurs santé animale 2024.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>Le Shih Tzu présente un profil de risque modéré mais diversifié. L'entropion palpébral, fréquent en raison de la peau abondante du visage, nécessite une chirurgie correctrice qui, si elle est retardée, expose à des ulcères cornéens récidivants pouvant évoluer vers la perforation. La kératite sèche (KCS), pathologie auto-immune de la glande lacrymale, impose un traitement ophtalmologique à vie dont le coût cumulé sur 12 ans peut dépasser 5 000 €. La hernie discale de type chondrodystrophique (IVDD) est la complication la plus redoutée : une extrusion aiguë peut entraîner une paralysie du jour au lendemain, nécessitant une IRM et une chirurgie de décompression en urgence (2 500 à 5 500 €). Enfin, les reins polykystiques dans certaines lignées peuvent conduire à une insuffisance rénale chronique coûteuse avant l'âge de 5 ans.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Shih Tzu</h2>
   <ul class="section-prevention">
     <li>Consulter un ophtalmologue vétérinaire dès 6 mois pour évaluer l'entropion et la production lacrymale (test de Schirmer).</li>
@@ -88,17 +103,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance santé dès l'acquisition, avant toute consultation vétérinaire.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Shih Tzu ?</h2>
   <p>Malgré son profil de risque modéré, le Shih Tzu accumule des pathologies dont plusieurs nécessitent des traitements à vie. La KCS seule représente plusieurs centaines d'euros par an en collyres et consultations. Une hernie discale aiguë ou une proptose oculaire peut survenir de façon imprévisible et générer 2 000 à 5 000 € en une seule urgence. L'assurance protège le budget familial et garantit que les décisions de soins restent guidées par le bien-être de l'animal, et non par une contrainte financière.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Shih Tzu ?</h2>
   <p>Pour un Shih Tzu, une formule maladies et accidents avec couverture ophtalmologique et neurologie est recommandée. Vérifiez que le contrat inclut : les pathologies brachycéphales, les urgences ophtalmologiques (proptose, ulcères perforants), la hernie discale (IRM + chirurgie) et les maladies chroniques (KCS, insuffisance rénale). Un plafond annuel minimum de 2 500 € et une carence maladie inférieure à 30 jours sont des critères essentiels.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Shih Tzu</h2>
   <p>Le Shih Tzu est particulièrement prisé des seniors, des personnes seules et des familles vivant en appartement. Son caractère doux, sa faible activité physique et son attachement profond à ses maîtres en font un compagnon idéal pour les personnes à mobilité réduite. Son toilettage exigeant crée un rituel quotidien qui favorise la détection précoce de problèmes cutanés et oculaires. La FACCO 2024 le classe parmi les races de petite taille les plus populaires en milieu urbain. Le propriétaire averti consacre en moyenne 30 minutes par jour aux soins du pelage et des yeux.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Shih Tzu</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -163,6 +182,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/bichon-frise">Bichon Frisé</a> — petite race robuste, profil de santé comparable, coûts de toilettage similaires</li>
@@ -173,13 +193,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">3 000 €</span><span class="figure-label">coût urgence proptose oculaire</span></div>
-      <div class="figure"><span class="figure-value">25 %</span><span class="figure-label">prévalence entropion palpébral</span></div>
-      <div class="figure"><span class="figure-value">20 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">13 ans</span><span class="figure-label">espérance de vie moyenne</span></div>
+      <div class="figure"><span class="figure-value">25 – 35 %</span><span class="figure-label">des Shih Tzus développent un entropion palpébral (Shih Tzu Club UK 2023)</span></div>
+      <div class="figure"><span class="figure-value">1 500 €</span><span class="figure-label">coût chirurgie entropion bilatéral</span></div>
+      <div class="figure"><span class="figure-value">15 – 25 %</span><span class="figure-label">présentent une luxation de rotule (morphologie compacte)</span></div>
+      <div class="figure"><span class="figure-value">12 000</span><span class="figure-label">naissances de Shih Tzus par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Société Centrale Canine (SCC) — Statistiques LOF et santé des races 2024</li>

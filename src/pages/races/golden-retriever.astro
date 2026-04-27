@@ -3,12 +3,18 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance Golden Retriever : Comparatif 2026"
-  description="Comparez les meilleures assurances santé pour votre Golden Retriever. Cancers, dysplasie, coûts réels, avis d'experts. Guide indépendant avril 2026."
+  title="Assurance Golden Retriever : Cancer & Dysplasie | 2026"
+  description="Golden Retriever : cancer (60 % après 10 ans), dysplasie de hanche (20 %), lymphome. Race la plus touchée par le cancer. Comparez les assurances. Guide 2026."
   nom="Golden Retriever"
   slug="golden-retriever"
   taille="grande"
   risque="eleve"
+  kf={[
+    { value: "~20 %", label: "dysplasie de hanche (OFA 2024)" },
+    { value: "300 – 480 €", label: "assurance annuelle" },
+    { value: "60 %", label: "risque cancer après 10 ans" },
+    { value: "15 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
@@ -204,10 +210,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">60 %</span><span class="figure-label">des Golden Retrievers meurent d'un cancer (Morris Animal Foundation 2023)</span></div>
-      <div class="figure"><span class="figure-value">8 000 €</span><span class="figure-label">coût moyen d'un traitement lymphome par chimiothérapie CHOP</span></div>
-      <div class="figure"><span class="figure-value">25 %</span><span class="figure-label">des Golden testés présentent une dysplasie de hanche (OFA 2024)</span></div>
-      <div class="figure"><span class="figure-value">12 000</span><span class="figure-label">naissances annuelles en France (FACCO 2024)</span></div>
+      <div class="figure"><span class="figure-value">20 %</span><span class="figure-label">des Golden Retrievers testés présentent une dysplasie de hanche (OFA 2024)</span></div>
+      <div class="figure"><span class="figure-value">8 000 €</span><span class="figure-label">coût moyen chimiothérapie lymphome (protocole CHOP 6 mois)</span></div>
+      <div class="figure"><span class="figure-value">60 %</span><span class="figure-label">des Golden Retrievers décèdent d'un cancer — première cause de mortalité</span></div>
+      <div class="figure"><span class="figure-value">15 000</span><span class="figure-label">naissances de Golden Retrievers par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 

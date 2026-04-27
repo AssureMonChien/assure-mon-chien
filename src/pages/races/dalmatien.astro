@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance Dalmatien : Risques & Meilleures Offres 2026"
-  description="Le Dalmatien est prédisposé à la surdité congénitale, aux calculs uratiques et à l'atrophie rétinienne. Découvrez les meilleures assurances pour cette race athlétique et élégante."
+  title="Assurance Dalmatien : Surdité Congénitale & Urolithiase | 2026"
+  description="Dalmatien : surdité congénitale (≈30 % unilatérale), calculs uratiques universels. Test BAER indispensable. Comparez les assurances chien. Guide 2026."
   nom="Dalmatien"
   slug="dalmatien"
   taille="grande"
   risque="modere"
+  kf={[
+    { value: "≈ 30 %", label: "surdité unilatérale (test BAER)" },
+    { value: "220 – 380 €", label: "assurance annuelle" },
+    { value: "100 %", label: "prédisposition calculs uratiques" },
+    { value: "3 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Le Dalmatien, rendu célèbre par son pelage à pois unique, est bien plus qu'un chien de cinéma : c'est un athlète endurant, curieux et sensible qui demande une activité physique soutenue. Mais derrière cette silhouette racée se cachent des particularités médicales uniques : une surdité congénitale héréditaire touchant 30 % des individus, un métabolisme de l'acide urique atypique responsable de calculs rénaux douloureux, et une prédisposition aux pathologies ophtalmologiques. Ces spécificités font du Dalmatien un chien dont les frais vétérinaires peuvent surprendre des propriétaires non préparés.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Dalmatien</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -37,7 +45,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Estimation 2025 basée sur les données FACCO et tarifs moyens vétérinaires français.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Dalmatien</h2>
+  <p>
+    Le Dalmatien présente deux particularités génétiques documentées depuis les années 1990 et confirmées par les travaux de Strain (1999) et Geigy et al. (2003). La surdité congénitale, liée au gène d'expression du pigment, touche environ 30 % des individus en forme unilatérale et 5 % en forme bilatérale — un test BAER (potentiels évoqués auditifs) est indispensable dès 6 semaines. L'incapacité génétique universelle à métaboliser l'acide urique génère une prédisposition aux calculs uratiques indépendante du mode de vie, nécessitant une alimentation adaptée tout au long de la vie du chien.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -56,6 +68,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Dalmatian Health Inc. ; OFA Statistics Dalmatian 2024 ; BAER Testing Database Dalmatians.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Dalmatien</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -75,9 +88,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : Tarifs moyens cliniques vétérinaires françaises 2024-2025.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>L'urolithiase uratique est le risque financier le plus imprévisible du Dalmatien. Contrairement aux autres races, le Dalmatien est génétiquement incapable de transformer l'acide urique en allantoïne soluble : tous les individus, sans exception, forment des précipités d'urate d'ammonium dans leurs voies urinaires. Un épisode obstructif aigu constitue une urgence chirurgicale à 1 500 – 4 000 €. Une alimentation strictement pauvre en purines (viandes blanches, évitement des abats, de l'anchois) réduit le risque sans l'éliminer. Par ailleurs, un Dalmatien sourd unilatéral nécessite une gestion comportementale spécifique et ne peut participer à certaines activités sportives ou professionnelles.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Dalmatien</h2>
   <ul class="section-prevention">
     <li>Faire réaliser un test BAER (dépistage auditif) sur le chiot avant 6 semaines pour détecter toute surdité</li>
@@ -89,17 +104,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance santé dès l'acquisition, avant tout diagnostic de calculs ou de surdité</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Dalmatien ?</h2>
   <p>La prédisposition universelle du Dalmatien aux calculs uratiques le distingue de toutes les autres races : tous les individus sont à risque, sans exception. Un seul épisode obstructif peut coûter 2 000 à 4 000 € en urgence. Couplée à la surdité (dépistage et suivi comportemental spécialisé) et aux possibles chirurgies orthopédiques, la note vétérinaire sur la vie d'un Dalmatien non assuré peut dépasser 10 000 €. Une assurance active avant tout diagnostic protège contre ces dépenses imprévues.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Dalmatien ?</h2>
   <p>Privilégiez une formule couvrant les chirurgies urinaires et la lithotripsie sans exclusion pour les pathologies génétiques. Les calculs uratiques étant une prédisposition de race connue, certains assureurs les excluent d'emblée — vérifiez les conditions générales. Une couverture incluant les spécialistes (ophtalmologie, chirurgie) et les hospitalisations d'urgence est idéale. Un tarif autour de 20 – 35 €/mois pour un Dalmatien adulte est un investissement largement rentabilisé dès le premier épisode de calculs obstructifs.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Dalmatien</h2>
   <p>Le propriétaire de Dalmatien est souvent une personne active pratiquant la course à pied, le vélo ou l'équitation — le Dalmatien est historiquement un chien de carrosse endurant. Il vit généralement en maison avec espace extérieur. Séduit par l'élégance unique du pelage à pois, il découvre parfois tardivement les spécificités diététiques de la race. Un propriétaire bien informé sur l'alimentation pauvre en purines et le dépistage BAER sera capable de prévenir une grande partie des pathologies coûteuses de son compagnon.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Dalmatien</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -164,6 +183,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/setter-irlandais">Setter Irlandais</a> — chien athlète de même gabarit, risques articulaires comparables</li>
@@ -174,13 +194,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">30 %</span><span class="figure-label">sourds unilatéraux dans la race</span></div>
-      <div class="figure"><span class="figure-value">4 000 €</span><span class="figure-label">chirurgie calculs obstructifs</span></div>
-      <div class="figure"><span class="figure-value">18 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">11-13 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">≈ 30 %</span><span class="figure-label">des Dalmatiens atteints de surdité unilatérale (Strain 1999)</span></div>
+      <div class="figure"><span class="figure-value">4 000 €</span><span class="figure-label">coût maximum traitement chirurgical urolithiase uratique</span></div>
+      <div class="figure"><span class="figure-value">100 %</span><span class="figure-label">des Dalmatiens prédisposés génétiquement aux calculs uratiques</span></div>
+      <div class="figure"><span class="figure-value">3 000</span><span class="figure-label">naissances de Dalmatiens par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Dalmatian Health Inc. — BAER Testing & Urate Statistics 2024</li>

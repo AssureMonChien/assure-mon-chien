@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Épagneul Breton : Risques & Meilleures Offres 2026"
-  description="L'Épagneul Breton est un chien de terrain résistant, prédisposé à l'épilepsie héréditaire et aux traumatismes de chasse. Découvrez les meilleures assurances pour ce chien de chasse polyvalent français."
+  title="Assurance Épagneul Breton : Dysplasie & Atopie | 2026"
+  description="Épagneul Breton : dysplasie de hanche (15–20 %), dermatite atopique, otites récidivantes. Race de chasse exposée. Comparez les assurances. Guide 2026."
   nom="Épagneul Breton"
   slug="epagneul-breton"
   taille="petite"
   risque="faible"
+  kf={[
+    { value: "15 – 20 %", label: "dysplasie de hanche (OFA)" },
+    { value: "200 – 360 €", label: "assurance annuelle" },
+    { value: "10 – 15 %", label: "dermatite atopique" },
+    { value: "10 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Première race française de chiens d'arrêt par le nombre d'inscriptions au LOF, l'Épagneul Breton est un chien de chasse polyvalent d'une robustesse remarquable. Compact, infatigable et d'une docilité exemplaire, il est également apprécié comme chien de famille. Ses prédispositions médicales — dysplasie de hanche modérée, atrophie rétinienne progressive, dermatite atopique et otites récurrentes liées à ses oreilles tombantes — sont gérables lorsqu'elles sont détectées précocement. Un suivi vétérinaire régulier et une couverture d'assurance adaptée permettent à ce compagnon actif de mener une carrière de chasse longue et épanouissante.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Épagneul Breton</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -35,7 +43,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Baromètre des animaux de compagnie 2024 ; enquête SNVEL tarifs pratiqués 2024.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes de l'Épagneul Breton</h2>
+  <p>
+    Selon les données radiographiques du Club de l'Épagneul Breton France (2023) et les statistiques OFA, la dysplasie de hanche constitue la pathologie orthopédique la plus surveillée dans la race, avec environ 15 à 20 % d'examens insuffisants parmi les chiens testés. L'atrophie rétinienne progressive (PRA) et la dermatite atopique, liées respectivement aux mutations héréditaires et à la sensibilité cutanée des races de chasse, complètent un tableau clinique où les otites récidivantes — favorisées par les oreilles tombantes et l'exposition aux milieux humides — représentent la première cause de consultation annuelle.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -53,6 +65,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Club de l'Épagneul Breton France 2024 ; OFA Health Statistics 2024 ; Société Centrale Canine (SCC) ; enquête SNVEL 2023.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Épagneul Breton</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -73,9 +86,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : enquête tarifs cliniques vétérinaires France 2024–2025 (SNVEL) ; grille tarifaire assureurs santé animale 2024.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>L'Épagneul Breton présente un profil de risque globalement faible par rapport aux races brachycéphales ou chondrodystrophiques, mais plusieurs pathologies peuvent générer des coûts significatifs. Les otites chroniques bilatérales sont la pathologie la plus fréquente et la plus coûteuse sur le long terme : traitées 4 à 6 fois par an à 120–200 € l'épisode, elles représentent 500 à 1 200 € annuels. Si une ablation du conduit auditif devient nécessaire, le coût chirurgical atteint 1 500 à 3 000 €. La dysplasie de hanche, même modérée, peut nécessiter une prothèse totale à 4 500 € par hanche en forme sévère. La dermatite atopique, si elle est non contrôlée, impose un traitement médicamenteux à vie. Les traumatismes liés à la chasse (épillets migrants, lacérations profondes, fractures) sont imprévisibles mais peuvent générer 500 à 2 000 € par incident.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Épagneul Breton</h2>
   <ul class="section-prevention">
     <li>Nettoyer les oreilles hebdomadairement avec un nettoyant auriculaire vétérinaire pour prévenir les otites chroniques.</li>
@@ -87,17 +102,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance santé dès l'acquisition, couvrant accidents, maladies chroniques et traumatismes de terrain.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Épagneul Breton ?</h2>
   <p>Bien que son profil de risque soit globalement faible, l'Épagneul Breton est un chien actif exposé à des incidents imprévisibles lors de la chasse. Un épillet migrant vers la cavité thoracique, une fracture lors d'un plongeon en sous-bois ou une dysplasie évolutive nécessitant une prothèse totale peuvent générer des frais de 2 000 à 5 000 € en une seule intervention. L'assurance offre la tranquillité d'esprit indispensable pour un chien de travail dont l'activité physique intense multiplie les risques d'accident.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Épagneul Breton ?</h2>
   <p>Pour un Épagneul Breton, une formule maladies et accidents avec couverture orthopédique (dysplasie, chirurgie hanche) est prioritaire. Vérifiez que le contrat couvre les accidents de chasse (corps étrangers, fractures, lacérations), les otites chroniques et les maladies chroniques (épilepsie, atopie). Un plafond annuel de 2 000 à 3 000 € est généralement suffisant. La carence maladie inférieure à 30 jours est un critère important pour couvrir les pathologies survenant dès les premières années.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Épagneul Breton</h2>
   <p>L'Épagneul Breton est avant tout le chien des chasseurs et des amateurs de nature. Sa polyvalence à la chasse (arrêt, rapport sur toutes catégories de gibier), son intelligence et sa docilité en font également un excellent chien de famille actif. La FACCO 2024 le classe parmi les races les plus présentes dans les régions rurales et péri-urbaines de l'ouest et du centre de la France. Le propriétaire type est un chasseur ou un sportif qui pratique régulièrement des activités en plein air avec son chien. Il connaît généralement bien les risques spécifiques à sa race et est attentif aux signes de fatigue ou de boiterie après les sorties de chasse.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Épagneul Breton</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -162,6 +181,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/setter-irlandais">Setter Irlandais</a> — chien de chasse élégant, dysplasie de hanche et atrophie rétinienne comparables</li>
@@ -172,13 +192,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">4 500 €</span><span class="figure-label">coût prothèse totale de hanche</span></div>
-      <div class="figure"><span class="figure-value">20 %</span><span class="figure-label">prévalence dysplasie de hanche</span></div>
-      <div class="figure"><span class="figure-value">18 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">13 ans</span><span class="figure-label">espérance de vie moyenne</span></div>
+      <div class="figure"><span class="figure-value">15 – 20 %</span><span class="figure-label">des Épagneuls Bretons présentent une dysplasie de hanche (OFA / CBEF 2023)</span></div>
+      <div class="figure"><span class="figure-value">4 500 €</span><span class="figure-label">coût maximum chirurgie orthopédique hanche (prothèse)</span></div>
+      <div class="figure"><span class="figure-value">10 – 15 %</span><span class="figure-label">développent une dermatite atopique liée à l'exposition aux milieux naturels</span></div>
+      <div class="figure"><span class="figure-value">10 000</span><span class="figure-label">naissances d'Épagneuls Bretons par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Club de l'Épagneul Breton France — Rapport santé et génétique 2024</li>

@@ -3,12 +3,18 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance Labrador Retriever : Comparatif 2026"
-  description="Comparez les meilleures assurances santé pour votre Labrador Retriever. Pathologies fréquentes, coûts réels, avis d'experts. Guide mis à jour en 2026."
+  title="Assurance Labrador Retriever : Dysplasie & Cancer | 2026"
+  description="Labrador : dysplasie de hanche (12 %), mutation POMC, lymphome. Coûts jusqu'à 12 000 €. Comparez les assurances chien adaptées. Guide expert mis à jour 2026."
   nom="Labrador Retriever"
   slug="labrador"
   taille="grande"
   risque="eleve"
+  kf={[
+    { value: "12 %", label: "dysplasie de hanche (OFA 2024)" },
+    { value: "300 – 480 €", label: "assurance annuelle" },
+    { value: "23 %", label: "porteurs mutation POMC" },
+    { value: "30 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
@@ -220,6 +226,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
       <div class="figure"><span class="figure-value">6 000 €</span><span class="figure-label">coût moyen d'une prothèse totale de hanche en France</span></div>
       <div class="figure"><span class="figure-value">23 %</span><span class="figure-label">des Labradors porteurs de la mutation POMC développent une obésité sévère</span></div>
       <div class="figure"><span class="figure-value">30 000</span><span class="figure-label">naissances de Labradors par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 

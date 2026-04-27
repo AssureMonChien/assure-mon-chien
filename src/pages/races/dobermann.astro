@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Dobermann : Risques & Meilleures Offres 2026"
-  description="Le Dobermann est touché à 40–60 % par la cardiomyopathie dilatée mortelle et à 70 % par la maladie de von Willebrand. Découvrez les meilleures assurances pour cette race au profil de santé critique."
+  title="Assurance Dobermann : CMD & von Willebrand | Comparatif 2026"
+  description="Dobermann : cardiomyopathie dilatée (40–70 %), von Willebrand I (70 % porteurs), Wobbler. Surveillance cardiaque obligatoire. Comparez les assurances. Guide 2026."
   nom="Dobermann"
   slug="dobermann"
   taille="grande"
   risque="eleve"
+  kf={[
+    { value: "40 – 70 %", label: "cardiomyopathie dilatée (CMD)" },
+    { value: "300 – 480 €", label: "assurance annuelle" },
+    { value: "≈ 70 %", label: "porteurs von Willebrand type I" },
+    { value: "5 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Race d'élite du monde cynophile, le Dobermann est une silhouette élégante et athlétique qui séduit par son intelligence et sa loyauté sans faille. Mais ce chien exceptionnel est menacé en silence par une cardiomyopathie dilatée (CMD) qui frappe entre 40 et 70 % de la race selon les études — souvent sans signe précurseur, parfois mortellement. À cette bombe à retardement cardiaque s'ajoutent le syndrome de Wobbler (compression médullaire cervicale), la maladie de von Willebrand type I, et l'hypothyroïdie. Le Dobermann est objectivement la race pour laquelle une assurance santé premium souscrite tôt a le retour sur investissement le plus élevé.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Dobermann</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -35,7 +43,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Enquête nationale sur les animaux de compagnie 2024 ; tarifs vétérinaires moyens France 2025.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Dobermann</h2>
+  <p>
+    Le Dobermann est la race présentant la plus forte incidence mondiale de cardiomyopathie dilatée (CMD), avec 40 à 70 % des individus affectés selon les études échocardiographiques de Calvert & Wall (JAVMA, 2001) et Wess et al. (JVIM, 2010). Cette pathologie progresse silencieusement pendant des années avant de générer arythmies ventriculaires et insuffisance cardiaque congestive — imposant un suivi holter et écho annuel dès 3 ans. La maladie de von Willebrand type I, présente chez environ 70 % des Dobermanns, est un facteur de risque hémorragique à signaler systématiquement avant tout acte chirurgical.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -54,6 +66,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Dobermann Pinscher Club of America DCM Research Program 2023 ; Meurs K.M. et al., Journal of Veterinary Cardiology 2022.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Dobermann</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -74,9 +87,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : Grille tarifaire SantéVet 2025 ; données cardiologie vétérinaire ENVA 2024 ; SNVEL honoraires 2024.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>La cardiomyopathie dilatée du Dobermann est le risque financier dominant. Entre 40 et 70 % des Dobermanns développent cette maladie entre 2 et 8 ans. Le suivi annuel par Holter ECG et échocardiographie coûte 400 à 700 € par an. Une fois la maladie déclarée, le traitement médical (pimobendane, sotalol, mexilétine) représente 400 à 1 200 € annuels supplémentaires. Une hospitalisation d'urgence pour décompensation cardiaque aiguë peut atteindre 2 000 à 3 500 €. Sur 8 à 10 ans de traitement, le coût total dépasse facilement 15 000 €. Le syndrome de Wobbler impose une IRM (1 200–2 000 €) puis une chirurgie de décompression (2 500–6 000 €) — sans garantie de récupération complète. La maladie de von Willebrand, présente chez environ 70 % des Dobermanns, ne coûte pas cher à surveiller mais peut transformer une chirurgie de routine en urgence hémorragique coûteuse sans préparation préopératoire adéquate.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Dobermann</h2>
   <ul class="section-prevention">
     <li>Programmer un premier Holter cardiaque dès l'âge de 2 ans, puis annuellement — c'est la seule méthode pour détecter la CMD avant la décompensation.</li>
@@ -88,17 +103,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance santé avant 2 ans et avant tout Holter documentant une arythmie.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Dobermann ?</h2>
   <p>Le Dobermann présente le profil de risque cardiaque le plus élevé de toutes les races canines. Passé 4 ans, les assureurs majorent les primes de 20 à 40 % et excluent les cardiopathies sur antécédents familiaux documentés. Un Dobermann assuré avant 2 ans avec un Holter normal bénéficie de la meilleure couverture au meilleur prix. Le coût cumulé du suivi cardiologique et des traitements sur 10 ans dépasse 15 000 € — sans compter une éventuelle décompensation aiguë ou une chirurgie du syndrome de Wobbler. L'assurance n'est pas une option pour le propriétaire responsable de Dobermann, c'est une nécessité.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Dobermann ?</h2>
   <p>Pour un Dobermann, seule une formule premium couvrant cardiologie (Holter, médicaments CMD), neurologie (IRM, chirurgie Wobbler) et hématologie (von Willebrand, gestion hémorragique) est vraiment adaptée. Un plafond annuel d'au moins 4 000 € est indispensable. Vérifiez explicitement la couverture du traitement CMD à vie — certains contrats plafonnent les maladies chroniques. Souscrivez avant 18 mois et avant tout Holter cardiologique documenté pour éviter toute exclusion sur antécédent. Comparez les délais de remboursement : les traitements chroniques nécessitent une assurance réactive.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Dobermann</h2>
   <p>Le propriétaire de Dobermann est généralement expérimenté, passionné de cynophilie et conscient des exigences de la race. Il apprécie les chiens élégants, intelligents et travailleurs, et investit dans une formation sérieuse et un suivi médical rigoureux. Informé des risques cardiaques de la race, il programme les Holters annuels et recherche un cardiologue vétérinaire de référence. Il a besoin d'un assureur offrant des plafonds élevés en cardiologie, une réactivité maximale dans le traitement des sinistres et une transparence totale sur les exclusions liées aux maladies héréditaires.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Dobermann</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -163,6 +182,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/rottweiler">Rottweiler</a> — grande race à risque orthopédique et oncologique élevé</li>
@@ -173,13 +193,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">6 000 €</span><span class="figure-label">chirurgie syndrome Wobbler</span></div>
-      <div class="figure"><span class="figure-value">60 %</span><span class="figure-label">Dobermanns touchés par la CMD</span></div>
-      <div class="figure"><span class="figure-value">30 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">10–13 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">40 – 70 %</span><span class="figure-label">des Dobermanns développent une CMD (Wess et al. JVIM 2010)</span></div>
+      <div class="figure"><span class="figure-value">3 500 €</span><span class="figure-label">coût annuel traitement insuffisance cardiaque CMD stade C</span></div>
+      <div class="figure"><span class="figure-value">≈ 70 %</span><span class="figure-label">des Dobermanns porteurs de la maladie de von Willebrand type I</span></div>
+      <div class="figure"><span class="figure-value">5 000</span><span class="figure-label">naissances de Dobermanns par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Dobermann Pinscher Club of America — DCM Research Program 2023</li>

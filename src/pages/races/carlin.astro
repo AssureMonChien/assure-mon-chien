@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Carlin (Pug) : Risques & Meilleures Offres 2026"
-  description="Le Carlin est l'une des races brachycéphales les plus sévèrement touchées, avec une encéphalite spécifique toujours fatale. Découvrez les meilleures assurances pour ce chien fragile."
+  title="Assurance Carlin : BOAS & Hemivertèbres | Comparatif 2026"
+  description="Carlin : BOAS sévère (>70 %), hemivertèbres (~40 %), kératite pigmentaire. Chirurgies répétées. Race brachycéphale à risque élevé. Comparatif 2026."
   nom="Carlin"
   slug="carlin"
   taille="petite"
   risque="eleve"
+  kf={[
+    { value: "> 70 %", label: "affectés par le BOAS sévère" },
+    { value: "300 – 540 €", label: "assurance annuelle" },
+    { value: "~ 40 %", label: "hemivertèbres (queue enroulée)" },
+    { value: "10 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Masque de clown et regard attendrissant, le Carlin (Pug) dissimule derrière sa rondeur une anatomie parmi les plus compromises du monde canin. Brachycéphale sévère, prédisposé aux hernies discales, à l'encéphalite fatale spécifique à la race et aux multiples pathologies oculaires, ce petit chien au caractère solaire génère parmi les coûts vétérinaires les plus élevés toutes races confondues. Adopter un Carlin sans assurance, c'est s'exposer à des dépenses imprévues pouvant dépasser 10 000 € sur la durée de vie du chien. Comprendre ses fragilités est la première étape pour lui offrir une vie confortable et sereine.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Carlin</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -35,7 +43,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Baromètre des animaux de compagnie 2024 ; enquête SNVEL tarifs pratiqués 2024.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Carlin</h2>
+  <p>
+    Le Carlin cumule les conséquences médicales de sa morphologie extrême sélectionnée depuis le XVIe siècle, aujourd'hui documentées par le Pug Dog Club of America (2023) et le congrès BSAVA (2023). Le syndrome brachycéphale obstructif (BOAS) sévère touche plus de 70 % des individus en raison d'un crâne raccourci entraînant sténose des narines, allongement du voile du palais et collapsus des voies aériennes. Les hemivertèbres, liées à la sélection de la queue enroulée, concernent environ 40 % des Carlins et peuvent évoluer vers une myélopathie progressive nécessitant une IRM et une chirurgie décompressive.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -54,6 +66,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Pug Dog Club of America Health & Research Committee 2023 ; BSAVA Congress Proceedings Brachycephalic Breeds 2023 ; Société Centrale Canine (SCC).</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Carlin</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -75,9 +88,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : enquête tarifs cliniques vétérinaires France 2024–2025 (SNVEL) ; grille tarifaire SantéVet sinistres 2024.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>Le Carlin cumule plusieurs pathologies onéreuses qui peuvent survenir dès les premières années de vie. La chirurgie BOAS complète est souvent recommandée avant 18 mois pour prévenir des lésions respiratoires irréversibles ; son coût moyen de 3 500 € en est le premier poste vétérinaire. Les hemivertèbres, présentes chez environ 40 % des Carlins à l'imagerie, ne nécessitent pas toujours une chirurgie, mais une décompression spinale d'urgence peut s'imposer en quelques heures, générant 4 000 à 7 000 € de frais combinés (IRM + acte chirurgical + hospitalisation). L'encéphalite du Carlin (PDE) est toujours fatale et survient entre 2 et 7 ans ; bien que peu fréquente, son bilan diagnostique (IRM + ponction LCR) atteint 1 500 à 2 500 €. Sur 10 ans, un propriétaire de Carlin dépense en moyenne 10 000 à 18 000 € en soins vétérinaires, hors prime d'assurance.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Carlin</h2>
   <ul class="section-prevention">
     <li>Faire évaluer les voies aériennes par un vétérinaire formé BOAS dès l'âge de 6 mois ; opérer tôt réduit les complications à long terme.</li>
@@ -89,17 +104,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance santé dès l'acquisition du chiot, avant toute consultation chez le vétérinaire.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Carlin ?</h2>
   <p>Le Carlin présente le profil de risque vétérinaire le plus élevé parmi les petites races. La chirurgie BOAS seule dépasse le budget annuel moyen d'assurance de nombreuses années. L'encéphalite PDE, les hemivertèbres et les pathologies oculaires viennent s'y ajouter dans une accumulation de frais qui peut désorganiser les finances d'une famille. L'assurance santé transforme ces pics imprévisibles en mensualités maîtrisées et garantit des décisions vétérinaires basées sur le bien-être de l'animal, non sur le coût des soins.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Carlin ?</h2>
   <p>Pour un Carlin, une formule couvrant les maladies à 100 % avec un plafond annuel élevé (minimum 3 000 €, idéalement illimité) est indispensable. Vérifiez que le contrat couvre explicitement les pathologies brachycéphales (BOAS), la neurologie (IRM, chirurgie spinale) et l'ophtalmologie. Évitez les formules accidents-only et les plafonds par acte inférieurs à 1 500 €. La carence maladie doit être inférieure à 30 jours. Souscrivez impérativement avant toute consultation vétérinaire pour le chiot.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Carlin</h2>
   <p>Le Carlin séduit avant tout les citadins vivant en appartement, les personnes seules ou les couples sans enfants attirés par son caractère affectueux et peu exigeant en termes d'exercice. Sa popularité sur les réseaux sociaux a attiré une nouvelle génération de propriétaires qui sous-estiment souvent la réalité médicale de la race. Le propriétaire idéal est prêt à investir dans des soins vétérinaires réguliers, à adapter son logement (climatisation en été indispensable) et à consacrer du temps aux soins quotidiens des plis. La FACCO 2024 indique que le Carlin figure parmi les 10 races les plus demandées en France malgré des réglementations européennes émergentes sur les races brachycéphales.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Carlin</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -164,6 +183,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/bouledogue-francais">Bouledogue Français</a> — brachycéphale sévère, profil BOAS et chirurgies similaires, risque financier comparable</li>
@@ -174,13 +194,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">3 500 €</span><span class="figure-label">coût moyen chirurgie BOAS complète</span></div>
-      <div class="figure"><span class="figure-value">70 %</span><span class="figure-label">des Carlins présentent un BOAS clinique</span></div>
-      <div class="figure"><span class="figure-value">30 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">12 ans</span><span class="figure-label">espérance de vie moyenne</span></div>
+      <div class="figure"><span class="figure-value">> 70 %</span><span class="figure-label">des Carlins présentent un BOAS sévère (Pug Dog Club of America 2023)</span></div>
+      <div class="figure"><span class="figure-value">5 000 €</span><span class="figure-label">coût maximum chirurgie BOAS + voies aériennes</span></div>
+      <div class="figure"><span class="figure-value">~ 40 %</span><span class="figure-label">présentent des hemivertèbres liées à la queue enroulée</span></div>
+      <div class="figure"><span class="figure-value">10 000</span><span class="figure-label">naissances de Carlins par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Pug Dog Club of America — Health & Research Committee Report 2023</li>

@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Saint-Bernard : Risques & Meilleures Offres 2026"
-  description="Le Saint-Bernard présente jusqu'à 47 % de dysplasie de hanche. Découvrez les meilleures assurances pour couvrir les pathologies coûteuses de cette grande race de sauvetage."
+  title="Assurance Saint-Bernard : Dysplasie 47 % & DTG | 2026"
+  description="Saint-Bernard : dysplasie de hanche (47,7 % OFA), dilatation-torsion gastrique, ostéosarcome. Race géante à risques majeurs. Comparez les assurances. Guide 2026."
   nom="Saint-Bernard"
   slug="saint-bernard"
   taille="grande"
   risque="eleve"
+  kf={[
+    { value: "47,7 %", label: "dysplasie de hanche (OFA 2024)" },
+    { value: "350 – 540 €", label: "assurance annuelle" },
+    { value: "60 – 90 kg", label: "poids adulte (gabarit géant)" },
+    { value: "2 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Légende vivante des Alpes et géant au cœur d'or, le Saint-Bernard impressionne par sa stature et sa douceur proverbiale. Mais cette masse imposante — 60 à 90 kg selon les individus — concentre dans un même corps les risques les plus lourds des grandes races : dysplasie de hanche avec l'un des taux les plus élevés de l'espèce canine, dilatation-torsion gastrique mortelle en quelques heures, ostéosarcome et syndrome de Wobbler. Chaque acte vétérinaire est majoré par le gabarit. Une assurance adaptée n'est pas un luxe pour cette race : c'est une nécessité financière documentée par les statistiques orthopédiques mondiales.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Saint-Bernard</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -34,7 +42,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO/TNS Sofres, enquête budget animal de compagnie 2023 ; grille tarifaire CHV France 2024.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Saint-Bernard</h2>
+  <p>
+    Avec un taux de dysplasie de hanche de 47,7 % selon les statistiques OFA 2024 — l'un des plus élevés parmi toutes les races canines recensées —, le Saint-Bernard figure au premier rang des races géantes à risque orthopédique majeur. Cette prévalence exceptionnelle est liée à la combinaison d'un gabarit extrême (60 à 90 kg), d'une croissance osseuse rapide et d'une sélection historique privilégiant le type morphologique sur la santé articulaire. La dilatation-torsion gastrique (DTG), urgence vitale nécessitant une intervention chirurgicale dans les 6 heures, constitue la deuxième menace létale de la race en raison de son thorax particulièrement profond.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -53,6 +65,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : OFA Hip Dysplasia by Breed — Saint Bernard 47,7 % affected, 2023 ; Saint Bernard Club of America Health Survey 2023.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Saint-Bernard</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -73,9 +86,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : Grille tarifaire vétérinaire France 2024 ; SNVEL ; CHV Alfort, Nantes, Vetagro-Sup Lyon.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>Le Saint-Bernard cumule les risques des très grandes races à un niveau rarement atteint. Son taux de dysplasie de hanche de 47,7 % (registre OFA, 2023) signifie que près d'un Saint-Bernard sur deux présentera une anomalie articulaire nécessitant un suivi au minimum, une chirurgie dans les cas sévères. Deux prothèses totales de hanche représentent un investissement de 7 000 à 11 000 €. La dilatation-torsion gastrique (DTG) est une urgence vitale : sans chirurgie dans les 4 à 6 heures, le taux de mortalité dépasse 80 %. L'intervention coûte entre 2 000 et 4 500 €. L'ostéosarcome touche préférentiellement les os longs des très grandes races : le protocole complet (amputation + chimiothérapie) dépasse 10 000 €. Le syndrome de Wobbler (myélopathie cervicale spondylomyélopathique), nécessitant une IRM et souvent une décompression neurochirurgicale, représente 3 000 à 8 000 €. Sur la courte vie du Saint-Bernard (8 à 10 ans), les frais vétérinaires cumulés peuvent atteindre 15 000 à 25 000 € sans assurance.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Saint-Bernard</h2>
   <ul class="section-prevention">
     <li>Radiographies de hanche et de coude avant 18 mois avec notation HD/ED officielle SCC pour dépister la dysplasie et adapter la gestion de la croissance.</li>
@@ -87,17 +102,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance avant 12 mois, avant tout bilan radiographique ou spécialisé susceptible de créer une exclusion pour préexistence.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Saint-Bernard ?</h2>
   <p>Avec un taux de dysplasie de hanche de 47,7 %, un risque de DTG mortelle parmi les plus élevés des grandes races, et une prédisposition à l'ostéosarcome, le Saint-Bernard est objectivement l'une des races canines les plus coûteuses à soigner en France. Une assurance souscrite avant 12 mois protège contre des frais imprévisibles pouvant dépasser 10 000 € sur une seule urgence chirurgicale. À 40–55 €/mois de prime, l'assurance représente un ratio de protection exceptionnel face aux risques documentés de cette race emblématique.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Saint-Bernard ?</h2>
   <p>Pour un Saint-Bernard, une formule avec plafond annuel élevé (minimum 5 000 €, idéalement sans plafond) et couverture chirurgie orthopédique incluant les prothèses est prioritaire. La couverture des urgences vitales (DTG, ostéosarcome) est indispensable. Vérifiez que l'oncologie (chimiothérapie, amputation) est explicitement incluse. Les contrats plafonnant les remboursements orthopédiques à des montants inférieurs à 3 000 € sont insuffisants pour cette race. Une formule intégrant la neurochirurgie (syndrome de Wobbler) est un plus significatif.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Saint-Bernard</h2>
   <p>Le propriétaire de Saint-Bernard est généralement amoureux des grandes races calmes et affectueuses. Il vit en maison avec grand jardin, souvent en zone rurale ou péri-urbaine, et a la capacité financière d'assumer les coûts spécifiques à une très grande race. Il est souvent conscient des risques orthopédiques mais peut sous-estimer le risque de DTG ou d'ostéosarcome. En France, le Saint-Bernard reste une race relativement rare (quelques centaines d'inscriptions SCC annuelles), appréciée des familles avec enfants pour sa douceur proverbiale. Les propriétaires avertis s'affilient au Saint Bernard Club Suisse-Romand France et participent aux programmes de dépistage orthopédique.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Saint-Bernard</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -162,6 +181,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/montagne-des-pyrenees">Montagne des Pyrénées</a> — grande race blanche aux pathologies orthopédiques similaires et au tempérament proche</li>
@@ -172,13 +192,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">47,7 %</span><span class="figure-label">prévalence dysplasie de hanche (OFA)</span></div>
-      <div class="figure"><span class="figure-value">4 500 €</span><span class="figure-label">coût chirurgie DTG urgence</span></div>
-      <div class="figure"><span class="figure-value">35 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">8–10 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">47,7 %</span><span class="figure-label">des Saint-Bernards testés présentent une dysplasie de hanche (OFA 2024)</span></div>
+      <div class="figure"><span class="figure-value">8 000 €</span><span class="figure-label">coût maximum chirurgie bilatérale dysplasie de hanche</span></div>
+      <div class="figure"><span class="figure-value">Élevée</span><span class="figure-label">prévalence dilatation-torsion gastrique (urgence vitale 6h max)</span></div>
+      <div class="figure"><span class="figure-value">2 000</span><span class="figure-label">naissances de Saint-Bernards par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>OFA (Orthopedic Foundation for Animals) — Hip Dysplasia Statistics by Breed : Saint Bernard 47,7 % affected, 2023</li>

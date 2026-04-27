@@ -52,7 +52,8 @@
       "Bash(grep -v \"assuremochien\\\\|\\\\.webp\\\\|url=\\\\|https://\\\\|href\\\\|src=\\\\|class=\\\\|\\\\.astro\\\\|import\\\\|const\\\\|let \\\\|var \\\\|function\\\\|return\\\\|=>|{|}|<[a-z]|//|<!--\\\\|data-\\\\|aria-\\\\|id=\\\\\"\\\\|type=\\\\\"\\\\|name=\\\\\"\\\\|content=\\\\|property=\\\\|charset\\\\|color:\\\\|background\\\\|border\\\\|padding\\\\|margin\\\\|width\\\\|height\\\\|font\\\\|display\\\\|position\\\\|z-index\\\\|opacity\\\\|cursor\\\\|outline\\\\|object\\\\|transform\\\\|transition\\\\|overflow\\\\|flex\\\\|grid\\\\|gap\\\\|align\\\\|justify\\\\|max-\\\\|min-\\\\|text-\\\\|line-\\\\|letter-\\\\|white-\\\\|box-\\\\|list-\\\\|top:\\\\|left:\\\\|right:\\\\|bottom:\\\\|inset:\\\\|stroke\\\\|fill\\\\|circle\\\\|path\\\\|viewBox\\\\|xmlns\\\\|rel=\\\\|defer\\\\|script\\\\|style\")",
       "Bash(wc -l c:/Users/gaeta/Documents/Web/assure-mon-chien/src/pages/races/*.astro)",
       "Bash(npm run:*)",
-      "Bash(node fix-tables.mjs)"
+      "Bash(node fix-tables.mjs)",
+      "Bash(node -e ' *)"
     ]
   }
 }

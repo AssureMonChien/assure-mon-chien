@@ -1,21 +1,9 @@
 ---
 interface Props {
-  data: {
-    souscription: string;
-    coutAnnuel:   string;
-    maladies:     string;
-    population:   string;
-  };
+  items: Array<{ value: string; label: string }>;
 }
 
-const { data } = Astro.props;
-
-const items = [
-  { value: data.souscription, label: 'Taux de souscription' },
-  { value: data.coutAnnuel,   label: 'Coût annuel moyen' },
-  { value: data.maladies,     label: 'Maladies fréquentes' },
-  { value: data.population,   label: 'Population en France' },
-];
+const { items } = Astro.props;
 ---
 
 <section class="kf">

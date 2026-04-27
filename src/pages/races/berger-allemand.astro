@@ -3,12 +3,18 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance Berger Allemand : Comparatif 2026"
-  description="Comparez les meilleures assurances santé pour votre Berger Allemand. Dysplasie, myélopathie, coûts réels, avis d'experts. Guide indépendant avril 2026."
+  title="Assurance Berger Allemand : Dysplasie & Myélopathie | 2026"
+  description="Berger Allemand : dysplasie de hanche (20 % OFA), myélopathie dégénérative, dilatation gastrique. Frais jusqu'à 8 000 €. Comparez les assurances. Guide 2026."
   nom="Berger Allemand"
   slug="berger-allemand"
   taille="grande"
   risque="eleve"
+  kf={[
+    { value: "~20 %", label: "dysplasie de hanche (OFA 2024)" },
+    { value: "300 – 480 €", label: "assurance annuelle" },
+    { value: "2 – 4 %", label: "myélopathie dégénérative" },
+    { value: "15 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
@@ -204,10 +210,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">20 %</span><span class="figure-label">des Bergers Allemands radiographiés ont une dysplasie HD-C à E (SCC 2023)</span></div>
-      <div class="figure"><span class="figure-value">6 000 €</span><span class="figure-label">coût d'une prothèse totale de hanche en France (par hanche)</span></div>
-      <div class="figure"><span class="figure-value">70 %</span><span class="figure-label">des cas d'IPE canine concernent le Berger Allemand</span></div>
-      <div class="figure"><span class="figure-value">20 000</span><span class="figure-label">naissances de Bergers Allemands par an en France (SCC 2024)</span></div>
+      <div class="figure"><span class="figure-value">20 %</span><span class="figure-label">des Bergers Allemands testés présentent une dysplasie de hanche (OFA 2024)</span></div>
+      <div class="figure"><span class="figure-value">6 000 €</span><span class="figure-label">coût moyen d'une prothèse totale de hanche</span></div>
+      <div class="figure"><span class="figure-value">2 – 4 %</span><span class="figure-label">développent une myélopathie dégénérative après 7 ans</span></div>
+      <div class="figure"><span class="figure-value">15 000</span><span class="figure-label">naissances de Bergers Allemands par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 

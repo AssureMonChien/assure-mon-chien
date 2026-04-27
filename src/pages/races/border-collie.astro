@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Border Collie : Risques & Meilleures Offres 2026"
-  description="Le Border Collie est porteur de la mutation MDR1 et de l'anomalie oculaire du Colley (CEA). Découvrez les meilleures assurances adaptées aux risques génétiques du Border Collie."
+  title="Assurance Border Collie : AOC & Mutation MDR1 | 2026"
+  description="Border Collie : AOC (≈70 % non testés), mutation MDR1 (35 %), épilepsie. Pathologies héréditaires documentées. Comparez les assurances. Guide 2026."
   nom="Border Collie"
   slug="border-collie"
   taille="grande"
   risque="modere"
+  kf={[
+    { value: "≈ 70 %", label: "porteurs AOC (non testés)" },
+    { value: "220 – 400 €", label: "assurance annuelle" },
+    { value: "≈ 35 %", label: "porteurs mutation MDR1" },
+    { value: "10 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Unanimement reconnu comme le chien le plus intelligent du monde, le Border Collie est plébiscité en France pour les sports canins, le troupeau et l'agility. Derrière ses prouesses cognitives se cache une sensibilité génétique médicamenteuse qui peut rendre un traitement banal potentiellement fatal. L'anomalie de l'œil du Colley (AOC), présente chez 70 % des individus non testés, et la mutation MDR1/ABCB1, portée par 35 % de la race, font du Border Collie un chien dont la couverture vétérinaire mérite une attention particulière dès les premiers mois de vie.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Border Collie</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -36,7 +44,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Enquête nationale sur les animaux de compagnie 2024 ; tarifs vétérinaires moyens France 2025.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Border Collie</h2>
+  <p>
+    Selon l'International Sheep Dog Society et les données génétiques de l'Université de Washington (2023), l'Anomalie de l'Œil du Colley (AOC/CEA) concerne environ 70 % des Border Collies non testés génétiquement — la sélection historique sur les aptitudes au travail ayant longtemps négligé le dépistage oculaire. La mutation MDR1/ABCB1, présente chez environ 35 % de la race, impose une adaptation médicamenteuse systématique pour éviter les neurotoxicités graves lors de traitements antiparasitaires ou anesthésiques courants.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -55,6 +67,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : International Sheep Dog Society Health Survey 2023 ; Washington State University Vet Clinical Pharmacology Lab MDR1 Statistics 2023.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Border Collie</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -75,9 +88,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : Grille tarifaire SantéVet 2025 ; Veterinary Fee Survey BVNA France 2024.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>Le Border Collie présente deux risques financiers majeurs souvent ignorés des propriétaires. D'abord, la mutation MDR1 : si un antiparasitaire contenant de l'ivermectine est administré sans test préalable à un porteur homozygote, une hospitalisation d'urgence en neurologie vétérinaire peut coûter de 500 à 1 500 €. Ensuite, l'anomalie de l'œil du Colley peut évoluer vers un décollement de rétine nécessitant une chirurgie à 1 500 € ou plus. À cela s'ajoute un traitement antiépileptique à vie dont le coût annuel (médicaments + bilans sériques) dépasse souvent 600 €. Sans assurance active avant tout diagnostic, ces postes de dépenses peuvent cumuler plusieurs milliers d'euros sur la durée de vie du chien.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Border Collie</h2>
   <ul class="section-prevention">
     <li>Faire réaliser le test ADN MDR1/ABCB1 dès l'acquisition du chiot (60–90 €) pour adapter tous les protocoles médicaux.</li>
@@ -89,17 +104,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance santé avant tout examen génétique ou ophtalmologique officiel.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Border Collie ?</h2>
   <p>Le Border Collie est une race de risque modéré dont les pathologies génétiques peuvent générer des dépenses imprévues et récurrentes. La mutation MDR1 impose une vigilance constante sur tous les traitements, et une intoxication médicamenteuse peut justifier une hospitalisation d'urgence. L'anomalie de l'œil du Colley, même dans ses formes légères, nécessite un suivi ophtalmologique annuel et peut évoluer vers une complication chirurgicale. L'épilepsie, quant à elle, engendre un traitement à vie dont le coût cumulé sur 10 ans dépasse facilement 5 000 €. Une assurance santé souscrite avant tout diagnostic permet de transférer ces risques financiers à l'assureur.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Border Collie ?</h2>
   <p>Pour un Border Collie, une formule couvrant les maladies héréditaires (AOC, MDR1, épilepsie) et les actes spécialisés (ophtalmologie, neurologie) est indispensable. Vérifiez que le contrat inclut les consultations spécialistes, les bilans sériques antiépileptiques et les urgences neurologiques. Les formules basiques accident-seulement sont insuffisantes pour cette race. Un remboursement à 80–100 % avec un plafond annuel d'au moins 2 000 € offre une couverture réaliste. Comparez les délais de carence sur les maladies héréditaires — certains assureurs les excluent si le diagnostic précède la souscription.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Border Collie</h2>
   <p>Le propriétaire de Border Collie est généralement passionné de sports canins ou d'activités de plein air. Il consacre quotidiennement 2 heures minimum à l'activité physique et mentale de son chien. Souvent membre d'un club d'agility ou de berger, il est sensible au bien-être animal et prêt à investir dans des soins de qualité. Ce profil correspond à un propriétaire informé, qui effectuera les tests génétiques recommandés et suivra rigoureusement le suivi médical. Il a besoin d'une assurance qui rembourse vite, couvre les spécialistes et n'exclut pas les pathologies héréditaires connues de la race.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Border Collie</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -164,6 +183,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/berger-des-shetlands">Berger des Shetlands</a> — même famille colley, porteur MDR1 et risques oculaires analogues</li>
@@ -174,13 +194,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">70 %</span><span class="figure-label">prévalence AOC (non testés)</span></div>
-      <div class="figure"><span class="figure-value">35 %</span><span class="figure-label">porteurs mutation MDR1</span></div>
-      <div class="figure"><span class="figure-value">20 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">12–15 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">≈ 70 %</span><span class="figure-label">des Border Collies non testés porteurs de l'AOC (ISDS 2023)</span></div>
+      <div class="figure"><span class="figure-value">≈ 35 %</span><span class="figure-label">des Border Collies porteurs de la mutation MDR1/ABCB1</span></div>
+      <div class="figure"><span class="figure-value">3 – 5 %</span><span class="figure-label">développent une épilepsie idiopathique primaire</span></div>
+      <div class="figure"><span class="figure-value">10 000</span><span class="figure-label">naissances de Border Collies par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Washington State University Vet Clinical Pharmacology Lab — MDR1 Border Collie Statistics 2023</li>

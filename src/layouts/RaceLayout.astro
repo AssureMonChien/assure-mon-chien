@@ -17,9 +17,10 @@ interface Props {
   slug:        string;
   taille:      string;
   risque:      'faible' | 'modere' | 'eleve';
+  kf:          Array<{ value: string; label: string }>;
 }
 
-const { title, description, nom, slug, taille, risque } = Astro.props;
+const { title, description, nom, slug, taille, risque, kf } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
@@ -36,14 +37,7 @@ const { title, description, nom, slug, taille, risque } = Astro.props;
   <div class="page-content">
 
     <div class="kf-block">
-      <KeyFigures
-        data={{
-          souscription: "12%",
-          coutAnnuel:   "600 €",
-          maladies:     "23%",
-          population:   "30 000",
-        }}
-      />
+      <KeyFigures items={kf} />
     </div>
 
     <!--

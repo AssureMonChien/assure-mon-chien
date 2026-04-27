@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node add-maladies-para.mjs)",
+      "Bash(node update-race-pages.mjs)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\gaeta\\Documents\\Web\\assure-mon-chien"
+    ]
+  }
+}

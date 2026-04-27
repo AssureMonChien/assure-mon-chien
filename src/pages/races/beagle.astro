@@ -3,12 +3,18 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance Beagle : Comparatif 2026"
-  description="Comparez les meilleures assurances santé pour votre Beagle. Épilepsie, otites, hypothyroïdie, coûts réels, avis d'experts. Guide indépendant avril 2026."
+  title="Assurance Beagle : Épilepsie & Otites Chroniques | 2026"
+  description="Beagle : épilepsie héréditaire (5 %), otites chroniques (20–30 %), hypothyroïdie. Coûts documentés à vie. Comparez les meilleures assurances. Guide 2026."
   nom="Beagle"
   slug="beagle"
   taille="petite"
   risque="modere"
+  kf={[
+    { value: "~5 %", label: "épilepsie primaire héréditaire" },
+    { value: "250 – 420 €", label: "assurance annuelle" },
+    { value: "20 – 30 %", label: "otites chroniques récidivantes" },
+    { value: "8 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
@@ -207,6 +213,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
       <div class="figure"><span class="figure-value">800 €</span><span class="figure-label">coût annuel maximum du traitement antiépileptique à vie</span></div>
       <div class="figure"><span class="figure-value">30 %</span><span class="figure-label">des Beagles souffrent d'otites chroniques récidivantes</span></div>
       <div class="figure"><span class="figure-value">8 000</span><span class="figure-label">naissances de Beagles par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 

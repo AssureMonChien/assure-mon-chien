@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Cocker Spaniel : Risques & Meilleures Offres 2026"
-  description="Le Cocker Spaniel est prédisposé aux otites chroniques, à l'atrophie progressive de la rétine et à la néphropathie familiale. Découvrez les meilleures assurances pour cette race sensible."
+  title="Assurance Cocker Spaniel : Otites & PRA | Comparatif 2026"
+  description="Cocker Spaniel : otites chroniques (1re cause de consultation), PRA (10–20 %), néphropathie familiale. Coûts récurrents. Comparez les assurances. Guide 2026."
   nom="Cocker Spaniel"
   slug="cocker-spaniel"
   taille="petite"
   risque="modere"
+  kf={[
+    { value: "1re cause", label: "otites chroniques (consultations)" },
+    { value: "220 – 380 €", label: "assurance annuelle" },
+    { value: "10 – 20 %", label: "PRA selon les lignées" },
+    { value: "12 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Avec ses oreilles longues et soyeuses tombant de chaque côté du museau, le Cocker Spaniel séduit par son allure douce et son tempérament équilibré. Ce que beaucoup de futurs propriétaires ignorent, c'est que cette morphologie caractéristique est précisément à l'origine de sa principale fragilité : les otites chroniques récidivantes, souvent sous-traitées, qui évoluent silencieusement vers des chirurgies lourdes. Ajoutez la néphropathie familiale propre au Cocker Anglais et l'atrophie rétinienne progressive, et vous obtenez un chien dont le suivi vétérinaire demande une vraie anticipation financière.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Cocker Spaniel</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -35,7 +43,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Baromètre des dépenses animales 2024 ; Observatoire SantéVet des frais vétérinaires 2023</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Cocker Spaniel</h2>
+  <p>
+    Selon les données du Kennel Club UK et de la WSAVA (2023), les otites chroniques récidivantes constituent la première cause de consultation vétérinaire chez le Cocker Spaniel, en raison de ses grandes oreilles tombantes créant un environnement chaud et humide favorable aux infections. L'atrophie rétinienne progressive (PRA/GPRA), transmise de façon autosomale récessive, touche 10 à 20 % des individus selon les lignées et peut mener à la cécité complète entre 3 et 8 ans. La néphropathie familiale du Cocker Anglais, moins connue, peut engager le pronostic vital dès l'âge adulte en l'absence de test ADN préventif.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -54,6 +66,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Cocker Spaniel Club Health Survey UK 2022 ; Familial Nephropathy in Cocker Spaniels, JAVMA 2021 ; SCC Fiche race 2024</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Cocker Spaniel</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -74,9 +87,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : Grilles tarifaires vétérinaires spécialistes France 2024 ; Syndicat National des Vétérinaires Praticiens</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>Le Cocker Spaniel présente deux risques financiers majeurs souvent sous-estimés lors de l'adoption. D'abord, les otites chroniques : la morphologie particulière des oreilles pendantes et velues crée un milieu chaud, humide et peu ventilé, terrain idéal pour les infections bactériennes (Pseudomonas, Staphylococcus) et fongiques (Malassezia). Non traitées agressivement dès le départ, elles évoluent vers l'otite chronique hyperplasique, puis vers la nécessité d'une ablation totale du conduit auditif (TECA) — à 2 000–4 000 € par oreille. Ensuite, la néphropathie familiale : spécifique au Cocker Anglais, cette dysplasie rénale héréditaire provoque une insuffisance rénale chronique progressive dès 2 à 4 ans. Elle est aujourd'hui détectable par test ADN, mais les chiens issus d'élevages non testés peuvent être porteurs. En phase terminale, le suivi dialytique peut coûter 500 à 800 €/mois.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Cocker Spaniel</h2>
   <ul class="section-prevention">
     <li>Nettoyer régulièrement les oreilles (1 à 2 fois par semaine) avec un nettoyant auriculaire adapté pour limiter la macération.</li>
@@ -88,17 +103,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance avant les 12 mois du chiot, avant tout diagnostic otique ou rénal.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Cocker Spaniel ?</h2>
   <p>Les otites chroniques du Cocker Spaniel ont tendance à être banalisées par les propriétaires, qui les traitent ponctuellement sans s'attaquer au cycle infectieux de fond. Sans assurance, le coût de cette gestion au cas par cas peut dépasser 800 € par an, avant d'aboutir à une ablation chirurgicale à 4 000–8 000 € (les deux oreilles). La néphropathie familiale, détectée souvent trop tard, génère un suivi médical lourd. Une assurance souscrite avant tout diagnostic couvre l'ensemble de ces pathologies chroniques et vous permet de traiter convenablement sans arbitrage financier.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Cocker Spaniel ?</h2>
   <p>Pour le Cocker Spaniel, privilégiez une formule couvrant les maladies chroniques récurrentes sans plafond par acte. La couverture des otites doit inclure les traitements médicaux répétés ET la chirurgie (TECA) en cas d'évolution sévère. Vérifiez également la prise en charge de la néphropathie familiale (suivi rénal, traitement substitutif) et des pathologies oculaires (entropion, PRA). Un remboursement à 80–100 % des frais réels avec un plafond annuel d'au moins 2 500 € est recommandé. Souscrivez dès l'acquisition du chiot.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Cocker Spaniel</h2>
   <p>Le Cocker Spaniel est très apprécié des familles actives avec enfants, des amateurs de randonnée et des propriétaires qui souhaitent un chien polyvalent, bon chasseur comme compagnon de canapé. Sa sociabilité et son énergie modérée en font un chien accessible aux primo-propriétaires, à condition d'être préparé à l'entretien régulier du pelage et des oreilles. Son budget vétérinaire annuel peut surprendre : il est conseillé de prévoir au minimum 500 à 800 € par an hors assurance, avec des pics possibles en cas d'otites chroniques ou de problèmes oculaires.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Cocker Spaniel</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -163,6 +182,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/cavalier-king-charles">Cavalier King Charles</a> — gabarit similaire, même tempérament doux, risques cardiaques et oculaires à surveiller</li>
@@ -173,13 +193,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">4 000 €</span><span class="figure-label">coût TECA par oreille</span></div>
-      <div class="figure"><span class="figure-value">15 %</span><span class="figure-label">prévalence néphropathie familiale</span></div>
-      <div class="figure"><span class="figure-value">20 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">12–15 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">1re cause</span><span class="figure-label">d'otites chroniques parmi toutes les races (WSAVA 2023)</span></div>
+      <div class="figure"><span class="figure-value">600 €</span><span class="figure-label">coût par épisode d'otite chronique récidivante sévère</span></div>
+      <div class="figure"><span class="figure-value">10 – 20 %</span><span class="figure-label">des Cockers Spaniels développent une PRA selon les lignées</span></div>
+      <div class="figure"><span class="figure-value">12 000</span><span class="figure-label">naissances de Cockers Spaniels par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Cocker Spaniel Club (UK), <em>Health Survey Results</em>, 2022 — cockerspanielclub.co.uk</li>

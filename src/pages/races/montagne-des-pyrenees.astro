@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Montagne des Pyrénées : Risques & Meilleures Offres 2026"
-  description="La Montagne des Pyrénées est prédisposée aux pathologies orthopédiques et aux troubles auto-immuns des grandes races blanches. Découvrez les meilleures assurances pour ce chien de protection."
+  title="Assurance Montagne des Pyrénées : Dysplasie & OCD | 2026"
+  description="Montagne des Pyrénées : dysplasie hanche/coude élevée, OCD (race géante), entropion. Gabarit 60–90 kg. Frais vétérinaires majorés. Comparez les assurances. Guide 2026."
   nom="Montagne des Pyrénées"
   slug="montagne-des-pyrenees"
   taille="grande"
   risque="modere"
+  kf={[
+    { value: "Élevée", label: "dysplasie de hanche et du coude" },
+    { value: "300 – 480 €", label: "assurance annuelle" },
+    { value: "60 – 90 kg", label: "poids adulte (gabarit géant)" },
+    { value: "5 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Gardien des troupeaux pyrénéens depuis des siècles, la Montagne des Pyrénées est une race blanche majestueuse, à la fois robuste et délicate. Sa stature imposante (50 à 60 kg, parfois plus) génère des frais vétérinaires majorés sur chaque acte, et ses prédispositions héréditaires — dysplasie de hanche, entropion, ostéochondrose dissécante et dermatites des plis — exigent un suivi régulier. Race typiquement française encore présente dans les élevages ovins pyrénéens, elle connaît aussi une popularité croissante en tant que chien de famille. Anticiper ses fragilités médicales avec une assurance adaptée est une décision de propriétaire responsable et avisé.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'une Montagne des Pyrénées</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -34,7 +42,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO/TNS Sofres, enquête budget animal de compagnie 2023 ; grille tarifaire CHV France 2024.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes de la Montagne des Pyrénées</h2>
+  <p>
+    Selon les données de l'OFA et du Club du Chien de Montagne des Pyrénées France (2024), la dysplasie de hanche et du coude représente la première pathologie orthopédique de la race, avec une prévalence élevée liée à la morphologie géante et à la croissance rapide caractéristique des grandes races. L'ostéochondrose dissécante (OCD), fréquente chez les jeunes chiens de plus de 40 kg en croissance rapide, génère des fragments ostéo-cartilagineux articulaires nécessitant une intervention arthroscopique. La subluxation atlanto-axiale, bien que rare, est une complication spécifique à surveiller dans les grandes races au cou long et puissant.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
@@ -53,6 +65,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Great Pyrenees Club of America Health Survey 2022 ; OFA Hip Dysplasia Statistics Great Pyrenees breed ; Club Français de la Montagne des Pyrénées 2024.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour une Montagne des Pyrénées</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -73,9 +86,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 </div>
   <p class="source">Source : Grille tarifaire vétérinaire France 2024 ; SNVEL ; tarifs CHV de référence Lyon, Nantes, Paris.</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>La Montagne des Pyrénées présente un profil financier à risque modéré mais persistant tout au long de sa vie. La dysplasie de hanche, aggravée par le poids élevé (parfois 65–70 kg), génère une arthrose précoce invalidante nécessitant un suivi rhumatologique continu et, dans les formes sévères, des prothèses totales dont le coût est majoré par le gabarit. L'ostéochondrose dissécante (OCD), fréquente dans les grandes races à croissance rapide, affecte préférentiellement les épaules et les coudes : elle est découverte chez le jeune chien de 6 à 18 mois et nécessite une arthroscopie. La subluxation atlanto-axiale, bien que rare, est une urgence neurologique potentiellement fatale requérant une intervention neurochirurgicale coûteuse. Les dermatites des plis, liées à la peau épaisse et aux plis faciaux, génèrent des consultations et traitements récurrents tout au long de la vie du chien. Sur 10 à 12 ans d'espérance de vie, ces frais cumulés peuvent dépasser 12 000 € sans assurance.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour une Montagne des Pyrénées</h2>
   <ul class="section-prevention">
     <li>Radiographies de hanche et de coude avant 18 mois avec notation HD/ED officielle SCC pour dépister la dysplasie et adapter la gestion nutritionnelle pendant la croissance.</li>
@@ -87,17 +102,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance avant 12 mois, avant tout bilan radiographique orthopédique pour ne pas créer de préexistence.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer une Montagne des Pyrénées ?</h2>
   <p>La Montagne des Pyrénées présente un risque médical et financier bien documenté, notamment orthopédique. Sa taille impose des coûts vétérinaires supérieurs à la moyenne : chaque anesthésie, chaque chirurgie est majorée par le gabarit. Une assurance santé souscrite dès l'acquisition permet d'absorber les frais imprévus liés aux urgences orthopédiques, aux poussées dermatologiques chroniques et aux éventuelles complications neurologiques sans mettre en danger l'équilibre financier du foyer. Pour cette race typiquement française encore présente dans les élevages, une couverture adaptée est un gage de responsabilité vis-à-vis de l'animal.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour une Montagne des Pyrénées ?</h2>
   <p>Pour une Montagne des Pyrénées, une formule couvrant la chirurgie orthopédique (prothèses de hanche, arthroscopie OCD), la dermatologie chronique et les soins neurologiques d'urgence est prioritaire. Une couverture des maladies endocrinologiques (hypothyroïdie) et ophtalmologiques (entropion) complète le profil idéal. Choisissez un plafond annuel d'au moins 4 000 € et vérifiez l'absence d'exclusion générale pour les pathologies héréditaires de race. Les contrats prévoyant une surprime importante après 5 ans sont à comparer attentivement.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'une Montagne des Pyrénées</h2>
   <p>Le propriétaire de Montagne des Pyrénées vit majoritairement en zone rurale ou péri-rurale, souvent dans le Sud-Ouest, les Pyrénées ou le Massif Central. Éleveur de moutons, agriculteur ou passionné des chiens de troupeau, il connaît généralement la race de longue date. Les propriétaires urbains, attirés par l'aspect noble de la race, découvrent parfois à leurs dépens l'indépendance marquée et les exigences médicales du Patou. La race reste peu nombreuse en France (quelques centaines d'inscriptions SCC annuelles pour les lignées LOF confirmées). Les propriétaires avertis participent aux programmes de dépistage orthopédique et thyroïdien organisés par le club de race.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Montagne des Pyrénées</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -162,6 +181,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/saint-bernard">Saint-Bernard</a> — très grande race avec profil orthopédique sévère et risque de DTG comparable</li>
@@ -172,13 +192,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">5 000 €</span><span class="figure-label">coût prothèse totale de hanche</span></div>
-      <div class="figure"><span class="figure-value">~20–25 %</span><span class="figure-label">prévalence dysplasie de hanche</span></div>
-      <div class="figure"><span class="figure-value">32 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">10–12 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">Élevée</span><span class="figure-label">prévalence dysplasie de hanche et du coude (OFA / CMPCF 2024)</span></div>
+      <div class="figure"><span class="figure-value">8 000 €</span><span class="figure-label">coût maximum chirurgie bilatérale dysplasie de hanche (géante)</span></div>
+      <div class="figure"><span class="figure-value">60 – 90 kg</span><span class="figure-label">poids adulte — frais vétérinaires majorés par le gabarit géant</span></div>
+      <div class="figure"><span class="figure-value">5 000</span><span class="figure-label">naissances de Montagnes des Pyrénées par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Great Pyrenees Club of America — Health Survey 2022</li>

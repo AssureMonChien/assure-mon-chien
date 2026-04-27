@@ -3,18 +3,26 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
 ---
 
 <RaceLayout
-  title="Assurance chien Caniche : Risques & Meilleures Offres 2026"
-  description="Le Caniche est prédisposé à l'atrophie progressive de la rétine et à la maladie d'Addison. Découvrez les meilleures assurances adaptées aux risques héréditaires du Caniche."
+  title="Assurance Caniche : PRA & Maladie d'Addison | 2026"
+  description="Caniche : PRA héréditaire (15–20 %), maladie d'Addison (2–5 %), épilepsie. Maladies chroniques évitables par test ADN. Comparez les assurances. Guide 2026."
   nom="Caniche"
   slug="caniche"
   taille="petite"
   risque="faible"
+  kf={[
+    { value: "15 – 20 %", label: "PRA — atrophie rétinienne progressive" },
+    { value: "200 – 380 €", label: "assurance annuelle" },
+    { value: "2 – 5 %", label: "maladie d'Addison (CADF 2023)" },
+    { value: "20 000", label: "naissances / an en France" },
+  ]}
 >
 
 <div class="race-article">
 
+  <!-- 1. Introduction -->
   <p class="intro-text">Élu race la plus intelligente par le comportementaliste Stanley Coren, le Caniche est aussi l'une des races les plus longévives : 14 à 17 ans pour le Caniche toy ou nain, 12 à 15 ans pour le standard. Cette longévité exceptionnelle est une qualité précieuse, mais elle s'accompagne d'un risque accru de pathologies chroniques apparaissant progressivement après 5 ans. Atrophie rétinienne, maladie d'Addison, épilepsie idiopathique : ces affections se développent souvent insidieusement, bien avant que les signes cliniques n'alertent le propriétaire. Une couverture souscrite dès le plus jeune âge garantit une protection sur la durée entière de cette longue vie.</p>
 
+  <!-- 2. Coût annuel -->
   <h2>Coût annuel d'un Caniche</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -35,7 +43,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : FACCO Baromètre des dépenses animales 2024 ; Observatoire SantéVet des frais vétérinaires 2023</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
+  <!-- 3. Maladies fréquentes -->
   <h2>Maladies fréquentes du Caniche</h2>
+  <p>
+    Selon le Kennel Club UK Poodle Health Survey (2022) et les statistiques OFA 2024, le Caniche nain et toy cumule plusieurs pathologies héréditaires bien documentées. L'atrophie rétinienne progressive de forme prcd (PRA-prcd) touche 15 à 20 % des Caniches nains et toy selon les lignées, le gène étant transmis de façon autosomale récessive — un test ADN permet de l'éliminer en élevage. La maladie d'Addison (insuffisance surrénalienne), peu fréquente mais grave, représente 2 à 5 % des cas selon le Club des Amis du Caniche France (CADF, 2023) et nécessite un traitement hormonal substitutif à vie.
+  </p>
   <div class="table-wrap">
   <div class="table-scroll">
   <table class="data-table">
@@ -54,6 +66,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <p class="source">Source : Canine Addison's Disease Foundation Health Statistics 2023 ; Kennel Club UK Poodle Health Survey 2022 ; OFA Health Statistics Poodle 2024</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
+  <!-- 4. Coût des soins vétérinaires -->
   <h2>Coût des soins vétérinaires pour un Caniche</h2>
   <div class="table-wrap">
   <div class="table-scroll">
@@ -74,9 +87,11 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   </div>
   <p class="source">Source : Grilles tarifaires vétérinaires spécialistes France 2024 ; Clinique vétérinaire ENVT Toulouse</p>
 
+  <!-- 5. Risques financiers spécifiques -->
   <h2>Risques financiers spécifiques à la race</h2>
   <p>Le Caniche présente un profil de risque financier particulier lié à sa longévité exceptionnelle : les pathologies chroniques se cumulent sur de nombreuses années. La maladie d'Addison est particulièrement insidieuse — elle se manifeste par des épisodes vagues (fatigue, nausées, perte d'appétit) pendant des mois avant de déboucher brutalement sur une crise d'Addison potentiellement fatale. Dépistée avant souscription, elle entraîne une exclusion permanente chez la plupart des assureurs. Or le traitement substitutif à vie (fludrocortisone, prednisolone) représente 200 à 600 € par an, auxquels s'ajoutent les bilans hormonaux réguliers. L'atrophie rétinienne progressive (PRA prcd) étant héréditaire et incurable, un Caniche nain non testé génétiquement par son éleveur peut développer une cécité progressive entre 5 et 10 ans avec des bilans ophtalmologiques réguliers à prévoir.</p>
 
+  <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Caniche</h2>
   <ul class="section-prevention">
     <li>Exiger le test ADN PRA prcd des deux parents à l'élevage (Caniche nain et toy surtout).</li>
@@ -88,17 +103,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     <li>Souscrire une assurance avant les 12 mois du chiot, avant tout bilan sanguin révélateur.</li>
   </ul>
 
+  <!-- 7. Pourquoi assurer -->
   <h2>Pourquoi assurer un Caniche ?</h2>
   <p>La longévité du Caniche est sa plus belle qualité et son plus grand défi financier. Sur 15 ans de vie, les probabilités d'au moins une pathologie chronique (Addison, épilepsie, PRA) sont élevées. Sans assurance, la prise en charge d'une maladie d'Addison représente 800 à 3 000 € au diagnostic puis 200 à 600 € par an à vie. Une chirurgie de rotule peut atteindre 2 500 €. Sur la durée totale de vie du chien, le cumul des frais non couverts peut facilement dépasser 10 000 €. Une assurance souscrite jeune, à tarif fixe, offre une protection linéaire pour l'ensemble de ces années.</p>
   <p>→ <a href="/comparatif/assurance-chien">Comparer les assurances chien</a></p>
 
+  <!-- 8. Quel type d'assurance -->
   <h2>Quel type d'assurance choisir pour un Caniche ?</h2>
   <p>Pour le Caniche, la priorité est la couverture des maladies chroniques sans limite de durée de traitement. Vérifiez explicitement la prise en charge de la maladie d'Addison (traitement hormonal substitutif à vie), de l'épilepsie (antiépileptiques + dosages sériques), et des pathologies ophtalmologiques (PRA, cataracte). Une formule avec remboursement à 80–100 % des frais réels et un plafond annuel d'au moins 2 000 € est recommandée. Évitez les contrats plafonnant le remboursement d'une même pathologie à 1 ou 2 ans. La longévité du Caniche rend le rapport qualité/prix d'une bonne assurance particulièrement avantageux sur le long terme.</p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
+  <!-- 9. Profil type du propriétaire -->
   <h2>Profil type du propriétaire d'un Caniche</h2>
   <p>Le Caniche est une race trans-générationnelle : il séduit autant les personnes âgées recherchant un compagnon intelligent et peu envahissant que les familles actives avec enfants. Sa capacité d'adaptation remarquable (appartement, maison, activités sportives) en fait l'une des races les plus polyvalentes. Son pelage non-mitorant (idéal pour les allergiques) est un atout majeur. Le propriétaire type de Caniche est prêt à investir dans le toilettage régulier et comprend l'importance du suivi vétérinaire sur le long terme. Le budget annuel hors imprévu tourne autour de 1 200 à 1 800 € pour un chien en bonne santé.</p>
 
+  <!-- 10. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Caniche</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -163,6 +182,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
+  <!-- 11. Races similaires -->
   <h2>Races similaires</h2>
   <ul class="section-similaires">
     <li><a href="/races/bichon-frise">Bichon Frisé</a> — même gabarit compact, pelage bouclé similaire, profil de santé comparable avec risques cutanés en plus</li>
@@ -173,13 +193,15 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="key-figures">
     <h2>Chiffres clés</h2>
     <div class="figures-grid">
-      <div class="figure"><span class="figure-value">3 000 €</span><span class="figure-label">coût diagnostic + traitement Addison</span></div>
-      <div class="figure"><span class="figure-value">20 %</span><span class="figure-label">prévalence PRA (Caniche nain)</span></div>
-      <div class="figure"><span class="figure-value">15 €/mois</span><span class="figure-label">assurance dès</span></div>
-      <div class="figure"><span class="figure-value">14–17 ans</span><span class="figure-label">espérance de vie</span></div>
+      <div class="figure"><span class="figure-value">15 – 20 %</span><span class="figure-label">des Caniches nains/toy porteurs de la PRA-prcd (OFA 2024)</span></div>
+      <div class="figure"><span class="figure-value">3 000 €</span><span class="figure-label">coût moyen traitement maladie d'Addison sur 3 ans</span></div>
+      <div class="figure"><span class="figure-value">5 – 8 %</span><span class="figure-label">des Caniches nains développent une épilepsie idiopathique</span></div>
+      <div class="figure"><span class="figure-value">20 000</span><span class="figure-label">naissances de Caniches par an en France (FACCO 2024)</span></div>
+    
     </div>
   </div>
 
+  <!-- 13. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>Canine Addison's Disease Foundation, <em>Health Statistics Report</em>, 2023 — canineaddisons.org</li>
