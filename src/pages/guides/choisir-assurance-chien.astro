@@ -11,6 +11,17 @@ const jsonldBreadcrumb = JSON.stringify({
   ]
 });
 
+const jsonldArticle = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Comment choisir une assurance chien ?",
+  "description": "Cinq critères décisifs, deux pièges à éviter, et la méthode pour comparer en 10 minutes.",
+  "datePublished": "2026-04-01",
+  "dateModified": "2026-04-01",
+  "author": { "@type": "Organization", "name": "Assure mon chien" },
+  "publisher": { "@type": "Organization", "name": "Assure mon chien" }
+});
+
 const jsonldFaq = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -18,527 +29,805 @@ const jsonldFaq = JSON.stringify({
     {
       "@type": "Question",
       "name": "L'assurance chien est-elle obligatoire en France ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Non, l'assurance santé chien n'est pas obligatoire en France. Seule la responsabilité civile est obligatoire pour les propriétaires de chiens de 1re et 2e catégorie. L'assurance santé est optionnelle mais fortement recommandée pour les races à prédispositions génétiques marquées."
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": "Non. Seule la responsabilité civile est obligatoire pour les chiens de 1re et 2e catégorie. L'assurance santé est optionnelle mais fortement recommandée pour les races à prédispositions génétiques marquées." }
     },
     {
       "@type": "Question",
       "name": "Quel est le prix moyen d'une assurance chien en 2026 ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Les tarifs moyens se situent entre 20 et 80 euros par mois selon la race, l'âge et le niveau de garantie. Une formule accidents seule coûte entre 10 et 25 €/mois. Une formule accidents + maladies : 25 à 60 €/mois."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Peut-on assurer un chien âgé de plus de 8 ans ?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Oui, mais les options se réduisent significativement après 8 ans. La plupart des assureurs refusent les nouvelles souscriptions au-delà de cet âge ou proposent des formules seniors avec des garanties réduites et des franchises plus élevées."
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": "Entre 15 et 50 €/mois selon la race, l'âge et le niveau de garantie. Accidents seul : 10–20 €/mois. Accidents + maladies : 22–50 €/mois." }
     }
   ]
 });
 ---
 
 <Layout
-  title="Comment choisir une assurance chien ?"
-  description="Guide complet pour choisir une assurance santé chien : garanties, franchises, plafonds, délais de carence, exclusions. Tous les critères à comparer en 2026."
+  title="Comment choisir une assurance chien ? — Guide 2026"
+  description="Cinq critères décisifs, deux pièges à éviter, et la méthode pour comparer en 10 minutes — sans se laisser piéger par les plafonds annuels."
 >
   <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldArticle} />
   <script type="application/ld+json" set:html={jsonldFaq} />
 
-  <!-- ── Hero ── -->
-  <section class="hero-guide">
-    <div class="hero-inner">
-      <p class="hero-label">GUIDE PRATIQUE</p>
-      <h1>Comment choisir une assurance chien ?</h1>
-      <p class="hero-desc">Accidents, maladies, hospitalisations : une visite chez le vétérinaire peut rapidement dépasser 1 000 euros. L'assurance santé chien permet d'amortir ces coûts, mais toutes les formules ne se valent pas. Voici les critères essentiels pour faire le bon choix.</p>
+  <!-- ── Hero éditorial ── -->
+  <header class="ed-hero">
+    <div class="container ed-hero-inner">
+
+      <div class="ed-hero-text">
+        <span class="ed-eyebrow">Guide — Niveau Essentiel</span>
+        <h1 class="ed-title">Comment choisir une assurance pour son chien&nbsp;?</h1>
+        <p class="ed-lede">
+          Cinq critères réellement décisifs, deux pièges à éviter, et
+          la méthode pour comparer en 10 minutes — sans se laisser piéger
+          par les plafonds annuels.
+        </p>
+        <div class="ed-meta">
+          <span class="ed-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M3.5 10.5h17M8 3v4M16 3v4"/></svg>
+            Avril 2026
+          </span>
+          <span class="ed-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            9 min de lecture
+          </span>
+          <span class="ed-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.4-8 9-4.6-.6-8-4.5-8-9V6l8-3z"/></svg>
+            Rédaction Assure mon chien · Relu par un vétérinaire
+          </span>
+        </div>
+      </div>
+
+      <figure class="ed-hero-figure">
+        <div class="ed-hero-img-wrap">
+          <div class="ed-hero-fallback" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 100 100" aria-hidden="true">
+              <ellipse cx="50" cy="55" rx="34" ry="32" fill="currentColor" opacity=".18"/>
+              <circle cx="38" cy="45" r="3" fill="currentColor" opacity=".42"/>
+              <circle cx="62" cy="45" r="3" fill="currentColor" opacity=".42"/>
+            </svg>
+            <span>Photo héro éditoriale</span>
+          </div>
+        </div>
+        <figcaption>
+          Souscrire avant le premier symptôme reste la décision
+          la plus rentable du cycle de vie d'un chien.
+        </figcaption>
+      </figure>
+
+    </div>
+  </header>
+
+  <!-- ── Corps : TOC + Article ── -->
+  <div class="container ed-body">
+
+    <!-- TOC -->
+    <aside class="ed-toc" aria-label="Sommaire">
+      <div class="ed-toc-label">Sommaire</div>
+      <ol>
+        <li><a href="#criteres">Les 5 critères qui comptent vraiment</a></li>
+        <li><a href="#pieges">Les 2 pièges classiques</a></li>
+        <li><a href="#methode">Notre méthode en 10 minutes</a></li>
+      </ol>
+      <div class="ed-toc-cta">
+        <a href="/comparatif" class="btn btn-primary btn-sm">
+          Comparer les offres
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Article -->
+    <article class="ed-article">
+
+      <!-- Intro -->
+      <p class="ed-p">
+        Comparer une assurance chien ne se résume pas au prix mensuel affiché en page d'accueil
+        des assureurs. Trois contrats à 18&nbsp;€/mois peuvent générer, sur dix ans, un écart de
+        remboursement supérieur à 4&nbsp;000&nbsp;€. La différence se cache dans le détail des garanties —
+        et c'est précisément là que les comparateurs grand public passent à côté de l'essentiel.
+      </p>
+
+      <!-- Stats -->
+      <div class="ed-stats">
+        <div class="ed-stats-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="ed-stat">
+            <div class="ed-stat-value">× 2</div>
+            <div class="ed-stat-label">Écart de prix entre formules équivalentes</div>
+          </div>
+          <div class="ed-stat">
+            <div class="ed-stat-value">30 j</div>
+            <div class="ed-stat-label">Carence moyenne sur les maladies</div>
+          </div>
+          <div class="ed-stat">
+            <div class="ed-stat-value">5 ans</div>
+            <div class="ed-stat-label">Durée moyenne de fidélisation à un contrat</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1 -->
+      <h2 id="criteres" class="ed-h2">Les 5 critères qui comptent vraiment</h2>
+
+      <h3 class="ed-h3">1. Le taux de remboursement réel</h3>
+      <p class="ed-p">
+        Un contrat affichant « jusqu'à 100&nbsp;% » applique en réalité un taux variable selon le type
+        d'acte. Vérifiez toujours le taux appliqué <em>après</em> franchise, et non avant. Un 100&nbsp;% avec
+        franchise fixe de 80&nbsp;€ par sinistre est souvent moins avantageux qu'un 90&nbsp;% sans franchise
+        sur les petits actes répétés.
+      </p>
+
+      <h3 class="ed-h3">2. Le plafond annuel</h3>
+      <p class="ed-p">
+        C'est le critère le plus oublié. Un plafond à 1&nbsp;500&nbsp;€/an saute en une seule chirurgie
+        orthopédique. Visez 2&nbsp;000&nbsp;€ minimum pour un petit chien, 2&nbsp;500&nbsp;€ pour une race
+        moyenne, 3&nbsp;000&nbsp;€ pour une grande race ou une race brachycéphale.
+      </p>
+
+      <h3 class="ed-h3">3. La carence</h3>
+      <p class="ed-p">
+        Période entre la souscription et l'effet réel des garanties — généralement 7 jours pour les
+        accidents, 30 à 60 jours pour les maladies, parfois 6 mois pour les pathologies osseuses
+        ou héréditaires. Les contrats les plus courts sur ce point font une vraie différence à l'usage.
+      </p>
+
+      <h3 class="ed-h3">4. L'exclusion des maladies préexistantes</h3>
+      <p class="ed-p">
+        Tous les assureurs l'appliquent, mais certains exigent un examen vétérinaire préalable,
+        d'autres se basent uniquement sur le déclaratif. Le déclaratif est plus rapide mais expose
+        davantage aux contestations en cas de sinistre — exigez la liste écrite des exclusions définies
+        au moment de la souscription.
+      </p>
+
+      <h3 class="ed-h3">5. La couverture des maladies héréditaires</h3>
+      <p class="ed-p">
+        Critère essentiel pour un Labrador (dysplasie), un Cavalier King Charles (cardiomyopathie),
+        un Bouledogue (syndrome brachycéphale). Vérifiez que ces pathologies ne sont pas
+        listées dans les exclusions, même quand elles ne se sont pas encore déclarées.
+      </p>
+
+      <!-- Pull quote -->
+      <blockquote class="ed-pullquote">
+        <span class="ed-pullquote-mark" aria-hidden="true">"</span>
+        <p>
+          Le bon contrat n'est pas le moins cher&nbsp;: c'est celui dont les
+          exclusions correspondent le moins aux risques de votre race.
+        </p>
+        <cite>— Méthodologie Assure mon chien</cite>
+      </blockquote>
+
+      <!-- Section 2 -->
+      <h2 id="pieges" class="ed-h2">Les 2 pièges classiques</h2>
+
+      <aside class="ed-callout ed-callout-rose">
+        <div class="ed-callout-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="ed-callout-title">Piège n°1 — La franchise déguisée</div>
+          <p>
+            Certains contrats affichent « 100&nbsp;% de remboursement » mais appliquent une franchise
+            annuelle ou par acte. Sur des soins fréquents (dermatologie, otites à répétition), elle peut
+            consommer plus de la moitié du remboursement réel.
+          </p>
+        </div>
+      </aside>
+
+      <aside class="ed-callout ed-callout-rose">
+        <div class="ed-callout-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="ed-callout-title">Piège n°2 — La hausse tarifaire à l'âge</div>
+          <p>
+            La majorité des contrats augmente automatiquement chaque année après les 7 ans du
+            chien. Vérifiez la grille tarifaire complète à 8, 10 et 12 ans avant de souscrire — pas
+            seulement la prime de la première année.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Section 3 -->
+      <h2 id="methode" class="ed-h2">Notre méthode en 10 minutes</h2>
+
+      <ul class="ed-check">
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Identifier les 2 ou 3 pathologies à risque liées à la race de votre chien.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Demander un devis sur 3 assureurs avec exactement le même profil (âge, race, code postal).
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Comparer non pas le prix, mais le rapport plafond annuel&nbsp;/ prime annuelle.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Vérifier le délai de carence sur les maladies osseuses et héréditaires.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Lire les 5 premières pages des conditions générales — pas le résumé commercial.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Vérifier la grille tarifaire à 8 et 10 ans.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Souscrire dès la primo-vaccination du chiot pour éviter toute exclusion future.
+        </li>
+      </ul>
+
+      <!-- CTA Banner -->
+      <div class="ed-banner">
+        <p>Comparez les 3 assureurs leaders du marché<br>français selon notre grille indépendante.</p>
+        <a href="/comparatif" class="btn btn-primary">
+          Voir le comparatif 2026
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Sources -->
+      <div class="ed-sources">
+        <h3 class="ed-sources-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Sources
+        </h3>
+        <ol>
+          <li>Code des assurances — articles L.&nbsp;113-1 à L.&nbsp;113-17 (exclusions et déclaratif).</li>
+          <li>ACPR — Autorité de contrôle prudentiel, rapport assurance affinitaire 2024.</li>
+          <li>GEMRCN — Guide d'évaluation des contrats santé animale, édition 2025.</li>
+          <li>SantéVet, AssurOPoil, Lassie — Conditions générales avril 2026.</li>
+        </ol>
+      </div>
+
+    </article>
+  </div>
+
+  <!-- ── À lire aussi ── -->
+  <section class="ed-related">
+    <div class="container">
+      <h2 class="h3" style="margin:0 0 28px">À lire aussi</h2>
+      <div class="ed-related-grid">
+
+        <a href="/couts/cout-chien-2025" class="ed-related-card">
+          <span class="ed-related-cat">Dossier · Budget</span>
+          <h3>Combien coûte vraiment un chien en 2026&nbsp;?</h3>
+          <p>Cinq chiffres vétérinaires, alimentaires et assurantiels, un par race, sur la base des dernières données du secteur vétérinaire français.</p>
+          <span class="ed-related-link">
+            Lire
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="/guides/assurance-chiot" class="ed-related-card">
+          <span class="ed-related-cat">Guide · Niveau débutant</span>
+          <h3>Assurance chiot : tout ce qu'il faut savoir avant les 3 mois</h3>
+          <p>À souscrire à 8 semaines plutôt qu'à 1 an, c'est souvent 2× plus abordable — et sans exclusion de pathologie héréditaire.</p>
+          <span class="ed-related-link">
+            Lire
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="/guides/assurance-chien-senior" class="ed-related-card">
+          <span class="ed-related-cat">Guide · Niveau avancé</span>
+          <h3>Assurance chien sénior : ce qui change après 7 ans</h3>
+          <p>Un chien de plus de 7 ans coûte en moyenne 3× plus cher en soins vétérinaires. Quels assureurs acceptent encore les souscriptions ? Quelle stratégie…</p>
+          <span class="ed-related-link">
+            Lire
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+      </div>
     </div>
   </section>
 
-  <!-- ── Contenu ── -->
-  <div class="guide-wrap">
-
-    <nav class="breadcrumb" aria-label="Fil d'Ariane">
-      <ol>
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/guides">Guides</a></li>
-        <li aria-current="page">Choisir une assurance chien</li>
-      </ol>
-    </nav>
-
-    <div class="toc">
-      <p class="toc-title">Dans ce guide</p>
-      <ol>
-        <li><a href="#garanties">Les types de garanties</a></li>
-        <li><a href="#plafonds">Plafonds et franchises</a></li>
-        <li><a href="#carences">Délais de carence</a></li>
-        <li><a href="#exclusions">Les exclusions courantes</a></li>
-        <li><a href="#race">Choisir selon la race</a></li>
-        <li><a href="#souscrire">Quand et comment souscrire</a></li>
-      </ol>
-    </div>
-
-    <section id="garanties">
-      <h2>1. Les types de garanties</h2>
-      <p>Les contrats d'assurance chien se structurent généralement en trois niveaux de couverture :</p>
-      <ul>
-        <li><strong>Accidents uniquement :</strong> la formule la plus économique, qui couvre les fractures, plaies, intoxications et urgences traumatiques. Elle n'intervient pas sur les maladies. Adaptée aux jeunes chiens en bonne santé de races peu fragiles.</li>
-        <li><strong>Accidents + maladies :</strong> la formule intermédiaire et la plus souscrite. Elle couvre les consultations, analyses, hospitalisations et interventions chirurgicales liées à une maladie diagnostiquée. C'est le niveau recommandé pour la majorité des propriétaires.</li>
-        <li><strong>Formule complète avec prévention :</strong> en plus des soins curatifs, cette formule rembourse une partie des actes préventifs (vaccins, antiparasitaires, détartrage, stérilisation). Le tarif est plus élevé, mais la couverture est totale.</li>
-      </ul>
-      <p>Pour des races à risque élevé — Bouledogue Français, Rottweiler, Cavalier King Charles — une formule accidents + maladies est le minimum indispensable. Ces chiens sont statistiquement plus exposés aux pathologies cardiaques, orthopédiques et respiratoires qui génèrent des frais importants.</p>
-
-      <div class="encart-cta">
-        <p>SantéVet propose les trois niveaux de couverture avec remboursement jusqu'à 100 % des frais réels.</p>
-        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Obtenir un devis SantéVet</a>
-      </div>
-    </section>
-
-    <section id="plafonds">
-      <h2>2. Plafonds et franchises : ce que cachent les contrats</h2>
-      <p>Le taux de remboursement affiché — souvent 70 %, 80 % ou 100 % — ne suffit pas à évaluer un contrat. Deux autres paramètres sont tout aussi déterminants.</p>
-
-      <h3>Les plafonds de remboursement</h3>
-      <p>Chaque assureur fixe un plafond annuel au-delà duquel il ne rembourse plus rien. Ce plafond peut être :</p>
-      <ul>
-        <li><strong>Global :</strong> un montant unique pour l'ensemble des frais (ex. 2 000 €/an). Pratique mais vite consommé en cas de chirurgie orthopédique.</li>
-        <li><strong>Par acte :</strong> un plafond distinct par type de soin (ex. 600 € par acte chirurgical). Attention aux interventions complexes qui dépassent ce seuil.</li>
-        <li><strong>Par famille de soins :</strong> certains assureurs distinguent les actes médicaux, chirurgicaux, et les hospitalisations avec des plafonds séparés.</li>
-      </ul>
-      <p>Un plafond annuel inférieur à 1 500 € est insuffisant pour un chien de grande race ou une race à risque. Pour un Labrador ou un Berger Allemand, prévoyez au minimum 2 000 à 3 000 € de plafond annuel.</p>
-
-      <h3>La franchise</h3>
-      <p>La franchise est la somme restant à votre charge à chaque sinistre, indépendamment du taux de remboursement. Elle peut être :</p>
-      <ul>
-        <li><strong>Absolue :</strong> vous payez toujours X euros par sinistre (ex. 50 € à chaque consultation). C'est le modèle le plus courant.</li>
-        <li><strong>Relative :</strong> si vos frais dépassent le seuil de franchise, tout est remboursé. En dessous, rien ne l'est.</li>
-        <li><strong>Nulle :</strong> certaines formules premium n'appliquent aucune franchise, mais leur prime mensuelle est plus élevée.</li>
-      </ul>
-      <p>Une franchise élevée (100 € ou plus) peut sembler acceptable sur les petits soins, mais elle s'applique aussi aux factures importantes. Sur une opération de dysplasie à 2 500 €, une franchise de 150 € reste marginale. Sur des consultations répétées à 80 €, elle peut annuler tout remboursement.</p>
-
-      <div class="encart-cta">
-        <p>Avec SantéVet, choisissez votre franchise dès la souscription selon votre budget.</p>
-        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Voir les formules SantéVet</a>
-      </div>
-    </section>
-
-    <section id="carences">
-      <h2>3. Délais de carence : la clause à ne pas ignorer</h2>
-      <p>Le délai de carence est la période entre la date de souscription et le moment où les garanties entrent réellement en vigueur. Pendant ce délai, aucun remboursement n'est possible.</p>
-
-      <p>Les délais varient fortement d'un assureur à l'autre :</p>
-      <ul>
-        <li><strong>Accidents :</strong> souvent 0 à 3 jours. Certains assureurs couvrent les accidents dès le lendemain de la souscription.</li>
-        <li><strong>Maladies :</strong> généralement 30 à 90 jours selon les formules et les assureurs.</li>
-        <li><strong>Maladies héréditaires et dysplasies :</strong> les délais les plus longs — jusqu'à 12 mois chez certains assureurs pour les affections orthopédiques.</li>
-        <li><strong>Cancer :</strong> certains contrats appliquent un délai spécifique de 6 à 12 mois pour les affections tumorales.</li>
-      </ul>
-
-      <p>Ce délai a une conséquence directe : ne souscrivez pas une assurance <em>après</em> qu'un problème de santé a été diagnostiqué. Une pathologie détectée avant la fin du délai de carence sera considérée comme une affection préexistante et exclue définitivement du contrat.</p>
-
-      <div class="points-cles">
-        <p class="pk-title">Points clés</p>
-        <ul>
-          <li>Souscrivez dès l'acquisition de votre chien, de préférence avant les premiers symptômes.</li>
-          <li>Demandez les délais par type de pathologie avant de signer — ils ne sont pas toujours mis en avant dans les publicités.</li>
-          <li>SantéVet applique l'un des délais les plus courts du marché pour les accidents (dès 48h).</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="exclusions">
-      <h2>4. Les exclusions courantes : ce que votre contrat ne couvrira pas</h2>
-      <p>Chaque contrat liste des exclusions — des situations ou pathologies non remboursées. Voici les plus fréquentes et leurs implications concrètes.</p>
-
-      <h3>Les affections préexistantes</h3>
-      <p>C'est l'exclusion la plus importante. Toute maladie ou anomalie connue avant la souscription (ou diagnostiquée pendant le délai de carence) ne sera jamais remboursée. Cela inclut les maladies chroniques comme l'épilepsie, le diabète, l'hypothyroïdie ou les affections dermatologiques récurrentes.</p>
-      <p>Certains assureurs demandent un bilan vétérinaire à l'entrée, d'autres se fient à la déclaration sur l'honneur. Dans tous les cas, un sinistre lié à une pathologie préexistante non déclarée peut entraîner la résiliation du contrat.</p>
-
-      <h3>Les soins esthétiques et d'hygiène</h3>
-      <p>Le toilettage, le coupage des griffes, le nettoyage des oreilles en dehors d'un contexte médical, la coupe de poils : ces soins sont systématiquement exclus, même dans les formules les plus complètes.</p>
-
-      <h3>La gestation et la reproduction</h3>
-      <p>Les frais liés à la saillie, la gestation, l'accouchement et les soins aux chiots ne sont pas couverts. Certains assureurs étendent cette exclusion à la stérilisation (sauf si elle est incluse dans un module prévention).</p>
-
-      <h3>Les traitements non reconnus</h3>
-      <p>Acupuncture, ostéopathie, homéopathie, phytothérapie : ces médecines alternatives sont exclues des formules standard. Quelques assureurs proposent des avenants spécifiques, mais ils restent l'exception.</p>
-
-      <h3>Les maladies héréditaires selon les formules</h3>
-      <p>Attention : certaines formules d'entrée de gamme excluent explicitement les maladies héréditaires, génétiques ou congénitales. Pour les races à risque (Bouledogue, Golden Retriever, Cavalier King Charles), cette exclusion peut vider le contrat de toute utilité.</p>
-
-      <div class="encart-cta">
-        <p>SantéVet couvre les maladies héréditaires sans exclusion de race sur ses formules Confort et Premium.</p>
-        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Comparer les formules SantéVet</a>
-      </div>
-    </section>
-
-    <section id="race">
-      <h2>5. Adapter son choix à la race de son chien</h2>
-      <p>La race est le critère le plus souvent négligé lors de la souscription — et pourtant le plus déterminant pour l'utilisation réelle du contrat.</p>
-
-      <h3>Les races à haut risque vétérinaire</h3>
-      <p>Certaines races cumulent plusieurs prédispositions génétiques lourdes qui se traduisent par des frais vétérinaires élevés dès le jeune âge :</p>
-      <ul>
-        <li><strong>Bouledogue Français :</strong> syndrome brachycéphale (difficultés respiratoires), dysplasie de hanche, problèmes dermatologiques chroniques. Coût chirurgical moyen : 1 500 à 3 500 €.</li>
-        <li><strong>Rottweiler :</strong> dysplasie de hanche et du coude très fréquente, ostéosarcome. Une opération de dysplasie bilatérale peut dépasser 4 000 €.</li>
-        <li><strong>Cavalier King Charles :</strong> maladie valvulaire mitrale (90 % des chiens touchés avant 10 ans selon les études OFA), syringomyélie. Suivi cardiaque régulier indispensable.</li>
-        <li><strong>Golden Retriever :</strong> taux de cancer parmi les plus élevés de toutes les races (environ 60 % selon certaines études), dysplasie de hanche, pathologies articulaires.</li>
-      </ul>
-
-      <h3>Les races à risque modéré</h3>
-      <p>Des races comme le Labrador Retriever, le Husky Sibérien ou le Berger Australien présentent des prédispositions importantes (dysplasie, cataracte héréditaire, troubles digestifs) mais moins systématiques que les races précédentes. Une formule accidents + maladies avec un bon plafond annuel est suffisante.</p>
-
-      <h3>Les races à risque faible</h3>
-      <p>Certaines races comme le Berger des Shetlands ou l'Épagneul Breton sont réputées robustes et présentent peu de pathologies héréditaires lourdes. Une formule accidents peut suffire pour les premières années, à condition de réévaluer à partir de 7 ans.</p>
-
-      <p>Consultez notre <a href="/races">guide des 30 races</a> pour connaître les prédispositions spécifiques de votre chien et les garanties prioritaires à inclure dans votre contrat.</p>
-
-      <div class="encart-cta">
-        <p>SantéVet adapte ses tarifs à la race et à l'âge de votre chien, sans surprime cachée.</p>
-        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Simuler mon tarif SantéVet</a>
-      </div>
-    </section>
-
-    <section id="souscrire">
-      <h2>6. Quand et comment souscrire ?</h2>
-
-      <h3>Le meilleur moment pour souscrire</h3>
-      <p>La règle d'or : souscrivez le plus tôt possible, idéalement dans les 8 premières semaines suivant l'acquisition de votre chien. Un chiot en bonne santé présentera peu d'antécédents médicaux, les délais de carence s'écouleront pendant sa période de croissance, et vous bénéficierez des tarifs jeunes — souvent 20 à 35 % moins chers qu'à 5 ans.</p>
-
-      <p>L'âge limite de souscription varie selon les assureurs :</p>
-      <ul>
-        <li>La plupart des assureurs refusent les nouvelles souscriptions au-delà de 8 ou 10 ans.</li>
-        <li>Certains proposent des formules seniors pour les chiens entre 8 et 12 ans, mais avec des exclusions renforcées et des franchises élevées.</li>
-        <li>Passé 12 ans, il est très difficile de trouver une couverture pour un nouveau contrat.</li>
-      </ul>
-
-      <h3>Les étapes de souscription</h3>
-      <ol>
-        <li><strong>Comparez les offres :</strong> utilisez notre <a href="/comparatif">comparatif assurance chien</a> pour évaluer les garanties, les tarifs et les franchises des principales enseignes.</li>
-        <li><strong>Vérifiez les exclusions spécifiques à votre race :</strong> demandez la liste complète des exclusions par écrit avant de signer.</li>
-        <li><strong>Lisez les conditions générales :</strong> focalisez-vous sur les sections "délais de carence", "plafonds par acte", "exclusions" et "résiliation".</li>
-        <li><strong>Souscrivez en ligne ou par téléphone :</strong> la plupart des assureurs proposent une souscription immédiate. Munissez-vous du carnet de santé de votre chien, de son certificat de naissance ou LOF, et de votre carte de puce (numéro de tatouage ou puce).</li>
-      </ol>
-
-      <h3>Comment résilier un contrat insatisfaisant ?</h3>
-      <p>Depuis la loi Hamon, vous pouvez résilier votre assurance chien à tout moment après la première année, sans frais ni justification. Il suffit d'envoyer une lettre recommandée à votre assureur. Le nouveau contrat prend effet dès que l'ancien est résilié. Attention : les pathologies déjà diagnostiquées sous l'ancien contrat seront considérées comme préexistantes par le nouvel assureur.</p>
-
-      <div class="encart-cta">
-        <p>Souscription en ligne en 3 minutes. SantéVet couvre plus de 300 000 chiens en France.</p>
-        <a href="https://www.santevet.com/" rel="nofollow sponsored" target="_blank" class="cta-btn">Souscrire chez SantéVet</a>
-      </div>
-    </section>
-
-    <section class="faq-section">
-      <h2>Questions fréquentes</h2>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">L'assurance chien est-elle obligatoire en France ?</button>
-        <div class="faq-a" hidden>
-          <p>Non, l'assurance santé chien n'est pas obligatoire en France. Seule la responsabilité civile — couvrant les dommages causés par votre chien à des tiers — est obligatoire pour les propriétaires de chiens de 1re et 2e catégorie (races considérées comme dangereuses). L'assurance santé est optionnelle mais fortement recommandée pour les races à prédispositions génétiques marquées.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Quel est le prix moyen d'une assurance chien en 2026 ?</button>
-        <div class="faq-a" hidden>
-          <p>Le tarif dépend de la race, de l'âge, du niveau de garantie et de la franchise choisie. En 2026, les tarifs moyens se situent entre 20 et 80 euros par mois. Une formule accidents seule coûte entre 10 et 25 €/mois. Une formule accidents + maladies : 25 à 60 €/mois. Une formule complète avec prévention : 50 à 100 €/mois pour les races à risque élevé.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Peut-on assurer un chien âgé de plus de 8 ans ?</button>
-        <div class="faq-a" hidden>
-          <p>Oui, mais les options se réduisent significativement après 8 ans. La plupart des assureurs refusent les nouvelles souscriptions au-delà de cet âge ou proposent des formules seniors avec des garanties réduites, des franchises plus élevées et des exclusions renforcées. La solution idéale reste de souscrire dès le plus jeune âge et de maintenir le contrat tout au long de la vie du chien.</p>
-        </div>
-      </div>
-    </section>
-
-  </div>
 </Layout>
-
-<script>
-  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const answer = btn.nextElementSibling as HTMLElement;
-      const open = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!open));
-      answer.hidden = open;
-    });
-  });
-</script>
 
 <style>
   /* ── Hero ── */
-  .hero-guide {
-    background: #0F6E56;
-    padding: 3.5rem 1.25rem 3rem;
-    text-align: center;
-    color: #fff;
+  .ed-hero {
+    background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 100%);
+    border-bottom: 1px solid var(--c-line);
+    padding: 56px 0 72px;
+    position: relative;
+    overflow: hidden;
   }
-
-  .hero-inner {
-    max-width: 680px;
-    margin: 0 auto;
+  .ed-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 28%, rgba(29,158,117,.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(249,203,66,.08), transparent 35%);
+    pointer-events: none;
   }
+  .ed-hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+  }
+  @media (max-width: 920px) {
+    .ed-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .ed-hero-text { max-width: 620px; }
 
-  .hero-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    background: rgba(255,255,255,0.18);
+  .ed-eyebrow {
     display: inline-block;
-    padding: 0.3rem 0.9rem;
-    border-radius: 20px;
-    margin: 0 0 1rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--c-green-700);
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--c-green-200);
+    margin-bottom: 18px;
+    font-family: var(--font-mono);
   }
-
-  .hero-guide h1 {
-    font-size: clamp(1.7rem, 4vw, 2.4rem);
+  .ed-title {
+    font-family: var(--font-display);
     font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.75rem;
-    color: #fff;
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -.025em;
+    color: var(--c-ink);
+    margin: 0 0 18px;
+    text-wrap: balance;
   }
-
-  .hero-desc {
-    font-size: 1rem;
-    opacity: 0.88;
-    margin: 0;
-    line-height: 1.6;
+  .ed-lede {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--c-ink-2);
+    margin: 0 0 24px;
+    max-width: 580px;
+    text-wrap: pretty;
   }
-
-  /* ── Contenu ── */
-  .guide-wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 2.5rem 1.25rem 4rem;
-  }
-
-  section[id] {
-    scroll-margin-top: calc(var(--header-height) + 1rem);
-  }
-
-  .breadcrumb ol {
-    list-style: none;
-    margin: 0 0 2rem;
-    padding: 0;
+  .ed-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem;
-    font-size: 0.83rem;
-    color: #888;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .ed-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    background: rgba(255,255,255,.7);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--c-line);
   }
 
-  .breadcrumb li + li::before {
-    content: "›";
-    margin-right: 0.3rem;
+  /* Photo side */
+  .ed-hero-figure { margin: 0; position: relative; }
+  .ed-hero-img-wrap {
+    border-radius: 22px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: 0 30px 60px -20px rgba(15,110,86,.28);
+    background: var(--c-green-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ed-hero-fallback {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    gap: 8px;
+    min-height: 300px;
+  }
+  .ed-hero-fallback span {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--c-ink-3);
+  }
+  .ed-hero-figure figcaption {
+    font-size: 13px;
+    color: var(--c-ink-2);
+    margin-top: 14px;
+    font-style: italic;
+    max-width: 360px;
+    line-height: 1.5;
   }
 
-  .breadcrumb a {
-    color: #1D9E75;
-    text-decoration: none;
+  /* ── Body layout ── */
+  .ed-body {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 56px;
+    padding: 64px 0 80px;
+    align-items: start;
+  }
+  @media (max-width: 920px) {
+    .ed-body { grid-template-columns: 1fr; gap: 24px; padding: 32px 0 60px; }
   }
 
-  .breadcrumb a:hover {
-    text-decoration: underline;
+  /* TOC */
+  .ed-toc {
+    position: sticky;
+    top: 90px;
+    font-size: 14px;
   }
-
-  .toc {
-    background: #F7F9F8;
-    border-left: 3px solid #1D9E75;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 0 0 32px;
-    position: static;
+  @media (max-width: 920px) {
+    .ed-toc { position: relative; top: 0; }
   }
-
-  .toc-title {
-    font-size: 0.82rem;
+  .ed-toc-label {
+    font-size: 11px;
     font-weight: 700;
+    letter-spacing: .12em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #0F6E56;
-    margin: 0 0 0.6rem;
+    color: var(--c-ink-2);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--c-line);
   }
-
-  .toc ol {
-    margin: 0;
-    padding-left: 1.25rem;
+  .ed-toc ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    counter-reset: toc;
+    display: flex; flex-direction: column; gap: 2px;
   }
-
-  .toc li {
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
+  .ed-toc li {
+    counter-increment: toc;
+    position: relative;
   }
-
-  .toc a {
-    color: #1D9E75;
+  .ed-toc li a {
+    display: block;
+    padding: 8px 12px 8px 32px;
+    border-radius: 8px;
+    color: var(--c-ink-2);
     text-decoration: none;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: background .12s;
   }
-
-  .toc a:hover {
-    text-decoration: underline;
-  }
-
-  section {
-    margin-bottom: 3rem;
-  }
-
-  h2 {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: #0F6E56;
-    margin: 0 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #d4ede5;
-  }
-
-  h3 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #1a3a2f;
-    margin: 1.4rem 0 0.5rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.75;
-    margin: 0 0 0.9rem;
-  }
-
-  ul, ol {
-    margin: 0 0 1rem;
-    padding-left: 1.4rem;
-  }
-
-  li {
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.7;
-    margin-bottom: 0.4rem;
-  }
-
-  a {
-    color: #1D9E75;
+  .ed-toc li a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute;
+    left: 8px;
+    font-size: 11px;
+    color: var(--c-ink-3);
+    font-variant-numeric: tabular-nums;
+    top: 50%;
+    transform: translateY(-50%);
     font-weight: 600;
   }
+  .ed-toc li a:hover { background: var(--c-bg-soft); color: var(--c-ink); }
+  .ed-toc-cta {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--c-line);
+  }
 
-  .encart-cta {
-    background: #e8f7f2;
-    border: 1px solid #b2ddd0;
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    margin-top: 1.5rem;
+  /* Article */
+  .ed-article {
+    max-width: 720px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--c-ink);
+  }
+  .ed-p {
+    margin: 0 0 22px;
+    color: var(--c-ink-2);
+    text-wrap: pretty;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .ed-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    margin: 56px 0 20px;
+    color: var(--c-ink);
+    scroll-margin-top: 100px;
+    position: relative;
+    padding-top: 24px;
+    border-top: 1px solid var(--c-line);
+  }
+  .ed-h2::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: 0;
+    width: 48px; height: 2px;
+    background: var(--c-green);
+  }
+  .ed-h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.3;
+    letter-spacing: -.015em;
+    margin: 32px 0 10px;
+    color: var(--c-ink);
+  }
+
+  /* Stats block */
+  .ed-stats {
+    margin: 28px 0;
+    padding: 28px;
+    background: var(--c-green-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-green-200);
+  }
+  .ed-stats-grid {
+    display: grid;
+    gap: 24px;
+  }
+  @media (max-width: 600px) {
+    .ed-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  .ed-stat-value {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--c-green-700);
+    font-variant-numeric: tabular-nums;
+  }
+  .ed-stat-label {
+    font-size: 13px;
+    color: var(--c-ink-2);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  /* Pull quote */
+  .ed-pullquote {
+    margin: 40px 0;
+    padding: 32px 32px 32px 60px;
+    border-left: 4px solid var(--c-green);
+    background: linear-gradient(180deg, var(--c-green-50) 0%, transparent 100%);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    position: relative;
+  }
+  .ed-pullquote-mark {
+    position: absolute;
+    top: 8px; left: 18px;
+    font-family: Georgia, serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--c-green);
+    opacity: .4;
+  }
+  .ed-pullquote p {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -.015em;
+    color: var(--c-ink);
+    margin: 0 0 12px;
+    text-wrap: pretty;
+  }
+  .ed-pullquote cite {
+    font-style: normal;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    font-weight: 500;
+  }
+
+  /* Callout */
+  .ed-callout {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+    padding: 20px 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid;
+  }
+  .ed-callout-icon {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .ed-callout-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: var(--c-ink);
+  }
+  .ed-callout p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--c-ink-2);
+  }
+  .ed-callout-rose { background: #fff0f1; border-color: #f5c2c7; }
+  .ed-callout-rose .ed-callout-icon { background: #dc2626; color: #fff; }
+
+  /* Checklist */
+  .ed-check {
+    list-style: none;
+    margin: 24px 0;
+    padding: 24px 28px;
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ed-check li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--c-ink);
+  }
+  .ed-check-mark {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 999px;
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  /* Banner CTA */
+  .ed-banner {
+    margin: 36px 0;
+    padding: 28px 32px;
+    background: var(--c-ink);
+    color: #fff;
+    border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 24px;
     flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
   }
-
-  .encart-cta p {
+  .ed-banner::before {
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--c-green) 0%, transparent 70%);
+    opacity: .5;
+  }
+  .ed-banner p {
     margin: 0;
-    font-size: 0.9rem;
-    color: #1a4a3a;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.4;
+    color: rgba(255,255,255,.9);
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+  .ed-banner .btn { position: relative; }
+
+  /* Sources */
+  .ed-sources {
+    margin: 56px 0 0;
+    padding: 28px;
+    background: var(--c-bg-soft);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-line);
+  }
+  .ed-sources-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-ink-2);
+    margin: 0 0 16px;
+  }
+  .ed-sources ol {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    line-height: 1.7;
+  }
+  .ed-sources li { margin-bottom: 6px; }
+
+  /* ── À lire aussi ── */
+  .ed-related {
+    background: var(--c-bg-soft);
+    border-top: 1px solid var(--c-line);
+    padding: 64px 0 80px;
+    margin-top: 32px;
+  }
+  .ed-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 880px) {
+    .ed-related-grid { grid-template-columns: 1fr; }
+  }
+  .ed-related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--c-ink);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .ed-related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px -16px rgba(15,110,86,.18);
+    color: var(--c-ink);
+  }
+  .ed-related-cat {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-green-700);
+    font-family: var(--font-mono);
+  }
+  .ed-related-card h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    letter-spacing: -.01em;
+    color: var(--c-ink);
+  }
+  .ed-related-card p {
+    font-size: 13px;
+    color: var(--c-ink-3);
+    line-height: 1.5;
+    margin: 0;
     flex: 1;
   }
-
-  .cta-btn {
-    display: inline-block;
-    background: #1D9E75;
-    color: #fff !important;
-    font-weight: 700;
-    font-size: 0.88rem;
-    padding: 0.55rem 1.1rem;
-    border-radius: 7px;
-    text-decoration: none !important;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-
-  .cta-btn:hover {
-    background: #157a5b;
-  }
-
-  .points-cles {
-    background: #fff;
-    border: 1.5px solid #1D9E75;
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    margin: 1.25rem 0;
-  }
-
-  .pk-title {
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #1D9E75;
-    margin: 0 0 0.5rem !important;
-  }
-
-  .points-cles ul {
-    margin: 0;
-  }
-
-  .faq-section {
-    border-top: 2px solid #d4ede5;
-    padding-top: 2rem;
-  }
-
-  .faq-item {
-    border-bottom: 1px solid #e8f0ed;
-    padding: 0.1rem 0;
-  }
-
-  .faq-q {
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 0.97rem;
-    font-weight: 700;
-    color: #0F6E56;
-    padding: 0.9rem 0;
-    display: flex;
-    justify-content: space-between;
+  .ed-related-link {
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-  }
-
-  .faq-q::after {
-    content: "+";
-    font-size: 1.3rem;
-    font-weight: 400;
-    color: #1D9E75;
-    flex-shrink: 0;
-  }
-
-  .faq-q[aria-expanded="true"]::after {
-    content: "−";
-  }
-
-  .faq-a {
-    padding: 0 0 1rem;
-  }
-
-  .faq-a p {
-    margin: 0;
-    font-size: 0.93rem;
-  }
-
-  @media (max-width: 540px) {
-    .encart-cta {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+    gap: 4px;
+    color: var(--c-green-700);
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 4px;
   }
 </style>
