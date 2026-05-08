@@ -9,11 +9,18 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   slug="labrador"
   taille="grande"
   risque="eleve"
+  score={73}
   kf={[
     { value: "12 %", label: "dysplasie de hanche (OFA 2024)" },
     { value: "300 – 480 €", label: "assurance annuelle" },
     { value: "23 %", label: "porteurs mutation POMC" },
     { value: "30 000", label: "naissances / an en France" },
+  ]}
+  similaires={[
+    { slug: 'golden-retriever', nom: 'Golden Retriever',  taille: 'grande',  risque: 'eleve',  score: 68 },
+    { slug: 'berger-allemand',  nom: 'Berger Allemand',   taille: 'grande',  risque: 'eleve',  score: 71 },
+    { slug: 'border-collie',    nom: 'Border Collie',     taille: 'moyenne', risque: 'faible', score: 28 },
+    { slug: 'setter-irlandais', nom: 'Setter Irlandais',  taille: 'grande',  risque: 'modere', score: 52 },
   ]}
 >
 
@@ -29,20 +36,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
-          <thead>
-            <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Alimentation (grande taille, qualité premium)</td><td>600 – 1 000 €</td></tr>
-            <tr><td>Suivi vétérinaire annuel (vaccins, vermifuge, antiparasitaires)</td><td>250 – 450 €</td></tr>
-            <tr><td>Toilettage et entretien</td><td>100 – 200 €</td></tr>
-            <tr><td>Accessoires, jouets, literie</td><td>100 – 200 €</td></tr>
-            <tr><td>Assurance santé (formule intermédiaire)</td><td>300 – 480 €</td></tr>
-            <tr><td>Imprévus vétérinaires (hors assurance)</td><td>200 – 600 €</td></tr>
-          </tbody>
-        </table>
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (grande taille, qualité premium)</td><td>600 – 1 000 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, vermifuge, antiparasitaires)</td><td>250 – 450 €</td></tr>
+        <tr><td>Toilettage et entretien</td><td>100 – 200 €</td></tr>
+        <tr><td>Accessoires, jouets, literie</td><td>100 – 200 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>300 – 480 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>200 – 600 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>1 550 – 3 030 €/an</strong></td></tr>
+      </tbody>
+    </table>
   </div>
-</div>
+  </div>
   <p class="source">Source : FACCO Enquête nationale 2024 ; SantéVet grille tarifaire 2025 ; estimations vétérinaires françaises 2024-2025.</p>
   <p>→ <a href="/couts/cout-chien-2025">Voir notre guide complet sur le coût d'un chien en 2025</a></p>
 
@@ -54,21 +62,21 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   <div class="table-wrap">
   <div class="table-scroll">
     <table class="data-table">
-          <thead>
-            <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Dysplasie de hanche</td><td>10 – 12 % des Labradors</td><td>1 500 – 6 000 €</td></tr>
-            <tr><td>Dysplasie du coude</td><td>8 – 10 %</td><td>1 200 – 4 000 €</td></tr>
-            <tr><td>Lymphome malin</td><td>3 – 5 % (> 7 ans)</td><td>3 000 – 8 000 €</td></tr>
-            <tr><td>Ostéosarcome</td><td>1 – 2 %</td><td>4 000 – 10 000 €</td></tr>
-            <tr><td>Obésité (mutation POMC)</td><td>23 % des individus porteurs</td><td>200 – 800 €/an</td></tr>
-            <tr><td>Atrophie progressive de la rétine (APR)</td><td>2 – 4 %</td><td>300 – 1 200 €</td></tr>
-            <tr><td>Myopathie du Labrador</td><td>Rare (&lt; 1 %)</td><td>400 – 1 500 €</td></tr>
-          </tbody>
-        </table>
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dysplasie de hanche</td><td>10 – 12 % des Labradors</td><td>1 500 – 6 000 €</td></tr>
+        <tr><td>Dysplasie du coude</td><td>8 – 10 %</td><td>1 200 – 4 000 €</td></tr>
+        <tr><td>Lymphome malin</td><td>3 – 5 % (> 7 ans)</td><td>3 000 – 8 000 €</td></tr>
+        <tr><td>Ostéosarcome</td><td>1 – 2 %</td><td>4 000 – 10 000 €</td></tr>
+        <tr><td>Obésité (mutation POMC)</td><td>23 % des individus porteurs</td><td>200 – 800 €/an</td></tr>
+        <tr><td>Atrophie progressive de la rétine (APR)</td><td>2 – 4 %</td><td>300 – 1 200 €</td></tr>
+        <tr><td>Myopathie du Labrador</td><td>Rare (&lt; 1 %)</td><td>400 – 1 500 €</td></tr>
+      </tbody>
+    </table>
   </div>
-</div>
+  </div>
   <p class="source">Source : OFA Hip Dysplasia Statistics 2024 ; SCC résultats radiographiques 2023 ; Morris Animal Foundation Canine Cancer Statistics 2022.</p>
   <p>→ <a href="/couts/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
 
@@ -92,25 +100,53 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
       </tbody>
     </table>
   </div>
-</div>
+  </div>
   <p class="source">Source : Grilles tarifaires des CHVA (Centres Hospitaliers Vétérinaires Associés) 2024 ; Clinique VetAgro Sup Lyon 2025 ; SNVEL.</p>
 
   <!-- 5. Risques financiers spécifiques -->
-  <h2>Risques financiers spécifiques à la race</h2>
-  <p>
-    Le Labrador cumule trois sources de risque financier majeures. Premièrement, la dysplasie de hanche bilatérale peut nécessiter deux prothèses totales, portant la facture à 12 000 € en quelques années. Deuxièmement, les cancers sont diagnostiqués plus précocement que dans d'autres grandes races : un lymphome traité par chimiothérapie sur 18 mois représente 5 000 à 8 000 € de frais cumulés. Troisièmement, la mutation POMC génère une tendance à l'obésité chronique qui aggrave arthrose, diabète et maladies cardiovasculaires, multipliant les consultations et traitements au long cours. Sans assurance, une seule intervention chirurgicale orthopédique représente en moyenne 9 années de cotisations d'assurance au tarif d'entrée.
-  </p>
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique au Labrador</h3>
+      <p>Le Labrador cumule trois expositions majeures : dysplasie bilatérale <strong>(6 000 – 12 000 €)</strong>, lymphome traité par chimio <strong>(5 000 – 8 000 €)</strong> et obésité chronique (mutation POMC) qui aggrave toutes les pathologies. Sans assurance souscrite tôt, une seule intervention orthopédique équivaut à 9 ans de cotisations au tarif d'entrée.</p>
+    </div>
+  </div>
 
   <!-- 6. Conseils de prévention -->
   <h2>Conseils de prévention pour un Labrador Retriever</h2>
-  <ul class="section-prevention">
-    <li>Exiger les résultats HD et ED des parents avant l'achat : un score HD-A ou HD-B réduit significativement le risque héréditaire.</li>
-    <li>Faire pratiquer un dépistage radiographique de dysplasie entre 12 et 18 mois, avant tout symptôme.</li>
-    <li>Effectuer un test ADN pour la mutation POMC dès 3 mois afin d'adapter l'alimentation et éviter l'obésité.</li>
-    <li>Contrôler strictement le poids : chaque kilogramme supplémentaire augmente la charge mécanique sur les hanches et les coudes.</li>
-    <li>Éviter les exercices à fort impact (sauts répétés, arrêts brusques) avant la fermeture des cartilages de croissance à 18 mois.</li>
-    <li>Prévoir un bilan vétérinaire annuel incluant palpation abdominale et bilan sanguin dès 6 ans pour dépister les cancers précocement.</li>
-    <li>Souscrire une assurance santé avant 12 mois pour garantir la couverture des pathologies héréditaires avant tout diagnostic.</li>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Exiger les résultats HD et ED des parents avant l'achat : un score HD-A ou HD-B réduit significativement le risque héréditaire.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Faire pratiquer un dépistage radiographique de dysplasie entre 12 et 18 mois, avant tout symptôme.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Effectuer un test ADN pour la mutation POMC dès 3 mois afin d'adapter l'alimentation et éviter l'obésité.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Contrôler strictement le poids : chaque kilogramme supplémentaire augmente la charge mécanique sur les hanches et les coudes.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Éviter les exercices à fort impact (sauts répétés, arrêts brusques) avant la fermeture des cartilages de croissance à 18 mois.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Prévoir un bilan vétérinaire annuel incluant palpation abdominale et bilan sanguin dès 6 ans pour dépister les cancers précocement.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance santé avant 12 mois pour garantir la couverture des pathologies héréditaires avant tout diagnostic.
+    </li>
   </ul>
 
   <!-- 7. Pourquoi assurer -->
@@ -127,13 +163,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   </p>
   <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
 
-  <!-- 9. Profil type du propriétaire -->
-  <h2>Profil type du propriétaire d'un Labrador Retriever</h2>
-  <p>
-    Le propriétaire de Labrador est souvent une famille avec enfants, séduite par le caractère jovial et la robustesse apparente de la race. Il vit majoritairement en maison avec jardin et pratique des activités outdoor (randonnée, natation). Ce profil sous-estime fréquemment le coût vétérinaire lié aux pathologies orthopédiques, car les symptômes de dysplasie apparaissent souvent tardivement (2 à 4 ans). L'investissement dans une assurance est particulièrement pertinent pour les propriétaires qui souhaitent offrir les meilleurs soins disponibles sans contrainte budgétaire lors des décisions médicales critiques.
-  </p>
-
-  <!-- 10. FAQ SEO -->
+  <!-- 9. FAQ SEO -->
   <h2>Questions fréquentes sur l'assurance Labrador Retriever</h2>
   <dl class="faq-list">
     <div class="faq-item">
@@ -210,27 +240,7 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
     </div>
   </dl>
 
-  <!-- 11. Races similaires -->
-  <h2>Races similaires</h2>
-  <ul class="section-similaires">
-    <li><a href="/races/golden-retriever">Golden Retriever</a></li>
-    <li><a href="/races/berger-allemand">Berger Allemand</a></li>
-    <li><a href="/races/berger-australien">Berger Australien</a></li>
-  </ul>
-
-  <!-- 12. Chiffres clés -->
-  <div class="key-figures">
-    <h2>Chiffres clés</h2>
-    <div class="figures-grid">
-      <div class="figure"><span class="figure-value">12 %</span><span class="figure-label">des Labradors testés présentent une dysplasie de hanche (OFA 2024)</span></div>
-      <div class="figure"><span class="figure-value">6 000 €</span><span class="figure-label">coût moyen d'une prothèse totale de hanche en France</span></div>
-      <div class="figure"><span class="figure-value">23 %</span><span class="figure-label">des Labradors porteurs de la mutation POMC développent une obésité sévère</span></div>
-      <div class="figure"><span class="figure-value">30 000</span><span class="figure-label">naissances de Labradors par an en France (FACCO 2024)</span></div>
-    
-    </div>
-  </div>
-
-  <!-- 13. Sources -->
+  <!-- 11. Sources -->
   <h2>Sources</h2>
   <ul class="sources-list section-sources-list">
     <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
@@ -243,32 +253,5 @@ import RaceLayout from "../../layouts/RaceLayout.astro";
   </ul>
 
 </div>
-
-<style>
-.race-article { line-height: 1.7; color: #222; }
-.intro-text { font-size: 1.05rem; color: #444; margin-bottom: 2rem; }
-.race-article h2 { font-size: 1.35rem; font-weight: 800; color: #0F6E56; margin: 2.5rem 0 1rem; border-bottom: 2px solid #e8f7f2; padding-bottom: 0.4rem; }
-.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
-.data-table th { background: #0F6E56; color: #fff; padding: 0.55rem 0.75rem; text-align: left; }
-.data-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #e8e6e0; }
-.data-table tr:nth-child(even) td { background: #f4fbf8; }
-.source { font-size: 0.78rem; color: #888; font-style: italic; margin: 0.25rem 0 1rem; }
-.race-article ul { padding-left: 1.5rem; margin: 0.75rem 0 1rem; }
-.race-article li { margin-bottom: 0.4rem; }
-.race-article details { border: 1px solid #e8e6e0; border-radius: 8px; margin-bottom: 0.6rem; padding: 0; overflow: hidden; }
-.race-article summary { font-weight: 700; cursor: pointer; padding: 0.75rem 1rem; background: #f9f9f9; list-style: none; }
-.race-article summary::-webkit-details-marker { display: none; }
-.race-article details[open] summary { background: #e8f7f2; color: #0F6E56; }
-.race-article details p { padding: 0.75rem 1rem; margin: 0; font-size: 0.93rem; color: #444; }
-.key-figures { background: #f4fbf8; border: 1px solid #d4ede5; border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
-.key-figures h2 { margin-top: 0; border: none; }
-.figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-@media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
-.figure { text-align: center; }
-.figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: #0F6E56; }
-.figure-label { font-size: 0.78rem; color: #666; }
-.sources-list { font-size: 0.8rem; color: #888; }
-.race-article a { color: #0F6E56; }
-</style>
 
 </RaceLayout>

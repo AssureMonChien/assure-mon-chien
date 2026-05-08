@@ -8,289 +8,116 @@ const { risque, nom } = Astro.props;
 
 const tiers = [
   {
-    icon:     '🛡️',
-    label:    'Essentielle',
-    price:    'dès 15 €/mois',
-    desc:     'Accidents & urgences',
+    id:          'essentielle',
+    name:        'Essentielle',
+    subtitle:    'Accidents & urgences',
+    price:       '15',
+    recommended: false,
     points: [
-      "Accidents et blessures",
+      'Accidents et blessures',
       "Chirurgie d'urgence",
-      "Hospitalisation courte",
+      'Hospitalisation courte',
+      'Plafond 1 200 €/an',
     ],
-    featured: false,
-    badge:    null,
+    href: '/comparatif',
   },
   {
-    icon:     '⭐',
-    label:    'Confort',
-    price:    'dès 22 €/mois',
-    desc:     'Maladies & spécialistes',
+    id:          'confort',
+    name:        'Confort',
+    subtitle:    'Maladies & spécialistes',
+    price:       '22',
+    recommended: true,
     points: [
-      "Accidents + maladies chroniques",
-      "Consultations spécialistes",
-      "Remboursement 80–100 %",
-      "Délai de carence réduit",
+      'Accidents + maladies chroniques',
+      'Chirurgies dont dysplasie',
+      'Cardiologue, oncologue, ophtalmo.',
+      'Plafond 2 200 €/an',
     ],
-    featured: true,
-    badge:    'RECOMMANDÉ',
+    href: '/comparatif',
   },
   {
-    icon:     '💎',
-    label:    'Premium',
-    price:    'dès 35 €/mois',
-    desc:     'Couverture totale',
+    id:          'premium',
+    name:        'Premium',
+    subtitle:    'Couverture totale',
+    price:       '35',
+    recommended: false,
     points: [
-      "Tout soin remboursé à 100 %",
-      "Prévention & vaccins inclus",
-      "Téléconsultation 7j/7",
-      "Remboursement sous 48 h",
+      'Tout Confort + prévention 150 €/an',
+      'Vaccins, vermifuge, détartrage',
+      'Plafond 3 500 €/an',
+      'Remboursement sous 48 h',
     ],
-    featured: false,
-    badge:    null,
+    href: '/comparatif',
   },
 ] as const;
 
-const reco: Record<string, string> = {
+const recoText: Record<string, string> = {
   faible: `Pour un ${nom}, une formule Essentielle ou Confort couvre l'essentiel des risques à un tarif raisonnable.`,
-  modere: `Pour un ${nom}, une formule Confort couvrant les maladies chroniques est recommandée.`,
-  eleve:  `Pour un ${nom}, une formule Confort ou Premium est fortement conseillée en raison des risques héréditaires importants.`,
+  modere: `Pour un ${nom}, nous recommandons la formule Confort : elle couvre les maladies chroniques et les spécialistes — les postes de dépense réels.`,
+  eleve:  `Pour un ${nom}, la formule Confort ou Premium est fortement conseillée en raison des risques héréditaires importants et des coûts chirurgicaux élevés.`,
 };
 ---
 
-<section class="cmp">
-  <h2 class="cmp-title">Quel niveau de couverture choisir ?</h2>
-  <p class="cmp-reco">{reco[risque]}</p>
+<section class="section section-tinted" id="offres">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Trois niveaux de couverture</span>
+      <h2 class="h2">Quelle formule choisir pour un {nom}&nbsp;?</h2>
+      <p class="section-sub">{recoText[risque]}</p>
+    </div>
 
-  <div class="cmp-grid">
-    {tiers.map((t, i) => (
-      <div
-        class={`cmp-card${t.featured ? ' cmp-card--featured' : ''}`}
-        style={`animation-delay:${0.05 + i * 0.08}s`}
-      >
-        {t.badge && <div class="cmp-badge">{t.badge}</div>}
-        <div class="cmp-icon" aria-hidden="true">{t.icon}</div>
-        <p class="cmp-label">{t.label}</p>
-        <p class="cmp-price">{t.price}</p>
-        <p class="cmp-desc">{t.desc}</p>
-        <ul class="cmp-points">
-          {t.points.map(p => <li>{p}</li>)}
-        </ul>
-        <a
-          href="/comparatif/assurance-chien"
-          class={`cmp-cta${t.featured ? ' cmp-cta--featured' : ''}`}
-        >
-          Voir les offres →
-        </a>
-      </div>
-    ))}
+    <div class="tier-grid">
+      {tiers.map(t => (
+        <article class={`tier-card${t.recommended ? ' is-recommended' : ''}`}>
+          {t.recommended && (
+            <span class="tier-flag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              Recommandé
+            </span>
+          )}
+          <div class="tier-head">
+            <h3>{t.name}</h3>
+            <p class="tier-sub">{t.subtitle}</p>
+          </div>
+          <div class="tier-price">
+            <span class="tier-price-from">dès</span>
+            <span class="tier-price-amount">{t.price} €</span>
+            <span class="tier-price-period">/mois</span>
+          </div>
+          <ul class="tier-list">
+            {t.points.map(p => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <polyline points="3 8 6.5 11.5 13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={t.href}
+            class={`btn btn-block${t.recommended ? ' btn-primary' : ' btn-outline'}`}
+          >
+            Voir les offres
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8M7.5 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <p class="affiliate-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      Liens partenaires — Nous percevons une commission si vous souscrivez, sans surcoût pour vous.
+    </p>
   </div>
-
-  <p class="cmp-footer">
-    Comparez toutes les offres →&nbsp;
-    <a href="/comparatif/assurance-chien-pas-cher">Assurance chien pas chère</a>
-  </p>
 </section>
 
 <style>
-/* ── Section ── */
-.cmp {
-  margin: 2rem auto;
-  padding: 1.25rem 1.4rem;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  animation: cmpFadeIn 0.45s ease-out both;
-  max-width: 1100px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* ── Titre ── */
-.cmp-title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #0f6e56;
-  margin: 0 0 0.4rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid #ddf0e8;
-  letter-spacing: -0.015em;
-  background: transparent;
-  position: static;
-}
-
-/* ── Recommandation ── */
-.cmp-reco {
-  font-size: 0.88rem;
-  color: #555;
-  line-height: 1.6;
-  margin: 0 0 1.2rem;
-}
-
-/* ── Grille 3 colonnes ── */
-.cmp-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  align-items: stretch;
-}
-
-@media (max-width: 640px) {
-  .cmp-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-}
-
-/* ── Carte ── */
-.cmp-card {
-  position: relative;
-  background: #fff;
-  border: 1.5px solid #d4ede5;
-  border-radius: 12px;
-  padding: 1.2rem 1rem 1rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  animation: cmpUp 0.4s ease-out both;
-}
-
-.cmp-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(15, 110, 86, 0.13);
-  border-color: #0f6e56;
-}
-
-.cmp-card--featured {
-  border-color: #0f6e56;
-  box-shadow: 0 4px 18px rgba(15, 110, 86, 0.14);
-}
-
-/* ── Badge ── */
-.cmp-badge {
-  position: absolute;
-  top: -11px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #0f6e56;
-  color: #fff;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  padding: 0.2rem 0.7rem;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-/* ── Contenu carte ── */
-.cmp-icon  { font-size: 1.7rem; margin-bottom: 0.4rem; line-height: 1; }
-.cmp-label { font-size: 0.88rem; font-weight: 800; color: #1a1a1a; margin: 0 0 0.15rem; }
-.cmp-price { font-size: 1.05rem; font-weight: 800; color: #0f6e56; margin: 0 0 0.1rem; }
-.cmp-desc  { font-size: 0.75rem; color: #888; margin: 0 0 1rem; }
-
-/* ── Liste points ── */
-.cmp-points {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.25rem;
-  width: 100%;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.cmp-points li {
-  font-size: 0.79rem;
-  color: #444;
-  padding-left: 1.15rem;
-  position: relative;
-  line-height: 1.4;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  animation: none;
-}
-
-.cmp-points li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: auto;
-  transform: none;
-  display: inline;
-  width: auto;
-  height: auto;
-  background: transparent;
-  color: #0f6e56;
-  font-weight: 700;
-  font-size: 0.7rem;
-  border-radius: 0;
-  line-height: inherit;
-}
-
-/* ── CTA ── */
-.cmp-cta {
-  display: block;
-  width: 100%;
-  padding: 0.55rem 0.5rem;
-  margin-top: auto;
-  border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-  border: 1.5px solid #0f6e56;
-  color: #0f6e56;
-  background: transparent;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.cmp-cta:hover {
-  background: #e8f7f2;
-  color: #0f6e56;
-  text-decoration: none;
-}
-
-.cmp-cta--featured {
-  background: #0f6e56;
-  color: #fff;
-}
-
-.cmp-cta--featured:hover {
-  background: #0a5840;
-  color: #fff;
-}
-
-/* ── Footer ── */
-.cmp-footer {
-  text-align: center;
-  font-size: 0.82rem;
-  color: #666;
-  margin: 1.25rem 0 0;
-}
-
-.cmp-footer a {
-  color: #0f6e56;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.cmp-footer a:hover {
-  text-decoration: underline;
-}
-
-/* ── Animations ── */
-@keyframes cmpFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes cmpUp {
-  from { opacity: 0; transform: translateY(10px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
+  .btn-block { width: 100%; justify-content: center; border-radius: 8px; }
 </style>

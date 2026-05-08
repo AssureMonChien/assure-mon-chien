@@ -1,14 +1,18 @@
 ---
 import Layout      from "./Layout.astro";
-
-/* ── Composants HTML (rendu visible) ── */
-import HeroBreed      from "../components/races/HeroBreed.astro";
-import RiskGauge      from "../components/races/RiskGauge.astro";
+import HeroBreed   from "../components/races/HeroBreed.astro";
+import RiskGauge   from "../components/races/RiskGauge.astro";
 import InsuranceCards from "../components/races/InsuranceCards.astro";
+import KeyFigures  from "../components/races/KeyFigures.astro";
+import StyledTable from "../components/races/StyledTable.astro";
 
-/* ── Composants CSS-only (is:global, aucun HTML rendu) ── */
-import KeyFigures    from "../components/races/KeyFigures.astro";
-import StyledTable   from "../components/races/StyledTable.astro";
+interface SimilaireRace {
+  slug:   string;
+  nom:    string;
+  taille: string;
+  risque: 'faible' | 'modere' | 'eleve';
+  score?: number;
+}
 
 interface Props {
   title:       string;
@@ -18,65 +22,160 @@ interface Props {
   taille:      string;
   risque:      'faible' | 'modere' | 'eleve';
   kf:          Array<{ value: string; label: string }>;
+  score?:      number;
+  similaires?: SimilaireRace[];
 }
 
-const { title, description, nom, slug, taille, risque, kf } = Astro.props;
+const { title, description, nom, slug, taille, risque, kf, score, similaires } = Astro.props;
+
+const risqueMap = {
+  faible: { label: 'Risque faible',  cls: 'risk-low',  defaultScore: 30 },
+  modere: { label: 'Risque modéré', cls: 'risk-mid',  defaultScore: 58 },
+  eleve:  { label: 'Risque élevé',  cls: 'risk-high', defaultScore: 82 },
+} as const;
+
+const tailleLabel: Record<string, string> = {
+  petite:  'Petite',
+  moyenne: 'Moyenne',
+  grande:  'Grande',
+};
+
+const imgMap: Record<string, string> = {
+  'bouledogue-francais':   'bouledogue-français',
+  'montagne-des-pyrenees': 'montagne-des-Pyrénées',
+};
 ---
 
 <Layout title={title} description={description}>
 
-  <!--
-    ═══════════════════════════════════════════════
-    1. HERO — LCP optimisé
-       • image eager + fetchpriority="high"
-       • dimensions fixes (CLS = 0)
-    ═══════════════════════════════════════════════
-  -->
+  <!-- 1. Hero (breadcrumb + 2 colonnes photo / texte) -->
   <HeroBreed {nom} {slug} {title} {taille} {risque} />
 
-  <div class="page-content">
-
-    <div class="kf-block">
+  <!-- 2. Chiffres clés -->
+  <section class="section section-tight">
+    <div class="container">
       <KeyFigures items={kf} />
     </div>
+  </section>
 
-    <!--
-      ═══════════════════════════════════════════════
-      2. RISK GAUGE — barre de contexte
-         • segments animés scaleX
-         • aucun JS
-      ═══════════════════════════════════════════════
-    -->
-    <div class="slide-up">
-      <RiskGauge {risque} {nom} />
+  <!-- 3. Jauge de risque -->
+  <section class="section section-tight" style="padding-top:0">
+    <div class="container">
+      <RiskGauge {risque} {nom} {score} />
     </div>
+  </section>
 
-    <!--
-      ═══════════════════════════════════════════════
-      3. CONTENU DE LA PAGE RACE
-         • slot = texte + tableaux + FAQ + sources
-           fournis par chaque page .astro
-      ═══════════════════════════════════════════════
-    -->
-    <div class="rc-wrap">
-      <article class="race-article">
-        <StyledTable>
-          <slot />
-        </StyledTable>
-      </article>
+  <!-- 4. Contenu éditorial (slot des pages individuelles) -->
+  <section class="section race-content">
+    <div class="container">
+      <StyledTable>
+        <slot />
+      </StyledTable>
     </div>
+  </section>
 
-    <!--
-      ═══════════════════════════════════════════════
-      4. INSURANCE CARDS — CTA bas de page
-         • recommandation adaptée au niveau de risque
-         • hover CSS transform scale
-      ═══════════════════════════════════════════════
-    -->
-    <InsuranceCards {risque} {nom} />
+  <!-- 5. Cartes assurance -->
+  <InsuranceCards {risque} {nom} />
 
-  </div>
+  <!-- 6. Races similaires -->
+  {similaires && similaires.length > 0 && (
+    <section class="section section-tight">
+      <div class="container">
+        <div class="section-head-row" style="margin-bottom:32px">
+          <div>
+            <span class="eyebrow">Races comparables</span>
+            <h2 class="h2" style="margin:0">Races similaires au {nom}</h2>
+          </div>
+        </div>
+        <div class="race-grid race-grid-similar">
+          {similaires.map(r => {
+            const imgFile = imgMap[r.slug] ?? r.slug;
+            const riskInfo = risqueMap[r.risque];
+            const rScore   = r.score ?? riskInfo.defaultScore;
+            return (
+              <a href={`/races/${r.slug}`} class="race-card">
+                <div class="race-photo" style="aspect-ratio:4/3">
+                  <img
+                    src={`/images/races/${imgFile}.webp`}
+                    alt={`Photo ${r.nom}`}
+                    width="400" height="300"
+                    loading="lazy"
+                    decoding="async"
+                    class="race-photo-img"
+                  />
+                  <div class="race-photo-badge">
+                    <span class={`risk-badge ${riskInfo.cls}`}>
+                      <span class="risk-dot"></span>
+                      {riskInfo.label}
+                    </span>
+                  </div>
+                </div>
+                <div class="race-card-body">
+                  <div class="race-card-head">
+                    <span class="race-card-name">{r.nom}</span>
+                    <span class="race-card-size">{tailleLabel[r.taille] ?? r.taille}</span>
+                  </div>
+                  <div class="race-card-risk">
+                    <div class={`risk-bar ${riskInfo.cls}`}>
+                      <div class="risk-bar-fill" style={`width:${rScore}%`}></div>
+                    </div>
+                    <span class="race-card-score">{rScore}/100</span>
+                  </div>
+                  <div class="race-card-meta">
+                    <span class="rcm-go">
+                      Voir la race
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
 
+  <!-- 7. Bandeau CTA -->
+  <section class="banner">
+    <div class="container banner-inner">
+      <div class="banner-text">
+        <h2 class="h2">Trouvez la meilleure assurance pour votre {nom}</h2>
+        <p>Comparez les offres SantéVet, AssurOPoil et Lassie en moins de 2 minutes. Sans engagement, sans surcoût.</p>
+        <div class="banner-cta">
+          <a href="/comparatif" class="btn btn-accent btn-lg">
+            Comparer les offres
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/guides/choisir-assurance-chien" class="btn btn-on-dark btn-lg">
+            Guide de choix
+          </a>
+        </div>
+      </div>
+      <div class="banner-stats">
+        <div class="bs-card">
+          <div class="bs-num">3</div>
+          <div class="bs-lbl">assureurs comparés</div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-num">100%</div>
+          <div class="bs-lbl">indépendant</div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-num">30</div>
+          <div class="bs-lbl">races analysées</div>
+        </div>
+        <div class="bs-card">
+          <div class="bs-num">48h</div>
+          <div class="bs-lbl">remboursement Premium</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </Layout>
 
@@ -86,353 +185,95 @@ const { title, description, nom, slug, taille, risque, kf } = Astro.props;
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!expanded));
       const answerId = btn.getAttribute('aria-controls');
-      const answer = document.getElementById(answerId);
-      if (answer) answer.hidden = expanded;
+      const answer = answerId ? document.getElementById(answerId) : null;
+      if (answer) (answer as HTMLElement).hidden = expanded;
     });
   });
 </script>
 
 <style is:global>
-/* ══════════════════════════════════════════════════════
-   PAGE CONTENT — conteneur principal (hors hero)
-   • limite la largeur à 1100px
-   • centre horizontalement tous les blocs
-   ══════════════════════════════════════════════════════ */
-.page-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
-}
-
-.page-content > * {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-/* Espacement réduit entre RiskGauge et le contenu */
-.page-content > .rc-wrap {
-  margin-top: 1.5rem;
-}
-
-/* Espacement réduit avant le comparatif */
-.page-content > .cmp,
-.page-content > :last-child {
-  margin-top: 2rem;
-}
-
-@media (max-width: 640px) {
-  .page-content {
-    padding: 0 1rem;
+  /* ── Contenu article race ── */
+  .race-content .race-article {
+    max-width: 820px;
   }
-}
 
-/* ══════════════════════════════════════════════════════
-   RACE CONTENT WRAPPER
-   • max-width centré, padding confortable
-   • responsive mobile
-   ══════════════════════════════════════════════════════ */
-.rc-wrap {
-  margin: 0 auto;
-}
-
-@media (max-width: 640px) {
-  .rc-wrap {
+  /* ── Typographie article ── */
+  .race-article {
+    line-height: 1.72;
+    color: var(--c-ink);
   }
-}
+  .race-article p {
+    margin: 0 0 1rem;
+    color: var(--c-ink-2);
+    font-size: 16px;
+    line-height: 1.72;
+  }
+  .race-article a { color: var(--c-green-700); font-weight: 500; }
+  .race-article a:hover { color: var(--c-green); }
 
-/* ══════════════════════════════════════════════════════
-   CLASSES D'ANIMATION UTILITAIRES
-   Utilisables sur n'importe quel élément de la page race.
-   ══════════════════════════════════════════════════════ */
-.fade-in  { animation: fadeIn  0.45s ease-out both; }
-.slide-up { animation: slideUp 0.40s ease-out both; }
-.scale-in { animation: scaleIn 0.40s ease-out both; }
+  .race-article h2 {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 800;
+    color: var(--c-ink);
+    margin: 2.5rem 0 1rem;
+    letter-spacing: -0.02em;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--c-green-200);
+  }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
+  .race-article .intro-text {
+    font-size: 1.05rem;
+    color: var(--c-ink-2);
+    margin-bottom: 2rem;
+    line-height: 1.75;
+  }
 
-/* ══════════════════════════════════════════════════════
-   RACE ARTICLE — base typographique
-   Les composants CSS-only (IllnessCards, AdviceBox, etc.)
-   surchargeront ces règles de base via !important ciblé.
-   ══════════════════════════════════════════════════════ */
-.race-article {
-  line-height: 1.72;
-  color: #222;
-}
+  .race-article .source {
+    font-size: 0.77rem;
+    color: var(--c-ink-3);
+    font-style: italic;
+    margin: 0.2rem 0 1rem;
+  }
 
-/* ── Paragraphes ── */
-.race-article p {
-  margin: 0 0 1rem;
-  color: #333;
-  font-size: 0.95rem;
-  line-height: 1.72;
-}
+  /* ── Tableaux dans l'article ── */
+  .race-article .table-wrap,
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem 0 .75rem;
+    border-radius: var(--radius);
+  }
+  .table-scroll { min-width: 400px; }
 
-/* ── Liens ── */
-.race-article a {
-  color: #0f6e56;
-  font-weight: 500;
-}
-.race-article a:hover {
-  color: #0a5840;
-}
+  /* ── FAQ dans l'article (bouton JS) ── */
+  .faq-list { margin: 0; padding: 0; }
+  .faq-item {
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .faq-btn {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%; padding: 16px 18px;
+    font-weight: 600; font-size: 15px;
+    cursor: pointer; background: white; border: none; text-align: left;
+    color: var(--c-ink); gap: 8px; font-family: inherit;
+    transition: background .15s;
+  }
+  .faq-btn:hover { background: var(--c-bg-soft); }
+  .faq-btn[aria-expanded="true"] { background: var(--c-green-50); color: var(--c-green-700); }
+  .chevron { flex-shrink: 0; color: var(--c-ink-3); transition: transform .2s ease; }
+  .faq-btn[aria-expanded="true"] .chevron { transform: rotate(180deg); color: var(--c-green); }
+  .faq-answer { padding: 0 18px 16px; margin: 0; font-size: 15px; color: var(--c-ink-2); line-height: 1.65; }
+  .faq-answer p { margin: 0; }
 
-/* ── H2 base (IllnessCards.astro enrichit avec accent + animation) ── */
-.race-article h2 {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #0f6e56;
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.45rem;
-  padding-left: 0.9rem;
-  border-bottom: 2px solid #ddf0e8;
-  letter-spacing: -0.015em;
-  position: relative;
-}
-
-@media (max-width: 640px) {
-  .race-article h2 { font-size: 1.15rem; }
-}
-
-/* ── Intro text base (IllnessCards.astro enrichit) ── */
-.race-article .intro-text {
-  font-size: 1.01rem;
-  color: #444;
-  margin-bottom: 2rem;
-  line-height: 1.75;
-}
-
-/* ── Source base (IllnessCards.astro enrichit) ── */
-.race-article .source {
-  font-size: 0.77rem;
-  color: #999;
-  font-style: italic;
-  margin: 0.2rem 0 1rem;
-}
-
-/* ── Tableau base (StyledTable.astro enrichit) ── */
-.race-article .data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0 0.75rem;
-  font-size: 0.88rem;
-}
-.race-article .data-table th {
-  background: #0f6e56;
-  color: #fff;
-  padding: 0.6rem 0.9rem;
-  text-align: left;
-  font-weight: 700;
-  font-size: 0.8rem;
-}
-.race-article .data-table td {
-  padding: 0.5rem 0.9rem;
-  border-bottom: 1px solid #eee;
-  vertical-align: top;
-}
-.race-article .data-table tr:nth-child(even) td {
-  background: #f9fffe;
-}
-
-/* ── Listes base (AdviceBox.astro enrichit) ── */
-.race-article ul {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 1.5rem;
-}
-.race-article ul li {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.91rem;
-  color: #333;
-}
-.race-article .sources-list {
-  font-size: 0.8rem;
-  color: #888;
-}
-
-/* ── Accordéon base (FAQ.astro enrichit) ── */
-.race-article details {
-  border: 1px solid #e0e8e4;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  overflow: hidden;
-}
-.race-article summary {
-  padding: 0.8rem 1rem;
-  font-weight: 700;
-  font-size: 0.92rem;
-  cursor: pointer;
-  list-style: none;
-  background: #fafcfb;
-}
-.race-article summary::-webkit-details-marker { display: none; }
-.race-article summary::marker               { display: none; }
-.race-article details[open] > summary {
-  background: #e8f7f2;
-  color: #0f6e56;
-}
-.race-article details > p {
-  padding: 0.8rem 1rem;
-  margin: 0;
-  font-size: 0.9rem;
-  color: #444;
-  line-height: 1.65;
-}
-
-/* ── Accordéon JS (faq-item system) ── */
-.faq-list {
-  margin: 0;
-  padding: 0;
-}
-.faq-item {
-  border: 1px solid #e0e8e4;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  overflow: hidden;
-}
-.faq-btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0.8rem 1rem;
-  font-weight: 700;
-  font-size: 0.92rem;
-  cursor: pointer;
-  background: #fafcfb;
-  border: none;
-  text-align: left;
-  color: #222;
-  gap: 0.5rem;
-}
-.faq-btn:hover {
-  background: #f0f9f5;
-}
-.faq-btn[aria-expanded="true"] {
-  background: #e8f7f2;
-  color: #0f6e56;
-}
-.chevron {
-  flex-shrink: 0;
-  color: #0f6e56;
-  font-size: 1rem;
-  transition: transform 0.2s ease;
-  display: inline-block;
-}
-.faq-btn[aria-expanded="true"] .chevron {
-  transform: rotate(180deg);
-}
-.faq-answer {
-  padding: 0.8rem 1rem;
-  margin: 0;
-  font-size: 0.9rem;
-  color: #444;
-  line-height: 1.65;
-}
-.faq-answer p {
-  margin: 0;
-}
-
-/* ── Pictos listes ── */
-.section-prevention {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 1.5rem;
-}
-.section-prevention li {
-  padding: 0.5rem 0.75rem 0.5rem 0;
-  font-size: 0.91rem;
-  color: #333;
-}
-.section-prevention li::before {
-  content: "💡";
-  font-size: 0.95rem;
-  margin-right: 8px;
-}
-
-.section-similaires {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 1.5rem;
-}
-.section-similaires li {
-  padding: 0.4rem 0;
-  font-size: 0.91rem;
-}
-.section-similaires li::before {
-  content: "🐕";
-  font-size: 0.85rem;
-  margin-right: 8px;
-}
-
-.section-sources-list li::before {
-  content: "📄";
-  font-size: 14px;
-  margin-right: 8px;
-}
-
-/* ── Tableaux mobile ── */
-.table-wrap {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 1rem 0 0.75rem;
-}
-
-/* ── Chiffres clés base (KeyFigures.astro enrichit) ── */
-.race-article .key-figures {
-  background: #f4fbf8;
-  border: 1px solid #d4ede5;
-  border-radius: 14px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-}
-.race-article .key-figures h2 {
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin: 0 0 1.1rem;
-  border: none;
-  padding: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-.race-article .figures-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.85rem;
-}
-@media (max-width: 600px) {
-  .race-article .figures-grid { grid-template-columns: repeat(2, 1fr); }
-}
-.race-article .figure {
-  text-align: center;
-  background: #fff;
-  border: 1px solid #cde6d8;
-  border-radius: 10px;
-  padding: 0.9rem 0.6rem;
-}
-.race-article .figure-value {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #0f6e56;
-  line-height: 1.1;
-}
-.race-article .figure-label {
-  font-size: 0.72rem;
-  color: #5a7a6e;
-  line-height: 1.35;
-}
+  /* ── Listes prévention / sources ── */
+  .section-prevention { list-style: none; padding: 0; margin: .5rem 0 1.5rem; }
+  .section-prevention li { padding: .5rem 0; font-size: 15px; color: var(--c-ink-2); display: flex; gap: 10px; align-items: flex-start; }
+  .section-prevention li::before { content: "💡"; flex-shrink: 0; }
+  .section-sources-list { list-style: none; padding: 0; margin: .5rem 0; }
+  .section-sources-list li { font-size: 13px; color: var(--c-ink-3); padding: .35rem 0; display: flex; gap: 8px; }
+  .section-sources-list li::before { content: "📄"; flex-shrink: 0; }
 </style>

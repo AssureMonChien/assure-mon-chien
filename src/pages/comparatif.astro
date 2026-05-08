@@ -19,7 +19,7 @@ const jsonldFaq = JSON.stringify({
       "name": "Quelle est la meilleure assurance chien en 2026 ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "SantéVet se distingue par son remboursement à 100 %, sa couverture des maladies chroniques sans surprime et son délai de remboursement de 48 heures. Pour les races à risque élevé (Bouledogue, Cavalier King Charles, Rottweiler), c'est le choix le plus protecteur. Pour un petit budget sans pathologie héréditaire connue, AssurOPoil à 15 €/mois peut suffire."
+        "text": "Pour la majorité des profils, SantéVet offre le meilleur rapport couverture / prix : 100 % de remboursement, 48 h de délai et prévention 150 €/an. Pour un petit budget sur une race à risque modéré, AssurOPoil est compétitif à 15 €/mois."
       }
     },
     {
@@ -27,7 +27,7 @@ const jsonldFaq = JSON.stringify({
       "name": "Y a-t-il une période de carence pour une assurance chien ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui, toutes les assurances imposent une carence : 30 jours chez SantéVet et AssurOPoil, 45 jours chez Lassie. Pendant cette période, les maladies diagnostiquées ne sont pas couvertes. Les accidents, en revanche, sont généralement couverts dès le premier jour. Plus tôt vous souscrivez, plus vite vous êtes pleinement couvert."
+        "text": "Oui. La carence maladie est de 30 jours chez SantéVet et AssurOPoil, et de 45 jours chez Lassie. La carence accident est généralement immédiate ou de 48 h. Aucune souscription n'évite ce délai."
       }
     },
     {
@@ -35,11 +35,76 @@ const jsonldFaq = JSON.stringify({
       "name": "L'assurance chien couvre-t-elle les maladies héréditaires ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui, à condition de souscrire avant tout diagnostic. SantéVet, AssurOPoil et Lassie couvrent les maladies héréditaires (dysplasie, cardiopathies, épilepsie) si aucun symptôme ni diagnostic n'a été enregistré avant la souscription. C'est la raison principale pour assurer son chien dès le plus jeune âge, avant les premiers bilans vétérinaires de dépistage."
+        "text": "Oui à condition que la pathologie n'ait pas été diagnostiquée avant la souscription et après le délai de carence. SantéVet et AssurOPoil incluent la dysplasie sans surprime, Lassie aussi mais à 80 % de remboursement."
       }
     }
   ]
 });
+
+const insurers = [
+  {
+    id: "santeVet",
+    name: "SantéVet",
+    recommended: true,
+    color: "#1D9E75",
+    price: "18 €/mois",
+    refund: "100 %",
+    waiting: "30 j",
+    prevention: "150 €/an",
+    dysplasia: true,
+    vaccines: "Premium",
+    app: true,
+    refundDelay: "48 h",
+    verdict: "Bouledogue Français, Cavalier King Charles, Rottweiler, Golden Retriever. Remboursement à 100 %, délai 48 h et couverture maladies chroniques sans surprime : le choix logique quand les frais vétérinaires peuvent dépasser 5 000 €.",
+    profile: "Races à risque élevé",
+    href: "https://www.santeVet.com/assurance-chien/?ref=assuremochien"
+  },
+  {
+    id: "assurOPoil",
+    name: "AssurOPoil",
+    recommended: false,
+    color: "#2D7FC1",
+    price: "15 €/mois",
+    refund: "100 %",
+    waiting: "30 j",
+    prevention: false,
+    dysplasia: true,
+    vaccines: false,
+    app: false,
+    refundDelay: "5–10 j",
+    verdict: "Races de risque modéré sans pathologies héréditaires documentées. À 15 €/mois avec 100 % de remboursement, c'est l'entrée de gamme la plus compétitive — à condition d'accepter l'absence d'application mobile et les délais de remboursement plus longs.",
+    profile: "Petit budget",
+    href: "https://www.assuropoil.fr/?ref=assuremochien"
+  },
+  {
+    id: "lassie",
+    name: "Lassie",
+    recommended: false,
+    color: "#D97753",
+    price: "20 €/mois",
+    refund: "80 %",
+    waiting: "45 j",
+    prevention: "100 €/an",
+    dysplasia: true,
+    vaccines: "Premium",
+    app: true,
+    refundDelay: "72 h",
+    verdict: "Propriétaires qui gèrent tout depuis leur smartphone. Interface soignée, devis en 90 secondes, suivi des remboursements en temps réel. Le remboursement à 80 % et la carence de 45 jours restent des points de vigilance pour les races fragiles.",
+    profile: "Application mobile prioritaire",
+    href: "https://www.lassie.fr/?ref=assuremochien"
+  }
+];
+
+const rows = [
+  { key: "price",       label: "Prix indicatif",        icon: "wallet"     },
+  { key: "refund",      label: "Remboursement",          icon: "chart"      },
+  { key: "waiting",     label: "Carence maladie",        icon: "clock"      },
+  { key: "prevention",  label: "Prévention incluse",     icon: "leaf"       },
+  { key: "dysplasia",   label: "Couverture dysplasie",   icon: "shield"     },
+  { key: "vaccines",    label: "Vaccins remboursés",     icon: "stethoscope"},
+  { key: "app",         label: "Application mobile",     icon: "phone"      },
+  { key: "refundDelay", label: "Délai remboursement",    icon: "calendar"   },
+];
 ---
 
 <Layout
@@ -50,476 +115,560 @@ const jsonldFaq = JSON.stringify({
   <script type="application/ld+json" set:html={jsonldFaq} />
 
   <!-- ── Hero ── -->
-  <section class="hero-comp">
-    <div class="hero-inner">
-      <h1>Comparatif assurances chien 2026</h1>
-      <p class="hero-desc">Analyse indépendante de SantéVet, AssurOPoil et Lassie — tarifs réels, garanties clés et verdict par profil de race. Mis à jour avril 2026.</p>
+  <section class="cmp-hero">
+    <div class="container cmp-hero-inner">
+      <span class="pill pill-soft">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Mis à jour avril 2026
+      </span>
+      <h1 class="display display-md">Comparatif assurances chien <em>2026</em></h1>
+      <p class="lede">Analyse indépendante de SantéVet, AssurOPoil et Lassie — tarifs réels, garanties clés et verdict par profil de race.</p>
     </div>
   </section>
 
-  <!-- ── Tableau ── -->
-  <section class="table-section">
-    <div class="wrap">
-      <div class="table-wrap">
-        <table class="comp-table">
+  <!-- ── Tableau comparatif ── -->
+  <section class="section section-tight">
+    <div class="container">
+      <div class="cmp-table-wrap">
+        <table class="cmp-table">
           <thead>
             <tr>
-              <th class="col-critere">Critère</th>
-              <th class="col-santeVet">
-                SantéVet
-                <span class="badge-recommande">Recommandé</span>
-              </th>
-              <th class="col-assu">AssurOPoil</th>
-              <th class="col-lassie">Lassie</th>
+              <th class="cmp-row-label-th"></th>
+              {insurers.map(ins => (
+                <th class={`cmp-col${ins.recommended ? " is-recommended" : ""}`}>
+                  {ins.recommended && (
+                    <div class="cmp-flag">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      Recommandé
+                    </div>
+                  )}
+                  <div class="cmp-brand">
+                    <div class="cmp-brand-mark" style={`background:${ins.color}1A;color:${ins.color}`}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <span class="cmp-brand-name">{ins.name}</span>
+                  </div>
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="critere-label">Prix indicatif</td>
-              <td class="val-santeVet"><strong>18 €/mois</strong></td>
-              <td>15 €/mois</td>
-              <td>20 €/mois</td>
-            </tr>
-            <tr class="alt">
-              <td class="critere-label">Remboursement</td>
-              <td class="val-santeVet"><strong>100 %</strong></td>
-              <td>100 %</td>
-              <td>80 %</td>
-            </tr>
-            <tr>
-              <td class="critere-label">Carence maladie</td>
-              <td class="val-santeVet">30 j</td>
-              <td>30 j</td>
-              <td>45 j</td>
-            </tr>
-            <tr class="alt">
-              <td class="critere-label">Prévention incluse</td>
-              <td class="val-santeVet">150 €/an</td>
-              <td><span class="cross">✗</span></td>
-              <td>100 €/an</td>
-            </tr>
-            <tr>
-              <td class="critere-label">Couverture dysplasie</td>
-              <td class="val-santeVet"><span class="check">✓</span></td>
-              <td><span class="check">✓</span></td>
-              <td><span class="check">✓</span></td>
-            </tr>
-            <tr class="alt">
-              <td class="critere-label">Vaccins remboursés</td>
-              <td class="val-santeVet">Premium</td>
-              <td><span class="cross">✗</span></td>
-              <td>Premium</td>
-            </tr>
-            <tr>
-              <td class="critere-label">Application mobile</td>
-              <td class="val-santeVet"><span class="check">✓</span></td>
-              <td><span class="cross">✗</span></td>
-              <td><span class="check">✓</span></td>
-            </tr>
-            <tr class="alt">
-              <td class="critere-label">Délai remboursement</td>
-              <td class="val-santeVet"><strong>48 h</strong></td>
-              <td>5–10 j</td>
-              <td>72 h</td>
+            {rows.map(row => (
+              <tr>
+                <td class="cmp-row-label">
+                  <span class="cmp-row-icon" aria-hidden="true">
+                    {row.icon === "wallet"      && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>}
+                    {row.icon === "chart"       && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>}
+                    {row.icon === "clock"       && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
+                    {row.icon === "leaf"        && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>}
+                    {row.icon === "shield"      && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+                    {row.icon === "stethoscope" && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>}
+                    {row.icon === "phone"       && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>}
+                    {row.icon === "calendar"    && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>}
+                  </span>
+                  {row.label}
+                </td>
+                {insurers.map(ins => {
+                  const val = (ins as any)[row.key];
+                  return (
+                    <td class={ins.recommended ? "is-recommended" : ""}>
+                      {val === true
+                        ? <span class="cell-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Oui"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        : val === false
+                          ? <span class="cell-no"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-label="Non"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                          : <span class="cell-val">{val}</span>
+                      }
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+            <!-- CTA row -->
+            <tr class="cmp-cta-row">
+              <td></td>
+              {insurers.map(ins => (
+                <td class={ins.recommended ? "is-recommended" : ""}>
+                  <a
+                    href={ins.href}
+                    target="_blank"
+                    rel="noopener sponsored"
+                    class={`btn btn-block${ins.recommended ? " btn-primary" : " btn-outline"}`}
+                  >
+                    Voir l'offre
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </td>
+              ))}
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="table-note">* Tarifs indicatifs avril 2026. Peuvent varier selon l'âge et la race du chien.</p>
 
-      <!-- CTAs -->
-      <div class="ctas">
-        <a href="https://www.santeVet.com/assurance-chien/?ref=assuremochien" class="cta-primary" target="_blank" rel="noopener sponsored">
-          Voir l'offre SantéVet →
-        </a>
-        <a href="https://www.assuropoil.fr/?ref=assuremochien" class="cta-outline" target="_blank" rel="noopener sponsored">
-          Voir l'offre AssurOPoil →
-        </a>
-        <a href="https://www.lassie.fr/?ref=assuremochien" class="cta-outline" target="_blank" rel="noopener sponsored">
-          Voir l'offre Lassie →
-        </a>
-      </div>
+      <p class="affiliate-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Liens partenaires — Nous percevons une commission si vous souscrivez, sans surcoût pour vous.
+      </p>
     </div>
   </section>
 
-  <!-- ── Verdict ── -->
-  <section class="verdict-section">
-    <div class="wrap">
-      <h2 class="section-title">Pour qui chaque assurance ?</h2>
+  <!-- ── Verdict par profil ── -->
+  <section class="section section-tinted">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Verdict par profil</span>
+        <h2 class="h2">À qui s'adresse chaque offre&nbsp;?</h2>
+      </div>
       <div class="verdict-grid">
-        <div class="verdict-card verdict-green">
-          <div class="verdict-header">
-            <span class="verdict-name">SantéVet</span>
-            <span class="verdict-tag">Meilleur choix</span>
-          </div>
-          <p class="verdict-who">Races à risque élevé</p>
-          <p class="verdict-desc">Bouledogue Français, Cavalier King Charles, Rottweiler, Golden Retriever. Remboursement à 100 %, délai 48 h et couverture maladies chroniques sans surprime : le choix logique quand les frais vétérinaires peuvent dépasser 5 000 €.</p>
-        </div>
-        <div class="verdict-card verdict-neutral">
-          <div class="verdict-header">
-            <span class="verdict-name">AssurOPoil</span>
-          </div>
-          <p class="verdict-who">Petit budget</p>
-          <p class="verdict-desc">Races de risque modéré sans pathologies héréditaires documentées. À 15 €/mois avec 100 % de remboursement, c'est l'entrée de gamme la plus compétitive — à condition d'accepter l'absence d'application mobile et les délais de remboursement plus longs.</p>
-        </div>
-        <div class="verdict-card verdict-neutral">
-          <div class="verdict-header">
-            <span class="verdict-name">Lassie</span>
-          </div>
-          <p class="verdict-who">Application mobile prioritaire</p>
-          <p class="verdict-desc">Propriétaires qui gèrent tout depuis leur smartphone. Interface soignée, devis en 90 secondes, suivi des remboursements en temps réel. Le remboursement à 80 % et la carence de 45 jours restent des points de vigilance pour les races fragiles.</p>
-        </div>
+        {insurers.map(ins => (
+          <article class={`verdict-card${ins.recommended ? " is-recommended" : ""}`}>
+            <div class="verdict-head">
+              <div class="cmp-brand-mark" style={`background:${ins.color}1A;color:${ins.color}`}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <h3>{ins.name}</h3>
+                <div class="verdict-price">{ins.price}</div>
+              </div>
+              {ins.recommended && (
+                <span class="cmp-flag" style="margin:0;position:absolute;top:-8px;right:-8px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  Recommandé
+                </span>
+              )}
+            </div>
+            <p class="verdict-profile">{ins.profile}</p>
+            <p>{ins.verdict}</p>
+            <a
+              href={ins.href}
+              target="_blank"
+              rel="noopener sponsored"
+              class={`btn btn-block${ins.recommended ? " btn-primary" : " btn-outline"}`}
+            >
+              Voir l'offre {ins.name}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- ── FAQ ── -->
-  <section class="faq-section">
-    <div class="wrap">
-      <h2 class="section-title">Questions fréquentes</h2>
-      <dl class="faq-list">
-        <div class="faq-item">
-          <dt>
-            <button class="faq-btn" aria-expanded="false">
-              Quelle est la meilleure assurance chien en 2026 ?
-              <span class="faq-chevron" aria-hidden="true">▾</span>
-            </button>
-          </dt>
-          <dd class="faq-answer" hidden>
-            SantéVet se distingue par son remboursement à 100 %, sa couverture des maladies chroniques sans surprime et son délai de remboursement de 48 heures. Pour les races à risque élevé (Bouledogue, Cavalier King Charles, Rottweiler), c'est le choix le plus protecteur. Pour un petit budget sans pathologie héréditaire connue, AssurOPoil à 15 €/mois peut suffire.
-          </dd>
-        </div>
-        <div class="faq-item">
-          <dt>
-            <button class="faq-btn" aria-expanded="false">
-              Y a-t-il une période de carence pour une assurance chien ?
-              <span class="faq-chevron" aria-hidden="true">▾</span>
-            </button>
-          </dt>
-          <dd class="faq-answer" hidden>
-            Oui, toutes les assurances imposent une carence : 30 jours chez SantéVet et AssurOPoil, 45 jours chez Lassie. Pendant cette période, les maladies diagnostiquées ne sont pas couvertes. Les accidents sont généralement couverts dès le premier jour. Plus tôt vous souscrivez, plus vite vous êtes pleinement couvert.
-          </dd>
-        </div>
-        <div class="faq-item">
-          <dt>
-            <button class="faq-btn" aria-expanded="false">
-              L'assurance chien couvre-t-elle les maladies héréditaires ?
-              <span class="faq-chevron" aria-hidden="true">▾</span>
-            </button>
-          </dt>
-          <dd class="faq-answer" hidden>
-            Oui, à condition de souscrire avant tout diagnostic. SantéVet, AssurOPoil et Lassie couvrent les maladies héréditaires (dysplasie, cardiopathies, épilepsie) si aucun symptôme ni diagnostic n'a été enregistré avant la souscription. C'est la raison principale pour assurer son chien dès le plus jeune âge, avant les premiers bilans vétérinaires de dépistage.
-          </dd>
-        </div>
-      </dl>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="h2">Questions fréquentes</h2>
+      </div>
+      <div class="faq-list faq-list-wide">
+        <details>
+          <summary>
+            <span>Quelle est la meilleure assurance chien en 2026 ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <p>Pour la majorité des profils, SantéVet offre le meilleur rapport couverture / prix : 100 % de remboursement, 48 h de délai et prévention 150 €/an. Pour un petit budget sur une race à risque modéré, AssurOPoil est compétitif à 15 €/mois.</p>
+        </details>
+        <details>
+          <summary>
+            <span>Y a-t-il une période de carence pour une assurance chien ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <p>Oui. La carence maladie est de 30 jours chez SantéVet et AssurOPoil, et de 45 jours chez Lassie. La carence accident est généralement immédiate ou de 48 h. Aucune souscription n'évite ce délai.</p>
+        </details>
+        <details>
+          <summary>
+            <span>L'assurance chien couvre-t-elle les maladies héréditaires ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <p>Oui à condition que la pathologie n'ait pas été diagnostiquée avant la souscription et après le délai de carence. SantéVet et AssurOPoil incluent la dysplasie sans surprime, Lassie aussi mais à 80 % de remboursement.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Trust banner ── -->
+  <section class="trust-banner">
+    <div class="container trust-inner">
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Comparatif 100&nbsp;% indépendant</span>
+      </div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Mis à jour chaque trimestre</span>
+      </div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Tarifs vérifiés en avril 2026</span>
+      </div>
+      <a href="/races" class="btn btn-on-dark">
+        Trouver l'assurance idéale
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </section>
 </Layout>
 
 <style>
   /* ── Hero ── */
-  .hero-comp {
-    background: #0F6E56;
-    padding: 3.5rem 1.25rem 3rem;
+  .cmp-hero {
+    padding: 64px 0 32px;
     text-align: center;
-    color: #fff;
+    background:
+      radial-gradient(ellipse at top, var(--c-green-50) 0%, transparent 60%),
+      white;
   }
-
-  .hero-inner {
-    max-width: 680px;
+  .cmp-hero-inner {
+    max-width: 760px;
     margin: 0 auto;
   }
+  .cmp-hero h1 { margin: 16px 0 12px; }
+  .cmp-hero .lede { max-width: 580px; margin: 0 auto; }
 
-  .hero-comp h1 {
-    font-size: clamp(1.7rem, 4vw, 2.4rem);
-    font-weight: 800;
-    line-height: 1.2;
-    margin: 0 0 .85rem;
-    letter-spacing: -.02em;
-    color: #fff;
+  /* ── Section spacing ── */
+  .section { padding: 64px 0; }
+  .section-tight { padding: 40px 0; }
+  .section-tinted { background: var(--c-bg-soft); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 40px;
   }
+  .section-head .h2 { margin: 8px 0 0; }
 
-  .hero-desc {
-    font-size: .95rem;
-    opacity: .85;
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  /* ── Tableau ── */
-  .table-section {
-    padding: 3rem 1.25rem 1.5rem;
-  }
-
-  .wrap {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .table-wrap {
+  /* ── Table ── */
+  .cmp-table-wrap {
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-line);
     overflow-x: auto;
-    border-radius: 12px;
-    border: 1px solid #d4ede5;
+    box-shadow: var(--shadow-sm);
   }
-
-  .comp-table {
+  .cmp-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: .9rem;
-    background: #fff;
+    min-width: 680px;
   }
 
-  .comp-table thead tr {
-    background: #0F6E56;
-    color: #fff;
-  }
-
-  .comp-table th {
-    padding: .9rem 1rem;
-    font-weight: 700;
-    text-align: left;
-    font-size: .82rem;
-    letter-spacing: .03em;
-    text-transform: uppercase;
-    vertical-align: middle;
-  }
-
-  .comp-table th.col-santeVet {
-    background: #0a5a45;
+  .cmp-table thead th {
+    padding: 28px 18px 22px;
+    text-align: center;
+    vertical-align: bottom;
+    background: var(--c-bg-soft);
+    border-bottom: 1px solid var(--c-line);
     position: relative;
   }
-
-  .badge-recommande {
-    display: inline-block;
-    background: #F9CB42;
-    color: #1A2E26;
-    font-size: 9px;
-    font-weight: 800;
-    padding: 2px 6px;
-    border-radius: 6px;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    margin-left: .4rem;
-    vertical-align: middle;
+  .cmp-table thead th.cmp-row-label-th {
+    width: 200px;
+    background: white;
+  }
+  .cmp-table thead th.is-recommended {
+    background: var(--c-green-50);
   }
 
-  .comp-table td {
-    padding: .75rem 1rem;
-    border-bottom: 1px solid #f0f0f0;
-    vertical-align: middle;
-  }
-
-  .comp-table tr:last-child td {
-    border-bottom: none;
-  }
-
-  .comp-table tr.alt {
-    background: #fafafa;
-  }
-
-  .critere-label {
-    font-weight: 600;
-    color: #333;
-    font-size: .85rem;
-  }
-
-  .val-santeVet {
-    background: #E1F5EE;
-    border-left: 1.5px solid #1D9E75;
-    border-right: 1.5px solid #1D9E75;
-  }
-
-  .comp-table tr:last-child .val-santeVet {
-    border-bottom: 1.5px solid #1D9E75;
-  }
-
-  .check { color: #1D9E75; font-weight: 700; font-size: 1rem; }
-  .cross { color: #E24B4A; font-weight: 700; font-size: 1rem; }
-
-  .table-note {
+  .cmp-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--c-green);
+    color: white;
     font-size: 11px;
-    color: #999;
-    margin: .75rem 0 0;
-    text-align: right;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    letter-spacing: -.005em;
+  }
+  .cmp-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .cmp-brand-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .cmp-brand-name {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -.01em;
+    color: var(--c-ink);
   }
 
-  /* ── CTAs ── */
-  .ctas {
+  .cmp-table td {
+    padding: 16px 18px;
+    text-align: center;
+    border-bottom: 1px solid var(--c-line-soft);
+    font-size: 15px;
+    vertical-align: middle;
+  }
+  .cmp-table td.is-recommended {
+    background: rgba(29,158,117,.04);
+  }
+  .cmp-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .cmp-row-label {
+    text-align: left !important;
+    font-weight: 600;
+    color: var(--c-ink);
     display: flex;
-    gap: .75rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .cmp-row-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: var(--c-green-50);
+    color: var(--c-green);
+    flex-shrink: 0;
+  }
+
+  .cell-yes {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--c-green-50);
+    color: var(--c-green);
+    align-items: center;
+    justify-content: center;
+  }
+  .cell-no {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--c-bg-soft);
+    color: var(--c-ink-3);
+    align-items: center;
+    justify-content: center;
+  }
+  .cell-val {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cmp-cta-row td {
+    padding: 22px 18px;
+    border-bottom: 0;
+  }
+  .cmp-cta-row td.is-recommended {
+    background: rgba(29,158,117,.04);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: .875rem;
+    padding: .625rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: opacity .15s, background .15s, color .15s;
+    cursor: pointer;
+  }
+  .btn-block { width: 100%; justify-content: center; }
+  .btn-primary { background: var(--c-green); color: #fff; border-color: var(--c-green); }
+  .btn-primary:hover { opacity: .88; text-decoration: none; }
+  .btn-outline { background: transparent; color: var(--c-green-700); border-color: var(--c-green); }
+  .btn-outline:hover { background: var(--c-green-50); text-decoration: none; }
+  .btn-on-dark { background: rgba(255,255,255,.15); color: #fff; border-color: rgba(255,255,255,.35); }
+  .btn-on-dark:hover { background: rgba(255,255,255,.25); text-decoration: none; }
+
+  .affiliate-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--c-ink-3);
+    padding: 14px 18px;
+    background: var(--c-bg-soft);
+    border-radius: var(--radius);
+    margin: 20px 0 0;
     justify-content: center;
   }
 
-  .cta-primary {
-    background: #1D9E75;
-    color: #fff;
-    font-weight: 700;
-    font-size: .9rem;
-    padding: .75rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: opacity .15s;
-  }
-  .cta-primary:hover { opacity: .88; text-decoration: none; }
-
-  .cta-outline {
-    border: 2px solid #1D9E75;
-    color: #1D9E75;
-    background: transparent;
-    font-weight: 600;
-    font-size: .9rem;
-    padding: .75rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background .15s;
-  }
-  .cta-outline:hover { background: #E1F5EE; text-decoration: none; }
-
   /* ── Verdict ── */
-  .verdict-section {
-    padding: 3rem 1.25rem;
-    background: #f4fbf8;
-    border-top: 1px solid #d4ede5;
-  }
-
-  .section-title {
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
-    font-weight: 800;
-    color: #0F6E56;
-    text-align: center;
-    margin: 0 0 1.75rem;
-    letter-spacing: -.02em;
-  }
-
   .verdict-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 20px;
   }
-
-  @media (max-width: 768px) {
+  @media (max-width: 880px) {
     .verdict-grid { grid-template-columns: 1fr; }
   }
 
   .verdict-card {
-    background: #fff;
-    border: 1px solid #d4ede5;
-    border-radius: 12px;
-    padding: 1.25rem 1.1rem;
+    background: white;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease;
   }
-
-  .verdict-card.verdict-green {
-    border-color: #1D9E75;
-    box-shadow: 0 0 0 1px #1D9E75;
+  .verdict-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
   }
-
-  .verdict-header {
+  .verdict-card.is-recommended {
+    border: 2px solid var(--c-green);
+    background: linear-gradient(180deg, rgba(29,158,117,.04) 0%, white 70%);
+  }
+  .verdict-head {
     display: flex;
     align-items: center;
-    gap: .5rem;
-    margin-bottom: .35rem;
-    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 12px;
+    position: relative;
   }
-
-  .verdict-name {
-    font-size: 1rem;
-    font-weight: 800;
-    color: #1a1a1a;
-  }
-
-  .verdict-tag {
-    font-size: 9px;
-    font-weight: 800;
-    background: #E1F5EE;
-    color: #0F6E56;
-    border: 1px solid #1D9E75;
-    border-radius: 6px;
-    padding: 2px 6px;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-  }
-
-  .verdict-who {
-    font-size: .8rem;
-    font-weight: 700;
-    color: #1D9E75;
-    margin: 0 0 .5rem;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-  }
-
-  .verdict-desc {
-    font-size: .85rem;
-    color: #444;
-    line-height: 1.65;
+  .verdict-head h3 {
     margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.015em;
+  }
+  .verdict-price {
+    font-size: 14px;
+    color: var(--c-ink-3);
+    font-weight: 600;
+  }
+  .verdict-profile {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--c-green-700);
+    margin: 0 0 10px;
+    font-family: var(--font-mono);
+  }
+  .verdict-card > p:not(.verdict-profile) {
+    font-size: 14px;
+    color: var(--c-ink-2);
+    line-height: 1.6;
+    margin: 0 0 20px;
+    flex: 1;
   }
 
-  /* ── FAQ ── */
-  .faq-section {
-    padding: 3rem 1.25rem 4rem;
-  }
-
+  /* ── FAQ (details/summary) ── */
   .faq-list {
-    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .faq-list-wide {
+    max-width: 880px;
     margin: 0 auto;
   }
-
-  .faq-item {
-    border-bottom: 1px solid #e8e8e8;
+  .faq-list details {
+    background: white;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease;
   }
-
-  .faq-btn {
-    width: 100%;
-    background: none;
-    border: none;
-    text-align: left;
-    padding: 1rem 0;
-    font-size: .95rem;
-    font-weight: 600;
-    color: #1a1a1a;
+  .faq-list details[open] {
+    border-color: var(--c-green-200);
+    box-shadow: var(--shadow-sm);
+  }
+  .faq-list summary {
     cursor: pointer;
+    list-style: none;
+    padding: 18px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: .75rem;
-    line-height: 1.4;
+    justify-content: space-between;
+    gap: 16px;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--c-ink);
   }
-
-  .faq-btn:hover { color: #0F6E56; }
-  .faq-btn[aria-expanded="true"] { color: #0F6E56; }
-
-  .faq-chevron {
-    font-size: 1.1rem;
-    transition: transform .2s;
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary svg {
+    transition: transform .25s ease;
+    color: var(--c-ink-3);
     flex-shrink: 0;
-    color: #1D9E75;
   }
-
-  .faq-btn[aria-expanded="true"] .faq-chevron {
+  .faq-list details[open] summary svg {
     transform: rotate(180deg);
+    color: var(--c-green);
   }
-
-  .faq-answer {
-    font-size: .9rem;
-    color: #444;
-    line-height: 1.7;
-    padding: 0 0 1rem;
+  .faq-list p {
+    padding: 0 20px 20px;
     margin: 0;
+    font-size: 15px;
+    color: var(--c-ink-2);
+    line-height: 1.65;
   }
 
-  .faq-answer[hidden] { display: none; }
-</style>
+  /* ── Trust banner ── */
+  .trust-banner {
+    background: var(--c-green-800);
+    padding: 40px 24px;
+  }
+  .trust-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,.85);
+    font-size: .9rem;
+    font-weight: 500;
+  }
+  .trust-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--c-accent);
+    flex-shrink: 0;
+  }
 
-<script>
-  document.querySelectorAll(".faq-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const expanded = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!expanded));
-      const answer = btn.closest(".faq-item")?.querySelector(".faq-answer") as HTMLElement | null;
-      if (answer) answer.hidden = expanded;
-    });
-  });
-</script>
+  /* ── Pills / Eyebrow ── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pill-soft {
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    border: 1px solid var(--c-green-200);
+  }
+  .eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--c-green-700);
+  }
+  .display { font-weight: 800; letter-spacing: -.025em; line-height: 1.15; }
+  .display-md { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  .display em { font-style: normal; color: var(--c-green); }
+  .lede { font-size: 1.05rem; color: var(--c-ink-2); line-height: 1.65; }
+  .h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -.02em; color: var(--c-ink); }
+</style>

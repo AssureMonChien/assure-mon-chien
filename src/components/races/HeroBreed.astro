@@ -1,244 +1,155 @@
 ---
 interface Props {
-  nom: string;
-  slug: string;
-  title: string;
+  nom:    string;
+  slug:   string;
+  title:  string;
   taille: string;
   risque: 'faible' | 'modere' | 'eleve';
 }
 
-const { nom, slug, taille, risque, title } = Astro.props;
-
-const risqueMap = {
-  faible: { label: 'Risque faible',  color: '#34d399', bg: 'rgba(52,211,153,0.18)',  score: 28 },
-  modere: { label: 'Risque modéré', color: '#f9cb42', bg: 'rgba(249,203,66,0.18)',   score: 58 },
-  eleve:  { label: 'Risque élevé',  color: '#f87171', bg: 'rgba(248,113,113,0.18)',  score: 85 },
-} as const;
+const { nom, slug, taille, risque } = Astro.props;
 
 const tailleMap: Record<string, string> = {
-  petite: 'Petite race',
+  petite:  'Petite race',
   moyenne: 'Race moyenne',
-  grande: 'Grande race',
+  grande:  'Grande race',
 };
 
-const r = risqueMap[risque];
+const risqueMap = {
+  faible: { label: 'Risque faible',  cls: 'risk-low',  dot: 'risk-dot' },
+  modere: { label: 'Risque modéré', cls: 'risk-mid',  dot: 'risk-dot' },
+  eleve:  { label: 'Risque élevé',  cls: 'risk-high', dot: 'risk-dot' },
+} as const;
+
+const r        = risqueMap[risque];
 const tailleLabel = tailleMap[taille] ?? taille;
+
+/* Mapping slug → nom de fichier image (accents) */
+const imgMap: Record<string, string> = {
+  'bouledogue-francais':    'bouledogue-français',
+  'montagne-des-pyrenees':  'montagne-des-Pyrénées',
+};
+const imgFile = imgMap[slug] ?? slug;
 ---
 
-<section class="hb">
-  <div class="hb-bg" aria-hidden="true"></div>
+<!-- Breadcrumb -->
+<div class="container">
+  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="/">Accueil</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <a href="/races">Races</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <span>{nom}</span>
+  </nav>
+</div>
 
-  <div class="hb-inner">
+<!-- Hero -->
+<section class="race-hero">
+  <div class="container">
+    <div class="race-hero-grid">
 
-    <!-- Texte -->
-    <div class="hb-text">
-      <nav aria-label="Fil d'Ariane">
-        <ol class="hb-crumb">
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/races">Races</a></li>
-          <li aria-current="page">{nom}</li>
-        </ol>
-      </nav>
-
-      <div class="hb-badges">
-        <span class="hb-pill">GUIDE RACE</span>
-        <span class="hb-pill hb-taille">{tailleLabel}</span>
-        <span
-          class="hb-pill hb-risque"
-          style={`color:${r.color};background:${r.bg};border:1px solid ${r.color}44`}
-        >{r.label}</span>
-      </div>
-
-      <h1 class="hb-h1">{title}</h1>
-
-      <!-- Barre de risque -->
-      <div
-        class="hb-gauge"
-        role="meter"
-        aria-valuenow={r.score}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label={`Risque santé ${r.score}/100`}
-      >
-        <div class="hb-gauge-meta">
-          <span>Risque santé</span>
-          <strong>{r.score} / 100</strong>
-        </div>
-        <div class="hb-gauge-track">
-          <div
-            class="hb-gauge-fill"
-            style={`--w:${r.score}%;--c:${r.color}`}
-          ></div>
+      <!-- Photo -->
+      <div class="race-hero-photo">
+        <div class="race-photo" style="aspect-ratio:4/3;">
+          <img
+            src={`/images/races/${imgFile}.webp`}
+            alt={`Photo ${nom}`}
+            width="640" height="480"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            class="race-photo-img"
+          />
+          <div class="race-photo-badge">
+            <span class={`risk-badge ${r.cls}`}>
+              <span class={r.dot}></span>
+              {r.label}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Image -->
-    <div class="hb-img-wrap">
-      <img
-        src={`/images/races/${slug}.webp`}
-        alt={`Photo ${nom}`}
-        width="280"
-        height="210"
-        loading="eager"
-        fetchpriority="high"
-        decoding="sync"
-        class="hb-img"
-      />
-    </div>
+      <!-- Text -->
+      <div class="race-hero-text">
+        <div class="race-hero-tags">
+          <span class="tag">Taille {tailleLabel.toLowerCase()}</span>
+          <span class="tag">{r.label}</span>
+        </div>
+        <h1 class="display display-md">
+          Assurance <em>{nom}</em>
+        </h1>
+        <p class="lede">
+          Découvrez les prédispositions génétiques du {nom}, les coûts vétérinaires
+          réels et les garanties d'assurance indispensables pour cette race.
+        </p>
+        <div class="race-hero-actions">
+          <a href="#offres" class="btn btn-primary btn-lg">
+            Voir les offres adaptées
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/comparatif" class="btn btn-ghost btn-lg">
+            Comparer les assureurs
+          </a>
+        </div>
+      </div>
 
+    </div>
   </div>
 </section>
 
 <style>
-/* ── Conteneur ── */
-.hb {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(130deg, #073d2b 0%, #0f6e56 60%, #1a9e7a 100%);
-  color: #fff;
-  padding: 2.5rem 1.25rem 2rem;
-  animation: hbIn 0.45s ease-out both;
-}
+  .race-hero { padding: 32px 0 48px; }
 
-/* Cercles décoratifs */
-.hb-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 60%, rgba(255,255,255,0.05) 0%, transparent 45%),
-    radial-gradient(circle at 85% 15%, rgba(249,203,66,0.07) 0%, transparent 40%);
-  pointer-events: none;
-}
+  .race-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .race-hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
 
-/* ── Grille texte / image ── */
-.hb-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2.5rem;
-}
+  .race-hero-photo .race-photo {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  /* Ensure image fills the aspect-ratio container in all browsers */
+  .race-hero-photo .race-photo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-/* ── Breadcrumb ── */
-.hb-crumb {
-  list-style: none;
-  margin: 0 0 0.85rem;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.2rem;
-  font-size: 0.76rem;
-  color: rgba(255,255,255,0.5);
-}
-.hb-crumb li + li::before {
-  content: '›';
-  margin-right: 0.2rem;
-  color: rgba(255,255,255,0.3);
-}
-.hb-crumb a {
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-}
-.hb-crumb a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
+  .race-hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--c-bg-soft);
+    border: 1px solid var(--c-line);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--c-ink-2);
+  }
 
-/* ── Badges ── */
-.hb-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.85rem;
-  animation: hbUp 0.4s ease-out 0.08s both;
-}
-.hb-pill {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.9);
-}
-.hb-taille { background: rgba(249,203,66,0.2); color: #f9cb42; }
-.hb-risque { font-size: 0.68rem; }
+  .display-md { font-size: clamp(1.6rem, 3.2vw, 2.4rem); }
 
-/* ── H1 ── */
-.hb-h1 {
-  font-size: clamp(1.3rem, 3vw, 1.9rem);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin: 0 0 1.35rem;
-  color: #fff;
-  animation: hbUp 0.4s ease-out 0.13s both;
-}
-
-/* ── Gauge ── */
-.hb-gauge {
-  max-width: 300px;
-  animation: hbUp 0.4s ease-out 0.18s both;
-}
-.hb-gauge-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 0.3rem;
-}
-.hb-gauge-meta strong {
-  color: rgba(255,255,255,0.9);
-  font-weight: 700;
-}
-.hb-gauge-track {
-  height: 7px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.hb-gauge-fill {
-  height: 100%;
-  width: var(--w);
-  background: var(--c);
-  background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 70%, #fff));
-  border-radius: 4px;
-  transform-origin: left;
-  animation: hbGrow 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
-}
-
-/* ── Image ── */
-.hb-img-wrap {
-  flex-shrink: 0;
-  animation: hbRight 0.5s ease-out 0.1s both;
-}
-.hb-img {
-  width: 280px;
-  height: 210px;
-  object-fit: cover;
-  object-position: center 18%;
-  border-radius: 14px;
-  border: 2px solid rgba(255,255,255,0.18);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.28), 0 4px 12px rgba(0,0,0,0.15);
-  display: block;
-}
-
-/* ── Animations ── */
-@keyframes hbIn    { from { opacity: 0 } to { opacity: 1 } }
-@keyframes hbUp    { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: translateY(0) } }
-@keyframes hbRight { from { opacity: 0; transform: translateX(20px) } to { opacity: 1; transform: translateX(0) } }
-@keyframes hbGrow  { from { transform: scaleX(0) } to { transform: scaleX(1) } }
-
-/* ── Responsive ── */
-@media (max-width: 680px) {
-  .hb-inner { flex-direction: column-reverse; gap: 1.25rem; }
-  .hb-img   { width: 100%; height: 200px; }
-  .hb-gauge { max-width: 100%; }
-}
+  .race-hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
 </style>

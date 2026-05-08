@@ -6,97 +6,45 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<section class="kf">
-  <h2 class="kf-title">Données clés 2026</h2>
-  <div class="kf-grid">
-    {items.map((item, i) => (
-      <div class="kf-item" style={`animation-delay:${0.06 + i * 0.07}s`}>
-        <span class="kf-value">{item.value}</span>
-        <span class="kf-label">{item.label}</span>
-      </div>
-    ))}
-  </div>
-</section>
+<div class="metrics-row">
+  {items.map(item => (
+    <div class="metric-card">
+      <div class="metric-val">{item.value}</div>
+      <div class="metric-lbl">{item.label}</div>
+    </div>
+  ))}
+</div>
 
 <style>
-/* ── Section ── */
-.kf {
-  background: linear-gradient(135deg, #f0fbf7 0%, #e6f6f1 100%);
-  border: 1px solid #b6e3d1;
-  border-radius: 16px;
-  padding: 1.75rem 1.5rem;
-  margin: 2.5rem 0;
-  box-shadow: 0 4px 20px rgba(15, 110, 86, 0.07);
-  animation: kfIn 0.5s ease-out both;
-}
-
-/* ── Titre ── */
-.kf-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #0f6e56;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 0 0 1.25rem;
-}
-
-/* ── Grille ── */
-.kf-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.85rem;
-}
-
-@media (max-width: 600px) {
-  .kf-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
   }
-}
+  @media (max-width: 880px) {
+    .metrics-row { grid-template-columns: repeat(2, 1fr); }
+  }
 
-/* ── Cellule ── */
-.kf-item {
-  background: #fff;
-  border: 1px solid #d1ede3;
-  border-radius: 12px;
-  padding: 1rem 0.75rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: kfUp 0.4s ease-out both;
-}
+  .metric-card {
+    background: white;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
 
-.kf-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(15, 110, 86, 0.11);
-}
+  .metric-val {
+    font-size: clamp(26px, 2.4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--c-green-700);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+  }
 
-/* ── Valeur ── */
-.kf-value {
-  font-size: 1.55rem;
-  font-weight: 800;
-  color: #0f6e56;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-/* ── Label ── */
-.kf-label {
-  font-size: 0.72rem;
-  color: #5a7a6e;
-  line-height: 1.35;
-}
-
-/* ── Animations ── */
-@keyframes kfIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes kfUp {
-  from { opacity: 0; transform: translateY(8px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
+  .metric-lbl {
+    font-size: 13px;
+    color: var(--c-ink-2);
+    line-height: 1.4;
+  }
 </style>

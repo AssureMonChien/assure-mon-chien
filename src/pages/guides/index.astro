@@ -1,194 +1,331 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+
+const guides = [
+  {
+    slug: "choisir-assurance-chien",
+    title: "Comment choisir une assurance chien ?",
+    desc: "Garanties, franchises, plafonds, délais de carence : tout ce qu'il faut comparer avant de signer.",
+    read: "9 min de lecture",
+    level: "Essentiel",
+    color: "green",
+  },
+  {
+    slug: "assurance-chiot",
+    title: "Assurance chiot : le guide complet",
+    desc: "À quel âge assurer son chiot ? Quelles garanties privilégier ? Comment éviter les exclusions liées aux maladies congénitales ?",
+    read: "7 min de lecture",
+    level: "Débutant",
+    color: "amber",
+  },
+  {
+    slug: "assurance-chien-senior",
+    title: "Assurance chien sénior : ce qu'il faut savoir",
+    desc: "Un chien de plus de 7 ans coûte en moyenne 3 fois plus cher en soins vétérinaires. Comment trouver une couverture adaptée malgré les restrictions d'âge ?",
+    read: "10 min de lecture",
+    level: "Avancé",
+    color: "rust",
+  },
+];
 ---
 
 <Layout
-  title="Guides assurance chien"
+  title="Guides assurance chien — conseils pratiques"
   description="Nos guides pratiques pour choisir, comparer et souscrire une assurance santé pour votre chien. Conseils pour chiots, chiens seniors et toutes les races."
 >
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-label">GUIDES PRATIQUES</p>
-      <h1>Tout savoir sur l'assurance chien</h1>
-      <p class="hero-sub">Des conseils experts pour protéger votre compagnon au meilleur prix.</p>
+  <!-- ── Hero ── -->
+  <section class="guides-hero">
+    <div class="container guides-hero-inner">
+      <span class="pill pill-soft">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Centre de connaissances
+      </span>
+      <h1 class="display display-md">Tout savoir sur l'<em>assurance chien</em></h1>
+      <p class="lede">Des conseils experts pour protéger votre compagnon au meilleur prix — rédigés et actualisés par notre équipe.</p>
     </div>
   </section>
 
-  <div class="guides-wrap">
-    <div class="guides-grid">
+  <!-- ── Guides grid ── -->
+  <section class="section">
+    <div class="container">
+      <div class="guides-grid">
+        {guides.map(g => (
+          <article class={`guide-card guide-card-${g.color}`}>
+            <div class="guide-icon" aria-hidden="true">
+              {g.color === "green" && (
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              )}
+              {g.color === "amber" && (
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              )}
+              {g.color === "rust" && (
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              )}
+            </div>
+            <span class="guide-level">{g.level}</span>
+            <h3>{g.title}</h3>
+            <p>{g.desc}</p>
+            <div class="guide-foot">
+              <span class="guide-meta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {g.read}
+              </span>
+              <a class="guide-link" href={`/guides/${g.slug}`}>
+                Lire le guide
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
 
-      <article class="guide-card">
-        <div class="guide-icon">🛡️</div>
-        <div class="guide-body">
-          <h2><a href="/guides/choisir-assurance-chien">Comment choisir une assurance chien ?</a></h2>
-          <p>Garanties, franchises, plafonds, délais de carence : tout ce qu'il faut comparer avant de signer. Un guide complet pour ne pas se tromper.</p>
-          <a href="/guides/choisir-assurance-chien" class="btn-read">Lire le guide →</a>
-        </div>
-      </article>
-
-      <article class="guide-card">
-        <div class="guide-icon">🐶</div>
-        <div class="guide-body">
-          <h2><a href="/guides/assurance-chiot">Assurance chiot : le guide complet</a></h2>
-          <p>À quel âge assurer son chiot ? Quelles garanties privilégier ? Comment éviter les exclusions liées aux maladies congénitales ? Toutes les réponses.</p>
-          <a href="/guides/assurance-chiot" class="btn-read">Lire le guide →</a>
-        </div>
-      </article>
-
-      <article class="guide-card">
-        <div class="guide-icon">🐾</div>
-        <div class="guide-body">
-          <h2><a href="/guides/assurance-chien-senior">Assurance chien sénior : ce qu'il faut savoir</a></h2>
-          <p>Un chien de plus de 7 ans coûte en moyenne 3 fois plus cher en soins vétérinaires. Comment trouver une couverture adaptée malgré les restrictions d'âge ?</p>
-          <a href="/guides/assurance-chien-senior" class="btn-read">Lire le guide →</a>
-        </div>
-      </article>
-
+      <!-- Editorial CTA card -->
+      <aside class="editorial-card editorial-card-cta">
+        <div class="editorial-quote-mark" aria-hidden="true">"</div>
+        <p>Avant de choisir une formule, consultez la fiche de votre race. Les <strong>prédispositions génétiques</strong> de votre chien doivent dicter les garanties à prioriser.</p>
+        <a class="btn btn-primary" href="/races">
+          Voir le guide des races
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </aside>
     </div>
+  </section>
 
-    <div class="encart">
-      <p>💡 <strong>Conseil :</strong> avant de choisir une formule, consultez la fiche de votre race sur notre <a href="/races">guide des races</a>. Les prédispositions génétiques de votre chien doivent dicter les garanties à prioriser.</p>
+  <!-- ── Trust banner ── -->
+  <section class="trust-banner">
+    <div class="container trust-inner">
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Guides rédigés par des experts</span>
+      </div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Mis à jour régulièrement</span>
+      </div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>100 % indépendant</span>
+      </div>
+      <a href="/comparatif" class="btn btn-on-dark">
+        Comparer les assurances
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
-  </div>
+  </section>
 </Layout>
 
 <style>
-  .hero {
-    background: #0F6E56;
-    color: #fff;
-    padding: 3.5rem 1.25rem 3rem;
+  /* ── Hero ── */
+  .guides-hero {
+    padding: 64px 0 32px;
     text-align: center;
+    background:
+      radial-gradient(ellipse at top, var(--c-green-50) 0%, transparent 60%),
+      white;
   }
-
-  .hero-inner {
-    max-width: 700px;
+  .guides-hero-inner {
+    max-width: 760px;
     margin: 0 auto;
   }
+  .guides-hero h1 { margin: 16px 0 12px; }
+  .guides-hero .lede { max-width: 560px; margin: 0 auto; }
 
-  .hero-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    background: rgba(255,255,255,0.18);
-    display: inline-block;
-    padding: 0.3rem 0.9rem;
-    border-radius: 20px;
-    margin: 0 0 1rem;
-  }
+  .section { padding: 64px 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-  .hero h1 {
-    font-size: clamp(1.7rem, 4vw, 2.4rem);
-    font-weight: 800;
-    margin: 0 0 0.75rem;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    opacity: 0.88;
-    margin: 0;
-  }
-
-  .guides-wrap {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 1.25rem 4rem;
-  }
-
+  /* ── Grid ── */
   .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 880px) {
+    .guides-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Cards ── */
+  .guide-card {
+    background: white;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
-
-  .guide-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
-    background: #fff;
-    border: 1.5px solid #d4ede5;
-    border-radius: 12px;
-    padding: 1.5rem 1.75rem;
-    transition: box-shadow 0.15s;
-  }
-
   .guide-card:hover {
-    box-shadow: 0 4px 18px rgba(29,158,117,0.12);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--c-green-200);
   }
+  .guide-card-green { background: linear-gradient(180deg, var(--c-green-50) 0%, white 50%); }
+  .guide-card-amber { background: linear-gradient(180deg, rgba(249,203,66,.10) 0%, white 50%); }
+  .guide-card-rust  { background: linear-gradient(180deg, rgba(217,119,87,.10) 0%, white 50%); }
 
   .guide-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: white;
+    border: 1px solid var(--c-line);
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .guide-card-green .guide-icon { color: var(--c-green); }
+  .guide-card-amber .guide-icon { color: #B8860B; }
+  .guide-card-rust  .guide-icon { color: #C75A3D; }
+
+  .guide-level {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--c-ink-3);
   }
 
-  .guide-body {
+  .guide-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    letter-spacing: -.015em;
+    line-height: 1.3;
+    color: var(--c-ink);
+  }
+  .guide-card p {
+    font-size: 14px;
+    color: var(--c-ink-2);
+    line-height: 1.6;
+    margin: 0 0 20px;
     flex: 1;
   }
 
-  .guide-body h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0F6E56;
-    margin: 0 0 0.5rem;
+  .guide-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--c-line-soft);
   }
-
-  .guide-body h2 a {
-    color: inherit;
+  .guide-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--c-ink-3);
+  }
+  .guide-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--c-green-700);
     text-decoration: none;
   }
+  .guide-link:hover { color: var(--c-green); }
 
-  .guide-body h2 a:hover {
-    text-decoration: underline;
-  }
-
-  .guide-body p {
-    font-size: 0.93rem;
-    color: #444;
-    line-height: 1.65;
-    margin: 0 0 0.85rem;
-  }
-
-  .btn-read {
-    display: inline-block;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: #1D9E75;
-    text-decoration: none;
-    border: 1.5px solid #1D9E75;
-    padding: 0.35rem 0.9rem;
-    border-radius: 6px;
-    transition: background 0.15s, color 0.15s;
-  }
-
-  .btn-read:hover {
-    background: #1D9E75;
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .encart {
-    margin-top: 2.5rem;
-    background: #e8f7f2;
-    border-left: 4px solid #1D9E75;
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    font-size: 0.92rem;
-    color: #1a4a3a;
+  /* ── Editorial CTA card ── */
+  .editorial-card {
+    position: relative;
+    background: var(--c-green-50);
+    border: 1px solid var(--c-green-200);
+    border-radius: var(--radius-lg);
+    padding: 32px 32px 32px 80px;
+    font-size: 17px;
+    color: var(--c-ink);
     line-height: 1.6;
   }
+  .editorial-quote-mark {
+    position: absolute;
+    top: 12px;
+    left: 28px;
+    font-family: Georgia, serif;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--c-green);
+    opacity: .5;
+    pointer-events: none;
+    user-select: none;
+  }
+  .editorial-card-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .editorial-card-cta p { margin: 0; }
 
-  .encart a {
-    color: #1D9E75;
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: .875rem;
+    padding: .625rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: opacity .15s, background .15s, color .15s;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--c-green); color: #fff; border-color: var(--c-green); }
+  .btn-primary:hover { opacity: .88; text-decoration: none; }
+  .btn-on-dark { background: rgba(255,255,255,.15); color: #fff; border-color: rgba(255,255,255,.35); }
+  .btn-on-dark:hover { background: rgba(255,255,255,.25); text-decoration: none; }
+
+  /* ── Trust banner ── */
+  .trust-banner {
+    background: var(--c-green-800);
+    padding: 40px 24px;
+  }
+  .trust-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,.85);
+    font-size: .9rem;
+    font-weight: 500;
+  }
+  .trust-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--c-accent);
+    flex-shrink: 0;
+  }
+
+  /* ── Pills ── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
     font-weight: 600;
   }
-
-  @media (max-width: 540px) {
-    .guide-card {
-      flex-direction: column;
-      gap: 0.75rem;
-      padding: 1.25rem;
-    }
+  .pill-soft {
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    border: 1px solid var(--c-green-200);
   }
+  .display { font-weight: 800; letter-spacing: -.025em; line-height: 1.15; }
+  .display-md { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  .display em { font-style: normal; color: var(--c-green); }
+  .lede { font-size: 1.05rem; color: var(--c-ink-2); line-height: 1.65; }
 </style>

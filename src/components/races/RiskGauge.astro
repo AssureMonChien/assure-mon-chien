@@ -1,156 +1,133 @@
 ---
 interface Props {
   risque: 'faible' | 'modere' | 'eleve';
-  nom: string;
+  nom:    string;
+  score?: number;
 }
 
-const { risque, nom } = Astro.props;
+const { risque, nom, score: scoreProp } = Astro.props;
 
-const levels = [
-  {
-    id: 'faible',
-    label: 'Faible',
-    color: '#22c55e',
-    bgFill: '#dcfce7',
-    desc: 'Pathologies rares. Frais vétérinaires prévisibles et maîtrisables.',
+const config = {
+  faible: {
+    defaultScore: 30,
+    label:    'Faible',
+    color:    'var(--c-risk-low)',
+    desc:     'Pathologies rares. Frais vétérinaires prévisibles et maîtrisables. Une formule Essentielle ou Confort suffit généralement pour cette race.',
   },
-  {
-    id: 'modere',
-    label: 'Modéré',
-    color: '#f59e0b',
-    bgFill: '#fef3c7',
-    desc: 'Quelques prédispositions héréditaires à surveiller régulièrement.',
+  modere: {
+    defaultScore: 58,
+    label:    'Modéré',
+    color:    'var(--c-risk-mid)',
+    desc:     'Quelques prédispositions héréditaires à surveiller. Une formule Confort couvrant maladies chroniques et spécialistes est recommandée.',
   },
-  {
-    id: 'eleve',
-    label: 'Élevé',
-    color: '#ef4444',
-    bgFill: '#fee2e2',
-    desc: 'Risques génétiques significatifs. Couverture santé fortement recommandée.',
+  eleve: {
+    defaultScore: 82,
+    label:    'Élevé',
+    color:    'var(--c-risk-high)',
+    desc:     'Risques génétiques significatifs et coûts chirurgicaux potentiellement élevés. Une formule Confort ou Premium est fortement conseillée.',
   },
-] as const;
+} as const;
 
-const activeIdx = levels.findIndex(l => l.id === risque);
-const current = levels[activeIdx];
+const c     = config[risque];
+const score = scoreProp ?? c.defaultScore;
 ---
 
 <div
-  class="rg"
+  class="gauge-card"
   role="region"
-  aria-label={`Niveau de risque santé du ${nom}`}
+  aria-label={`Indice de risque santé — ${nom}`}
 >
-  <div class="rg-inner">
-
-    <!-- Label + description -->
-    <div class="rg-info">
-      <p class="rg-label">Niveau de risque santé</p>
-      <p class="rg-desc">{current.desc}</p>
+  <div class="gauge-text">
+    <span class="eyebrow">Indice de risque santé</span>
+    <h2 class="h3">Risque {c.label} · {score}/100</h2>
+    <p>{c.desc}</p>
+  </div>
+  <div class="gauge-visual">
+    <div class="gauge-bar">
+      <div
+        class="gauge-fill"
+        style={`width:${score}%;background:${c.color}`}
+      ></div>
+      <div class="gauge-marker" style={`left:${score}%`}>
+        <span>{score}</span>
+      </div>
     </div>
-
-    <!-- Segments -->
-    <div class="rg-segments" aria-hidden="true">
-      {levels.map((l, i) => (
-        <div
-          class:list={['rg-seg', i <= activeIdx ? 'rg-seg-on' : 'rg-seg-off']}
-          style={i <= activeIdx
-            ? `background:${current.color};animation-delay:${0.35 + i * 0.1}s`
-            : ''}
-          title={l.label}
-        ></div>
-      ))}
-      <span
-        class="rg-current-label"
-        style={`color:${current.color};background:${current.bgFill};border:1px solid ${current.color}33`}
-      >{current.label}</span>
+    <div class="gauge-scale">
+      <span>0 · faible</span>
+      <span>50</span>
+      <span>100 · élevé</span>
     </div>
-
   </div>
 </div>
 
 <style>
-.rg {
-  background: #f8fffe;
-  border: 1.5px solid #d4ede5;
-  border-radius: 12px;
-  padding: 0.8rem 1.25rem;
-  animation: rgFade 0.4s ease-out 0.3s both;
-}
+  .gauge-card {
+    background: var(--c-green-50);
+    border: 1px solid var(--c-green-200);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .gauge-card { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+  }
 
-.rg-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-}
+  .gauge-text p {
+    color: var(--c-ink-2);
+    margin: 12px 0 0;
+    line-height: 1.6;
+    max-width: 50ch;
+    font-size: 15px;
+  }
 
-/* Texte */
-.rg-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-.rg-label {
-  margin: 0;
-  font-size: 0.73rem;
-  font-weight: 700;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.rg-desc {
-  margin: 0;
-  font-size: 0.8rem;
-  color: #666;
-}
+  .gauge-bar {
+    position: relative;
+    height: 14px;
+    background: white;
+    border-radius: 999px;
+    border: 1px solid var(--c-line);
+    margin-bottom: 32px;
+    overflow: visible;
+  }
 
-/* Segments + badge */
-.rg-segments {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  flex-shrink: 0;
-}
+  .gauge-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-radius: 999px;
+    transition: width .8s ease;
+  }
 
-.rg-seg {
-  width: 38px;
-  height: 9px;
-  border-radius: 5px;
-}
+  .gauge-marker {
+    position: absolute;
+    top: -28px;
+    transform: translateX(-50%);
+    background: var(--c-ink);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .gauge-marker::after {
+    content: "";
+    position: absolute;
+    bottom: -4px; left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px; height: 8px;
+    background: var(--c-ink);
+  }
 
-.rg-seg-off {
-  background: #e2e8e5;
-}
-
-.rg-seg-on {
-  transform-origin: left center;
-  animation: rgGrow 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.rg-current-label {
-  margin-left: 0.35rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  padding: 0.18rem 0.55rem;
-  border-radius: 20px;
-  white-space: nowrap;
-  animation: rgFade 0.35s ease-out 0.6s both;
-}
-
-/* Animations */
-@keyframes rgFade {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes rgGrow {
-  from { transform: scaleX(0); opacity: 0.4; }
-  to   { transform: scaleX(1); opacity: 1; }
-}
-
-@media (max-width: 480px) {
-  .rg-inner { flex-direction: column; align-items: flex-start; gap: 0.55rem; }
-}
+  .gauge-scale {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--c-ink-3);
+    letter-spacing: .05em;
+  }
 </style>
