@@ -301,10 +301,28 @@ const imgMap: Record<string, string> = {
   .faq-answer { padding: 0 18px 16px; margin: 0; font-size: 15px; color: var(--c-ink-2); line-height: 1.65; }
   .faq-answer p { margin: 0; }
 
+  /* ── Chiffres clés inline (dans l'article) ── */
+  .key-figures {
+    background: var(--c-bg-tinted); border: 1px solid var(--c-green-200);
+    border-radius: var(--radius-lg); padding: 24px; margin: 2rem 0;
+  }
+  .race-article .key-figures h2 {
+    margin: 0 0 16px; border: none; padding-bottom: 0;
+    font-size: 1.1rem; color: var(--c-green-700);
+  }
+  .figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
+  .figure { text-align: center; }
+  .figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-green-700); }
+  .figure-label { font-size: 0.78rem; color: var(--c-ink-3); line-height: 1.4; }
+
+  /* ── Races similaires inline list ── */
+  .section-similaires { list-style: none; padding: 0; margin: .5rem 0 1.5rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .section-similaires li { font-size: 14px; color: var(--c-ink-2); }
+  .section-similaires li a { color: var(--c-green-700); font-weight: 500; }
+  .section-similaires li a:hover { color: var(--c-green); text-decoration: none; }
+
   /* ── Listes prévention / sources ── */
-  .section-prevention { list-style: none; padding: 0; margin: .5rem 0 1.5rem; }
-  .section-prevention li { padding: .5rem 0; font-size: 15px; color: var(--c-ink-2); display: flex; gap: 10px; align-items: flex-start; }
-  .section-prevention li::before { content: "💡"; flex-shrink: 0; }
   .sources-list, .section-sources-list {
     list-style: none; padding: 0; margin: .5rem 0; display: grid; gap: 8px;
   }
