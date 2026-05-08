@@ -4,7 +4,6 @@ import HeroBreed   from "../components/races/HeroBreed.astro";
 import RiskGauge   from "../components/races/RiskGauge.astro";
 import InsuranceCards from "../components/races/InsuranceCards.astro";
 import KeyFigures  from "../components/races/KeyFigures.astro";
-import StyledTable from "../components/races/StyledTable.astro";
 
 interface SimilaireRace {
   slug:   string;
@@ -68,9 +67,14 @@ const imgMap: Record<string, string> = {
   <!-- 4. Contenu éditorial (slot des pages individuelles) -->
   <section class="section race-content">
     <div class="container">
-      <StyledTable>
-        <slot />
-      </StyledTable>
+      <div class="article-grid">
+        <aside class="article-toc" aria-label="Sommaire">
+          <ol id="race-toc-list"></ol>
+        </aside>
+        <div class="article-body">
+          <slot />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -180,6 +184,7 @@ const imgMap: Record<string, string> = {
 </Layout>
 
 <script>
+  // FAQ accordion (button-based)
   document.querySelectorAll('.faq-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const expanded = btn.getAttribute('aria-expanded') === 'true';
@@ -189,12 +194,39 @@ const imgMap: Record<string, string> = {
       if (answer) (answer as HTMLElement).hidden = expanded;
     });
   });
+
+  // Build TOC from article h2s
+  const headings = document.querySelectorAll<HTMLHeadingElement>('.race-article h2');
+  const tocList  = document.getElementById('race-toc-list');
+  if (tocList && headings.length) {
+    headings.forEach((h, i) => {
+      if (!h.id) h.id = `race-h2-${i}`;
+      const li = document.createElement('li');
+      const a  = document.createElement('a');
+      a.href        = `#${h.id}`;
+      a.textContent = h.textContent ?? '';
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Highlight active section
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        const link = tocList.querySelector<HTMLAnchorElement>(`a[href="#${e.target.id}"]`);
+        link?.closest('li')?.classList.toggle('is-active', e.isIntersecting);
+      }),
+      { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
+    );
+    headings.forEach(h => io.observe(h));
+  }
 </script>
 
 <style is:global>
-  /* ── Contenu article race ── */
-  .race-content .race-article {
-    max-width: 820px;
+  /* ── TOC active link ── */
+  #race-toc-list li.is-active a {
+    color: var(--c-green-700);
+    border-left-color: var(--c-green);
+    font-weight: 600;
   }
 
   /* ── Typographie article ── */
@@ -219,6 +251,7 @@ const imgMap: Record<string, string> = {
     letter-spacing: -0.02em;
     padding-bottom: .5rem;
     border-bottom: 2px solid var(--c-green-200);
+    scroll-margin-top: 100px;
   }
 
   .race-article .intro-text {
@@ -247,7 +280,6 @@ const imgMap: Record<string, string> = {
   .table-scroll { min-width: 400px; }
 
   /* ── FAQ dans l'article (bouton JS) ── */
-  .faq-list { margin: 0; padding: 0; }
   .faq-item {
     border: 1px solid var(--c-line);
     border-radius: var(--radius);
@@ -273,7 +305,13 @@ const imgMap: Record<string, string> = {
   .section-prevention { list-style: none; padding: 0; margin: .5rem 0 1.5rem; }
   .section-prevention li { padding: .5rem 0; font-size: 15px; color: var(--c-ink-2); display: flex; gap: 10px; align-items: flex-start; }
   .section-prevention li::before { content: "💡"; flex-shrink: 0; }
-  .section-sources-list { list-style: none; padding: 0; margin: .5rem 0; }
-  .section-sources-list li { font-size: 13px; color: var(--c-ink-3); padding: .35rem 0; display: flex; gap: 8px; }
-  .section-sources-list li::before { content: "📄"; flex-shrink: 0; }
+  .sources-list, .section-sources-list {
+    list-style: none; padding: 0; margin: .5rem 0; display: grid; gap: 8px;
+  }
+  .sources-list li, .section-sources-list li {
+    font-size: 13px; color: var(--c-ink-2);
+    padding: 10px 14px; background: var(--c-bg-soft); border-radius: 8px;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .sources-list li::before, .section-sources-list li::before { content: "📄"; flex-shrink: 0; }
 </style>
