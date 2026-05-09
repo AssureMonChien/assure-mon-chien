@@ -119,6 +119,12 @@ const rows = [
   <!-- ── Hero ── -->
   <section class="cmp-hero">
     <div class="container cmp-hero-inner">
+      <nav class="cmp-breadcrumb" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="/">Accueil</a></li>
+          <li aria-current="page">Comparatif</li>
+        </ol>
+      </nav>
       <span class="pill pill-soft">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         Mis à jour avril 2026
@@ -319,28 +325,37 @@ const rows = [
 <style>
   /* ── Hero ── */
   .cmp-hero {
-    padding: 64px 0 32px;
+    padding: 56px 0 40px;
     text-align: center;
-    background:
-      radial-gradient(ellipse at top, var(--c-green-50) 0%, transparent 60%),
-      white;
+    background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 100%);
+    border-bottom: 1px solid var(--c-line);
   }
   .cmp-hero-inner {
     max-width: 760px;
     margin: 0 auto;
   }
-  .cmp-hero h1 { margin: 16px 0 12px; }
-  .cmp-hero .lede { max-width: 580px; margin: 0 auto; }
+  .cmp-hero h1 { margin: 16px 0 12px; text-wrap: balance; }
+  .cmp-hero .lede { max-width: 580px; margin: 0 auto; text-wrap: pretty; }
+  @media (max-width: 600px) { .cmp-hero { padding: 36px 0 28px; } }
 
-  /* ── Section spacing ── */
-  .section { padding: 64px 0; }
-  .section-tight { padding: 40px 0; }
+  /* Breadcrumb */
+  .cmp-breadcrumb ol {
+    display: flex; gap: 0; list-style: none;
+    padding: 0; margin: 0 0 18px;
+    font-size: 13px; color: var(--c-ink-3);
+    flex-wrap: wrap; justify-content: center;
+  }
+  .cmp-breadcrumb li:not(:last-child)::after { content: " / "; margin: 0 6px; }
+  .cmp-breadcrumb a { color: var(--c-ink-3); text-decoration: none; }
+  .cmp-breadcrumb a:hover { color: var(--c-green); }
+  .cmp-breadcrumb li[aria-current] { color: var(--c-ink); font-weight: 500; }
+
+  /* ── Section spacing (utilise les tokens globaux) ── */
   .section-tinted { background: var(--c-bg-soft); }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
   .section-head {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
   .section-head .h2 { margin: 8px 0 0; }
 
@@ -356,6 +371,12 @@ const rows = [
     width: 100%;
     border-collapse: collapse;
     min-width: 680px;
+  }
+  @media (max-width: 720px) {
+    .cmp-table thead th { padding: 18px 12px 14px; }
+    .cmp-table td { padding: 12px 12px; font-size: 14px; }
+    .cmp-row-label { font-size: 13px; gap: 8px; }
+    .cmp-table thead th.cmp-row-label-th { width: 140px; }
   }
 
   .cmp-table thead th {
@@ -511,16 +532,19 @@ const rows = [
 
   .internal-link-hint {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     font-size: 13px;
     color: var(--c-ink-2);
-    padding: 12px 18px;
+    padding: 12px 16px;
     background: var(--c-green-50);
     border: 1px solid var(--c-green-200);
     border-radius: var(--radius);
     margin: 10px 0 0;
+    line-height: 1.5;
+    text-wrap: pretty;
   }
+  .internal-link-hint svg { flex-shrink: 0; margin-top: 3px; }
   .internal-link-hint a { color: var(--c-green-700); font-weight: 600; }
 
   /* ── Verdict ── */
@@ -537,10 +561,13 @@ const rows = [
     background: white;
     border: 1px solid var(--c-line);
     border-radius: var(--radius-lg);
-    padding: 28px;
+    padding: 26px;
     display: flex;
     flex-direction: column;
     transition: transform .25s ease, box-shadow .25s ease;
+  }
+  @media (max-width: 600px) {
+    .verdict-card { padding: 22px 20px; }
   }
   .verdict-card:hover {
     transform: translateY(-3px);
@@ -640,14 +667,19 @@ const rows = [
   /* ── Trust banner ── */
   .trust-banner {
     background: var(--c-green-800);
-    padding: 40px 24px;
+    padding: 36px 0;
   }
   .trust-inner {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 20px;
     justify-content: center;
+    padding: 0 var(--gutter);
+  }
+  @media (max-width: 600px) {
+    .trust-banner { padding: 28px 0; }
+    .trust-inner { gap: 14px; padding: 0 var(--gutter-mobile); }
   }
   .trust-item {
     display: flex;

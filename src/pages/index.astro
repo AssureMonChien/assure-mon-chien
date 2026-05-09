@@ -471,4 +471,31 @@ const jsonldOrganization = JSON.stringify({
 
   .hero-hint {
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-    font-size: 14px; color: var(--c-ink-3); 
+    font-size: 14px; color: var(--c-ink-3); margin-bottom: 28px;
+  }
+  .hero-hint a { color: var(--c-green-700); font-weight: 500; }
+  .hero-hint a:hover { color: var(--c-green); text-decoration: underline; }
+  .hero-hint > span { opacity: .7; }
+
+  .home-hero-stats {
+    list-style: none; padding: 24px 0 0; margin: 36px 0 0;
+    border-top: 1px solid rgba(22,32,28,.12);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .home-hero-stats li { display: flex; flex-direction: column; }
+  .home-hero-stats strong { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--c-ink); }
+  .home-hero-stats span { font-size: 13px; color: var(--c-ink-3); }
+
+  @media (max-width: 640px) {
+    .home-hero { min-height: auto; }
+    .hero-grid { padding: 48px 16px 64px; min-height: auto; }
+    .hero-photo-veil {
+      background: linear-gradient(180deg,
+        rgba(255,252,247,.97) 0%,
+        rgba(255,252,247,.90) 60%,
+        rgba(255,252,247,.60) 100%);
+    }
+    .home-hero-stats { gap: 16px; }
+    .home-hero-stats strong { font-size: 22px; }
+  }
+</style>

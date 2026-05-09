@@ -129,7 +129,7 @@ const tailleLabel: Record<string, string> = {
   </section>
 
   <!-- 3. Jauge de risque -->
-  <section class="section section-tight" style="padding-top:0">
+  <section class="section section-tight section-flush-top">
     <div class="container">
       <RiskGauge {risque} {nom} {score} />
     </div>
@@ -365,31 +365,78 @@ const tailleLabel: Record<string, string> = {
     color: var(--c-green-700);
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 880px) {
+    .also-read-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
     .also-read-grid { grid-template-columns: 1fr; }
   }
 </style>
 
 <style is:global>
+  /* ── Key figures (metrics-row under the hero) ── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .metric-card {
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .metric-val {
+    font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    font-weight: 800;
+    color: var(--c-green-700);
+    line-height: 1.1;
+  }
+  .metric-lbl {
+    font-size: 0.82rem;
+    color: var(--c-ink-2);
+    line-height: 1.35;
+  }
+  @media (max-width: 760px) {
+    .metrics-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 400px) {
+    .metrics-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* ── Race article body (slot content from individual race pages) ── */
   .race-article {
     font-size: 15px;
     line-height: 1.7;
     color: var(--c-ink);
   }
+  @media (max-width: 920px) {
+    .article-grid { gap: 0; }
+  }
+  /* Les tableaux doivent rester scrollables sans casser la mise en page */
+  .race-article .table-wrap { max-width: 100%; }
   .race-article h2 {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
     font-weight: 700;
     color: var(--c-ink);
-    margin: 2.25rem 0 0.75rem;
+    margin: 2rem 0 0.75rem;
     border-bottom: 2px solid var(--c-green-50);
     padding-bottom: 0.4rem;
+    scroll-margin-top: 90px;
   }
+  .race-article h2:first-child { margin-top: 0; }
   .race-article h3 {
     font-size: 1rem;
     font-weight: 700;
     color: var(--c-ink);
-    margin: 1.5rem 0 0.5rem;
+    margin: 1.4rem 0 0.5rem;
   }
   .race-article p { margin: 0 0 0.9rem; }
 

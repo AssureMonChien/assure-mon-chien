@@ -399,6 +399,13 @@ const isGuides = currentPath.startsWith("/guides");
     --shadow:     0 8px 24px -8px rgba(15,110,86,.10), 0 2px 6px -2px rgba(15,110,86,.06);
     --shadow-lg:  0 24px 48px -16px rgba(15,110,86,.18), 0 8px 16px -8px rgba(15,110,86,.08);
 
+    /* Spacing scale (rythme vertical harmonisé) */
+    --space-section:        80px;   /* entre sections principales */
+    --space-section-tight:  56px;   /* sections compactes */
+    --space-block:          32px;   /* entre blocs internes */
+    --gutter:               24px;   /* container padding desktop */
+    --gutter-mobile:        16px;   /* container padding mobile */
+
     /* Backwards-compat aliases */
     --green:        #1D9E75;
     --green-dark:   #0F6E56;
@@ -438,10 +445,13 @@ const isGuides = currentPath.startsWith("/guides");
     width: 100%;
     max-width: var(--container);
     margin: 0 auto;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
   }
   @media (min-width: 1320px) { .container { max-width: var(--container-wide); } }
+  @media (max-width: 600px) {
+    .container { padding-left: var(--gutter-mobile); padding-right: var(--gutter-mobile); }
+  }
 
   /* ════════════════════ TYPOGRAPHY ════════════════════ */
   .display {
@@ -572,10 +582,12 @@ const isGuides = currentPath.startsWith("/guides");
 
   /* ════════════════════ SECTIONS ════════════════════ */
   .page { background: white; }
-  .section { padding: 88px 0; position: relative; }
+  .section { padding: var(--space-section) 0; position: relative; }
   .section-tinted { background: var(--c-bg-tinted); }
-  .section-tight { padding: 56px 0; }
-  .section-head { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+  .section-tight { padding: var(--space-section-tight) 0; }
+  .section-flush-top { padding-top: 0; }
+  .section-flush-bottom { padding-bottom: 0; }
+  .section-head { max-width: 760px; margin: 0 auto 40px; text-align: center; }
   .section-head-row {
     max-width: none;
     text-align: left;
@@ -587,7 +599,15 @@ const isGuides = currentPath.startsWith("/guides");
   }
   .section-head-row > div { max-width: 700px; }
   .section-sub { color: var(--c-ink-2); font-size: 17px; margin: 12px 0 0; text-wrap: pretty; }
-  @media (max-width: 720px) { .section { padding: 64px 0; } }
+  @media (max-width: 880px) {
+    .section       { padding: 56px 0; }
+    .section-tight { padding: 40px 0; }
+    .section-head  { margin-bottom: 28px; }
+  }
+  @media (max-width: 600px) {
+    .section       { padding: 48px 0; }
+    .section-tight { padding: 32px 0; }
+  }
 
   /* ════════════════════ RISK ════════════════════ */
   .risk-badge {
@@ -696,8 +716,16 @@ const isGuides = currentPath.startsWith("/guides");
   .bs-num { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; color: white; margin-bottom: 4px; }
   .bs-lbl { font-size: 13px; color: rgba(255,255,255,.7); }
   @media (max-width: 880px) {
-    .banner { padding: 64px 0; }
+    .banner { padding: 56px 0; }
     .banner-inner { grid-template-columns: 1fr; gap: 32px; }
+    .banner-cta { width: 100%; }
+    .banner-cta .btn { flex: 1 1 auto; justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    .banner { padding: 48px 0; }
+    .banner-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .bs-card { padding: 16px; }
+    .bs-num  { font-size: 26px; }
   }
 
   /* ════════════════════ HEADER ════════════════════ */
@@ -965,6 +993,11 @@ const isGuides = currentPath.startsWith("/guides");
   .profile-low  .profile-range { color: var(--c-risk-low);  background: rgba(67,160,71,.06); }
   .profile-note { font-size: 14px; color: var(--c-ink-2); line-height: 1.55; margin: 0; }
   @media (max-width: 880px) { .profile-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .profile-card { padding: 24px 20px; }
+    .profile-icon { width: 48px; height: 48px; margin-bottom: 14px; }
+    .profile-range { font-size: 20px; }
+  }
 
   /* ════════════════════ REASONS ════════════════════ */
   .reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -982,6 +1015,10 @@ const isGuides = currentPath.startsWith("/guides");
   .reason-card h3 { font-size: 19px; font-weight: 700; margin: 0 0 10px; letter-spacing: -0.015em; }
   .reason-card p { margin: 0; font-size: 15px; color: var(--c-ink-2); line-height: 1.55; }
   @media (max-width: 880px) { .reasons-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .reason-card { padding: 24px 20px; }
+    .reason-icon { width: 48px; height: 48px; margin-bottom: 14px; }
+  }
 
   /* ════════════════════ STEPS ════════════════════ */
   .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
@@ -1008,6 +1045,9 @@ const isGuides = currentPath.startsWith("/guides");
   @media (max-width: 880px) {
     .steps-grid { grid-template-columns: 1fr; }
     .step-arrow { display: none; }
+  }
+  @media (max-width: 600px) {
+    .step-card { padding: 24px 20px; }
   }
 
   /* ════════════════════ DATA TABLES ════════════════════ */
@@ -1052,6 +1092,10 @@ const isGuides = currentPath.startsWith("/guides");
   }
   .callout h3 { margin: 0 0 6px; }
   .callout p  { margin: 0; }
+  @media (max-width: 480px) {
+    .callout { padding: 18px; gap: 14px; }
+    .callout-icon { width: 36px; height: 36px; }
+  }
 
   /* ════════════════════ CHECK LIST ════════════════════ */
   .check-list { list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 12px; }
@@ -1097,9 +1141,11 @@ const isGuides = currentPath.startsWith("/guides");
   .affiliate-note {
     display: flex; align-items: center; gap: 8px;
     font-size: 13px; color: var(--c-ink-3);
-    padding: 16px 20px; background: var(--c-bg-soft);
-    border-radius: var(--radius); margin: 24px 0 0; justify-content: center;
+    padding: 14px 18px; background: var(--c-bg-soft);
+    border-radius: var(--radius); margin: 20px 0 0; justify-content: center;
+    text-wrap: pretty;
   }
+  @media (max-width: 480px) { .affiliate-note { font-size: 12px; padding: 12px 14px; } }
 
   /* ════════════════════ TIER CARDS ════════════════════ */
   .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
@@ -1131,6 +1177,10 @@ const isGuides = currentPath.startsWith("/guides");
   .tier-list li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: 14px; color: var(--c-ink); }
   .tier-list li svg { color: var(--c-green); margin-top: 2px; }
   @media (max-width: 880px) { .tier-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) {
+    .tier-card { padding: 24px 20px; }
+    .tier-price-amount { font-size: 32px; }
+  }
 
   /* ════════════════════ SOURCES ════════════════════ */
   .sources ul { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 8px; }
@@ -1163,10 +1213,11 @@ const isGuides = currentPath.startsWith("/guides");
   .ed-hero {
     background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 100%);
     border-bottom: 1px solid var(--c-line);
-    padding: 56px 0 72px;
+    padding: 56px 0 64px;
     position: relative;
     overflow: hidden;
   }
+  @media (max-width: 600px) { .ed-hero { padding: 40px 0 48px; } }
   .ed-hero::before {
     content: "";
     position: absolute; inset: 0;
@@ -1345,4 +1396,35 @@ const isGuides = currentPath.startsWith("/guides");
 
   /* ed-sources */
   .ed-sources {
-    m
+    margin: 48px 0 0; padding: 28px;
+    background: var(--c-bg-soft);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-line);
+  }
+  .ed-sources-title {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--c-ink-2); margin: 0 0 16px;
+  }
+  .ed-sources ol { margin: 0; padding-left: 20px; font-size: 13px; color: var(--c-ink-2); line-height: 1.7; }
+  .ed-sources li { margin-bottom: 6px; }
+
+  /* ed-banner (inline CTA) */
+  .ed-banner {
+    margin: 36px 0; padding: 28px 32px;
+    background: var(--c-ink); color: #fff;
+    border-radius: var(--radius-lg);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+  }
+  .ed-banner::before {
+    content: ""; position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--c-green) 0%, transparent 70%);
+    opacity: 0.5;
+  }
+  .ed-banner p { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 18px; line-height: 1.4; position: relative; flex: 1; min-width: 240px; color: #fff; }
+  .ed-banner .btn { position: relative; }
+</style>
