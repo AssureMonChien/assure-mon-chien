@@ -53,6 +53,7 @@ const jsonldOrganization = JSON.stringify({
 <Layout
   title="Assurance chien — Comparez les meilleures mutuelles 2026"
   description="Trouvez la meilleure assurance santé pour votre chien selon sa race. Comparatif indépendant, pathologies fréquentes, tarifs réels. Guide 2026 mis à jour."
+  ogImage="https://assure-mon-chien.fr/og-home.jpg"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={jsonldWebSite} />
@@ -290,6 +291,55 @@ const jsonldOrganization = JSON.stringify({
     </div>
   </section>
 
+  <!-- ══════════════ GUIDES SPÉCIALISÉS ══════════════ -->
+  <section class="section section-tinted">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Cas particuliers</span>
+        <h2 class="h2">Quel comparatif pour votre situation&nbsp;?</h2>
+        <p class="section-sub">Selon l'âge de votre chien et votre budget, certaines garanties pèsent plus que d'autres. Trois guides ciblés vous mènent directement à l'offre adaptée.</p>
+      </div>
+      <div class="home-cta-grid">
+        <a href="/comparatif/assurance-chiot" class="home-cta-card">
+          <span class="home-cta-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10z" opacity=".4"/><circle cx="9" cy="9" r="1.4"/><circle cx="15" cy="9" r="1.4"/><path d="M9.5 13.5c.7.7 1.6 1 2.5 1s1.8-.3 2.5-1"/></svg>
+          </span>
+          <span class="home-cta-eyebrow">Chiot · 2 mois à 1 an</span>
+          <h3>Assurer son chiot</h3>
+          <p>Souscrire dès l'adoption évite l'exclusion des maladies héréditaires qui se déclarent dans la première année. Formules dès 20&nbsp;€/mois.</p>
+          <span class="home-cta-link">
+            Lire le guide chiot
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a href="/comparatif/assurance-chien-pas-cher" class="home-cta-card">
+          <span class="home-cta-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c1-.7 2-1 2.5-1 1 0 2 .5 2 1.5s-1 1.5-2 1.5h-1c-1 0-2 .5-2 1.5s1 1.5 2 1.5c.5 0 1.5-.3 2.5-1"/></svg>
+          </span>
+          <span class="home-cta-eyebrow">Petit budget · dès 15&nbsp;€/mois</span>
+          <h3>Assurance chien pas cher</h3>
+          <p>Les formules d'entrée de gamme à 15&nbsp;€/mois suffisent pour les races à faible risque. Notre comparatif des offres économiques sans sacrifier les garanties essentielles.</p>
+          <span class="home-cta-link">
+            Voir les offres pas cher
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a href="/comparatif/assurance-chien-senior" class="home-cta-card">
+          <span class="home-cta-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <span class="home-cta-eyebrow">Sénior · 7 ans et plus</span>
+          <h3>Assurance chien sénior</h3>
+          <p>Au-delà de 7 ans, les frais vétérinaires augmentent de 200 à 300&nbsp;%. Notre guide identifie les contrats encore accessibles malgré les restrictions d'âge.</p>
+          <span class="home-cta-link">
+            Lire le guide sénior
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ══════════════ TRUST BANNER ══════════════ -->
   <section class="banner">
     <div class="container banner-inner">
@@ -497,5 +547,80 @@ const jsonldOrganization = JSON.stringify({
     }
     .home-hero-stats { gap: 16px; }
     .home-hero-stats strong { font-size: 22px; }
+  }
+
+  /* ── Cartes CTA guides spécialisés (P1-7) ── */
+  .home-cta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 880px) { .home-cta-grid { grid-template-columns: 1fr; } }
+
+  .home-cta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px 24px;
+    background: white;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--c-ink);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .home-cta-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px -16px rgba(15,110,86,.18);
+    border-color: var(--c-green-200);
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+  .home-cta-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    border-radius: 12px;
+    margin-bottom: 4px;
+  }
+  .home-cta-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--c-green-700);
+  }
+  .home-cta-card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -.015em;
+    line-height: 1.25;
+    color: var(--c-ink);
+  }
+  .home-cta-card p {
+    margin: 0;
+    font-size: .95rem;
+    line-height: 1.55;
+    color: var(--c-ink-2);
+    flex: 1;
+    text-wrap: pretty;
+  }
+  .home-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--c-green-700);
+  }
+  .home-cta-card:hover .home-cta-link { color: var(--c-green); }
+  @media (max-width: 600px) {
+    .home-cta-card { padding: 22px 20px; }
   }
 </style>

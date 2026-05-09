@@ -41,6 +41,72 @@ const jsonldFaq = JSON.stringify({
   ]
 });
 
+const jsonldItemList = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Comparatif assurances chien 2026",
+  "description": "Les 3 meilleures assurances santé pour chien en France comparées sur 8 critères clés : tarif, taux de remboursement, carence, plafond annuel et couverture des maladies héréditaires.",
+  "url": "https://assure-mon-chien.fr/comparatif",
+  "numberOfItems": 3,
+  "itemListOrder": "https://schema.org/ItemListOrderAscending",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "SantéVet — Assurance santé chien",
+        "brand": { "@type": "Brand", "name": "SantéVet" },
+        "category": "Assurance santé animale",
+        "description": "Formule recommandée par notre rédaction. Remboursement à 100 %, délai de 48 h, couverture maladies héréditaires sans surprime, prévention 150 €/an.",
+        "offers": {
+          "@type": "Offer",
+          "price": "18",
+          "priceCurrency": "EUR",
+          "url": "https://assure-mon-chien.fr/comparatif#tableau-comparatif",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "AssurOPoil — Assurance santé chien",
+        "brand": { "@type": "Brand", "name": "AssurOPoil" },
+        "category": "Assurance santé animale",
+        "description": "Entrée de gamme la plus compétitive avec 100 % de remboursement. Sans application mobile ni prévention. Idéal pour petit budget et race à risque modéré.",
+        "offers": {
+          "@type": "Offer",
+          "price": "15",
+          "priceCurrency": "EUR",
+          "url": "https://assure-mon-chien.fr/comparatif#tableau-comparatif",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "Lassie — Assurance santé chien",
+        "brand": { "@type": "Brand", "name": "Lassie" },
+        "category": "Assurance santé animale",
+        "description": "Application mobile soignée, devis en 90 secondes. Remboursement à 80 %, carence maladie de 45 jours. Pour propriétaires qui privilégient l'expérience digitale.",
+        "offers": {
+          "@type": "Offer",
+          "price": "20",
+          "priceCurrency": "EUR",
+          "url": "https://assure-mon-chien.fr/comparatif#tableau-comparatif",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    }
+  ]
+});
+
 const insurers = [
   {
     id: "santeVet",
@@ -108,11 +174,14 @@ const rows = [
 ---
 
 <Layout
-  title="Comparatif assurances chien 2026 — SantéVet, Lassie, AssurOPoil"
-  description="Comparatif indépendant des 3 meilleures assurances chien en 2026 : SantéVet, AssurOPoil et Lassie. Tarifs réels, remboursements, délais de carence et verdict par profil."
+  title="Comparatif assurance chien 2026 — Top 3 assureurs"
+  description="Comparatif indépendant des 3 meilleures assurances chien 2026 : SantéVet, AssurOPoil, Lassie. Tarifs, garanties et verdict par profil de race."
+  ogImage="https://assure-mon-chien.fr/og-comparatif.jpg"
+  ogType="article"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+    <script type="application/ld+json" set:html={jsonldItemList} />
     <script type="application/ld+json" set:html={jsonldFaq} />
   </Fragment>
 
@@ -134,8 +203,27 @@ const rows = [
     </div>
   </section>
 
+  <!-- ── Intro éditoriale ── -->
+  <section class="section section-tight section-flush-bottom">
+    <div class="container">
+      <div class="cmp-narrow">
+        <p class="cmp-intro-lead">
+          Plus de <strong>7,5&nbsp;millions de chiens</strong> vivent en France, mais à peine un sur cinq bénéficie d'une couverture santé selon les estimations du marché 2026. La raison&nbsp;? Une offre opaque, des écarts de prix qui peuvent atteindre du <strong>simple au double</strong> pour des garanties similaires, et un vocabulaire technique (carence, plafond annuel, taux de remboursement) qui décourage la comparaison sereine.
+        </p>
+        <p class="cmp-intro-p">
+          Notre comparatif d'assurance chien isole les <strong>trois acteurs majeurs du marché français</strong> — SantéVet, AssurOPoil et Lassie — sur les huit critères qui pèsent vraiment dans le rapport garanties&nbsp;/&nbsp;prix. Tarifs, délais de carence, couverture des maladies héréditaires, plafond annuel, application mobile, vitesse de remboursement&nbsp;: chaque ligne du tableau ci-dessous a été vérifiée auprès des assureurs en mai&nbsp;2026. Vous y trouverez aussi notre verdict par profil de chien et un guide pour choisir selon l'âge, le budget ou la race.
+        </p>
+
+        <h2 class="h2 cmp-table-title" id="tableau-comparatif">Tableau comparatif détaillé des 3 assureurs</h2>
+        <p class="cmp-table-intro">
+          Trois critères pèsent plus que les autres dans le choix d'une assurance chien&nbsp;: le <strong>taux de remboursement</strong> (jamais inférieur à 80&nbsp;% pour une couverture utile), le <strong>délai de carence maladie</strong> (30 jours est la norme, 45 jours est pénalisant), et la <strong>couverture des maladies héréditaires</strong> (incontournable dès que votre race présente des prédispositions documentées). Les autres critères — prévention, application mobile, plafond annuel, vitesse de remboursement — départagent les offres équivalentes sur ces trois fondamentaux.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Tableau comparatif ── -->
-  <section class="section section-tight">
+  <section class="section section-tight section-flush-top">
     <div class="container">
       <div class="cmp-table-wrap">
         <table class="cmp-table">
@@ -221,6 +309,62 @@ const rows = [
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         Vous cherchez à réduire votre budget&nbsp;? Consultez notre guide <a href="/comparatif/assurance-chien-pas-cher">assurance chien pas cher</a> — offres dès 15&nbsp;€/mois comparées.
       </p>
+    </div>
+  </section>
+
+  <!-- ── Méthodologie ── -->
+  <section class="section section-tight section-tinted">
+    <div class="container">
+      <div class="cmp-narrow">
+        <span class="eyebrow">Notre méthodologie</span>
+        <h2 class="h2 cmp-method-title">Comment ce comparatif a-t-il été construit&nbsp;?</h2>
+        <p class="cmp-method-p">
+          Les tarifs affichés sont relevés trimestriellement sur les sites officiels de chaque assureur, pour un profil de référence&nbsp;: chien adulte de 4&nbsp;ans, taille moyenne, sans pathologie déclarée, propriétaire en région parisienne. Les garanties (taux de remboursement, plafonds, exclusions, prévention) sont extraites des conditions générales de vente publiques de chaque contrat, vérifiées ligne à ligne.
+        </p>
+        <p class="cmp-method-p">
+          <strong>Pourquoi seulement trois assureurs&nbsp;?</strong> Le marché français compte une douzaine d'opérateurs proposant de l'assurance santé chien, mais la majorité sont des marques blanches reposant sur l'un des trois acteurs ci-dessus ou sur des partenariats opaques. SantéVet, AssurOPoil et Lassie sont les seuls à publier leurs garanties détaillées en ligne, à proposer des contrats souscriptibles directement sans intermédiaire, et à couvrir l'ensemble des cas que rencontre un propriétaire moyen.
+        </p>
+        <p class="cmp-method-p">
+          <strong>Notre indépendance.</strong> Aucun assureur ne finance la rédaction de ce comparatif. Nous percevons une commission lorsqu'un lecteur souscrit via nos liens partenaires, identifiés par la mention « Lien partenaire » et l'attribut HTML <code>rel="sponsored"</code>. Cette commission n'influe ni sur l'ordre du classement, ni sur le verdict éditorial. Notre seule règle&nbsp;: si l'assureur recommandé pour un profil donné n'est pas un partenaire affilié, nous le recommandons quand même.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Choisir selon profil — ancres internes ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Cas particuliers</span>
+        <h2 class="h2">Comment choisir selon le profil de votre chien&nbsp;?</h2>
+        <p class="section-sub">L'assurance idéale dépend autant de l'âge de votre chien que de votre budget. Trois guides spécialisés pour aller plus loin&nbsp;:</p>
+      </div>
+      <div class="profile-cta-grid">
+        <a href="/comparatif/assurance-chiot" class="profile-cta-card">
+          <span class="profile-cta-eyebrow">Chiot · 2 mois à 1 an</span>
+          <h3>Assurer son chiot</h3>
+          <p>Souscrire dès l'adoption évite l'exclusion des maladies héréditaires qui se déclarent dans la première année. Pour un chiot, la formule accidents&nbsp;+&nbsp;maladies à 20–35&nbsp;€/mois reste l'investissement le plus rentable du cycle de vie.</p>
+          <span class="profile-cta-link">Lire le guide chiot
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a href="/comparatif/assurance-chien-pas-cher" class="profile-cta-card">
+          <span class="profile-cta-eyebrow">Petit budget · dès 15&nbsp;€/mois</span>
+          <h3>Assurance chien pas cher</h3>
+          <p>Les formules d'entrée de gamme démarrent à 15&nbsp;€/mois et conviennent aux races à faible risque génétique. Pour les races à prédispositions documentées (Bouledogue, Golden, Cavalier King Charles), la formule à 22&nbsp;€/mois est plus économique sur la durée.</p>
+          <span class="profile-cta-link">Comparer les offres pas cher
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a href="/comparatif/assurance-chien-senior" class="profile-cta-card">
+          <span class="profile-cta-eyebrow">Sénior · 7 ans et plus</span>
+          <h3>Assurer un chien sénior</h3>
+          <p>Au-delà de 7 ans, les frais vétérinaires augmentent en moyenne de 200 à 300&nbsp;%. Les assureurs durcissent leurs conditions (limite d'âge à la souscription, surprimes, exclusions) — un comparatif spécifique s'impose pour identifier les contrats encore accessibles.</p>
+          <span class="profile-cta-link">Lire le guide sénior
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -724,4 +868,116 @@ const rows = [
   .display em { font-style: normal; color: var(--c-green); }
   .lede { font-size: 1.05rem; color: var(--c-ink-2); line-height: 1.65; }
   .h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -.02em; color: var(--c-ink); }
+
+  /* ── Bloc éditorial enrichi (P1-5) ── */
+  .cmp-narrow {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .cmp-intro-lead {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--c-ink);
+    margin: 0 0 18px;
+    text-wrap: pretty;
+  }
+  .cmp-intro-p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--c-ink-2);
+    margin: 0 0 24px;
+    text-wrap: pretty;
+  }
+  .cmp-table-title {
+    margin: 36px 0 14px;
+    scroll-margin-top: 90px;
+  }
+  .cmp-table-intro {
+    font-size: .95rem;
+    line-height: 1.65;
+    color: var(--c-ink-2);
+    margin: 0 0 4px;
+    text-wrap: pretty;
+  }
+
+  /* ── Méthodologie ── */
+  .cmp-method-title { margin: 8px 0 18px; }
+  .cmp-method-p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--c-ink-2);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+  }
+  .cmp-method-p:last-child { margin-bottom: 0; }
+  .cmp-method-p code {
+    font-family: var(--font-mono);
+    font-size: .82em;
+    background: var(--c-bg-soft);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--c-ink);
+  }
+
+  /* ── Cartes profils CTA ── */
+  .profile-cta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 880px) { .profile-cta-grid { grid-template-columns: 1fr; } }
+
+  .profile-cta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 22px;
+    background: white;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--c-ink);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .profile-cta-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px -16px rgba(15,110,86,.18);
+    border-color: var(--c-green-200);
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+  .profile-cta-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--c-green-700);
+  }
+  .profile-cta-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -.015em;
+    line-height: 1.25;
+    color: var(--c-ink);
+  }
+  .profile-cta-card p {
+    margin: 0;
+    font-size: .92rem;
+    line-height: 1.55;
+    color: var(--c-ink-2);
+    flex: 1;
+    text-wrap: pretty;
+  }
+  .profile-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--c-green-700);
+  }
+  .profile-cta-card:hover .profile-cta-link { color: var(--c-green); }
 </style>
