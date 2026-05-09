@@ -4,9 +4,9 @@ const currentPath = Astro.url.pathname;
 const nav = [
   {
     label: "Comparatif",
-    href: "/comparatif/assurance-chien",
+    href: "/comparatif",
     children: [
-      { label: "Assurance chien", href: "/comparatif/assurance-chien" },
+      { label: "Assurance chien", href: "/comparatif" },
       { label: "Assurance chien pas cher", href: "/comparatif/assurance-chien-pas-cher" },
       { label: "Assurance chiot", href: "/comparatif/assurance-chiot" },
       { label: "Assurance chien sénior", href: "/comparatif/assurance-chien-senior" },
@@ -24,9 +24,9 @@ const nav = [
   },
   {
     label: "Coûts & Santé",
-    href: "/couts/cout-chien-2025",
+    href: "/couts/cout-chien",
     children: [
-      { label: "Coût d'un chien en 2025", href: "/couts/cout-chien-2025" },
+      { label: "Coût d'un chien en 2026", href: "/couts/cout-chien" },
       { label: "Coût des soins vétérinaires", href: "/couts/cout-soins-veterinaires" },
       { label: "Maladies fréquentes", href: "/couts/maladies-frequentes" },
       { label: "Statistiques assurance chien", href: "/couts/statistiques-assurance-chien" },
@@ -392,3 +392,4 @@ function isSectionActive(item: typeof nav[0]) {
     }
   }
 </style>
+                                                                                                          

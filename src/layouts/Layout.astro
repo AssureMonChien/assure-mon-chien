@@ -2,14 +2,21 @@
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;   // URL absolue de l'image OG (optionnel, sinon image par défaut)
+  ogType?: string;    // "website" | "article" — défaut: "website"
 }
 
 const {
   title,
   description = "Trouvez la meilleure assurance pour votre chien. Comparez les offres, découvrez les races et consultez nos guides pratiques.",
+  ogImage,
+  ogType = "website",
 } = Astro.props;
 
+const siteUrl    = "https://assure-mon-chien.fr";
 const currentPath = Astro.url.pathname;
+const canonical  = `${siteUrl}${currentPath}`;
+const ogImageUrl = ogImage ?? `${siteUrl}/og-default.jpg`;
 
 const POPULAR_RACES = [
   { slug: "labrador", name: "Labrador Retriever" },
@@ -39,6 +46,28 @@ const isGuides = currentPath.startsWith("/guides");
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title} — Assure mon chien</title>
+
+    <!-- ── Canonical ── -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- ── Open Graph ── -->
+    <meta property="og:type"        content={ogType} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url"         content={canonical} />
+    <meta property="og:image"       content={ogImageUrl} />
+    <meta property="og:site_name"   content="Assure Mon Chien" />
+    <meta property="og:locale"      content="fr_FR" />
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImageUrl} />
+
+    <!-- ── Slot pour JSON-LD et balises supplémentaires ── -->
+    <slot name="head" />
+
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e00607c6-424a-47f6-aa47-d80646551207"></script>
   </head>
   <body>
@@ -89,7 +118,50 @@ const isGuides = currentPath.startsWith("/guides");
             </div>
           </div>
 
-          <a href="/comparatif" class:list={["header-link", { "is-active": isComparatif }]}>Comparatif</a>
+          <!-- Comparatif dropdown -->
+          <div class="header-nav-item" id="nav-comparatif">
+            <a href="/comparatif" class:list={["header-link has-menu", { "is-active": isComparatif }]} data-nav-trigger>
+              Comparatif
+              <svg class="nav-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <div class="nav-menu" id="menu-comparatif">
+              <div class="nav-menu-head">
+                <span class="nav-menu-eyebrow">Comparer les offres</span>
+              </div>
+              <div class="nav-menu-list">
+                <a href="/comparatif" class="nav-menu-item">
+                  <span class="nmi-name">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><rect x="1" y="3" width="5" height="9" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="3" width="5" height="9" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
+                    Assurance chien
+                  </span>
+                </a>
+                <a href="/comparatif/assurance-chien-pas-cher" class="nav-menu-item">
+                  <span class="nmi-name">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2 8h11M7.5 3l4 5-4 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Assurance chien pas cher
+                  </span>
+                </a>
+                <a href="/comparatif/assurance-chiot" class="nav-menu-item">
+                  <span class="nmi-name">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 13s-5.5-3.5-5.5-7A5.5 5.5 0 0113 6c0 3.5-5.5 7-5.5 7z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    Assurance chiot
+                  </span>
+                </a>
+                <a href="/comparatif/assurance-chien-senior" class="nav-menu-item">
+                  <span class="nmi-name">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7.5 4v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    Assurance chien sénior
+                  </span>
+                </a>
+              </div>
+              <a href="/comparatif" class="nav-menu-foot">
+                Voir le comparatif complet
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
 
           <!-- Guides dropdown -->
           <div class="header-nav-item" id="nav-guides">
@@ -108,18 +180,6 @@ const isGuides = currentPath.startsWith("/guides");
                   <span class="nmi-name">
                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1a6.5 6.5 0 100 13A6.5 6.5 0 007.5 1zM7.5 5v4.5M7.5 11.5h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
                     Comment choisir une assurance
-                  </span>
-                </a>
-                <a href="/guides/assurance-chiot" class="nav-menu-item">
-                  <span class="nmi-name">
-                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 13s-5.5-3.5-5.5-7A5.5 5.5 0 0113 6c0 3.5-5.5 7-5.5 7z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                    Assurance chiot
-                  </span>
-                </a>
-                <a href="/guides/assurance-chien-senior" class="nav-menu-item">
-                  <span class="nmi-name">
-                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7.5 4v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                    Assurance chien sénior
                   </span>
                 </a>
               </div>
@@ -173,12 +233,16 @@ const isGuides = currentPath.startsWith("/guides");
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-        <a href="/comparatif" class="mobile-menu-link">Comparatif</a>
+        <div class="mobile-menu-group">
+          <div class="mobile-menu-group-title">Comparatif</div>
+          <a href="/comparatif" class="mobile-menu-sublink">Assurance chien</a>
+          <a href="/comparatif/assurance-chien-pas-cher" class="mobile-menu-sublink">Assurance chien pas cher</a>
+          <a href="/comparatif/assurance-chiot" class="mobile-menu-sublink">Assurance chiot</a>
+          <a href="/comparatif/assurance-chien-senior" class="mobile-menu-sublink">Assurance chien sénior</a>
+        </div>
         <div class="mobile-menu-group">
           <div class="mobile-menu-group-title">Guides</div>
           <a href="/guides/choisir-assurance-chien" class="mobile-menu-sublink">Choisir une assurance</a>
-          <a href="/guides/assurance-chiot" class="mobile-menu-sublink">Assurance chiot</a>
-          <a href="/guides/assurance-chien-senior" class="mobile-menu-sublink">Assurance chien sénior</a>
           <a href="/guides" class="mobile-menu-sublink mobile-menu-sublink-all">
             Voir tous les guides
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -226,11 +290,16 @@ const isGuides = currentPath.startsWith("/guides");
             <a href="/guides">Guides</a>
           </div>
           <div class="footer-col">
+            <h4>Comparatif</h4>
+            <a href="/comparatif">Assurance chien</a>
+            <a href="/comparatif/assurance-chien-pas-cher">Assurance pas cher</a>
+            <a href="/comparatif/assurance-chiot">Assurance chiot</a>
+            <a href="/comparatif/assurance-chien-senior">Assurance sénior</a>
+          </div>
+          <div class="footer-col">
             <h4>Guides</h4>
             <a href="/guides/choisir-assurance-chien">Choisir une assurance</a>
-            <a href="/guides/assurance-chiot">Assurance chiot</a>
-            <a href="/guides/assurance-chien-senior">Assurance sénior</a>
-            <a href="/couts/cout-chien-2025">Coût d'un chien 2026</a>
+            <a href="/couts/cout-chien">Coût d'un chien 2026</a>
           </div>
           <div class="footer-col">
             <h4>À propos</h4>
@@ -356,6 +425,7 @@ const isGuides = currentPath.startsWith("/guides");
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: clip;
   }
   img { max-width: 100%; display: block; }
   a { color: var(--c-green-700); text-decoration: none; }
@@ -941,6 +1011,16 @@ const isGuides = currentPath.startsWith("/guides");
   }
 
   /* ════════════════════ DATA TABLES ════════════════════ */
+  /* Scroll wrapper for wide tables on mobile */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0.75rem 0 0.4rem;
+    border-radius: 10px;
+    border: 1px solid var(--c-line);
+  }
+  .table-scroll { min-width: 0; }
+
   .data-table {
     width: 100%; border-collapse: collapse;
     background: white; border-radius: var(--radius);
@@ -1265,35 +1345,4 @@ const isGuides = currentPath.startsWith("/guides");
 
   /* ed-sources */
   .ed-sources {
-    margin: 48px 0 0; padding: 28px;
-    background: var(--c-bg-soft);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--c-line);
-  }
-  .ed-sources-title {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--c-ink-2); margin: 0 0 16px;
-  }
-  .ed-sources ol { margin: 0; padding-left: 20px; font-size: 13px; color: var(--c-ink-2); line-height: 1.7; }
-  .ed-sources li { margin-bottom: 6px; }
-
-  /* ed-banner (inline CTA) */
-  .ed-banner {
-    margin: 36px 0; padding: 28px 32px;
-    background: var(--c-ink); color: #fff;
-    border-radius: var(--radius-lg);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 24px; flex-wrap: wrap;
-    position: relative; overflow: hidden;
-  }
-  .ed-banner::before {
-    content: ""; position: absolute; top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, var(--c-green) 0%, transparent 70%);
-    opacity: 0.5;
-  }
-  .ed-banner p { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 18px; line-height: 1.4; position: relative; flex: 1; min-width: 240px; color: #fff; }
-  .ed-banner .btn { position: relative; }
-</style>
+    m

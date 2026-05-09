@@ -1,0 +1,326 @@
+---
+import ComparatifLayout from "../../layouts/ComparatifLayout.astro";
+
+const siteUrl = "https://assure-mon-chien.fr";
+const pageUrl = `${siteUrl}/comparatif/assurance-chiot`;
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil",    "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Comparatif", "item": `${siteUrl}/comparatif` },
+    { "@type": "ListItem", "position": 3, "name": "Assurance chiot : le guide complet", "item": pageUrl },
+  ]
+});
+
+const jsonldArticle = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Assurance chiot : le guide complet",
+  "description": "À quel âge assurer son chiot, quelles garanties choisir, comment éviter les exclusions pour maladies congénitales. Guide complet 2026.",
+  "url": pageUrl,
+  "datePublished": "2026-04-01",
+  "dateModified":  "2026-05-01",
+  "author":    { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl },
+  "publisher": { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl,
+    "logo": { "@type": "ImageObject", "url": `${siteUrl}/favicon.svg` } }
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "À partir de quel âge peut-on assurer un chiot ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La plupart des assureurs acceptent les chiots à partir de 2 mois, conformément à l'âge légal de cession en France. Il est conseillé de souscrire dans les jours suivant l'adoption pour profiter des tarifs jeunes et éviter les exclusions pour pathologies préexistantes." }
+    },
+    {
+      "@type": "Question",
+      "name": "Les vaccins du chiot sont-ils remboursés par l'assurance ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les vaccins ne sont remboursés que dans les formules incluant un module prévention. Les formules standard (accidents + maladies) ne couvrent pas les actes préventifs." }
+    },
+    {
+      "@type": "Question",
+      "name": "La stérilisation est-elle prise en charge par l'assurance chiot ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La stérilisation est considérée comme un acte préventif ou de convenance, exclu des formules standard. Elle peut être partiellement remboursée dans les formules avec module prévention." }
+    }
+  ]
+});
+
+const tocItems = [
+  { href: "#age-souscrire",        label: "À quel âge assurer son chiot ?" },
+  { href: "#garanties-prioritaires", label: "Les garanties prioritaires" },
+  { href: "#maladies-congenitales", label: "Maladies congénitales" },
+  { href: "#vaccins",              label: "Vaccins et prévention" },
+  { href: "#tarifs-chiot",         label: "Combien ça coûte ?" },
+  { href: "#choisir",              label: "Choisir la bonne formule" },
+];
+
+const relatedItems = [
+  {
+    href: "/guides/choisir-assurance-chien",
+    cat: "Guide Essentiel",
+    title: "Comment choisir une assurance chien ?",
+    desc: "Les 5 critères décisifs, les 2 pièges classiques, et la méthode pour comparer en 10 minutes.",
+    linkLabel: "Lire le guide",
+  },
+  {
+    href: "/comparatif/assurance-chien-senior",
+    cat: "Comparatif",
+    title: "Assurance chien sénior",
+    desc: "Restrictions d'âge, maladies chroniques, formules sénior : tout ce qu'il faut savoir pour un chien de plus de 7 ans.",
+    linkLabel: "Lire le guide",
+  },
+  {
+    href: "/races",
+    cat: "Base de données",
+    title: "Guide des 31 races",
+    desc: "Prédispositions génétiques, coûts vétérinaires réels et recommandations d'assurance pour chaque race.",
+    linkLabel: "Voir toutes les races",
+  },
+];
+---
+
+<ComparatifLayout
+  title="Assurance chiot : le guide complet 2026"
+  description="À quel âge assurer son chiot, quelles garanties choisir, comment éviter les exclusions pour maladies congénitales. Guide complet 2026."
+  heroLabel="Guide — Niveau Débutant"
+  heroTitle="Assurance chiot : le guide complet"
+  heroDesc="Assurer son chiot dès les premières semaines, c'est s'assurer que les maladies héréditaires, les accidents de croissance et les premières urgences vétérinaires seront couverts — avant qu'il ne soit trop tard pour souscrire sans exclusion."
+  heroImage="/images/races/labrador.webp"
+  heroImageAlt="Labrador Retriever chiot, race emblématique pour illustrer l'assurance chiot"
+  heroCaption="Souscrire dès l'adoption reste la meilleure décision pour protéger son chiot des maladies héréditaires."
+  slug="assurance-chiot"
+  breadcrumbLabel="Assurance chiot"
+  {tocItems}
+  {relatedItems}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+    <script type="application/ld+json" set:html={jsonldArticle} />
+    <script type="application/ld+json" set:html={jsonldFaq} />
+  </Fragment>
+
+  <Fragment slot="hero-meta">
+    <div class="ed-meta">
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M3.5 10.5h17M8 3v4M16 3v4"/></svg>
+        Avril 2026
+      </span>
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        7 min de lecture
+      </span>
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.4-8 9-4.6-.6-8-4.5-8-9V6l8-3z"/></svg>
+        Rédaction Assure Mon Chien · Relu par un vétérinaire
+      </span>
+    </div>
+  </Fragment>
+
+  <!-- ═══ Corps de l'article ═══ -->
+
+  <p class="ed-p">
+    Un chiot est exposé à deux catégories de risques que l'on sous-estime souvent.
+    La première&nbsp;: les accidents — fractures, ingestion de corps étrangers, intoxications.
+    La seconde&nbsp;: les maladies héréditaires, qui restent silencieuses plusieurs mois
+    avant de se déclarer — souvent après le délai de carence si l'on a trop attendu pour souscrire.
+  </p>
+
+  <div class="ed-stats">
+    <div class="ed-stats-grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div>
+        <div class="ed-stat-value">2 mois</div>
+        <div class="ed-stat-label">âge minimum de souscription chez la majorité des assureurs</div>
+      </div>
+      <div>
+        <div class="ed-stat-value">2 500 €</div>
+        <div class="ed-stat-label">coût moyen d'une chirurgie d'urgence pour un chiot</div>
+      </div>
+      <div>
+        <div class="ed-stat-value">30–90 j</div>
+        <div class="ed-stat-label">délai de carence maladies — la fenêtre critique à ne pas manquer</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="ed-h2" id="age-souscrire">1. À quel âge assurer son chiot ?</h2>
+
+  <p class="ed-p">
+    La quasi-totalité des assureurs fixent un âge minimum de souscription entre 2 et 3 mois —
+    l'âge légal de cession d'un chiot en France (article&nbsp;L.214-8 du Code rural).
+    Vous pouvez donc souscrire dès la semaine de votre adoption.
+  </p>
+  <p class="ed-p">
+    L'âge idéal est entre 8 et 12 semaines. Plus vous attendez, plus vous prenez le risque
+    qu'un problème de santé soit diagnostiqué avant la fin des délais de carence, le transformant
+    en affection préexistante définitivement exclue.
+  </p>
+
+  <h3 class="ed-h3">Ce qui se passe si vous attendez</h3>
+  <p class="ed-p">
+    Un chiot vit des dizaines d'interactions physiques par jour&nbsp;: escaliers, jeux, objets ingérés,
+    chutes. Une fracture, une intoxication ou une invagination intestinale peut survenir à n'importe quel
+    moment entre 2 et 18 mois. Les frais associés dépassent souvent 1&nbsp;000 à 2&nbsp;500&nbsp;euros.
+  </p>
+  <p class="ed-p">
+    Certaines maladies héréditaires se manifestent progressivement au cours de la première année.
+    Si elles apparaissent après la souscription mais pendant le délai de carence (souvent 30 à 90 jours),
+    elles seront exclues. Si elles apparaissent <em>après</em> ce délai, elles sont couvertes — d'où
+    l'intérêt de souscrire le plus tôt possible.
+  </p>
+
+  <h2 class="ed-h2" id="garanties-prioritaires">2. Les garanties prioritaires pour un chiot</h2>
+
+  <div class="ed-pullquote">
+    <span class="ed-pullquote-mark" aria-hidden="true">"</span>
+    <p>Un chiot assuré avant son premier diagnostic est couvert pour les maladies héréditaires qui se déclarent plus tard. Attendez, et l'exclusion devient définitive.</p>
+    <cite>Principe de continuité — fondamental pour les races à risque</cite>
+  </div>
+
+  <h3 class="ed-h3">La chirurgie d'urgence</h3>
+  <p class="ed-p">
+    Les chiots sont des explorateurs impulsifs&nbsp;: ingestion de corps étrangers, torsion d'estomac
+    chez les grandes races, fractures des membres. Ces urgences nécessitent souvent une intervention
+    chirurgicale immédiate. Les frais&nbsp;: entre 800 et 3&nbsp;000 euros. Assurez-vous que votre
+    contrat couvre les actes chirurgicaux sans plafond trop bas.
+  </p>
+
+  <h3 class="ed-h3">L'hospitalisation</h3>
+  <p class="ed-p">
+    Une parvovirose, une leptospirose ou une intoxication grave peut entraîner une hospitalisation
+    de plusieurs jours. Une nuit en soins intensifs coûte entre 200 et 400&nbsp;euros.
+    Recherchez un contrat qui couvre l'hospitalisation sans limitation de durée ou avec un plafond journalier suffisant.
+  </p>
+
+  <h3 class="ed-h3">Les examens complémentaires</h3>
+  <p class="ed-p">
+    Radio, échographie, bilan sanguin, endoscopie&nbsp;: les analyses diagnostiques représentent une part
+    importante de la facture. Certains contrats les excluent ou les plafonnent séparément. Vérifiez
+    que ces actes sont bien inclus dans votre formule.
+  </p>
+
+  <h2 class="ed-h2" id="maladies-congenitales">3. Maladies congénitales : le point crucial</h2>
+
+  <div class="ed-callout ed-callout-rose">
+    <span class="ed-callout-icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </span>
+    <div>
+      <div class="ed-callout-title">Le piège de l'exclusion héréditaire</div>
+      <p>Certaines formules d'entrée de gamme excluent explicitement les «&nbsp;maladies congénitales, héréditaires ou génétiques&nbsp;». Cette clause peut anéantir l'utilité du contrat pour un Bouledogue Français, un Cavalier King Charles ou un Golden Retriever. Lisez attentivement les conditions générales avant de signer.</p>
+    </div>
+  </div>
+
+  <p class="ed-p">
+    Les maladies héréditaires sont des pathologies génétiquement transmises qui se développent souvent
+    dans les premiers mois ou années de vie. Leur prise en charge dépend de trois facteurs&nbsp;: la
+    formule choisie, la date d'apparition des symptômes, et la race.
+  </p>
+
+  <h3 class="ed-h3">La date d'apparition des symptômes</h3>
+  <p class="ed-p">
+    Même dans les contrats qui couvrent les maladies héréditaires, la règle de la préexistence
+    s'applique&nbsp;: si la pathologie est diagnostiquée avant la fin du délai de carence, elle sera exclue.
+    Il est donc impératif de souscrire avant le premier diagnostic — même un
+    «&nbsp;peut-être&nbsp;» mentionné par le vétérinaire peut créer une exclusion.
+  </p>
+
+  <h3 class="ed-h3">La race et les prédispositions documentées</h3>
+  <p class="ed-p">
+    Certains assureurs excluent des pathologies spécifiques selon la race — dysplasie de hanche,
+    syndrome brachycéphale, maladie valvulaire. Avant de souscrire, demandez explicitement si les
+    pathologies connues de votre race sont couvertes. Consultez notre <a href="/races">guide des races</a>
+    pour connaître les prédispositions de votre chiot.
+  </p>
+
+  <h2 class="ed-h2" id="vaccins">4. Premiers vaccins et prévention</h2>
+
+  <p class="ed-p">
+    Le protocole vaccinal d'un chiot représente un investissement de 150 à 300&nbsp;euros sur la
+    première année. Les formules standard (accidents + maladies) ne remboursent généralement pas les vaccins.
+    Les formules avec module prévention remboursent un forfait annuel (50 à 150&nbsp;€) pour les actes
+    préventifs incluant les vaccins, les antiparasitaires et parfois la stérilisation.
+  </p>
+
+  <div class="ed-callout ed-callout-rose">
+    <span class="ed-callout-icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </span>
+    <div>
+      <div class="ed-callout-title">Maintenez le protocole vaccinal à jour</div>
+      <p>Si votre chiot contracte une maladie contre laquelle il aurait dû être vacciné (parvovirose, par exemple), certains assureurs peuvent invoquer une faute de l'assuré pour réduire ou refuser le remboursement.</p>
+    </div>
+  </div>
+
+  <h2 class="ed-h2" id="tarifs-chiot">5. Combien coûte une assurance chiot en 2026 ?</h2>
+
+  <p class="ed-p">
+    Les tarifs pour les chiots sont généralement parmi les plus bas du marché, car les jeunes
+    chiens présentent statistiquement moins de pathologies chroniques.
+  </p>
+
+  <ul class="ed-check">
+    <li>
+      <span class="ed-check-mark" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      <span><strong>Formule accidents seule&nbsp;:</strong> 10 à 20&nbsp;€/mois pour les petites races, 15 à 30&nbsp;€/mois pour les grandes. Insuffisante pour les races à risque héréditaire élevé.</span>
+    </li>
+    <li>
+      <span class="ed-check-mark" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      <span><strong>Formule accidents + maladies&nbsp;:</strong> 20 à 45&nbsp;€/mois selon la race. Pour un Labrador chiot&nbsp;: 28 à 38&nbsp;€/mois. Pour un Bouledogue Français chiot&nbsp;: 40 à 60&nbsp;€/mois.</span>
+    </li>
+    <li>
+      <span class="ed-check-mark" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      <span><strong>Formule complète avec prévention&nbsp;:</strong> 45 à 80&nbsp;€/mois. Sur la première année, le module prévention peut rembourser 100 à 200&nbsp;€ de frais préventifs.</span>
+    </li>
+  </ul>
+
+  <h2 class="ed-h2" id="choisir">6. Comment choisir la bonne formule ?</h2>
+
+  <p class="ed-p">
+    La règle est simple&nbsp;: la formule doit couvrir les risques réels de votre race.
+  </p>
+
+  <h3 class="ed-h3">Race à risque élevé</h3>
+  <p class="ed-p">
+    Bouledogue Français, Rottweiler, Cavalier King Charles, Golden Retriever&nbsp;: minimum recommandé —
+    formule accidents + maladies avec couverture des maladies héréditaires, plafond annuel de
+    2&nbsp;500&nbsp;€ ou plus, taux de remboursement à 80&nbsp;% minimum.
+  </p>
+
+  <h3 class="ed-h3">Race à risque modéré</h3>
+  <p class="ed-p">
+    Labrador, Berger Allemand, Husky, Boxer&nbsp;: une formule accidents + maladies avec un plafond de
+    2&nbsp;000&nbsp;€ et un taux de 70 à 80&nbsp;% est généralement suffisante pour les premières années.
+    Réévaluez à 5–6 ans.
+  </p>
+
+  <h3 class="ed-h3">Race à risque faible</h3>
+  <p class="ed-p">
+    Berger des Shetlands, Épagneul Breton, Teckel jeune&nbsp;: une formule accidents seule peut suffire
+    dans les premières années, à condition de disposer d'une réserve personnelle. Planifiez la
+    souscription d'une formule complète avant les 5 ans du chien.
+  </p>
+
+  <div class="ed-banner">
+    <p>Comparez les offres adaptées à votre chiot en moins de 2 minutes. Sans engagement.</p>
+    <a href="/comparatif" class="btn btn-accent btn-lg">
+      Voir les offres chiot
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="ed-sources">
+    <div class="ed-sources-title">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Sources
+    </div>
+    <ol>
+      <li>Code rural, article L.214-8 — Âge légal de cession des chiots (2021)</li>
+      <li>Enquête tarifaire assurance animaux de compagnie — France (2026)</li>
+      <li>Données cliniques vétérinaires — frais d'urgence chirurgicale chez les chiots (2024)</li>
+    </ol>
+  </div>
+</ComparatifLayout>

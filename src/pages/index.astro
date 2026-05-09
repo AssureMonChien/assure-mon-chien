@@ -24,12 +24,40 @@ function raceImage(slug: string): string {
 function riskClass(level: string): string {
   return level === "élevé" ? "risk-high" : level === "faible" ? "risk-low" : "risk-mid";
 }
+
+const siteUrl = "https://assure-mon-chien.fr";
+
+const jsonldWebSite = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "WebSite",
+  "name":     "Assure Mon Chien",
+  "url":      siteUrl,
+  "description": "Comparatif indépendant d'assurances santé pour chien selon la race. Pathologies, tarifs et conseils.",
+  "potentialAction": {
+    "@type":       "SearchAction",
+    "target":      `${siteUrl}/races?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+});
+
+const jsonldOrganization = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "Organization",
+  "name":     "Assure Mon Chien",
+  "url":      siteUrl,
+  "logo":     { "@type": "ImageObject", "url": `${siteUrl}/favicon.svg` },
+  "description": "Site indépendant de comparaison d'assurances chien. Aucun assureur ne finance nos classements."
+});
 ---
 
 <Layout
   title="Assurance chien — Comparez les meilleures mutuelles 2026"
   description="Trouvez la meilleure assurance santé pour votre chien selon sa race. Comparatif indépendant, pathologies fréquentes, tarifs réels. Guide 2026 mis à jour."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonldWebSite} />
+    <script type="application/ld+json" set:html={jsonldOrganization} />
+  </Fragment>
 
   <!-- ══════════════ HERO IMMERSIF ══════════════ -->
   <section class="home-hero">
@@ -81,9 +109,9 @@ function riskClass(level: string): string {
 
         <div class="hero-hint">
           <span>Ou&nbsp;:</span>
-          <a href="/races">parcourir les 30 races</a>
+          <a href="/guides/choisir-assurance-chien">Comment choisir une assurance ?</a>
           <span>·</span>
-          <a href="/comparatif">voir le comparatif</a>
+          <a href="/comparatif">Voir le comparatif</a>
         </div>
 
         <ul class="home-hero-stats">
@@ -432,6 +460,7 @@ function riskClass(level: string): string {
     box-shadow: var(--shadow-lg); padding: 6px;
     display: flex; flex-direction: column; gap: 2px; z-index: 5;
   }
+  .hero-search-pop[hidden] { display: none; }
   .hero-search-item {
     display: flex; align-items: center; justify-content: space-between;
     padding: 10px 14px; border-radius: 12px;
@@ -442,31 +471,4 @@ function riskClass(level: string): string {
 
   .hero-hint {
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-    font-size: 14px; color: var(--c-ink-3); margin-bottom: 28px;
-  }
-  .hero-hint a { color: var(--c-green-700); font-weight: 500; }
-  .hero-hint a:hover { color: var(--c-green); text-decoration: underline; }
-  .hero-hint > span { opacity: .7; }
-
-  .home-hero-stats {
-    list-style: none; padding: 24px 0 0; margin: 36px 0 0;
-    border-top: 1px solid rgba(22,32,28,.12);
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  }
-  .home-hero-stats li { display: flex; flex-direction: column; }
-  .home-hero-stats strong { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--c-ink); }
-  .home-hero-stats span { font-size: 13px; color: var(--c-ink-3); }
-
-  @media (max-width: 640px) {
-    .home-hero { min-height: auto; }
-    .hero-grid { padding: 48px 16px 64px; min-height: auto; }
-    .hero-photo-veil {
-      background: linear-gradient(180deg,
-        rgba(255,252,247,.97) 0%,
-        rgba(255,252,247,.90) 60%,
-        rgba(255,252,247,.60) 100%);
-    }
-    .home-hero-stats { gap: 16px; }
-    .home-hero-stats strong { font-size: 22px; }
-  }
-</style>
+    font-size: 14px; color: var(--c-ink-3); 

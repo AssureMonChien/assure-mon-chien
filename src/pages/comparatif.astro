@@ -5,8 +5,8 @@ const jsonldBreadcrumb = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assuremochien.fr/" },
-    { "@type": "ListItem", "position": 2, "name": "Comparatif assurances chien 2026", "item": "https://assuremochien.fr/comparatif" },
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assure-mon-chien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Comparatif assurances chien 2026", "item": "https://assure-mon-chien.fr/comparatif" },
   ]
 });
 
@@ -57,7 +57,7 @@ const insurers = [
     refundDelay: "48 h",
     verdict: "Bouledogue Français, Cavalier King Charles, Rottweiler, Golden Retriever. Remboursement à 100 %, délai 48 h et couverture maladies chroniques sans surprime : le choix logique quand les frais vétérinaires peuvent dépasser 5 000 €.",
     profile: "Races à risque élevé",
-    href: "https://www.santeVet.com/assurance-chien/?ref=assuremochien"
+    href: "https://lb.affilae.com/r/?p=5b2cede2b946025fa0b9ff04&af=2489&lp=https%3A%2F%2Fassurance.santevet.com%2Fquote-species%3Futm_source%3Daffilae%26utm_medium%3Dprogramme_santevet%26utm_campaign%3Daffilae%26utm_content%3DAssure%2520Mon%2520Chien"
   },
   {
     id: "assurOPoil",
@@ -91,7 +91,7 @@ const insurers = [
     refundDelay: "72 h",
     verdict: "Propriétaires qui gèrent tout depuis leur smartphone. Interface soignée, devis en 90 secondes, suivi des remboursements en temps réel. Le remboursement à 80 % et la carence de 45 jours restent des points de vigilance pour les races fragiles.",
     profile: "Application mobile prioritaire",
-    href: "https://www.lassie.fr/?ref=assuremochien"
+    href: "https://addrevenue.io/t?a=985478&c=3467385"
   }
 ];
 
@@ -111,8 +111,10 @@ const rows = [
   title="Comparatif assurances chien 2026 — SantéVet, Lassie, AssurOPoil"
   description="Comparatif indépendant des 3 meilleures assurances chien en 2026 : SantéVet, AssurOPoil et Lassie. Tarifs réels, remboursements, délais de carence et verdict par profil."
 >
-  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
-  <script type="application/ld+json" set:html={jsonldFaq} />
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+    <script type="application/ld+json" set:html={jsonldFaq} />
+  </Fragment>
 
   <!-- ── Hero ── -->
   <section class="cmp-hero">
@@ -207,6 +209,11 @@ const rows = [
       <p class="affiliate-note">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Liens partenaires — Nous percevons une commission si vous souscrivez, sans surcoût pour vous.
+      </p>
+
+      <p class="internal-link-hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Vous cherchez à réduire votre budget&nbsp;? Consultez notre guide <a href="/comparatif/assurance-chien-pas-cher">assurance chien pas cher</a> — offres dès 15&nbsp;€/mois comparées.
       </p>
     </div>
   </section>
@@ -501,6 +508,20 @@ const rows = [
     margin: 20px 0 0;
     justify-content: center;
   }
+
+  .internal-link-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    padding: 12px 18px;
+    background: var(--c-green-50);
+    border: 1px solid var(--c-green-200);
+    border-radius: var(--radius);
+    margin: 10px 0 0;
+  }
+  .internal-link-hint a { color: var(--c-green-700); font-weight: 600; }
 
   /* ── Verdict ── */
   .verdict-grid {

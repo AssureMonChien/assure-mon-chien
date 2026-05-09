@@ -6,6 +6,85 @@ interface Props {
 
 const { risque, nom } = Astro.props;
 
+const jsonldItemList = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": `Assurances chien pour ${nom}`,
+  "description": `Sélection de formules d'assurance adaptées au ${nom}`,
+  "numberOfItems": 3,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "Assurance chien Essentielle",
+        "description": "Couverture accidents et urgences. Chirurgie d'urgence, hospitalisation courte. Plafond 1 200 €/an.",
+        "category": "Assurance animaux",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "price": "15.00",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "15.00",
+            "priceCurrency": "EUR",
+            "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "MON" }
+          },
+          "availability": "https://schema.org/InStock",
+          "url": "https://assure-mon-chien.fr/comparatif"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "Assurance chien Confort",
+        "description": "Accidents, maladies chroniques, dysplasie, spécialistes (cardiologue, oncologue, ophtalmo.). Plafond 2 200 €/an.",
+        "category": "Assurance animaux",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "price": "22.00",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "22.00",
+            "priceCurrency": "EUR",
+            "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "MON" }
+          },
+          "availability": "https://schema.org/InStock",
+          "url": "https://assure-mon-chien.fr/comparatif"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "Assurance chien Premium",
+        "description": "Couverture totale : accidents, maladies, prévention 150 €/an, vaccins, vermifuge, détartrage. Plafond 3 500 €/an. Remboursement 48 h.",
+        "category": "Assurance animaux",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "price": "35.00",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "35.00",
+            "priceCurrency": "EUR",
+            "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "MON" }
+          },
+          "availability": "https://schema.org/InStock",
+          "url": "https://assure-mon-chien.fr/comparatif"
+        }
+      }
+    }
+  ]
+});
+
 const tiers = [
   {
     id:          'essentielle',
@@ -57,6 +136,8 @@ const recoText: Record<string, string> = {
   eleve:  `Pour un ${nom}, la formule Confort ou Premium est fortement conseillée en raison des risques héréditaires importants et des coûts chirurgicaux élevés.`,
 };
 ---
+
+<script type="application/ld+json" set:html={jsonldItemList} />
 
 <section class="section section-tinted" id="offres">
   <div class="container">

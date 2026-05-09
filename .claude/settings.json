@@ -2,7 +2,19 @@
   "permissions": {
     "allow": [
       "Bash(node add-maladies-para.mjs)",
-      "Bash(node update-race-pages.mjs)"
+      "Bash(node update-race-pages.mjs)",
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(python -c ' *)",
+      "Read(//c/Users/gaeta/AppData/Local/Temp/design_extract/**)",
+      "Bash(npx astro *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\gaeta\\\\Documents\\\\Web\\\\assure-mon-chien\" -Recurse -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Read(//c/Users/gaeta/Documents/Web/**)",
+      "Bash(grep -E \"\\\\.\\(jsx|css\\)$\")",
+      "Bash(node scripts/harmonize-races.mjs)",
+      "Bash(node scripts/callout-risques.mjs)"
     ],
     "additionalDirectories": [
       "c:\\Users\\gaeta\\Documents\\Web\\assure-mon-chien"

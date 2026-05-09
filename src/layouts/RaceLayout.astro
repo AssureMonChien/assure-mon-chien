@@ -27,6 +27,77 @@ interface Props {
 
 const { title, description, nom, slug, taille, risque, kf, score, similaires } = Astro.props;
 
+// ── SEO ──────────────────────────────────────────────────────────────────────
+const siteUrl  = "https://assure-mon-chien.fr";
+const pageUrl  = `${siteUrl}/races/${slug}`;
+
+const imgMap: Record<string, string> = {
+  'bouledogue-francais':   'bouledogue-français',
+  'montagne-des-pyrenees': 'montagne-des-Pyrénées',
+};
+const ogImagePath = `/images/races/${imgMap[slug] ?? slug}.webp`;
+const ogImageUrl  = `${siteUrl}${ogImagePath}`;
+
+const jsonldArticle = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "Article",
+  "headline": title,
+  "description": description,
+  "image":    ogImageUrl,
+  "url":      pageUrl,
+  "datePublished": "2026-01-01",
+  "dateModified":  "2026-05-01",
+  "author":    { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl },
+  "publisher": {
+    "@type": "Organization",
+    "name":  "Assure Mon Chien",
+    "url":   siteUrl,
+    "logo":  { "@type": "ImageObject", "url": `${siteUrl}/favicon.svg` }
+  }
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name":  `Pourquoi assurer son ${nom} ?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text":  `Le ${nom} est prédisposé à des pathologies coûteuses. Une assurance santé rembourse jusqu'à 100 % des frais vétérinaires et évite d'arbitrer entre votre budget et la santé de votre chien.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name":  `Quel est le prix d'une assurance pour un ${nom} ?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text":  `Le tarif varie selon l'âge, la formule choisie et la région. Comparez les offres sur notre comparatif pour obtenir le meilleur rapport qualité-prix pour votre ${nom}.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name":  "Quand souscrire une assurance chien ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text":  "Le plus tôt possible : dès l'acquisition, idéalement avant 1 an. Les assureurs excluent les maladies déclarées avant la souscription."
+      }
+    }
+  ]
+});
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Races",   "item": `${siteUrl}/races` },
+    { "@type": "ListItem", "position": 3, "name": nom,       "item": pageUrl }
+  ]
+});
+// ─────────────────────────────────────────────────────────────────────────────
+
 const risqueMap = {
   faible: { label: 'Risque faible',  cls: 'risk-low',  defaultScore: 30 },
   modere: { label: 'Risque modéré', cls: 'risk-mid',  defaultScore: 58 },
@@ -38,14 +109,14 @@ const tailleLabel: Record<string, string> = {
   moyenne: 'Moyenne',
   grande:  'Grande',
 };
-
-const imgMap: Record<string, string> = {
-  'bouledogue-francais':   'bouledogue-français',
-  'montagne-des-pyrenees': 'montagne-des-Pyrénées',
-};
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} ogImage={ogImageUrl} ogType="article">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonldArticle} />
+    <script type="application/ld+json" set:html={jsonldFaq} />
+    <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  </Fragment>
 
   <!-- 1. Hero (breadcrumb + 2 colonnes photo / texte) -->
   <HeroBreed {nom} {slug} {title} {taille} {risque} />
@@ -78,7 +149,46 @@ const imgMap: Record<string, string> = {
     </div>
   </section>
 
-  <!-- 5. Cartes assurance -->
+  <!-- 5. À lire aussi -->
+  <section class="section section-tight also-read-section">
+    <div class="container">
+      <p class="also-read-label">À lire aussi</p>
+      <div class="also-read-grid">
+        <a href="/comparatif" class="also-read-card">
+          <span class="also-read-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="7" height="14" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="3" width="7" height="14" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+          </span>
+          <div>
+            <strong>Comparatif assurances chien</strong>
+            <span>SantéVet, AssurOPoil, Lassie — tarifs et garanties comparés</span>
+          </div>
+          <svg class="also-read-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/guides/choisir-assurance-chien" class="also-read-card">
+          <span class="also-read-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 5h12M4 10h8M4 15h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <div>
+            <strong>Guide : choisir une assurance chien</strong>
+            <span>Critères essentiels, pièges à éviter et conseils pratiques</span>
+          </div>
+          <svg class="also-read-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/races" class="also-read-card">
+          <span class="also-read-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="7" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="13" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 17c0-3 2-5 5-5h6c3 0 5 2 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <div>
+            <strong>Toutes les races analysées</strong>
+            <span>Pathologies, risques et tarifs pour 31 races de chiens</span>
+          </div>
+          <svg class="also-read-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Cartes assurance -->
   <InsuranceCards {risque} {nom} />
 
   <!-- 6. Races similaires -->
@@ -183,153 +293,279 @@ const imgMap: Record<string, string> = {
 
 </Layout>
 
+<style>
+  /* ── À lire aussi ── */
+  .also-read-section { padding-top: 0; }
+
+  .also-read-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-ink-3);
+    margin: 0 0 1rem;
+  }
+
+  .also-read-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .also-read-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--c-ink);
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+  .also-read-card:hover {
+    border-color: var(--c-green-200);
+    box-shadow: var(--shadow-sm);
+    background: var(--c-green-50);
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+  .also-read-card strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    margin: 0 0 3px;
+  }
+  .also-read-card > div { flex: 1; min-width: 0; }
+  .also-read-card span:not(.also-read-icon) {
+    font-size: 0.78rem;
+    color: var(--c-ink-3);
+    line-height: 1.4;
+    display: block;
+  }
+  .also-read-icon {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .also-read-arrow {
+    color: var(--c-ink-3);
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+  .also-read-card:hover .also-read-arrow {
+    transform: translateX(3px);
+    color: var(--c-green-700);
+  }
+
+  @media (max-width: 760px) {
+    .also-read-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<style is:global>
+  /* ── Race article body (slot content from individual race pages) ── */
+  .race-article {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--c-ink);
+  }
+  .race-article h2 {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 700;
+    color: var(--c-ink);
+    margin: 2.25rem 0 0.75rem;
+    border-bottom: 2px solid var(--c-green-50);
+    padding-bottom: 0.4rem;
+  }
+  .race-article h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    margin: 1.5rem 0 0.5rem;
+  }
+  .race-article p { margin: 0 0 0.9rem; }
+
+  .intro-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--c-ink-2);
+    margin: 0 0 1.5rem;
+  }
+
+  .source {
+    font-size: 0.78rem;
+    color: var(--c-ink-3);
+    font-style: italic;
+    margin: 0.25rem 0 1rem;
+    line-height: 1.5;
+  }
+
+  /* ── FAQ accordion ── */
+  .faq-item {
+    border-bottom: 1px solid var(--c-line-soft);
+  }
+  .faq-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--c-ink);
+    padding: 1rem 0;
+    font-family: inherit;
+  }
+  .faq-btn:hover { color: var(--c-green-700); }
+  .faq-btn .chevron {
+    font-size: 1.2rem;
+    color: var(--c-green-700);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+  .faq-answer {
+    padding: 0 0 1rem;
+  }
+  .faq-answer p {
+    font-size: 0.9rem;
+    color: var(--c-ink-2);
+    margin: 0 0 0.5rem;
+    line-height: 1.7;
+  }
+  .faq-answer p:last-child { margin-bottom: 0; }
+
+  /* ── Key figures (bottom of article) ── */
+  .key-figures { margin: 2rem 0; }
+  .key-figures h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--c-ink-3);
+    margin: 0 0 1rem;
+  }
+  .figures-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .figure {
+    background: var(--c-green-50);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .figure-value {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--c-green-700);
+    line-height: 1.1;
+  }
+  .figure-label {
+    font-size: 0.8rem;
+    color: var(--c-ink-2);
+    line-height: 1.4;
+  }
+
+  /* ── Sources & similaires ── */
+  .sources-list,
+  .section-sources-list {
+    font-size: 0.8rem;
+    color: var(--c-ink-3);
+    line-height: 1.6;
+    padding-left: 1.2rem;
+  }
+  .sources-list li,
+  .section-sources-list li { margin-bottom: 0.35rem; }
+
+  .section-similaires {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0.5rem 0 1.5rem;
+  }
+  .section-similaires li a {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    border: 1px solid var(--c-green-200);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .section-similaires li a:hover {
+    background: var(--c-green-100, #c8eadf);
+    text-decoration: none;
+  }
+</style>
+
 <script>
-  // FAQ accordion (button-based)
-  document.querySelectorAll('.faq-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      const answerId = btn.getAttribute('aria-controls');
-      const answer = answerId ? document.getElementById(answerId) : null;
-      if (answer) (answer as HTMLElement).hidden = expanded;
+  /* ── FAQ accordion ── */
+  document.querySelectorAll<HTMLButtonElement>(".faq-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      const answerId = btn.getAttribute("aria-controls")!;
+      const answer   = document.getElementById(answerId)!;
+      btn.setAttribute("aria-expanded", String(!expanded));
+      if (expanded) {
+        answer.setAttribute("hidden", "");
+      } else {
+        answer.removeAttribute("hidden");
+      }
+      const chevron = btn.querySelector<HTMLElement>(".chevron");
+      if (chevron) {
+        chevron.style.transform = expanded ? "rotate(0deg)" : "rotate(180deg)";
+      }
     });
   });
 
-  // Build TOC from article h2s
-  const headings = document.querySelectorAll<HTMLHeadingElement>('.race-article h2');
-  const tocList  = document.getElementById('race-toc-list');
-  if (tocList && headings.length) {
+  /* ── TOC auto-build from h2 headings ── */
+  const tocList = document.getElementById("race-toc-list");
+  if (tocList) {
+    const headings = document.querySelectorAll<HTMLElement>(".article-body h2");
     headings.forEach((h, i) => {
-      if (!h.id) h.id = `race-h2-${i}`;
-      const li = document.createElement('li');
-      const a  = document.createElement('a');
+      if (!h.id) h.id = `section-${i}`;
+      const li = document.createElement("li");
+      const a  = document.createElement("a");
       a.href        = `#${h.id}`;
-      a.textContent = h.textContent ?? '';
+      a.textContent = h.textContent;
       li.appendChild(a);
       tocList.appendChild(li);
     });
 
-    // Highlight active section
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        const link = tocList.querySelector<HTMLAnchorElement>(`a[href="#${e.target.id}"]`);
-        link?.closest('li')?.classList.toggle('is-active', e.isIntersecting);
-      }),
-      { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
+    /* Active link highlight on scroll */
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const link = tocList.querySelector<HTMLAnchorElement>(
+            `a[href="#${entry.target.id}"]`
+          );
+          if (link) link.classList.toggle("is-active", entry.isIntersecting);
+        });
+      },
+      { rootMargin: "-15% 0px -70% 0px" }
     );
-    headings.forEach(h => io.observe(h));
+    headings.forEach((h) => obs.observe(h));
   }
 </script>
-
-<style is:global>
-  /* ── TOC active link ── */
-  #race-toc-list li.is-active a {
-    color: var(--c-green-700);
-    border-left-color: var(--c-green);
-    font-weight: 600;
-  }
-
-  /* ── Typographie article ── */
-  .race-article {
-    line-height: 1.72;
-    color: var(--c-ink);
-  }
-  .race-article p {
-    margin: 0 0 1rem;
-    color: var(--c-ink-2);
-    font-size: 16px;
-    line-height: 1.72;
-  }
-  .race-article a { color: var(--c-green-700); font-weight: 500; }
-  .race-article a:hover { color: var(--c-green); }
-
-  .race-article h2 {
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    font-weight: 800;
-    color: var(--c-ink);
-    margin: 2.5rem 0 1rem;
-    letter-spacing: -0.02em;
-    padding-bottom: .5rem;
-    border-bottom: 2px solid var(--c-green-200);
-    scroll-margin-top: 100px;
-  }
-
-  .race-article .intro-text {
-    font-size: 1.05rem;
-    color: var(--c-ink-2);
-    margin-bottom: 2rem;
-    line-height: 1.75;
-  }
-
-  .race-article .source {
-    font-size: 0.77rem;
-    color: var(--c-ink-3);
-    font-style: italic;
-    margin: 0.2rem 0 1rem;
-  }
-
-  /* ── Tableaux dans l'article ── */
-  .race-article .table-wrap,
-  .table-wrap {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 1rem 0 .75rem;
-    border-radius: var(--radius);
-  }
-  .table-scroll { min-width: 400px; }
-
-  /* ── FAQ dans l'article (bouton JS) ── */
-  .faq-item {
-    border: 1px solid var(--c-line);
-    border-radius: var(--radius);
-    margin-bottom: 8px;
-    overflow: hidden;
-  }
-  .faq-btn {
-    display: flex; justify-content: space-between; align-items: center;
-    width: 100%; padding: 16px 18px;
-    font-weight: 600; font-size: 15px;
-    cursor: pointer; background: white; border: none; text-align: left;
-    color: var(--c-ink); gap: 8px; font-family: inherit;
-    transition: background .15s;
-  }
-  .faq-btn:hover { background: var(--c-bg-soft); }
-  .faq-btn[aria-expanded="true"] { background: var(--c-green-50); color: var(--c-green-700); }
-  .chevron { flex-shrink: 0; color: var(--c-ink-3); transition: transform .2s ease; }
-  .faq-btn[aria-expanded="true"] .chevron { transform: rotate(180deg); color: var(--c-green); }
-  .faq-answer { padding: 0 18px 16px; margin: 0; font-size: 15px; color: var(--c-ink-2); line-height: 1.65; }
-  .faq-answer p { margin: 0; }
-
-  /* ── Chiffres clés inline (dans l'article) ── */
-  .key-figures {
-    background: var(--c-bg-tinted); border: 1px solid var(--c-green-200);
-    border-radius: var(--radius-lg); padding: 24px; margin: 2rem 0;
-  }
-  .race-article .key-figures h2 {
-    margin: 0 0 16px; border: none; padding-bottom: 0;
-    font-size: 1.1rem; color: var(--c-green-700);
-  }
-  .figures-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  @media (max-width: 640px) { .figures-grid { grid-template-columns: 1fr 1fr; } }
-  .figure { text-align: center; }
-  .figure-value { display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-green-700); }
-  .figure-label { font-size: 0.78rem; color: var(--c-ink-3); line-height: 1.4; }
-
-  /* ── Races similaires inline list ── */
-  .section-similaires { list-style: none; padding: 0; margin: .5rem 0 1.5rem; display: flex; flex-wrap: wrap; gap: 8px; }
-  .section-similaires li { font-size: 14px; color: var(--c-ink-2); }
-  .section-similaires li a { color: var(--c-green-700); font-weight: 500; }
-  .section-similaires li a:hover { color: var(--c-green); text-decoration: none; }
-
-  /* ── Listes prévention / sources ── */
-  .sources-list, .section-sources-list {
-    list-style: none; padding: 0; margin: .5rem 0; display: grid; gap: 8px;
-  }
-  .sources-list li, .section-sources-list li {
-    font-size: 13px; color: var(--c-ink-2);
-    padding: 10px 14px; background: var(--c-bg-soft); border-radius: 8px;
-    display: flex; gap: 8px; align-items: flex-start;
-  }
-  .sources-list li::before, .section-sources-list li::before { content: "📄"; flex-shrink: 0; }
-</style>

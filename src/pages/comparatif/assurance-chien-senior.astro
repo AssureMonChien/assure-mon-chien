@@ -1,0 +1,326 @@
+---
+import ComparatifLayout from "../../layouts/ComparatifLayout.astro";
+
+const siteUrl = "https://assure-mon-chien.fr";
+const pageUrl = `${siteUrl}/comparatif/assurance-chien-senior`;
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil",    "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Comparatif", "item": `${siteUrl}/comparatif` },
+    { "@type": "ListItem", "position": 3, "name": "Assurance chien sénior", "item": pageUrl },
+  ]
+});
+
+const jsonldArticle = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Assurance chien sénior : ce qu'il faut savoir",
+  "description": "Guide complet pour assurer un chien de plus de 7 ans : coût des soins, restrictions d'âge des assureurs, formules seniors, maladies chroniques. Données chiffrées 2026.",
+  "url": pageUrl,
+  "datePublished": "2026-04-01",
+  "dateModified":  "2026-05-01",
+  "author":    { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl },
+  "publisher": { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl,
+    "logo": { "@type": "ImageObject", "url": `${siteUrl}/favicon.svg` } }
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "À partir de quel âge un chien est-il considéré comme sénior ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Cela dépend de la taille de la race. Les petites races entrent en phase sénior vers 10-11 ans. Les races moyennes vers 8-9 ans. Les grandes races vers 7-8 ans. Les races géantes dès 6-7 ans." }
+    },
+    {
+      "@type": "Question",
+      "name": "Mon chien a 9 ans et n'a jamais été assuré. Est-il trop tard ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il n'est pas trop tard, mais les options se réduisent. Quelques assureurs acceptent encore des souscriptions jusqu'à 9 ou 10 ans. Le tarif sera plus élevé et les exclusions plus nombreuses. Les pathologies déjà diagnostiquées seront exclues d'emblée." }
+    },
+    {
+      "@type": "Question",
+      "name": "L'euthanasie et les soins palliatifs sont-ils pris en charge ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L'euthanasie seule n'est généralement pas remboursée. Les soins palliatifs et la gestion de la douleur en fin de vie peuvent être pris en charge selon les formules. Certains assureurs proposent des modules spécifiques 'fin de vie'." }
+    }
+  ]
+});
+
+const tocItems = [
+  { href: "#couts-senior",      label: "Les frais vétérinaires d'un sénior" },
+  { href: "#restrictions-age",  label: "Restrictions d'âge des assureurs" },
+  { href: "#formules-senior",   label: "Formules sénior disponibles" },
+  { href: "#maladies-chroniques", label: "Maladies chroniques et couverture" },
+  { href: "#maintenir-contrat", label: "Maintenir son contrat" },
+  { href: "#conseils",          label: "Conseils pratiques" },
+];
+
+const relatedItems = [
+  {
+    href: "/guides/choisir-assurance-chien",
+    cat: "Guide Essentiel",
+    title: "Comment choisir une assurance chien ?",
+    desc: "Les 5 critères décisifs, les 2 pièges classiques, et la méthode pour comparer en 10 minutes.",
+    linkLabel: "Lire le guide",
+  },
+  {
+    href: "/comparatif/assurance-chiot",
+    cat: "Comparatif",
+    title: "Assurance chiot : le guide complet",
+    desc: "Âge minimum de souscription, garanties prioritaires et comment éviter les exclusions héréditaires.",
+    linkLabel: "Lire le guide",
+  },
+  {
+    href: "/races",
+    cat: "Base de données",
+    title: "Guide des 31 races",
+    desc: "Prédispositions génétiques, coûts vétérinaires réels et recommandations d'assurance par race.",
+    linkLabel: "Voir toutes les races",
+  },
+];
+---
+
+<ComparatifLayout
+  title="Assurance chien sénior : ce qu'il faut savoir (2026)"
+  description="Guide complet pour assurer un chien de plus de 7 ans : coût des soins, restrictions d'âge des assureurs, formules seniors, maladies chroniques. Données chiffrées 2026."
+  heroLabel="Guide — Niveau Avancé"
+  heroTitle="Assurance chien sénior : ce qu'il faut savoir"
+  heroDesc="À partir de 7 ans, un chien entre dans la catégorie sénior. Ses frais vétérinaires augmentent en moyenne de 200 à 300 % par rapport à un chien adulte. Trouver une assurance adaptée n'est pas impossible, mais cela demande de connaître les règles du jeu."
+  heroImage="/images/races/berger-allemand.webp"
+  heroImageAlt="Berger Allemand adulte, race souvent concernée par les enjeux d'assurance sénior"
+  heroCaption="Un contrat souscrit jeune et maintenu reste la meilleure protection contre les restrictions d'âge et les préexistances."
+  slug="assurance-chien-senior"
+  breadcrumbLabel="Assurance chien sénior"
+  {tocItems}
+  {relatedItems}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+    <script type="application/ld+json" set:html={jsonldArticle} />
+    <script type="application/ld+json" set:html={jsonldFaq} />
+  </Fragment>
+
+  <Fragment slot="hero-meta">
+    <div class="ed-meta">
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M3.5 10.5h17M8 3v4M16 3v4"/></svg>
+        Avril 2026
+      </span>
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        10 min de lecture
+      </span>
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.4-8 9-4.6-.6-8-4.5-8-9V6l8-3z"/></svg>
+        Rédaction Assure Mon Chien · Relu par un vétérinaire
+      </span>
+    </div>
+  </Fragment>
+
+  <!-- ═══ Corps de l'article ═══ -->
+
+  <p class="ed-p">
+    Le vieillissement d'un chien modifie profondément l'équation de l'assurance. Les frais
+    augmentent, les exclusions se multiplient, les assureurs resserrent leurs conditions. Ce guide
+    vous donne les clés pour naviguer dans ce marché spécifique — que votre chien soit assuré
+    depuis ses 2 ans ou que vous cherchiez à le couvrir pour la première fois.
+  </p>
+
+  <div class="ed-stats">
+    <div class="ed-stats-grid" style="grid-template-columns: repeat(3, 1fr)">
+      <div>
+        <div class="ed-stat-value">×3</div>
+        <div class="ed-stat-label">augmentation moyenne des frais vétérinaires entre un adulte et un sénior de 10 ans</div>
+      </div>
+      <div>
+        <div class="ed-stat-value">7 ans</div>
+        <div class="ed-stat-label">âge sénior chez les grandes races — la couverture devient critique dès cet âge</div>
+      </div>
+      <div>
+        <div class="ed-stat-value">50 %</div>
+        <div class="ed-stat-label">des chiens de plus de 10 ans développent une forme de cancer au cours de leur vie</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="ed-h2" id="couts-senior">1. Les frais vétérinaires d'un chien sénior</h2>
+
+  <p class="ed-p">
+    Selon les données collectées par les cliniques vétérinaires membres du réseau Vétorama (2024),
+    les propriétaires de chiens séniors dépensent en moyenne&nbsp;:
+  </p>
+
+  <ul class="ed-check">
+    <li>
+      <span class="ed-check-mark" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      <span><strong>7 à 10 ans&nbsp;:</strong> 800 à 1&nbsp;500&nbsp;€/an en soins vétérinaires (hors prévention).</span>
+    </li>
+    <li>
+      <span class="ed-check-mark" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      <span><strong>10 à 13 ans&nbsp;:</strong> 1&nbsp;200 à 2&nbsp;500&nbsp;€/an, notamment en raison de maladies chroniques nécessitant un suivi régulier.</span>
+    </li>
+    <li>
+      <span class="ed-check-mark" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      <span><strong>Plus de 13 ans&nbsp;:</strong> jusqu'à 3&nbsp;500&nbsp;€/an pour les grandes races et celles présentant des pathologies multiples.</span>
+    </li>
+  </ul>
+
+  <p class="ed-p">
+    Ces chiffres s'expliquent par l'accumulation de phénomènes liés à l'âge&nbsp;: bilans sanguins
+    semestriels recommandés dès 8 ans, maladies chroniques (insuffisance rénale, diabète, maladies
+    cardiaques), arthrose chronique, risque cancéreux accru, et chirurgies d'urgence plus fréquentes.
+  </p>
+
+  <h2 class="ed-h2" id="restrictions-age">2. Les restrictions d'âge des assureurs</h2>
+
+  <div class="ed-callout ed-callout-rose">
+    <span class="ed-callout-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+    <div>
+      <div class="ed-callout-title">Âge limite de souscription : 8 ans chez la plupart des assureurs</div>
+      <p>La majorité des assureurs français n'acceptent plus de nouvelles souscriptions au-delà de 8 ans. Quelques acteurs montent jusqu'à 9 ou 10 ans avec des garanties réduites. Au-delà, les options se comptent sur les doigts d'une main.</p>
+    </div>
+  </div>
+
+  <h3 class="ed-h3">Les surprimes d'âge</h3>
+  <p class="ed-p">
+    Même dans les contrats existants, la prime mensuelle augmente avec l'âge. Cette augmentation
+    peut être progressive (10 à 30&nbsp;% par an après 8 ans), par paliers, ou plafonnée chez
+    certains assureurs qui garantissent un tarif stable — un avantage considérable pour les assurés de longue date.
+  </p>
+
+  <h3 class="ed-h3">Les exclusions renforcées avec l'âge</h3>
+  <p class="ed-p">
+    Au-delà des exclusions standard, les contrats sénior ajoutent souvent des restrictions
+    spécifiques&nbsp;: plafonds réduits par acte, franchises plus élevées (100 à 200&nbsp;€),
+    exclusion des maladies dégénératives, délais de carence plus longs pour les nouvelles souscriptions.
+  </p>
+
+  <h2 class="ed-h2" id="formules-senior">3. Les formules sénior disponibles en 2026</h2>
+
+  <p class="ed-p">
+    Si vous n'avez pas encore assuré votre chien et qu'il a plus de 7 ans, voici les options
+    réalistes disponibles sur le marché français.
+  </p>
+
+  <h3 class="ed-h3">Les formules sénior spécialisées</h3>
+  <p class="ed-p">
+    Certains assureurs proposent des produits spécifiquement conçus pour les chiens âgés&nbsp;:
+    bilan vétérinaire d'entrée obligatoire, garanties recentrées sur les urgences et hospitalisations,
+    plafond annuel réduit (1&nbsp;500 à 2&nbsp;500&nbsp;€). Ces formules acceptent des souscriptions
+    tardives mais excluent d'emblée toutes les pathologies connues.
+  </p>
+
+  <h3 class="ed-h3">Les formules standard avec limite d'âge</h3>
+  <p class="ed-p">
+    Pour les chiens entre 7 et 9 ans, les formules accidents + maladies standard restent accessibles
+    chez la plupart des assureurs. Le prix est plus élevé qu'à 2 ans, mais les garanties sont les
+    mêmes. C'est généralement la meilleure option si l'état de santé est encore satisfaisant.
+  </p>
+
+  <h2 class="ed-h2" id="maladies-chroniques">4. Maladies chroniques : comment fonctionne la couverture ?</h2>
+
+  <div class="ed-pullquote">
+    <span class="ed-pullquote-mark" aria-hidden="true">"</span>
+    <p>Un contrat souscrit à 2 ans et maintenu jusqu'à 12 ans protège infiniment mieux qu'un contrat souscrit à 8 ans. Chaque pathologie couverte en cours de contrat reste couverte au renouvellement.</p>
+    <cite>Principe de continuité — la règle d'or de l'assurance chien sénior</cite>
+  </div>
+
+  <h3 class="ed-h3">Les pathologies chroniques les plus fréquentes</h3>
+  <p class="ed-p">
+    Insuffisance rénale chronique (80 à 200&nbsp;€/mois de traitement), maladie valvulaire mitrale
+    fréquente chez les petites races (50 à 150&nbsp;€/mois), hypothyroïdie chez le Golden Retriever
+    et le Labrador (30 à 70&nbsp;€/mois), diabète sucré (80 à 200&nbsp;€/mois), arthrose chronique
+    touchant environ 20&nbsp;% des chiens de plus de 8 ans.
+  </p>
+
+  <h3 class="ed-h3">Le principe fondamental de continuité</h3>
+  <p class="ed-p">
+    Une maladie chronique diagnostiquée <em>après</em> la souscription (et après les délais de carence)
+    sera couverte tant que le contrat est maintenu actif. Si votre chien développe un diabète à 9 ans
+    alors qu'il est assuré depuis ses 2 ans, ses soins seront remboursés chaque année — jusqu'à la
+    limite du plafond annuel.
+  </p>
+
+  <div class="ed-callout ed-callout-rose">
+    <span class="ed-callout-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+    <div>
+      <div class="ed-callout-title">Ne changez jamais d'assureur sans garantie équivalente</div>
+      <p>Si vous résiliez, toutes les pathologies connues deviendront des préexistances chez le nouvel assureur. Un contrat en cours de route protège bien mieux qu'un contrat neuf souscrit au même âge.</p>
+    </div>
+  </div>
+
+  <h2 class="ed-h2" id="maintenir-contrat">5. Pourquoi maintenir son contrat dès le plus jeune âge</h2>
+
+  <p class="ed-p">
+    La meilleure stratégie reste de souscrire tôt et de ne jamais résilier. Voici pourquoi
+    cette décision prise à 2 mois détermine encore la qualité de couverture à 12 ans.
+  </p>
+
+  <h3 class="ed-h3">L'accumulation des pathologies couvertes</h3>
+  <p class="ed-p">
+    Chaque année, votre chien peut développer de nouvelles pathologies qui seront couvertes par
+    votre contrat actif. Une fois couvertes, elles le restent tant que vous ne résiliez pas.
+    Un chien de 12 ans assuré depuis ses 2 ans bénéficie d'une couverture bien plus large qu'un
+    chien de 12 ans nouvellement assuré.
+  </p>
+
+  <h3 class="ed-h3">La stabilité tarifaire</h3>
+  <p class="ed-p">
+    Certains assureurs garantissent aux assurés de longue date des conditions tarifaires
+    préférentielles. Un contrat maintenu depuis 5 ans peut bénéficier d'une prime plafonnée
+    ou d'une progression plus douce.
+  </p>
+
+  <h2 class="ed-h2" id="conseils">6. Conseils pratiques pour un chien de 7 ans et plus</h2>
+
+  <h3 class="ed-h3">Évaluez l'état de santé actuel</h3>
+  <p class="ed-p">
+    Avant de comparer les offres, demandez à votre vétérinaire un bilan de santé complet. Ce bilan
+    vous permettra de connaître les pathologies éventuellement présentes (qui seront exclues par tout
+    nouvel assureur) et de déterminer le niveau de couverture réellement utile.
+  </p>
+
+  <h3 class="ed-h3">Comparez les exclusions, pas seulement les prix</h3>
+  <p class="ed-p">
+    Pour un chien sénior, la liste des exclusions est plus importante que le tarif mensuel.
+    Un contrat à 50&nbsp;€/mois avec peu d'exclusions vaut mieux qu'un contrat à 35&nbsp;€/mois
+    qui exclut les pathologies cardiaques, rénales et les cancers.
+  </p>
+
+  <h3 class="ed-h3">Vérifiez la clause de renouvellement</h3>
+  <p class="ed-p">
+    Certains assureurs se réservent le droit de ne pas renouveler un contrat après un certain âge
+    ou en cas de sinistralité trop élevée. Recherchez des contrats avec garantie de renouvellement
+    ou clause de maintien jusqu'à la fin de vie du chien.
+  </p>
+
+  <p class="ed-p">
+    Consultez notre <a href="/comparatif">comparatif assureurs 2026</a> ou les fiches spécifiques à
+    la race de votre chien dans notre <a href="/races">guide des 31 races</a> pour les recommandations
+    de couverture adaptées à votre situation.
+  </p>
+
+  <div class="ed-banner">
+    <p>Comparez les offres disponibles pour votre chien sénior. Simulation en 2 minutes.</p>
+    <a href="/comparatif" class="btn btn-accent btn-lg">
+      Voir les offres sénior
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="ed-sources">
+    <div class="ed-sources-title">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Sources
+    </div>
+    <ol>
+      <li>Réseau Vétorama — Données cliniques frais vétérinaires chiens séniors (2024)</li>
+      <li>Journal of Veterinary Internal Medicine — Cancer prevalence in dogs over 10 years (2022)</li>
+      <li>Université de Liverpool — Arthrose clinique chez les chiens de plus de 8 ans (2019)</li>
+      <li>École Nationale Vétérinaire d'Alfort — Insuffisance rénale chronique canine (2023)</li>
+    </ol>
+  </div>
+</ComparatifLayout>

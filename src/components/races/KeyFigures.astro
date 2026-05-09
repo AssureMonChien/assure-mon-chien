@@ -14,37 +14,3 @@ const { items } = Astro.props;
     </div>
   ))}
 </div>
-
-<style>
-  .metrics-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-  @media (max-width: 880px) {
-    .metrics-row { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .metric-card {
-    background: white;
-    border: 1px solid var(--c-line);
-    border-radius: var(--radius);
-    padding: 24px;
-  }
-
-  .metric-val {
-    font-size: clamp(26px, 2.4vw, 36px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--c-green-700);
-    line-height: 1.1;
-    margin-bottom: 4px;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .metric-lbl {
-    font-size: 13px;
-    color: var(--c-ink-2);
-    line-height: 1.4;
-  }
-</style>
