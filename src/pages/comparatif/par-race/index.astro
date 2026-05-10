@@ -1,0 +1,260 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { RACES, raceImagePath } from "../../../data/races";
+
+const siteUrl = "https://assure-mon-chien.fr";
+const pageUrl = `${siteUrl}/comparatif/par-race`;
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil",    "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Comparatif", "item": `${siteUrl}/comparatif` },
+    { "@type": "ListItem", "position": 3, "name": "Par race",   "item": pageUrl }
+  ]
+});
+
+const jsonldItemList = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "ItemList",
+  "name":     "Comparatifs assurance chien par race",
+  "description": "Recommandation d'assurance santé adaptée à chacune des 31 races analysées.",
+  "url":      pageUrl,
+  "numberOfItems": RACES.length,
+  "itemListElement": RACES.map((r, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "url": `${siteUrl}/comparatif/par-race/${r.slug}`,
+    "name": `Assurance ${r.nom}`
+  }))
+});
+
+// Trier les races par taille puis nom alphabétique
+const racesSorted = [...RACES].sort((a, b) => {
+  const sizeOrder = { 'grande': 0, 'moyenne': 1, 'petite': 2 } as const;
+  const sa = sizeOrder[a.taille as keyof typeof sizeOrder];
+  const sb = sizeOrder[b.taille as keyof typeof sizeOrder];
+  if (sa !== sb) return sa - sb;
+  return a.nom.localeCompare(b.nom);
+});
+
+const tailleLabel: Record<string, string> = {
+  petite: "Petites races",
+  moyenne: "Races moyennes",
+  grande: "Grandes races",
+};
+const risqueLabel: Record<string, string> = {
+  faible: "Faible", modere: "Modéré", eleve: "Élevé",
+};
+---
+
+<Layout
+  title="Comparatif assurance chien par race — 31 races analysées"
+  description="Recommandation d'assurance santé chien adaptée à chacune des 31 races analysées : Labrador, Bouledogue Français, Berger Allemand, Golden Retriever et plus."
+  ogType="website"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+    <script type="application/ld+json" set:html={jsonldItemList} />
+  </Fragment>
+
+  <!-- ── Hero ── -->
+  <section class="cmp-race-hub-hero">
+    <div class="container">
+      <nav class="cmp-race-breadcrumb" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/comparatif">Comparatif</a></li>
+          <li aria-current="page">Par race</li>
+        </ol>
+      </nav>
+      <span class="pill pill-soft">31 races analysées</span>
+      <h1 class="display display-md">Comparatif assurance chien <em>par race</em></h1>
+      <p class="lede">Chaque race a ses fragilités et ses pathologies typiques. Notre recommandation d'assurance est argumentée race par race, à partir du profil de risque, des coûts vétérinaires réels et des garanties prioritaires.</p>
+    </div>
+  </section>
+
+  <!-- ── Liste des races groupée par taille ── -->
+  {(['grande', 'moyenne', 'petite'] as const).map(taille => {
+    const subset = racesSorted.filter(r => r.taille === taille);
+    if (subset.length === 0) return null;
+    return (
+      <section class="section section-tight">
+        <div class="container">
+          <div class="section-head section-head-row">
+            <div>
+              <span class="eyebrow">{tailleLabel[taille]}</span>
+              <h2 class="h2" style="margin:0">{subset.length} {subset.length > 1 ? 'races' : 'race'}</h2>
+            </div>
+          </div>
+          <div class="hub-grid">
+            {subset.map(r => (
+              <a href={`/comparatif/par-race/${r.slug}`} class={`hub-card hub-risk-${r.risque}`}>
+                <div class="hub-photo">
+                  <img
+                    src={raceImagePath(r.slug)}
+                    alt={`${r.nom} — comparatif assurance santé`}
+                    width="240" height="180" loading="lazy" decoding="async"
+                  />
+                </div>
+                <div class="hub-body">
+                  <div class="hub-head">
+                    <span class="hub-name">{r.nom}</span>
+                    <span class={`hub-pill hub-pill-${r.risque}`}>
+                      <span class="hub-dot"></span>
+                      {risqueLabel[r.risque]}
+                    </span>
+                  </div>
+                  <p class="hub-cost">{r.cost}/an</p>
+                  <span class="hub-cta">
+                    Voir le comparatif
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <!-- ── CTA retour comparatif global ── -->
+  <section class="section section-tight section-tinted">
+    <div class="container">
+      <div class="related-card">
+        <div>
+          <span class="eyebrow">Pour comparer en transverse</span>
+          <h2 class="h2">Comparatif global des 3 assureurs</h2>
+          <p>SantéVet, AssurOPoil et Lassie côte à côte sur 8 critères, sans filtre par race.</p>
+        </div>
+        <a href="/comparatif" class="btn btn-outline btn-lg">
+          Voir le comparatif global
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cmp-race-hub-hero {
+    padding: 56px 0 32px;
+    background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 100%);
+    border-bottom: 1px solid var(--c-line);
+    text-align: center;
+  }
+  @media (max-width: 600px) { .cmp-race-hub-hero { padding: 36px 0 24px; } }
+  .cmp-race-hub-hero h1 { margin: 16px 0 12px; text-wrap: balance; }
+  .cmp-race-hub-hero .lede { max-width: 640px; margin: 0 auto; text-wrap: pretty; }
+
+  /* Breadcrumb */
+  .cmp-race-breadcrumb ol {
+    display: flex; gap: 0; list-style: none; padding: 0; margin: 0 auto 18px;
+    font-size: 13px; color: var(--c-ink-3); flex-wrap: wrap; justify-content: center;
+  }
+  .cmp-race-breadcrumb li:not(:last-child)::after { content: " / "; margin: 0 6px; }
+  .cmp-race-breadcrumb a { color: var(--c-ink-3); text-decoration: none; }
+  .cmp-race-breadcrumb a:hover { color: var(--c-green); }
+  .cmp-race-breadcrumb li[aria-current] { color: var(--c-ink); font-weight: 500; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--gutter); }
+  @media (max-width: 600px) { .container { padding: 0 var(--gutter-mobile); } }
+
+  /* Grid */
+  .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 920px) { .hub-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 720px) { .hub-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px) { .hub-grid { grid-template-columns: 1fr; } }
+
+  .hub-card {
+    display: flex; flex-direction: column;
+    background: white; border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg); overflow: hidden;
+    text-decoration: none; color: var(--c-ink);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .hub-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px -16px rgba(15,110,86,.18);
+    border-color: var(--c-green-200);
+    color: var(--c-ink); text-decoration: none;
+  }
+  .hub-photo {
+    aspect-ratio: 4/3; overflow: hidden; background: var(--c-green-50);
+  }
+  .hub-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .35s ease;
+  }
+  .hub-card:hover .hub-photo img { transform: scale(1.05); }
+  .hub-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .hub-head {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 8px; flex-wrap: wrap;
+  }
+  .hub-name { font-weight: 700; font-size: 15px; letter-spacing: -.01em; line-height: 1.2; }
+  .hub-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 999px;
+    font-size: 11px; font-weight: 600; flex-shrink: 0;
+  }
+  .hub-pill-eleve  { background: rgba(229,57,53,.08); color: var(--c-risk-high); }
+  .hub-pill-modere { background: rgba(251,140,0,.08); color: var(--c-risk-mid); }
+  .hub-pill-faible { background: rgba(67,160,71,.08); color: var(--c-risk-low); }
+  .hub-dot { width: 5px; height: 5px; border-radius: 999px; background: currentColor; }
+  .hub-cost { font-size: 13px; color: var(--c-ink-3); margin: 0; font-weight: 500; }
+  .hub-cta {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--c-green-700);
+  }
+  .hub-card:hover .hub-cta { color: var(--c-green); }
+
+  /* Section head row */
+  .section-head { margin-bottom: 24px; }
+  .section-head-row {
+    text-align: left; display: flex;
+    align-items: flex-end; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+
+  /* Related card */
+  .related-card {
+    background: white; border: 1px solid var(--c-line); border-radius: var(--radius-lg);
+    padding: 28px; display: flex; align-items: center; gap: 24px;
+    flex-wrap: wrap; justify-content: space-between;
+  }
+  .related-card .eyebrow {
+    display: block; font-family: var(--font-mono); font-size: 11px;
+    font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--c-green-700); margin-bottom: 6px;
+  }
+  .related-card h2 { margin: 0 0 6px; font-size: 1.3rem; }
+  .related-card p { margin: 0; color: var(--c-ink-2); font-size: 14px; max-width: 50ch; }
+
+  /* btn */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    font-weight: 700; font-size: .9rem;
+    padding: .7rem 1.4rem; border-radius: 8px;
+    text-decoration: none; border: 2px solid transparent;
+  }
+  .btn-lg { padding: .85rem 1.6rem; font-size: .95rem; }
+  .btn-outline { background: transparent; color: var(--c-green-700); border-color: var(--c-green); }
+  .btn-outline:hover { background: var(--c-green-50); text-decoration: none; }
+
+  /* Display + lede */
+  .display { font-weight: 800; letter-spacing: -.025em; line-height: 1.15; }
+  .display-md { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  .display em { font-style: normal; color: var(--c-green); }
+  .lede { font-size: 1.05rem; color: var(--c-ink-2); line-height: 1.65; }
+  .h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -.02em; color: var(--c-ink); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+  .pill-soft { background: var(--c-green-50); color: var(--c-green-700); border: 1px solid var(--c-green-200); }
+  .eyebrow { display: block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c-green-700); }
+</style>

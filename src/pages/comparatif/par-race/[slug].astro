@@ -1,0 +1,457 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { RACES, RACE_MAP, raceImagePath } from "../../../data/races";
+import type { Race } from "../../../data/races";
+
+export function getStaticPaths() {
+  return RACES.map(r => ({ params: { slug: r.slug } }));
+}
+
+const { slug } = Astro.params;
+const race: Race = RACE_MAP[slug as string];
+if (!race) throw new Error(`Race inconnue: ${slug}`);
+
+// ── Logique de recommandation ────────────────────────────────────
+// 1) SantéVet recommandé pour : risque élevé OU (risque modéré + grande taille)
+// 2) AssurOPoil recommandé pour : risque faible OU (risque modéré + petite taille)
+// 3) Lassie reste alternative app-mobile-first
+type InsurerKey = 'santeVet' | 'assurOPoil' | 'lassie';
+
+function pickRecommended(r: Race): InsurerKey {
+  if (r.risque === 'eleve') return 'santeVet';
+  if (r.risque === 'faible') return 'assurOPoil';
+  // modere
+  return r.taille === 'grande' ? 'santeVet' : 'assurOPoil';
+}
+const reco = pickRecommended(race);
+
+const INSURERS: Record<InsurerKey, {
+  name: string; price: string; refund: string; waiting: string;
+  prevention: string; ceiling: string; href: string;
+  pros: string[]; cons: string[];
+}> = {
+  santeVet: {
+    name: "SantéVet", price: "18 €/mois", refund: "100 %", waiting: "30 j",
+    prevention: "150 €/an", ceiling: "2 500 €/an",
+    href: "https://lb.affilae.com/r/?p=5b2cede2b946025fa0b9ff04&af=2489&lp=https%3A%2F%2Fassurance.santevet.com%2Fquote-species%3Futm_source%3Daffilae%26utm_medium%3Dprogramme_santevet%26utm_campaign%3Daffilae%26utm_content%3DAssure%2520Mon%2520Chien",
+    pros: ["Remboursement à 100 %", "Délai 48 h", "Couverture maladies héréditaires sans surprime", "Application mobile + suivi temps réel"],
+    cons: ["18 €/mois (vs 15 € pour AssurOPoil)"],
+  },
+  assurOPoil: {
+    name: "AssurOPoil", price: "15 €/mois", refund: "100 %", waiting: "30 j",
+    prevention: "Non incluse", ceiling: "1 500 €/an",
+    href: "https://www.assuropoil.fr/?ref=assuremochien",
+    pros: ["Le moins cher du marché", "Remboursement à 100 %", "Couverture maladies incluse"],
+    cons: ["Pas d'application mobile", "Délai de remboursement 5–10 j", "Pas de prévention incluse"],
+  },
+  lassie: {
+    name: "Lassie", price: "20 €/mois", refund: "80 %", waiting: "45 j",
+    prevention: "100 €/an", ceiling: "2 000 €/an",
+    href: "https://addrevenue.io/t?a=985478&c=3467385",
+    pros: ["Application mobile très soignée", "Devis en 90 secondes", "Suivi des remboursements en temps réel"],
+    cons: ["Remboursement à 80 % (vs 100 % chez SantéVet/AssurOPoil)", "Carence maladie 45 j (vs 30 j ailleurs)"],
+  },
+};
+
+// Phrase d'intro contextuelle selon profil
+const RISK_LABEL = { faible: "à risque faible", modere: "à risque modéré", eleve: "à risque élevé" }[race.risque];
+const SIZE_LABEL = { petite: "de petite taille", moyenne: "de taille moyenne", grande: "de grande taille" }[race.taille];
+
+const recoText = {
+  santeVet: race.risque === 'eleve'
+    ? `Pour un ${race.nom}, race ${RISK_LABEL} avec des prédispositions documentées, la priorité est une couverture qui rembourse à 100 % les actes coûteux et inclut les maladies héréditaires sans surprime. Notre recommandation : SantéVet à 18 €/mois.`
+    : `Pour un ${race.nom} ${SIZE_LABEL}, les frais chirurgicaux peuvent rapidement dépasser 2 000 €. SantéVet offre la couverture la plus complète à 18 €/mois, avec un remboursement à 100 % et un délai de 48 h.`,
+  assurOPoil: race.risque === 'faible'
+    ? `Le ${race.nom} est une race ${RISK_LABEL} : une formule économique suffit largement. AssurOPoil à 15 €/mois reste la meilleure offre du marché à ce niveau de prix, avec 100 % de remboursement.`
+    : `Pour un ${race.nom} ${SIZE_LABEL} ${RISK_LABEL}, la formule AssurOPoil à 15 €/mois offre le meilleur rapport qualité-prix. Couverture maladies incluse, remboursement à 100 %, sans superflu.`,
+  lassie: `Pour un ${race.nom}, Lassie offre une expérience digitale moderne. À 20 €/mois, le remboursement à 80 % et la carence de 45 jours restent à considérer.`,
+};
+
+// Coûts spécifiques (généralisation par taille + risque)
+const COSTS: Record<string, { surgery: string; chronic: string; }> = {
+  'petite-faible':  { surgery: "800 – 1 800 €",  chronic: "200 – 600 €/an" },
+  'petite-modere':  { surgery: "1 200 – 2 500 €", chronic: "400 – 1 200 €/an" },
+  'petite-eleve':   { surgery: "1 800 – 3 500 €", chronic: "800 – 2 500 €/an" },
+  'grande-faible':  { surgery: "1 500 – 3 000 €", chronic: "300 – 800 €/an" },
+  'grande-modere':  { surgery: "2 000 – 4 000 €", chronic: "600 – 1 800 €/an" },
+  'grande-eleve':   { surgery: "2 500 – 5 500 €", chronic: "1 200 – 3 500 €/an" },
+  'moyenne-faible': { surgery: "1 200 – 2 500 €", chronic: "300 – 700 €/an" },
+  'moyenne-modere': { surgery: "1 800 – 3 500 €", chronic: "500 – 1 500 €/an" },
+  'moyenne-eleve':  { surgery: "2 200 – 4 500 €", chronic: "1 000 – 3 000 €/an" },
+};
+const costs = COSTS[`${race.taille}-${race.risque}`] || COSTS['moyenne-modere'];
+
+const recoIns = INSURERS[reco];
+
+// SEO
+const siteUrl = "https://assure-mon-chien.fr";
+const pageUrl = `${siteUrl}/comparatif/par-race/${race.slug}`;
+const ogImageUrl = `${siteUrl}${raceImagePath(race.slug)}`;
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil",    "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": "Comparatif", "item": `${siteUrl}/comparatif` },
+    { "@type": "ListItem", "position": 3, "name": "Par race",   "item": `${siteUrl}/comparatif/par-race` },
+    { "@type": "ListItem", "position": 4, "name": race.nom,     "item": pageUrl }
+  ]
+});
+
+const jsonldArticle = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "Article",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+  "headline": `Assurance ${race.nom} : comparatif et recommandation 2026`,
+  "description": `Comparatif des 3 assureurs santé pour un ${race.nom}. Recommandation argumentée selon le profil de risque, coûts vétérinaires typiques et offres adaptées.`,
+  "image":    ogImageUrl,
+  "url":      pageUrl,
+  "datePublished": "2026-05-09",
+  "dateModified":  "2026-05-09",
+  "author":    { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl },
+  "publisher": { "@type": "Organization", "@id": `${siteUrl}/#organization` }
+});
+---
+
+<Layout
+  title={`Assurance ${race.nom} 2026 — Comparatif et recommandation`}
+  description={`Comparatif des assurances santé pour un ${race.nom} : SantéVet, AssurOPoil, Lassie. Recommandation argumentée selon le profil de risque et coûts vétérinaires réels.`}
+  ogImage={ogImageUrl}
+  ogType="article"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+    <script type="application/ld+json" set:html={jsonldArticle} />
+  </Fragment>
+
+  <!-- ── Hero ── -->
+  <section class="cmp-race-hero">
+    <div class="container cmp-race-hero-inner">
+      <nav class="cmp-race-breadcrumb" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/comparatif">Comparatif</a></li>
+          <li><a href="/comparatif/par-race">Par race</a></li>
+          <li aria-current="page">{race.nom}</li>
+        </ol>
+      </nav>
+      <div class="cmp-race-hero-grid">
+        <div class="cmp-race-hero-text">
+          <span class={`pill pill-soft race-risk-${race.risque}`}>
+            <span class="risk-dot"></span>
+            Risque {race.risque === 'eleve' ? 'élevé' : race.risque === 'modere' ? 'modéré' : 'faible'}
+          </span>
+          <h1 class="display display-md">Assurance {race.nom} <em>2026</em></h1>
+          <p class="lede">{recoText[reco]}</p>
+          <div class="cmp-race-meta">
+            <span class="meta-item"><strong>Taille :</strong> {race.taille}</span>
+            <span class="meta-item"><strong>Coût assurance :</strong> {race.cost}/an</span>
+            <span class="meta-item"><strong>Score risque :</strong> {race.score}/100</span>
+          </div>
+        </div>
+        <figure class="cmp-race-hero-img">
+          <img
+            src={raceImagePath(race.slug)}
+            alt={`${race.nom} — race analysée pour la recommandation d'assurance`}
+            width="480" height="320"
+            loading="eager" fetchpriority="high"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Recommandation principale ── -->
+  <section class="section section-tight">
+    <div class="container cmp-race-narrow">
+      <div class="reco-card">
+        <div class="reco-flag">★ Notre recommandation pour le {race.nom}</div>
+        <h2 class="reco-name">{recoIns.name} <span class="reco-price">{recoIns.price}</span></h2>
+        <div class="reco-grid">
+          <div class="reco-pros">
+            <h3>Points forts pour cette race</h3>
+            <ul>
+              {recoIns.pros.map(p => (
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="reco-cons">
+            <h3>À garder en tête</h3>
+            <ul>
+              {recoIns.cons.map(c => (
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <a href={recoIns.href} target="_blank" rel="noopener sponsored" class="btn btn-primary btn-lg">
+          Voir l'offre {recoIns.name}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="reco-fineprint">Lien partenaire — commission perçue si souscription, sans surcoût pour vous.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Coûts vétérinaires typiques ── -->
+  <section class="section section-tight section-tinted">
+    <div class="container cmp-race-narrow">
+      <h2 class="h2">Coûts vétérinaires typiques pour un {race.nom}</h2>
+      <p>Le profil <strong>{race.taille} taille / {race.risque === 'eleve' ? 'risque élevé' : race.risque === 'modere' ? 'risque modéré' : 'risque faible'}</strong> du {race.nom} se traduit par les ordres de grandeur suivants — tous remboursables intégralement avec une formule maladies adaptée.</p>
+      <div class="cost-grid">
+        <div class="cost-card">
+          <span class="cost-label">Chirurgie d'urgence</span>
+          <span class="cost-value">{costs.surgery}</span>
+          <span class="cost-note">Par intervention. Ex: rupture ligament croisé, torsion d'estomac, fracture.</span>
+        </div>
+        <div class="cost-card">
+          <span class="cost-label">Maladie chronique</span>
+          <span class="cost-value">{costs.chronic}</span>
+          <span class="cost-note">Coût annuel récurrent. Ex: diabète, insuffisance cardiaque, allergies sévères.</span>
+        </div>
+        <div class="cost-card">
+          <span class="cost-label">Cotisation assurance</span>
+          <span class="cost-value">{race.cost}</span>
+          <span class="cost-note">Fourchette de prix d'une formule complète accidents + maladies pour cette race.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Toutes les offres comparées pour cette race ── -->
+  <section class="section section-tight">
+    <div class="container cmp-race-narrow">
+      <h2 class="h2">Les 3 offres détaillées pour le {race.nom}</h2>
+      <p>Voici les 3 assurances comparées sur les critères qui comptent pour cette race.</p>
+      <div class="ins-grid">
+        {(['santeVet', 'assurOPoil', 'lassie'] as InsurerKey[]).map(key => {
+          const ins = INSURERS[key];
+          const isReco = key === reco;
+          return (
+            <article class={`ins-card${isReco ? ' is-reco' : ''}`}>
+              {isReco && <span class="ins-flag">Recommandé</span>}
+              <h3>{ins.name}</h3>
+              <div class="ins-price">{ins.price}</div>
+              <dl class="ins-specs">
+                <div><dt>Remboursement</dt><dd>{ins.refund}</dd></div>
+                <div><dt>Carence maladie</dt><dd>{ins.waiting}</dd></div>
+                <div><dt>Plafond</dt><dd>{ins.ceiling}</dd></div>
+                <div><dt>Prévention</dt><dd>{ins.prevention}</dd></div>
+              </dl>
+              <a href={ins.href} target="_blank" rel="noopener sponsored" class={`btn btn-block${isReco ? ' btn-primary' : ' btn-outline'}`}>
+                Voir l'offre {ins.name}
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Lien vers la fiche complète de la race ── -->
+  <section class="section section-tight section-tinted">
+    <div class="container cmp-race-narrow">
+      <div class="related-card">
+        <div>
+          <span class="eyebrow">Pour aller plus loin</span>
+          <h2 class="h2">Fiche complète du {race.nom}</h2>
+          <p>Pathologies détaillées, prévalence, conseils de prévention et coûts vétérinaires sourcés.</p>
+        </div>
+        <a href={`/races/${race.slug}`} class="btn btn-outline btn-lg">
+          Voir la fiche {race.nom}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .cmp-race-hero {
+    padding: 48px 0 32px;
+    background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 100%);
+    border-bottom: 1px solid var(--c-line);
+  }
+  .cmp-race-hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 var(--gutter); }
+  .cmp-race-hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 16px;
+  }
+  @media (max-width: 880px) { .cmp-race-hero-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .cmp-race-hero-text h1 { margin: 14px 0 12px; text-wrap: balance; }
+  .cmp-race-hero-text .lede { margin: 0 0 20px; max-width: 580px; }
+  .cmp-race-hero-img { margin: 0; }
+  .cmp-race-hero-img img {
+    width: 100%; height: auto; aspect-ratio: 3/2; object-fit: cover;
+    border-radius: var(--radius-lg); box-shadow: 0 24px 48px -16px rgba(15,110,86,.18);
+  }
+  @media (max-width: 600px) { .cmp-race-hero { padding: 32px 0 24px; } }
+
+  .cmp-race-meta {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    margin-top: 8px; font-size: 14px; color: var(--c-ink-2);
+  }
+  .meta-item strong { color: var(--c-ink); font-weight: 700; margin-right: 4px; }
+
+  /* Breadcrumb */
+  .cmp-race-breadcrumb ol {
+    display: flex; gap: 0; list-style: none; padding: 0; margin: 0 0 18px;
+    font-size: 13px; color: var(--c-ink-3); flex-wrap: wrap;
+  }
+  .cmp-race-breadcrumb li:not(:last-child)::after { content: " / "; margin: 0 6px; }
+  .cmp-race-breadcrumb a { color: var(--c-ink-3); text-decoration: none; }
+  .cmp-race-breadcrumb a:hover { color: var(--c-green); }
+  .cmp-race-breadcrumb li[aria-current] { color: var(--c-ink); font-weight: 500; }
+
+  /* Pills risque */
+  .race-risk-eleve  { background: rgba(229,57,53,.06); color: var(--c-risk-high); border: 1px solid rgba(229,57,53,.2); }
+  .race-risk-modere { background: rgba(251,140,0,.06); color: var(--c-risk-mid);  border: 1px solid rgba(251,140,0,.2); }
+  .race-risk-faible { background: rgba(67,160,71,.06); color: var(--c-risk-low);  border: 1px solid rgba(67,160,71,.2); }
+  .race-risk-eleve  .risk-dot { background: var(--c-risk-high); }
+  .race-risk-modere .risk-dot { background: var(--c-risk-mid); }
+  .race-risk-faible .risk-dot { background: var(--c-risk-low); }
+
+  .cmp-race-narrow { max-width: 880px; margin: 0 auto; padding: 0 var(--gutter); }
+  @media (max-width: 600px) { .cmp-race-narrow { padding: 0 var(--gutter-mobile); } }
+
+  /* ── Reco card ── */
+  .reco-card {
+    background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 60%);
+    border: 2px solid var(--c-green);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: 0 18px 40px -16px rgba(29,158,117,.20);
+    position: relative;
+  }
+  @media (max-width: 600px) { .reco-card { padding: 22px; } }
+  .reco-flag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--c-accent); color: var(--c-ink);
+    font-size: 12px; font-weight: 700; padding: 6px 14px;
+    border-radius: 999px; letter-spacing: -.005em;
+    margin-bottom: 14px;
+  }
+  .reco-name {
+    font-family: var(--font-display); font-size: 28px; font-weight: 800;
+    letter-spacing: -.02em; margin: 0 0 8px;
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  }
+  .reco-price { font-size: 18px; color: var(--c-green-700); font-weight: 700; }
+  .reco-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin: 22px 0;
+  }
+  @media (max-width: 600px) { .reco-grid { grid-template-columns: 1fr; gap: 16px; } }
+  .reco-pros h3, .reco-cons h3 {
+    font-size: 13px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--c-ink-3); margin: 0 0 10px;
+  }
+  .reco-pros ul, .reco-cons ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .reco-pros li, .reco-cons li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; line-height: 1.5; color: var(--c-ink);
+  }
+  .reco-pros li svg { color: var(--c-green); flex-shrink: 0; margin-top: 1px; }
+  .reco-cons li svg { color: var(--c-risk-mid); flex-shrink: 0; margin-top: 1px; }
+  .reco-fineprint {
+    font-size: 12px; color: var(--c-ink-3);
+    margin: 12px 0 0; font-style: italic;
+  }
+
+  /* ── Cost grid ── */
+  .cost-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin: 24px 0;
+  }
+  @media (max-width: 760px) { .cost-grid { grid-template-columns: 1fr; } }
+  .cost-card {
+    background: white; border: 1px solid var(--c-line); border-radius: var(--radius);
+    padding: 22px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .cost-label {
+    font-size: 12px; font-weight: 700; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--c-ink-3);
+  }
+  .cost-value {
+    font-family: var(--font-display); font-size: 22px; font-weight: 800;
+    color: var(--c-green-700); letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .cost-note { font-size: 13px; color: var(--c-ink-2); line-height: 1.5; }
+
+  /* ── 3 offres ── */
+  .ins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 22px 0; }
+  @media (max-width: 880px) { .ins-grid { grid-template-columns: 1fr; } }
+  .ins-card {
+    background: white; border: 1px solid var(--c-line); border-radius: var(--radius-lg);
+    padding: 24px; position: relative;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .ins-card.is-reco { border-color: var(--c-green); box-shadow: 0 12px 28px -12px rgba(29,158,117,.18); }
+  .ins-flag {
+    position: absolute; top: -10px; left: 24px;
+    background: var(--c-green); color: white;
+    font-size: 11px; font-weight: 700; padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .ins-card h3 { margin: 0; font-size: 18px; font-weight: 800; }
+  .ins-price {
+    font-family: var(--font-display); font-size: 22px; font-weight: 800;
+    letter-spacing: -.02em; color: var(--c-ink);
+  }
+  .ins-specs {
+    display: flex; flex-direction: column; gap: 0; margin: 0; flex: 1;
+  }
+  .ins-specs > div {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid var(--c-line-soft);
+    font-size: 13px;
+  }
+  .ins-specs > div:last-child { border-bottom: 0; }
+  .ins-specs dt { color: var(--c-ink-3); margin: 0; }
+  .ins-specs dd { font-weight: 600; color: var(--c-ink); margin: 0; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    font-weight: 700; font-size: .9rem;
+    padding: .7rem 1.4rem; border-radius: 8px;
+    text-decoration: none; border: 2px solid transparent;
+    transition: opacity .15s, background .15s;
+  }
+  .btn-lg { padding: .85rem 1.6rem; font-size: .95rem; }
+  .btn-block { width: 100%; }
+  .btn-primary { background: var(--c-green); color: #fff; border-color: var(--c-green); }
+  .btn-primary:hover { opacity: .9; text-decoration: none; }
+  .btn-outline { background: transparent; color: var(--c-green-700); border-color: var(--c-green); }
+  .btn-outline:hover { background: var(--c-green-50); text-decoration: none; }
+
+  /* ── Related card ── */
+  .related-card {
+    background: white; border: 1px solid var(--c-line); border-radius: var(--radius-lg);
+    padding: 28px; display: flex; align-items: center; gap: 24px;
+    flex-wrap: wrap; justify-content: space-between;
+  }
+  .related-card .eyebrow {
+    display: block; font-family: var(--font-mono); font-size: 11px;
+    font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--c-green-700); margin-bottom: 6px;
+  }
+  .related-card h2 { margin: 0 0 6px; font-size: 1.3rem; }
+  .related-card p { margin: 0; color: var(--c-ink-2); font-size: 14px; max-width: 50ch; }
+</style>

@@ -37,17 +37,32 @@ function urlToSourceFile(url) {
   return null;
 }
 
+/** Date ISO de dernier commit git d'un fichier (raw, pour comparaison) */
+function gitMtime(file) {
+  if (!file || !existsSync(file)) return null;
+  try {
+    return execSync(`git log -1 --format=%cI -- "${file}"`, {
+      cwd: __dirname, encoding: 'utf8'
+    }).trim() || null;
+  } catch {
+    return null;
+  }
+}
+
 /** Date de dernier commit git d'un fichier (YYYY-MM-DD) — fallback build date */
 function gitLastmod(file, fallback) {
-  if (!file || !existsSync(file)) return fallback;
-  try {
-    const iso = execSync(`git log -1 --format=%cI -- "${file}"`, {
-      cwd: __dirname, encoding: 'utf8'
-    }).trim();
-    return iso ? iso.split('T')[0] : fallback;
-  } catch {
-    return fallback;
-  }
+  const iso = gitMtime(file);
+  return iso ? iso.split('T')[0] : fallback;
+}
+
+/** Max date entre plusieurs fichiers (YYYY-MM-DD) — pour pages dynamiques
+ *  qui dépendent d'une data centralisée (ex: /comparatif/par-race/* dépend
+ *  à la fois du template [slug].astro ET de src/data/races.ts). */
+function gitLastmodMulti(files, fallback) {
+  const dates = files.map(gitMtime).filter(Boolean);
+  if (dates.length === 0) return fallback;
+  // ISO 8601 se compare lexicographiquement
+  return dates.sort().pop().split('T')[0];
 }
 
 const buildDate = new Date().toISOString().split('T')[0];
@@ -64,31 +79,55 @@ export default defineConfig({
       changefreq: 'monthly',
       priority: 0.7,
       serialize(item) {
-        // P2-16 : lastmod basé sur git log du fichier source (vs date du build)
-        const sourceFile = urlToSourceFile(item.url);
-        const lastmod = gitLastmod(sourceFile, buildDate);
-        // Homepage
-        if (item.url === 'https://assure-mon-chien.fr/') {
+        const url = item.url;
+        const sourceFile = urlToSourceFile(url);
+
+        // P2-16 + maj sitemap : pour les pages /comparatif/par-race/* qui
+        // dépendent de src/data/races.ts, le lastmod prend le max entre
+        // template et data file. (Les fiches /races/{slug} ont leurs propres
+        // props hardcodées et ne dépendent pas de la data centralisée.)
+        const dependsOnRacesData = /\/comparatif\/par-race\/[^/]+\/?$/.test(url);
+        const dataFile = join(__dirname, 'src/data/races.ts');
+        const lastmod = dependsOnRacesData
+          ? gitLastmodMulti([sourceFile, dataFile], buildDate)
+          : gitLastmod(sourceFile, buildDate);
+
+        // ── Priorités ────────────────────────────────────────────
+        // Homepage : signal le plus fort
+        if (url === 'https://assure-mon-chien.fr/') {
           return { ...item, changefreq: 'weekly', priority: 1.0, lastmod };
         }
-        // Comparatif & guides: high priority, updated regularly
-        if (item.url.includes('/comparatif') || item.url.includes('/guides/')) {
+        // Hubs comparatif principaux + guides éditoriaux : 0.9
+        const hubs = [
+          'https://assure-mon-chien.fr/comparatif',
+          'https://assure-mon-chien.fr/comparatif/',
+          'https://assure-mon-chien.fr/comparatif/assurance-chiot',
+          'https://assure-mon-chien.fr/comparatif/assurance-chien-senior',
+          'https://assure-mon-chien.fr/comparatif/assurance-chien-pas-cher',
+          'https://assure-mon-chien.fr/comparatif/par-race',
+          'https://assure-mon-chien.fr/comparatif/par-race/',
+        ];
+        if (hubs.includes(url) || url.includes('/guides/')) {
           return { ...item, changefreq: 'monthly', priority: 0.9, lastmod };
         }
-        // Race pages: core content
-        if (item.url.includes('/races/') && !item.url.endsWith('/races/')) {
+        // Pages comparatif par race (×31) : 0.85 — commercial high-intent
+        if (url.includes('/comparatif/par-race/')) {
+          return { ...item, changefreq: 'monthly', priority: 0.85, lastmod };
+        }
+        // Pages races individuelles (×31) : 0.8 — content evergreen
+        if (url.includes('/races/') && !url.endsWith('/races/')) {
           return { ...item, changefreq: 'monthly', priority: 0.8, lastmod };
         }
-        // Race index & cost pages
-        if (item.url.endsWith('/races/') || item.url.includes('/couts/')) {
+        // Hubs index races + couts : 0.7
+        if (url.endsWith('/races/') || url.includes('/couts/')) {
           return { ...item, changefreq: 'monthly', priority: 0.7, lastmod };
         }
-        // Legal / about: rarely changes
+        // Legal / a-propos : 0.3
         if (
-          item.url.includes('/mentions-legales') ||
-          item.url.includes('/confidentialite') ||
-          item.url.includes('/a-propos') ||
-          item.url.includes('/affiliation')
+          url.includes('/mentions-legales') ||
+          url.includes('/confidentialite') ||
+          url.includes('/a-propos') ||
+          url.includes('/affiliation')
         ) {
           return { ...item, changefreq: 'yearly', priority: 0.3, lastmod };
         }
