@@ -30,6 +30,26 @@ const isHome = currentPath === "/";
 const isRaces = currentPath.startsWith("/races");
 const isComparatif = currentPath.startsWith("/comparatif");
 const isGuides = currentPath.startsWith("/guides");
+
+// JSON-LD Organization global (P2-12) — émis sur toutes les pages
+// avec @id réutilisable depuis les schemas Article via "publisher": { "@id": "..." }
+const jsonldOrg = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type":    "Organization",
+  "@id":      `${siteUrl}/#organization`,
+  "name":     "Assure Mon Chien",
+  "url":      siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url":    `${siteUrl}/favicon.svg`,
+    "width":  "512",
+    "height": "512"
+  },
+  "description": "Comparatif indépendant d'assurances santé pour chien selon la race. Pathologies, tarifs et conseils.",
+  "areaServed": "FR",
+  "knowsLanguage": "fr-FR",
+  "sameAs": []
+});
 ---
 
 <!doctype html>
@@ -64,6 +84,9 @@ const isGuides = currentPath.startsWith("/guides");
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={ogImageUrl} />
+
+    <!-- ── Organization JSON-LD global (P2-12) ── -->
+    <script type="application/ld+json" set:html={jsonldOrg} />
 
     <!-- ── Slot pour JSON-LD et balises supplémentaires ── -->
     <slot name="head" />

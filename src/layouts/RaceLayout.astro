@@ -41,6 +41,7 @@ const ogImageUrl  = `${siteUrl}${ogImagePath}`;
 const jsonldArticle = JSON.stringify({
   "@context": "https://schema.org",
   "@type":    "Article",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
   "headline": title,
   "description": description,
   "image":    ogImageUrl,

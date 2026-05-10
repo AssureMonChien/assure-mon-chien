@@ -40,14 +40,7 @@ const jsonldWebSite = JSON.stringify({
   }
 });
 
-const jsonldOrganization = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type":    "Organization",
-  "name":     "Assure Mon Chien",
-  "url":      siteUrl,
-  "logo":     { "@type": "ImageObject", "url": `${siteUrl}/favicon.svg` },
-  "description": "Site indépendant de comparaison d'assurances chien. Aucun assureur ne finance nos classements."
-});
+// Organization JSON-LD désormais émis globalement par Layout.astro (P2-12)
 ---
 
 <Layout
@@ -57,7 +50,6 @@ const jsonldOrganization = JSON.stringify({
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={jsonldWebSite} />
-    <script type="application/ld+json" set:html={jsonldOrganization} />
   </Fragment>
 
   <!-- ══════════════ HERO IMMERSIF ══════════════ -->
@@ -354,6 +346,9 @@ const jsonldOrganization = JSON.stringify({
           </a>
           <a class="btn btn-on-dark btn-lg" href="/affiliation">Notre méthodologie</a>
         </div>
+        <p class="banner-fineprint">
+          Curieux du <a href="/couts/cout-chien">budget annuel total d'un chien&nbsp;?</a> Notre étude détaille les vrais chiffres&nbsp;: alimentation, soins vétérinaires, accessoires, garde et imprévus.
+        </p>
       </div>
       <div class="banner-stats">
         <div class="bs-card"><div class="bs-num">100 %</div><div class="bs-lbl">Indépendant</div></div>
@@ -535,6 +530,24 @@ const jsonldOrganization = JSON.stringify({
   .home-hero-stats li { display: flex; flex-direction: column; }
   .home-hero-stats strong { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--c-ink); }
   .home-hero-stats span { font-size: 13px; color: var(--c-ink-3); }
+
+  /* ── Banner fineprint (P2-14) ── */
+  .banner-fineprint {
+    margin: 22px 0 0;
+    font-size: .85rem;
+    color: rgba(255,255,255,.7);
+    line-height: 1.55;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+  .banner-fineprint a {
+    color: var(--c-accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(249,203,66,.4);
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+  .banner-fineprint a:hover { color: white; text-decoration-color: white; }
 
   @media (max-width: 640px) {
     .home-hero { min-height: auto; }
