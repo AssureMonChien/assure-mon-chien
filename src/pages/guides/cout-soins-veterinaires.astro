@@ -1,0 +1,1051 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const jsonldBreadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://assure-mon-chien.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://assure-mon-chien.fr/guides" },
+    { "@type": "ListItem", "position": 3, "name": "Coût des soins vétérinaires pour un chien", "item": "https://assure-mon-chien.fr/guides/cout-soins-veterinaires" }
+  ]
+});
+
+const jsonldArticle = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://assure-mon-chien.fr/guides/cout-soins-veterinaires" },
+  "headline": "Coût des soins vétérinaires pour un chien en France — fourchettes 2026",
+  "description": "Toutes les fourchettes de prix vétérinaires constatées en France en 2026 : consultations, vaccins, stérilisation, soins dentaires, chirurgies, par taille de chien et par âge de vie.",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-05-12",
+  "author": { "@type": "Organization", "name": "Assure mon chien" },
+  "publisher": { "@type": "Organization", "name": "Assure mon chien" }
+});
+
+const jsonldFaq = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien coûte un vétérinaire par an pour un chien en bonne santé ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pour un chien adulte en bonne santé, le budget vétérinaire annuel se situe entre 250 et 450 € : rappel vaccinal annuel, antiparasitaires, et au moins une consultation préventive. Ce budget grimpe à 400-900 € après 8 ans et peut dépasser 1 000 € la première année (primo-vaccination, identification, stérilisation)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien coûte la stérilisation d'un chien en France ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La stérilisation d'une chienne coûte entre 200 et 500 € selon la taille (200-330 € pour un petit gabarit, 350-500 € pour une grande race). La castration d'un mâle coûte entre 130 et 330 € sur la même grille. Les écarts s'expliquent par la dose d'anesthésie, la durée opératoire et la longueur des suites post-opératoires." }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi un grand chien coûte-t-il plus cher chez le vétérinaire ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Trois raisons cumulées : les doses de médicaments et d'anesthésiques se calculent au poids, la durée des actes chirurgicaux est plus longue, et l'hospitalisation post-opératoire dure souvent davantage. À acte équivalent, un Saint-Bernard peut coûter 50 à 80 % de plus qu'un Cavalier King Charles." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le coût d'une opération vétérinaire en urgence ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les chirurgies lourdes représentent les postes les plus coûteux : 1 800 à 3 500 € pour une rupture du ligament croisé (TPLO), 2 500 à 4 500 € pour une prothèse totale de hanche, et 800 à 3 500 € pour une chirurgie liée à un cancer selon la localisation. Une hospitalisation s'ajoute à 50-150 € par nuit." }
+    }
+  ]
+});
+---
+
+<Layout
+  title="Coût des soins vétérinaires pour un chien — Fourchettes 2026"
+  description="Toutes les fourchettes de prix vétérinaires constatées en France 2026 : consultations, vaccins, stérilisation, soins dentaires, chirurgies, par taille et par âge."
+>
+  <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+  <script type="application/ld+json" set:html={jsonldArticle} />
+  <script type="application/ld+json" set:html={jsonldFaq} />
+
+  <!-- ── Hero éditorial ── -->
+  <header class="ed-hero">
+    <div class="container ed-hero-inner">
+
+      <div class="ed-hero-text">
+        <span class="ed-eyebrow">Dossier — Référence Budget</span>
+        <h1 class="ed-title">Coût des soins vétérinaires pour un chien&nbsp;: les fourchettes 2026</h1>
+        <p class="ed-lede">
+          Combien coûte réellement un vétérinaire en France&nbsp;? Toutes les fourchettes
+          de prix par acte, par taille de chien et par âge de vie — données 2025-2026,
+          agrégées depuis des sources publiques et le terrain.
+        </p>
+        <div class="ed-meta">
+          <span class="ed-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M3.5 10.5h17M8 3v4M16 3v4"/></svg>
+            Mai 2026
+          </span>
+          <span class="ed-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            12 min de lecture
+          </span>
+          <span class="ed-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.4-8 9-4.6-.6-8-4.5-8-9V6l8-3z"/></svg>
+            Rédaction Assure mon chien · Données SNVEL & Observatoire SantéVet
+          </span>
+        </div>
+      </div>
+
+      <figure class="ed-hero-figure">
+        <div class="ed-hero-img-wrap">
+          <img
+            src="/images/races/labrador.webp"
+            alt="Labrador, race emblématique fréquemment suivie en consultation vétérinaire"
+            width="640"
+            height="427"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            class="ed-hero-img"
+          />
+        </div>
+        <figcaption>
+          Un suivi vétérinaire régulier coûte 3 à 5&nbsp;fois moins cher qu'une
+          prise en charge tardive de la même pathologie.
+        </figcaption>
+      </figure>
+
+    </div>
+  </header>
+
+  <!-- ── Corps : TOC + Article ── -->
+  <div class="container ed-body">
+
+    <!-- TOC -->
+    <aside class="ed-toc" aria-label="Sommaire">
+      <div class="ed-toc-label">Sommaire</div>
+      <ol>
+        <li><a href="#budget">Combien par an au total&nbsp;?</a></li>
+        <li><a href="#consultations">Consultations et examens</a></li>
+        <li><a href="#prevention">Vaccination et prévention</a></li>
+        <li><a href="#sterilisation">Stérilisation et castration</a></li>
+        <li><a href="#dentaire">Soins dentaires</a></li>
+        <li><a href="#chirurgie">Hospitalisation et chirurgies</a></li>
+        <li><a href="#taille">Variation selon la taille</a></li>
+        <li><a href="#age">Variation selon l'âge</a></li>
+        <li><a href="#anticiper">Comment anticiper</a></li>
+        <li><a href="#methodologie">Méthodologie &amp; sources</a></li>
+      </ol>
+      <div class="ed-toc-cta">
+        <a href="/comparatif/par-race" class="btn btn-primary btn-sm">
+          Voir le coût par race
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Article -->
+    <article class="ed-article">
+
+      <!-- Intro -->
+      <p class="ed-p">
+        Le premier obstacle à un suivi vétérinaire régulier n'est pas le manque de temps&nbsp;:
+        c'est l'incertitude sur le prix. «&nbsp;Combien ça va me coûter&nbsp;?&nbsp;» reste la
+        question que les propriétaires posent en premier — et celle à laquelle aucune
+        plaquette officielle ne répond clairement, faute de grille tarifaire imposée
+        en France. Cette page synthétise les fourchettes constatées en 2025-2026, par
+        acte, par taille de chien et par âge de vie.
+      </p>
+
+      <p class="ed-p">
+        Les chiffres présentés ne sont pas un barème&nbsp;: ils sont des
+        <strong>ordres de grandeur</strong> agrégés depuis le terrain, les publications
+        du SNVEL, le baromètre de l'Observatoire SantéVet et les indices de l'INSEE sur
+        les services vétérinaires. Le tarif final dépend toujours du plateau technique,
+        de la région, des heures d'ouverture et de la complexité du cas.
+      </p>
+
+      <!-- Stats -->
+      <div class="ed-stats">
+        <div class="ed-stats-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="ed-stat">
+            <div class="ed-stat-value">250 – 1 200 €</div>
+            <div class="ed-stat-label">Budget vétérinaire annuel selon l'âge de vie</div>
+          </div>
+          <div class="ed-stat">
+            <div class="ed-stat-value">×&nbsp;2,5</div>
+            <div class="ed-stat-label">Écart entre un petit et un grand chien à acte équivalent</div>
+          </div>
+          <div class="ed-stat">
+            <div class="ed-stat-value">1 sur 3</div>
+            <div class="ed-stat-label">Chiens confrontés à un incident santé supérieur à 1&nbsp;000&nbsp;€</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1 : Budget total -->
+      <h2 id="budget" class="ed-h2">Combien coûte un vétérinaire par an au total&nbsp;?</h2>
+
+      <p class="ed-p">
+        Le budget vétérinaire varie principalement selon l'âge de vie du chien. La
+        première année concentre les actes coûteux (primo-vaccination, identification,
+        souvent stérilisation). L'âge adulte est la période la plus calme&nbsp;: vaccin
+        annuel, antiparasitaires, une consultation préventive. À partir de 7-8 ans,
+        le budget remonte avec les bilans gériatriques et les premiers soins liés
+        à l'âge.
+      </p>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Profil</th><th>Coût annuel constaté</th><th>Composition typique</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Chiot (0-1 an)</strong></td><td>600 – 1 200 €</td><td>Primo-vacc, identification, vermifuges, stérilisation, suivi</td></tr>
+          <tr><td><strong>Adulte sain (1-7 ans)</strong></td><td>250 – 450 €</td><td>Rappel annuel, antiparasitaires, 1 consultation préventive</td></tr>
+          <tr><td><strong>Sénior naissant (7-10 ans)</strong></td><td>400 – 700 €</td><td>+ bilan gériatrique annuel, premiers signes</td></tr>
+          <tr><td><strong>Sénior (10+ ans)</strong></td><td>500 – 1 000 €</td><td>Suivi régulier, médication chronique, soins dentaires</td></tr>
+          <tr><td colspan="3" style="font-style:italic; color:var(--c-ink-3); font-size:14px;">À ces budgets s'ajoute l'imprévu — voir section « Hospitalisation et chirurgies » plus bas.</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Section 2 : Consultations -->
+      <h2 id="consultations" class="ed-h2">Consultations et examens</h2>
+
+      <p class="ed-p">
+        La consultation est l'acte vétérinaire le plus fréquent. Son tarif varie
+        sensiblement entre une consultation de routine en clinique généraliste et
+        une prise en charge urgente en structure spécialisée — l'écart peut atteindre
+        un facteur 3 sur le même symptôme.
+      </p>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Acte</th><th>Fourchette constatée</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Consultation générale</td><td>40 – 65 €</td><td>Clinique généraliste, horaires ouvrés</td></tr>
+          <tr><td>Consultation d'urgence</td><td>70 – 130 €</td><td>Nuit / week-end : majoration jusqu'à +50 %</td></tr>
+          <tr><td>Consultation spécialiste</td><td>80 – 150 €</td><td>Cardiologie, dermatologie, oncologie…</td></tr>
+          <tr><td>Radiographie simple</td><td>60 – 120 €</td><td>Selon zone et nombre de clichés</td></tr>
+          <tr><td>Échographie</td><td>80 – 150 €</td><td>Abdominale ou cardiaque</td></tr>
+          <tr><td>Analyse sang complète (NFS + bio)</td><td>80 – 150 €</td><td>Bilan pré-anesthésique ou diagnostic</td></tr>
+          <tr><td>Cytologie / biopsie</td><td>60 – 180 €</td><td>Selon technique et nombre de prélèvements</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Section 3 : Prévention -->
+      <h2 id="prevention" class="ed-h2">Vaccination et prévention</h2>
+
+      <p class="ed-p">
+        La prévention est le poste vétérinaire au meilleur rapport coût/bénéfice.
+        Un rappel vaccinal annuel à 80&nbsp;€ vaut largement le risque d'une
+        leptospirose (traitement&nbsp;: 600 à 2&nbsp;000&nbsp;€ avec hospitalisation).
+        L'antiparasitaire externe constant évite la plupart des dermatites
+        consultatives, qui mobilisent chacune 60 à 120&nbsp;€.
+      </p>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Acte</th><th>Fréquence</th><th>Fourchette</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Primo-vaccination chiot (3 injections)</td><td>Une seule fois</td><td>200 – 350 €</td></tr>
+          <tr><td>Rappel vaccinal annuel (CHPL + Rage)</td><td>Annuel</td><td>60 – 95 €</td></tr>
+          <tr><td>Identification par puce électronique</td><td>Une seule fois (obligatoire)</td><td>50 – 75 €</td></tr>
+          <tr><td>Vermifuge oral</td><td>4 fois par an</td><td>8 – 25 € / traitement</td></tr>
+          <tr><td>Antiparasitaire externe (pipette)</td><td>Mensuel</td><td>10 – 25 € / mois</td></tr>
+          <tr><td>Vaccin facultatif (toux du chenil, piroplasmose)</td><td>Annuel selon mode de vie</td><td>30 – 60 € / vaccin</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Section 4 : Stérilisation -->
+      <h2 id="sterilisation" class="ed-h2">Stérilisation et castration</h2>
+
+      <p class="ed-p">
+        La stérilisation est l'intervention chirurgicale la plus courante chez le
+        chien. Son tarif dépend principalement de la taille de l'animal&nbsp;: dose
+        d'anesthésie au poids, durée opératoire, longueur des suites. À taille égale,
+        la stérilisation d'une femelle reste plus coûteuse que la castration d'un mâle
+        (acte plus invasif).
+      </p>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Acte</th><th>Petit (&lt; 10 kg)</th><th>Moyen (10-25 kg)</th><th>Grand (&gt; 25 kg)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Stérilisation femelle (ovariectomie)</td><td>200 – 330 €</td><td>280 – 420 €</td><td>350 – 500 €</td></tr>
+          <tr><td>Castration mâle</td><td>130 – 220 €</td><td>180 – 280 €</td><td>220 – 330 €</td></tr>
+          <tr><td>Stérilisation chimique réversible</td><td colspan="3" style="text-align:center;">120 – 180 € (durée 6 à 12 mois)</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Section 5 : Dentaire -->
+      <h2 id="dentaire" class="ed-h2">Soins dentaires</h2>
+
+      <p class="ed-p">
+        Environ <strong>40&nbsp;% des chiens de plus de 3 ans</strong> présentent une
+        maladie parodontale (gingivite, déchaussement, tartre). Le détartrage sous
+        anesthésie reste l'acte clé pour éviter l'extraction tardive — beaucoup plus
+        coûteuse et invasive. Un brossage régulier dès le chiot peut espacer le
+        premier détartrage de plusieurs années.
+      </p>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Acte</th><th>Fourchette constatée</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Détartrage avec anesthésie</td><td>150 – 300 €</td><td>Tarif de base, sans extraction</td></tr>
+          <tr><td>Extraction dentaire</td><td>50 – 200 € / dent</td><td>Selon dent et difficulté</td></tr>
+          <tr><td>Détartrage + extractions multiples</td><td>350 – 700 €</td><td>Acte combiné, anesthésie unique</td></tr>
+          <tr><td>Bilan radiographique dentaire</td><td>80 – 150 €</td><td>Inclus dans certaines cliniques</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Section 6 : Chirurgie lourde -->
+      <h2 id="chirurgie" class="ed-h2">Hospitalisation et chirurgies lourdes</h2>
+
+      <aside class="ed-callout ed-callout-rose">
+        <div class="ed-callout-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="ed-callout-title">C'est ici que le budget peut s'envoler</div>
+          <p>
+            La très grande majorité du budget vétérinaire annuel reste prévisible.
+            Mais une seule intervention lourde peut représenter <strong>l'équivalent
+            de 3 à 5 années de soins préventifs</strong>. Anticiper ce risque est
+            le rôle principal d'une assurance santé chien.
+          </p>
+        </div>
+      </aside>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Acte</th><th>Fourchette constatée</th><th>Race / cas typique</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Hospitalisation</td><td>50 – 150 € / nuit</td><td>Selon clinique et surveillance requise</td></tr>
+          <tr><td>Rupture du ligament croisé (TPLO)</td><td>1 800 – 3 500 €</td><td>Labrador, Rottweiler, Berger Allemand</td></tr>
+          <tr><td>Prothèse totale de hanche (dysplasie)</td><td>2 500 – 4 500 €</td><td>Grandes races prédisposées</td></tr>
+          <tr><td>Chirurgie ostéosynthèse fracture</td><td>1 200 – 2 800 €</td><td>Suite traumatique</td></tr>
+          <tr><td>Chirurgie cancer (selon tumeur)</td><td>800 – 3 500 €</td><td>Boxer, Golden, Bouvier Bernois</td></tr>
+          <tr><td>Chimiothérapie (par cycle)</td><td>400 – 1 000 €</td><td>Lymphome, mastocytome</td></tr>
+          <tr><td>Traitement diabète (annuel)</td><td>600 – 1 200 €</td><td>Insuline + suivi glycémique</td></tr>
+          <tr><td>Syndrome brachycéphale (chirurgie)</td><td>1 000 – 2 500 €</td><td>Bouledogue, Carlin, Cavalier</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Pull quote méthodo -->
+      <blockquote class="ed-pullquote">
+        <span class="ed-pullquote-mark" aria-hidden="true">"</span>
+        <p>
+          Le vrai poste budgétaire n'est pas la consultation à 50&nbsp;€&nbsp;:
+          c'est l'imprévu chirurgical qui, sur la durée de vie d'un chien,
+          touche 1 propriétaire sur 3.
+        </p>
+        <cite>— Analyse Assure mon chien, sur la base des données Observatoire SantéVet 2024-2025</cite>
+      </blockquote>
+
+      <!-- Section 7 : Taille -->
+      <h2 id="taille" class="ed-h2">Variation selon la taille du chien</h2>
+
+      <p class="ed-p">
+        À acte vétérinaire équivalent, un grand chien coûte significativement plus
+        cher qu'un petit. Trois facteurs cumulés expliquent l'écart&nbsp;: les
+        doses de médicaments et d'anesthésiques se calculent au poids, le temps
+        opératoire et anesthésique est plus long, et l'hospitalisation post-opératoire
+        dure souvent davantage.
+      </p>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Taille</th><th>Coût annuel moyen (sain)</th><th>Spécificités</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Petit (&lt; 10 kg)</strong></td><td>200 – 400 €</td><td>Doses réduites, anesthésies courtes, sortie le jour même</td></tr>
+          <tr><td><strong>Moyen (10-25 kg)</strong></td><td>300 – 550 €</td><td>Référence du marché vétérinaire français</td></tr>
+          <tr><td><strong>Grand (&gt; 25 kg)</strong></td><td>400 – 800 €</td><td>Doses fortes, anesthésies longues, hospitalisation +50 %</td></tr>
+          <tr><td><strong>Géant (&gt; 40 kg)</strong></td><td>500 – 1 000 €</td><td>Saint-Bernard, Dogue, Terre-Neuve&nbsp;: cumul des effets</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Section 8 : Âge -->
+      <h2 id="age" class="ed-h2">Variation selon l'âge de vie</h2>
+
+      <p class="ed-p">
+        Le budget vétérinaire suit une courbe en U. Élevé la première année
+        (acquisition, vaccinations, identification, souvent stérilisation), il
+        baisse fortement entre 1 et 7 ans pour un chien en bonne santé. À partir
+        de 7-8 ans, il remonte avec les bilans gériatriques et la prise en charge
+        des pathologies liées à l'âge — articulaires, dentaires, cardiaques.
+      </p>
+
+      <div class="table-wrap"><div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Âge</th><th>Coût annuel moyen</th><th>Actes typiques</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>0-1 an (chiot)</strong></td><td>600 – 1 200 €</td><td>Primo-vacc, ID puce, vermifuges, stérilisation</td></tr>
+          <tr><td><strong>1-7 ans (adulte sain)</strong></td><td>250 – 450 €</td><td>Rappel annuel, antiparasitaires, 1 consultation préventive</td></tr>
+          <tr><td><strong>7-10 ans (sénior naissant)</strong></td><td>400 – 700 €</td><td>Bilan gériatrique, premiers traitements chroniques</td></tr>
+          <tr><td><strong>10+ ans (sénior)</strong></td><td>500 – 1 000 €</td><td>Suivi rapproché, médication, soins dentaires</td></tr>
+        </tbody>
+      </table>
+      </div></div>
+
+      <!-- Section 9 : Anticiper -->
+      <h2 id="anticiper" class="ed-h2">Comment anticiper son budget santé chien</h2>
+
+      <p class="ed-p">
+        Les sept gestes ci-dessous résument la stratégie budgétaire que recommandent
+        la majorité des vétérinaires français. Aucun ne nécessite d'expertise
+        particulière&nbsp;: l'essentiel se joue dans la régularité.
+      </p>
+
+      <ul class="ed-check">
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Provisionner 30 à 60&nbsp;€ par mois dès l'arrivée du chien, dans un compte ou une assurance santé.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Faire un bilan vétérinaire annuel — éviter une consultation curative tardive coûte 3 à 5 fois moins cher qu'attendre l'urgence.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Stériliser au bon moment selon la race&nbsp;: réduit le risque de certains cancers et abaisse la prime d'assurance.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Brosser les dents dès le chiot pour repousser le premier détartrage de plusieurs années.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Souscrire une assurance santé AVANT toute apparition de symptôme — la plupart des contrats excluent les antécédents.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Conserver tous les justificatifs (factures, ordonnances) — utiles pour l'assurance et précieux pour le suivi médical longitudinal.
+        </li>
+        <li>
+          <span class="ed-check-mark" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          </span>
+          Privilégier la prévention sur le curatif&nbsp;: chaque euro investi en bilan annuel évite en moyenne 4&nbsp;€ de soins curatifs (source&nbsp;: Observatoire SantéVet 2024).
+        </li>
+      </ul>
+
+      <!-- Section 10 : Méthodologie -->
+      <h2 id="methodologie" class="ed-h2">Méthodologie</h2>
+
+      <p class="ed-p">
+        Les fourchettes présentées sur cette page sont des <strong>ordres de
+        grandeur constatés en France métropolitaine sur la période 2025-2026</strong>.
+        Elles ne constituent pas un barème — la fixation des honoraires
+        vétérinaires reste libre en France. Trois familles de sources ont été
+        croisées pour construire ces fourchettes&nbsp;:
+      </p>
+
+      <p class="ed-p">
+        <strong>Sources institutionnelles</strong>&nbsp;: publications du SNVEL
+        (Syndicat National des Vétérinaires d'Exercice Libéral), indices INSEE des
+        services vétérinaires, rapports des écoles vétérinaires (ONIRIS Nantes,
+        VetAgro Sup Lyon, ENV Maisons-Alfort, ENV Toulouse).
+      </p>
+
+      <p class="ed-p">
+        <strong>Données d'assureurs</strong>&nbsp;: baromètre annuel de l'Observatoire
+        SantéVet sur les remboursements types, statistiques publiques d'autres
+        acteurs (Bulle Bleue, AssurOPoil) consolidées.
+      </p>
+
+      <p class="ed-p">
+        <strong>Observation terrain</strong>&nbsp;: grilles tarifaires publiques de
+        cliniques en Île-de-France, Auvergne-Rhône-Alpes et Provence-Alpes-Côte
+        d'Azur. Les fourchettes hautes correspondent généralement aux structures à
+        plateau technique avancé (scanner, IRM, urgences 24/7) ainsi qu'aux zones
+        urbaines denses.
+      </p>
+
+      <p class="ed-p" style="margin-top:24px;">
+        <strong>Mise à jour&nbsp;:</strong> cette page sera révisée annuellement
+        (prochaine mise à jour&nbsp;: mai 2027). Les retours de praticiens ou
+        d'associations sur les chiffres présentés sont les bienvenus à l'adresse
+        de contact du site.
+      </p>
+
+      <!-- CTA Banner -->
+      <div class="ed-banner">
+        <p>Découvrez le coût annuel détaillé pour&nbsp;<br>chacune des 31 races analysées sur notre site.</p>
+        <a href="/comparatif/par-race" class="btn btn-primary">
+          Voir le coût par race
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Sources -->
+      <div class="ed-sources">
+        <h3 class="ed-sources-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Sources
+        </h3>
+        <ol>
+          <li>SNVEL — Syndicat National des Vétérinaires d'Exercice Libéral, publications 2024-2025 (<a href="https://www.snvel.fr/" target="_blank" rel="noopener noreferrer">snvel.fr</a>).</li>
+          <li>Observatoire SantéVet — Baromètre annuel des soins vétérinaires en France, éditions 2024 et 2025.</li>
+          <li>INSEE — Indice des prix à la consommation, sous-catégorie « Services vétérinaires », données mensuelles.</li>
+          <li>ONIRIS — École Nationale Vétérinaire de Nantes, publications cliniques 2023-2025.</li>
+          <li>VetAgro Sup Lyon — Études cliniques et grilles indicatives publiées par les services hospitaliers.</li>
+          <li>30 Millions d'Amis — Guides budgétaires pour propriétaires, édition 2025 (<a href="https://www.30millionsdamis.fr/" target="_blank" rel="noopener noreferrer">30millionsdamis.fr</a>).</li>
+          <li>Méthodologie complète d'agrégation et de pondération&nbsp;: voir section « Méthodologie » ci-dessus.</li>
+        </ol>
+      </div>
+
+      <!-- Citation -->
+      <div class="ed-citation">
+        <h3 class="ed-sources-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l3-3M21 3l-3 3M9 7h6v6H9zM3 11h4M17 13h4M11 17v4M11 3v4"/></svg>
+          Citer cette page
+        </h3>
+        <p style="font-size:14px; color:var(--c-ink-2); margin:0 0 12px;">
+          Vous pouvez librement reprendre ces fourchettes en mentionnant la source. Format suggéré&nbsp;:
+        </p>
+        <pre style="background:#fff; padding:12px 16px; border:1px solid var(--c-line); border-radius:8px; font-size:13px; color:var(--c-ink-2); overflow-x:auto; white-space:pre-wrap;">«&nbsp;Coût des soins vétérinaires pour un chien en France 2026&nbsp;», Assure mon chien, mai 2026. https://assure-mon-chien.fr/guides/cout-soins-veterinaires</pre>
+      </div>
+
+    </article>
+  </div>
+
+  <!-- ── À lire aussi ── -->
+  <section class="ed-related">
+    <div class="container">
+      <h2 class="h3" style="margin:0 0 28px">À lire aussi</h2>
+      <div class="ed-related-grid">
+
+        <a href="/couts/cout-chien" class="ed-related-card">
+          <span class="ed-related-cat">Dossier · Budget</span>
+          <h3>Combien coûte vraiment un chien en 2026&nbsp;?</h3>
+          <p>Cinq postes (acquisition, alimentation, soins, accessoires, assurance), un budget total réaliste sur la durée de vie.</p>
+          <span class="ed-related-link">
+            Lire
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="/guides/choisir-assurance-chien" class="ed-related-card">
+          <span class="ed-related-cat">Guide · Essentiel</span>
+          <h3>Comment choisir une assurance pour son chien&nbsp;?</h3>
+          <p>Cinq critères décisifs, deux pièges, et la méthode pour comparer en 10 minutes.</p>
+          <span class="ed-related-link">
+            Lire
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="/comparatif/par-race" class="ed-related-card">
+          <span class="ed-related-cat">Référence · Par race</span>
+          <h3>Coût d'assurance pour 31 races analysées</h3>
+          <p>Fourchette d'assurance, pathologies dominantes et score de risque, race par race.</p>
+          <span class="ed-related-link">
+            Lire
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .ed-hero {
+    background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 100%);
+    border-bottom: 1px solid var(--c-line);
+    padding: 56px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ed-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 28%, rgba(29,158,117,.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(249,203,66,.08), transparent 35%);
+    pointer-events: none;
+  }
+  .ed-hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+  }
+  @media (max-width: 920px) {
+    .ed-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .ed-hero-text { max-width: 620px; }
+
+  .ed-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--c-green-700);
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--c-green-200);
+    margin-bottom: 18px;
+    font-family: var(--font-mono);
+  }
+  .ed-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(34px, 4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -.025em;
+    color: var(--c-ink);
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .ed-lede {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--c-ink-2);
+    margin: 0 0 24px;
+    max-width: 580px;
+    text-wrap: pretty;
+  }
+  .ed-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .ed-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    background: rgba(255,255,255,.7);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--c-line);
+  }
+
+  .ed-hero-figure { margin: 0; position: relative; }
+  .ed-hero-img-wrap {
+    border-radius: 22px;
+    overflow: hidden;
+    aspect-ratio: 3/2;
+    box-shadow: 0 30px 60px -20px rgba(15,110,86,.28);
+    background: var(--c-green-50);
+    position: relative;
+  }
+  .ed-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ed-hero-figure figcaption {
+    font-size: 13px;
+    color: var(--c-ink-2);
+    margin-top: 14px;
+    font-style: italic;
+    max-width: 360px;
+    line-height: 1.5;
+  }
+
+  /* ── Body layout ── */
+  .ed-body {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 56px;
+    padding: 64px 0 80px;
+    align-items: start;
+  }
+  @media (max-width: 920px) {
+    .ed-body { grid-template-columns: 1fr; gap: 24px; padding: 32px 0 60px; }
+  }
+
+  /* TOC */
+  .ed-toc {
+    position: sticky;
+    top: 90px;
+    font-size: 14px;
+  }
+  @media (max-width: 920px) {
+    .ed-toc { position: relative; top: 0; }
+  }
+  .ed-toc-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--c-ink-2);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .ed-toc ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    counter-reset: toc;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .ed-toc li {
+    counter-increment: toc;
+    position: relative;
+  }
+  .ed-toc li a {
+    display: block;
+    padding: 8px 12px 8px 32px;
+    border-radius: 8px;
+    color: var(--c-ink-2);
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: background .12s;
+  }
+  .ed-toc li a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute;
+    left: 8px;
+    font-size: 11px;
+    color: var(--c-ink-3);
+    font-variant-numeric: tabular-nums;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+  }
+  .ed-toc li a:hover { background: var(--c-bg-soft); color: var(--c-ink); }
+  .ed-toc-cta {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--c-line);
+  }
+
+  /* Article */
+  .ed-article {
+    max-width: 760px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--c-ink);
+  }
+  .ed-p {
+    margin: 0 0 22px;
+    color: var(--c-ink-2);
+    text-wrap: pretty;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .ed-h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    margin: 56px 0 20px;
+    color: var(--c-ink);
+    scroll-margin-top: 100px;
+    position: relative;
+    padding-top: 24px;
+    border-top: 1px solid var(--c-line);
+  }
+  .ed-h2::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: 0;
+    width: 48px; height: 2px;
+    background: var(--c-green);
+  }
+
+  /* Stats block */
+  .ed-stats {
+    margin: 28px 0;
+    padding: 28px;
+    background: var(--c-green-50);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-green-200);
+  }
+  .ed-stats-grid {
+    display: grid;
+    gap: 24px;
+  }
+  @media (max-width: 600px) {
+    .ed-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  .ed-stat-value {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--c-green-700);
+    font-variant-numeric: tabular-nums;
+  }
+  .ed-stat-label {
+    font-size: 13px;
+    color: var(--c-ink-2);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  /* Pull quote */
+  .ed-pullquote {
+    margin: 40px 0;
+    padding: 32px 32px 32px 60px;
+    border-left: 4px solid var(--c-green);
+    background: linear-gradient(180deg, var(--c-green-50) 0%, transparent 100%);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    position: relative;
+  }
+  .ed-pullquote-mark {
+    position: absolute;
+    top: 8px; left: 18px;
+    font-family: Georgia, serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--c-green);
+    opacity: .4;
+  }
+  .ed-pullquote p {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -.015em;
+    color: var(--c-ink);
+    margin: 0 0 12px;
+    text-wrap: pretty;
+  }
+  .ed-pullquote cite {
+    font-style: normal;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    font-weight: 500;
+  }
+
+  /* Callout */
+  .ed-callout {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+    padding: 20px 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid;
+  }
+  .ed-callout-icon {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .ed-callout-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: var(--c-ink);
+  }
+  .ed-callout p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--c-ink-2);
+  }
+  .ed-callout-rose { background: #fff0f1; border-color: #f5c2c7; }
+  .ed-callout-rose .ed-callout-icon { background: #dc2626; color: #fff; }
+
+  /* Checklist */
+  .ed-check {
+    list-style: none;
+    margin: 24px 0;
+    padding: 24px 28px;
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ed-check li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--c-ink);
+  }
+  .ed-check-mark {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 999px;
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  /* Banner CTA */
+  .ed-banner {
+    margin: 36px 0;
+    padding: 28px 32px;
+    background: var(--c-ink);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .ed-banner::before {
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--c-green) 0%, transparent 70%);
+    opacity: .5;
+  }
+  .ed-banner p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.4;
+    color: rgba(255,255,255,.9);
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+  .ed-banner .btn { position: relative; }
+
+  /* Sources */
+  .ed-sources, .ed-citation {
+    margin: 56px 0 0;
+    padding: 28px;
+    background: var(--c-bg-soft);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--c-line);
+  }
+  .ed-citation { margin-top: 20px; }
+  .ed-sources-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-ink-2);
+    margin: 0 0 16px;
+  }
+  .ed-sources ol {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: var(--c-ink-2);
+    line-height: 1.7;
+  }
+  .ed-sources li { margin-bottom: 6px; }
+  .ed-sources a { color: var(--c-green-700); }
+
+  /* ── À lire aussi ── */
+  .ed-related {
+    background: var(--c-bg-soft);
+    border-top: 1px solid var(--c-line);
+    padding: 64px 0 80px;
+    margin-top: 32px;
+  }
+  .ed-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 880px) {
+    .ed-related-grid { grid-template-columns: 1fr; }
+  }
+  .ed-related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--c-ink);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .ed-related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px -16px rgba(15,110,86,.18);
+    color: var(--c-ink);
+  }
+  .ed-related-cat {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-green-700);
+    font-family: var(--font-mono);
+  }
+  .ed-related-card h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    letter-spacing: -.01em;
+    color: var(--c-ink);
+  }
+  .ed-related-card p {
+    font-size: 13px;
+    color: var(--c-ink-3);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+  }
+  .ed-related-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--c-green-700);
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+</style>
