@@ -14,7 +14,8 @@
       "Read(//c/Users/gaeta/Documents/Web/**)",
       "Bash(grep -E \"\\\\.\\(jsx|css\\)$\")",
       "Bash(node scripts/harmonize-races.mjs)",
-      "Bash(node scripts/callout-risques.mjs)"
+      "Bash(node scripts/callout-risques.mjs)",
+      "Bash(ls -la \"c:\\\\Users\\\\gaeta\\\\Documents\\\\Web\\\\assure-mon-chien\\\\dist\" 2>nul | head -20)"
     ],
     "additionalDirectories": [
       "c:\\Users\\gaeta\\Documents\\Web\\assure-mon-chien"

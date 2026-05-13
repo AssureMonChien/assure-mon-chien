@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.assure-mon-chien.fr" }],
+      "destination": "https://assure-mon-chien.fr/:path*",
+      "permanent": true
+    }
+  ]
+}
