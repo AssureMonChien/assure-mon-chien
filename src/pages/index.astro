@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { RACES as ALL_RACES } from "../data/races";
+
+// Toutes les races du site, exposées au script de recherche (source unique : src/data/races.ts).
+const searchRaces = ALL_RACES
+  .map(r => ({ slug: r.slug, name: r.nom }))
+  .sort((a, b) => a.name.localeCompare(b.name, "fr"));
 
 const featuredRaces = [
   { slug: "labrador",             name: "Labrador Retriever",    risk: 73, level: "élevé" },
@@ -361,62 +367,34 @@ const jsonldWebSite = JSON.stringify({
 
 </Layout>
 
-<script>
-  const RACES = [
-    { slug: "labrador",             name: "Labrador Retriever" },
-    { slug: "golden-retriever",     name: "Golden Retriever" },
-    { slug: "berger-allemand",      name: "Berger Allemand" },
-    { slug: "bouledogue-francais",  name: "Bouledogue Français" },
-    { slug: "beagle",               name: "Beagle" },
-    { slug: "berger-des-shetlands", name: "Berger des Shetlands" },
-    { slug: "caniche",              name: "Caniche" },
-    { slug: "husky-siberien",       name: "Husky Sibérien" },
-    { slug: "chihuahua",            name: "Chihuahua" },
-    { slug: "cavalier-king-charles",name: "Cavalier King Charles" },
-    { slug: "shih-tzu",             name: "Shih Tzu" },
-    { slug: "yorkshire-terrier",    name: "Yorkshire Terrier" },
-    { slug: "border-collie",        name: "Border Collie" },
-    { slug: "cocker-spaniel",       name: "Cocker Spaniel" },
-    { slug: "rottweiler",           name: "Rottweiler" },
-    { slug: "dobermann",            name: "Dobermann" },
-    { slug: "boxer",                name: "Boxer" },
-    { slug: "dalmatien",            name: "Dalmatien" },
-    { slug: "carlin",               name: "Carlin" },
-    { slug: "teckel",               name: "Teckel" },
-    { slug: "saint-bernard",        name: "Saint-Bernard" },
-    { slug: "montagne-des-pyrenees",name: "Montagne des Pyrénées" },
-    { slug: "malinois",             name: "Malinois" },
-    { slug: "jack-russell",         name: "Jack Russell" },
-    { slug: "bichon-frise",         name: "Bichon Frisé" },
-    { slug: "samoyede",             name: "Samoyède" },
-    { slug: "akita-inu",            name: "Akita Inu" },
-    { slug: "chow-chow",            name: "Chow-Chow" },
-    { slug: "setter-irlandais",     name: "Setter Irlandais" },
-    { slug: "epagneul-breton",      name: "Épagneul Breton" },
-  ];
+<script define:vars={{ RACES: searchRaces }}>
+  // RACES est injecté depuis src/data/races.ts (single source of truth).
+  // Ajouter/retirer une race dans races.ts met automatiquement à jour la recherche.
 
-  const input = document.getElementById('hero-input') as HTMLInputElement | null;
-  const pop   = document.getElementById('hero-pop') as HTMLElement | null;
-  const goBtn = document.getElementById('hero-go') as HTMLButtonElement | null;
+  const input = document.getElementById('hero-input');
+  const pop   = document.getElementById('hero-pop');
+  const goBtn = document.getElementById('hero-go');
 
-  let suggestions: typeof RACES = [];
+  let suggestions = [];
 
-  function norm(s: string) {
+  function norm(s) {
     return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   }
 
   function render() {
-    const q = input?.value?.trim() ?? '';
-    if (!q) { pop!.hidden = true; suggestions = []; return; }
+    const q = (input && input.value ? input.value.trim() : '');
+    if (!q) { if (pop) pop.hidden = true; suggestions = []; return; }
     suggestions = RACES.filter(r => norm(r.name).includes(norm(q))).slice(0, 5);
-    if (!suggestions.length) { pop!.hidden = true; return; }
-    pop!.innerHTML = suggestions.map(r => `
-      <a href="/races/${r.slug}" class="hero-search-item">
-        <span class="hss-name">${r.name}</span>
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    `).join('');
-    pop!.hidden = false;
+    if (!suggestions.length) { if (pop) pop.hidden = true; return; }
+    if (pop) {
+      pop.innerHTML = suggestions.map(r => `
+        <a href="/races/${r.slug}" class="hero-search-item">
+          <span class="hss-name">${r.name}</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      `).join('');
+      pop.hidden = false;
+    }
   }
 
   function go() {
@@ -424,14 +402,17 @@ const jsonldWebSite = JSON.stringify({
     window.location.href = dest;
   }
 
-  input?.addEventListener('input', render);
-  input?.addEventListener('keydown', e => {
-    if (e.key === 'Enter') go();
-    if (e.key === 'Escape') { pop!.hidden = true; }
-  });
-  goBtn?.addEventListener('click', go);
+  if (input) {
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') go();
+      if (e.key === 'Escape' && pop) { pop.hidden = true; }
+    });
+  }
+  if (goBtn) goBtn.addEventListener('click', go);
   document.addEventListener('click', e => {
-    if (!(e.target as Element)?.closest('#hero-search')) pop!.hidden = true;
+    const t = e.target;
+    if (pop && t && t.closest && !t.closest('#hero-search')) pop.hidden = true;
   });
 </script>
 

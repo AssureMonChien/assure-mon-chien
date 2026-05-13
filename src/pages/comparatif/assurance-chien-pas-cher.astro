@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import ComparatifLayout from "../../layouts/ComparatifLayout.astro";
 
 const siteUrl = "https://assure-mon-chien.fr";
 const pageUrl = `${siteUrl}/comparatif/assurance-chien-pas-cher`;
@@ -53,22 +53,16 @@ const jsonldFaq = JSON.stringify({
   ]
 });
 
-const jsonldWebPage = JSON.stringify({
+const jsonldArticle = JSON.stringify({
   "@context":    "https://schema.org",
-  "@type":       "WebPage",
-  "name":        "Assurance chien pas cher 2026 — Comparatif des offres abordables",
+  "@type":       "Article",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+  "headline":    "Assurance chien pas cher 2026 — Comparatif des offres abordables",
   "description": "Trouvez l'assurance chien la moins chère en 2026. Comparatif des formules à petit prix : AssurOPoil (15 €/mois), SantéVet (18 €/mois), Lassie (20 €/mois).",
-  "url":         pageUrl,
   "datePublished": "2026-01-01",
   "dateModified":  "2026-05-01",
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Accueil",    "item": siteUrl },
-      { "@type": "ListItem", "position": 2, "name": "Comparatif", "item": `${siteUrl}/comparatif` },
-      { "@type": "ListItem", "position": 3, "name": "Assurance chien pas cher", "item": pageUrl },
-    ]
-  }
+  "author":    { "@type": "Organization", "name": "Assure mon chien", "url": siteUrl },
+  "publisher": { "@type": "Organization", "name": "Assure mon chien", "url": siteUrl }
 });
 
 const offers = [
@@ -134,399 +128,301 @@ const savings = [
   { icon: "search",   title: "Comparer chaque année", text: "Les tarifs évoluent. Réévaluer son contrat à chaque renouvellement permet d'économiser 50 à 100 € par an en moyenne." },
   { icon: "check",    title: "Ajuster la franchise", text: "Une franchise plus haute réduit la cotisation mensuelle. À envisager si votre chien est jeune et en bonne santé." },
 ];
+
+const tocItems = [
+  { href: "#intro",    label: "Peut-on vraiment ?" },
+  { href: "#offres",   label: "Les 3 offres les moins chères" },
+  { href: "#leviers",  label: "Réduire sa prime intelligemment" },
+  { href: "#par-race", label: "Coût par race" },
+  { href: "#faq",      label: "Questions fréquentes" },
+];
+
+const relatedItems = [
+  {
+    href: "/comparatif/assurance-chien-senior",
+    cat: "Comparatif",
+    title: "Assurance chien sénior : ce qu'il faut savoir",
+    desc: "À partir de 7 ans, les frais vétérinaires triplent. Quels assureurs acceptent encore, quelles formules choisir.",
+    linkLabel: "Lire le guide",
+  },
+  {
+    href: "/comparatif/assurance-chiot",
+    cat: "Comparatif",
+    title: "Assurance chiot : le guide complet",
+    desc: "À souscrire à 8 semaines plutôt qu'à 1 an, c'est souvent 2× plus abordable — et sans exclusion héréditaire.",
+    linkLabel: "Lire le guide",
+  },
+  {
+    href: "/guides/choisir-assurance-chien",
+    cat: "Guide Essentiel",
+    title: "Comment choisir une assurance chien ?",
+    desc: "Les 5 critères décisifs, les 2 pièges classiques, et la méthode pour comparer en 10 minutes.",
+    linkLabel: "Lire le guide",
+  },
+];
 ---
 
-<Layout
-  title="Assurance chien pas cher 2026 — Comparatif dès 15 €/mois"
+<ComparatifLayout
+  title="Assurance chien pas cher 2026 — Comparatif dès 15 €/mois"
   description="Comparatif des assurances chien à petit budget 2026 : AssurOPoil 15 €/mois, SantéVet 18 €/mois, Lassie 20 €/mois. Analyse indépendante."
+  heroLabel="Comparatif Prix 2026"
+  heroTitle="Assurance chien pas cher — les meilleures offres 2026"
+  heroDesc="AssurOPoil dès 15 €/mois, SantéVet à 18 €/mois, Lassie à 20 €/mois. On décortique les trois offres pour vous aider à payer moins sans sacrifier les garanties essentielles."
+  heroImage="/images/races/beagle.webp"
+  heroImageAlt="Beagle — race emblématique des chiens accessibles à assurer"
+  heroCaption="Souscrire avant le premier symptôme reste la décision la plus rentable, quel que soit le budget de départ."
+  slug="assurance-chien-pas-cher"
+  breadcrumbLabel="Assurance chien pas cher"
+  {tocItems}
+  {relatedItems}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={jsonldWebPage} />
     <script type="application/ld+json" set:html={jsonldBreadcrumb} />
+    <script type="application/ld+json" set:html={jsonldArticle} />
     <script type="application/ld+json" set:html={jsonldFaq} />
   </Fragment>
 
-  <!-- ── Hero ── -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <nav class="breadcrumb" aria-label="Fil d'Ariane">
-        <ol>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/comparatif">Comparatif</a></li>
-          <li aria-current="page">Assurance chien pas cher</li>
-        </ol>
-      </nav>
-      <span class="pill pill-soft">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+  <Fragment slot="hero-meta">
+    <div class="ed-meta">
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15" rx="2"/><path d="M3.5 10.5h17M8 3v4M16 3v4"/></svg>
         Mis à jour mai 2026
       </span>
-      <h1 class="display display-md">Assurance chien <em>pas cher</em> — les meilleures offres 2026</h1>
-      <p class="lede">AssurOPoil dès 15&nbsp;€/mois, SantéVet à 18&nbsp;€/mois, Lassie à 20&nbsp;€/mois. On décortique les trois offres pour vous aider à payer moins sans sacrifier les garanties essentielles.</p>
-      <div class="hero-cta">
-        <a href="#offres" class="btn btn-primary btn-lg">
-          Voir le comparatif
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 4v8M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="/races" class="btn btn-outline btn-lg">Par race de chien</a>
-      </div>
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        7 min de lecture
+      </span>
+      <span class="ed-meta-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.4-8 9-4.6-.6-8-4.5-8-9V6l8-3z"/></svg>
+        Rédaction Assure mon chien · Indépendant
+      </span>
     </div>
-  </section>
+  </Fragment>
 
-  <!-- ── Chiffres rapides ── -->
-  <section class="section-tight">
-    <div class="container">
-      <div class="kf-row">
-        <div class="kf-card">
-          <div class="kf-value">15 €</div>
-          <div class="kf-label">Prix min. / mois</div>
-        </div>
-        <div class="kf-card">
-          <div class="kf-value">100 %</div>
-          <div class="kf-label">Remboursement max.</div>
-        </div>
-        <div class="kf-card">
-          <div class="kf-value">3</div>
-          <div class="kf-label">Assureurs comparés</div>
-        </div>
-        <div class="kf-card">
-          <div class="kf-value">30 j</div>
-          <div class="kf-label">Carence minimale</div>
-        </div>
-      </div>
+  <!-- ═══ Corps de l'article ═══ -->
+
+  <!-- KF résumé -->
+  <div class="ed-stats">
+    <div class="ed-stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+      <div><div class="ed-stat-value">15 €</div><div class="ed-stat-label">Prix min. / mois</div></div>
+      <div><div class="ed-stat-value">100 %</div><div class="ed-stat-label">Remboursement max</div></div>
+      <div><div class="ed-stat-value">3</div><div class="ed-stat-label">Assureurs comparés</div></div>
+      <div><div class="ed-stat-value">30 j</div><div class="ed-stat-label">Carence minimale</div></div>
     </div>
-  </section>
+  </div>
 
-  <!-- ── Intro éditoriale ── -->
-  <section class="section section-tight" style="padding-top:0">
-    <div class="container article-narrow">
-      <h2 class="h2-sm">Peut-on vraiment assurer son chien à moindre coût ?</h2>
-      <p>Oui — à condition de bien choisir. Le marché de l'assurance chien en France propose des formules dès 15&nbsp;€/mois. La vraie question n'est pas de payer le moins possible, mais de trouver le <strong>meilleur rapport garanties / prix</strong> pour le profil spécifique de votre animal.</p>
-      <p>Un Labrador de 2 ans en bonne santé et une formule Essentielle à 15&nbsp;€/mois : logique. Un Bouledogue Français avec la même formule : un pari risqué quand une opération de chirurgie brachycéphale coûte 2 000 à 4 000&nbsp;€. Ce comparatif vous aide à trouver l'offre adaptée — pas seulement la moins chère.</p>
-    </div>
-  </section>
+  <h2 id="intro" class="ed-h2">Peut-on vraiment assurer son chien à moindre coût ?</h2>
+  <p class="ed-p">
+    Oui — à condition de bien choisir. Le marché de l'assurance chien en France propose
+    des formules dès 15 €/mois. La vraie question n'est pas de payer le moins possible,
+    mais de trouver le <strong>meilleur rapport garanties / prix</strong> pour le profil
+    spécifique de votre animal.
+  </p>
+  <p class="ed-p">
+    Un Labrador de 2 ans en bonne santé et une formule Essentielle à 15 €/mois : logique.
+    Un Bouledogue Français avec la même formule : un pari risqué quand une opération de
+    chirurgie brachycéphale coûte 2 000 à 4 000 €. Ce comparatif vous aide à trouver
+    l'offre adaptée — pas seulement la moins chère.
+  </p>
 
-  <!-- ── Tableau comparatif ── -->
-  <section class="section" id="offres">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Comparatif prix 2026</span>
-        <h2 class="h2">Les 3 assurances chien les moins chères</h2>
-        <p class="section-sub">Classées par prix croissant. Tarifs indicatifs pour un chien adulte de taille moyenne.</p>
-      </div>
+  <h2 id="offres" class="ed-h2">Les 3 assurances chien les moins chères</h2>
+  <p class="ed-p">
+    Classées par prix croissant. Tarifs indicatifs pour un chien adulte de taille moyenne.
+  </p>
 
-      <div class="offers-grid">
-        {offers.map((ins, i) => (
-          <article class={`offer-card${ins.recommended ? ' is-recommended' : ''}`}>
-            <div class="offer-rank">#{i + 1}</div>
-            {ins.recommended && (
-              <span class="offer-flag">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                Recommandé
-              </span>
-            )}
-            <div class="offer-head">
-              <div class="offer-mark" style={`background:${ins.color}1A;color:${ins.color}`}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div>
-                <h3 class="offer-name">{ins.name}</h3>
-                <span class={`offer-badge ${ins.badgeCls}`}>{ins.badge}</span>
-              </div>
-            </div>
-
-            <div class="offer-price-block">
-              <span class="offer-price-from">dès</span>
-              <span class="offer-price-amount">{ins.price} €</span>
-              <span class="offer-price-period">/mois</span>
-            </div>
-
-            <dl class="offer-specs">
-              <div class="spec-row">
-                <dt>Remboursement</dt>
-                <dd class={ins.refund === "100 %" ? "spec-good" : ""}>{ins.refund}</dd>
-              </div>
-              <div class="spec-row">
-                <dt>Carence maladie</dt>
-                <dd class={ins.waiting === "30 j" ? "spec-good" : "spec-warn"}>{ins.waiting}</dd>
-              </div>
-              <div class="spec-row">
-                <dt>Prévention</dt>
-                <dd class={ins.prevention !== "Non" ? "spec-good" : ""}>{ins.prevention}</dd>
-              </div>
-              <div class="spec-row">
-                <dt>Plafond annuel</dt>
-                <dd>{ins.ceiling}</dd>
-              </div>
-              <div class="spec-row">
-                <dt>Couverture maladies</dt>
-                <dd class="spec-good">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Oui"><polyline points="20 6 9 17 4 12"/></svg>
-                  Incluse
-                </dd>
-              </div>
-              <div class="spec-row">
-                <dt>Application mobile</dt>
-                <dd>
-                  {ins.app
-                    ? <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Oui" class="spec-good-icon"><polyline points="20 6 9 17 4 12"/></svg> <span class="spec-good">Oui</span></>
-                    : <><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-label="Non" class="spec-no-icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> <span>Non</span></>
-                  }
-                </dd>
-              </div>
-              <div class="spec-row">
-                <dt>Délai remboursement</dt>
-                <dd class={ins.delay === "48 h" ? "spec-good" : ""}>{ins.delay}</dd>
-              </div>
-            </dl>
-
-            <p class="offer-verdict">{ins.verdict}</p>
-            <div class="offer-profile">{ins.profile}</div>
-
-            <a
-              href={ins.href}
-              target="_blank"
-              rel="noopener sponsored"
-              class={`btn btn-block${ins.recommended ? ' btn-primary' : ' btn-outline'}`}
-            >
-              Voir l'offre {ins.name}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </article>
-        ))}
-      </div>
-
-      <p class="affiliate-note">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Liens partenaires — commission perçue si souscription, sans surcoût pour vous. Tarifs vérifiés en mai 2026.
-      </p>
-    </div>
-  </section>
-
-  <!-- ── Tips économies ── -->
-  <section class="section section-tinted">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Économiser intelligemment</span>
-        <h2 class="h2">4 leviers pour réduire votre prime sans rogner les garanties</h2>
-      </div>
-      <div class="tips-grid">
-        {savings.map(tip => (
-          <div class="tip-card">
-            <div class="tip-icon" aria-hidden="true">
-              {tip.icon === "calendar" && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>}
-              {tip.icon === "shield"   && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
-              {tip.icon === "search"   && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>}
-              {tip.icon === "check"    && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}
-            </div>
-            <h3 class="tip-title">{tip.title}</h3>
-            <p class="tip-text">{tip.text}</p>
+  <div class="offers-grid">
+    {offers.map((ins, i) => (
+      <article class={`offer-card${ins.recommended ? ' is-recommended' : ''}`}>
+        <div class="offer-rank">#{i + 1}</div>
+        {ins.recommended && (
+          <span class="offer-flag">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Recommandé
+          </span>
+        )}
+        <div class="offer-head">
+          <div class="offer-mark" style={`background:${ins.color}1A;color:${ins.color}`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Tableau synthèse coûts par race ── -->
-  <section class="section">
-    <div class="container article-narrow">
-      <h2 class="h2-sm">Coût moyen d'une assurance selon la race</h2>
-      <p>Le tarif affiché varie selon la race, l'âge et la région. Voici une grille indicative pour les races les plus populaires&nbsp;:</p>
-      <div class="table-wrap">
-        <div class="table-scroll">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Race</th>
-                <th>Niveau de risque</th>
-                <th>Formule conseillée</th>
-                <th>Budget mensuel indicatif</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td><a href="/races/labrador">Labrador</a></td><td>Modéré</td><td>Confort</td><td>18–25 €/mois</td></tr>
-              <tr><td><a href="/races/golden-retriever">Golden Retriever</a></td><td>Modéré–Élevé</td><td>Confort ou Premium</td><td>20–32 €/mois</td></tr>
-              <tr><td><a href="/races/bouledogue-francais">Bouledogue Français</a></td><td>Élevé</td><td>Confort ou Premium</td><td>25–40 €/mois</td></tr>
-              <tr><td><a href="/races/berger-allemand">Berger Allemand</a></td><td>Modéré</td><td>Essentielle ou Confort</td><td>15–25 €/mois</td></tr>
-              <tr><td><a href="/races/cavalier-king-charles">Cavalier King Charles</a></td><td>Élevé</td><td>Confort ou Premium</td><td>22–38 €/mois</td></tr>
-              <tr><td><a href="/races/beagle">Beagle</a></td><td>Faible–Modéré</td><td>Essentielle</td><td>15–20 €/mois</td></tr>
-              <tr><td><a href="/races/yorkshire-terrier">Yorkshire Terrier</a></td><td>Modéré</td><td>Essentielle ou Confort</td><td>15–22 €/mois</td></tr>
-              <tr><td><a href="/races/rottweiler">Rottweiler</a></td><td>Élevé</td><td>Confort ou Premium</td><td>25–42 €/mois</td></tr>
-            </tbody>
-          </table>
+          <div>
+            <h3 class="offer-name">{ins.name}</h3>
+            <span class={`offer-badge ${ins.badgeCls}`}>{ins.badge}</span>
+          </div>
         </div>
-      </div>
-      <p class="table-note">Fourchettes indicatives — le tarif réel dépend de l'âge, de la région et de la formule choisie chez chaque assureur.</p>
-    </div>
-  </section>
 
-  <!-- ── FAQ ── -->
-  <section class="section section-tinted">
-    <div class="container article-narrow">
-      <div class="section-head" style="text-align:left;margin-bottom:24px">
-        <span class="eyebrow">FAQ</span>
-        <h2 class="h2">Questions fréquentes sur l'assurance chien pas cher</h2>
-      </div>
-      <div class="faq-list">
-        <details>
-          <summary>
-            <span>Quelle est l'assurance chien la moins chère en 2026 ?</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <p>AssurOPoil propose la formule la plus abordable à 15&nbsp;€/mois avec un remboursement à 100&nbsp;%. SantéVet est légèrement plus cher (18&nbsp;€/mois) mais couvre aussi la prévention et rembourse en 48&nbsp;h. Lassie débute à 20&nbsp;€/mois.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Peut-on assurer son chien pour moins de 15 € par mois ?</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <p>Certaines formules Essentielle démarrent à 15&nbsp;€/mois. Elles couvrent les accidents et urgences mais excluent les maladies chroniques. Pour les races à risque génétique (Bouledogue, Golden Retriever…), une formule Confort à 22&nbsp;€/mois est bien plus rentable à long terme.</p>
-        </details>
-        <details>
-          <summary>
-            <span>L'assurance chien pas cher couvre-t-elle les maladies ?</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <p>Les formules d'entrée de gamme couvrent généralement les accidents mais pas les maladies chroniques. Pour bénéficier d'une couverture maladie complète à prix réduit, AssurOPoil offre le meilleur rapport qualité-prix avec 100&nbsp;% de remboursement dès 15&nbsp;€/mois.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Comment réduire le coût de son assurance chien ?</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </summary>
-          <p>Plusieurs leviers&nbsp;: souscrire tôt (avant 1 an, avant toute pathologie), choisir une franchise adaptée, comparer plusieurs assureurs, et calibrer la formule sur les risques réels de la race. Un Labrador n'a pas les mêmes besoins qu'un Bouledogue Français.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA final ── -->
-  <section class="banner">
-    <div class="container banner-inner">
-      <div class="banner-text">
-        <h2 class="h2">Comparez toutes les assurances chien</h2>
-        <p>SantéVet, AssurOPoil et Lassie côte à côte — tarifs, garanties et délais. Trouvez la formule idéale pour votre race en moins de 2 minutes.</p>
-        <div class="banner-cta">
-          <a href="/comparatif" class="btn btn-accent btn-lg">
-            Comparatif complet
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="/races" class="btn btn-on-dark btn-lg">Par race de chien</a>
+        <div class="offer-price-block">
+          <span class="offer-price-from">dès</span>
+          <span class="offer-price-amount">{ins.price} €</span>
+          <span class="offer-price-period">/mois</span>
         </div>
+
+        <dl class="offer-specs">
+          <div class="spec-row">
+            <dt>Remboursement</dt>
+            <dd class={ins.refund === "100 %" ? "spec-good" : ""}>{ins.refund}</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Carence maladie</dt>
+            <dd class={ins.waiting === "30 j" ? "spec-good" : "spec-warn"}>{ins.waiting}</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Prévention</dt>
+            <dd class={ins.prevention !== "Non" ? "spec-good" : ""}>{ins.prevention}</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Plafond annuel</dt>
+            <dd>{ins.ceiling}</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Application mobile</dt>
+            <dd>
+              {ins.app
+                ? <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="Oui" class="spec-good-icon"><polyline points="20 6 9 17 4 12"/></svg> <span class="spec-good">Oui</span></>
+                : <><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-label="Non" class="spec-no-icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> <span>Non</span></>
+              }
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt>Délai remboursement</dt>
+            <dd class={ins.delay === "48 h" ? "spec-good" : ""}>{ins.delay}</dd>
+          </div>
+        </dl>
+
+        <p class="offer-verdict">{ins.verdict}</p>
+        <div class="offer-profile">{ins.profile}</div>
+
+        <a
+          href={ins.href}
+          target="_blank"
+          rel="noopener sponsored"
+          class={`btn btn-block${ins.recommended ? ' btn-primary' : ' btn-outline'}`}
+        >
+          Voir l'offre {ins.name}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+    ))}
+  </div>
+
+  <p class="affiliate-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Liens partenaires — commission perçue si souscription, sans surcoût pour vous. Tarifs vérifiés en mai 2026.
+  </p>
+
+  <h2 id="leviers" class="ed-h2">4 leviers pour réduire votre prime sans rogner les garanties</h2>
+
+  <div class="tips-grid">
+    {savings.map(tip => (
+      <div class="tip-card">
+        <div class="tip-icon" aria-hidden="true">
+          {tip.icon === "calendar" && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>}
+          {tip.icon === "shield"   && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+          {tip.icon === "search"   && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>}
+          {tip.icon === "check"    && <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}
+        </div>
+        <h3 class="tip-title">{tip.title}</h3>
+        <p class="tip-text">{tip.text}</p>
       </div>
-      <div class="banner-stats">
-        <div class="bs-card"><div class="bs-num">15 €</div><div class="bs-lbl">formule la moins chère</div></div>
-        <div class="bs-card"><div class="bs-num">100&nbsp;%</div><div class="bs-lbl">remboursement max</div></div>
-        <div class="bs-card"><div class="bs-num">3</div><div class="bs-lbl">assureurs comparés</div></div>
-        <div class="bs-card"><div class="bs-num">100&nbsp;%</div><div class="bs-lbl">indépendant</div></div>
-      </div>
-    </div>
-  </section>
-</Layout>
+    ))}
+  </div>
+
+  <h2 id="par-race" class="ed-h2">Coût moyen d'une assurance selon la race</h2>
+  <p class="ed-p">
+    Le tarif affiché varie selon la race, l'âge et la région. Voici une grille indicative
+    pour les races les plus populaires :
+  </p>
+  <div class="table-wrap"><div class="table-scroll">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Race</th>
+        <th>Niveau de risque</th>
+        <th>Formule conseillée</th>
+        <th>Budget mensuel indicatif</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="/races/labrador">Labrador</a></td><td>Modéré</td><td>Confort</td><td>18–25 €/mois</td></tr>
+      <tr><td><a href="/races/golden-retriever">Golden Retriever</a></td><td>Modéré–Élevé</td><td>Confort ou Premium</td><td>20–32 €/mois</td></tr>
+      <tr><td><a href="/races/bouledogue-francais">Bouledogue Français</a></td><td>Élevé</td><td>Confort ou Premium</td><td>25–40 €/mois</td></tr>
+      <tr><td><a href="/races/berger-allemand">Berger Allemand</a></td><td>Modéré</td><td>Essentielle ou Confort</td><td>15–25 €/mois</td></tr>
+      <tr><td><a href="/races/cavalier-king-charles">Cavalier King Charles</a></td><td>Élevé</td><td>Confort ou Premium</td><td>22–38 €/mois</td></tr>
+      <tr><td><a href="/races/beagle">Beagle</a></td><td>Faible–Modéré</td><td>Essentielle</td><td>15–20 €/mois</td></tr>
+      <tr><td><a href="/races/yorkshire-terrier">Yorkshire Terrier</a></td><td>Modéré</td><td>Essentielle ou Confort</td><td>15–22 €/mois</td></tr>
+      <tr><td><a href="/races/rottweiler">Rottweiler</a></td><td>Élevé</td><td>Confort ou Premium</td><td>25–42 €/mois</td></tr>
+    </tbody>
+  </table>
+  </div></div>
+  <p class="table-note">Fourchettes indicatives — le tarif réel dépend de l'âge, de la région et de la formule choisie chez chaque assureur.</p>
+
+  <h2 id="faq" class="ed-h2">Questions fréquentes sur l'assurance chien pas cher</h2>
+  <div class="faq-list">
+    <details>
+      <summary>
+        <span>Quelle est l'assurance chien la moins chère en 2026 ?</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p>AssurOPoil propose la formule la plus abordable à 15 €/mois avec un remboursement à 100 %. SantéVet est légèrement plus cher (18 €/mois) mais couvre aussi la prévention et rembourse en 48 h. Lassie débute à 20 €/mois.</p>
+    </details>
+    <details>
+      <summary>
+        <span>Peut-on assurer son chien pour moins de 15 € par mois ?</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p>Certaines formules Essentielle démarrent à 15 €/mois. Elles couvrent les accidents et urgences mais excluent les maladies chroniques. Pour les races à risque génétique (Bouledogue, Golden Retriever…), une formule Confort à 22 €/mois est bien plus rentable à long terme.</p>
+    </details>
+    <details>
+      <summary>
+        <span>L'assurance chien pas cher couvre-t-elle les maladies ?</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p>Les formules d'entrée de gamme couvrent généralement les accidents mais pas les maladies chroniques. Pour bénéficier d'une couverture maladie complète à prix réduit, AssurOPoil offre le meilleur rapport qualité-prix avec 100 % de remboursement dès 15 €/mois.</p>
+    </details>
+    <details>
+      <summary>
+        <span>Comment réduire le coût de son assurance chien ?</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p>Plusieurs leviers : souscrire tôt (avant 1 an, avant toute pathologie), choisir une franchise adaptée, comparer plusieurs assureurs, et calibrer la formule sur les risques réels de la race. Un Labrador n'a pas les mêmes besoins qu'un Bouledogue Français.</p>
+    </details>
+  </div>
+
+  <div class="ed-banner">
+    <p>Comparez toutes les assurances chien — tarifs, garanties, délais côte à côte.</p>
+    <a href="/comparatif" class="btn btn-accent btn-lg">
+      Comparatif complet
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+</ComparatifLayout>
 
 <style>
-  /* ── Hero ── */
-  .hero {
-    padding: 56px 0 40px;
-    background: linear-gradient(180deg, var(--c-green-50) 0%, #fff 100%);
-    border-bottom: 1px solid var(--c-line);
-  }
-  .hero-inner { max-width: 820px; }
-  .hero h1 { margin: 16px 0 14px; text-wrap: balance; }
-  .hero .lede { max-width: 640px; margin: 0 0 28px; text-wrap: pretty; }
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  @media (max-width: 600px) {
-    .hero { padding: 36px 0 28px; }
-    .hero-cta { width: 100%; }
-    .hero-cta .btn { flex: 1 1 auto; justify-content: center; }
-  }
-
-  /* ── Breadcrumb ── */
-  .breadcrumb ol {
-    display: flex;
-    gap: 0;
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px;
-    font-size: 13px;
-    color: var(--c-ink-3);
-    flex-wrap: wrap;
-  }
-  .breadcrumb li:not(:last-child)::after { content: " / "; margin: 0 6px; }
-  .breadcrumb a { color: var(--c-ink-3); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--c-green); }
-  .breadcrumb li[aria-current] { color: var(--c-ink); font-weight: 500; }
-
-  /* ── Key figures ── */
-  .kf-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-  @media (max-width: 640px) { .kf-row { grid-template-columns: repeat(2, 1fr); } }
-  .kf-card {
-    text-align: center;
-    background: white;
-    border: 1px solid var(--c-line);
-    border-radius: var(--radius-lg);
-    padding: 24px 16px;
-    box-shadow: var(--shadow-sm);
-  }
-  .kf-value { font-size: 1.75rem; font-weight: 800; letter-spacing: -.03em; color: var(--c-green); }
-  .kf-label { font-size: .8rem; color: var(--c-ink-3); margin-top: 4px; font-weight: 500; }
-
-  /* ── Layout utils (les .section / .container / .pill / .eyebrow viennent des tokens globaux) ── */
-  .section-tinted { background: var(--c-bg-soft); }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--gutter); }
-  @media (max-width: 600px) { .container { padding: 0 var(--gutter-mobile); } }
-  .article-narrow { max-width: 800px; }
-  .section-head { text-align: center; margin-bottom: 36px; }
-  .section-head .h2 { margin: 8px 0 0; }
-  .section-sub { color: var(--c-ink-3); font-size: .9rem; margin: 8px 0 0; }
-  .h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -.02em; color: var(--c-ink); }
-  .h2-sm { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; color: var(--c-ink); margin: 0 0 16px; }
-  .display em { font-style: normal; color: var(--c-green); }
-
-  /* ── Buttons ── */
-  .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-weight: 700; font-size: .875rem;
-    padding: .625rem 1.25rem; border-radius: 8px;
-    text-decoration: none; border: 2px solid transparent;
-    transition: opacity .15s, background .15s, color .15s;
-  }
-  .btn-lg { padding: .75rem 1.5rem; font-size: .95rem; }
-  .btn-block { width: 100%; justify-content: center; }
-  .btn-primary { background: var(--c-green); color: #fff; border-color: var(--c-green); }
-  .btn-primary:hover { opacity: .88; text-decoration: none; }
-  .btn-outline { background: transparent; color: var(--c-green-700); border-color: var(--c-green); }
-  .btn-outline:hover { background: var(--c-green-50); text-decoration: none; }
-  .btn-accent { background: var(--c-accent); color: var(--c-ink); border-color: var(--c-accent); }
-  .btn-accent:hover { opacity: .9; text-decoration: none; }
-  .btn-on-dark { background: rgba(255,255,255,.15); color: #fff; border-color: rgba(255,255,255,.35); }
-  .btn-on-dark:hover { background: rgba(255,255,255,.25); text-decoration: none; }
-
-  /* ── Offer cards ── */
+  /* ── Offer cards (spécifiques à cette page) ── */
   .offers-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 20px;
     align-items: start;
+    margin: 28px 0;
   }
-  @media (max-width: 900px) { .offers-grid { grid-template-columns: 1fr; } }
+  @media (min-width: 900px) {
+    .offers-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  }
 
   .offer-card {
     position: relative;
     background: white;
     border: 1px solid var(--c-line);
     border-radius: var(--radius-lg);
-    padding: 26px;
+    padding: 22px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     box-shadow: var(--shadow-sm);
   }
   @media (max-width: 600px) {
-    .offer-card { padding: 22px 20px; }
+    .offer-card { padding: 20px; }
     .offer-price-amount { font-size: 1.7rem; }
   }
   .offer-card.is-recommended {
@@ -536,60 +432,51 @@ const savings = [
 
   .offer-rank {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: .75rem;
-    font-weight: 800;
-    color: var(--c-ink-3);
-    letter-spacing: .04em;
+    top: 16px; right: 16px;
+    font-size: .75rem; font-weight: 800;
+    color: var(--c-ink-3); letter-spacing: .04em;
   }
   .offer-flag {
     position: absolute;
-    top: -10px;
-    left: 24px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--c-green);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 999px;
-    letter-spacing: -.005em;
+    top: -10px; left: 24px;
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--c-green); color: white;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px;
   }
-  .offer-head { display: flex; align-items: center; gap: 14px; }
+  .offer-head { display: flex; align-items: center; gap: 12px; }
   .offer-mark {
-    width: 44px; height: 44px; border-radius: 12px;
+    width: 40px; height: 40px; border-radius: 12px;
     display: grid; place-items: center; flex-shrink: 0;
   }
-  .offer-name { font-size: 1.15rem; font-weight: 800; letter-spacing: -.015em; margin: 0; }
+  .offer-name { font-size: 1.05rem; font-weight: 800; letter-spacing: -.015em; margin: 0; }
   .offer-badge {
-    font-size: .7rem; font-weight: 700; letter-spacing: .05em;
-    text-transform: uppercase; padding: 3px 8px; border-radius: 999px; display: inline-block; margin-top: 4px;
+    font-size: .65rem; font-weight: 700; letter-spacing: .05em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+    display: inline-block; margin-top: 4px;
   }
-  .badge-green { background: var(--c-green-50); color: var(--c-green-700); }
-  .badge-blue  { background: #e8f2fb; color: #1a5f94; }
-  .badge-orange{ background: #fef3ee; color: #b05a30; }
+  .badge-green  { background: var(--c-green-50); color: var(--c-green-700); }
+  .badge-blue   { background: #e8f2fb; color: #1a5f94; }
+  .badge-orange { background: #fef3ee; color: #b05a30; }
 
   .offer-price-block { display: flex; align-items: baseline; gap: 4px; }
   .offer-price-from   { font-size: .8rem; color: var(--c-ink-3); }
-  .offer-price-amount { font-size: 2rem; font-weight: 800; letter-spacing: -.04em; color: var(--c-ink); line-height: 1; }
+  .offer-price-amount { font-size: 1.9rem; font-weight: 800; letter-spacing: -.04em; color: var(--c-ink); line-height: 1; }
   .offer-price-period { font-size: .85rem; color: var(--c-ink-3); }
 
   .offer-specs { display: flex; flex-direction: column; gap: 0; margin: 0; }
   .spec-row {
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 0; border-bottom: 1px solid var(--c-line-soft);
-    font-size: .85rem; gap: 8px;
+    font-size: .82rem; gap: 8px;
   }
   .spec-row:last-child { border-bottom: none; }
   .spec-row dt { color: var(--c-ink-3); font-weight: 500; }
   .spec-row dd { font-weight: 600; color: var(--c-ink); display: flex; align-items: center; gap: 4px; }
   .spec-good { color: var(--c-green-700) !important; }
-  .spec-warn  { color: #b07a20; }
+  .spec-warn { color: #b07a20; }
   .spec-good-icon { color: var(--c-green); }
-  .spec-no-icon   { color: var(--c-ink-3); }
+  .spec-no-icon { color: var(--c-ink-3); }
 
   .offer-verdict {
     font-size: .85rem; color: var(--c-ink-2); line-height: 1.6;
@@ -600,12 +487,17 @@ const savings = [
     letter-spacing: .06em; color: var(--c-green-700);
   }
 
-  /* ── Affiliate note ── */
+  /* Buttons used in offer cards */
+  .btn-block { width: 100%; justify-content: center; }
+  .btn-outline { background: transparent; color: var(--c-green-700); border: 2px solid var(--c-green); }
+  .btn-outline:hover { background: var(--c-green-50); text-decoration: none; }
+
+  /* Affiliate note */
   .affiliate-note {
     display: flex; align-items: center; gap: 8px;
     font-size: 13px; color: var(--c-ink-3);
     padding: 14px 18px; background: var(--c-bg-soft);
-    border-radius: var(--radius); margin: 20px 0 0;
+    border-radius: var(--radius); margin: 18px 0 0;
     justify-content: center;
   }
 
@@ -613,30 +505,30 @@ const savings = [
   .tips-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 16px;
+    margin: 24px 0;
   }
   @media (max-width: 640px) { .tips-grid { grid-template-columns: 1fr; } }
   .tip-card {
     background: white; border: 1px solid var(--c-line);
-    border-radius: var(--radius-lg); padding: 22px;
+    border-radius: var(--radius-lg); padding: 20px;
     display: flex; flex-direction: column; gap: 10px;
   }
-  @media (max-width: 600px) { .tip-card { padding: 18px; } }
   .tip-icon {
-    width: 44px; height: 44px; border-radius: 12px;
+    width: 42px; height: 42px; border-radius: 12px;
     background: var(--c-green-50); color: var(--c-green);
     display: grid; place-items: center; flex-shrink: 0;
   }
   .tip-title { font-size: 1rem; font-weight: 700; color: var(--c-ink); margin: 0; }
   .tip-text  { font-size: .88rem; color: var(--c-ink-2); line-height: 1.6; margin: 0; }
 
-  /* ── Table ── */
+  /* ── Table wrap (utilise data-table de Layout) ── */
   .table-wrap { border-radius: var(--radius-lg); border: 1px solid var(--c-line); overflow: hidden; box-shadow: var(--shadow-sm); margin: 20px 0 8px; }
   .table-scroll { overflow-x: auto; }
-  .table-note { font-size: .8rem; color: var(--c-ink-3); margin: 0; }
+  .table-note { font-size: .8rem; color: var(--c-ink-3); margin: 0 0 24px; }
 
   /* ── FAQ ── */
-  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 0; }
   .faq-list details {
     background: white; border: 1px solid var(--c-line);
     border-radius: var(--radius); overflow: hidden;
@@ -645,31 +537,12 @@ const savings = [
   .faq-list details[open] { border-color: var(--c-green-200); box-shadow: var(--shadow-sm); }
   .faq-list summary {
     cursor: pointer; list-style: none;
-    padding: 18px 20px;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    font-weight: 600; font-size: 16px; color: var(--c-ink);
+    padding: 16px 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    font-weight: 600; font-size: 15px; color: var(--c-ink);
   }
   .faq-list summary::-webkit-details-marker { display: none; }
   .faq-list summary svg { transition: transform .25s ease; color: var(--c-ink-3); flex-shrink: 0; }
   .faq-list details[open] summary svg { transform: rotate(180deg); color: var(--c-green); }
-  .faq-list p { padding: 0 20px 20px; margin: 0; font-size: 15px; color: var(--c-ink-2); line-height: 1.65; }
-
-  /* ── CTA Banner ── */
-  .banner { background: linear-gradient(135deg, var(--c-green-800) 0%, var(--c-green-700) 100%); padding: 56px 0; }
-  .banner-inner { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
-  .banner-text { flex: 1; min-width: 280px; }
-  .banner-text .h2 { color: white; margin: 0 0 12px; }
-  .banner-text p { color: rgba(255,255,255,.75); margin: 0 0 24px; line-height: 1.6; }
-  .banner-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  .banner-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; min-width: 220px; flex: 1; }
-  .bs-card { background: rgba(255,255,255,.1); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid rgba(255,255,255,.15); }
-  .bs-num { font-size: 1.5rem; font-weight: 800; color: white; letter-spacing: -.03em; }
-  .bs-lbl { font-size: .72rem; color: rgba(255,255,255,.65); margin-top: 2px; font-weight: 500; }
-  @media (max-width: 600px) {
-    .banner { padding: 44px 0; }
-    .banner-inner { gap: 28px; }
-    .banner-cta { width: 100%; }
-    .banner-cta .btn { flex: 1 1 auto; justify-content: center; }
-    .banner-stats { grid-template-columns: 1fr 1fr; }
-  }
+  .faq-list p { padding: 0 18px 18px; margin: 0; font-size: 14px; color: var(--c-ink-2); line-height: 1.65; }
 </style>

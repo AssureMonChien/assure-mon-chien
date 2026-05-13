@@ -18,8 +18,13 @@ interface Props {
   /* Breadcrumb / nav */
   slug:               string;   // segment final de l'URL, ex: "assurance-chien-senior"
   breadcrumbLabel:    string;   // ex: "Assurance chien sénior"
+  /* Section parente (par défaut : comparatif) */
+  parentSection?: string;       // ex: "comparatif" | "guides"
+  parentLabel?:   string;       // ex: "Comparatif" | "Guides"
   /* Sidebar */
   tocItems:     TocItem[];
+  tocCtaHref?:  string;         // par défaut /comparatif
+  tocCtaLabel?: string;         // par défaut "Comparer les offres"
   /* Bas de page */
   relatedItems: RelatedItem[];
 }
@@ -29,11 +34,15 @@ const {
   heroLabel = "COMPARATIF",
   heroTitle, heroDesc, heroImage, heroImageAlt, heroCaption,
   slug, breadcrumbLabel,
+  parentSection = "comparatif",
+  parentLabel   = "Comparatif",
   tocItems, relatedItems,
+  tocCtaHref  = "/comparatif",
+  tocCtaLabel = "Comparer les offres",
 } = Astro.props;
 
 const siteUrl  = "https://assure-mon-chien.fr";
-const pageUrl  = `${siteUrl}/comparatif/${slug}`;
+const pageUrl  = `${siteUrl}/${parentSection}/${slug}`;
 const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroImage}`;
 ---
 
@@ -50,7 +59,7 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
         <nav class="ed-breadcrumb" aria-label="Fil d'Ariane">
           <ol>
             <li><a href="/">Accueil</a></li>
-            <li><a href="/comparatif">Comparatif</a></li>
+            <li><a href={`/${parentSection}`}>{parentLabel}</a></li>
             <li aria-current="page">{breadcrumbLabel}</li>
           </ol>
         </nav>
@@ -91,8 +100,8 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
         ))}
       </ol>
       <div class="ed-toc-cta">
-        <a href="/comparatif" class="btn btn-primary btn-sm">
-          Comparer les offres
+        <a href={tocCtaHref} class="btn btn-primary btn-sm">
+          {tocCtaLabel}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -129,6 +138,54 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
   </section>
 
 </Layout>
+
+<script is:inline>
+  /* Scroll-spy : highlight de l'ancre active dans la TOC pendant le scroll */
+  document.addEventListener("DOMContentLoaded", () => {
+    const tocLinks = Array.from(document.querySelectorAll(".ed-toc a[href^='#']"));
+    if (!tocLinks.length) return;
+
+    const items = tocLinks
+      .map((a) => {
+        const id = a.getAttribute("href").slice(1);
+        const target = id ? document.getElementById(id) : null;
+        const li = a.closest("li");
+        return target && li ? { id, target, li } : null;
+      })
+      .filter(Boolean);
+
+    if (!items.length) return;
+
+    const TRIGGER_Y = 140; // pixels depuis le haut du viewport
+    let last = null;
+
+    const update = () => {
+      let current = items[0];
+      for (const it of items) {
+        if (it.target.getBoundingClientRect().top <= TRIGGER_Y) current = it;
+        else break;
+      }
+      if (current === last) return;
+      items.forEach((it) => it.li.classList.toggle("is-active", it === current));
+      last = current;
+    };
+
+    update();
+    let scheduled = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(() => {
+          update();
+          scheduled = false;
+        });
+      },
+      { passive: true }
+    );
+  });
+</script>
 
 <style>
   /* ════════════════════════════
@@ -231,7 +288,6 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
     color: var(--c-ink-2);
     margin-top: 14px;
     font-style: italic;
-    max-width: 360px;
     line-height: 1.5;
   }
 
@@ -300,6 +356,12 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
     font-weight: 600;
   }
   .ed-toc li a:hover { background: var(--c-bg-soft); color: var(--c-ink); }
+  .ed-toc li.is-active a {
+    background: var(--c-green-50);
+    color: var(--c-green-700);
+    font-weight: 600;
+  }
+  .ed-toc li.is-active a::before { color: var(--c-green-700); }
   .ed-toc-cta { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--c-line); }
 
   /* Buttons (scoped to layout) */

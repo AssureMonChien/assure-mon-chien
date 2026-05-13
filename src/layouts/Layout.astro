@@ -1230,6 +1230,12 @@ const jsonldOrg = JSON.stringify({
     border-left: 2px solid transparent; margin-left: -2px; font-weight: 500; text-decoration: none;
   }
   .article-toc a:hover { color: var(--c-green-700); border-left-color: var(--c-green); text-decoration: none; }
+  .article-toc a.is-active {
+    color: var(--c-green-700);
+    border-left-color: var(--c-green);
+    background: var(--c-green-50);
+    font-weight: 600;
+  }
   .article-body { max-width: 760px; }
   .article-section { margin: 0 0 56px; }
   .article-section p { font-size: 16px; line-height: 1.7; color: var(--c-ink-2); margin: 0 0 16px; text-wrap: pretty; }
