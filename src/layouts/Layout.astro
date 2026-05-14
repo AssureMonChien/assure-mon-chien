@@ -435,8 +435,8 @@ const jsonldOrg = JSON.stringify({
     --font-mono:    "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 
     /* Layout */
-    --container:      1200px;
-    --container-wide: 1320px;
+    --container:      1100px;
+    --container-wide: 1100px;
     --radius-sm:  10px;
     --radius:     16px;
     --radius-lg:  22px;
@@ -446,8 +446,8 @@ const jsonldOrg = JSON.stringify({
     --shadow-lg:  0 24px 48px -16px rgba(15,110,86,.18), 0 8px 16px -8px rgba(15,110,86,.08);
 
     /* Spacing scale (rythme vertical harmonisé) */
-    --space-section:        80px;   /* entre sections principales */
-    --space-section-tight:  56px;   /* sections compactes */
+    --space-section:        48px;   /* entre sections principales */
+    --space-section-tight:  32px;   /* sections compactes */
     --space-block:          32px;   /* entre blocs internes */
     --gutter:               24px;   /* container padding desktop */
     --gutter-mobile:        16px;   /* container padding mobile */
@@ -494,7 +494,6 @@ const jsonldOrg = JSON.stringify({
     padding-left: var(--gutter);
     padding-right: var(--gutter);
   }
-  @media (min-width: 1320px) { .container { max-width: var(--container-wide); } }
   @media (max-width: 600px) {
     .container { padding-left: var(--gutter-mobile); padding-right: var(--gutter-mobile); }
   }
@@ -503,13 +502,14 @@ const jsonldOrg = JSON.stringify({
   .display {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(34px, 3.8vw, 52px);
+    font-size: clamp(36px, 4.4vw, 56px);
     line-height: 1.05;
     letter-spacing: -0.025em;
-    margin: 16px 0 14px;
+    margin: 18px 0 16px;
     text-wrap: balance;
   }
-  .display em { font-style: normal; color: var(--c-green-700); }
+  .display em { font-style: normal; color: var(--c-green); }
+  .home-hero .display em { color: var(--c-green-700); }
   .h2 {
     font-weight: 800;
     font-size: clamp(26px, 2.8vw, 40px);
@@ -633,7 +633,7 @@ const jsonldOrg = JSON.stringify({
   .section-tight { padding: var(--space-section-tight) 0; }
   .section-flush-top { padding-top: 0; }
   .section-flush-bottom { padding-bottom: 0; }
-  .section-head { max-width: 760px; margin: 0 auto 40px; text-align: center; }
+  .section-head { max-width: 760px; margin: 0 auto 32px; text-align: center; }
   .section-head-row {
     max-width: none;
     text-align: left;
@@ -646,13 +646,11 @@ const jsonldOrg = JSON.stringify({
   .section-head-row > div { max-width: 700px; }
   .section-sub { color: var(--c-ink-2); font-size: 17px; margin: 12px 0 0; text-wrap: pretty; }
   @media (max-width: 880px) {
-    .section       { padding: 56px 0; }
-    .section-tight { padding: 40px 0; }
-    .section-head  { margin-bottom: 28px; }
+    .section-head  { margin-bottom: 24px; }
   }
-  @media (max-width: 600px) {
-    .section       { padding: 48px 0; }
-    .section-tight { padding: 32px 0; }
+  @media (max-width: 720px) {
+    .section       { padding: 36px 0; }
+    .section-tight { padding: 24px 0; }
   }
 
   /* ════════════════════ RISK ════════════════════ */
@@ -1136,8 +1134,8 @@ const jsonldOrg = JSON.stringify({
     width: 44px; height: 44px; display: grid; place-items: center;
     background: var(--c-accent); color: var(--c-accent-text); border-radius: 12px; flex-shrink: 0;
   }
-  .callout h3 { margin: 0 0 6px; }
-  .callout p  { margin: 0; }
+  .callout.callout h3 { margin: 0 0 6px; }
+  .callout.callout p  { margin: 0; }
   @media (max-width: 480px) {
     .callout { padding: 18px; gap: 14px; }
     .callout-icon { width: 36px; height: 36px; }
@@ -1237,27 +1235,63 @@ const jsonldOrg = JSON.stringify({
   }
 
   /* ════════════════════ ARTICLE LAYOUT ════════════════════ */
-  .article-grid { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
-  .article-toc { position: sticky; top: 100px; }
-  .article-toc ol { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--c-line); }
-  .article-toc a {
-    display: block; padding: 8px 16px; font-size: 13px; color: var(--c-ink-2);
-    border-left: 2px solid transparent; margin-left: -2px; font-weight: 500; text-decoration: none;
+  .article-grid {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
   }
-  .article-toc a:hover { color: var(--c-green-700); border-left-color: var(--c-green); text-decoration: none; }
-  .article-toc a.is-active {
-    color: var(--c-green-700);
-    border-left-color: var(--c-green);
-    background: var(--c-green-50);
-    font-weight: 600;
-  }
-  .article-body { max-width: 760px; }
+  .article-grid > * { min-width: 0; }
+  .article-body { min-width: 0; max-width: 720px; }
   .article-section { margin: 0 0 56px; }
   .article-section p { font-size: 16px; line-height: 1.7; color: var(--c-ink-2); margin: 0 0 16px; text-wrap: pretty; }
   @media (max-width: 920px) {
-    .article-grid { grid-template-columns: 1fr; gap: 24px; }
-    .article-toc { display: none; }
+    .article-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   }
+
+  /* ── TOC éditorial (partagé entre RaceLayout et ComparatifLayout) ── */
+  .ed-toc { position: sticky; top: 90px; font-size: 14px; }
+  @media (max-width: 920px) { .ed-toc { position: relative; top: 0; } }
+
+  .ed-toc-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--c-ink-2);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .ed-toc ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    counter-reset: toc;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .ed-toc li { counter-increment: toc; position: relative; }
+  .ed-toc li a {
+    display: block;
+    padding: 8px 12px 8px 32px;
+    border-radius: 8px;
+    color: var(--c-ink-2);
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: background .12s;
+  }
+  .ed-toc li a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute; left: 8px;
+    font-size: 11px; color: var(--c-ink-3);
+    font-variant-numeric: tabular-nums;
+    top: 50%; transform: translateY(-50%);
+    font-weight: 600;
+  }
+  .ed-toc li a:hover { background: var(--c-bg-soft); color: var(--c-ink); }
+  .ed-toc li.is-active a { background: var(--c-green-50); color: var(--c-green-700); font-weight: 600; }
+  .ed-toc li.is-active a::before { color: var(--c-green-700); }
+  .ed-toc-cta { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--c-line); }
 
   /* ════════════════════ EDITORIAL (ed-*) ════════════════════ */
   .ed-page { background: #fff; }
@@ -1330,7 +1364,7 @@ const jsonldOrg = JSON.stringify({
     display: grid;
     grid-template-columns: 240px 1fr;
     gap: 56px;
-    padding: 64px 0 80px;
+    padding-block: 64px 80px;
     align-items: start;
   }
   .ed-toc { position: sticky; top: 90px; font-size: 14px; }
@@ -1365,7 +1399,7 @@ const jsonldOrg = JSON.stringify({
   .ed-toc li.is-active a::before { color: var(--c-green-700); }
   .ed-toc-cta { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--c-line); }
   @media (max-width: 920px) {
-    .ed-body { grid-template-columns: 1fr; gap: 24px; padding: 32px 0 60px; }
+    .ed-body { grid-template-columns: 1fr; gap: 24px; padding-block: 32px 60px; }
     .ed-toc { position: relative; top: 0; display: none; }
   }
 

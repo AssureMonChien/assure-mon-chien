@@ -252,13 +252,14 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
   .ed-title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(30px, 3.5vw, 52px);
-    line-height: 1.08;
-    letter-spacing: -.025em;
+    font-size: clamp(36px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
     color: var(--c-ink);
-    margin: 0 0 18px;
+    margin: 18px 0 16px;
     text-wrap: balance;
   }
+  .ed-title em { font-style: normal; color: var(--c-green); }
   .ed-lede {
     font-size: 18px;
     line-height: 1.55;
@@ -293,23 +294,20 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
 
   /* ════════════════════════════
      CORPS (TOC + ARTICLE)
-     (Container plus étroit pour la lecture éditoriale)
   ════════════════════════════ */
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--gutter); }
-  @media (max-width: 600px) { .container { padding: 0 var(--gutter-mobile); } }
-
   .ed-body {
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 240px minmax(0, 1fr);
     gap: 56px;
-    padding: 56px 0 72px;
+    padding-block: 56px 72px;
     align-items: start;
   }
+  .ed-body > * { min-width: 0; }
   @media (max-width: 920px) {
-    .ed-body { grid-template-columns: 1fr; gap: 0; padding: 40px 0 56px; }
+    .ed-body { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 40px 56px; }
   }
   @media (max-width: 600px) {
-    .ed-body { padding: 32px 0 48px; }
+    .ed-body { padding-block: 32px 48px; }
   }
 
   /* TOC */
@@ -382,7 +380,7 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
   /* ════════════════════════════
      ARTICLE BODY (classes consommées dans le slot)
   ════════════════════════════ */
-  .ed-article { max-width: 720px; }
+  .ed-article { max-width: 720px; min-width: 0; }
 
   /* Ces classes sont utilisées par les pages via :global() */
   :global(.ed-p) {
@@ -433,7 +431,7 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
     border-radius: var(--radius-lg);
     border: 1px solid var(--c-green-200);
   }
-  :global(.ed-stats-grid) { display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr); }
+  :global(.ed-stats-grid) { display: grid; gap: 24px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   @media (max-width: 760px) {
     :global(.ed-stats-grid) { grid-template-columns: repeat(2, 1fr) !important; gap: 18px; }
   }
@@ -443,11 +441,14 @@ const ogImage  = heroImage.startsWith("http") ? heroImage : `${siteUrl}${heroIma
   :global(.ed-stat-value) {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(26px, 4vw, 36px);
-    line-height: 1;
+    font-size: 30px;
+    line-height: 1.05;
     letter-spacing: -.02em;
     color: var(--c-green-700);
     font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 600px) {
+    :global(.ed-stat-value) { font-size: 24px; }
   }
   :global(.ed-stat-label) {
     font-size: 13px;

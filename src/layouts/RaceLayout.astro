@@ -140,8 +140,15 @@ const tailleLabel: Record<string, string> = {
   <section class="section section-tight section-flush-top race-content">
     <div class="container">
       <div class="article-grid">
-        <aside class="article-toc" aria-label="Sommaire">
+        <aside class="ed-toc" aria-label="Sommaire">
+          <div class="ed-toc-label">Sommaire</div>
           <ol id="race-toc-list"></ol>
+          <div class="ed-toc-cta">
+            <a href={`/comparatif/par-race/${slug}`} class="btn btn-primary btn-sm">
+              Comparer les offres
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
         </aside>
         <div class="article-body">
           <slot />
@@ -414,7 +421,7 @@ const tailleLabel: Record<string, string> = {
 
   /* ── Race article body (slot content from individual race pages) ── */
   .race-article {
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.7;
     color: var(--c-ink);
   }
@@ -431,7 +438,7 @@ const tailleLabel: Record<string, string> = {
     margin: 2rem 0 0.75rem;
     border-bottom: 2px solid var(--c-green-50);
     padding-bottom: 0.4rem;
-    scroll-margin-top: 90px;
+    scroll-margin-top: 100px;
   }
   .race-article h2:first-child { margin-top: 0; }
   .race-article h3 {
@@ -625,18 +632,39 @@ const tailleLabel: Record<string, string> = {
       tocList.appendChild(li);
     });
 
-    /* Active link highlight on scroll */
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const link = tocList.querySelector<HTMLAnchorElement>(
-            `a[href="#${entry.target.id}"]`
-          );
-          if (link) link.classList.toggle("is-active", entry.isIntersecting);
-        });
-      },
-      { rootMargin: "-15% 0px -70% 0px" }
-    );
-    headings.forEach((h) => obs.observe(h));
+    /* Scroll-spy — même logique que le TOC éditorial (seuil 140px) */
+    const tocLinks = Array.from(tocList.querySelectorAll<HTMLAnchorElement>("a[href^='#']"));
+    if (tocLinks.length) {
+      const items = tocLinks
+        .map((a) => {
+          const id = a.getAttribute("href")!.slice(1);
+          const target = id ? document.getElementById(id) : null;
+          const li = a.closest("li");
+          return target && li ? { target, li } : null;
+        })
+        .filter(Boolean) as { target: HTMLElement; li: Element }[];
+
+      const TRIGGER_Y = 140;
+      let last: (typeof items)[0] | null = null;
+
+      const update = () => {
+        let current = items[0];
+        for (const it of items) {
+          if (it.target.getBoundingClientRect().top <= TRIGGER_Y) current = it;
+          else break;
+        }
+        if (current === last) return;
+        items.forEach((it) => it.li.classList.toggle("is-active", it === current));
+        last = current;
+      };
+
+      update();
+      let scheduled = false;
+      window.addEventListener("scroll", () => {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(() => { update(); scheduled = false; });
+      }, { passive: true });
+    }
   }
 </script>

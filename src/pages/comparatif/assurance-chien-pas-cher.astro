@@ -203,7 +203,7 @@ const relatedItems = [
 
   <!-- KF résumé -->
   <div class="ed-stats">
-    <div class="ed-stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="ed-stats-grid ed-stats-grid--4">
       <div><div class="ed-stat-value">15 €</div><div class="ed-stat-label">Prix min. / mois</div></div>
       <div><div class="ed-stat-value">100 %</div><div class="ed-stat-label">Remboursement max</div></div>
       <div><div class="ed-stat-value">3</div><div class="ed-stat-label">Assureurs comparés</div></div>
@@ -398,6 +398,10 @@ const relatedItems = [
 </ComparatifLayout>
 
 <style>
+  .ed-stats-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 760px) { .ed-stats-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 420px) { .ed-stats-grid--4 { grid-template-columns: 1fr; } }
+
   /* ── Offer cards (spécifiques à cette page) ── */
   .offers-grid {
     display: grid;
@@ -420,6 +424,8 @@ const relatedItems = [
     flex-direction: column;
     gap: 14px;
     box-shadow: var(--shadow-sm);
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   @media (max-width: 600px) {
     .offer-card { padding: 20px; }
@@ -469,10 +475,11 @@ const relatedItems = [
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 0; border-bottom: 1px solid var(--c-line-soft);
     font-size: .82rem; gap: 8px;
+    min-width: 0;
   }
   .spec-row:last-child { border-bottom: none; }
-  .spec-row dt { color: var(--c-ink-3); font-weight: 500; }
-  .spec-row dd { font-weight: 600; color: var(--c-ink); display: flex; align-items: center; gap: 4px; }
+  .spec-row dt { color: var(--c-ink-3); font-weight: 500; min-width: 0; overflow-wrap: anywhere; }
+  .spec-row dd { font-weight: 600; color: var(--c-ink); display: flex; align-items: center; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
   .spec-good { color: var(--c-green-700) !important; }
   .spec-warn { color: #b07a20; }
   .spec-good-icon { color: var(--c-green); }
