@@ -70,7 +70,8 @@ const buildDate = new Date().toISOString().split('T')[0];
 export default defineConfig({
   site: 'https://assure-mon-chien.fr',
   redirects: {
-    '/couts/cout-chien-2025':           '/couts/cout-chien',
+    '/couts/cout-chien':                '/guides/cout-chien',
+    '/couts/cout-chien-2025':           '/guides/cout-chien',
     '/guides/assurance-chien-senior':   '/comparatif/assurance-chien-senior',
     '/guides/assurance-chiot':          '/comparatif/assurance-chiot',
   },
