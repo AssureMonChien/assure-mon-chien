@@ -260,7 +260,7 @@ const tailleLabel: Record<string, string> = {
         <h2 class="h2">Trouvez la meilleure assurance pour votre {nom}</h2>
         <p>Comparez les offres SantéVet, AssurOPoil et Lassie en moins de 2 minutes. Sans engagement, sans surcoût.</p>
         <div class="banner-cta">
-          <a href="/comparatif" class="btn btn-accent btn-lg">
+          <a href="/comparatif/meilleures-assurances" class="btn btn-accent btn-lg">
             Comparer les offres
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -422,7 +422,8 @@ const tailleLabel: Record<string, string> = {
     .article-grid { gap: 0; }
   }
   /* Les tableaux doivent rester scrollables sans casser la mise en page */
-  .race-article .table-wrap { max-width: 100%; }
+  .race-article { overflow-wrap: anywhere; }
+  .race-article .table-wrap { max-width: 100%; min-width: 0; }
   .race-article h2 {
     font-size: clamp(1.15rem, 2vw, 1.35rem);
     font-weight: 700;
