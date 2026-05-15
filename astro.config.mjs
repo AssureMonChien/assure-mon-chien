@@ -103,9 +103,13 @@ export default defineConfig({
           'https://assure-mon-chien.fr/comparatif',
           'https://assure-mon-chien.fr/comparatif/',
           'https://assure-mon-chien.fr/comparatif/meilleures-assurances',
+          'https://assure-mon-chien.fr/comparatif/meilleures-assurances/',
           'https://assure-mon-chien.fr/comparatif/assurance-chiot',
+          'https://assure-mon-chien.fr/comparatif/assurance-chiot/',
           'https://assure-mon-chien.fr/comparatif/assurance-chien-senior',
+          'https://assure-mon-chien.fr/comparatif/assurance-chien-senior/',
           'https://assure-mon-chien.fr/comparatif/assurance-chien-pas-cher',
+          'https://assure-mon-chien.fr/comparatif/assurance-chien-pas-cher/',
           'https://assure-mon-chien.fr/comparatif/par-race',
           'https://assure-mon-chien.fr/comparatif/par-race/',
         ];
