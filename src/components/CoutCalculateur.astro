@@ -1,0 +1,1316 @@
+---
+// Composant CoutCalculateur — calculateur "Combien coûte un chien sur 12 ans"
+// Coefficients V1 validés par sources externes (FACCO 2025, baromètre janv. 2026, etc.)
+// Voir Assur toutou/CALCULATEUR-COEFFICIENTS-V1.md pour le détail.
+import { RACES } from "../data/races.ts";
+
+const racesData = RACES.map(r => ({
+  slug: r.slug,
+  nom: r.nom,
+  taille: r.taille,
+  risque: r.risque,
+}));
+---
+
+
+  <section class="calc-wrap">
+    <div class="container">
+      <div class="calc-grid">
+
+        <!-- ───── FORM ───── -->
+        <div class="calc-card">
+          <form class="calc-form" id="calc-form" novalidate="">
+
+            <div class="calc-form-head">
+              <h2>Votre futur compagnon</h2>
+              <div class="calc-progress" aria-live="polite">
+                <span id="progress-label">0/4 champs requis</span>
+                <span class="calc-progress-bar" aria-hidden="true">
+                  <span class="calc-progress-bar-fill" id="progress-fill"></span>
+                </span>
+              </div>
+            </div>
+
+            <!-- ── Q1 · Taille ── -->
+            <!-- Annotation : on commence par la taille car c'est le levier #1 du coût (alim + véto + accessoires).
+                 Radio cards avec point d'échelle visuel — pas d'illustration de race pour rester neutre. -->
+            <fieldset class="calc-field" data-field="taille">
+              <div class="calc-field-head">
+                <legend class="calc-label"><span class="step-num">01</span> Taille du chien <span class="req" aria-hidden="true">*</span></legend>
+                <span class="calc-hint">Poids adulte</span>
+              </div>
+              <div class="calc-options" role="radiogroup" aria-label="Taille">
+                <label class="calc-option" data-taille="petit">
+                  <input type="radio" name="taille" value="petit">
+                  <span class="calc-opt-icon"><span class="size-dot s-1"></span></span>
+                  <span class="calc-opt-name">Petit</span>
+                  <span class="calc-opt-sub">moins de 10&nbsp;kg</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-taille="moyen">
+                  <input type="radio" name="taille" value="moyen">
+                  <span class="calc-opt-icon"><span class="size-dot s-2"></span></span>
+                  <span class="calc-opt-name">Moyen</span>
+                  <span class="calc-opt-sub">10 à 25&nbsp;kg</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-taille="grand">
+                  <input type="radio" name="taille" value="grand">
+                  <span class="calc-opt-icon"><span class="size-dot s-3"></span></span>
+                  <span class="calc-opt-name">Grand</span>
+                  <span class="calc-opt-sub">25 à 45&nbsp;kg</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-taille="geant">
+                  <input type="radio" name="taille" value="geant">
+                  <span class="calc-opt-icon"><span class="size-dot s-4"></span></span>
+                  <span class="calc-opt-name">Géant</span>
+                  <span class="calc-opt-sub">plus de 45&nbsp;kg</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- ── Q2 · Race (optionnel · combobox recherchable) ── -->
+            <!-- Annotation : optionnel, en second. Combobox custom (input texte + listbox filtrée).
+                 Nav clavier : ↓↑ pour parcourir, Entrée pour choisir, Esc pour fermer. -->
+            <div class="calc-field" data-field="race">
+              <div class="calc-field-head">
+                <label class="calc-label" for="race-input"><span class="step-num">02</span> Race</label>
+                <span class="calc-hint">Optionnel — 31 races · tapez pour filtrer</span>
+              </div>
+              <div class="calc-combobox" id="race-combo">
+                <span class="calc-select-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.5 11.5l3 3M7.5 13a5.5 5.5 0 100-11 5.5 5.5 0 000 11z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+                <input type="text" class="calc-combo-input" id="race-input" autocomplete="off" placeholder="Rechercher parmi 31 races…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="race-listbox">
+                <input type="hidden" id="race" name="race" value="">
+                <button type="button" class="calc-combo-clear" id="race-clear" aria-label="Effacer" hidden="">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3L3 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                </button>
+                <span class="calc-select-chevron" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+                <ul class="calc-combo-list" id="race-listbox" role="listbox" hidden=""></ul>
+              </div>
+            </div>
+
+            <!-- ── Q3 · Région ── -->
+            <div class="calc-field" data-field="region">
+              <div class="calc-field-head">
+                <label class="calc-label" for="region"><span class="step-num">03</span> Région <span class="req" aria-hidden="true">*</span></label>
+                <span class="calc-hint">Impact +/-15% sur véto</span>
+              </div>
+              <div class="calc-select-wrap">
+                <span class="calc-select-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 16s-5.5-5-5.5-9.5a5.5 5.5 0 1111 0C14.5 11 9 16 9 16zM9 8.5a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+                <select class="calc-select" id="region" name="region">
+                  <option value="">Sélectionnez votre région</option>
+                  <option value="moy" selected="">Toute la France (moyenne)</option>
+                  <option value="idf">Île-de-France</option>
+                  <option value="paca">Provence-Alpes-Côte d'Azur</option>
+                  <option value="ara">Auvergne-Rhône-Alpes</option>
+                  <option value="hdf">Hauts-de-France</option>
+                  <option value="occitanie">Occitanie</option>
+                  <option value="bretagne">Bretagne</option>
+                  <option value="nouvelle-aquitaine">Nouvelle-Aquitaine</option>
+                  <option value="ge">Grand Est</option>
+                  <option value="normandie">Normandie</option>
+                  <option value="pdl">Pays de la Loire</option>
+                  <option value="cvl">Centre-Val de Loire</option>
+                  <option value="bfc">Bourgogne-Franche-Comté</option>
+                  <option value="corse">Corse</option>
+                </select>
+                <span class="calc-select-chevron" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+              </div>
+            </div>
+
+            <!-- ── Q4 · Alimentation ── -->
+            <fieldset class="calc-field" data-field="alim">
+              <div class="calc-field-head">
+                <legend class="calc-label"><span class="step-num">04</span> Alimentation <span class="req" aria-hidden="true">*</span></legend>
+                <span class="calc-hint">Plus gros poste : ~40-50%</span>
+              </div>
+              <div class="calc-options cols-3" role="radiogroup" aria-label="Alimentation">
+                <label class="calc-option" data-alim="standard">
+                  <input type="radio" name="alim" value="standard">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="9" rx="1" stroke="currentColor" stroke-width="1.4"></rect><path d="M2 6h10" stroke="currentColor" stroke-width="1.4"></path></svg>
+                  </span>
+                  <span class="calc-opt-name">Standard</span>
+                  <span class="calc-opt-sub">Croquettes supermarché</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-alim="premium">
+                  <input type="radio" name="alim" value="premium">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3 3.5.5-2.5 2.5.5 3.5L7 9l-3 1.5.5-3.5L2 4.5 5.5 4 7 1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <span class="calc-opt-name">Premium</span>
+                  <span class="calc-opt-sub">Spécialisée animalerie</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-alim="sur-mesure">
+                  <input type="radio" name="alim" value="sur-mesure">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"></circle></svg>
+                  </span>
+                  <span class="calc-opt-name">Sur-mesure</span>
+                  <span class="calc-opt-sub">Recommandation véto</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- ── Q5 · Assurance ── -->
+            <!-- Annotation : positionnée en 5ème intentionnellement. L'utilisateur a déjà vu l'addition
+                 monter, c'est le moment où l'assurance prend du sens. Met aussi en valeur la
+                 comparaison "avec / sans" dans le résultat. -->
+            <fieldset class="calc-field" data-field="assur">
+              <div class="calc-field-head">
+                <legend class="calc-label"><span class="step-num">05</span> Assurance santé <span class="req" aria-hidden="true">*</span></legend>
+                <span class="calc-hint">Réduit les frais véto jusqu'à 40%</span>
+              </div>
+              <div class="calc-options cols-3" role="radiogroup" aria-label="Assurance">
+                <label class="calc-option" data-assur="aucune">
+                  <input type="radio" name="assur" value="aucune">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L2 3.5v3c0 3 2.2 5.7 5 6.5 2.8-.8 5-3.5 5-6.5v-3L7 1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path><path d="M4.5 7l1.5 1.5L9.5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".3"></path></svg>
+                  </span>
+                  <span class="calc-opt-name">Aucune</span>
+                  <span class="calc-opt-sub">Vous gérez les imprévus</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-assur="eco">
+                  <input type="radio" name="assur" value="eco">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L2 3.5v3c0 3 2.2 5.7 5 6.5 2.8-.8 5-3.5 5-6.5v-3L7 1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <span class="calc-opt-name">Économique</span>
+                  <span class="calc-opt-sub">Accidents seulement</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-assur="complete">
+                  <input type="radio" name="assur" value="complete">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L2 3.5v3c0 3 2.2 5.7 5 6.5 2.8-.8 5-3.5 5-6.5v-3L7 1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="currentColor" fill-opacity=".15"></path><path d="M4.5 7l1.5 1.5L9.5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <span class="calc-opt-name">Complète</span>
+                  <span class="calc-opt-sub">Maladies + prévention</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- ── Q6 · Équipement (optionnel · défaut Confort) ── -->
+            <!-- Annotation : passé en optionnel ; pré-sélectionné sur « Confort » (cas le plus représentatif).
+                 L'utilisateur peut affiner s'il veut mais le calcul tourne déjà avec ce défaut. -->
+            <fieldset class="calc-field" data-field="equip">
+              <div class="calc-field-head">
+                <legend class="calc-label"><span class="step-num">06</span> Niveau d'équipement</legend>
+                <span class="calc-hint">Optionnel · pré-rempli sur Confort</span>
+              </div>
+              <div class="calc-options cols-3" role="radiogroup" aria-label="Équipement">
+                <label class="calc-option" data-equip="essentiel">
+                  <input type="radio" name="equip" value="essentiel">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="4" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.4"></rect></svg>
+                  </span>
+                  <span class="calc-opt-name">Essentiel</span>
+                  <span class="calc-opt-sub">Le strict nécessaire</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option is-active" data-equip="confort">
+                  <input type="radio" name="equip" value="confort" checked="">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="4" width="11" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"></rect><path d="M4.5 4V2.5h5V4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>
+                  </span>
+                  <span class="calc-opt-name">Confort</span>
+                  <span class="calc-opt-sub">Panier, jouets, garde</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+                <label class="calc-option" data-equip="premium">
+                  <input type="radio" name="equip" value="premium">
+                  <span class="calc-opt-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5-3 5 3v6l-5 2-5-2V5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"></path><path d="M5 7.5l1.5 1.5L9 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <span class="calc-opt-name">Premium</span>
+                  <span class="calc-opt-sub">Toilettage + gâteries</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 11 11"><path d="M2.5 5.5l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg></span>
+                </label>
+              </div>
+            </fieldset>
+
+<!-- ── Q7 · Provenance (optionnel) — V1 robuste ── -->
+            <!-- Annotation : ajouté en V1 pour intégrer le coût d'acquisition réaliste dans l'année 1.
+                 3 options simples (refuge / éleveur / don). Si non renseigné → médiane "éleveur". -->
+            <fieldset class="calc-field" data-field="provenance">
+              <div class="calc-field-head">
+                <legend class="calc-label"><span class="step-num">07</span> Provenance</legend>
+                <span class="calc-hint">Optionnel · impact année 1</span>
+              </div>
+              <div class="calc-options cols-3" role="radiogroup" aria-label="Provenance">
+                <label class="calc-option" data-provenance="refuge">
+                  <input type="radio" name="provenance" value="refuge">
+                  <span class="calc-opt-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+                  </span>
+                  <span class="calc-opt-name">Refuge / SPA</span>
+                  <span class="calc-opt-sub">~300 € (identif inclus)</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </label>
+                <label class="calc-option" data-provenance="eleveur">
+                  <input type="radio" name="provenance" value="eleveur" checked>
+                  <span class="calc-opt-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+                  </span>
+                  <span class="calc-opt-name">Élevage</span>
+                  <span class="calc-opt-sub">~1 200 € (race standard)</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </label>
+                <label class="calc-option" data-provenance="don">
+                  <input type="radio" name="provenance" value="don">
+                  <span class="calc-opt-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v8H4v-8"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+                  </span>
+                  <span class="calc-opt-name">Don / Particulier</span>
+                  <span class="calc-opt-sub">~100 € (vaccins à faire)</span>
+                  <span class="calc-opt-tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </label>
+              </div>
+            </fieldset>
+
+          </form>
+        </div>
+
+        <!-- ───── RESULTS ───── -->
+        <aside class="calc-results" aria-live="polite">
+          <div class="results-card" id="results-card">
+
+            <div class="results-top">
+              <div class="results-eyebrow">
+                <span class="lbl">Coût total estimé · 12 ans</span>
+                <span class="results-live" id="results-live-pill" hidden="">
+                  <span class="live-dot"></span> Calculé
+                </span>
+              </div>
+              <!-- Hero number : count-up controlé par JS -->
+              <div class="results-hero" id="results-total">
+                <span id="results-total-num">—</span><span class="euro">&nbsp;€</span>
+              </div>
+              <p class="results-caption" id="results-caption">
+                Complétez le formulaire pour voir votre estimation.
+              </p>
+
+              <div class="results-stats">
+                <div class="results-stat">
+                  <div class="lbl">Année 1</div>
+                  <div class="val" id="rs-y1">—</div>
+                  <div class="hint">acquisition + setup</div>
+                </div>
+                <div class="results-stat">
+                  <div class="lbl">Moyenne / an</div>
+                  <div class="val" id="rs-avg">—</div>
+                  <div class="hint">années 2 → 10</div>
+                </div>
+                <div class="results-stat">
+                  <div class="lbl">Sénior</div>
+                  <div class="val" id="rs-senior">—</div>
+                  <div class="hint">années 11 → 12</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="results-body">
+              <div class="br-head">
+                <span class="br-title">Répartition sur 12 ans</span>
+                <span class="br-title-sub" id="br-sub">— —</span>
+              </div>
+
+              <!-- Stacked bar : segments dimensionnés en flex-grow via JS -->
+              <div class="br-bar" role="img" aria-label="Répartition du coût par catégorie">
+                <span class="br-bar-seg seg-food" style="flex:45"></span>
+                <span class="br-bar-seg seg-vet" style="flex:22"></span>
+                <span class="br-bar-seg seg-insure" style="flex:12"></span>
+                <span class="br-bar-seg seg-gear" style="flex:13"></span>
+                <span class="br-bar-seg seg-care" style="flex:8"></span>
+              </div>
+
+              <ul class="br-list" role="list">
+                <li class="br-item">
+                  <span class="br-swatch seg-food" aria-hidden="true"></span>
+                  <span class="name">Alimentation <span class="br-info" data-tip="Croquettes, friandises, compléments. Source : FACCO 2025, baromètre 2026." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="pct" id="pct-food">45%</span>
+                  <span class="amt" id="amt-food">—</span>
+                </li>
+                <li class="br-item">
+                  <span class="br-swatch seg-vet" aria-hidden="true"></span>
+                  <span class="name">Vétérinaire <span class="br-info" data-tip="Vaccins annuels, vermifuges, soins courants et imprévus." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="pct" id="pct-vet">22%</span>
+                  <span class="amt" id="amt-vet">—</span>
+                </li>
+                <li class="br-item">
+                  <span class="br-swatch seg-insure" aria-hidden="true"></span>
+                  <span class="name">Assurance <span class="br-info" data-tip="Cotisation mensuelle moyenne selon formule choisie." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="pct" id="pct-insure">12%</span>
+                  <span class="amt" id="amt-insure">—</span>
+                </li>
+                <li class="br-item">
+                  <span class="br-swatch seg-gear" aria-hidden="true"></span>
+                  <span class="name">Accessoires <span class="br-info" data-tip="Panier, laisses, jouets, gamelles. Renouvellement tous les 3-5 ans." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="pct" id="pct-gear">13%</span>
+                  <span class="amt" id="amt-gear">—</span>
+                </li>
+                <li class="br-item">
+                  <span class="br-swatch seg-care" aria-hidden="true"></span>
+                  <span class="name">Garde &amp; services <span class="br-info" data-tip="Pension, dog-walking, toilettage. Inclus si « Confort » ou « Premium »." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="pct" id="pct-care">8%</span>
+                  <span class="amt" id="amt-care">—</span>
+                </li>
+              </ul>
+
+              <!-- ── Comparaison avec / sans assurance ── -->
+              <div class="compare-block" id="compare-block">
+                <div class="compare-head">
+                  <span class="ic" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h4l1.5-4 2 8L11 7h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                  <span class="compare-title">Et si vous comparez avec / sans assurance&nbsp;?</span>
+                </div>
+                <div class="compare-row">
+                  <span class="lbl">Avec assurance complète</span>
+                  <span class="v" id="cmp-with">—</span>
+                </div>
+                <div class="compare-row">
+                  <span class="lbl">Sans assurance</span>
+                  <span class="v" id="cmp-without">—</span>
+                </div>
+                <div class="compare-row is-save">
+                  <span class="lbl">Économie potentielle</span>
+                  <span class="v" id="cmp-save">—</span>
+                </div>
+                <p class="compare-note">
+                  L'écart augmente fortement si votre chien développe une pathologie chronique (dysplasie, allergie, diabète).
+                </p>
+              </div>
+            </div>
+
+            <div class="results-cta">
+              <div class="cta-actions">
+                <a href="/comparatif/meilleures-assurances" class="btn btn-primary btn-block btn-lg">
+                  Voir le top&nbsp;3 des assurances 2026
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </a>
+              </div>
+              <p class="affiliate-note">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1a5 5 0 100 10A5 5 0 006 1zM3.5 6l1.7 1.7L8.5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Comparatif indépendant — commission perçue si souscription, sans surcoût pour vous.
+              </p>
+            </div>
+
+          </div>
+
+          <p class="calc-note">
+            Estimation indicative basée sur les prix moyens 2026 (sources&nbsp;: FACCO, INSEE, relevés cliniques).
+            Votre budget réel peut varier de ±20%.
+          </p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  
+
+<style is:global>
+/* ════════════ BASE ════════════ */
+    
+    
+    
+    img { max-width: 100%; display: block; }
+    a { color: var(--c-green-700); text-decoration: none; }
+    a:hover { color: var(--c-green); }
+    button { font-family: inherit; cursor: pointer; }
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding-inline: var(--gutter);
+    }
+    @media (max-width: 600px) {
+      .container { padding-inline: var(--gutter-mobile); }
+    }
+
+    /* ════════════ LAYOUT SPLIT ════════════ */
+    /* Design : formulaire à gauche (scroll), résultats à droite sticky. Mobile-first stack. */
+    .calc-wrap { padding: 40px 0 80px; background: var(--c-bg); }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (min-width: 960px) {
+      .calc-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; }
+    }
+    @media (min-width: 1100px) {
+      .calc-grid { gap: 40px; }
+    }
+
+    /* ════════════ FORM CARD ════════════ */
+    .calc-card {
+      background: #fff;
+      border: 1px solid var(--c-line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    @media (max-width: 600px) { .calc-card { padding: 20px; border-radius: var(--radius); } }
+    .calc-form { display: grid; gap: 28px; }
+
+    .calc-form-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--c-line-soft);
+    }
+    .calc-form-head h2 {
+      font-size: 18px; font-weight: 700; letter-spacing: -.01em;
+      margin: 0;
+    }
+    .calc-progress {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 12px; color: var(--c-ink-3);
+      font-weight: 500;
+    }
+    .calc-progress-bar {
+      width: 80px; height: 6px;
+      background: var(--c-line-soft);
+      border-radius: 999px; overflow: hidden;
+    }
+    .calc-progress-bar-fill {
+      height: 100%; width: 0%;
+      background: var(--c-green);
+      border-radius: 999px;
+      transition: width .35s cubic-bezier(.5,.0,.2,1);
+    }
+
+    /* ── Field block ── */
+    .calc-field { display: grid; gap: 12px; }
+    .calc-field-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 12px;
+    }
+    .calc-label {
+      font-size: 14px; font-weight: 600; letter-spacing: -.005em;
+      color: var(--c-ink);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .calc-label .step-num {
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--c-ink-3);
+      background: var(--c-bg-soft);
+      padding: 3px 7px; border-radius: 6px;
+      border: 1px solid var(--c-line);
+    }
+    .calc-label .req {
+      color: var(--c-risk-mid);
+      font-weight: 700;
+      margin-left: 2px;
+    }
+    .calc-hint {
+      font-size: 12px;
+      color: var(--c-ink-3);
+      font-weight: 500;
+    }
+
+    /* ── Radio cards ── */
+    .calc-options {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 540px) { .calc-options { grid-template-columns: repeat(4, 1fr); } }
+    .calc-options.cols-3 { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 540px) { .calc-options.cols-3 { grid-template-columns: repeat(3, 1fr); } }
+    .calc-options input[type="radio"] {
+      position: absolute; opacity: 0; pointer-events: none;
+    }
+    .calc-option {
+      position: relative;
+      display: grid; gap: 4px;
+      padding: 14px 14px 14px 14px;
+      background: #fff;
+      border: 1.5px solid var(--c-line);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color .15s, background .15s, box-shadow .15s, transform .15s;
+      min-height: 88px;
+    }
+    .calc-option:hover {
+      border-color: var(--c-green-200);
+      background: var(--c-green-50);
+    }
+    .calc-option:focus-within {
+      border-color: var(--c-green);
+      outline: 3px solid rgba(29,158,117,.15);
+      outline-offset: 0;
+    }
+    .calc-option.is-active,
+    input[type="radio"]:checked + .calc-option {
+      border-color: var(--c-green);
+      background: var(--c-green-50);
+      box-shadow: 0 0 0 1px var(--c-green) inset;
+    }
+    .calc-opt-icon {
+      width: 28px; height: 28px;
+      display: grid; place-items: center;
+      background: var(--c-bg-tinted);
+      color: var(--c-green-700);
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+    .calc-option.is-active .calc-opt-icon,
+    input[type="radio"]:checked + .calc-option .calc-opt-icon {
+      background: var(--c-green); color: #fff;
+    }
+    .calc-opt-name { font-size: 14px; font-weight: 700; color: var(--c-ink); letter-spacing: -.005em; }
+    .calc-opt-sub { font-size: 12px; color: var(--c-ink-3); line-height: 1.4; }
+    /* Tick mark when active */
+    .calc-opt-tick {
+      position: absolute; top: 10px; right: 10px;
+      width: 18px; height: 18px;
+      border-radius: 999px;
+      background: var(--c-green); color: #fff;
+      display: none; place-items: center;
+    }
+    .calc-option.is-active .calc-opt-tick,
+    input[type="radio"]:checked + .calc-option .calc-opt-tick { display: grid; }
+
+    /* ── Size dots (visual: small → big) ── */
+    .size-dot { width: 8px; height: 8px; border-radius: 999px; background: currentColor; display: inline-block; }
+    .size-dot.s-2 { width: 10px; height: 10px; }
+    .size-dot.s-3 { width: 13px; height: 13px; }
+    .size-dot.s-4 { width: 17px; height: 17px; }
+
+    /* ── Select / Combobox ── */
+    .calc-select-wrap { position: relative; }
+    .calc-select {
+      width: 100%;
+      appearance: none;
+      background: #fff;
+      border: 1.5px solid var(--c-line);
+      border-radius: 12px;
+      padding: 13px 44px 13px 44px;
+      font-family: inherit;
+      font-size: 15px; font-weight: 500;
+      color: var(--c-ink);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .calc-select:hover { border-color: var(--c-green-200); }
+    .calc-select:focus {
+      outline: none;
+      border-color: var(--c-green);
+      box-shadow: 0 0 0 3px rgba(29,158,117,.15);
+    }
+    .calc-select-icon {
+      position: absolute; top: 50%; left: 14px;
+      transform: translateY(-50%);
+      color: var(--c-ink-3);
+      pointer-events: none;
+    }
+    .calc-select-chevron {
+      position: absolute; top: 50%; right: 14px;
+      transform: translateY(-50%);
+      color: var(--c-ink-3);
+      pointer-events: none;
+    }
+
+    /* ── Combobox (race) ── */
+    /* Design : input texte stylé comme un select + dropdown listbox positionnée dessous.
+       L'icône loupe à gauche, clear à droite, chevron remplacé par clear quand actif. */
+    .calc-combobox {
+      position: relative;
+    }
+    .calc-combo-input {
+      width: 100%;
+      appearance: none;
+      background: #fff;
+      border: 1.5px solid var(--c-line);
+      border-radius: 12px;
+      padding: 13px 64px 13px 44px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--c-ink);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .calc-combo-input::placeholder { color: var(--c-ink-3); font-weight: 400; }
+    .calc-combo-input:hover { border-color: var(--c-green-200); }
+    .calc-combo-input:focus {
+      outline: none;
+      border-color: var(--c-green);
+      box-shadow: 0 0 0 3px rgba(29,158,117,.15);
+    }
+    .calc-combo-input.has-value {
+      font-weight: 600;
+      color: var(--c-ink);
+    }
+    .calc-combo-clear {
+      position: absolute; top: 50%; right: 40px;
+      transform: translateY(-50%);
+      width: 22px; height: 22px;
+      background: var(--c-bg-soft);
+      border: 1px solid var(--c-line);
+      color: var(--c-ink-3);
+      border-radius: 999px;
+      display: grid; place-items: center;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .calc-combo-clear:hover { background: var(--c-ink); color: #fff; border-color: var(--c-ink); }
+    .calc-combo-list {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+      max-height: 280px; overflow-y: auto;
+      background: #fff;
+      border: 1px solid var(--c-line);
+      border-radius: 14px;
+      box-shadow: var(--shadow-lg);
+      padding: 6px;
+      margin: 0;
+      list-style: none;
+      z-index: 30;
+    }
+    .calc-combo-list li {
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--c-ink);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      line-height: 1.3;
+    }
+    .calc-combo-list li:hover,
+    .calc-combo-list li.is-highlight {
+      background: var(--c-green-50);
+      color: var(--c-green-700);
+    }
+    .calc-combo-list li.is-empty {
+      color: var(--c-ink-3);
+      font-style: italic;
+      cursor: default;
+      padding: 14px 12px;
+      justify-content: center;
+    }
+    .calc-combo-list li.is-empty:hover { background: transparent; color: var(--c-ink-3); }
+    .calc-combo-list li .race-size {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--c-ink-3);
+      font-weight: 600;
+    }
+    .calc-combo-list li:hover .race-size,
+    .calc-combo-list li.is-highlight .race-size {
+      color: var(--c-green-700);
+    }
+    .calc-combo-list mark {
+      background: transparent;
+      color: inherit;
+      font-weight: 700;
+    }
+
+    /* ── Button large variant ── */
+    .btn-lg { padding: 16px 26px; font-size: 16px; }
+
+    /* ── Error state (annoté dans galerie) ── */
+    .is-error .calc-select,
+    .calc-option.is-error {
+      border-color: var(--c-risk-high) !important;
+      box-shadow: 0 0 0 3px rgba(229,57,53,.10) !important;
+    }
+    .calc-error-msg {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500;
+      color: var(--c-risk-high);
+      margin-top: 2px;
+    }
+
+    /* ════════════ RESULTS PANEL ════════════ */
+    .calc-results {
+      position: relative;
+    }
+    @media (min-width: 960px) {
+      .calc-results { position: sticky; top: 88px; }
+    }
+
+    .results-card {
+      background: #fff;
+      border: 1px solid var(--c-line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .results-top {
+      background: linear-gradient(180deg, #fff 0%, var(--c-green-50) 100%);
+      padding: 28px 28px 24px;
+      border-bottom: 1px solid var(--c-line-soft);
+      position: relative;
+    }
+    @media (max-width: 600px) { .results-top { padding: 22px 20px; } }
+    .results-eyebrow {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+    .results-eyebrow .lbl {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--c-ink-3);
+    }
+    .results-live {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--c-green-700);
+      background: var(--c-green-100);
+      padding: 4px 8px; border-radius: 999px;
+    }
+    .results-live .live-dot {
+      width: 6px; height: 6px; border-radius: 999px; background: var(--c-green);
+      animation: pulse 2s infinite;
+    }
+
+    /* ── Hero number ── */
+    .results-hero {
+      font-weight: 800;
+      font-size: clamp(56px, 8vw, 88px);
+      line-height: 1; letter-spacing: -.04em;
+      font-variant-numeric: tabular-nums;
+      color: var(--c-ink);
+      margin: 4px 0 6px;
+      transition: opacity .2s ease;
+    }
+    .results-hero .euro { font-weight: 700; color: var(--c-ink-2); margin-left: 4px; }
+    .results-caption {
+      font-size: 14px; color: var(--c-ink-2);
+      margin: 0 0 4px;
+    }
+    .results-caption strong { color: var(--c-ink); font-weight: 700; }
+
+    /* ── Sub-stats grid ── */
+    .results-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--c-line);
+    }
+    .results-stat .lbl {
+      font-size: 11px; letter-spacing: .04em;
+      color: var(--c-ink-3); font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .results-stat .val {
+      font-size: 18px; font-weight: 700; letter-spacing: -.015em;
+      color: var(--c-ink); font-variant-numeric: tabular-nums;
+    }
+    .results-stat .hint { font-size: 11px; color: var(--c-ink-3); margin-top: 2px; }
+
+    /* ── Breakdown ── */
+    .results-
+    @media (max-width: 600px) { .results- }
+    .br-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 12px; margin-bottom: 14px;
+    }
+    .br-title {
+      font-size: 13px; font-weight: 700; letter-spacing: -.005em;
+      color: var(--c-ink);
+    }
+    .br-title-sub { font-size: 12px; color: var(--c-ink-3); }
+
+    /* Stacked bar */
+    .br-bar {
+      display: flex; height: 14px; border-radius: 999px; overflow: hidden;
+      background: var(--c-line-soft);
+      margin-bottom: 18px;
+    }
+    .br-bar-seg { height: 100%; transition: flex .5s cubic-bezier(.5,.0,.2,1); }
+    .seg-food   { background: var(--c-green); }
+    .seg-vet    { background: var(--c-green-700); }
+    .seg-insure { background: var(--c-accent); }
+    .seg-gear   { background: #c9d7d2; }
+    .seg-care   { background: #8fa8a0; }
+
+    .br-list { display: grid; gap: 10px; }
+    .br-item {
+      display: grid;
+      grid-template-columns: 14px 1fr auto auto;
+      align-items: center;
+      gap: 10px;
+    }
+    .br-swatch { width: 10px; height: 10px; border-radius: 3px; }
+    .br-item .name { font-size: 13px; font-weight: 500; color: var(--c-ink); display: inline-flex; align-items: center; gap: 6px; }
+    .br-item .pct { font-family: var(--font-mono); font-size: 11px; color: var(--c-ink-3); font-weight: 600; min-width: 40px; text-align: right; }
+    .br-item .amt { font-size: 13px; color: var(--c-ink); font-weight: 700; font-variant-numeric: tabular-nums; min-width: 78px; text-align: right; }
+
+    /* Tooltip "i" */
+    .br-info {
+      width: 14px; height: 14px;
+      border-radius: 999px;
+      background: var(--c-bg-soft);
+      color: var(--c-ink-3);
+      display: inline-grid; place-items: center;
+      font-size: 9px; font-weight: 700;
+      cursor: help; font-family: var(--font-mono);
+      border: 1px solid var(--c-line);
+      transition: background .15s, color .15s;
+    }
+    .br-info:hover { background: var(--c-green-50); color: var(--c-green-700); border-color: var(--c-green-200); }
+
+    /* ── Comparaison avec/sans assurance ── */
+    .compare-block {
+      margin-top: 24px; padding: 18px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(249,203,66,.10) 0%, rgba(249,203,66,.05) 100%);
+      border: 1px solid rgba(249,203,66,.30);
+    }
+    .compare-head {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .compare-head .ic {
+      width: 28px; height: 28px;
+      background: var(--c-accent); color: var(--c-accent-text);
+      border-radius: 8px;
+      display: grid; place-items: center;
+    }
+    .compare-title { font-size: 13px; font-weight: 700; color: var(--c-ink); }
+    .compare-row {
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 8px;
+      padding: 8px 0; font-size: 14px;
+    }
+    .compare-row + .compare-row { border-top: 1px dashed rgba(0,0,0,.06); }
+    .compare-row .lbl { color: var(--c-ink-2); }
+    .compare-row .v { font-weight: 700; color: var(--c-ink); font-variant-numeric: tabular-nums; }
+    .compare-row.is-save .lbl { color: var(--c-green-700); font-weight: 600; }
+    .compare-row.is-save .v { color: var(--c-green-700); }
+    .compare-note { font-size: 12px; color: var(--c-ink-3); margin: 10px 0 0; line-height: 1.5; }
+
+    /* ── CTA section ── */
+    .results-cta { padding: 20px 28px 28px; }
+    @media (max-width: 600px) { .results-cta { padding: 20px; } }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 600; font-size: 15px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--c-ink);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      letter-spacing: -.005em;
+    }
+    .btn-block { display: flex; width: 100%; }
+    .btn-primary { background: var(--c-green); color: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.04), inset 0 -2px 0 rgba(0,0,0,.06); }
+    .btn-primary:hover { background: var(--c-green-600); transform: translateY(-1px); box-shadow: var(--shadow); color: #fff; }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 3px solid rgba(29,158,117,.30); outline-offset: 2px; }
+    .btn-ghost { background: #fff; color: var(--c-ink); border-color: var(--c-line); }
+    .btn-ghost:hover { background: var(--c-bg-soft); border-color: var(--c-line); color: var(--c-ink); }
+    .btn-sm { padding: 9px 14px; font-size: 13px; }
+
+    .cta-actions { display: grid; gap: 10px; }
+    .cta-row { display: flex; gap: 10px; }
+    .cta-row .btn { flex: 1; }
+    .affiliate-note {
+      font-size: 12px; color: var(--c-ink-3);
+      padding: 10px 14px; background: var(--c-bg-soft);
+      border-radius: 12px; margin: 16px 0 0;
+      text-align: center; text-wrap: pretty;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .affiliate-note svg { color: var(--c-green); flex-shrink: 0; }
+
+    /* ════════════ EMPTY STATE (résultats avant remplissage) ════════════ */
+    /* Note design : on remplace la grosse valeur par un placeholder calme, pas une erreur.
+       Idée : montrer la STRUCTURE (silhouette des stats) pour éduquer sur ce qui va apparaître. */
+    .empty-hero { color: var(--c-ink-3) !important; }
+    .empty-hero .euro { color: var(--c-line) !important; }
+    .empty-skel {
+      display: block;
+      background: linear-gradient(90deg, var(--c-line-soft) 0%, var(--c-line) 50%, var(--c-line-soft) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2.4s linear infinite;
+      border-radius: 6px;
+      color: transparent !important;
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* ════════════ NOTE FINALE / SOURCE ════════════ */
+    .calc-note {
+      max-width: 760px; margin: 24px auto 0;
+      font-size: 12px; color: var(--c-ink-3);
+      text-align: center; line-height: 1.5; text-wrap: pretty;
+    }
+
+  /* ─── Patches V1 : intégration Astro ─── */
+  .calc-wrap { padding: 40px 0 80px; background: var(--c-bg); }
+  .compare-row.is-save .v.is-negative { color: var(--c-risk-mid); }
+  .calc-combo-item.is-active { background: var(--c-green-50); }
+</style>
+
+<script is:inline define:vars={{ RACES_DATA: racesData }}>
+/* ───────────────────────────────────────────────────────────────
+   Calculateur — coefficients V1 (validés par sources, 17 mai 2026)
+   Sources : FACCO 2025, Réassurez-moi 2026, Meilleurtaux 2026,
+   LeComparateurAssurance baromètre janv. 2026, SPA, cliniques véto.
+   ─────────────────────────────────────────────────────────────── */
+
+/* RACES_DATA est injecté via define:vars depuis Astro */
+const RACES = (typeof RACES_DATA !== 'undefined') ? RACES_DATA : [];
+
+/* Coefficients V1 — voir Assur toutou/CALCULATEUR-COEFFICIENTS-V1.md */
+const COSTS = {
+  taille: { petit: 850, moyen: 1150, grand: 1700, geant: 2400 },
+  alim: { standard: 1.00, premium: 1.40, "sur-mesure": 1.70 },
+  region: {
+    moy: 1.00, idf: 1.20, paca: 1.15, ara: 1.05, corse: 1.10,
+    occitanie: 1.00, "nouvelle-aquitaine": 1.00, ge: 1.00,
+    pdl: 0.98, normandie: 0.98,
+    hdf: 0.95, bretagne: 0.95, cvl: 0.95, bfc: 0.95,
+  },
+  equip: { essentiel: 1.00, confort: 1.12, premium: 1.25 },
+  assur: {
+    aucune:   { cost: 0,   rebate: 0.00 },
+    eco:      { cost: 300, rebate: 0.15 },
+    complete: { cost: 600, rebate: 0.50 },
+  },
+};
+const RACE_COEF = { faible: 1.05, modere: 1.20, eleve: 1.40 };
+const ACQUISITION = { refuge: 300, eleveur: 1200, don: 100 };
+const SETUP_STANDARD = 770;
+const SETUP_REFUGE = 250;
+const TAILLE_FROM_RACE = { petite: 'petit', moyenne: 'moyen', grande: 'grand' };
+
+/* Format euro */
+const fmt = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+function eur(n) { return fmt.format(Math.round(n)) + ' €'; }
+
+/* Animation count-up */
+function animateNum(el, to, suffix) {
+  suffix = suffix || '';
+  const from = parseInt((el.dataset.cur || '0').replace(/[^\d-]/g, ''), 10) || 0;
+  const dur = 550;
+  const t0 = performance.now();
+  function step(t) {
+    const p = Math.min(1, (t - t0) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const v = Math.round(from + (to - from) * eased);
+    el.textContent = fmt.format(v) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+    else el.dataset.cur = String(to);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ───── Helpers DOM ───── */
+function val(name) {
+  const f = document.querySelector('input[name="' + name + '"]:checked');
+  return f ? f.value : null;
+}
+
+/* Champs requis : taille, region, alim, assur (équipement et provenance ont des défauts) */
+const REQUIRED = ['taille', 'region', 'alim', 'assur'];
+const REQ_TOTAL = REQUIRED.length;
+
+function fieldsCompleted() {
+  let n = 0;
+  if (val('taille')) n++;
+  if (document.getElementById('region').value) n++;
+  if (val('alim')) n++;
+  if (val('assur')) n++;
+  return n;
+}
+function isReady() { return fieldsCompleted() === REQ_TOTAL; }
+
+function syncActiveClasses() {
+  document.querySelectorAll('.calc-option').forEach(function(label) {
+    const input = label.querySelector('input[type="radio"]');
+    if (input && input.checked) label.classList.add('is-active');
+    else label.classList.remove('is-active');
+  });
+}
+
+/* ───── Compute principal ───── */
+function compute() {
+  if (!isReady()) {
+    renderEmpty();
+    return null;
+  }
+  const t = val('taille');
+  const a = val('alim');
+  const r = document.getElementById('region').value || 'moy';
+  const ins = val('assur');
+  const eq = val('equip') || 'confort';
+  const prov = val('provenance') || 'eleveur';
+  const raceSlug = document.getElementById('race').value || '';
+
+  /* Race lookup */
+  const race = RACES.find(function(rc) { return rc.slug === raceSlug; });
+  const raceCoef = race ? RACE_COEF[race.risque] : 1.00;
+  const raceSensitive = race && race.risque === 'eleve';
+
+  /* Base annuelle (avant assurance, hors acquisition) */
+  const base = COSTS.taille[t] * COSTS.region[r] * COSTS.equip[eq];
+  const partFood = base * 0.45 * COSTS.alim[a];
+  const partVet  = base * 0.22 * raceCoef;
+  const partGear = base * 0.13;
+  const partCare = base * 0.08;
+
+  /* Assurance — surcoût +30% race sensible */
+  const insCost = COSTS.assur[ins].cost * (raceSensitive ? 1.30 : 1.00);
+  const insRebate = COSTS.assur[ins].rebate;
+  const vetRebateAmount = partVet * insRebate;
+
+  /* Année normale (années 2-10) */
+  const annualNormal = partFood + partVet - vetRebateAmount + partGear + partCare + insCost;
+
+  /* Année 1 (acquisition + setup) */
+  const setupCost = (prov === 'refuge') ? SETUP_REFUGE : SETUP_STANDARD;
+  const acqCost   = ACQUISITION[prov];
+  const year1 = annualNormal + setupCost + acqCost;
+
+  /* Années sénior (11-12) */
+  const seniorAnnual = (partFood * 0.95)
+                     + (partVet * 1.60 * (1 - insRebate))
+                     + (partGear * 0.70)
+                     + (partCare * 1.10)
+                     + insCost;
+
+  /* Total 12 ans = an1 + 9 années normales + 2 années sénior */
+  const total = year1 + (annualNormal * 9) + (seniorAnnual * 2);
+
+  /* Comparaison sans assurance (insurer off, mais ajouter vetRebateAmount × 11) */
+  const annualNoIns = partFood + partVet + partGear + partCare;
+  const seniorNoIns = (partFood * 0.95) + (partVet * 1.60) + (partGear * 0.70) + (partCare * 1.10);
+  const year1NoIns  = annualNoIns + setupCost + acqCost;
+  const totalNoIns  = year1NoIns + (annualNoIns * 9) + (seniorNoIns * 2);
+
+  return {
+    total: total,
+    year1: year1,
+    annualNormal: annualNormal,
+    seniorAnnual: seniorAnnual,
+    parts: { food: partFood * 12, vet: (partVet - vetRebateAmount) * 12, ins: insCost * 12, gear: partGear * 12, care: partCare * 12 },
+    totalNoIns: totalNoIns,
+    raceName: race ? race.nom : null,
+    raceSensitive: raceSensitive,
+    insChosen: ins,
+  };
+}
+
+/* ───── Render résultats ───── */
+function renderEmpty() {
+  document.getElementById('results-total-num').textContent = '—';
+  document.getElementById('results-caption').textContent = 'Complétez le formulaire pour voir votre estimation.';
+  document.getElementById('rs-y1').textContent = '—';
+  document.getElementById('rs-avg').textContent = '—';
+  document.getElementById('rs-senior').textContent = '—';
+  document.getElementById('br-sub').textContent = '— —';
+  document.getElementById('results-live-pill').setAttribute('hidden', '');
+  document.getElementById('results-card').classList.remove('is-filled');
+  ['pct-food','pct-vet','pct-insure','pct-gear','pct-care'].forEach(function(id) {
+    const el = document.getElementById(id); if (el) el.textContent = '—';
+  });
+  ['amt-food','amt-vet','amt-insure','amt-gear','amt-care','cmp-with','cmp-without','cmp-save'].forEach(function(id) {
+    const el = document.getElementById(id); if (el) el.textContent = '—';
+  });
+}
+
+function renderResults(R) {
+  /* Hero + sub-numbers */
+  animateNum(document.getElementById('results-total-num'), R.total);
+  document.getElementById('rs-y1').textContent = eur(R.year1);
+  document.getElementById('rs-avg').textContent = eur(R.annualNormal);
+  document.getElementById('rs-senior').textContent = eur(R.seniorAnnual);
+
+  /* Caption */
+  let caption = 'Estimation sur 12 ans · ' + eur(R.total / 12) + ' par an en moyenne';
+  if (R.raceName) caption = R.raceName + ' · ' + caption;
+  document.getElementById('results-caption').textContent = caption;
+  document.getElementById('results-live-pill').removeAttribute('hidden');
+  document.getElementById('results-card').classList.add('is-filled');
+
+  /* Breakdown */
+  const parts = R.parts;
+  const sumAnnual = parts.food + parts.vet + parts.ins + parts.gear + parts.care;
+  function pct(p) { return Math.round((p / sumAnnual) * 100) + '%'; }
+  document.getElementById('pct-food').textContent  = pct(parts.food);
+  document.getElementById('pct-vet').textContent   = pct(parts.vet);
+  document.getElementById('pct-insure').textContent= pct(parts.ins);
+  document.getElementById('pct-gear').textContent  = pct(parts.gear);
+  document.getElementById('pct-care').textContent  = pct(parts.care);
+
+  /* Montants totaux sur 12 ans */
+  document.getElementById('amt-food').textContent  = eur(parts.food * 12);
+  document.getElementById('amt-vet').textContent   = eur(parts.vet * 12);
+  document.getElementById('amt-insure').textContent= eur(parts.ins * 12);
+  document.getElementById('amt-gear').textContent  = eur(parts.gear * 12);
+  document.getElementById('amt-care').textContent  = eur(parts.care * 12);
+
+  /* Stacked bar segments */
+  const segs = document.querySelectorAll('.br-bar-seg');
+  const totalSeg = sumAnnual;
+  if (segs.length >= 5) {
+    segs[0].style.flex = Math.max(1, Math.round(parts.food / totalSeg * 100));
+    segs[1].style.flex = Math.max(1, Math.round(parts.vet  / totalSeg * 100));
+    segs[2].style.flex = Math.max(1, Math.round(parts.ins  / totalSeg * 100));
+    segs[3].style.flex = Math.max(1, Math.round(parts.gear / totalSeg * 100));
+    segs[4].style.flex = Math.max(1, Math.round(parts.care / totalSeg * 100));
+  }
+
+  /* Sub-line */
+  const tName = val('taille');
+  const tLabel = tName ? (tName.charAt(0).toUpperCase() + tName.slice(1)) : '';
+  const regionLabel = document.getElementById('region').options[document.getElementById('region').selectedIndex].textContent.trim();
+  document.getElementById('br-sub').textContent = tLabel + ' · ' + regionLabel;
+
+  /* Comparaison avec/sans assurance — toujours visible */
+  document.getElementById('cmp-with').textContent = eur(R.total);
+  document.getElementById('cmp-without').textContent = eur(R.totalNoIns);
+  const save = R.totalNoIns - R.total;
+  const saveEl = document.getElementById('cmp-save');
+  if (save >= 0) {
+    saveEl.textContent = eur(save);
+    saveEl.classList.remove('is-negative');
+  } else {
+    saveEl.textContent = '−' + eur(-save);
+    saveEl.classList.add('is-negative');
+  }
+}
+
+/* ───── Recompute debounced ───── */
+let debounceTimer = null;
+function scheduleCompute() {
+  updateProgress();
+  if (debounceTimer) clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(function() {
+    const R = compute();
+    if (R) renderResults(R);
+  }, 250);
+}
+
+function updateProgress() {
+  const n = fieldsCompleted();
+  document.getElementById('progress-label').textContent = n + '/' + REQ_TOTAL + ' champs requis';
+  const pct = Math.round((n / REQ_TOTAL) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+/* ───── Combobox race ───── */
+function initRaceCombo() {
+  const combo = document.getElementById('race-combo');
+  const input = document.getElementById('race-input');
+  const hidden = document.getElementById('race');
+  const list = document.getElementById('race-listbox');
+  const clear = document.getElementById('race-clear');
+  let activeIdx = -1;
+
+  function renderList(filter) {
+    filter = (filter || '').toLowerCase().trim();
+    const matches = RACES.filter(function(r) { return !filter || r.nom.toLowerCase().includes(filter); });
+    list.innerHTML = '';
+    if (matches.length === 0) {
+      list.innerHTML = '<li class="calc-combo-empty" role="presentation">Aucune race ne correspond.</li>';
+      list.hidden = false; return;
+    }
+    matches.forEach(function(r, i) {
+      const li = document.createElement('li');
+      li.className = 'calc-combo-item';
+      li.setAttribute('role', 'option');
+      li.dataset.slug = r.slug;
+      li.dataset.idx = String(i);
+      li.innerHTML = '<span class="combo-item-name">' + r.nom + '</span><span class="combo-item-meta">' + r.taille + ' · risque ' + r.risque + '</span>';
+      li.addEventListener('mousedown', function(e) { e.preventDefault(); selectRace(r); });
+      list.appendChild(li);
+    });
+    list.hidden = false;
+    activeIdx = -1;
+  }
+
+  function selectRace(r) {
+    input.value = r.nom;
+    hidden.value = r.slug;
+    clear.hidden = false;
+    list.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+
+    /* Auto-fill taille from race */
+    const mapped = TAILLE_FROM_RACE[r.taille];
+    if (mapped) {
+      const radio = document.querySelector('input[name="taille"][value="' + mapped + '"]');
+      if (radio && !radio.checked) {
+        radio.checked = true;
+        syncActiveClasses();
+      }
+    }
+    scheduleCompute();
+  }
+
+  input.addEventListener('focus', function() {
+    renderList(input.value);
+    input.setAttribute('aria-expanded', 'true');
+  });
+  input.addEventListener('input', function() {
+    renderList(input.value);
+    input.setAttribute('aria-expanded', 'true');
+    if (input.value === '') { hidden.value = ''; clear.hidden = true; scheduleCompute(); }
+  });
+  input.addEventListener('keydown', function(e) {
+    const items = list.querySelectorAll('.calc-combo-item');
+    if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(items.length - 1, activeIdx + 1); items.forEach(function(it, i) { it.classList.toggle('is-active', i === activeIdx); }); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(0, activeIdx - 1); items.forEach(function(it, i) { it.classList.toggle('is-active', i === activeIdx); }); }
+    else if (e.key === 'Enter') { e.preventDefault(); if (activeIdx >= 0 && items[activeIdx]) { const slug = items[activeIdx].dataset.slug; const r = RACES.find(function(rc) { return rc.slug === slug; }); if (r) selectRace(r); } }
+    else if (e.key === 'Escape') { list.hidden = true; input.setAttribute('aria-expanded', 'false'); }
+  });
+  clear.addEventListener('click', function() {
+    input.value = ''; hidden.value = ''; clear.hidden = true;
+    input.focus(); renderList(''); scheduleCompute();
+  });
+  document.addEventListener('click', function(e) {
+    if (!combo.contains(e.target)) { list.hidden = true; input.setAttribute('aria-expanded', 'false'); }
+  });
+}
+
+/* ───── Init ───── */
+document.addEventListener('DOMContentLoaded', function() {
+  initRaceCombo();
+  document.querySelectorAll('.calc-form input, .calc-form select').forEach(function(el) {
+    el.addEventListener('change', function() {
+      syncActiveClasses();
+      scheduleCompute();
+    });
+  });
+  syncActiveClasses();
+  renderEmpty();
+  updateProgress();
+});
+
+</script>
