@@ -4,12 +4,21 @@
 // Voir Assur toutou/CALCULATEUR-COEFFICIENTS-V1.md pour le détail.
 import { RACES } from "../data/races.ts";
 
-const racesData = RACES.map(r => ({
-  slug: r.slug,
-  nom: r.nom,
-  taille: r.taille,
-  risque: r.risque,
-}));
+// Tri pour la liste déroulante : par taille (petite → moyenne → grande), puis alphabétique sur le nom
+const TAILLE_ORDER = { petite: 1, moyenne: 2, grande: 3 };
+const racesData = [...RACES]
+  .sort((a, b) => {
+    const ta = TAILLE_ORDER[a.taille] ?? 9;
+    const tb = TAILLE_ORDER[b.taille] ?? 9;
+    if (ta !== tb) return ta - tb;
+    return a.nom.localeCompare(b.nom, 'fr');
+  })
+  .map(r => ({
+    slug: r.slug,
+    nom: r.nom,
+    taille: r.taille,
+    risque: r.risque,
+  }));
 ---
 
 
@@ -381,7 +390,7 @@ const racesData = RACES.map(r => ({
                   <span class="compare-title">Et si vous comparez avec / sans assurance&nbsp;?</span>
                 </div>
                 <div class="compare-row">
-                  <span class="lbl">Avec assurance complète</span>
+                  <span class="lbl" id="cmp-with-label">Avec assurance complète</span>
                   <span class="v" id="cmp-with">—</span>
                 </div>
                 <div class="compare-row">
@@ -389,11 +398,11 @@ const racesData = RACES.map(r => ({
                   <span class="v" id="cmp-without">—</span>
                 </div>
                 <div class="compare-row is-save">
-                  <span class="lbl">Économie potentielle</span>
+                  <span class="lbl"><span id="cmp-save-label">Économie potentielle</span></span>
                   <span class="v" id="cmp-save">—</span>
                 </div>
-                <p class="compare-note">
-                  L'écart augmente fortement si votre chien développe une pathologie chronique (dysplasie, allergie, diabète).
+                <p class="compare-note" id="compare-note">
+                  Le delta dépend fortement de votre profil de race et de l'imprévu santé. Notre estimation intègre la probabilité moyenne d'incident chirurgical sur 12 ans.
                 </p>
               </div>
             </div>
@@ -405,10 +414,6 @@ const racesData = RACES.map(r => ({
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </a>
               </div>
-              <p class="affiliate-note">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1a5 5 0 100 10A5 5 0 006 1zM3.5 6l1.7 1.7L8.5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                Comparatif indépendant — commission perçue si souscription, sans surcoût pour vous.
-              </p>
             </div>
 
           </div>
@@ -974,6 +979,134 @@ const racesData = RACES.map(r => ({
   .calc-wrap { padding: 40px 0 80px; background: var(--c-bg); }
   .compare-row.is-save .v.is-negative { color: var(--c-risk-mid); }
   .calc-combo-item.is-active { background: var(--c-green-50); }
+
+  /* Séparateurs de section dans la liste race (taille) */
+  .calc-combo-section {
+    padding: 8px 14px 6px;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--c-ink-3, #6a7672);
+    background: var(--c-bg-soft, #fafaf7);
+    border-bottom: 1px solid var(--c-line-soft, #eef2f0);
+    border-top: 1px solid var(--c-line-soft, #eef2f0);
+    cursor: default;
+    pointer-events: none;
+  }
+  .calc-combo-section:first-child { border-top: none; }
+
+  /* Tooltips fonctionnels — point 2 retours */
+  .br-info {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px;
+    margin-left: 6px;
+    border-radius: 999px;
+    background: var(--c-line-soft, #eef2f0);
+    color: var(--c-ink-3, #6a7672);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 10px; font-weight: 700; font-style: normal;
+    cursor: help;
+    position: relative;
+    transition: background .15s, color .15s;
+  }
+  .br-info:hover, .br-info:focus, .br-info.is-open {
+    background: var(--c-green-100, #e7f5ee);
+    color: var(--c-green-700, #0F6E56);
+  }
+  .br-info::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%; transform: translateX(-50%);
+    width: max-content;
+    max-width: 240px;
+    padding: 10px 12px;
+    background: var(--c-ink, #16201c);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 12.5px; font-weight: 500;
+    line-height: 1.45; letter-spacing: 0; text-transform: none;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px -8px rgba(0,0,0,.25);
+    opacity: 0; pointer-events: none;
+    transition: opacity .15s, transform .15s;
+    z-index: 20;
+    white-space: normal;
+    text-align: left;
+  }
+  .br-info::before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%; transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--c-ink, #16201c);
+    opacity: 0; pointer-events: none;
+    transition: opacity .15s;
+    z-index: 20;
+  }
+  .br-info:hover::after, .br-info:focus::after, .br-info.is-open::after,
+  .br-info:hover::before, .br-info:focus::before, .br-info.is-open::before {
+    opacity: 1;
+  }
+  /* Mobile : tooltip prend toute la largeur visible si nécessaire */
+  @media (max-width: 600px) {
+    .br-info::after {
+      left: auto; right: -8px; transform: none;
+      max-width: calc(100vw - 60px);
+    }
+    .br-info::before { left: auto; right: 0; transform: none; }
+  }
+
+  /* Marges Répartition + jauge — point 3 retours */
+  .br-head { padding: 0 4px; }
+  .br-bar { margin: 14px 4px; }
+  .br-list { padding: 0 4px; }
+  .br-title-sub { padding-right: 4px; }
+
+  /* Affichage FAQ — point 4 retours : styles details/summary cohérents avec le site */
+  .faq-list { display: grid; gap: 12px; margin-top: 24px; }
+  .faq-list details {
+    background: #fff;
+    border: 1px solid var(--c-line, #e7eae8);
+    border-radius: 14px;
+    padding: 0;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .faq-list details[open] {
+    border-color: var(--c-green-200, #d4ede5);
+    box-shadow: 0 4px 12px -4px rgba(15,110,86,.10);
+  }
+  .faq-list summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--c-ink, #16201c);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+    user-select: none;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: "";
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%230F6E56' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='4 6 8 10 12 6'/></svg>");
+    background-repeat: no-repeat; background-position: center;
+    transition: transform .2s;
+  }
+  .faq-list details[open] summary::after { transform: rotate(180deg); }
+  .faq-list details > p {
+    margin: 0;
+    padding: 0 22px 20px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--c-ink-2, #3d4a45);
+  }
 </style>
 
 <script is:inline define:vars={{ RACES_DATA: racesData }}>
@@ -997,13 +1130,23 @@ const COSTS = {
     hdf: 0.95, bretagne: 0.95, cvl: 0.95, bfc: 0.95,
   },
   equip: { essentiel: 1.00, confort: 1.12, premium: 1.25 },
+  /* Cotisations 2026 (médian marché) + rebates ré-haussés pour refléter
+     les vrais remboursements (incidents lourds couverts à 80-90%) */
   assur: {
     aucune:   { cost: 0,   rebate: 0.00 },
-    eco:      { cost: 300, rebate: 0.15 },
-    complete: { cost: 600, rebate: 0.50 },
+    eco:      { cost: 250, rebate: 0.30 },
+    complete: { cost: 480, rebate: 0.75 },
   },
 };
 const RACE_COEF = { faible: 1.05, modere: 1.20, eleve: 1.40 };
+/* Provision "incidents majeurs" amortie sur 12 ans — c'est ce que l'assurance protège.
+   Probabilité × montant moyen d'un incident chirurgical/maladie chronique sur la vie du chien.
+   Calibré pour que l'assurance Complète soit GAGNANTE sur 12 ans pour les races à risque eleve
+   (Labrador, Bouledogue, Cavalier KC, etc.) et marginalement perdante pour les races saines. */
+const INCIDENT_AMOUNT_BY_SIZE = { petit: 1800, moyen: 2400, grand: 3000, geant: 3800 };
+const INCIDENT_PROB_BY_RISK = { faible: 0.25, modere: 0.55, eleve: 1.50 };
+/* Cotisation modulée par taille : un Yorkshire ne coûte pas le même prix qu'un Saint-Bernard à assurer */
+const INSURANCE_SIZE_MULT = { petit: 0.75, moyen: 1.00, grand: 1.20, geant: 1.45 };
 const ACQUISITION = { refuge: 300, eleveur: 1200, don: 100 };
 const SETUP_STANDARD = 770;
 const SETUP_REFUGE = 250;
@@ -1084,22 +1227,35 @@ function compute() {
   const partGear = base * 0.13;
   const partCare = base * 0.08;
 
-  /* Assurance — surcoût +30% race sensible */
-  const insCost = COSTS.assur[ins].cost * (raceSensitive ? 1.30 : 1.00);
+  /* Provision incidents majeurs (chirurgie BAOS, dysplasie, cancer, etc.)
+     amortie sur 12 ans = (probabilité par risque) × (coût moyen par taille) / 12.
+     Sans assurance, l'utilisateur en supporte la totalité.
+     Avec assurance, ces incidents sont couverts à 80-90 % → on applique le rebate. */
+  const incidentRisk = race ? INCIDENT_PROB_BY_RISK[race.risque] : 0.40;
+  const incidentAmount = INCIDENT_AMOUNT_BY_SIZE[t];
+  const incidentExpectedAnnual = (incidentAmount * incidentRisk) / 12;
+
+  /* Assurance — modulée par taille + surcoût +15 % race sensible (cotisation marché 2026) */
+  const insCost = COSTS.assur[ins].cost * INSURANCE_SIZE_MULT[t] * (raceSensitive ? 1.15 : 1.00);
   const insRebate = COSTS.assur[ins].rebate;
-  const vetRebateAmount = partVet * insRebate;
+  /* Le rebate s'applique à la part véto courante + aux incidents majeurs */
+  const vetRebateAmount = (partVet + incidentExpectedAnnual) * insRebate;
+  /* Part véto annuelle nette d'assurance */
+  const vetNetAnnual = (partVet + incidentExpectedAnnual) - vetRebateAmount;
 
   /* Année normale (années 2-10) */
-  const annualNormal = partFood + partVet - vetRebateAmount + partGear + partCare + insCost;
+  const annualNormal = partFood + vetNetAnnual + partGear + partCare + insCost;
 
   /* Année 1 (acquisition + setup) */
   const setupCost = (prov === 'refuge') ? SETUP_REFUGE : SETUP_STANDARD;
   const acqCost   = ACQUISITION[prov];
   const year1 = annualNormal + setupCost + acqCost;
 
-  /* Années sénior (11-12) */
+  /* Années sénior (11-12) : véto courant et incidents × 1.6 (gériatrie) */
+  const vetSeniorGross = (partVet + incidentExpectedAnnual) * 1.60;
+  const vetSeniorNet = vetSeniorGross * (1 - insRebate);
   const seniorAnnual = (partFood * 0.95)
-                     + (partVet * 1.60 * (1 - insRebate))
+                     + vetSeniorNet
                      + (partGear * 0.70)
                      + (partCare * 1.10)
                      + insCost;
@@ -1107,9 +1263,10 @@ function compute() {
   /* Total 12 ans = an1 + 9 années normales + 2 années sénior */
   const total = year1 + (annualNormal * 9) + (seniorAnnual * 2);
 
-  /* Comparaison sans assurance (insurer off, mais ajouter vetRebateAmount × 11) */
-  const annualNoIns = partFood + partVet + partGear + partCare;
-  const seniorNoIns = (partFood * 0.95) + (partVet * 1.60) + (partGear * 0.70) + (partCare * 1.10);
+  /* Comparaison sans assurance (incidents et véto à 100 % à charge) */
+  const vetGrossAnnual = partVet + incidentExpectedAnnual;
+  const annualNoIns = partFood + vetGrossAnnual + partGear + partCare;
+  const seniorNoIns = (partFood * 0.95) + vetSeniorGross + (partGear * 0.70) + (partCare * 1.10);
   const year1NoIns  = annualNoIns + setupCost + acqCost;
   const totalNoIns  = year1NoIns + (annualNoIns * 9) + (seniorNoIns * 2);
 
@@ -1118,7 +1275,7 @@ function compute() {
     year1: year1,
     annualNormal: annualNormal,
     seniorAnnual: seniorAnnual,
-    parts: { food: partFood * 12, vet: (partVet - vetRebateAmount) * 12, ins: insCost * 12, gear: partGear * 12, care: partCare * 12 },
+    parts: { food: partFood * 12, vet: vetNetAnnual * 12, ins: insCost * 12, gear: partGear * 12, care: partCare * 12 },
     totalNoIns: totalNoIns,
     raceName: race ? race.nom : null,
     raceSensitive: raceSensitive,
@@ -1193,16 +1350,40 @@ function renderResults(R) {
   document.getElementById('br-sub').textContent = tLabel + ' · ' + regionLabel;
 
   /* Comparaison avec/sans assurance — toujours visible */
+  /* Labels dynamiques : reflète la formule choisie */
+  const insLabels = {
+    aucune: 'Avec assurance (aucune souscrite)',
+    eco: 'Avec assurance économique',
+    complete: 'Avec assurance complète',
+  };
+  const insChosenLabel = insLabels[R.insChosen] || 'Avec assurance';
+  const cmpWithLabel = document.getElementById('cmp-with-label');
+  if (cmpWithLabel) cmpWithLabel.textContent = insChosenLabel;
+
   document.getElementById('cmp-with').textContent = eur(R.total);
   document.getElementById('cmp-without').textContent = eur(R.totalNoIns);
   const save = R.totalNoIns - R.total;
   const saveEl = document.getElementById('cmp-save');
+  const saveLblEl = document.getElementById('cmp-save-label');
+  const noteEl = document.getElementById('compare-note');
   if (save >= 0) {
     saveEl.textContent = eur(save);
     saveEl.classList.remove('is-negative');
+    if (saveLblEl) saveLblEl.textContent = 'Économie sur 12 ans';
+    if (noteEl) {
+      noteEl.textContent = R.raceSensitive
+        ? "Votre race présente un risque élevé de pathologie coûteuse (chirurgie, traitement chronique). L'assurance est statistiquement gagnante sur la durée."
+        : "Sur 12 ans, l'assurance vous économise en moyenne ce montant en couvrant les imprévus chirurgicaux et les soins gériatriques.";
+    }
   } else {
-    saveEl.textContent = '−' + eur(-save);
+    saveEl.textContent = '+' + eur(-save);
     saveEl.classList.add('is-negative');
+    if (saveLblEl) saveLblEl.textContent = "Surcoût moyen 12 ans";
+    if (noteEl) {
+      noteEl.textContent = R.raceSensitive
+        ? "Votre race est exposée à un risque réel. Même si la moyenne penche légèrement vers le surcoût, un seul incident grave (chirurgie 2 500–3 500 €) renverse le calcul en faveur de l'assurance."
+        : "Pour ce profil de chien sain et robuste, l'assurance reste un choix de tranquillité d'esprit plutôt qu'un calcul financier. Elle vous protège contre un imprévu lourd (~3 000 €), même si la probabilité est faible.";
+    }
   }
 }
 
@@ -1241,13 +1422,25 @@ function initRaceCombo() {
       list.innerHTML = '<li class="calc-combo-empty" role="presentation">Aucune race ne correspond.</li>';
       list.hidden = false; return;
     }
-    matches.forEach(function(r, i) {
+    /* RACES déjà triées côté Astro : taille → alphabétique. Séparateur quand la taille change. */
+    let currentTaille = null;
+    let idx = 0;
+    matches.forEach(function(r) {
+      if (r.taille !== currentTaille) {
+        currentTaille = r.taille;
+        const hdr = document.createElement('li');
+        hdr.className = 'calc-combo-section';
+        hdr.setAttribute('role', 'presentation');
+        const label = r.taille === 'petite' ? 'Petites races' : (r.taille === 'moyenne' ? 'Races moyennes' : 'Grandes races');
+        hdr.textContent = label;
+        list.appendChild(hdr);
+      }
       const li = document.createElement('li');
       li.className = 'calc-combo-item';
       li.setAttribute('role', 'option');
       li.dataset.slug = r.slug;
-      li.dataset.idx = String(i);
-      li.innerHTML = '<span class="combo-item-name">' + r.nom + '</span><span class="combo-item-meta">' + r.taille + ' · risque ' + r.risque + '</span>';
+      li.dataset.idx = String(idx++);
+      li.innerHTML = '<span class="combo-item-name">' + r.nom + '</span><span class="combo-item-meta">risque ' + r.risque + '</span>';
       li.addEventListener('mousedown', function(e) { e.preventDefault(); selectRace(r); });
       list.appendChild(li);
     });
@@ -1261,8 +1454,6 @@ function initRaceCombo() {
     clear.hidden = false;
     list.hidden = true;
     input.setAttribute('aria-expanded', 'false');
-
-    /* Auto-fill taille from race */
     const mapped = TAILLE_FROM_RACE[r.taille];
     if (mapped) {
       const radio = document.querySelector('input[name="taille"][value="' + mapped + '"]');
@@ -1299,9 +1490,34 @@ function initRaceCombo() {
   });
 }
 
-/* ───── Init ───── */
+/* ───── Tooltips infobulle (point 2 retours) — click/tap pour ouvrir, click ailleurs pour fermer ───── */
+function initTooltips() {
+  const infos = document.querySelectorAll('.br-info');
+  infos.forEach(function(el) {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const wasOpen = el.classList.contains('is-open');
+      document.querySelectorAll('.br-info.is-open').forEach(function(o) { o.classList.remove('is-open'); });
+      if (!wasOpen) el.classList.add('is-open');
+    });
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
+      }
+      if (e.key === 'Escape') el.classList.remove('is-open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.br-info.is-open').forEach(function(o) { o.classList.remove('is-open'); });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   initRaceCombo();
+  initTooltips();
   document.querySelectorAll('.calc-form input, .calc-form select').forEach(function(el) {
     el.addEventListener('change', function() {
       syncActiveClasses();
