@@ -40,12 +40,38 @@ const racesData = [...RACES]
               </div>
             </div>
 
-            <!-- ── Q1 · Taille ── -->
-            <!-- Annotation : on commence par la taille car c'est le levier #1 du coût (alim + véto + accessoires).
-                 Radio cards avec point d'échelle visuel — pas d'illustration de race pour rester neutre. -->
-            <fieldset class="calc-field" data-field="taille">
+
+            <!-- ── Q1 · Race (combobox recherchable, obligatoire) ── -->
+            <!-- Annotation : Race en premier — plus intuitif (auto-déduit la taille).
+                 Si "Autre / Je ne sais pas" est choisi, la question Taille apparaît dynamiquement.
+                 Nav clavier : ↓↑ pour parcourir, Entrée pour choisir, Esc pour fermer. -->
+            <div class="calc-field" data-field="race">
               <div class="calc-field-head">
-                <legend class="calc-label"><span class="step-num">01</span> Taille du chien <span class="req" aria-hidden="true">*</span></legend>
+                <label class="calc-label" for="race-input"><span class="step-num">01</span> Race de votre chien <span class="req" aria-hidden="true">*</span></label>
+                <span class="calc-hint">31 races · ou "Autre" pour préciser la taille</span>
+              </div>
+              <div class="calc-combobox" id="race-combo">
+                <span class="calc-select-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.5 11.5l3 3M7.5 13a5.5 5.5 0 100-11 5.5 5.5 0 000 11z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+                <input type="text" class="calc-combo-input" id="race-input" autocomplete="off" placeholder="Rechercher parmi 31 races…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="race-listbox">
+                <input type="hidden" id="race" name="race" value="">
+                <button type="button" class="calc-combo-clear" id="race-clear" aria-label="Effacer" hidden="">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3L3 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+                </button>
+                <span class="calc-select-chevron" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </span>
+                <ul class="calc-combo-list" id="race-listbox" role="listbox" hidden=""></ul>
+              </div>
+            </div>
+
+            <!-- ── Q2 · Taille (conditionnel — affiché seulement si race = "Autre" ou non renseignée) ── -->
+            <!-- Annotation : auto-déduite par la race quand possible. Visible uniquement
+                 quand l'utilisateur n'a pas de race dans nos 31 (croisés, races rares). -->
+            <fieldset class="calc-field is-conditional" data-field="taille" id="field-taille" hidden>
+              <div class="calc-field-head">
+                <legend class="calc-label"><span class="step-num">02</span> Taille du chien <span class="req" aria-hidden="true">*</span></legend>
                 <span class="calc-hint">Poids adulte</span>
               </div>
               <div class="calc-options" role="radiogroup" aria-label="Taille">
@@ -79,30 +105,6 @@ const racesData = [...RACES]
                 </label>
               </div>
             </fieldset>
-
-            <!-- ── Q2 · Race (optionnel · combobox recherchable) ── -->
-            <!-- Annotation : optionnel, en second. Combobox custom (input texte + listbox filtrée).
-                 Nav clavier : ↓↑ pour parcourir, Entrée pour choisir, Esc pour fermer. -->
-            <div class="calc-field" data-field="race">
-              <div class="calc-field-head">
-                <label class="calc-label" for="race-input"><span class="step-num">02</span> Race</label>
-                <span class="calc-hint">Optionnel — 31 races · tapez pour filtrer</span>
-              </div>
-              <div class="calc-combobox" id="race-combo">
-                <span class="calc-select-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.5 11.5l3 3M7.5 13a5.5 5.5 0 100-11 5.5 5.5 0 000 11z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                </span>
-                <input type="text" class="calc-combo-input" id="race-input" autocomplete="off" placeholder="Rechercher parmi 31 races…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="race-listbox">
-                <input type="hidden" id="race" name="race" value="">
-                <button type="button" class="calc-combo-clear" id="race-clear" aria-label="Effacer" hidden="">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3L3 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
-                </button>
-                <span class="calc-select-chevron" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                </span>
-                <ul class="calc-combo-list" id="race-listbox" role="listbox" hidden=""></ul>
-              </div>
-            </div>
 
             <!-- ── Q3 · Région ── -->
             <div class="calc-field" data-field="region">
@@ -404,6 +406,37 @@ const racesData = [...RACES]
                 <p class="compare-note" id="compare-note">
                   Le delta dépend fortement de votre profil de race et de l'imprévu santé. Notre estimation intègre la probabilité moyenne d'incident chirurgical sur 12 ans.
                 </p>
+              </div>
+              <div class="scenario-block">
+                <button class="scenario-toggle" id="scenario-toggle" type="button" aria-expanded="false" aria-controls="scenario-content">
+                  <span class="scenario-toggle-label">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l2 5h5l-4 3 1.5 5L8 11.5 3.5 14.5 5 9.5l-4-3h5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                    Et si votre chien avait un incident grave&nbsp;?
+                  </span>
+                  <svg class="scenario-toggle-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 5l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="scenario-content" id="scenario-content" hidden>
+                  <p class="scenario-intro">
+                    Pour un <strong id="scenario-size">chien</strong>, prenons l'exemple d'une <strong id="scenario-name">chirurgie</strong> à <strong id="scenario-cost">—</strong>.
+                  </p>
+                  <div class="scenario-rows">
+                    <div class="scenario-row">
+                      <span class="scenario-label">Sans assurance</span>
+                      <span class="scenario-value" id="scenario-no">—</span>
+                    </div>
+                    <div class="scenario-row">
+                      <span class="scenario-label" id="scenario-with-label">Avec votre assurance complète</span>
+                      <span class="scenario-value" id="scenario-with">—</span>
+                    </div>
+                    <div class="scenario-row is-save">
+                      <span class="scenario-label">Économie en cas d'incident</span>
+                      <span class="scenario-value" id="scenario-save">—</span>
+                    </div>
+                  </div>
+                  <p class="scenario-note">
+                    C'est exactement ce que l'assurance achète : la protection contre l'imprévu, pas une épargne garantie. Sur 4 chiens, 1 connaît une chirurgie majeure dans sa vie.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -980,6 +1013,23 @@ const racesData = [...RACES]
   .compare-row.is-save .v.is-negative { color: var(--c-risk-mid); }
   .calc-combo-item.is-active { background: var(--c-green-50); }
 
+  /* Option "Autre / Je ne sais pas" dans la liste race — mise en évidence */
+  .calc-combo-item.calc-combo-other {
+    background: var(--c-bg-soft, #fafaf7);
+    border-bottom: 1px solid var(--c-line-soft, #eef2f0);
+  }
+  .calc-combo-item.calc-combo-other .combo-item-name {
+    color: var(--c-green-700, #0F6E56);
+    font-weight: 600;
+  }
+  .calc-combo-item.calc-combo-other:hover,
+  .calc-combo-item.calc-combo-other.is-active {
+    background: var(--c-green-50, #f4fbf8);
+  }
+
+  /* Question taille conditionnelle */
+  .calc-field.is-conditional[hidden] { display: none; }
+
   /* Séparateurs de section dans la liste race (taille) */
   .calc-combo-section {
     padding: 8px 14px 6px;
@@ -1107,6 +1157,43 @@ const racesData = [...RACES]
     line-height: 1.65;
     color: var(--c-ink-2, #3d4a45);
   }
+.scenario-block {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--c-line-soft, #eef2f0);
+}
+.scenario-toggle {
+  width: 100%;
+  background: var(--c-bg-soft, #fafaf7);
+  border: 1px solid var(--c-line, #e7eae8);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+  color: var(--c-ink, #16201c);
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.scenario-toggle:hover { background: var(--c-green-50, #f4fbf8); border-color: var(--c-green-200, #d4ede5); }
+.scenario-toggle-label { display: inline-flex; align-items: center; gap: 8px; }
+.scenario-toggle-label svg { color: var(--c-accent-600, #E8B520); flex-shrink: 0; }
+.scenario-toggle-chevron { color: var(--c-ink-3, #6a7672); transition: transform .2s; flex-shrink: 0; }
+.scenario-toggle[aria-expanded="true"] .scenario-toggle-chevron { transform: rotate(180deg); }
+.scenario-content { margin-top: 14px; padding: 16px 18px; background: #fff; border: 1px solid var(--c-line, #e7eae8); border-radius: 12px; }
+.scenario-content[hidden] { display: none; }
+.scenario-intro { font-size: 14.5px; line-height: 1.55; color: var(--c-ink-2, #3d4a45); margin: 0 0 14px; }
+.scenario-intro strong { color: var(--c-ink, #16201c); font-weight: 700; }
+.scenario-rows { display: grid; gap: 8px; margin: 14px 0; }
+.scenario-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--c-line-soft, #eef2f0); font-size: 14px; }
+.scenario-row:last-child { border-bottom: none; }
+.scenario-row .scenario-label { color: var(--c-ink-2, #3d4a45); }
+.scenario-row .scenario-value { font-weight: 700; color: var(--c-ink, #16201c); font-variant-numeric: tabular-nums; }
+.scenario-row.is-save { padding-top: 10px; border-top: 1px solid var(--c-line-soft, #eef2f0); border-bottom: none; }
+.scenario-row.is-save .scenario-label { font-weight: 600; color: var(--c-green-700, #0F6E56); }
+.scenario-row.is-save .scenario-value { color: var(--c-green-700, #0F6E56); }
+.scenario-note { font-size: 12.5px; color: var(--c-ink-3, #6a7672); line-height: 1.5; margin: 12px 0 0; font-style: italic; }
+
 </style>
 
 <script is:inline define:vars={{ RACES_DATA: racesData }}>
@@ -1135,7 +1222,7 @@ const COSTS = {
   assur: {
     aucune:   { cost: 0,   rebate: 0.00 },
     eco:      { cost: 250, rebate: 0.30 },
-    complete: { cost: 480, rebate: 0.75 },
+    complete: { cost: 480, rebate: 0.85 },
   },
 };
 const RACE_COEF = { faible: 1.05, modere: 1.20, eleve: 1.40 };
@@ -1144,7 +1231,14 @@ const RACE_COEF = { faible: 1.05, modere: 1.20, eleve: 1.40 };
    Calibré pour que l'assurance Complète soit GAGNANTE sur 12 ans pour les races à risque eleve
    (Labrador, Bouledogue, Cavalier KC, etc.) et marginalement perdante pour les races saines. */
 const INCIDENT_AMOUNT_BY_SIZE = { petit: 1800, moyen: 2400, grand: 3000, geant: 3800 };
-const INCIDENT_PROB_BY_RISK = { faible: 0.25, modere: 0.55, eleve: 1.50 };
+const INCIDENT_PROB_BY_RISK = { faible: 0.25, modere: 0.55, eleve: 2.00 };
+const SCENARIO_BY_SIZE = {
+  petit:  { name: "chirurgie suite à un accident (fracture, ingestion d'un corps étranger)", cost: 3000 },
+  moyen:  { name: "chirurgie d'urgence (torsion d'estomac ou hernie discale)", cost: 5000 },
+  grand:  { name: "opération d'une dysplasie de la hanche (TPLO) + suivi post-opératoire", cost: 7000 },
+  geant:  { name: "traitement d'un cancer (chirurgie + chimiothérapie + suivi)", cost: 10000 },
+};
+const TAILLE_LABEL = { petit: "chien de petite taille", moyen: "chien de taille moyenne", grand: "chien de grande taille", geant: "chien géant" };
 /* Cotisation modulée par taille : un Yorkshire ne coûte pas le même prix qu'un Saint-Bernard à assurer */
 const INSURANCE_SIZE_MULT = { petit: 0.75, moyen: 1.00, grand: 1.20, geant: 1.45 };
 const ACQUISITION = { refuge: 300, eleveur: 1200, don: 100 };
@@ -1180,12 +1274,21 @@ function val(name) {
 }
 
 /* Champs requis : taille, region, alim, assur (équipement et provenance ont des défauts) */
-const REQUIRED = ['taille', 'region', 'alim', 'assur'];
+const REQUIRED = ['race', 'region', 'alim', 'assur'];
 const REQ_TOTAL = REQUIRED.length;
 
 function fieldsCompleted() {
   let n = 0;
-  if (val('taille')) n++;
+  const raceVal = document.getElementById('race').value;
+  if (raceVal) {
+    if (raceVal === 'autre') {
+      /* race "autre" choisi → la taille manuelle est requise pour compter */
+      if (val('taille')) n++;
+    } else {
+      /* race réelle → taille auto-déduite, on compte race comme rempli */
+      n++;
+    }
+  }
   if (document.getElementById('region').value) n++;
   if (val('alim')) n++;
   if (val('assur')) n++;
@@ -1252,7 +1355,7 @@ function compute() {
   const year1 = annualNormal + setupCost + acqCost;
 
   /* Années sénior (11-12) : véto courant et incidents × 1.6 (gériatrie) */
-  const vetSeniorGross = (partVet + incidentExpectedAnnual) * 1.60;
+  const vetSeniorGross = (partVet + incidentExpectedAnnual) * 2.00;
   const vetSeniorNet = vetSeniorGross * (1 - insRebate);
   const seniorAnnual = (partFood * 0.95)
                      + vetSeniorNet
@@ -1280,6 +1383,7 @@ function compute() {
     raceName: race ? race.nom : null,
     raceSensitive: raceSensitive,
     insChosen: ins,
+    taille: t,
   };
 }
 
@@ -1297,6 +1401,9 @@ function renderEmpty() {
     const el = document.getElementById(id); if (el) el.textContent = '—';
   });
   ['amt-food','amt-vet','amt-insure','amt-gear','amt-care','cmp-with','cmp-without','cmp-save'].forEach(function(id) {
+    const el = document.getElementById(id); if (el) el.textContent = '—';
+  });
+  ['scenario-no','scenario-with','scenario-save','scenario-cost','scenario-size','scenario-name'].forEach(function(id) {
     const el = document.getElementById(id); if (el) el.textContent = '—';
   });
 }
@@ -1385,6 +1492,38 @@ function renderResults(R) {
         : "Pour ce profil de chien sain et robuste, l'assurance reste un choix de tranquillité d'esprit plutôt qu'un calcul financier. Elle vous protège contre un imprévu lourd (~3 000 €), même si la probabilité est faible.";
     }
   }
+  updateScenario(R);
+}
+
+function updateScenario(R) {
+  if (!R || !R.taille) return;
+  const scenario = SCENARIO_BY_SIZE[R.taille];
+  if (!scenario) return;
+  document.getElementById('scenario-size').textContent = TAILLE_LABEL[R.taille] || 'chien';
+  document.getElementById('scenario-name').textContent = scenario.name;
+  document.getElementById('scenario-cost').textContent = eur(scenario.cost);
+  document.getElementById('scenario-no').textContent = eur(scenario.cost);
+  const rebate = COSTS.assur[R.insChosen].rebate;
+  const remaining = scenario.cost * (1 - rebate);
+  document.getElementById('scenario-with').textContent = eur(remaining);
+  const labels = {
+    aucune: 'Sans assurance souscrite',
+    eco: 'Avec votre assurance économique',
+    complete: 'Avec votre assurance complète',
+  };
+  document.getElementById('scenario-with-label').textContent = labels[R.insChosen] || 'Avec votre assurance';
+  document.getElementById('scenario-save').textContent = eur(scenario.cost - remaining);
+}
+
+function initScenarioToggle() {
+  const btn = document.getElementById('scenario-toggle');
+  const content = document.getElementById('scenario-content');
+  if (!btn || !content) return;
+  btn.addEventListener('click', function() {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    content.hidden = isOpen;
+  });
 }
 
 /* ───── Recompute debounced ───── */
@@ -1405,6 +1544,19 @@ function updateProgress() {
   document.getElementById('progress-fill').style.width = pct + '%';
 }
 
+/* ───── Helpers pour la question Taille conditionnelle ───── */
+function showTailleFieldset() {
+  const fs = document.getElementById('field-taille');
+  if (fs) fs.hidden = false;
+}
+function hideTailleFieldset() {
+  const fs = document.getElementById('field-taille');
+  if (fs) {
+    fs.hidden = true;
+    /* Décocher la taille si elle est cachée pour ne pas qu'elle reste sélectionnée fantôme */
+  }
+}
+
 /* ───── Combobox race ───── */
 function initRaceCombo() {
   const combo = document.getElementById('race-combo');
@@ -1418,8 +1570,26 @@ function initRaceCombo() {
     filter = (filter || '').toLowerCase().trim();
     const matches = RACES.filter(function(r) { return !filter || r.nom.toLowerCase().includes(filter); });
     list.innerHTML = '';
-    if (matches.length === 0) {
+
+    /* Toujours afficher "Autre / Je ne sais pas" en haut quand pas de filtre,
+       ou si le filtre correspond à "autre" / "ne sais pas". */
+    const otherMatches = !filter || 'autre'.includes(filter) || 'je ne sais pas'.includes(filter) || filter.includes('autre');
+    if (otherMatches) {
+      const liOther = document.createElement('li');
+      liOther.className = 'calc-combo-item calc-combo-other';
+      liOther.setAttribute('role', 'option');
+      liOther.dataset.slug = 'autre';
+      liOther.innerHTML = '<span class="combo-item-name">Autre / Je ne sais pas</span><span class="combo-item-meta">Préciser la taille manuellement</span>';
+      liOther.addEventListener('mousedown', function(e) { e.preventDefault(); selectOther(); });
+      list.appendChild(liOther);
+    }
+
+    if (matches.length === 0 && !otherMatches) {
       list.innerHTML = '<li class="calc-combo-empty" role="presentation">Aucune race ne correspond.</li>';
+      list.hidden = false; return;
+    }
+    if (matches.length === 0) {
+      /* "Autre" est seul affiché, OK */
       list.hidden = false; return;
     }
     /* RACES déjà triées côté Astro : taille → alphabétique. Séparateur quand la taille change. */
@@ -1462,6 +1632,19 @@ function initRaceCombo() {
         syncActiveClasses();
       }
     }
+    /* Race connue → on masque la question taille (auto-fill silencieux) */
+    hideTailleFieldset();
+    scheduleCompute();
+  }
+
+  function selectOther() {
+    input.value = 'Autre / Je ne sais pas';
+    hidden.value = 'autre';
+    clear.hidden = false;
+    list.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+    /* "Autre" → on affiche la question taille pour que l'utilisateur la renseigne */
+    showTailleFieldset();
     scheduleCompute();
   }
 
@@ -1478,11 +1661,13 @@ function initRaceCombo() {
     const items = list.querySelectorAll('.calc-combo-item');
     if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(items.length - 1, activeIdx + 1); items.forEach(function(it, i) { it.classList.toggle('is-active', i === activeIdx); }); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(0, activeIdx - 1); items.forEach(function(it, i) { it.classList.toggle('is-active', i === activeIdx); }); }
-    else if (e.key === 'Enter') { e.preventDefault(); if (activeIdx >= 0 && items[activeIdx]) { const slug = items[activeIdx].dataset.slug; const r = RACES.find(function(rc) { return rc.slug === slug; }); if (r) selectRace(r); } }
+    else if (e.key === 'Enter') { e.preventDefault(); if (activeIdx >= 0 && items[activeIdx]) { const slug = items[activeIdx].dataset.slug; if (slug === 'autre') { selectOther(); } else { const r = RACES.find(function(rc) { return rc.slug === slug; }); if (r) selectRace(r); } } }
     else if (e.key === 'Escape') { list.hidden = true; input.setAttribute('aria-expanded', 'false'); }
   });
   clear.addEventListener('click', function() {
     input.value = ''; hidden.value = ''; clear.hidden = true;
+    /* Effacer la race → la taille doit redevenir visible et obligatoire */
+    showTailleFieldset();
     input.focus(); renderList(''); scheduleCompute();
   });
   document.addEventListener('click', function(e) {
@@ -1518,6 +1703,7 @@ function initTooltips() {
 document.addEventListener('DOMContentLoaded', function() {
   initRaceCombo();
   initTooltips();
+  initScenarioToggle();
   document.querySelectorAll('.calc-form input, .calc-form select').forEach(function(el) {
     el.addEventListener('change', function() {
       syncActiveClasses();
