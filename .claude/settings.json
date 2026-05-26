@@ -27,7 +27,11 @@
       "Bash(Start-Sleep -Seconds 90)",
       "Bash(Write-Host \"Pause terminée\")",
       "Bash(python3 -)",
-      "Bash(node scripts/patch-scenario.mjs)"
+      "Bash(node scripts/patch-scenario.mjs)",
+      "Bash(node scripts/patch-lot1.mjs)",
+      "Bash(node -e \"const c = require\\('fs'\\).readFileSync\\('src/components/CoutCalculateur.astro','utf8'\\); const idx = c.indexOf\\('Croquettes'\\); console.log\\('hex around colon:'\\); const seg = c.slice\\(idx, idx+100\\); for\\(let i=0;i<seg.length;i++\\){const code=seg.charCodeAt\\(i\\); if\\(code>127||code<32\\)process.stdout.write\\('<'+code.toString\\(16\\)+'>'\\);else process.stdout.write\\(seg[i]\\);} console.log\\(\\);\")",
+      "Bash(node scripts/patch-lot2.mjs)",
+      "Bash(node scripts/patch-lot3.mjs)"
     ],
     "additionalDirectories": [
       "c:\\Users\\gaeta\\Documents\\Web\\assure-mon-chien"

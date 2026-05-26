@@ -353,37 +353,60 @@ const racesData = [...RACES]
               <ul class="br-list" role="list">
                 <li class="br-item">
                   <span class="br-swatch seg-food" aria-hidden="true"></span>
-                  <span class="name">Alimentation <span class="br-info" data-tip="Croquettes, friandises, compléments. Source : FACCO 2025, baromètre 2026." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="name">Alimentation <span class="br-info" data-tip="Croquettes (standard, premium ou véto selon votre choix), friandises et compléments alimentaires. Hors petites gourmandises ponctuelles. Source : FACCO 2025." aria-label="Pourquoi ce montant ?">i</span></span>
                   <span class="pct" id="pct-food">45%</span>
                   <span class="amt" id="amt-food">—</span>
                 </li>
                 <li class="br-item">
                   <span class="br-swatch seg-vet" aria-hidden="true"></span>
-                  <span class="name">Vétérinaire <span class="br-info" data-tip="Vaccins annuels, vermifuges, soins courants et imprévus." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="name">Vétérinaire <span class="br-info" data-tip="Inclut TOUT le véto : consultations, vaccins annuels, vermifuges, antiparasitaires, stérilisation/castration, plus une provision pour chirurgies/hospitalisations/radios amortie sur 12 ans selon le profil de risque de la race." aria-label="Pourquoi ce montant ?">i</span></span>
                   <span class="pct" id="pct-vet">22%</span>
                   <span class="amt" id="amt-vet">—</span>
                 </li>
                 <li class="br-item">
                   <span class="br-swatch seg-insure" aria-hidden="true"></span>
-                  <span class="name">Assurance <span class="br-info" data-tip="Cotisation mensuelle moyenne selon formule choisie." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="name">Assurance <span class="br-info" data-tip="Cotisation annuelle nette de la formule choisie (Éco ou Complète). Le remboursement vétérinaire (30% à 85% des frais selon formule) est déjà appliqué sur la ligne « Vétérinaire » au-dessus." aria-label="Pourquoi ce montant ?">i</span></span>
                   <span class="pct" id="pct-insure">12%</span>
                   <span class="amt" id="amt-insure">—</span>
                 </li>
                 <li class="br-item">
                   <span class="br-swatch seg-gear" aria-hidden="true"></span>
-                  <span class="name">Accessoires <span class="br-info" data-tip="Panier, laisses, jouets, gamelles. Renouvellement tous les 3-5 ans." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="name">Accessoires <span class="br-info" data-tip="Panier, laisses, harnais, gamelles, jouets, kit de toilettage. Renouvellement estimé tous les 3-5 ans." aria-label="Pourquoi ce montant ?">i</span></span>
                   <span class="pct" id="pct-gear">13%</span>
                   <span class="amt" id="amt-gear">—</span>
                 </li>
                 <li class="br-item">
                   <span class="br-swatch seg-care" aria-hidden="true"></span>
-                  <span class="name">Garde &amp; services <span class="br-info" data-tip="Pension, dog-walking, toilettage. Inclus si « Confort » ou « Premium »." aria-label="Pourquoi ce montant ?">i</span></span>
+                  <span class="name">Garde &amp; services <span class="br-info" data-tip="Pension pendant vos vacances, dog-walking, toilettage professionnel, éducation. Volume variable selon votre niveau d'équipement (essentiel/confort/premium)." aria-label="Pourquoi ce montant ?">i</span></span>
                   <span class="pct" id="pct-care">8%</span>
                   <span class="amt" id="amt-care">—</span>
                 </li>
               </ul>
 
               <!-- ── Comparaison avec / sans assurance ── -->
+              <!-- ── Adjusteur d'hypothèse incidents (Niveau 2) ── -->
+              <div class="incident-adjuster" id="incident-adjuster">
+                <div class="incident-adjuster-head">
+                  <span class="incident-adjuster-title">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5v4M8 11h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Hypothèse incidents chirurgicaux sur 12 ans
+                  </span>
+                </div>
+                <div class="incident-adjuster-control">
+                  <button type="button" class="incident-btn" id="incident-minus" aria-label="Diminuer le nombre d'incidents">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </button>
+                  <span class="incident-value" id="incident-count">2</span>
+                  <span class="incident-unit" id="incident-unit">incidents</span>
+                  <button type="button" class="incident-btn" id="incident-plus" aria-label="Augmenter le nombre d'incidents">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </button>
+                </div>
+                <p class="incident-adjuster-note">
+                  💡 Notre estimation pour <strong id="incident-race-label">votre chien</strong> est de <strong id="incident-default-value">2</strong> incident(s) sur 12 ans. Faites varier ce nombre pour tester votre propre hypothèse — tous les chiffres s'adaptent.
+                </p>
+              </div>
+
               <div class="compare-block" id="compare-block">
                 <div class="compare-head">
                   <span class="ic" aria-hidden="true">
@@ -411,13 +434,13 @@ const racesData = [...RACES]
                 <button class="scenario-toggle" id="scenario-toggle" type="button" aria-expanded="false" aria-controls="scenario-content">
                   <span class="scenario-toggle-label">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l2 5h5l-4 3 1.5 5L8 11.5 3.5 14.5 5 9.5l-4-3h5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                    Et si votre chien avait un incident grave&nbsp;?
+                    Pour comprendre : zoom sur UN incident chirurgical
                   </span>
                   <svg class="scenario-toggle-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 5l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
                 <div class="scenario-content" id="scenario-content" hidden>
                   <p class="scenario-intro">
-                    Pour un <strong id="scenario-size">chien</strong>, prenons l'exemple d'une <strong id="scenario-name">chirurgie</strong> à <strong id="scenario-cost">—</strong>.
+                    <strong>Focus indépendant du calcul ci-dessus.</strong> Pour un <strong id="scenario-size">chien</strong>, voici ce que représente UN incident chirurgical isolé. Exemple : <strong id="scenario-name">chirurgie</strong> à <strong id="scenario-cost">—</strong>.
                   </p>
                   <div class="scenario-rows">
                     <div class="scenario-row">
@@ -434,7 +457,7 @@ const racesData = [...RACES]
                     </div>
                   </div>
                   <p class="scenario-note">
-                    C'est exactement ce que l'assurance achète : la protection contre l'imprévu, pas une épargne garantie. Sur 4 chiens, 1 connaît une chirurgie majeure dans sa vie.
+                    Ce focus montre ce que coûte UN incident <em>le jour J</em>, indépendamment de la fréquence prévue. L'estimation globale, elle, suppose <strong id="scenario-note-count">2</strong> incident(s) répartis sur 12 ans. C'est exactement la valeur de l'assurance : éviter un pic financier brutal au moment où il arrive.
                   </p>
                 </div>
               </div>
@@ -1194,6 +1217,54 @@ const racesData = [...RACES]
 .scenario-row.is-save .scenario-value { color: var(--c-green-700, #0F6E56); }
 .scenario-note { font-size: 12.5px; color: var(--c-ink-3, #6a7672); line-height: 1.5; margin: 12px 0 0; font-style: italic; }
 
+
+  /* Adjusteur d'hypothèse incidents (Niveau 2) */
+  .incident-adjuster {
+    margin: 18px 28px;
+    padding: 14px 16px;
+    background: var(--c-green-50, #f4fbf8);
+    border: 1px solid var(--c-green-200, #d4ede5);
+    border-radius: 12px;
+  }
+  .incident-adjuster-head { margin-bottom: 10px; font-size: 13px; }
+  .incident-adjuster-title {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; color: var(--c-green-800, #0A5443);
+  }
+  .incident-adjuster-title svg { color: var(--c-green, #1D9E75); flex-shrink: 0; }
+  .incident-adjuster-control {
+    display: flex; align-items: center; gap: 12px;
+    margin: 10px 0;
+  }
+  .incident-btn {
+    width: 34px; height: 34px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #fff; border: 1px solid var(--c-line, #e7eae8);
+    border-radius: 8px; color: var(--c-green-700, #0F6E56);
+    cursor: pointer;
+    transition: background .15s, border-color .15s, opacity .15s;
+  }
+  .incident-btn:hover:not(:disabled) {
+    background: var(--c-green-100, #e7f5ee);
+    border-color: var(--c-green, #1D9E75);
+  }
+  .incident-btn:disabled { opacity: .35; cursor: not-allowed; }
+  .incident-value {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 28px; font-weight: 700;
+    color: var(--c-green-800, #0A5443);
+    min-width: 36px; text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .incident-unit { font-size: 13px; color: var(--c-ink-2, #3d4a45); }
+  .incident-adjuster-note {
+    font-size: 12.5px; line-height: 1.5;
+    color: var(--c-ink-2, #3d4a45);
+    margin: 8px 0 0;
+  }
+  .incident-adjuster-note strong { color: var(--c-green-700, #0F6E56); font-weight: 600; }
+  @media (max-width: 600px) { .incident-adjuster { margin: 18px 20px; } }
+
 </style>
 
 <script is:inline define:vars={{ RACES_DATA: racesData }}>
@@ -1231,7 +1302,11 @@ const RACE_COEF = { faible: 1.05, modere: 1.20, eleve: 1.40 };
    Calibré pour que l'assurance Complète soit GAGNANTE sur 12 ans pour les races à risque eleve
    (Labrador, Bouledogue, Cavalier KC, etc.) et marginalement perdante pour les races saines. */
 const INCIDENT_AMOUNT_BY_SIZE = { petit: 1800, moyen: 2400, grand: 3000, geant: 3800 };
-const INCIDENT_PROB_BY_RISK = { faible: 0.25, modere: 0.55, eleve: 2.00 };
+/* Nombre d'incidents chirurgicaux par défaut sur 12 ans, selon profil race. */
+const INCIDENT_DEFAULT_BY_RISK = { faible: 0, modere: 1, eleve: 2 };
+const INCIDENT_MIN = 0;
+const INCIDENT_MAX = 6;
+let incidentCount = 2; /* État ajustable ; réinitialisé au défaut race à chaque sélection */
 const SCENARIO_BY_SIZE = {
   petit:  { name: "chirurgie suite à un accident (fracture, ingestion d'un corps étranger)", cost: 3000 },
   moyen:  { name: "chirurgie d'urgence (torsion d'estomac ou hernie discale)", cost: 5000 },
@@ -1334,7 +1409,8 @@ function compute() {
      amortie sur 12 ans = (probabilité par risque) × (coût moyen par taille) / 12.
      Sans assurance, l'utilisateur en supporte la totalité.
      Avec assurance, ces incidents sont couverts à 80-90 % → on applique le rebate. */
-  const incidentRisk = race ? INCIDENT_PROB_BY_RISK[race.risque] : 0.40;
+  /* incidentCount est l'hypothèse en cours (défaut race ou override utilisateur) */
+  const incidentRisk = incidentCount;
   const incidentAmount = INCIDENT_AMOUNT_BY_SIZE[t];
   const incidentExpectedAnnual = (incidentAmount * incidentRisk) / 12;
 
@@ -1513,6 +1589,8 @@ function updateScenario(R) {
   };
   document.getElementById('scenario-with-label').textContent = labels[R.insChosen] || 'Avec votre assurance';
   document.getElementById('scenario-save').textContent = eur(scenario.cost - remaining);
+  const noteCountEl = document.getElementById('scenario-note-count');
+  if (noteCountEl) noteCountEl.textContent = String(incidentCount);
 }
 
 function initScenarioToggle() {
@@ -1558,6 +1636,52 @@ function hideTailleFieldset() {
 }
 
 /* ───── Combobox race ───── */
+/* ───── Reset incidentCount au défaut race ───── */
+/* ───── Affichage de l'adjusteur d'incidents ───── */
+function updateIncidentDisplay() {
+  const valEl = document.getElementById('incident-count');
+  const unitEl = document.getElementById('incident-unit');
+  if (valEl) valEl.textContent = String(incidentCount);
+  if (unitEl) unitEl.textContent = incidentCount === 1 ? 'incident' : 'incidents';
+  const minus = document.getElementById('incident-minus');
+  const plus = document.getElementById('incident-plus');
+  if (minus) minus.disabled = (incidentCount <= INCIDENT_MIN);
+  if (plus) plus.disabled = (incidentCount >= INCIDENT_MAX);
+}
+
+function initIncidentAdjuster() {
+  const minusBtn = document.getElementById('incident-minus');
+  const plusBtn = document.getElementById('incident-plus');
+  if (!minusBtn || !plusBtn) return;
+  minusBtn.addEventListener('click', function() {
+    if (incidentCount > INCIDENT_MIN) {
+      incidentCount--;
+      updateIncidentDisplay();
+      scheduleCompute();
+    }
+  });
+  plusBtn.addEventListener('click', function() {
+    if (incidentCount < INCIDENT_MAX) {
+      incidentCount++;
+      updateIncidentDisplay();
+      scheduleCompute();
+    }
+  });
+  updateIncidentDisplay();
+}
+
+function resetIncidentToDefault(race) {
+  const defaultValue = race ? INCIDENT_DEFAULT_BY_RISK[race.risque] : 1;
+  incidentCount = defaultValue;
+  /* Note : les éléments DOM incident-default-value / incident-race-label seront ajoutés au Lot 3.
+     Le guard if(el) évite l'erreur quand ils n'existent pas encore. */
+  const defaultEl = document.getElementById('incident-default-value');
+  const raceEl = document.getElementById('incident-race-label');
+  if (defaultEl) defaultEl.textContent = String(defaultValue);
+  if (raceEl) raceEl.textContent = race ? race.nom : 'votre chien';
+  updateIncidentDisplay();
+}
+
 function initRaceCombo() {
   const combo = document.getElementById('race-combo');
   const input = document.getElementById('race-input');
@@ -1634,6 +1758,7 @@ function initRaceCombo() {
     }
     /* Race connue → on masque la question taille (auto-fill silencieux) */
     hideTailleFieldset();
+    resetIncidentToDefault(r);
     scheduleCompute();
   }
 
@@ -1645,6 +1770,7 @@ function initRaceCombo() {
     input.setAttribute('aria-expanded', 'false');
     /* "Autre" → on affiche la question taille pour que l'utilisateur la renseigne */
     showTailleFieldset();
+    resetIncidentToDefault(null);
     scheduleCompute();
   }
 
@@ -1668,6 +1794,7 @@ function initRaceCombo() {
     input.value = ''; hidden.value = ''; clear.hidden = true;
     /* Effacer la race → la taille doit redevenir visible et obligatoire */
     showTailleFieldset();
+    resetIncidentToDefault(null);
     input.focus(); renderList(''); scheduleCompute();
   });
   document.addEventListener('click', function(e) {
@@ -1704,6 +1831,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initRaceCombo();
   initTooltips();
   initScenarioToggle();
+  initIncidentAdjuster();
   document.querySelectorAll('.calc-form input, .calc-form select').forEach(function(el) {
     el.addEventListener('change', function() {
       syncActiveClasses();
