@@ -419,38 +419,6 @@ const racesData = [...RACES]
                   💡 Notre estimation pour <strong id="incident-race-label">votre chien</strong> est de <strong id="incident-default-value">2</strong> incident(s) sur 12 ans. Faites varier ce nombre pour tester votre propre hypothèse — tous les chiffres s'adaptent.
                 </p>
               </div>
-
-              <div class="scenario-block">
-                <button class="scenario-toggle" id="scenario-toggle" type="button" aria-expanded="false" aria-controls="scenario-content">
-                  <span class="scenario-toggle-label">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l2 5h5l-4 3 1.5 5L8 11.5 3.5 14.5 5 9.5l-4-3h5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                    Pour comprendre : zoom sur UN incident chirurgical
-                  </span>
-                  <svg class="scenario-toggle-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 5l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <div class="scenario-content" id="scenario-content" hidden>
-                  <p class="scenario-intro">
-                    <strong>Focus indépendant du calcul ci-dessus.</strong> Pour un <strong id="scenario-size">chien</strong>, voici ce que représente UN incident chirurgical isolé. Exemple : <strong id="scenario-name">chirurgie</strong> à <strong id="scenario-cost">—</strong>.
-                  </p>
-                  <div class="scenario-rows">
-                    <div class="scenario-row">
-                      <span class="scenario-label">Sans assurance</span>
-                      <span class="scenario-value" id="scenario-no">—</span>
-                    </div>
-                    <div class="scenario-row">
-                      <span class="scenario-label" id="scenario-with-label">Avec votre assurance complète</span>
-                      <span class="scenario-value" id="scenario-with">—</span>
-                    </div>
-                    <div class="scenario-row is-save">
-                      <span class="scenario-label">Économie en cas d'incident</span>
-                      <span class="scenario-value" id="scenario-save">—</span>
-                    </div>
-                  </div>
-                  <p class="scenario-note">
-                    Ce focus montre ce que coûte UN incident <em>le jour J</em>, indépendamment de la fréquence prévue. L'estimation globale, elle, suppose <strong id="scenario-note-count">2</strong> incident(s) répartis sur 12 ans. C'est exactement la valeur de l'assurance : éviter un pic financier brutal au moment où il arrive.
-                  </p>
-                </div>
-              </div>
             </div>
 
             <div class="results-cta">
@@ -1253,43 +1221,6 @@ const racesData = [...RACES]
     line-height: 1.65;
     color: var(--c-ink-2, #3d4a45);
   }
-.scenario-block {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid var(--c-line-soft, #eef2f0);
-}
-.scenario-toggle {
-  width: 100%;
-  background: var(--c-bg-soft, #fafaf7);
-  border: 1px solid var(--c-line, #e7eae8);
-  border-radius: 12px;
-  padding: 12px 14px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px;
-  font-family: var(--font-sans); font-size: 14px; font-weight: 600;
-  color: var(--c-ink, #16201c);
-  cursor: pointer;
-  transition: background .15s, border-color .15s;
-}
-.scenario-toggle:hover { background: var(--c-green-50, #f4fbf8); border-color: var(--c-green-200, #d4ede5); }
-.scenario-toggle-label { display: inline-flex; align-items: center; gap: 8px; }
-.scenario-toggle-label svg { color: var(--c-accent-600, #E8B520); flex-shrink: 0; }
-.scenario-toggle-chevron { color: var(--c-ink-3, #6a7672); transition: transform .2s; flex-shrink: 0; }
-.scenario-toggle[aria-expanded="true"] .scenario-toggle-chevron { transform: rotate(180deg); }
-.scenario-content { margin-top: 14px; padding: 16px 18px; background: #fff; border: 1px solid var(--c-line, #e7eae8); border-radius: 12px; }
-.scenario-content[hidden] { display: none; }
-.scenario-intro { font-size: 14.5px; line-height: 1.55; color: var(--c-ink-2, #3d4a45); margin: 0 0 14px; }
-.scenario-intro strong { color: var(--c-ink, #16201c); font-weight: 700; }
-.scenario-rows { display: grid; gap: 8px; margin: 14px 0; }
-.scenario-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--c-line-soft, #eef2f0); font-size: 14px; }
-.scenario-row:last-child { border-bottom: none; }
-.scenario-row .scenario-label { color: var(--c-ink-2, #3d4a45); }
-.scenario-row .scenario-value { font-weight: 700; color: var(--c-ink, #16201c); font-variant-numeric: tabular-nums; }
-.scenario-row.is-save { padding-top: 10px; border-top: 1px solid var(--c-line-soft, #eef2f0); border-bottom: none; }
-.scenario-row.is-save .scenario-label { font-weight: 600; color: var(--c-green-700, #0F6E56); }
-.scenario-row.is-save .scenario-value { color: var(--c-green-700, #0F6E56); }
-.scenario-note { font-size: 12.5px; color: var(--c-ink-3, #6a7672); line-height: 1.5; margin: 12px 0 0; font-style: italic; }
-
 
   /* Adjusteur d'hypothèse incidents (Niveau 2) */
   .incident-adjuster {
@@ -1379,15 +1310,7 @@ const INCIDENT_AMOUNT_BY_SIZE = { petit: 1800, moyen: 2400, grand: 3000, geant: 
 const INCIDENT_DEFAULT_BY_RISK = { faible: 0, modere: 1, eleve: 2 };
 const INCIDENT_MIN = 0;
 const INCIDENT_MAX = 6;
-let incidentCount = 2; /* État ajustable ; réinitialisé au défaut race à chaque sélection */
-const SCENARIO_BY_SIZE = {
-  petit:  { name: "chirurgie suite à un accident (fracture, ingestion d'un corps étranger)", cost: 3000 },
-  moyen:  { name: "chirurgie d'urgence (torsion d'estomac ou hernie discale)", cost: 5000 },
-  grand:  { name: "opération d'une dysplasie de la hanche (TPLO) + suivi post-opératoire", cost: 7000 },
-  geant:  { name: "traitement d'un cancer (chirurgie + chimiothérapie + suivi)", cost: 10000 },
-};
-const TAILLE_LABEL = { petit: "chien de petite taille", moyen: "chien de taille moyenne", grand: "chien de grande taille", geant: "chien géant" };
-/* Cotisation modulée par taille : un Yorkshire ne coûte pas le même prix qu'un Saint-Bernard à assurer */
+let incidentCount = 2; /* État ajustable ; réinitialisé au défaut race à chaque sélection *//* Cotisation modulée par taille : un Yorkshire ne coûte pas le même prix qu'un Saint-Bernard à assurer */
 const INSURANCE_SIZE_MULT = { petit: 0.75, moyen: 1.00, grand: 1.20, geant: 1.45 };
 const ACQUISITION = { refuge: 300, eleveur: 1200, don: 100 };
 const SETUP_STANDARD = 770;
@@ -1546,9 +1469,6 @@ function renderEmpty() {
   ['amt-food','amt-vet','amt-insure','amt-gear','amt-care'].forEach(function(id) {
     const el = document.getElementById(id); if (el) el.textContent = '—';
   });
-  ['scenario-no','scenario-with','scenario-save','scenario-cost','scenario-size','scenario-name'].forEach(function(id) {
-    const el = document.getElementById(id); if (el) el.textContent = '—';
-  });
 }
 
 function renderResults(R) {
@@ -1609,30 +1529,6 @@ function renderResults(R) {
   const tLabel = tName ? (tName.charAt(0).toUpperCase() + tName.slice(1)) : '';
   const regionLabel = document.getElementById('region').options[document.getElementById('region').selectedIndex].textContent.trim();
   document.getElementById('br-sub').textContent = tLabel + ' · ' + regionLabel;
-
-  updateScenario(R);
-}
-
-function updateScenario(R) {
-  if (!R || !R.taille) return;
-  const scenario = SCENARIO_BY_SIZE[R.taille];
-  if (!scenario) return;
-  document.getElementById('scenario-size').textContent = TAILLE_LABEL[R.taille] || 'chien';
-  document.getElementById('scenario-name').textContent = scenario.name;
-  document.getElementById('scenario-cost').textContent = eur(scenario.cost);
-  document.getElementById('scenario-no').textContent = eur(scenario.cost);
-  const rebate = COSTS.assur[R.insChosen].rebate;
-  const remaining = scenario.cost * (1 - rebate);
-  document.getElementById('scenario-with').textContent = eur(remaining);
-  const labels = {
-    aucune: 'Sans assurance souscrite',
-    eco: 'Avec votre assurance économique',
-    complete: 'Avec votre assurance complète',
-  };
-  document.getElementById('scenario-with-label').textContent = labels[R.insChosen] || 'Avec votre assurance';
-  document.getElementById('scenario-save').textContent = eur(scenario.cost - remaining);
-  const noteCountEl = document.getElementById('scenario-note-count');
-  if (noteCountEl) noteCountEl.textContent = String(incidentCount);
 }
 
 function initScenarioCards() {
@@ -1646,17 +1542,6 @@ function initScenarioCards() {
         radio.dispatchEvent(new Event('change', { bubbles: true }));
       }
     });
-  });
-}
-
-function initScenarioToggle() {
-  const btn = document.getElementById('scenario-toggle');
-  const content = document.getElementById('scenario-content');
-  if (!btn || !content) return;
-  btn.addEventListener('click', function() {
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!isOpen));
-    content.hidden = isOpen;
   });
 }
 
@@ -1887,7 +1772,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initRaceCombo();
   initTooltips();
   initScenarioCards();
-  initScenarioToggle();
   initIncidentAdjuster();
   document.querySelectorAll('.calc-form input, .calc-form select').forEach(function(el) {
     el.addEventListener('change', function() {
