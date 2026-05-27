@@ -308,9 +308,23 @@ const racesData = [...RACES]
                   <span class="live-dot"></span> Calculé
                 </span>
               </div>
-              <!-- Hero number : count-up controlé par JS -->
-              <div class="results-hero" id="results-total">
-                <span id="results-total-num">—</span><span class="euro">&nbsp;€</span>
+              <!-- 3 scénarios côte à côte (Sans / Éco / Complète) — cliquer pour changer la formule -->
+              <div class="scn-row" id="scn-row" role="group" aria-label="Comparaison des 3 formules d'assurance">
+                <button type="button" class="scn-card" data-scn="aucune" id="scn-aucune-card" aria-label="Sélectionner : sans assurance">
+                  <span class="scn-card-badge">Votre choix</span>
+                  <span class="scn-card-label">Sans assurance</span>
+                  <span class="scn-card-amount"><span id="scn-aucune-amt">—</span><span class="scn-card-euro">&nbsp;€</span></span>
+                </button>
+                <button type="button" class="scn-card" data-scn="eco" id="scn-eco-card" aria-label="Sélectionner : assurance Éco">
+                  <span class="scn-card-badge">Votre choix</span>
+                  <span class="scn-card-label">Avec Éco</span>
+                  <span class="scn-card-amount"><span id="scn-eco-amt">—</span><span class="scn-card-euro">&nbsp;€</span></span>
+                </button>
+                <button type="button" class="scn-card" data-scn="complete" id="scn-complete-card" aria-label="Sélectionner : assurance Complète">
+                  <span class="scn-card-badge">Votre choix</span>
+                  <span class="scn-card-label">Avec Complète</span>
+                  <span class="scn-card-amount"><span id="scn-complete-amt">—</span><span class="scn-card-euro">&nbsp;€</span></span>
+                </button>
               </div>
               <p class="results-caption" id="results-caption">
                 Complétez le formulaire pour voir votre estimation.
@@ -383,7 +397,6 @@ const racesData = [...RACES]
                 </li>
               </ul>
 
-              <!-- ── Comparaison avec / sans assurance ── -->
               <!-- ── Adjusteur d'hypothèse incidents (Niveau 2) ── -->
               <div class="incident-adjuster" id="incident-adjuster">
                 <div class="incident-adjuster-head">
@@ -407,29 +420,6 @@ const racesData = [...RACES]
                 </p>
               </div>
 
-              <div class="compare-block" id="compare-block">
-                <div class="compare-head">
-                  <span class="ic" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h4l1.5-4 2 8L11 7h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                  </span>
-                  <span class="compare-title">Et si vous comparez avec / sans assurance&nbsp;?</span>
-                </div>
-                <div class="compare-row">
-                  <span class="lbl" id="cmp-with-label">Avec assurance complète</span>
-                  <span class="v" id="cmp-with">—</span>
-                </div>
-                <div class="compare-row">
-                  <span class="lbl">Sans assurance</span>
-                  <span class="v" id="cmp-without">—</span>
-                </div>
-                <div class="compare-row is-save">
-                  <span class="lbl"><span id="cmp-save-label">Économie potentielle</span></span>
-                  <span class="v" id="cmp-save">—</span>
-                </div>
-                <p class="compare-note" id="compare-note">
-                  Le delta dépend fortement de votre profil de race et de l'imprévu santé. Notre estimation intègre la probabilité moyenne d'incident chirurgical sur 12 ans.
-                </p>
-              </div>
               <div class="scenario-block">
                 <button class="scenario-toggle" id="scenario-toggle" type="button" aria-expanded="false" aria-controls="scenario-content">
                   <span class="scenario-toggle-label">
@@ -853,16 +843,99 @@ const racesData = [...RACES]
     }
 
     /* ── Hero number ── */
-    .results-hero {
+    /* ── 3 scénarios côte à côte (remplace l'ancien hero number unique) ── */
+    .scn-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 8px 0 10px;
+    }
+    .scn-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 14px 14px 16px;
+      border: 1.5px solid var(--c-line);
+      border-radius: 14px;
+      background: #fff;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+      transition: border-color .15s ease, background .15s ease, transform .12s ease, box-shadow .15s ease;
+    }
+    .scn-card:hover {
+      border-color: var(--c-green, #1D9E75);
+      background: #FAFEFC;
+    }
+    .scn-card:focus-visible {
+      outline: 2px solid var(--c-green, #1D9E75);
+      outline-offset: 2px;
+    }
+    .scn-card.is-selected {
+      border-color: var(--c-green, #1D9E75);
+      background: linear-gradient(180deg, #F1FBF6 0%, #FFFFFF 70%);
+      box-shadow: 0 4px 14px -6px rgba(29, 158, 117, .35);
+    }
+    .scn-card-badge {
+      position: absolute;
+      top: -9px;
+      left: 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--c-green, #1D9E75);
+      padding: 2px 8px;
+      border-radius: 999px;
+      opacity: 0;
+      transform: translateY(2px);
+      transition: opacity .15s ease, transform .15s ease;
+      pointer-events: none;
+    }
+    .scn-card.is-selected .scn-card-badge {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .scn-card-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--c-ink-2);
+      letter-spacing: .01em;
+    }
+    .scn-card.is-selected .scn-card-label {
+      color: var(--c-green-700, #0F6E56);
+    }
+    .scn-card-amount {
+      font-size: clamp(20px, 3.4vw, 28px);
       font-weight: 800;
-      font-size: clamp(56px, 8vw, 88px);
-      line-height: 1; letter-spacing: -.04em;
+      line-height: 1.1;
+      letter-spacing: -.02em;
       font-variant-numeric: tabular-nums;
       color: var(--c-ink);
-      margin: 4px 0 6px;
-      transition: opacity .2s ease;
     }
-    .results-hero .euro { font-weight: 700; color: var(--c-ink-2); margin-left: 4px; }
+    .scn-card.is-selected .scn-card-amount {
+      color: var(--c-green-700, #0F6E56);
+    }
+    .scn-card-euro {
+      font-weight: 700;
+      font-size: .8em;
+      color: var(--c-ink-2);
+      margin-left: 2px;
+    }
+    .scn-card.is-selected .scn-card-euro {
+      color: var(--c-green-700, #0F6E56);
+    }
+    @media (max-width: 600px) {
+      .scn-row { gap: 6px; }
+      .scn-card { padding: 12px 10px 14px; border-radius: 12px; }
+      .scn-card-amount { font-size: 19px; }
+      .scn-card-label { font-size: 11px; }
+      .scn-card-badge { font-size: 9px; left: 10px; padding: 2px 6px; }
+    }
     .results-caption {
       font-size: 14px; color: var(--c-ink-2);
       margin: 0 0 4px;
@@ -1220,7 +1293,7 @@ const racesData = [...RACES]
 
   /* Adjusteur d'hypothèse incidents (Niveau 2) */
   .incident-adjuster {
-    margin: 18px 28px;
+    margin: 18px 0;
     padding: 14px 16px;
     background: var(--c-green-50, #f4fbf8);
     border: 1px solid var(--c-green-200, #d4ede5);
@@ -1263,7 +1336,7 @@ const racesData = [...RACES]
     margin: 8px 0 0;
   }
   .incident-adjuster-note strong { color: var(--c-green-700, #0F6E56); font-weight: 600; }
-  @media (max-width: 600px) { .incident-adjuster { margin: 18px 20px; } }
+  @media (max-width: 600px) { .incident-adjuster { margin: 18px 0; } }
 
 </style>
 
@@ -1405,57 +1478,51 @@ function compute() {
   const partGear = base * 0.13;
   const partCare = base * 0.08;
 
-  /* Provision incidents majeurs (chirurgie BAOS, dysplasie, cancer, etc.)
-     amortie sur 12 ans = (probabilité par risque) × (coût moyen par taille) / 12.
-     Sans assurance, l'utilisateur en supporte la totalité.
-     Avec assurance, ces incidents sont couverts à 80-90 % → on applique le rebate. */
-  /* incidentCount est l'hypothèse en cours (défaut race ou override utilisateur) */
-  const incidentRisk = incidentCount;
+  /* Provision incidents majeurs amortie sur 12 ans (nb incidents × coût moyen / 12) */
   const incidentAmount = INCIDENT_AMOUNT_BY_SIZE[t];
-  const incidentExpectedAnnual = (incidentAmount * incidentRisk) / 12;
+  const incidentExpectedAnnual = (incidentAmount * incidentCount) / 12;
 
-  /* Assurance — modulée par taille + surcoût +15 % race sensible (cotisation marché 2026) */
-  const insCost = COSTS.assur[ins].cost * INSURANCE_SIZE_MULT[t] * (raceSensitive ? 1.15 : 1.00);
-  const insRebate = COSTS.assur[ins].rebate;
-  /* Le rebate s'applique à la part véto courante + aux incidents majeurs */
-  const vetRebateAmount = (partVet + incidentExpectedAnnual) * insRebate;
-  /* Part véto annuelle nette d'assurance */
-  const vetNetAnnual = (partVet + incidentExpectedAnnual) - vetRebateAmount;
-
-  /* Année normale (années 2-10) */
-  const annualNormal = partFood + vetNetAnnual + partGear + partCare + insCost;
-
-  /* Année 1 (acquisition + setup) */
+  /* Année 1 : acquisition + setup, identiques quelle que soit la formule */
   const setupCost = (prov === 'refuge') ? SETUP_REFUGE : SETUP_STANDARD;
   const acqCost   = ACQUISITION[prov];
-  const year1 = annualNormal + setupCost + acqCost;
 
-  /* Années sénior (11-12) : véto courant et incidents × 1.6 (gériatrie) */
-  const vetSeniorGross = (partVet + incidentExpectedAnnual) * 2.00;
-  const vetSeniorNet = vetSeniorGross * (1 - insRebate);
-  const seniorAnnual = (partFood * 0.95)
-                     + vetSeniorNet
-                     + (partGear * 0.70)
-                     + (partCare * 1.10)
-                     + insCost;
+  /* Construit un scénario complet (total 12 ans + breakdown) pour une formule donnée.
+     "aucune" → cost=0, rebate=0 → équivalent à l'ancien totalNoIns. */
+  function scenarioFor(insLevel) {
+    const insCost = COSTS.assur[insLevel].cost * INSURANCE_SIZE_MULT[t] * (raceSensitive ? 1.15 : 1.00);
+    const insRebate = COSTS.assur[insLevel].rebate;
+    const vetGrossAnnual = partVet + incidentExpectedAnnual;
+    const vetNetAnnual = vetGrossAnnual * (1 - insRebate);
+    const annualNormal = partFood + vetNetAnnual + partGear + partCare + insCost;
+    const year1 = annualNormal + setupCost + acqCost;
+    /* Sénior années 11-12 : véto courant + incidents × 2.0 (gériatrie) */
+    const vetSeniorNet = vetGrossAnnual * 2.00 * (1 - insRebate);
+    const seniorAnnual = (partFood * 0.95) + vetSeniorNet + (partGear * 0.70) + (partCare * 1.10) + insCost;
+    const total = year1 + (annualNormal * 9) + (seniorAnnual * 2);
+    return {
+      total: total,
+      year1: year1,
+      annualNormal: annualNormal,
+      seniorAnnual: seniorAnnual,
+      parts: { food: partFood * 12, vet: vetNetAnnual * 12, ins: insCost * 12, gear: partGear * 12, care: partCare * 12 },
+    };
+  }
 
-  /* Total 12 ans = an1 + 9 années normales + 2 années sénior */
-  const total = year1 + (annualNormal * 9) + (seniorAnnual * 2);
-
-  /* Comparaison sans assurance (incidents et véto à 100 % à charge) */
-  const vetGrossAnnual = partVet + incidentExpectedAnnual;
-  const annualNoIns = partFood + vetGrossAnnual + partGear + partCare;
-  const seniorNoIns = (partFood * 0.95) + vetSeniorGross + (partGear * 0.70) + (partCare * 1.10);
-  const year1NoIns  = annualNoIns + setupCost + acqCost;
-  const totalNoIns  = year1NoIns + (annualNoIns * 9) + (seniorNoIns * 2);
+  const scenarios = {
+    aucune:   scenarioFor('aucune'),
+    eco:      scenarioFor('eco'),
+    complete: scenarioFor('complete'),
+  };
+  const chosen = scenarios[ins];
 
   return {
-    total: total,
-    year1: year1,
-    annualNormal: annualNormal,
-    seniorAnnual: seniorAnnual,
-    parts: { food: partFood * 12, vet: vetNetAnnual * 12, ins: insCost * 12, gear: partGear * 12, care: partCare * 12 },
-    totalNoIns: totalNoIns,
+    total: chosen.total,
+    year1: chosen.year1,
+    annualNormal: chosen.annualNormal,
+    seniorAnnual: chosen.seniorAnnual,
+    parts: chosen.parts,
+    scenarios: scenarios,
+    totalNoIns: scenarios.aucune.total,
     raceName: race ? race.nom : null,
     raceSensitive: raceSensitive,
     insChosen: ins,
@@ -1465,18 +1532,18 @@ function compute() {
 
 /* ───── Render résultats ───── */
 function renderEmpty() {
-  document.getElementById('results-total-num').textContent = '—';
   document.getElementById('results-caption').textContent = 'Complétez le formulaire pour voir votre estimation.';
-  document.getElementById('rs-y1').textContent = '—';
-  document.getElementById('rs-avg').textContent = '—';
-  document.getElementById('rs-senior').textContent = '—';
+  ['scn-aucune-amt','scn-eco-amt','scn-complete-amt','rs-y1','rs-avg','rs-senior'].forEach(function(id) {
+    const el = document.getElementById(id); if (el) { el.textContent = '—'; el.dataset.cur = '0'; }
+  });
+  document.querySelectorAll('.scn-card').forEach(function(c) { c.classList.remove('is-selected'); });
   document.getElementById('br-sub').textContent = '— —';
   document.getElementById('results-live-pill').setAttribute('hidden', '');
   document.getElementById('results-card').classList.remove('is-filled');
   ['pct-food','pct-vet','pct-insure','pct-gear','pct-care'].forEach(function(id) {
     const el = document.getElementById(id); if (el) el.textContent = '—';
   });
-  ['amt-food','amt-vet','amt-insure','amt-gear','amt-care','cmp-with','cmp-without','cmp-save'].forEach(function(id) {
+  ['amt-food','amt-vet','amt-insure','amt-gear','amt-care'].forEach(function(id) {
     const el = document.getElementById(id); if (el) el.textContent = '—';
   });
   ['scenario-no','scenario-with','scenario-save','scenario-cost','scenario-size','scenario-name'].forEach(function(id) {
@@ -1485,14 +1552,25 @@ function renderEmpty() {
 }
 
 function renderResults(R) {
-  /* Hero + sub-numbers */
-  animateNum(document.getElementById('results-total-num'), R.total);
+  /* 3 scenario cards (Sans / Éco / Complète) — animation count-up sur chacune */
+  animateNum(document.getElementById('scn-aucune-amt'), R.scenarios.aucune.total);
+  animateNum(document.getElementById('scn-eco-amt'), R.scenarios.eco.total);
+  animateNum(document.getElementById('scn-complete-amt'), R.scenarios.complete.total);
+
+  /* Marque la card de la formule choisie (.is-selected) */
+  ['aucune','eco','complete'].forEach(function(k) {
+    const c = document.getElementById('scn-' + k + '-card');
+    if (c) c.classList.toggle('is-selected', k === R.insChosen);
+  });
+
+  /* Sub-numbers (calculés sur la formule choisie) */
   document.getElementById('rs-y1').textContent = eur(R.year1);
   document.getElementById('rs-avg').textContent = eur(R.annualNormal);
   document.getElementById('rs-senior').textContent = eur(R.seniorAnnual);
 
-  /* Caption */
-  let caption = 'Estimation sur 12 ans · ' + eur(R.total / 12) + ' par an en moyenne';
+  /* Caption avec formule + race en contexte */
+  const insCaptionLabels = { aucune: 'Sans assurance', eco: 'Avec Éco', complete: 'Avec Complète' };
+  let caption = (insCaptionLabels[R.insChosen] || '') + ' · ' + eur(R.total / 12) + ' / an en moyenne sur 12 ans';
   if (R.raceName) caption = R.raceName + ' · ' + caption;
   document.getElementById('results-caption').textContent = caption;
   document.getElementById('results-live-pill').removeAttribute('hidden');
@@ -1508,12 +1586,12 @@ function renderResults(R) {
   document.getElementById('pct-gear').textContent  = pct(parts.gear);
   document.getElementById('pct-care').textContent  = pct(parts.care);
 
-  /* Montants totaux sur 12 ans */
-  document.getElementById('amt-food').textContent  = eur(parts.food * 12);
-  document.getElementById('amt-vet').textContent   = eur(parts.vet * 12);
-  document.getElementById('amt-insure').textContent= eur(parts.ins * 12);
-  document.getElementById('amt-gear').textContent  = eur(parts.gear * 12);
-  document.getElementById('amt-care').textContent  = eur(parts.care * 12);
+  /* Montants totaux sur 12 ans (parts.X sont déjà multipliés par 12 dans compute()) */
+  document.getElementById('amt-food').textContent  = eur(parts.food);
+  document.getElementById('amt-vet').textContent   = eur(parts.vet);
+  document.getElementById('amt-insure').textContent= eur(parts.ins);
+  document.getElementById('amt-gear').textContent  = eur(parts.gear);
+  document.getElementById('amt-care').textContent  = eur(parts.care);
 
   /* Stacked bar segments */
   const segs = document.querySelectorAll('.br-bar-seg');
@@ -1532,42 +1610,6 @@ function renderResults(R) {
   const regionLabel = document.getElementById('region').options[document.getElementById('region').selectedIndex].textContent.trim();
   document.getElementById('br-sub').textContent = tLabel + ' · ' + regionLabel;
 
-  /* Comparaison avec/sans assurance — toujours visible */
-  /* Labels dynamiques : reflète la formule choisie */
-  const insLabels = {
-    aucune: 'Avec assurance (aucune souscrite)',
-    eco: 'Avec assurance économique',
-    complete: 'Avec assurance complète',
-  };
-  const insChosenLabel = insLabels[R.insChosen] || 'Avec assurance';
-  const cmpWithLabel = document.getElementById('cmp-with-label');
-  if (cmpWithLabel) cmpWithLabel.textContent = insChosenLabel;
-
-  document.getElementById('cmp-with').textContent = eur(R.total);
-  document.getElementById('cmp-without').textContent = eur(R.totalNoIns);
-  const save = R.totalNoIns - R.total;
-  const saveEl = document.getElementById('cmp-save');
-  const saveLblEl = document.getElementById('cmp-save-label');
-  const noteEl = document.getElementById('compare-note');
-  if (save >= 0) {
-    saveEl.textContent = eur(save);
-    saveEl.classList.remove('is-negative');
-    if (saveLblEl) saveLblEl.textContent = 'Économie sur 12 ans';
-    if (noteEl) {
-      noteEl.textContent = R.raceSensitive
-        ? "Votre race présente un risque élevé de pathologie coûteuse (chirurgie, traitement chronique). L'assurance est statistiquement gagnante sur la durée."
-        : "Sur 12 ans, l'assurance vous économise en moyenne ce montant en couvrant les imprévus chirurgicaux et les soins gériatriques.";
-    }
-  } else {
-    saveEl.textContent = '+' + eur(-save);
-    saveEl.classList.add('is-negative');
-    if (saveLblEl) saveLblEl.textContent = "Surcoût moyen 12 ans";
-    if (noteEl) {
-      noteEl.textContent = R.raceSensitive
-        ? "Votre race est exposée à un risque réel. Même si la moyenne penche légèrement vers le surcoût, un seul incident grave (chirurgie 2 500–3 500 €) renverse le calcul en faveur de l'assurance."
-        : "Pour ce profil de chien sain et robuste, l'assurance reste un choix de tranquillité d'esprit plutôt qu'un calcul financier. Elle vous protège contre un imprévu lourd (~3 000 €), même si la probabilité est faible.";
-    }
-  }
   updateScenario(R);
 }
 
@@ -1591,6 +1633,20 @@ function updateScenario(R) {
   document.getElementById('scenario-save').textContent = eur(scenario.cost - remaining);
   const noteCountEl = document.getElementById('scenario-note-count');
   if (noteCountEl) noteCountEl.textContent = String(incidentCount);
+}
+
+function initScenarioCards() {
+  document.querySelectorAll('.scn-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      const scn = card.getAttribute('data-scn');
+      if (!scn) return;
+      const radio = document.querySelector('input[name="assur"][value="' + scn + '"]');
+      if (radio && !radio.checked) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  });
 }
 
 function initScenarioToggle() {
@@ -1830,6 +1886,7 @@ function initTooltips() {
 document.addEventListener('DOMContentLoaded', function() {
   initRaceCombo();
   initTooltips();
+  initScenarioCards();
   initScenarioToggle();
   initIncidentAdjuster();
   document.querySelectorAll('.calc-form input, .calc-form select').forEach(function(el) {
