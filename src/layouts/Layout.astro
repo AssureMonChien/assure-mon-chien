@@ -1015,6 +1015,9 @@ const jsonldOrg = JSON.stringify({
     font-size: 13px;
     color: rgba(255,255,255,.6);
   }
+  /* Spécificité renforcée (0,2,0) pour résister aux resets .container{margin:0 auto}
+     injectés par des composants avec <style is:global> (ex: CoutCalculateur). */
+  .container.footer-meta { margin-top: 56px; }
   .footer-meta p { margin: 0; }
   @media (max-width: 880px) {
     .footer-inner { grid-template-columns: 1fr; gap: 40px; }
