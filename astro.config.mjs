@@ -79,9 +79,6 @@ export default defineConfig({
     sitemap({
       changefreq: 'monthly',
       priority: 0.7,
-      // ⚠️ TEMPORAIRE : calculateur exclu du sitemap pendant la phase de test prod
-      // (page marquée noindex/nofollow côté HTML). À retirer une fois la page validée.
-      filter: (page) => !page.includes('/outils/calculateur-cout-chien'),
       serialize(item) {
         const url = item.url;
         const sourceFile = urlToSourceFile(url);

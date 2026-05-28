@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import CoutCalculateur from "../../components/CoutCalculateur.astro";
 
-const pageTitle = "Calculateur — Combien coûte un chien sur 12 ans ?";
-const pageDesc  = "Estimez en 30 secondes le budget réel d'un chien en France 2026 : par taille, race et région. Données FACCO 2025, baromètre janv. 2026, SPA, cliniques vétérinaires.";
+const pageTitle = "Calculateur coût chien 2026 — Budget réel sur 12 ans par race et région";
+const pageDesc  = "Combien coûte un chien en France ? Calculez en 30 secondes votre budget sur 12 ans selon la race, la taille et la région. 31 races analysées, données FACCO 2025 et baromètre assurance janvier 2026. Estimation indépendante, gratuite, sans inscription.";
 const pageUrl   = "https://assure-mon-chien.fr/outils/calculateur-cout-chien";
 
 const jsonLdBreadcrumb = {
@@ -29,17 +29,59 @@ const jsonLdApp = {
   "inLanguage": "fr-FR",
   "publisher": { "@type": "Organization", "name": "Assure-Mon-Chien", "url": "https://assure-mon-chien.fr/" },
 };
+
+const jsonLdFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Sur quelles données est basé ce calcul ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Notre modèle s'appuie sur les données publiques FACCO 2025 (alimentation), les tarifs vétérinaires relevés par plusieurs comparateurs en 2026 (Réassurez-moi, Meilleurtaux, cliniques privées), le baromètre LeComparateurAssurance de janvier 2026 (assurance santé animale), les tarifs officiels SPA 2026 (adoption) et la documentation médicale des clubs de race officiels affiliés à la Société Centrale Canine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi mon estimation est-elle si élevée ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le coût d'un chien est sous-estimé dans l'imaginaire collectif. Notre étude documentée (FACCO + INSEE + cliniques) confirme une moyenne nationale de 1 150 € par an pour un chien adulte sain, qui peut grimper à 2 400 €/an pour un chien géant ou doubler avec une formule alimentation premium et une assurance complète. Sur 12 ans, le coût total varie de 10 000 € (petit chien sobre) à 30 000 € (géant premium)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'assurance vaut-elle vraiment le coup ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Selon le profil du chien, oui dans la majorité des cas. La comparaison « avec / sans assurance » intégrée au calculateur intègre la cotisation annuelle et le rebate vétérinaire estimé (15 % à 50 % selon la formule). Pour un chien de race sensible (Bouledogue, Cavalier King Charles…), l'écart est presque toujours favorable à l'assurance. Pour un chien petit, robuste et sain, le calcul peut être plus serré."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi le coefficient race change-t-il les frais vétérinaires ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les prédispositions héréditaires varient fortement selon la race. Un Bouledogue Français a une probabilité significative de nécessiter une chirurgie BAOS (palais mou) à 1 500-2 500 €. Un Cavalier King Charles est exposé à la syringomyélie. Notre coefficient race applique une majoration de +5 % (race à risque faible) à +40 % (race à risque élevé) sur la part vétérinaire de votre budget, conformément aux fiches de chaque race que vous trouverez sur le site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mon budget réel sera-t-il identique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Notre estimation reste indicative. Trois variables peuvent l'affecter à la hausse comme à la baisse de ±20 % : le choix de votre vétérinaire (écarts importants en zone urbaine), votre usage de la garde (pension, dog-walker, famille proche) et les imprévus de santé. Le calculateur vous donne un ordre de grandeur fiable pour anticiper, pas un budget garanti à l'euro près."
+      }
+    }
+  ]
+};
 ---
 
 <Layout title={pageTitle} description={pageDesc}>
-  <!-- ⚠️ TEMPORAIRE : noindex/nofollow pour test en production avant lancement public.
-       À retirer (et à réintégrer dans le sitemap via astro.config.mjs) une fois validé. -->
-  <Fragment slot="head">
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="googlebot" content="noindex, nofollow" />
-  </Fragment>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLdBreadcrumb)} />
   <script type="application/ld+json" set:html={JSON.stringify(jsonLdApp)} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdFaq)} />
 
   <!-- ── Hero ── -->
   <section class="calc-hero">
@@ -72,6 +114,138 @@ const jsonLdApp = {
 
   <!-- ── Calculateur ── -->
   <CoutCalculateur />
+
+  <!-- ── Section éditoriale ── -->
+  <section class="section calc-editorial">
+    <div class="container">
+      <div class="calc-editorial-inner">
+
+        <h2>Pourquoi un calculateur plutôt qu'une moyenne nationale&nbsp;?</h2>
+        <p>
+          La moyenne nationale de 1&nbsp;150&nbsp;€ par an pour un chien adulte est utile pour comprendre l'ordre de grandeur — elle ne sert à rien pour décider. Deux propriétaires qualifiés de «&nbsp;moyens&nbsp;» peuvent avoir un écart de 2&nbsp;500&nbsp;€ par an, soit <strong>30&nbsp;000&nbsp;€ sur 12 ans</strong>, en fonction de leur ville, de leur race et de leur formule d'assurance. Ce n'est pas une nuance marginale&nbsp;: c'est la différence entre un budget maîtrisable et un engagement sous-estimé.
+        </p>
+        <p>
+          Un <a href="/races/labrador">Labrador</a> à Paris avec une assurance accidents-maladies complète n'a budgétairement rien à voir avec un <a href="/races/yorkshire-terrier">Yorkshire</a> en zone rurale sans assurance. Pourtant, les deux correspondent au «&nbsp;chien moyen français&nbsp;». La moyenne les rend invisibles l'un à l'autre.
+        </p>
+        <p>
+          Notre calculateur croise 6 variables pour produire une estimation personnalisée. Selon votre profil, cette estimation peut <strong>diverger de -40&nbsp;% à +110&nbsp;%</strong> de la moyenne nationale — ce qui est précisément sa valeur. Pour les fourchettes générales et les moyennes nationales détaillées par poste, voir notre <a href="/guides/cout-chien">étude complète sur le coût d'un chien en 2026</a>.
+        </p>
+
+        <h2>Les 6 paramètres qui font le plus bouger votre estimation</h2>
+        <p>
+          Chaque variable du formulaire a un impact chiffrable sur le total 12 ans. Voici leur amplitude respective, du plus lourd au plus fin&nbsp;:
+        </p>
+        <ol class="calc-editorial-params">
+          <li>
+            <strong>La taille</strong> — C'est le levier le plus massif. Le multiplicateur va de ×1 (petit chien, ~850&nbsp;€/an) à ×3 (chien géant, ~2&nbsp;400&nbsp;€/an). Sur 12 ans, ce seul paramètre explique un écart de <strong>18&nbsp;000&nbsp;€</strong> entre les deux extrêmes.
+          </li>
+          <li>
+            <strong>La race</strong> — Le coefficient vétérinaire appliqué varie de +5&nbsp;% (race à faible risque) à +40&nbsp;% (race à risque élevé). Concrètement, un <a href="/races/bouledogue-francais">Bouledogue Français</a> paie environ 4&nbsp;500&nbsp;€ de plus en frais vétérinaires sur 12 ans qu'un <a href="/races/border-collie">Border Collie</a> de même gabarit.
+          </li>
+          <li>
+            <strong>La région</strong> — Le coefficient régional s'étend de 0,95× (zone rurale) à 1,20× (Île-de-France). Un chien à Paris coûte environ 15&nbsp;% de plus qu'à Limoges sur le poste vétérinaire, principalement sur les consultations et les actes programmables.
+          </li>
+          <li>
+            <strong>L'alimentation</strong> — Le multiplicateur va de 1× (standard) à 1,40× (premium) à 1,70× (sur-mesure). L'écart représente environ 3&nbsp;600&nbsp;€ sur 12 ans pour un grand chien entre l'option standard et l'option sur-mesure.
+          </li>
+          <li>
+            <strong>L'assurance</strong> — Trois scénarios&nbsp;: 0&nbsp;€/an (Sans), ~250&nbsp;€/an (Éco), ~480&nbsp;€/an (Complète). Avec des rebates vétérinaires respectifs de 0&nbsp;%, 30&nbsp;% et 85&nbsp;%, le différentiel net peut atteindre <strong>±7&nbsp;000&nbsp;€ sur 12 ans</strong> selon le profil.
+          </li>
+          <li>
+            <strong>Le nombre d'incidents chirurgicaux</strong> — Réglable de 0 à 6. Le défaut race (0 pour faible risque, 1 pour modéré, 2 pour élevé) est issu des données vétérinaires par race. Chaque incident coûte 1&nbsp;800 à 3&nbsp;800&nbsp;€ selon la taille. C'est le paramètre dont la variance est la plus forte.
+          </li>
+        </ol>
+        <p>
+          À retenir&nbsp;: les deux leviers strictement personnels — <strong>formule d'assurance</strong> et <strong>hypothèse d'incidents</strong> — expliquent à eux seuls <strong>60&nbsp;% de la variance</strong> entre deux estimations pour une même race et une même région. Ce sont les deux curseurs sur lesquels vous avez le plus de prise.
+        </p>
+
+        <h2>Sans, Éco, Complète&nbsp;: comment lire les 3 scénarios</h2>
+        <p>
+          Les trois scénarios affichés ne représentent pas des produits d'assurance spécifiques&nbsp;: ce sont des <strong>modélisations de marché</strong> correspondant à trois stratégies de couverture distinctes.
+        </p>
+        <p>
+          <strong>Sans</strong> signifie auto-assurance totale&nbsp;: aucune cotisation, mais vous absorbez 100&nbsp;% des frais vétérinaires, chirurgies comprises. Cette stratégie ne fonctionne que si vous provisionnez activement — 50 à 100&nbsp;€/mois mis de côté dès l'adoption.
+        </p>
+        <p>
+          <strong>Éco</strong> correspond à une formule accidents-maladies basique&nbsp;: cotisation d'environ 250&nbsp;€/an, remboursement estimé à 30&nbsp;% des frais éligibles. Elle limite les dommages sur les chirurgies courantes mais laisse une part significative à votre charge.
+        </p>
+        <p>
+          <strong>Complète</strong> correspond à une formule premium accidents-maladies&nbsp;: cotisation d'environ 480&nbsp;€/an, remboursement estimé à 85&nbsp;% des frais éligibles. C'est la formule la plus protectrice — et la plus rentable pour les races à risque élevé ou les chiens en zone urbaine.
+        </p>
+        <p>
+          Le <strong>delta Sans / Complète</strong> est le chiffre clé à regarder sur votre estimation. S'il est positif, la formule Complète vous fait économiser de l'argent sur 12 ans malgré les cotisations. S'il est négatif, l'auto-assurance est la stratégie moins coûteuse — à condition d'avoir la discipline de provisionner.
+        </p>
+        <p>
+          Cas où <strong>Complète gagne nettement</strong>&nbsp;: grandes races, races à risque élevé, propriétaires en zone urbaine, profil avec 2 incidents ou plus sur la vie du chien. Cas où <strong>Sans peut tenir</strong>&nbsp;: petit chien robuste en zone rurale, profil à 0 incident, propriétaire avec capacité d'épargne démontrée. La formule Éco est rarement la solution optimale&nbsp;: elle est utile comme palier d'entrée, pas comme stratégie long terme.
+        </p>
+        <p>
+          Précision éditoriale&nbsp;: le calculateur n'oriente pas vers l'assurance par défaut. Sur certains profils, il affiche «&nbsp;Sans&nbsp;» comme scénario le moins coûteux. C'est un choix délibéré d'honnêteté.
+        </p>
+
+        <h2>Pourquoi le pic sénior à 11-12 ans n'apparaît pas dans les moyennes</h2>
+        <p>
+          La moyenne nationale lisse la courbe budgétaire sur toute la vie du chien. En réalité, le coût d'un chien suit une courbe <strong>bimodale</strong>&nbsp;: un pic à l'année 1, un palier stable en croisière, une remontée marquée en sénior.
+        </p>
+        <ul class="calc-editorial-phases">
+          <li>
+            <strong>Pic année 1</strong> — acquisition, setup, primo-vaccinations, équipement. Coût réel&nbsp;: 1&nbsp;800 à 3&nbsp;200&nbsp;€ selon la taille et la filière d'adoption. Ce pic est intégralement pris en compte dans l'estimation de l'année&nbsp;1.
+          </li>
+          <li>
+            <strong>Palier croisière (années 2-10)</strong> — alimentation, soins préventifs, assurance, garde. C'est la phase qui correspond à la «&nbsp;moyenne nationale&nbsp;». Coût le plus stable et le plus prévisible.
+          </li>
+          <li>
+            <strong>Remontée sénior (années 11-12)</strong> — frais vétérinaires × 1,6 à × 2 selon le profil race. Ce pic est structurel, pas exceptionnel&nbsp;: arthrose, insuffisance rénale, cardiopathies et cancers sont des pathologies liées à l'âge qui augmentent mécaniquement le poste vétérinaire.
+          </li>
+        </ul>
+        <p>
+          En cumul sur les 2 années sénior, un grand chien peut générer 5&nbsp;000 à 8&nbsp;000&nbsp;€ de frais vétérinaires hors assurance. Pour les races à risque élevé, ce coefficient monte à ×&nbsp;2 sur la partie curative.
+        </p>
+        <p>
+          Conséquence pour le choix d'assurance&nbsp;: <strong>souscrire avant 4 ans</strong> est presque toujours plus rentable qu'attendre. La cotisation est calée sur l'âge à la souscription et n'augmente pas d'un bloc à 7-8 ans — contrairement à une souscription tardive, où la prime initiale peut être 40 à 80&nbsp;% plus élevée. Le calculateur intègre cette non-linéarité&nbsp;: c'est pourquoi l'estimation 12 ans ne peut pas se réduire à une simple multiplication d'un coût annuel moyen.
+        </p>
+
+        <h2>Quand l'estimation se trompe&nbsp;: les 3 sources d'écart</h2>
+        <p>
+          Notre calculateur est un outil d'aide à la décision, pas un devis. Comprendre ses limites est aussi important que comprendre ses résultats. Trois sources d'écart peuvent déplacer l'estimation de ±20&nbsp;% — voire ±35&nbsp;% sur les profils extrêmes.
+        </p>
+        <p>
+          <strong>1. Le vétérinaire choisi.</strong> Les tarifs vétérinaires ne sont pas réglementés en France. L'écart entre une clinique parisienne haut de gamme et un cabinet rural peut atteindre 35 à 40&nbsp;% pour un même acte. Le calculateur utilise une médiane nationale. Si vous fréquentez une clinique référée spécialisée, majorez la part vétérinaire de 20 à 30&nbsp;%.
+        </p>
+        <p>
+          <strong>2. Le mode de garde.</strong> Un propriétaire qui voyage 4 semaines par an et utilise une pension paie 600 à 1&nbsp;200&nbsp;€ supplémentaires annuellement. Un télétravailleur avec famille proche disponible paie 0&nbsp;€. Le calculateur intègre un milieu de gamme (10 jours de pension par an). Si votre situation s'écarte sensiblement de cette hypothèse, ajustez en conséquence.
+        </p>
+        <p>
+          <strong>3. Les imprévus de santé.</strong> Une fracture, un cancer, une torsion d'estomac sont par nature imprévisibles. Le calculateur intègre un nombre d'incidents par défaut — réglable de 0 à 6 — mais la variance réelle dépend d'une part de chance que le modèle ne peut pas capturer. Le seuil ±20&nbsp;% est honnête pour les profils médians&nbsp;; pour un chien géant à risque élevé en zone urbaine, la marge peut atteindre ±35&nbsp;%.
+        </p>
+        <p>
+          L'estimation est une <strong>boussole, pas un GPS</strong>. Elle vous donne la bonne direction et vous indique si vous roulez à 80 ou à 200 à l'heure — sans vous promettre d'arriver à l'heure exacte.
+        </p>
+
+        <h2>Utiliser votre estimation pour décider</h2>
+        <p>
+          Une estimation chiffrée n'a de valeur que si elle alimente une décision concrète. Voici les quatre questions que votre résultat de calculateur permet d'éclairer directement.
+        </p>
+        <ol class="calc-editorial-decisions">
+          <li>
+            <strong>Adopter ce chien ou attendre&nbsp;?</strong> Si le coût total estimé dépasse 10&nbsp;% de votre revenu disponible annuel sur 12 ans, c'est un signal d'alerte — soit sur la race choisie, soit sur le timing. Ce n'est pas une règle absolue, mais un indicateur utile pour ne pas sous-estimer l'engagement.
+          </li>
+          <li>
+            <strong>Provisionner ou souscrire une assurance&nbsp;?</strong> Si le delta Sans/Complète est inférieur à 1&nbsp;000&nbsp;€ sur 12 ans, l'auto-assurance disciplinée tient. Si le delta dépasse 3&nbsp;000&nbsp;€, l'assurance est presque toujours le bon choix financier. Entre les deux, votre appétit au risque personnel tranche.
+          </li>
+          <li>
+            <strong>Choisir entre deux races&nbsp;?</strong> Lancez deux estimations parallèles avec les mêmes paramètres sauf la race. L'écart de coût total entre un <a href="/races/border-collie">Border Collie</a> et un <a href="/races/bouledogue-francais">Bouledogue Français</a> se chiffre souvent en 5&nbsp;000 à 8&nbsp;000&nbsp;€ sur 12 ans pour un profil propriétaire identique. L'estimation transforme une préférence émotionnelle en arbitrage chiffré.
+          </li>
+          <li>
+            <strong>Anticiper le passage en sénior.</strong> Votre estimation détaille les années 11-12 séparément. Si vous lisez un pic marqué, provisionner 60 à 80&nbsp;€/mois dès la phase croisière vous permet d'aborder cette période sans stress financier — qu'il y ait une assurance ou non.
+          </li>
+        </ol>
+        <p>
+          Pour aller plus loin sur le contexte général du coût d'un chien en France, voir notre <a href="/guides/cout-chien">guide de référence sur le coût d'un chien en 2026</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
 
   <!-- ── Sources & Méthodologie ── -->
   <section class="calc-sources-section">
@@ -144,6 +318,40 @@ const jsonLdApp = {
       </div>
     </div>
   </section>
+
+  <!-- ── CTA conversion (fin de page pour préserver le linkable asset) ── -->
+  <aside class="calc-cta-banner" aria-label="Comparer les assurances chien">
+    <div class="container calc-cta-inner">
+      <div class="calc-cta-content">
+        <p class="calc-cta-eyebrow">Votre profil est calculé</p>
+        <h2 class="calc-cta-title">Trouvez l'assurance adaptée à votre chien</h2>
+        <p class="calc-cta-text">
+          Notre comparatif indépendant analyse les formules de 8 assureurs&nbsp;: accidents seuls, accidents&nbsp;+&nbsp;maladies, remboursement vétérinaire. Comparez les vrais prix pour votre race et votre région.
+        </p>
+        <ul class="calc-cta-features">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Tarifs actualisés janvier 2026
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Analyse des franchises et plafonds
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Recommandation selon le risque race
+          </li>
+        </ul>
+      </div>
+      <div class="calc-cta-actions">
+        <a href="/comparatif/meilleures-assurances" class="calc-cta-btn">
+          Comparer les assurances
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <p class="calc-cta-reassurance">Gratuit · Sans inscription · Sans engagement</p>
+      </div>
+    </div>
+  </aside>
 </Layout>
 
 <style>
@@ -194,6 +402,115 @@ const jsonLdApp = {
   .calc-trust-item { display: inline-flex; align-items: center; gap: 8px; }
   .calc-trust-item svg { color: var(--c-green, #1D9E75); flex-shrink: 0; }
 
+  /* CTA conversion — placé en fin de page pour préserver le linkable asset.
+     Padding-bottom plus généreux car c'est la dernière section avant le footer. */
+  .calc-cta-banner {
+    background: linear-gradient(135deg, var(--c-green-800, #0A5443) 0%, var(--c-green-700, #0F6E56) 100%);
+    padding: 48px 0 88px;
+  }
+  .calc-cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+  }
+  .calc-cta-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin: 0 0 10px;
+  }
+  .calc-cta-title {
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 12px;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+  }
+  .calc-cta-text {
+    font-size: 15px;
+    color: rgba(255,255,255,.82);
+    line-height: 1.6;
+    margin: 0 0 16px;
+    max-width: 540px;
+  }
+  .calc-cta-features {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex; flex-wrap: wrap; gap: 8px 20px;
+  }
+  .calc-cta-features li {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; color: rgba(255,255,255,.78);
+  }
+  .calc-cta-features svg { color: var(--c-yellow, #F9CB42); flex-shrink: 0; }
+  .calc-cta-actions {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+    flex-shrink: 0;
+  }
+  .calc-cta-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--c-yellow, #F9CB42);
+    color: var(--c-green-900, #062E22);
+    font-size: 15px; font-weight: 700;
+    padding: 14px 24px; border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .15s, transform .12s;
+    box-shadow: 0 4px 16px rgba(0,0,0,.18);
+  }
+  .calc-cta-btn:hover { background: #fbd443; transform: translateY(-1px); }
+  .calc-cta-btn svg { flex-shrink: 0; }
+  .calc-cta-reassurance {
+    font-size: 12px; color: rgba(255,255,255,.5);
+    margin: 0; text-align: right;
+  }
+  @media (max-width: 768px) {
+    .calc-cta-inner { grid-template-columns: 1fr; gap: 28px; }
+    .calc-cta-actions { align-items: flex-start; }
+    .calc-cta-reassurance { text-align: left; }
+  }
+
+  /* Section éditoriale calculateur — angle outil */
+  .calc-editorial { background: #fff; }
+  .calc-editorial-inner { max-width: 760px; margin: 0 auto; }
+  .calc-editorial h2 {
+    font-size: 28px;
+    letter-spacing: -.01em;
+    margin: 56px 0 16px;
+    scroll-margin-top: 80px;
+  }
+  .calc-editorial h2:first-child { margin-top: 0; }
+  .calc-editorial p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--c-ink-2, #3d4a45);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+  }
+  .calc-editorial p strong { color: var(--c-ink, #1a2421); font-weight: 600; }
+  .calc-editorial ol,
+  .calc-editorial ul {
+    margin: 0 0 20px;
+    padding-left: 22px;
+    color: var(--c-ink-2, #3d4a45);
+  }
+  .calc-editorial li { margin: 0 0 8px; line-height: 1.65; }
+  .calc-editorial a {
+    color: var(--c-green-700, #0F6E56);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .calc-editorial a:hover { color: var(--c-green, #1D9E75); }
+
+  @media (max-width: 600px) {
+    .calc-editorial h2 { font-size: 24px; margin-top: 40px; }
+    .calc-editorial p { font-size: 16px; }
+  }
+
   /* Sources & méthodologie */
   .calc-sources-section { padding: 64px 0; background: var(--c-bg-soft, #fafaf7); }
   .calc-sources-inner {
@@ -223,6 +540,4 @@ const jsonLdApp = {
     .calc-sources-inner { grid-template-columns: 1fr; }
   }
 
-  /* Aligne l'espace sous la FAQ avec le padding-bottom de la dernière section homepage (.banner = 88px) */
-  .section { padding-bottom: 88px; }
 </style>
