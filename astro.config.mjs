@@ -79,6 +79,7 @@ export default defineConfig({
     sitemap({
       changefreq: 'monthly',
       priority: 0.7,
+      filter: (page) => !page.includes('/embed/'),
       serialize(item) {
         const url = item.url;
         const sourceFile = urlToSourceFile(url);
@@ -112,6 +113,8 @@ export default defineConfig({
           'https://assure-mon-chien.fr/comparatif/assurance-chien-pas-cher/',
           'https://assure-mon-chien.fr/comparatif/par-race',
           'https://assure-mon-chien.fr/comparatif/par-race/',
+          'https://assure-mon-chien.fr/outils',
+          'https://assure-mon-chien.fr/outils/',
           'https://assure-mon-chien.fr/outils/calculateur-cout-chien',
           'https://assure-mon-chien.fr/outils/calculateur-cout-chien/',
         ];

@@ -76,6 +76,15 @@ const jsonLdFaq = {
     }
   ]
 };
+
+const _scriptClose = '<' + '/script>';
+const embedCode = `<iframe src="https://assure-mon-chien.fr/embed/calculateur-cout-chien"
+  width="100%" height="900" style="border:1px solid #e7eae8;border-radius:12px;max-width:680px"
+  title="Calculateur coût d'un chien" loading="lazy"></iframe>
+<script>window.addEventListener('message',function(e){
+  if(e.data&&e.data.ammcHeight){
+    var f=document.querySelector('iframe[src*="assure-mon-chien.fr/embed"]');
+    if(f)f.style.height=e.data.ammcHeight+'px';}}); ${_scriptClose}`;
 ---
 
 <Layout title={pageTitle} description={pageDesc}>
@@ -279,6 +288,47 @@ const jsonLdFaq = {
       </div>
     </div>
   </section>
+
+  <!-- ── Intégrer ce calculateur ── -->
+  <section class="calc-embed-invite">
+    <div class="container">
+      <div class="calc-embed-inner">
+        <div class="calc-embed-text">
+          <h2>Intégrez ce calculateur sur votre site</h2>
+          <p>Libre et gratuit — une mention de la source est appréciée.</p>
+        </div>
+        <div class="calc-embed-code-wrap">
+          <textarea class="calc-embed-textarea" id="embed-code-snippet" readonly rows="5">{embedCode}</textarea>
+          <button class="calc-embed-copy-btn" id="embed-copy-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="5" y="5" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M5 4V3.5A1.5 1.5 0 016.5 2h6A1.5 1.5 0 0114 3.5v7A1.5 1.5 0 0112.5 12H12" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+            <span class="embed-copy-label">Copier le code</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('embed-copy-btn');
+      var label = btn && btn.querySelector('.embed-copy-label');
+      var textarea = document.getElementById('embed-code-snippet');
+      if (!btn || !textarea || !label) return;
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(textarea.value).then(function () {
+          label.textContent = 'Copié ✓';
+          btn.classList.add('is-copied');
+          setTimeout(function () {
+            label.textContent = 'Copier le code';
+            btn.classList.remove('is-copied');
+          }, 2000);
+        });
+      });
+    })();
+  </script>
 
   <!-- ── FAQ ── -->
   <section class="section">
@@ -538,6 +588,71 @@ const jsonLdFaq = {
 
   @media (max-width: 900px) {
     .calc-sources-inner { grid-template-columns: 1fr; }
+  }
+
+  /* ── Bloc intégrer ce calculateur ── */
+  .calc-embed-invite {
+    padding: 56px 0;
+    background: var(--c-bg-soft, #fafaf7);
+    border-top: 1px solid var(--c-line, #e7eae8);
+  }
+  .calc-embed-inner {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 220px 1fr;
+    align-items: start;
+  }
+  .calc-embed-text h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin: 0 0 8px;
+  }
+  .calc-embed-text p {
+    font-size: 15px;
+    color: var(--c-ink-2, #3d4a45);
+    margin: 0;
+    line-height: 1.6;
+  }
+  .calc-embed-code-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .calc-embed-textarea {
+    width: 100%;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--c-ink-2, #3d4a45);
+    background: #fff;
+    border: 1px solid var(--c-line, #e7eae8);
+    border-radius: 10px;
+    padding: 14px 16px;
+    resize: none;
+    outline: none;
+    cursor: text;
+  }
+  .calc-embed-textarea:focus { border-color: var(--c-green-200, #d4ede5); }
+  .calc-embed-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: var(--c-green-700, #0F6E56);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .calc-embed-copy-btn:hover { background: var(--c-green-800, #0A5443); }
+  .calc-embed-copy-btn.is-copied { background: var(--c-green, #1D9E75); }
+  @media (max-width: 768px) {
+    .calc-embed-inner { grid-template-columns: 1fr; }
   }
 
 </style>

@@ -1,0 +1,117 @@
+---
+import CoutCalculateur from '../../components/CoutCalculateur.astro';
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow" />
+    <title>Calculateur coût chien — Assure Mon Chien</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <CoutCalculateur />
+    <div class="embed-attribution">
+      <a href="https://assure-mon-chien.fr/outils/calculateur-cout-chien" target="_blank" rel="noopener">
+        Calculateur fourni par Assure&#8209;Mon&#8209;Chien &rarr;
+      </a>
+    </div>
+    <script is:inline>
+      (function () {
+        function sendHeight() {
+          window.parent.postMessage({ ammcHeight: document.body.scrollHeight }, '*');
+        }
+        if (typeof ResizeObserver !== 'undefined') {
+          new ResizeObserver(sendHeight).observe(document.body);
+        }
+        window.addEventListener('load', sendHeight);
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --c-green:       #1D9E75;
+    --c-green-600:   #168961;
+    --c-green-700:   #0F6E56;
+    --c-green-800:   #0A5443;
+    --c-green-50:    #f4fbf8;
+    --c-green-100:   #e7f5ee;
+    --c-green-200:   #d4ede5;
+    --c-accent:      #F9CB42;
+    --c-accent-600:  #E8B520;
+    --c-accent-text: #1a1a1a;
+    --c-risk-high:   #E53935;
+    --c-risk-mid:    #FB8C00;
+    --c-risk-low:    #43A047;
+    --c-bg:          #ffffff;
+    --c-bg-soft:     #fafaf7;
+    --c-bg-tinted:   #f4fbf8;
+    --c-ink:         #16201c;
+    --c-ink-2:       #3d4a45;
+    --c-ink-3:       #6a7672;
+    --c-line:        #e7eae8;
+    --c-line-soft:   #eef2f0;
+    --font-sans:     "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --font-display:  "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-mono:     "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+    --container:     1100px;
+    --radius-sm:     10px;
+    --radius:        16px;
+    --radius-lg:     22px;
+    --shadow-sm:     0 1px 2px rgba(15,110,86,.06), 0 1px 1px rgba(15,110,86,.04);
+    --shadow:        0 8px 24px -8px rgba(15,110,86,.10), 0 2px 6px -2px rgba(15,110,86,.06);
+    --shadow-lg:     0 24px 48px -16px rgba(15,110,86,.18), 0 8px 16px -8px rgba(15,110,86,.08);
+    --gutter:        24px;
+    --gutter-mobile: 16px;
+    --green:         #1D9E75;
+    --green-dark:    #0F6E56;
+    --green-light:   #f4fbf8;
+    --white:         #ffffff;
+    --text:          #16201c;
+    --text-muted:    #3d4a45;
+    --border:        #e7eae8;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: transparent;
+    color: var(--c-ink);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--c-green-700); text-decoration: none; }
+  a:hover { color: var(--c-green); }
+  button { font-family: inherit; cursor: pointer; }
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  @media (max-width: 600px) {
+    .container { padding-left: var(--gutter-mobile); padding-right: var(--gutter-mobile); }
+  }
+  .embed-attribution {
+    text-align: center;
+    padding: 10px 16px;
+    border-top: 1px solid var(--c-line, #e7eae8);
+    font-size: 13px;
+  }
+  .embed-attribution a {
+    color: var(--c-green-700, #0F6E56);
+    text-decoration: none;
+  }
+  .embed-attribution a:hover { text-decoration: underline; }
+</style>

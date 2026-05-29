@@ -1,0 +1,123 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const pageTitle = "Outils gratuits — Calculateurs pour propriétaires de chien";
+const pageDesc  = "Outils gratuits pour estimer le budget et comparer les assurances de votre chien. Calculateur de coût sur 12 ans, simulation d'assurance, données FACCO 2025.";
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <section class="section section-tinted">
+    <div class="container">
+      <p class="eyebrow">Outils</p>
+      <h1 class="display">Outils gratuits</h1>
+      <p class="section-sub">Calculateurs et simulateurs pour préparer et gérer la vie avec votre chien.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="tools-grid">
+
+        <article class="tool-card">
+          <div class="tool-card-header">
+            <span class="tool-tag">Calculateur</span>
+          </div>
+          <h2 class="tool-card-title">
+            <a href="/outils/calculateur-cout-chien">Budget chien sur 12 ans</a>
+          </h2>
+          <p class="tool-card-desc">
+            Estimez en 30 secondes votre budget total selon la race, la taille et la région — acquisition, alimentation, vétérinaire et assurance inclus. 31 races analysées, données FACCO 2025.
+          </p>
+          <a href="/outils/calculateur-cout-chien" class="btn btn-primary tool-card-cta">
+            Ouvrir le calculateur
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M4 7h6M7 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="tool-card-features">
+            <li>31 races analysées</li>
+            <li>Données FACCO 2025</li>
+            <li>Gratuit, sans inscription</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 760px;
+  }
+  .tool-card {
+    background: #fff;
+    border: 1px solid var(--c-line, #e7eae8);
+    border-radius: 18px;
+    padding: 28px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .tool-card:hover {
+    box-shadow: 0 8px 24px -8px rgba(15,110,86,.12);
+    transform: translateY(-2px);
+  }
+  .tool-card-header { margin-bottom: 14px; }
+  .tool-tag {
+    display: inline-block;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-green-700, #0F6E56);
+    background: var(--c-green-50, #f4fbf8);
+    border: 1px solid var(--c-green-200, #d4ede5);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .tool-card-title {
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    letter-spacing: -.01em;
+  }
+  .tool-card-title a {
+    color: var(--c-ink, #16201c);
+    text-decoration: none;
+  }
+  .tool-card-title a:hover { color: var(--c-green-700, #0F6E56); }
+  .tool-card-desc {
+    font-size: 15px;
+    color: var(--c-ink-2, #3d4a45);
+    line-height: 1.65;
+    margin: 0 0 20px;
+  }
+  .tool-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .tool-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    border-top: 1px solid var(--c-line-soft, #eef2f0);
+    padding-top: 16px;
+  }
+  .tool-card-features li {
+    font-size: 12.5px;
+    color: var(--c-ink-3, #6a7672);
+  }
+  .tool-card-features li::before {
+    content: '\2713\00a0';
+    color: var(--c-green, #1D9E75);
+    font-weight: 700;
+  }
+</style>
