@@ -1,4 +1,4 @@
-// Single source of truth pour les 31 races analysées sur le site.
+// Single source of truth pour les 41 races analysées sur le site.
 // Chaque entrée porte : slug, nom, taille, profil de risque, score (calculé),
 // fourchette de coût annuel d'assurance, et tags pathologiques pour la
 // recommandation d'assurance par race (cf. /comparatif/par-race/[slug]).
@@ -48,6 +48,16 @@ const RACE_TAGS: Record<string, string[]> = {
   "shih-tzu": ["oeil", "rotule", "allergies"],
   "teckel": ["dos", "rotule", "oeil"],
   "yorkshire-terrier": ["rotule", "foie", "allergies"],
+  "bearded-collie":     ["dysplasie", "hypothyroidie", "addison"],
+  "bouvier-bernois":    ["histiocytose", "dysplasie", "estomac"],
+  "cane-corso":         ["dysplasie", "oeil", "cardiaque"],
+  "coton-de-tulear":    ["rotule", "oeil", "neurologie"],
+  "dogue-allemand":     ["estomac", "cardiaque", "dysplasie"],
+  "eurasier":           ["dysplasie", "hypothyroidie", "oeil"],
+  "pomsky":             ["rotule", "oeil", "trachee"],
+  "shar-pei":           ["oeil", "auto-immune", "renal"],
+  "spitz-pomeranien":   ["rotule", "alopecie", "trachee"],
+  "corgi": ["dos", "oeil", "neurologie"],
 };
 
 export const RACES: Race[] = [
@@ -81,7 +91,17 @@ export const RACES: Race[] = [
   { slug: "setter-irlandais", nom: "Setter Irlandais", taille: "grande", risque: "modere", score: SCORE_DEFAULT['modere'], cost: "250 – 420 €", tags: RACE_TAGS["setter-irlandais"] },
   { slug: "shih-tzu", nom: "Shih Tzu", taille: "petite", risque: "modere", score: SCORE_DEFAULT['modere'], cost: "200 – 380 €", tags: RACE_TAGS["shih-tzu"] },
   { slug: "teckel", nom: "Teckel", taille: "petite", risque: "eleve", score: SCORE_DEFAULT['eleve'], cost: "200 – 360 €", tags: RACE_TAGS["teckel"] },
-  { slug: "yorkshire-terrier", nom: "Yorkshire Terrier", taille: "petite", risque: "modere", score: SCORE_DEFAULT['modere'], cost: "180 – 360 €", tags: RACE_TAGS["yorkshire-terrier"] },
+  { slug: "yorkshire-terrier",    nom: "Yorkshire Terrier",    taille: "petite",  risque: "modere", score: SCORE_DEFAULT['modere'], cost: "180 – 360 €",  tags: RACE_TAGS["yorkshire-terrier"] },
+  { slug: "bearded-collie",       nom: "Bearded Collie",       taille: "moyenne", risque: "faible", score: 28,                    cost: "160 – 260 €",  tags: RACE_TAGS["bearded-collie"] },
+  { slug: "bouvier-bernois",      nom: "Bouvier Bernois",      taille: "grande",  risque: "eleve",  score: 82,                    cost: "320 – 600 €",  tags: RACE_TAGS["bouvier-bernois"] },
+  { slug: "cane-corso",           nom: "Cane Corso",           taille: "grande",  risque: "eleve",  score: 65,                    cost: "260 – 480 €",  tags: RACE_TAGS["cane-corso"] },
+  { slug: "coton-de-tulear",      nom: "Coton de Tuléar",      taille: "petite",  risque: "modere", score: 40,                    cost: "160 – 280 €",  tags: RACE_TAGS["coton-de-tulear"] },
+  { slug: "dogue-allemand",       nom: "Dogue Allemand",       taille: "grande",  risque: "eleve",  score: 78,                    cost: "300 – 560 €",  tags: RACE_TAGS["dogue-allemand"] },
+  { slug: "eurasier",             nom: "Eurasier",             taille: "moyenne", risque: "faible", score: 25,                    cost: "160 – 280 €",  tags: RACE_TAGS["eurasier"] },
+  { slug: "pomsky",               nom: "Pomsky",               taille: "petite",  risque: "modere", score: 45,                    cost: "180 – 320 €",  tags: RACE_TAGS["pomsky"] },
+  { slug: "shar-pei",             nom: "Shar-Peï",             taille: "moyenne", risque: "eleve",  score: 75,                    cost: "300 – 480 €",  tags: RACE_TAGS["shar-pei"] },
+  { slug: "spitz-pomeranien",     nom: "Spitz Poméranien",     taille: "petite",  risque: "modere", score: 48,                    cost: "180 – 320 €",  tags: RACE_TAGS["spitz-pomeranien"] },
+  { slug: "corgi",               nom: "Corgi (Welsh Corgi Pembroke)", taille: "petite",  risque: "modere", score: 55,                    cost: "220 – 400 €",  tags: RACE_TAGS["corgi"] },
 ];
 
 // Lookup helper

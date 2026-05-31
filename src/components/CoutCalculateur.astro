@@ -48,13 +48,13 @@ const racesData = [...RACES]
             <div class="calc-field" data-field="race">
               <div class="calc-field-head">
                 <label class="calc-label" for="race-input"><span class="step-num">01</span> Race de votre chien <span class="req" aria-hidden="true">*</span></label>
-                <span class="calc-hint">31 races · ou "Autre" pour préciser la taille</span>
+                <span class="calc-hint">41 races · ou "Autre" pour préciser la taille</span>
               </div>
               <div class="calc-combobox" id="race-combo">
                 <span class="calc-select-icon" aria-hidden="true">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.5 11.5l3 3M7.5 13a5.5 5.5 0 100-11 5.5 5.5 0 000 11z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </span>
-                <input type="text" class="calc-combo-input" id="race-input" autocomplete="off" placeholder="Rechercher parmi 31 races…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="race-listbox">
+                <input type="text" class="calc-combo-input" id="race-input" autocomplete="off" placeholder="Rechercher parmi 41 races…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="race-listbox">
                 <input type="hidden" id="race" name="race" value="">
                 <button type="button" class="calc-combo-clear" id="race-clear" aria-label="Effacer" hidden="">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3L3 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
@@ -68,7 +68,7 @@ const racesData = [...RACES]
 
             <!-- ── Q2 · Taille (conditionnel — affiché seulement si race = "Autre" ou non renseignée) ── -->
             <!-- Annotation : auto-déduite par la race quand possible. Visible uniquement
-                 quand l'utilisateur n'a pas de race dans nos 31 (croisés, races rares). -->
+                 quand l'utilisateur n'a pas de race dans nos 41 (croisés, races rares). -->
             <fieldset class="calc-field is-conditional" data-field="taille" id="field-taille" hidden>
               <div class="calc-field-head">
                 <legend class="calc-label"><span class="step-num">02</span> Taille du chien <span class="req" aria-hidden="true">*</span></legend>

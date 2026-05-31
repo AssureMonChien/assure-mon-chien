@@ -1,0 +1,260 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+---
+
+<RaceLayout
+  title="Assurance Bearded Collie 2026 : dysplasie, Addison et hypothyroïdie"
+  description="Bearded Collie : dysplasie hanche (12-18 %), maladie d'Addison (5-8 %), hypothyroïdie. Espérance de vie 12-15 ans. Comparatif assurances 2026."
+  nom="Bearded Collie"
+  slug="bearded-collie"
+  taille="moyenne"
+  risque="faible"
+  score={28}
+  kf={[
+    { value: "12–18 %",   label: "dysplasie de la hanche (OFA / SCC)" },
+    { value: "160–260 €", label: "assurance annuelle" },
+    { value: "12–15 ans", label: "espérance de vie moyenne" },
+    { value: "5–8 %",     label: "maladie d'Addison (hypoadrénocorticisme)" },
+  ]}
+  similaires={[
+    { slug: 'border-collie',        nom: 'Border Collie',        taille: 'moyenne', risque: 'faible', score: 28 },
+    { slug: 'berger-australien',    nom: 'Berger Australien',    taille: 'moyenne', risque: 'modere', score: 45 },
+    { slug: 'berger-des-shetlands', nom: 'Berger des Shetlands', taille: 'petite',  risque: 'modere', score: 42 },
+    { slug: 'setter-irlandais',     nom: 'Setter Irlandais',     taille: 'grande',  risque: 'modere', score: 52 },
+  ]}
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    Exubérant, athlétique et couvert d'une robe longue et soyeuse qui tombe en rideau sur ses yeux, le Bearded Collie est un chien de berger écossais robuste dont le bilan sanitaire est globalement favorable. Le Bearded Collie Club de France (bccf.fr) place la race dans une catégorie de risque faible, avec une longévité de 12 à 15 ans. Quelques pathologies méritent néanmoins attention : la dysplasie de la hanche représente le risque orthopédique le plus courant, et la maladie d'Addison — bien que peu fréquente — constitue une urgence vitale dont le traitement est chronique et coûteux.
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Bearded Collie</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (taille moyenne, croquettes premium)</td><td>500 – 800 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, antiparasitaires)</td><td>200 – 380 €</td></tr>
+        <tr><td>Toilettage professionnel (robe longue, 4-6 fois/an)</td><td>300 – 600 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>160 – 260 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>150 – 400 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>1 310 – 2 440 €/an</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; Bearded Collie Club de France (bccf.fr) bilan sanitaire 2023 ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/outils/calculateur-cout-chien">Calculer le budget complet de votre Bearded Collie sur 12 ans</a></p>
+  <p>→ <a href="/guides/cout-chien">Voir notre guide complet sur le coût d'un chien en 2026</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes du Bearded Collie</h2>
+  <p>
+    La dysplasie de la hanche, documentée par l'OFA et le Bearded Collie Club de France (bccf.fr), touche 12 à 18 % des individus dépistés. Elle reste le poste chirurgical le plus lourd dans la race, avec des traitements allant du traitement médical à long terme jusqu'à la prothèse totale de hanche. L'hypothyroïdie, présente chez 8 à 12 % des Bearded Collies, se traite par lévothyroxine à vie — traitement simple mais permanent. La maladie d'Addison, ou hypoadrénocorticisme, mérite une attention particulière : elle touche 5 à 8 % des individus, provoque des crises potentiellement fatales si non reconnues, et nécessite un traitement hormonal à vie par DOCP (desoxycortone pivoxil) représentant 80 à 200 €/mois. La PRA et les formes d'épilepsie complètent ce tableau de risque global modeste.
+  </p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dysplasie de la hanche (HD)</td><td>12 – 18 %</td><td>1 500 – 6 000 €</td></tr>
+        <tr><td>Hypothyroïdie</td><td>8 – 12 %</td><td>80 – 200 €/an</td></tr>
+        <tr><td>Maladie d'Addison (hypoadrénocorticisme)</td><td>5 – 8 %</td><td>960 – 2 400 €/an</td></tr>
+        <tr><td>Atrophie progressive de la rétine (PRA)</td><td>5 – 8 %</td><td>150 – 600 €</td></tr>
+        <tr><td>Épilepsie idiopathique</td><td>3 – 5 %</td><td>200 – 800 €/an</td></tr>
+        <tr><td>Lupus érythémateux (LED / pemphigus foliacé)</td><td>2 – 4 %</td><td>300 – 1 500 €/an</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : Bearded Collie Club de France, Bilan sanitaire, <em>bccf.fr</em>, 2023 ; OFA Hip Dysplasia Statistics – Bearded Collie, <em>ofa.org</em>, 2024 ; Peterson M.E., « Hypoadrenocorticism in dogs », <em>Veterinary Clinics of North America</em>, 2007.</p>
+  <p>→ <a href="/guides/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Bearded Collie</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Radiographies de dépistage dysplasie HD (2 hanches)</td><td>120 – 280 €</td></tr>
+        <tr><td>Prothèse totale de hanche (PTH)</td><td>3 500 – 6 000 € / hanche</td></tr>
+        <tr><td>Triple ostéotomie pelvienne (TOP, <2 ans)</td><td>1 500 – 3 000 € / hanche</td></tr>
+        <tr><td>Bilan thyroïdien complet (T4, TSH)</td><td>80 – 160 €</td></tr>
+        <tr><td>Traitement hypothyroïdie (lévothyroxine)</td><td>60 – 180 €/an</td></tr>
+        <tr><td>Crise addisonienne (urgence, hospitalisation)</td><td>500 – 1 500 € / épisode</td></tr>
+        <tr><td>Traitement Addison — DOCP mensuel (Zycortal)</td><td>80 – 200 €/mois</td></tr>
+        <tr><td>Test génétique PRA</td><td>60 – 100 €</td></tr>
+        <tr><td>Traitement épilepsie (phénobarbital / imépitoïne)</td><td>100 – 400 €/an</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : CHVA France 2024 ; EnvA Maisons-Alfort tarifs 2025 ; SNVEL grilles tarifaires 2024.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique au Bearded Collie</h3>
+      <p>Le Bearded Collie présente un profil de risque globalement faible, mais deux pathologies peuvent générer des coûts élevés si elles surviennent. La maladie d'Addison représente le risque chronique le plus lourd : le traitement DOCP coûte <strong>80 à 200 €/mois</strong>, soit <strong>960 à 2 400 €/an</strong> à vie — plus de 20 000 € sur une décennie. Une crise addisonienne non reconnue peut être fatale et représente une urgence à <strong>500 à 1 500 €</strong>. Une dysplasie bilatérale traitée chirurgicalement par prothèse représente <strong>7 000 à 12 000 €</strong>. Ces événements, bien que moins probables que dans des races à risque élevé, restent suffisamment fréquents pour justifier une assurance.</p>
+    </div>
+  </div>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Bearded Collie</h2>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Exiger les radiographies de dépistage de la dysplasie de la hanche des deux parents (cotation SCC ou OFA) avant l'acquisition — les éleveurs sérieux fournissent ces résultats spontanément.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Apprendre à reconnaître les signes de crise addisonienne : abattement brutal, vomissements, tremblements, hypotension. Toute dépression inexpliquée chez un Bearded Collie justifie une consultation urgente avec ionogramme.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Surveiller le poids et l'énergie : une prise de poids progressive sans changement alimentaire, une léthargie ou une alopécie bilatérale symétrique orientent vers une hypothyroïdie — bilan thyroïdien recommandé.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Pratiquer un exercice adapté pendant la croissance : surfaces souples, pas de sauts répétés avant 12 mois pour protéger les hanches en développement.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Effectuer un test génétique PRA avant la reproduction et idéalement avant l'acquisition — ce test peu coûteux (60 à 100 €) permet d'écarter le risque de cécité progressive dans les lignées non testées.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance avant tout bilan sanguin de dépistage — un ionogramme révélant un déséquilibre sodique peut suffire à faire exclure la maladie d'Addison d'un contrat souscrit ultérieurement.
+    </li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Bearded Collie ?</h2>
+  <p>
+    Le profil de risque faible du Bearded Collie ne signifie pas l'absence de dépenses imprévues. La maladie d'Addison, en particulier, illustre ce paradoxe : peu fréquente, mais génératrice d'un coût chronique qui dépasse rapidement le total des cotisations d'assurance sur quelques années. Une assurance couvrant les maladies chroniques endocriniennes transforme un traitement à vie de 1 000 à 2 400 €/an en cotisation prévisible. Pour les propriétaires de Bearded Collie, le rapport cotisation/risque est particulièrement favorable grâce aux tarifs bas de la race.
+  </p>
+  <p>→ <a href="/comparatif/meilleures-assurances">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Bearded Collie ?</h2>
+  <p>
+    Une formule intermédiaire couvrant les maladies chroniques et la chirurgie orthopédique est adaptée à cette race. Vérifiez que le contrat inclut les endocrinopathies (hypothyroïdie, Addison) sans plafond mensuel trop bas — le DOCP mensuel dépasse facilement 100 € et un contrat plafonné à 500 €/an n'absorbera pas ce coût. Un plafond annuel de 2 000 à 3 000 € couvre la majorité des scénarios, sauf chirurgie orthopédique bilatérale.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Comparatif assureurs -->
+  <h2>Comparatif des assurances pour un Bearded Collie</h2>
+  <p>Estimations indicatives pour une femelle adulte de 22 kg, formule intermédiaire. Tarifs au 1er janvier 2026.</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Assureur</th><th>Formule Essentielle</th><th>Formule Intermédiaire</th><th>Formule Complète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SantéVet</td><td>~13 €/mois</td><td>~22 €/mois</td><td>~32 €/mois</td></tr>
+        <tr><td>Assur O'Poil</td><td>~11 €/mois</td><td>~18 €/mois</td><td>~26 €/mois</td></tr>
+        <tr><td>Lassie</td><td>~8 €/mois</td><td>~14 €/mois</td><td>~20 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Estimations indicatives basées sur les grilles tarifaires publiques 2025-2026. Les tarifs définitifs dépendent de l'âge, du sexe, de la région et des options choisies.</p>
+  <p>→ <a href="/comparatif/par-race/bearded-collie">Voir le comparatif détaillé pour le Bearded Collie</a></p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Bearded Collie</h2>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-bearded-collie-0" id="faq-btn-bearded-collie-0">
+          <span>La maladie d'Addison du Bearded Collie est-elle prise en charge par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-bearded-collie-0" hidden>
+        <p>Oui, dans les formules couvrant les maladies chroniques, sous réserve de souscription avant tout diagnostic. La maladie d'Addison nécessite un traitement à vie par DOCP (Zycortal), représentant 80 à 200 €/mois selon le poids et la fréquence d'injection — soit 960 à 2 400 €/an. Une bonne formule rembourse ce traitement continu et couvre également les hospitalisations lors des crises aigues. Vérifiez les plafonds annuels : un plafond de 500 €/an est insuffisant pour couvrir cette pathologie sur la durée.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-bearded-collie-1" id="faq-btn-bearded-collie-1">
+          <span>Comment reconnaître une crise addisonienne chez un Bearded Collie ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-bearded-collie-1" hidden>
+        <p>La crise addisonienne se manifeste par un effondrement brutal de l'état général : abattement profond, vomissements, diarrhée, tremblements, hypotension et hypothermie. Elle peut survenir sans signe préalable ou être déclenchée par un stress. C'est une urgence vitale — sans perfusion de soluté glucosé et corticoïdes par voie intraveineuse, l'issue peut être fatale en quelques heures. Tout Bearded Collie en état de choc inexpliqué doit être présenté en urgence vétérinaire avec un ionogramme en priorité.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-bearded-collie-2" id="faq-btn-bearded-collie-2">
+          <span>Le Bearded Collie est-il sensible aux médicaments ivermectine (MDR1/ABCB1) ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-bearded-collie-2" hidden>
+        <p>Contrairement au Colley à poil long ou au Berger des Shetlands, le Bearded Collie n'est pas classé comme race à risque élevé pour la mutation MDR1/ABCB1. Cette mutation affecte principalement les races de type Colley d'origine écossaise à poil long héritant des lignées LOF anciennes. Néanmoins, comme pour toute race de berger, il est prudent de signaler à votre vétérinaire la race du chien lors de toute prescription de molécules potentiellement concernées par cette mutation.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-bearded-collie-3" id="faq-btn-bearded-collie-3">
+          <span>Combien coûte une assurance pour un Bearded Collie par mois ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-bearded-collie-3" hidden>
+        <p>Entre 8 et 32 €/mois selon la formule et l'âge — parmi les tarifs les plus accessibles pour une race de taille moyenne. En formule intermédiaire, comptez 14 à 22 €/mois pour un chiot souscrit avant 12 mois. Ces cotisations restent très inférieures au coût annuel d'un traitement Addison si la maladie survient, ce qui rend le rapport cotisation/couverture particulièrement favorable pour cette race.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-bearded-collie-4" id="faq-btn-bearded-collie-4">
+          <span>La dysplasie de la hanche du Bearded Collie est-elle couverte par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-bearded-collie-4" hidden>
+        <p>Oui, dans les formules incluant la chirurgie orthopédique, sous réserve de souscription avant tout examen radiologique de dépistage. Une prothèse totale de hanche coûte 3 500 à 6 000 € par côté. Si la dysplasie est détectée à 18 mois sur radiographie standard (bilan de routine), elle peut constituer un antécédent médical excluant la prise en charge si la souscription est postérieure. Souscrire avant ce premier bilan est donc déterminant.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <!-- 11. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list section-sources-list">
+    <li>Bearded Collie Club de France (BCCF), Bilan sanitaire et résultats dépistage, <em>bccf.fr</em>, 2023.</li>
+    <li>OFA (Orthopedic Foundation for Animals), Hip Dysplasia Statistics by Breed – Bearded Collie, <em>ofa.org</em>, 2024.</li>
+    <li>Peterson M.E., « Hypoadrenocorticism (Addison's disease) in dogs », <em>Veterinary Clinics of North America: Small Animal Practice</em>, 2007.</li>
+    <li>SCC (Société Centrale Canine), Standard officiel Bearded Collie (FCI n° 271), 2023.</li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+  </ul>
+
+</div>
+
+</RaceLayout>

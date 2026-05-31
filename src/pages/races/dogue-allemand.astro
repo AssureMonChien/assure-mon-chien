@@ -1,0 +1,267 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+---
+
+<RaceLayout
+  title="Assurance Dogue Allemand 2026 : torsion gastrique & cardiomyopathie"
+  description="Dogue Allemand : torsion gastrique (risque vital, race la plus touchée), cardiomyopathie dilatée, ostéosarcome. Espérance de vie 7-10 ans. Comparatif assurances 2026."
+  nom="Dogue Allemand"
+  slug="dogue-allemand"
+  taille="grande"
+  risque="eleve"
+  score={78}
+  kf={[
+    { value: "36–42 %",   label: "risque de dilatation-torsion gastrique sur la durée de vie" },
+    { value: "300–560 €", label: "assurance annuelle" },
+    { value: "7–10 ans",  label: "espérance de vie moyenne" },
+    { value: "5–8 %",     label: "cardiomyopathie dilatée (DCM) après 3 ans" },
+  ]}
+  similaires={[
+    { slug: 'saint-bernard',   nom: 'Saint-Bernard',   taille: 'grande',  risque: 'eleve',  score: 70 },
+    { slug: 'rottweiler',      nom: 'Rottweiler',       taille: 'grande',  risque: 'eleve',  score: 66 },
+    { slug: 'dobermann',       nom: 'Dobermann',        taille: 'grande',  risque: 'eleve',  score: 72 },
+    { slug: 'berger-allemand', nom: 'Berger Allemand',  taille: 'grande',  risque: 'eleve',  score: 71 },
+  ]}
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    Allier élégance et gabarit colossal n'est pas sans conséquence sanitaire : le Dogue Allemand détient statistiquement l'un des taux de dilatation-torsion gastrique les plus élevés de toutes les races canines, avec un risque cumulé estimé à 36 – 42 % sur la durée de vie. La cardiomyopathie dilatée, l'ostéosarcome et les pathologies articulaires liées au format géant complètent un profil qui nécessite une couverture santé robuste, souscrite avant tout signe clinique.
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Dogue Allemand</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (format géant, qualité premium)</td><td>900 – 1 400 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, bilans, antiparasitaires)</td><td>300 – 550 €</td></tr>
+        <tr><td>Toilettage et entretien (robe courte, entretien oreilles)</td><td>80 – 180 €</td></tr>
+        <tr><td>Accessoires grande taille (couchage, laisses, harnais)</td><td>150 – 300 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>360 – 600 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>500 – 1 500 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>2 290 – 4 530 €/an</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; Doggenclub de France (doggenclub.fr) données sanitaires 2023 ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/outils/calculateur-cout-chien">Calculer le budget complet de votre Dogue Allemand sur 12 ans</a></p>
+  <p>→ <a href="/guides/cout-chien">Voir notre guide complet sur le coût d'un chien en 2026</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes du Dogue Allemand</h2>
+  <p>
+    La conformation gigantesque du Dogue Allemand — mâles jusqu'à 90 kg — est à l'origine de la plupart de ses prédispositions pathologiques. La dilatation-torsion gastrique (DTG) est l'urgence la plus redoutée : l'estomac se dilate et pivote sur son axe, coupant la circulation sanguine en moins de six heures. Le Dogue Allemand figure parmi les deux ou trois races les plus touchées par cette urgence vitale (étude Glickman, Veterinary Medicine, 1994, confirmée par Deutscher Doggen Club 2022). La cardiomyopathie dilatée, documentée par le Doggenclub de France (doggenclub.fr), affecte 5 à 8 % des adultes après 3 ans.
+  </p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dilatation-torsion gastrique (DTG)</td><td>36 – 42 % sur la vie</td><td>2 000 – 6 000 €</td></tr>
+        <tr><td>Cardiomyopathie dilatée (DCM)</td><td>5 – 8 % (> 3 ans)</td><td>500 – 3 000 €/an</td></tr>
+        <tr><td>Ostéosarcome</td><td>4 – 7 % (> 5 ans)</td><td>4 000 – 10 000 €</td></tr>
+        <tr><td>Dysplasie de hanche (HD)</td><td>12 – 18 %</td><td>1 500 – 6 000 €</td></tr>
+        <tr><td>Wobblers (sténose cervicale / cervical spondylomyélopathie)</td><td>4 – 6 %</td><td>2 000 – 8 000 €</td></tr>
+        <tr><td>Hypothyroïdie</td><td>6 – 10 %</td><td>200 – 600 €/an</td></tr>
+        <tr><td>Lymphome malin</td><td>2 – 4 % (> 6 ans)</td><td>3 000 – 8 000 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : Glickman L.T. et al., « Non-dietary risk factors for gastric dilatation-volvulus in large and giant breed dogs », <em>Journal of the American Veterinary Medical Association</em>, 1994 ; Doggenclub de France, bilan sanitaire, doggenclub.fr, 2022 ; OFA Hip Dysplasia Statistics 2024.</p>
+  <p>→ <a href="/guides/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Dogue Allemand</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chirurgie torsion gastrique (DTG) d'urgence</td><td>2 500 – 6 000 €</td></tr>
+        <tr><td>Gastropexie préventive (ligature chirurgicale)</td><td>500 – 1 500 €</td></tr>
+        <tr><td>Échocardiographie Doppler (DCM)</td><td>150 – 300 €</td></tr>
+        <tr><td>Traitement DCM (pimobendan, furosémide — mensuel)</td><td>80 – 200 €/mois</td></tr>
+        <tr><td>Scanner / IRM cervical (Wobblers)</td><td>900 – 1 800 €</td></tr>
+        <tr><td>Chirurgie décompression cervicale (Wobblers)</td><td>3 000 – 8 000 €</td></tr>
+        <tr><td>Radiographie dysplasie HD (bilan bilatéral)</td><td>100 – 220 €</td></tr>
+        <tr><td>Chirurgie prothèse totale de hanche</td><td>3 000 – 6 000 € / hanche</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : CHVA France 2024 ; VetAgro Sup Lyon 2025 ; EnvA Maisons-Alfort tarifs 2025 ; SNVEL.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique au Dogue Allemand</h3>
+      <p>La torsion gastrique est l'urgence la plus coûteuse et la plus soudaine du Dogue Allemand : sans chirurgie dans les 4 à 6 heures, le chien décède. Le coût de l'intervention atteint <strong>2 500 – 6 000 €</strong>. Un propriétaire sur trois environ fera face à cet événement au cours de la vie de son Dogue. La cardiomyopathie dilatée impose un traitement médicamenteux à vie dès le diagnostic, représentant <strong>1 000 – 2 500 €/an</strong> sur plusieurs années. En cumulant ces risques, le coût vétérinaire total d'un Dogue Allemand sans assurance dépasse régulièrement <strong>12 000 – 20 000 €</strong> sur 10 ans.</p>
+    </div>
+  </div>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Dogue Allemand</h2>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Fractionner systématiquement l'alimentation en deux ou trois prises par jour et interdire toute activité physique dans les deux heures suivant le repas pour réduire le risque de DTG.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Discuter avec le vétérinaire de la gastropexie préventive lors d'une intervention programmée (stérilisation, orthopédie) : cette fixation chirurgicale de l'estomac divise par dix le risque de torsion.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Programmer une première échocardiographie à 2-3 ans pour établir un bilan cardiaque de référence, puis annuellement à partir de 5 ans.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Détecter rapidement les signaux d'une torsion en cours : abdomen distendu, hypersalivation, tentatives de vomissement sans résultat — consultation d'urgence immédiate dans ce cas.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Pratiquer le dépistage radiographique de la dysplasie de hanche entre 12 et 18 mois, avant que les premiers signes d'inconfort articulaire n'apparaissent.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Surveiller toute difficulté locomotrice ou raideur cervicale, symptômes potentiels d'un syndrome Wobblers nécessitant une IRM rapide.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance santé avant 12 mois, avant tout bilan cardiologique ou radiographique documenté.
+    </li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Dogue Allemand ?</h2>
+  <p>
+    Le Dogue Allemand combine un risque d'urgence vitale immédiate (torsion gastrique) avec des pathologies chroniques coûteuses (cardiomyopathie, dysplasie). La torsion gastrique, à elle seule, nécessite une intervention chirurgicale dont le coût dépasse souvent le montant des cotisations versées sur plusieurs années. Sans assurance, la décision d'opérer en urgence de nuit — dans les 6 heures — est compromise par le frein financier. Avec une couverture adéquate, cette décision ne dépend plus que de la volonté du propriétaire.
+  </p>
+  <p>→ <a href="/comparatif/meilleures-assurances">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Dogue Allemand ?</h2>
+  <p>
+    Pour le Dogue Allemand, une formule couvrant les urgences (DTG chirurgicale 24h/24), les maladies chroniques (DCM, hypothyroïdie), la chirurgie orthopédique et les traitements oncologiques est obligatoire. Vérifiez que les urgences vétérinaires de nuit et de week-end sont incluses sans franchise majorée, car la torsion gastrique ne survient jamais en semaine à 10 heures du matin. Un plafond annuel minimal de 5 000 € est recommandé pour absorber une torsion gastrique plus un suivi cardiologique la même année.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Comparatif assureurs -->
+  <h2>Comparatif des assurances pour un Dogue Allemand</h2>
+  <p>Estimations indicatives pour un mâle adulte de 60 kg, formule intermédiaire. Tarifs au 1er janvier 2026.</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Assureur</th><th>Formule Essentielle</th><th>Formule Intermédiaire</th><th>Formule Complète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SantéVet</td><td>~24 €/mois</td><td>~42 €/mois</td><td>~56 €/mois</td></tr>
+        <tr><td>Assur O'Poil</td><td>~20 €/mois</td><td>~35 €/mois</td><td>~48 €/mois</td></tr>
+        <tr><td>Lassie</td><td>~16 €/mois</td><td>~27 €/mois</td><td>~39 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Estimations indicatives basées sur les grilles tarifaires publiques 2025-2026. Les tarifs définitifs dépendent de l'âge, du sexe, de la région et des options choisies.</p>
+  <p>→ <a href="/comparatif/par-race/dogue-allemand">Voir le comparatif détaillé pour le Dogue Allemand</a></p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Dogue Allemand</h2>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-dogue-allemand-0" id="faq-btn-dogue-allemand-0">
+          <span>La torsion gastrique du Dogue Allemand est-elle couverte en urgence ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-dogue-allemand-0" hidden>
+        <p>Oui, la dilatation-torsion gastrique est une urgence chirurgicale couverte par toutes les formules accidents et maladies. L'intervention coûte 2 500 à 6 000 € et doit être réalisée dans les 4 à 6 heures. Vérifiez que les urgences de nuit et de week-end ne font pas l'objet d'une franchise majorée dans votre contrat.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-dogue-allemand-1" id="faq-btn-dogue-allemand-1">
+          <span>La cardiomyopathie dilatée du Dogue Allemand est-elle remboursée ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-dogue-allemand-1" hidden>
+        <p>Oui, à condition d'avoir souscrit avant tout diagnostic cardiologique. Les formules maladies chroniques couvrent le traitement médicamenteux à vie (pimobendan, furosémide), les échocardiographies de suivi et les hospitalisations pour décompensation. La DCM représente 1 000 à 2 500 €/an sur plusieurs années — un argument fort pour souscrire tôt.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-dogue-allemand-2" id="faq-btn-dogue-allemand-2">
+          <span>À quel âge faut-il assurer son Dogue Allemand ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-dogue-allemand-2" hidden>
+        <p>Avant 12 mois. Le Dogue Allemand croît rapidement et les premières pathologies articulaires peuvent être dépistées radiographiquement dès 14-18 mois. Chaque mois supplémentaire avant souscription augmente le risque de découvrir une anomalie qui deviendra une exclusion. La torsion gastrique peut survenir à tout âge, y compris chez un jeune adulte de 2 ans.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-dogue-allemand-3" id="faq-btn-dogue-allemand-3">
+          <span>Combien coûte une assurance pour un Dogue Allemand géant ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-dogue-allemand-3" hidden>
+        <p>Le gabarit géant génère une surprime significative. Pour un chiot Dogue Allemand souscrit avant 12 mois, comptez 20 à 56 €/mois selon la formule. Un adulte entre 3 et 7 ans coûte 30 à 65 €/mois. À titre de comparaison, une seule torsion gastrique traitée chirurgicalement peut rembourser 5 à 10 ans de cotisations.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-dogue-allemand-4" id="faq-btn-dogue-allemand-4">
+          <span>L'ostéosarcome du Dogue Allemand est-il pris en charge par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-dogue-allemand-4" hidden>
+        <p>Oui, dans les formules premium couvrant la chirurgie oncologique et la chimiothérapie. L'ostéosarcome des races géantes génère des frais de 4 000 à 10 000 € (amputation, chimiothérapie adjuvante, scanner d'extension). Une souscription bien antérieure aux 5-7 ans où la maladie se déclare habituellement est la seule garantie d'une couverture sans exclusion.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <!-- 11. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list section-sources-list">
+    <li>Glickman L.T. et al., « Non-dietary risk factors for gastric dilatation-volvulus in large and giant breed dogs », <em>Journal of the American Veterinary Medical Association</em>, 1994.</li>
+    <li>Doggenclub de France, Bilan sanitaire de la race Dogue Allemand, <em>doggenclub.fr</em>, 2022-2023.</li>
+    <li>OFA (Orthopedic Foundation for Animals), Hip Dysplasia Statistics by Breed – Great Dane, <em>ofa.org</em>, 2024.</li>
+    <li>Meurs K.M. et al., « Familial dilated cardiomyopathy in Great Danes », <em>Veterinary Internal Medicine</em>, 1999 (étude fondatrice DCM Dogue Allemand).</li>
+    <li>SCC (Société Centrale Canine), Résultats radiographiques dysplasie hanche et coude, 2023.</li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+    <li>EnvA (École Nationale Vétérinaire d'Alfort), tarifs CHVA 2025.</li>
+  </ul>
+
+</div>
+
+</RaceLayout>

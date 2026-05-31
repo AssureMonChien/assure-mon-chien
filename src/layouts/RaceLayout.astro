@@ -21,11 +21,13 @@ interface Props {
   taille:      string;
   risque:      'faible' | 'modere' | 'eleve';
   kf:          Array<{ value: string; label: string }>;
-  score?:      number;
-  similaires?: SimilaireRace[];
+  score?:        number;
+  similaires?:   SimilaireRace[];
+  datePublished?: string;
+  dateModified?:  string;
 }
 
-const { title, description, nom, slug, taille, risque, kf, score, similaires } = Astro.props;
+const { title, description, nom, slug, taille, risque, kf, score, similaires, datePublished = "2026-05-31", dateModified = "2026-05-31" } = Astro.props;
 
 // ── SEO ──────────────────────────────────────────────────────────────────────
 const siteUrl  = "https://assure-mon-chien.fr";
@@ -46,8 +48,8 @@ const jsonldArticle = JSON.stringify({
   "description": description,
   "image":    ogImageUrl,
   "url":      pageUrl,
-  "datePublished": "2026-01-01",
-  "dateModified":  "2026-05-01",
+  "datePublished": datePublished,
+  "dateModified":  dateModified,
   "author":    { "@type": "Organization", "name": "Assure Mon Chien", "url": siteUrl },
   "publisher": {
     "@type": "Organization",
@@ -188,7 +190,7 @@ const tailleLabel: Record<string, string> = {
           </span>
           <div>
             <strong>Toutes les races analysées</strong>
-            <span>Pathologies, risques et tarifs pour 31 races de chiens</span>
+            <span>Pathologies, risques et tarifs pour 41 races de chiens</span>
           </div>
           <svg class="also-read-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 8h8M8.5 5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>

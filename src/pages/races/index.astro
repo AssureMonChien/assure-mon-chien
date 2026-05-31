@@ -33,6 +33,16 @@ const races = [
   { slug: "chow-chow",             name: "Chow-Chow",             size: "grande",  risk: 68, level: "modéré", cost: "290–440 €/an" },
   { slug: "setter-irlandais",      name: "Setter Irlandais",      size: "grande",  risk: 58, level: "modéré", cost: "260–390 €/an" },
   { slug: "epagneul-breton",       name: "Épagneul Breton",       size: "petite",  risk: 50, level: "modéré", cost: "220–340 €/an" },
+  { slug: "bouvier-bernois",       name: "Bouvier Bernois",        size: "grande",  risk: 82, level: "élevé",  cost: "320–600 €/an" },
+  { slug: "dogue-allemand",        name: "Dogue Allemand",         size: "grande",  risk: 78, level: "élevé",  cost: "300–560 €/an" },
+  { slug: "shar-pei",              name: "Shar-Peï",               size: "grande",  risk: 75, level: "élevé",  cost: "300–480 €/an" },
+  { slug: "cane-corso",            name: "Cane Corso",             size: "grande",  risk: 65, level: "élevé",  cost: "260–480 €/an" },
+  { slug: "corgi",                 name: "Corgi",                  size: "petite",  risk: 55, level: "modéré", cost: "220–400 €/an" },
+  { slug: "spitz-pomeranien",      name: "Spitz Poméranien",       size: "petite",  risk: 48, level: "modéré", cost: "180–320 €/an" },
+  { slug: "pomsky",                name: "Pomsky",                 size: "petite",  risk: 45, level: "modéré", cost: "180–320 €/an" },
+  { slug: "coton-de-tulear",       name: "Coton de Tuléar",        size: "petite",  risk: 40, level: "modéré", cost: "160–280 €/an" },
+  { slug: "bearded-collie",        name: "Bearded Collie",         size: "grande",  risk: 28, level: "faible", cost: "160–260 €/an" },
+  { slug: "eurasier",              name: "Eurasier",               size: "grande",  risk: 25, level: "faible", cost: "160–280 €/an" },
 ];
 
 function raceImage(slug: string): string {
@@ -59,7 +69,7 @@ const jsonldBreadcrumb = JSON.stringify({
 
 <Layout
   title="Races de chiens — Guide &amp; comparatif assurance 2026"
-  description="31 races analysées : pathologies fréquentes, coûts vétérinaires, indice de risque et assurances adaptées. Labrador, Bouledogue, Berger Allemand et bien plus."
+  description="41 races analysées : pathologies fréquentes, coûts vétérinaires, indice de risque et assurances adaptées. Labrador, Bouledogue, Berger Allemand et bien plus."
 >
   <script type="application/ld+json" set:html={jsonldBreadcrumb} />
 
@@ -68,7 +78,7 @@ const jsonldBreadcrumb = JSON.stringify({
     <div class="container races-hero-inner">
       <span class="pill pill-soft">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M3 7.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM1 11c0-2 1.5-3.5 4-3.5h4c2.5 0 4 1.5 4 3.5 0 1-.7 1.5-1.5 1.5H2.5C1.7 12.5 1 12 1 11zM4 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
-        31 races couvertes
+        41 races couvertes
       </span>
       <h1 class="display">Quelle assurance pour votre&nbsp;race&nbsp;?</h1>
       <p class="lede" style="margin:0 auto 24px;text-align:center;">Chaque race a ses fragilités génétiques propres. Trouvez la couverture vraiment adaptée à votre chien.</p>
@@ -195,7 +205,7 @@ const jsonldBreadcrumb = JSON.stringify({
         </div>
       </div>
       <div class="banner-stats">
-        <div class="bs-card"><div class="bs-num">30</div><div class="bs-lbl">Races analysées</div></div>
+        <div class="bs-card"><div class="bs-num">41</div><div class="bs-lbl">Races analysées</div></div>
         <div class="bs-card"><div class="bs-num">3</div><div class="bs-lbl">Assureurs comparés</div></div>
         <div class="bs-card"><div class="bs-num">100 %</div><div class="bs-lbl">Indépendant</div></div>
         <div class="bs-card"><div class="bs-num">2026</div><div class="bs-lbl">Données à jour</div></div>

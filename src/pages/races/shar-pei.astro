@@ -1,0 +1,262 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+---
+
+<RaceLayout
+  title="Assurance Shar-Peï 2026 : entropion, Fièvre Shar-Peï et amyloïdose"
+  description="Shar-Peï : entropion (70-80 %), Fièvre Shar-Peï (25-30 %), amyloïdose rénale. Espérance de vie 8-12 ans. Comparatif assurances 2026."
+  nom="Shar-Peï"
+  slug="shar-pei"
+  taille="moyenne"
+  risque="eleve"
+  score={75}
+  kf={[
+    { value: "70–80 %",   label: "entropion dépistés (Club Shar-Peï de France)" },
+    { value: "300–480 €", label: "assurance annuelle" },
+    { value: "8–12 ans",  label: "espérance de vie moyenne" },
+    { value: "25–30 %",   label: "Fièvre Shar-Peï (FSF / SPAID)" },
+  ]}
+  similaires={[
+    { slug: 'chow-chow',          nom: 'Chow-Chow',          taille: 'moyenne', risque: 'modere', score: 52 },
+    { slug: 'boxer',              nom: 'Boxer',              taille: 'grande',  risque: 'eleve',  score: 68 },
+    { slug: 'rottweiler',         nom: 'Rottweiler',         taille: 'grande',  risque: 'eleve',  score: 66 },
+    { slug: 'bouledogue-francais', nom: 'Bouledogue Français', taille: 'petite', risque: 'eleve',  score: 78 },
+  ]}
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    Reconnaissable à ses innombrables plis cutanés et à sa peau bleue-lavande sur la langue, le Shar-Peï est une race ancienne originaire de Chine classée aujourd'hui parmi les plus touchées par des pathologies héréditaires sérieuses. Le Shar-Peï Club de France (sharpeiclubdefrance.com) recense trois problèmes particulièrement prévalents : l'entropion (repliement des paupières), la Fièvre Shar-Peï — ou SPAID pour <em>Shar-Pei Autoinflammatory Disease</em> — et l'amyloïdose rénale qui en est la complication tardive. Avec une espérance de vie de 8 à 12 ans, cette race génère des frais vétérinaires significatifs dès le plus jeune âge.
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Shar-Peï</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (taille moyenne, croquettes premium)</td><td>500 – 800 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, antiparasitaires)</td><td>200 – 380 €</td></tr>
+        <tr><td>Soins dermatologiques préventifs (plis)</td><td>100 – 300 €</td></tr>
+        <tr><td>Bilan ophtalmologique annuel (entropion)</td><td>60 – 150 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>300 – 480 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>300 – 800 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>1 460 – 2 910 €/an</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; Shar-Peï Club de France (sharpeiclubdefrance.com) bilan sanitaire 2023 ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/outils/calculateur-cout-chien">Calculer le budget complet de votre Shar-Peï sur 12 ans</a></p>
+  <p>→ <a href="/guides/cout-chien">Voir notre guide complet sur le coût d'un chien en 2026</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes du Shar-Peï</h2>
+  <p>
+    L'entropion — retournement des paupières vers l'intérieur — est la pathologie la plus visible chez le Shar-Peï : 70 à 80 % des individus en sont atteints à des degrés divers, souvent dès le plus jeune âge. Sans correction chirurgicale, les cils frottent en permanence sur la cornée et causent des ulcères pouvant conduire à la cécité. La Fièvre Shar-Peï (FSF / SPAID) est une maladie auto-inflammatoire génétique qui provoque des épisodes fébriles récurrents accompagnés d'œdème douloureux des jarrets — le Shar-Peï Club de France (sharpeiclubdefrance.com) estime 25 à 30 % des individus affectés. Sans traitement, ces épisodes répétés entraînent un dépôt progressif d'amyloïde dans les reins : l'amyloïdose rénale, qui touche 15 à 20 % des Shar-Peï et conduit souvent à une insuffisance rénale terminale. La dermite des plis, quant à elle, nécessite un entretien cutané régulier.
+  </p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Entropion (correction chirurgicale)</td><td>70 – 80 %</td><td>300 – 800 € / œil</td></tr>
+        <tr><td>Fièvre Shar-Peï / SPAID (gestion des crises)</td><td>25 – 30 %</td><td>200 – 600 €/an</td></tr>
+        <tr><td>Amyloïdose rénale (séquelle FSF)</td><td>15 – 20 %</td><td>500 – 3 000 €/an</td></tr>
+        <tr><td>Dermite des plis (surinfections cutanées)</td><td>40 – 60 %</td><td>150 – 500 €/an</td></tr>
+        <tr><td>Hypothyroïdie</td><td>10 – 15 %</td><td>100 – 300 €/an</td></tr>
+        <tr><td>Dysplasie de la hanche (HD)</td><td>15 – 20 %</td><td>1 500 – 5 000 €</td></tr>
+        <tr><td>Otites chroniques (conduits auditifs étroits)</td><td>30 – 50 %</td><td>100 – 400 €/an</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : Shar-Peï Club de France, Bilan sanitaire de la race, <em>sharpeiclubdefrance.com</em>, 2023 ; OFA Hip Dysplasia Statistics – Shar-Pei, <em>ofa.org</em>, 2024 ; Chronic Renal Amyloidosis in Shar-Pei, <em>Journal of Veterinary Internal Medicine</em>, 2004.</p>
+  <p>→ <a href="/guides/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Shar-Peï</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chirurgie entropion (résection cutanée)</td><td>300 – 800 € / œil</td></tr>
+        <tr><td>Bilan ophtalmologique spécialisé</td><td>80 – 180 €</td></tr>
+        <tr><td>Traitement médical des crises FSF (colchicine)</td><td>50 – 150 €/mois</td></tr>
+        <tr><td>Bilan rénal (créatinine, SDMA, protéinurie)</td><td>80 – 200 €</td></tr>
+        <tr><td>Prise en charge insuffisance rénale chronique</td><td>300 – 1 500 €/an</td></tr>
+        <tr><td>Traitement dermite des plis (antibiotiques locaux)</td><td>60 – 200 € / épisode</td></tr>
+        <tr><td>Bilan thyroïdien complet (T4, TSH)</td><td>80 – 160 €</td></tr>
+        <tr><td>Traitement hypothyroïdie (lévothyroxine)</td><td>60 – 180 €/an</td></tr>
+        <tr><td>Radiographies et bilan dysplasie HD</td><td>120 – 280 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : CHVA France 2024 ; EnvA Maisons-Alfort tarifs 2025 ; SNVEL grilles tarifaires 2024.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique au Shar-Peï</h3>
+      <p>Le Shar-Peï présente un profil de risque financier particulièrement lourd en raison de la chaîne FSF → amyloïdose rénale. Un chien atteint de Fièvre Shar-Peï non traitée développe statistiquement une amyloïdose rénale irréversible : la prise en charge sur plusieurs années peut atteindre <strong>5 000 – 15 000 €</strong>. La correction chirurgicale bilatérale de l'entropion représente <strong>600 – 1 600 €</strong> — souvent dès les premiers mois de vie. Ces deux risques sont indépendants et peuvent se cumuler chez le même individu. À cela s'ajoutent les soins chroniques de la dermite des plis et des otites. Un Shar-Peï non assuré peut générer des dépenses vétérinaires totales de <strong>15 000 à 30 000 €</strong> sur sa vie.</p>
+    </div>
+  </div>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Shar-Peï</h2>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Exiger du éleveur une attestation de résultats de dépistage FSF pour les deux parents — les reproducteurs sérieux adhèrent au protocole de suivi du Shar-Peï Club de France.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Consulter un vétérinaire ophtalmologiste dans les premières semaines de vie : un entropion débutant détecté précocement permet une correction mini-invasive moins coûteuse qu'une chirurgie de reconstruction cornéenne tardive.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Nettoyer les plis cutanés deux à trois fois par semaine avec un produit pH adapté — l'humidité résiduelle est le premier facteur déclenchant de la dermite des plis.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Connaître les signes de crise FSF : fièvre soudaine ≥ 39,5 °C avec gonflement douloureux des jarrets. Une consultation d'urgence et la mise sous colchicine réduisent le risque d'amyloïdose.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Effectuer un bilan rénal annuel à partir de 3 ans : protéinurie, créatinine et SDMA détectent une amyloïdose rénale débutante avant l'apparition des signes cliniques.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance santé avant toute consultation vétérinaire documentée — le Shar-Peï est une race pour laquelle les assureurs peuvent inclure des exclusions spécifiques si un antécédent est déclaré à la souscription.
+    </li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Shar-Peï ?</h2>
+  <p>
+    La combinaison entropion + FSF + amyloïdose rénale fait du Shar-Peï l'une des races à budget vétérinaire parmi les plus élevés en France. L'entropion nécessite souvent une intervention dès les premiers mois ; la FSF, si elle n'est pas maîtrisée médicalement, conduit à une insuffisance rénale chronique irréversible dont la gestion mobilise des ressources importantes. Sans assurance, très peu de propriétaires peuvent absorber ces coûts cumulés sans renoncer à certains soins. Une assurance souscrite avant le premier bilan vétérinaire permet de couvrir l'ensemble de ces risques sans exclusion liée à des antécédents.
+  </p>
+  <p>→ <a href="/comparatif/meilleures-assurances">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Shar-Peï ?</h2>
+  <p>
+    Une formule de niveau intermédiaire à complet est indispensable pour cette race. Vérifiez que le contrat couvre explicitement : la chirurgie oculaire (entropion), les maladies inflammatoires chroniques (FSF / SPAID), l'insuffisance rénale chronique et les dermatoses. Certains assureurs excluent génériquement les « affections propres à la race » ou les « maladies héréditaires » — ces clauses peuvent annihiler l'essentiel de la couverture sur un Shar-Peï. Un plafond annuel minimal de 3 000 à 5 000 € est recommandé pour absorber les années de crise rénale.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Comparatif assureurs -->
+  <h2>Comparatif des assurances pour un Shar-Peï</h2>
+  <p>Estimations indicatives pour un mâle adulte de 22 kg, formule intermédiaire. Tarifs au 1er janvier 2026.</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Assureur</th><th>Formule Essentielle</th><th>Formule Intermédiaire</th><th>Formule Complète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SantéVet</td><td>~20 €/mois</td><td>~35 €/mois</td><td>~50 €/mois</td></tr>
+        <tr><td>Assur O'Poil</td><td>~17 €/mois</td><td>~29 €/mois</td><td>~42 €/mois</td></tr>
+        <tr><td>Lassie</td><td>~13 €/mois</td><td>~22 €/mois</td><td>~32 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Estimations indicatives basées sur les grilles tarifaires publiques 2025-2026. Les tarifs définitifs dépendent de l'âge, du sexe, de la région et des options choisies.</p>
+  <p>→ <a href="/comparatif/par-race/shar-pei">Voir le comparatif détaillé pour le Shar-Peï</a></p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Shar-Peï</h2>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-shar-pei-0" id="faq-btn-shar-pei-0">
+          <span>L'entropion du Shar-Peï est-il remboursé par l'assurance chien ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-shar-pei-0" hidden>
+        <p>Oui, à condition de souscrire avant tout diagnostic ophtalmologique. La chirurgie de correction d'entropion coûte 300 à 800 € par œil — une correction bilatérale peut donc dépasser 1 500 €. Les assureurs qui couvrent la chirurgie oculaire prennent en charge cet acte si aucun diagnostic n'a été posé à la souscription. Méfiez-vous des contrats qui excluent les « malformations congénitales » ou les « affections propres à la race » : ces clauses couvrent précisément l'entropion du Shar-Peï.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-shar-pei-1" id="faq-btn-shar-pei-1">
+          <span>Qu'est-ce que la Fièvre Shar-Peï (FSF / SPAID) ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-shar-pei-1" hidden>
+        <p>La Fièvre Shar-Peï, aussi désignée SPAID (<em>Shar-Pei Autoinflammatory Disease</em>), est une maladie génétique auto-inflammatoire caractérisée par des crises fébriles récurrentes avec œdème douloureux des jarrets. Elle touche 25 à 30 % des Shar-Peï. Sans traitement préventif à la colchicine, les épisodes répétés entraînent un dépôt progressif de protéines amyloïdes dans les reins — l'amyloïdose rénale — qui conduit à une insuffisance rénale chronique souvent fatale avant 6-7 ans.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-shar-pei-2" id="faq-btn-shar-pei-2">
+          <span>Combien coûte l'assurance santé pour un Shar-Peï ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-shar-pei-2" hidden>
+        <p>Entre 13 et 50 €/mois selon la formule et l'âge — soit parmi les tarifs les plus élevés pour une race de taille moyenne, reflet du profil de risque de la race. Pour un chiot Shar-Peï souscrit avant 12 mois, comptez typiquement 22 à 35 €/mois en formule intermédiaire. Ce surcoût est rationnel face au risque cumulé entropion + FSF + amyloïdose.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-shar-pei-3" id="faq-btn-shar-pei-3">
+          <span>Le Shar-Peï est-il une race dangereuse nécessitant des obligations légales particulières ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-shar-pei-3" hidden>
+        <p>Non. Le Shar-Peï n'est classé ni en catégorie 1 ni en catégorie 2 par la législation française sur les chiens dangereux (loi du 6 janvier 1999). Il ne nécessite pas de permis de détention, de muselière obligatoire ni d'assurance RC spécifique. Contrairement au Cane Corso ou à l'American Staffordshire Terrier, les obligations légales pour son propriétaire sont identiques à celles de tout autre chien.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-shar-pei-4" id="faq-btn-shar-pei-4">
+          <span>Comment prévenir l'amyloïdose rénale chez un Shar-Peï ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-shar-pei-4" hidden>
+        <p>La prévention passe par trois axes : (1) dépistage FSF précoce et mise sous colchicine prophylactique si le vétérinaire le juge nécessaire ; (2) traitement rapide de chaque crise fébrile pour réduire la charge amyloïde cumulée ; (3) bilans rénaux annuels incluant protéinurie, créatinine et SDMA à partir de 3 ans pour détecter toute amyloïdose débutante avant l'insuffisance rénale clinique. Une alimentation à teneur réduite en protéines peut ralentir la progression une fois l'amyloïdose confirmée.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <!-- 11. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list section-sources-list">
+    <li>Shar-Peï Club de France, Bilan sanitaire de la race Shar-Peï, <em>sharpeiclubdefrance.com</em>, 2023.</li>
+    <li>OFA (Orthopedic Foundation for Animals), Hip Dysplasia Statistics by Breed – Chinese Shar-Pei, <em>ofa.org</em>, 2024.</li>
+    <li>Chronic Renal Amyloidosis Associated with Shar-Pei Autoinflammatory Disease, <em>Journal of Veterinary Internal Medicine</em>, 2004.</li>
+    <li>SCC (Société Centrale Canine), Standard officiel Shar-Peï (FCI n° 309), 2023.</li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+  </ul>
+
+</div>
+
+</RaceLayout>

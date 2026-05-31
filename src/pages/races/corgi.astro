@@ -1,0 +1,267 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+---
+
+<RaceLayout
+  title="Assurance Corgi 2026 : Pembroke ou Cardigan, hernie discale & dos long"
+  description="Corgi : hernie discale IVDD (chondrodystrophie), dysplasie, myélopathie dégénérative et atrophie progressive de la rétine. Comparatif assurances 2026."
+  nom="Corgi"
+  slug="corgi"
+  taille="petite"
+  risque="modere"
+  score={55}
+  kf={[
+    { value: "3×",        label: "plus de risques d'hernie discale vs races normotypes (chondrodystrophie)" },
+    { value: "220–400 €", label: "assurance annuelle" },
+    { value: "12–15 ans", label: "espérance de vie moyenne" },
+    { value: "15–20 %",   label: "dysplasie de hanche (SCC / OFA)" },
+  ]}
+  similaires={[
+    { slug: 'berger-des-shetlands', nom: 'Berger des Shetlands', taille: 'petite',  risque: 'modere', score: 42 },
+    { slug: 'cavalier-king-charles', nom: 'Cavalier King Charles', taille: 'petite', risque: 'eleve', score: 88 },
+    { slug: 'beagle',               nom: 'Beagle',               taille: 'petite',  risque: 'modere', score: 38 },
+    { slug: 'teckel',               nom: 'Teckel',               taille: 'petite',  risque: 'eleve',  score: 75 },
+  ]}
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    Le Corgi désigne en France deux races officiellement distinctes — le Welsh Corgi Pembroke (largement majoritaire, popularisé par la famille royale britannique) et le Welsh Corgi Cardigan. Cette fiche traite principalement du Pembroke, le plus fréquent en France.
+    Le Corgi, rendu célèbre par la famille royale britannique, est un chien de berger compact dont la morphologie chondrodystrophique — corps allongé sur des membres courts — est directement responsable de sa principale vulnérabilité médicale : la hernie discale. Cette race bénéficie d'une espérance de vie longue (12 à 15 ans), mais la gestion d'une hernie discale cervicale ou lombaire peut mobiliser de 2 000 à 7 000 € sur un seul épisode, ce qui justifie une assurance santé souscrite dès le jeune âge.
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Corgi</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (petite taille, croquettes qualité)</td><td>400 – 650 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, antiparasitaires)</td><td>220 – 380 €</td></tr>
+        <tr><td>Toilettage (robe double, 3-4 fois/an)</td><td>150 – 280 €</td></tr>
+        <tr><td>Accessoires, jouets, literie</td><td>80 – 180 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>220 – 400 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>200 – 600 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>1 270 – 2 490 €/an</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; Corgis Club de France, ressources santé et conseils aux acquéreurs, welshcorgi.fr ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/outils/calculateur-cout-chien">Calculer le budget complet de votre Corgi sur 12 ans</a></p>
+  <p>→ <a href="/guides/cout-chien">Voir notre guide complet sur le coût d'un chien en 2026</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes du Corgi</h2>
+  <p>
+    La chondrodystrophie du Corgi — mutation génétique qui raccourcit les membres — affecte aussi la structure des disques intervertébraux, les rendant sujets à la minéralisation précoce et à la hernie (IVDD, Intervertebral Disc Disease). Ce risque est documenté par le Corgis Club de France (welshcorgi.fr) et confirmé par les études de l'ESCCAP : les races chondrodystrophiques présentent un risque d'IVDD trois fois supérieur aux races normotypes. La myélopathie dégénérative, maladie neurologique progressive touchant les membres postérieurs, est la deuxième préoccupation sanitaire majeure de la race après 8 ans.
+  </p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Hernie discale IVDD (cervicale ou lombaire)</td><td>15 – 20 % sur la vie</td><td>2 000 – 7 000 €</td></tr>
+        <tr><td>Myélopathie dégénérative (DM)</td><td>10 – 15 % (> 8 ans)</td><td>500 – 2 000 € (soins de support)</td></tr>
+        <tr><td>Dysplasie de hanche (HD)</td><td>15 – 20 %</td><td>1 500 – 5 000 €</td></tr>
+        <tr><td>Atrophie progressive de la rétine (PRA)</td><td>10 – 15 %</td><td>200 – 800 €</td></tr>
+        <tr><td>Épilepsie idiopathique</td><td>5 – 8 %</td><td>300 – 1 500 €/an</td></tr>
+        <tr><td>Hypothyroïdie</td><td>6 – 10 %</td><td>200 – 500 €/an</td></tr>
+        <tr><td>Syndrome de von Willebrand (coagulopathie)</td><td>5 – 7 %</td><td>200 – 1 000 € / épisode</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : Corgis Club de France, ressources santé et conseils aux acquéreurs, welshcorgi.fr ; ESCCAP, recommandations médicales races chondrodystrophiques, 2022 ; OFA Hip Dysplasia Statistics – Pembroke Welsh Corgi 2024 ; SCC résultats radiographiques 2023.</p>
+  <p>→ <a href="/guides/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Corgi</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>IRM rachis (bilan hernie discale)</td><td>800 – 1 600 €</td></tr>
+        <tr><td>Chirurgie décompression discale (hémilaminectomie)</td><td>2 000 – 6 000 €</td></tr>
+        <tr><td>Rééducation fonctionnelle post-chirurgie discale</td><td>400 – 1 200 €</td></tr>
+        <tr><td>Radiographie dépistage dysplasie HD</td><td>80 – 180 €</td></tr>
+        <tr><td>Chirurgie dysplasie de hanche (DPO ou PTH)</td><td>1 500 – 5 000 €</td></tr>
+        <tr><td>Test ADN myélopathie dégénérative (SOD1)</td><td>60 – 100 €</td></tr>
+        <tr><td>Examen ophtalmologique complet (PRA, cataracte)</td><td>60 – 120 €</td></tr>
+        <tr><td>Traitement épilepsie (phénobarbital annuel)</td><td>200 – 600 €/an</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : CHVA France 2024 ; VetAgro Sup Lyon 2025 ; EnvA Maisons-Alfort tarifs 2025 ; SNVEL.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique au Corgi</h3>
+      <p>La hernie discale est le risque financier principal du Corgi : une seule intervention de décompression chirurgicale rachidienne peut atteindre <strong>2 000 – 6 000 €</strong>, auxquels s'ajoute souvent une rééducation fonctionnelle de plusieurs semaines. Le pronostic neurologique dépend directement de la rapidité d'intervention — le frein financier ne doit pas retarder la décision d'opérer. Avec une espérance de vie de 12 à 15 ans, un Corgi sur cinq environ fera face à au moins un épisode d'IVDD au cours de sa vie, parfois plusieurs.</p>
+    </div>
+  </div>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Corgi</h2>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Éviter les sauts répétés depuis des hauteurs (canapé, voiture) et les escaliers en impact jusqu'à la fermeture des cartilages de croissance, pour protéger les disques intervertébraux immatures.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Maintenir un poids de forme strict : chaque kilogramme supplémentaire augmente la charge sur les disques rachidiens, déjà fragilisés par la chondrodystrophie.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Installer des rampes d'accès au canapé et à la voiture pour supprimer les sauts quotidiens qui usent les disques sur le long terme.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Effectuer le test ADN de myélopathie dégénérative (mutation SOD1) dès l'acquisition — les reproducteurs N/N transmettent moins ce risque à leur descendance.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Pratiquer le dépistage radiographique de dysplasie de hanche entre 12 et 18 mois, avant tout signe d'inconfort à l'appui postérieur.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Consulter rapidement en cas de douleur cervicale, raideur de dos, faiblesse des membres postérieurs ou difficultés mictionnelles — signaux d'alerte d'une hernie discale aiguë.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance santé avant 12 mois, avant tout bilan radiographique ou neurologique, pour garantir la couverture des hernies discales sans exclusion.
+    </li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Corgi ?</h2>
+  <p>
+    La hernie discale du Corgi est un événement brutal dont le pronostic neurologique se joue en quelques heures : une paralysie des membres postérieurs nécessite une décompression chirurgicale d'urgence. Sans assurance, le coût de l'intervention (IRM + chirurgie + rééducation : 3 000 à 8 000 €) représente un arbitrage financier difficile. Avec une assurance souscrite avant tout symptôme, ce frein disparaît et le chien bénéficie d'une intervention dans les meilleures conditions. Sur une vie de 13 à 15 ans, le Corgi peut connaître plusieurs épisodes discaux — l'amortissement de la cotisation est réel et prévisible.
+  </p>
+  <p>→ <a href="/comparatif/meilleures-assurances">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Corgi ?</h2>
+  <p>
+    Une formule couvrant à la fois la chirurgie rachidienne (hémilaminectomie), l'imagerie diagnostique (IRM), la rééducation fonctionnelle post-opératoire et les maladies chroniques (épilepsie, hypothyroïdie) est adaptée au profil du Corgi. Vérifiez que les pathologies liées à la chondrodystrophie ne sont pas exclues sous la mention « malformation congénitale » ou « maladie héréditaire » — cette exclusion contractuelle est fréquente chez les assureurs à bas prix. Pour le Corgi, un plafond de 3 000 €/an est un minimum ; 5 000 € offre une couverture confortable.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Comparatif assureurs -->
+  <h2>Comparatif des assurances pour un Corgi</h2>
+  <p>Estimations indicatives pour une femelle adulte de 12 kg, formule intermédiaire. Tarifs au 1er janvier 2026.</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Assureur</th><th>Formule Essentielle</th><th>Formule Intermédiaire</th><th>Formule Complète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SantéVet</td><td>~14 €/mois</td><td>~24 €/mois</td><td>~34 €/mois</td></tr>
+        <tr><td>Assur O'Poil</td><td>~11 €/mois</td><td>~20 €/mois</td><td>~28 €/mois</td></tr>
+        <tr><td>Lassie</td><td>~9 €/mois</td><td>~16 €/mois</td><td>~23 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Estimations indicatives basées sur les grilles tarifaires publiques 2025-2026. Les tarifs définitifs dépendent de l'âge, du sexe, de la région et des options choisies.</p>
+  <p>→ <a href="/comparatif/par-race/corgi">Voir le comparatif détaillé pour le Corgi</a></p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Corgi</h2>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-corgi-0" id="faq-btn-corgi-0">
+          <span>La hernie discale du Corgi est-elle couverte par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-corgi-0" hidden>
+        <p>Oui, à condition de souscrire avant tout signe neurologique ou douleur rachidienne documentée. La chirurgie de décompression discale (hémilaminectomie, 2 000 – 6 000 €) est couverte par les formules incluant la chirurgie. Vérifiez que la chondrodystrophie — à l'origine de l'IVDD chez le Corgi — n'est pas traitée comme une « malformation congénitale » exclue : cette clause est présente dans certains contrats d'entrée de gamme.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-corgi-1" id="faq-btn-corgi-1">
+          <span>Qu'est-ce que la myélopathie dégénérative du Corgi ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-corgi-1" hidden>
+        <p>La myélopathie dégénérative (DM) est une maladie neurologique progressive liée à une mutation du gène SOD1, fréquente chez le Pembroke. Elle se manifeste après 8 ans par une faiblesse progressive des membres postérieurs, sans douleur, évoluant vers la paralysie. Il n'existe pas de traitement curatif ; la rééducation et les soins de support représentent 500 à 2 000 €. Les formules maladies chroniques couvrent ces soins à condition d'avoir souscrit avant les premiers signes cliniques.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-corgi-2" id="faq-btn-corgi-2">
+          <span>À quel âge les hernies discales se déclarent-elles chez le Corgi ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-corgi-2" hidden>
+        <p>Les hernies discales peuvent survenir dès 3-4 ans chez les races chondrodystrophiques, avec un pic de fréquence entre 4 et 8 ans. Chez le Pembroke, les disques lombaires (T11-L3) sont les plus exposés. Une souscription avant 12 mois garantit une couverture pour l'intégralité de cette fenêtre de risque, sans exclusion pour maladie héréditaire ou préexistante.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-corgi-3" id="faq-btn-corgi-3">
+          <span>Combien coûte une assurance pour un Corgi par mois ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-corgi-3" hidden>
+        <p>Entre 9 et 34 €/mois selon la formule, le sexe et l'âge. Le Corgi Pembroke bénéficie de tarifs modérés par rapport aux grandes races à risque élevé, ce qui rend l'assurance particulièrement accessible. Souscrit avant 12 mois en formule intermédiaire, le coût annuel se situe entre 160 et 290 € — soit nettement moins qu'une seule consultation spécialisée neurologique.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-corgi-4" id="faq-btn-corgi-4">
+          <span>La dysplasie de hanche du Welsh Corgi est-elle prise en charge ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-corgi-4" hidden>
+        <p>Oui, à condition de souscrire avant tout bilan radiographique documenté. La dysplasie de hanche touche 15 à 20 % des Corgis Pembroke et peut nécessiter une chirurgie (DPO ou prothèse totale de hanche, 1 500 – 5 000 €). Un Corgi souscrit avant 12 mois, avant tout cliché de dépistage, bénéficie d'une couverture complète de cette pathologie si elle se déclare ultérieurement.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <!-- 11. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list section-sources-list">
+    <li>Corgis Club de France, ressources santé et conseils aux acquéreurs, <em>welshcorgi.fr</em>.</li>
+    <li>ESCCAP (European Scientific Counsel Companion Animal Parasites), Recommandations médicales pour les races chondrodystrophiques, 2022.</li>
+    <li>OFA (Orthopedic Foundation for Animals), Hip Dysplasia Statistics by Breed – Pembroke Welsh Corgi, <em>ofa.org</em>, 2024.</li>
+    <li>Coates J.R., Wininger F.A., « Canine Degenerative Myelopathy », <em>Veterinary Clinics of North America: Small Animal Practice</em>, 2010.</li>
+    <li>SCC (Société Centrale Canine), Résultats radiographiques dysplasie hanche, statistiques 2023.</li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+  </ul>
+
+</div>
+
+</RaceLayout>

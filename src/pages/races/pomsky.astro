@@ -1,0 +1,274 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+---
+
+<RaceLayout
+  title="Assurance Pomsky 2026 : croisement Husky × Spitz Poméranien, non LOF"
+  description="Pomsky : croisement Husky sibérien × Spitz Poméranien, non reconnu FCI/SCC, non LOF. Prédispositions cumulées des deux races. Assurance 180-320 €/an."
+  nom="Pomsky"
+  slug="pomsky"
+  taille="petite"
+  risque="modere"
+  score={45}
+  kf={[
+    { value: "Non LOF",    label: "croisement non reconnu par la FCI ni le SCC" },
+    { value: "180–320 €", label: "assurance annuelle estimée (petite taille)" },
+    { value: "13–15 ans", label: "espérance de vie estimée" },
+    { value: "2 races",   label: "prédispositions héritées (Husky sibérien + Spitz Poméranien)" },
+  ]}
+  similaires={[
+    { slug: 'husky-siberien',      nom: 'Husky Sibérien',     taille: 'moyenne', risque: 'modere', score: 48 },
+    { slug: 'spitz-pomeranien',    nom: 'Spitz Poméranien',   taille: 'petite',  risque: 'modere', score: 48 },
+    { slug: 'caniche',             nom: 'Caniche',            taille: 'petite',  risque: 'modere', score: 38 },
+    { slug: 'berger-des-shetlands', nom: 'Berger des Shetlands', taille: 'petite', risque: 'modere', score: 42 },
+  ]}
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    Le Pomsky est un croisement intentionnel entre un Husky sibérien et un Spitz Poméranien. Il n'est pas reconnu par la FCI (Fédération Cynologique Internationale) ni par la SCC (Société Centrale Canine), et n'est donc pas inscrit au Livre des Origines Français (LOF). Il n'existe pas de club officiel de la race en France. Cette absence d'encadrement officiel a plusieurs conséquences concrètes : aucun standard morphologique homologué, aucun programme de dépistage coordonné, et une variabilité importante entre individus selon les proportions génétiques héritées de chaque parent. Sur le plan sanitaire, le Pomsky cumule les prédispositions des deux races parentales — documentées respectivement par le Siberian Husky Club de France (siberianhuskyfrance.com) et le Club Français du Spitz Allemand et Italien (clubduspitz.fr).
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Pomsky</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (petite à moyenne taille, croquettes premium)</td><td>400 – 700 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, antiparasitaires)</td><td>200 – 380 €</td></tr>
+        <tr><td>Toilettage professionnel (robe double, 4-6 fois/an)</td><td>200 – 400 €</td></tr>
+        <tr><td>Bilan dentaire annuel (petite taille, surpopulation molaire)</td><td>100 – 250 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>180 – 320 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>150 – 500 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>1 230 – 2 550 €/an</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; Siberian Husky Club de France, documentation santé de la race, siberianhuskyfrance.com ; Club Français du Spitz Allemand et Italien, documentation santé de la race, clubduspitz.fr ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/outils/calculateur-cout-chien">Calculer le budget complet de votre Pomsky sur 12 ans</a></p>
+  <p>→ <a href="/guides/cout-chien">Voir notre guide complet sur le coût d'un chien en 2026</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes du Pomsky</h2>
+  <p>
+    En l'absence de données épidémiologiques propres au Pomsky — aucun registre officiel ni club de race ne collecte ces statistiques — les prédispositions documentées sont celles héritées des deux races parentales. Il ne s'agit pas d'une somme certaine des risques de chaque parent : l'expression génétique dépend des proportions héritées par chaque individu et peut varier considérablement d'un Pomsky à l'autre. La notion de « vigueur hybride » est parfois avancée par des éleveurs pour minimiser ces risques, mais elle est un concept statistique qui ne s'applique pas aux maladies monogéniques ni aux affections polygéniques comme la dysplasie ou la luxation de la rotule — des études sur d'autres croisements standardisés n'ont pas confirmé de réduction de ces pathologies chez les hybrides.
+  </p>
+  <p><strong>Prédispositions héritées du Husky sibérien</strong> (source : siberianhuskyfrance.com) :</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée (Husky sibérien)</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dysplasie de la hanche (HD)</td><td>5 – 10 %</td><td>1 500 – 6 000 €</td></tr>
+        <tr><td>Cataracte héréditaire juvénile (CHJ)</td><td>5 – 10 %</td><td>600 – 2 000 € / œil</td></tr>
+        <tr><td>Atrophie progressive de la rétine (APR / PRA)</td><td>3 – 6 %</td><td>150 – 600 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p><strong>Prédispositions héritées du Spitz Poméranien</strong> (source : clubduspitz.fr) :</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée (Spitz Poméranien)</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Luxation de la rotule (grades I à IV)</td><td>10 – 20 %</td><td>600 – 2 000 € / genou</td></tr>
+        <tr><td>Alopécie X (Black Skin Disease)</td><td>8 – 15 %</td><td>200 – 800 €/an</td></tr>
+        <tr><td>Collapsus trachéal</td><td>5 – 10 %</td><td>150 – 3 000 €</td></tr>
+        <tr><td>Problèmes dentaires (encombrement molaire)</td><td>15 – 20 %</td><td>150 – 500 € / bilan</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : Siberian Husky Club de France, documentation santé de la race, <em>siberianhuskyfrance.com</em> ; Club Français du Spitz Allemand et Italien, documentation santé de la race, <em>clubduspitz.fr</em> ; OFA Statistics – Siberian Husky / Pomeranian, <em>ofa.org</em>, 2024.</p>
+  <p>→ <a href="/guides/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Pomsky</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Radiographies dysplasie de la hanche</td><td>120 – 280 €</td></tr>
+        <tr><td>Chirurgie luxation de la rotule (trochléoplastie)</td><td>600 – 2 000 € / genou</td></tr>
+        <tr><td>Chirurgie cataracte héréditaire (phacoémulsification)</td><td>600 – 2 000 € / œil</td></tr>
+        <tr><td>Bilan ophtalmologique spécialisé (CHJ, APR)</td><td>80 – 180 €</td></tr>
+        <tr><td>Traitement alopécie X (mélatonine ou trilostane)</td><td>200 – 800 €/an</td></tr>
+        <tr><td>Stent trachéal (collapsus sévère)</td><td>1 200 – 3 000 €</td></tr>
+        <tr><td>Bilan dentaire complet (détartrage, extraction)</td><td>150 – 400 €</td></tr>
+        <tr><td>Test génétique PRA / CHJ</td><td>60 – 120 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : CHVA France 2024 ; EnvA Maisons-Alfort tarifs 2025 ; SNVEL grilles tarifaires 2024.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique au Pomsky</h3>
+      <p>Le Pomsky cumule théoriquement deux patrimoines génétiques sans bénéficier de données de suivi coordonnées. Son profil de risque réel dépend en grande partie de la qualité sanitaire des parents utilisés à la reproduction — information rarement vérifiable chez des éleveurs non affiliés à un club reconnu. Le scénario le plus coûteux combine une luxation bilatérale de la rotule (<strong>1 200 – 4 000 €</strong>), une cataracte héréditaire bilatérale (<strong>1 200 – 4 000 €</strong>) et une alopécie X chronique (<strong>2 000 – 8 000 €</strong> sur une décennie), soit un cumul théorique pouvant dépasser <strong>10 000 €</strong> sans assurance.</p>
+    </div>
+  </div>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Pomsky</h2>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Exiger de l'éleveur les résultats de dépistage des deux parents : dysplasie HD, luxation de la rotule (OFA), cataracte héréditaire (CHJ), APR/PRA — sans ces résultats, il est impossible d'évaluer les risques génétiques transmis.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Effectuer un bilan ophtalmologique complet avant 12 mois et à 24 mois pour détecter précocement une cataracte héréditaire juvénile, traitable chirurgicalement si prise en charge avant l'opacification totale du cristallin.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Observer la démarche dès les premiers mois : sautillement intermittent ou boiterie légère postérieure oriente vers une luxation de la rotule — plus tôt détectée, moins lourde à traiter chirurgicalement.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Utiliser exclusivement un harnais adapté à la morphologie du chien — la traction sur la trachée est le facteur aggravant principal du collapsus trachéal, fréquent chez le Spitz Poméranien et potentiellement transmis au Pomsky.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Programmer un bilan dentaire annuel à partir de 2 ans — la tendance à la surpopulation molaire héritée du Spitz Poméranien génère régulièrement des besoins de détartrage ou d'extraction.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance avant tout bilan vétérinaire documenté — l'absence de LOF n'empêche pas la souscription, mais les assureurs peuvent appliquer des exclusions plus larges sur les croisements non reconnus ; comparez les conditions contractuelles.
+    </li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Pomsky ?</h2>
+  <p>
+    L'absence de LOF et de club officiel complique l'évaluation préalable des risques sanitaires d'un Pomsky individuel. Cette incertitude est précisément l'argument le plus solide en faveur d'une assurance : lorsque le profil génétique d'un chien ne peut pas être pleinement documenté, la couverture assurance constitue le filet de sécurité financier le plus adapté. Les cotisations pour un petit chien restent accessibles, et la couverture protège contre les pathologies les plus probables des deux races parentales.
+  </p>
+  <p>→ <a href="/comparatif/meilleures-assurances">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Pomsky ?</h2>
+  <p>
+    Une formule intermédiaire couvrant la chirurgie orthopédique (luxation de rotule), la chirurgie oculaire (cataracte), les maladies chroniques (alopécie X) et les pathologies respiratoires (collapsus trachéal) répond aux principaux risques identifiés. Lisez attentivement les clauses d'exclusion : certains assureurs excluent les « maladies des races parentales » pour les croisements. Préférez un contrat mentionnant explicitement la couverture des maladies héréditaires ou des affections génétiquement influencées, sans restriction aux seuls chiens LOF.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Comparatif assureurs -->
+  <h2>Comparatif des assurances pour un Pomsky</h2>
+  <p>Estimations indicatives pour une femelle adulte de 6 kg, formule intermédiaire. Tarifs au 1er janvier 2026.</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Assureur</th><th>Formule Essentielle</th><th>Formule Intermédiaire</th><th>Formule Complète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SantéVet</td><td>~11 €/mois</td><td>~19 €/mois</td><td>~27 €/mois</td></tr>
+        <tr><td>Assur O'Poil</td><td>~9 €/mois</td><td>~16 €/mois</td><td>~22 €/mois</td></tr>
+        <tr><td>Lassie</td><td>~7 €/mois</td><td>~13 €/mois</td><td>~18 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Estimations indicatives basées sur les grilles tarifaires publiques 2025-2026 pour chien croisé de petite taille. Les tarifs définitifs dépendent de l'âge, du sexe, de la région et des options choisies.</p>
+  <p>→ <a href="/comparatif/par-race/pomsky">Voir le comparatif détaillé pour le Pomsky</a></p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Pomsky</h2>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-pomsky-0" id="faq-btn-pomsky-0">
+          <span>Peut-on assurer un Pomsky non LOF en France ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-pomsky-0" hidden>
+        <p>Oui. L'inscription au LOF n'est pas une condition requise par les assureurs pour la souscription d'une assurance santé chien. Les principaux assureurs (SantéVet, Assur O'Poil, Lassie) couvrent les chiens croisés, y compris sans pedigree. En revanche, certains contrats appliquent des exclusions spécifiques aux croisements pour les maladies héréditaires — lisez les conditions particulières avant de souscrire et vérifiez que les pathologies des races parentales ne sont pas exclues.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-pomsky-1" id="faq-btn-pomsky-1">
+          <span>La vigueur hybride protège-t-elle le Pomsky des maladies héréditaires ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-pomsky-1" hidden>
+        <p>Non, pas pour les maladies les plus préoccupantes dans cette race. La vigueur hybride est un avantage statistique observé sur certains traits liés à la survie et à la fertilité, mais elle ne protège pas contre les maladies à transmission polygénique complexe comme la dysplasie de la hanche ou la luxation de la rotule, ni contre les maladies monogéniques comme la cataracte héréditaire juvénile ou la PRA. Un Pomsky dont l'un ou les deux parents transmettent ces mutations les hérite au même titre qu'un chien de race pure.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-pomsky-2" id="faq-btn-pomsky-2">
+          <span>Pourquoi le Pomsky n'est-il pas reconnu par la FCI ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-pomsky-2" hidden>
+        <p>La FCI reconnaît les races disposant d'un standard homologué, d'une population suffisamment stable et homogène, et d'un livre des origines tenu par un organisme national affilié. Le Pomsky est un croisement récent (2012) dont les individus présentent une variabilité morphologique importante selon les proportions héritées de chaque parent. Aucun organisme national n'a déposé de demande de reconnaissance, et aucun standard stabilisé ne fait consensus. Cette absence de reconnaissance n'a pas d'impact sur la valeur du chien comme animal de compagnie, mais elle prive les propriétaires de données sanitaires coordonnées fiables.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-pomsky-3" id="faq-btn-pomsky-3">
+          <span>Combien coûte une assurance pour un Pomsky par mois ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-pomsky-3" hidden>
+        <p>Entre 7 et 27 €/mois selon la formule et l'âge. Le Pomsky étant tarifié comme un chien croisé de petite taille, ses cotisations sont comparables à celles du Spitz Poméranien ou du Chihuahua — soit parmi les moins élevées du marché. En formule intermédiaire, comptez 13 à 19 €/mois pour un jeune chien. Ce tarif reste inférieur à l'abonnement mensuel de nombreux services, et couvre des risques pouvant dépasser 5 000 € en cas de pathologie orthopédique ou oculaire.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-pomsky-4" id="faq-btn-pomsky-4">
+          <span>Quelles sont les races parentales du Pomsky et leurs risques spécifiques ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-pomsky-4" hidden>
+        <p>Le Pomsky est issu du Husky sibérien et du Spitz Poméranien. Du Husky, il peut hériter d'une dysplasie de la hanche (5-10 %), d'une cataracte héréditaire juvénile (5-10 %) et d'une atrophie progressive de la rétine (3-6 %). Du Spitz Poméranien, il peut hériter d'une luxation de la rotule (10-20 %), d'une alopécie X (8-15 %), d'un collapsus trachéal (5-10 %) et de problèmes dentaires (15-20 %). La proportion héritée de chaque parent détermine quelles prédispositions s'exprimeront chez l'individu — variable que seuls des tests génétiques permettent de mieux anticiper.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <!-- 11. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list section-sources-list">
+    <li>Siberian Husky Club de France, documentation santé de la race, <em>siberianhuskyfrance.com</em>.</li>
+    <li>Club Français du Spitz Allemand et Italien (CFSAI), documentation santé de la race, <em>clubduspitz.fr</em>.</li>
+    <li>OFA (Orthopedic Foundation for Animals), Statistics by Breed – Siberian Husky / Pomeranian, <em>ofa.org</em>, 2024.</li>
+    <li>FCI, Liste des races reconnues et en voie de reconnaissance, <em>fci.be</em>, 2024. <em>Note : le Pomsky ne figure pas dans cette liste.</em></li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+  </ul>
+
+</div>
+
+</RaceLayout>

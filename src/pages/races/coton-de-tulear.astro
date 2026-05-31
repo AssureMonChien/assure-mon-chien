@@ -1,0 +1,265 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+---
+
+<RaceLayout
+  title="Assurance Coton de Tuléar 2026 : longévité, PRA & luxation rotule"
+  description="Coton de Tuléar : longévité exceptionnelle (jusqu'à 19 ans), luxation de la rotule, atrophie progressive de la rétine, neuropathie progressive. Comparatif assurances 2026."
+  nom="Coton de Tuléar"
+  slug="coton-de-tulear"
+  taille="petite"
+  risque="modere"
+  score={40}
+  kf={[
+    { value: "14–19 ans",  label: "espérance de vie — l'une des plus longues de toutes les races" },
+    { value: "160–280 €",  label: "assurance annuelle" },
+    { value: "8–15 %",    label: "luxation de la rotule (OFA / SCC)" },
+    { value: "5–10 %",    label: "atrophie progressive de la rétine (PRA)" },
+  ]}
+  similaires={[
+    { slug: 'bichon-frise',          nom: 'Bichon Frisé',         taille: 'petite', risque: 'modere', score: 35 },
+    { slug: 'shih-tzu',              nom: 'Shih Tzu',             taille: 'petite', risque: 'modere', score: 40 },
+    { slug: 'cavalier-king-charles', nom: 'Cavalier King Charles', taille: 'petite', risque: 'eleve', score: 88 },
+    { slug: 'caniche',               nom: 'Caniche',              taille: 'petite', risque: 'modere', score: 38 },
+  ]}
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    Originaire de Madagascar, le Coton de Tuléar est reconnu pour sa robe cotonneuse blanche, son caractère enjoué et une longévité parmi les plus élevées de toutes les races canines — jusqu'à 19 ans pour certains individus bien suivis. Cette vie longue ne signifie pas une vie sans frais vétérinaires : luxation de la rotule, atrophie progressive de la rétine et neuropathie progressive constituent les prédispositions documentées par le Club du Coton de Tuléar de France (ccce.org). Sur 18 ans de vie, même un risque modéré par événement se traduit par un coût cumulé significatif.
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Coton de Tuléar</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (petite taille, qualité premium)</td><td>300 – 500 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, antiparasitaires)</td><td>200 – 360 €</td></tr>
+        <tr><td>Toilettage professionnel (robe cotonneuse, 4-5 fois/an)</td><td>200 – 380 €</td></tr>
+        <tr><td>Accessoires, jouets, literie</td><td>80 – 180 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>160 – 280 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>150 – 450 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>1 090 – 2 150 €/an</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; Club du Coton de Tuléar de France (ccce.org) données sanitaires 2023 ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/outils/calculateur-cout-chien">Calculer le budget complet de votre Coton de Tuléar sur 12 ans</a></p>
+  <p>→ <a href="/guides/cout-chien">Voir notre guide complet sur le coût d'un chien en 2026</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes du Coton de Tuléar</h2>
+  <p>
+    Le Coton de Tuléar est une race robuste, mais sa longévité exceptionnelle l'expose à un cumul pathologique sur la durée. La luxation de la rotule, documentée par l'OFA et le Club du Coton de Tuléar (ccce.org), touche 8 à 15 % des individus. L'atrophie progressive de la rétine (PRA) — maladie dégénérative héréditaire réduisant progressivement le champ visuel — affecte 5 à 10 % des Cottons. La neuropathie progressive du Coton de Tuléar (ataxie sensorimotrice) est une pathologie spécifique à la race, documentée par Abitbol et al. (2010), qui se manifeste après 3-4 ans par des troubles de la démarche progressifs.
+  </p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Luxation de la rotule (grades I à IV)</td><td>8 – 15 %</td><td>600 – 2 000 € / genou</td></tr>
+        <tr><td>Atrophie progressive de la rétine (PRA)</td><td>5 – 10 %</td><td>150 – 600 €</td></tr>
+        <tr><td>Neuropathie progressive (ataxie sensorimotrice)</td><td>3 – 5 %</td><td>400 – 2 000 €</td></tr>
+        <tr><td>Maladie de von Willebrand (coagulopathie)</td><td>3 – 6 %</td><td>200 – 1 000 € / épisode</td></tr>
+        <tr><td>Dysplasie de hanche</td><td>8 – 12 %</td><td>1 500 – 4 000 €</td></tr>
+        <tr><td>Otites chroniques (conduit étroit)</td><td>10 – 15 %</td><td>100 – 400 €/an</td></tr>
+        <tr><td>Hypothyroïdie</td><td>4 – 7 %</td><td>150 – 400 €/an</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : Abitbol M. et al., « Progressive ataxia in the Coton de Tuléar », <em>Neuromuscular Disorders</em>, 2010 ; OFA Patellar Luxation Statistics – Coton de Tuléar, ofa.org, 2024 ; Club du Coton de Tuléar de France, bilan sanitaire, ccce.org, 2023.</p>
+  <p>→ <a href="/guides/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Coton de Tuléar</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chirurgie luxation de la rotule (trochléoplastie)</td><td>600 – 2 000 € / genou</td></tr>
+        <tr><td>Bilan ophtalmologique complet (PRA, fond d'œil)</td><td>60 – 120 €</td></tr>
+        <tr><td>Test génétique PRA et neuropathie progressive</td><td>60 – 120 € (combiné)</td></tr>
+        <tr><td>Consultation neurologique (ataxie, neuropathie)</td><td>100 – 200 €</td></tr>
+        <tr><td>Test von Willebrand (avant chirurgie)</td><td>60 – 120 €</td></tr>
+        <tr><td>Radiographie dysplasie hanche</td><td>80 – 180 €</td></tr>
+        <tr><td>Traitement otite chronique (par épisode)</td><td>80 – 250 €</td></tr>
+        <tr><td>Traitement hypothyroïdie (lévothyroxine annuel)</td><td>150 – 400 €/an</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : CHVA France 2024 ; EnvA Maisons-Alfort tarifs 2025 ; SNVEL grilles tarifaires 2024.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique au Coton de Tuléar</h3>
+      <p>La longévité exceptionnelle du Coton de Tuléar est sa particularité la plus remarquable — et le principal argument pour une assurance longue durée. Sur 16 à 19 ans de vie, même une pathologie de fréquence modérée (luxation de rotule, PRA, neuropathie) finit par se déclarer. Le cumul d'une chirurgie orthopédique à 5 ans, d'un suivi ophtalmologique à partir de 8 ans et d'un traitement neurologique en fin de vie peut représenter <strong>5 000 – 10 000 €</strong> sur l'ensemble de la vie du chien. Une assurance souscrite avant 12 mois accompagne cette longue durée au tarif le plus avantageux.</p>
+    </div>
+  </div>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Coton de Tuléar</h2>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Exiger les tests génétiques PRA et neuropathie progressive des deux parents avant l'acquisition — deux maladies récessives pour lesquelles les reproducteurs sérieux sont testés N/N ou N/porteur.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Surveiller la démarche du chiot dès les premiers mois : sautillement intermittent ou appui instable sur une patte postérieure peuvent signaler une luxation de la rotule débutante.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Programmer un bilan ophtalmologique complet dès 3-4 ans et le répéter annuellement pour détecter une PRA avant que la gêne visuelle ne soit installée.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Réaliser le test de coagulation von Willebrand avant toute intervention chirurgicale programmée pour anticiper un risque hémorragique.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Maintenir un poids de forme strict — le format compact du Coton aggrave les contraintes articulaires en cas de surpoids, notamment sur les genoux déjà exposés à la luxation.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Consulter rapidement en cas de troubles de la démarche après 3-4 ans : vacillement des postérieurs, démarche anormale ou faiblesse progressive sont les premiers signes de neuropathie.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance santé avant 12 mois pour couvrir la totalité de cette longue espérance de vie sans exclusion pour pathologie héréditaire.
+    </li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Coton de Tuléar ?</h2>
+  <p>
+    Avec 16 à 19 ans de vie potentielle, le Coton de Tuléar est l'un des rares chiens pour lesquels l'assurance santé peut courir sur deux décennies. Le raisonnement actuariel est simple : même un risque de 10 % par pathologie, multiplié sur une longue vie et plusieurs prédispositions cumulées, aboutit à une quasi-certitude d'un ou plusieurs événements coûteux. La neuropathie progressive, en particulier, est une pathologie spécifique à la race dont la prise en charge neurologique spécialisée reste hors de portée sans couverture.
+  </p>
+  <p>→ <a href="/comparatif/meilleures-assurances">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Coton de Tuléar ?</h2>
+  <p>
+    Privilégiez une formule couvrant les maladies chroniques sans limitation de durée, la chirurgie orthopédique (luxation de rotule) et les bilans ophtalmologiques répétés. Vérifiez que la neuropathie progressive — maladie héréditaire de la race — n'est pas exclue sous la mention « pathologie génétique » ou « maladie dégénérative ». Un plafond annuel de 2 000 à 3 000 € couvre la majorité des événements prévisibles pour cette race. Souscrire avant 12 mois garantit un tarif stable sur toute la durée de vie.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Comparatif assureurs -->
+  <h2>Comparatif des assurances pour un Coton de Tuléar</h2>
+  <p>Estimations indicatives pour une femelle adulte de 5 kg, formule intermédiaire. Tarifs au 1er janvier 2026.</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Assureur</th><th>Formule Essentielle</th><th>Formule Intermédiaire</th><th>Formule Complète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SantéVet</td><td>~9 €/mois</td><td>~16 €/mois</td><td>~24 €/mois</td></tr>
+        <tr><td>Assur O'Poil</td><td>~7 €/mois</td><td>~13 €/mois</td><td>~19 €/mois</td></tr>
+        <tr><td>Lassie</td><td>~6 €/mois</td><td>~10 €/mois</td><td>~15 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Estimations indicatives basées sur les grilles tarifaires publiques 2025-2026. Les tarifs définitifs dépendent de l'âge, du sexe, de la région et des options choisies.</p>
+  <p>→ <a href="/comparatif/par-race/coton-de-tulear">Voir le comparatif détaillé pour le Coton de Tuléar</a></p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Coton de Tuléar</h2>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-coton-de-tulear-0" id="faq-btn-coton-de-tulear-0">
+          <span>La longue espérance de vie du Coton justifie-t-elle vraiment une assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-coton-de-tulear-0" hidden>
+        <p>Oui, et d'autant plus qu'elle est longue. Sur 16 à 19 ans, même une pathologie de probabilité modérée finit statistiquement par se déclarer. Le cumul d'une chirurgie orthopédique, d'un suivi ophtalmologique et d'un traitement neurologique peut dépasser 8 000 € sur la durée totale de vie. Une assurance souscrite à 2-3 mois court à tarif constant pendant toute cette période.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-coton-de-tulear-1" id="faq-btn-coton-de-tulear-1">
+          <span>La neuropathie progressive du Coton de Tuléar est-elle couverte ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-coton-de-tulear-1" hidden>
+        <p>Dans les formules couvrant les maladies héréditaires et les pathologies neurologiques, oui. La neuropathie progressive (ataxie sensorimotrice) est une maladie spécifique à la race dont le diagnostic repose sur une consultation neurologique spécialisée et des tests génétiques. Vérifiez que les pathologies neurologiques dégénératives d'origine héréditaire ne sont pas exclues dans les conditions particulières du contrat.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-coton-de-tulear-2" id="faq-btn-coton-de-tulear-2">
+          <span>L'atrophie progressive de la rétine du Coton est-elle remboursée ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-coton-de-tulear-2" hidden>
+        <p>Oui, les formules couvrant les maladies prennent en charge les bilans ophtalmologiques, les tests génétiques diagnostiques et les soins de gestion. La PRA elle-même n'est pas curable, mais les suivis annuels (60-120 €) et les adaptations environnementales sont couverts. Une souscription avant tout diagnostic ou résultat de test génétique positif est indispensable.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-coton-de-tulear-3" id="faq-btn-coton-de-tulear-3">
+          <span>Combien coûte une assurance pour un Coton de Tuléar par mois ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-coton-de-tulear-3" hidden>
+        <p>Entre 6 et 24 €/mois selon la formule et l'âge — parmi les cotisations les plus basses toutes races confondues. Un chiot souscrit en formule intermédiaire coûte typiquement 10 à 16 €/mois. Sur 17 ans de vie, la cotisation totale d'une formule intermédiaire représente environ 2 000 à 3 200 € — bien moins que la seule chirurgie d'une luxation de rotule bilatérale.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-coton-de-tulear-4" id="faq-btn-coton-de-tulear-4">
+          <span>La luxation de la rotule du Coton de Tuléar est-elle prise en charge ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-coton-de-tulear-4" hidden>
+        <p>Oui, dans les formules incluant la chirurgie. La trochléoplastie coûte 600 à 2 000 € par genou. À condition de souscrire avant tout examen orthopédique documenté, la prise en charge est complète. Les luxations de stade I et II peuvent être gérées médicalement (kinésithérapie, AINS) ; les stades III et IV nécessitent une intervention chirurgicale que l'assurance prend en charge.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <!-- 11. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list section-sources-list">
+    <li>Club du Coton de Tuléar de France (CCCE), Documentation sanitaire de la race, <em>ccce.org</em>, 2023.</li>
+    <li>Abitbol M. et al., « Canine progressive ataxia in the Coton de Tuléar dog », <em>Neuromuscular Disorders</em>, 2010.</li>
+    <li>OFA (Orthopedic Foundation for Animals), Patellar Luxation Statistics – Coton de Tuléar, <em>ofa.org</em>, 2024.</li>
+    <li>SCC (Société Centrale Canine), Fichier LOF Coton de Tuléar, statistiques de naissances 2023.</li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+  </ul>
+
+</div>
+
+</RaceLayout>

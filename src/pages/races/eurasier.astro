@@ -1,0 +1,259 @@
+---
+import RaceLayout from "../../layouts/RaceLayout.astro";
+---
+
+<RaceLayout
+  title="Assurance Eurasier 2026 : dysplasie, hypothyroïdie et PRA"
+  description="Eurasier : dysplasie hanche (10-15 %), hypothyroïdie (5-8 %), PRA (4-7 %). Espérance de vie 12-14 ans. Race FCI reconnue. Comparatif assurances 2026."
+  nom="Eurasier"
+  slug="eurasier"
+  taille="moyenne"
+  risque="faible"
+  score={25}
+  kf={[
+    { value: "10–15 %",   label: "dysplasie de la hanche (OFA / SCC)" },
+    { value: "160–280 €", label: "assurance annuelle" },
+    { value: "12–14 ans", label: "espérance de vie moyenne" },
+    { value: "5–8 %",     label: "hypothyroïdie (Club Français de l'Eurasier)" },
+  ]}
+  similaires={[
+    { slug: 'samoyede',       nom: 'Samoyède',       taille: 'grande',  risque: 'modere', score: 45 },
+    { slug: 'chow-chow',     nom: 'Chow-Chow',      taille: 'moyenne', risque: 'modere', score: 52 },
+    { slug: 'akita-inu',     nom: 'Akita Inu',       taille: 'grande',  risque: 'modere', score: 48 },
+    { slug: 'husky-siberien', nom: 'Husky Sibérien', taille: 'moyenne', risque: 'modere', score: 48 },
+  ]}
+>
+
+<div class="race-article">
+
+  <!-- 1. Introduction -->
+  <p class="intro-text">
+    L'Eurasier est une race récente, créée en Allemagne dans les années 1960 par Julius Wipfel à partir de croisements entre Chow-Chow, Spitz Loup et, ultérieurement, Samoyède. Reconnue par la FCI (standard n° 291) et inscrite au LOF en France, elle est suivie par le Club Français de l'Eurasier (clubfrancaiseurasier.fr). Son bilan sanitaire est parmi les plus favorables des races de taille moyenne : espérance de vie de 12 à 14 ans, profil de risque faible, pathologies peu fréquentes. La dysplasie de la hanche et l'hypothyroïdie constituent les deux principaux points de vigilance documentés par le club officiel.
+  </p>
+
+  <!-- 2. Coût annuel -->
+  <h2>Coût annuel d'un Eurasier</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Poste de dépense</th><th>Coût estimé / an</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Alimentation (taille moyenne, croquettes premium)</td><td>500 – 800 €</td></tr>
+        <tr><td>Suivi vétérinaire annuel (vaccins, antiparasitaires)</td><td>200 – 380 €</td></tr>
+        <tr><td>Toilettage professionnel (robe double épaisse, 4-6 fois/an)</td><td>200 – 400 €</td></tr>
+        <tr><td>Assurance santé (formule intermédiaire)</td><td>160 – 280 €</td></tr>
+        <tr><td>Imprévus vétérinaires (hors assurance)</td><td>100 – 350 €</td></tr>
+        <tr class="is-total"><td><strong>Total estimé</strong></td><td><strong>1 160 – 2 210 €/an</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : FACCO Enquête nationale 2024 ; Club Français de l'Eurasier (clubfrancaiseurasier.fr) bilan sanitaire 2023 ; SantéVet grille tarifaire 2025.</p>
+  <p>→ <a href="/outils/calculateur-cout-chien">Calculer le budget complet de votre Eurasier sur 12 ans</a></p>
+  <p>→ <a href="/guides/cout-chien">Voir notre guide complet sur le coût d'un chien en 2026</a></p>
+
+  <!-- 3. Maladies fréquentes -->
+  <h2>Maladies fréquentes de l'Eurasier</h2>
+  <p>
+    L'Eurasier bénéficie d'un programme de santé structuré coordonné par le Club Français de l'Eurasier (clubfrancaiseurasier.fr), ce qui explique en partie la maîtrise du profil sanitaire de la race. La dysplasie de la hanche, présente chez 10 à 15 % des individus testés selon l'OFA, reste la pathologie orthopédique la plus surveillée. L'hypothyroïdie, documentée chez 5 à 8 % des individus, se présente classiquement par léthargie, prise de poids et alopécie — elle se traite efficacement par lévothyroxine à vie. L'atrophie progressive de la rétine (PRA) est dépistable par test génétique ; elle touche 4 à 7 % des individus non testés. La luxation de la rotule et le distichiasis (cils aberrants) sont rares mais documentés.
+  </p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Maladie</th><th>Fréquence estimée</th><th>Coût moyen de traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dysplasie de la hanche (HD)</td><td>10 – 15 %</td><td>1 500 – 6 000 €</td></tr>
+        <tr><td>Hypothyroïdie</td><td>5 – 8 %</td><td>80 – 200 €/an</td></tr>
+        <tr><td>Atrophie progressive de la rétine (PRA)</td><td>4 – 7 %</td><td>150 – 600 €</td></tr>
+        <tr><td>Luxation de la rotule (rare)</td><td>3 – 5 %</td><td>600 – 2 000 € / genou</td></tr>
+        <tr><td>Distichiasis (cils aberrants)</td><td>3 – 5 %</td><td>200 – 600 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : Club Français de l'Eurasier, Bilan sanitaire et résultats dépistage, <em>clubfrancaiseurasier.fr</em>, 2023 ; OFA Hip Dysplasia Statistics – Eurasier, <em>ofa.org</em>, 2024 ; SCC résultats dépistage LOF Eurasier, 2023.</p>
+  <p>→ <a href="/guides/cout-soins-veterinaires">Consulter les coûts des soins vétérinaires</a></p>
+
+  <!-- 4. Coût des soins vétérinaires -->
+  <h2>Coût des soins vétérinaires pour un Eurasier</h2>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Acte / Traitement</th><th>Fourchette de prix (France, 2024-2025)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Radiographies de dépistage dysplasie HD</td><td>120 – 280 €</td></tr>
+        <tr><td>Traitement médical dysplasie (anti-inflammatoires, kinésithérapie)</td><td>300 – 800 €/an</td></tr>
+        <tr><td>Prothèse totale de hanche (PTH)</td><td>3 500 – 6 000 € / hanche</td></tr>
+        <tr><td>Bilan thyroïdien complet (T4, TSH)</td><td>80 – 160 €</td></tr>
+        <tr><td>Traitement hypothyroïdie (lévothyroxine)</td><td>60 – 180 €/an</td></tr>
+        <tr><td>Test génétique PRA</td><td>60 – 100 €</td></tr>
+        <tr><td>Consultation ophtalmologique spécialisée</td><td>60 – 150 €</td></tr>
+        <tr><td>Chirurgie distichiasis (épilation électrique)</td><td>200 – 600 €</td></tr>
+        <tr><td>Chirurgie luxation de la rotule</td><td>600 – 2 000 € / genou</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Source : CHVA France 2024 ; EnvA Maisons-Alfort tarifs 2025 ; SNVEL grilles tarifaires 2024.</p>
+
+  <!-- 5. Risques financiers spécifiques -->
+  <div class="callout">
+    <div class="callout-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Risque financier spécifique à l'Eurasier</h3>
+      <p>L'Eurasier est l'une des races à risque financier le plus faible parmi les chiens de taille moyenne. Les pathologies documentées sont peu fréquentes et souvent traitables à coût limité — l'hypothyroïdie représente 60 à 180 €/an, bien en deçà d'un budget d'assurance annuel. Le scénario de coût élevé implique une dysplasie de hanche bilatérale sévère traitée chirurgicalement : <strong>7 000 à 12 000 €</strong> au total. C'est rare, mais c'est le type d'événement que l'assurance couvre efficacement. Pour une race à faible risque, les cotisations sont d'autant plus accessibles que le rapport reste très favorable.</p>
+    </div>
+  </div>
+
+  <!-- 6. Conseils de prévention -->
+  <h2>Conseils de prévention pour un Eurasier</h2>
+  <ul class="check-list">
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Choisir un éleveur affilié au Club Français de l'Eurasier et exiger les résultats de dépistage HD des deux parents — le programme sanitaire du club est l'un des plus rigoureux des races de spitz.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Demander les résultats de test génétique PRA pour les deux parents — ce test peu coûteux garantit que le chiot ne développera pas de cécité progressive à l'âge adulte.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Maintenir un poids de forme stable tout au long de la vie : un Eurasier en surpoids sollicite davantage ses hanches et accélère la progression d'une éventuelle dysplasie.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Surveiller la thyroïde à partir de 3-4 ans : léthargie progressive, alopécie diffuse et prise de poids sans excès alimentaire sont les signes classiques d'une hypothyroïdie débutante — facilement traitable si détectée tôt.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Effectuer un bilan ophtalmologique à 12 et 24 mois pour détecter précocement tout distichiasis ou début d'atrophie rétinienne.
+    </li>
+    <li>
+      <span class="check-list-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><polyline points="2 6 5 9 10 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Souscrire une assurance avant le premier bilan vétérinaire complet — même pour une race à faible risque, anticiper un scénario de dysplasie bilatérale chirurgicale reste rationnel.
+    </li>
+  </ul>
+
+  <!-- 7. Pourquoi assurer -->
+  <h2>Pourquoi assurer un Eurasier ?</h2>
+  <p>
+    L'Eurasier est l'une des races où l'assurance est la plus accessible financièrement : cotisations basses, risques peu fréquents, longévité honorable. Cette équation favorable ne doit pas masquer le fait qu'un seul événement orthopédique sérieux — une dysplasie bilatérale sévère nécessitant deux prothèses de hanche — peut dépasser 10 000 €. Pour un propriétaire d'Eurasier, souscrire une formule intermédiaire est d'abord une décision de prudence budgétaire à faible coût, pas une réponse à un risque élevé.
+  </p>
+  <p>→ <a href="/comparatif/meilleures-assurances">Comparer les assurances chien</a></p>
+
+  <!-- 8. Quel type d'assurance -->
+  <h2>Quel type d'assurance choisir pour un Eurasier ?</h2>
+  <p>
+    Une formule intermédiaire couvrant la chirurgie orthopédique et les maladies chroniques est adaptée. Les cotisations étant particulièrement basses pour cette race, passer à une formule complète représente souvent un surcoût marginal. Vérifiez que le contrat couvre les maladies endocriniennes (hypothyroïdie) sans délai de carence excessif et sans exclusion des maladies héréditaires — la PRA et la dysplasie HD sont génétiquement influencées, et certains contrats les excluent explicitement.
+  </p>
+  <p>→ <a href="/comparatif/assurance-chien-pas-cher">Trouver une assurance chien pas chère</a></p>
+
+  <!-- 9. Comparatif assureurs -->
+  <h2>Comparatif des assurances pour un Eurasier</h2>
+  <p>Estimations indicatives pour un mâle adulte de 20 kg, formule intermédiaire. Tarifs au 1er janvier 2026.</p>
+  <div class="table-wrap">
+  <div class="table-scroll">
+    <table class="data-table">
+      <thead>
+        <tr><th>Assureur</th><th>Formule Essentielle</th><th>Formule Intermédiaire</th><th>Formule Complète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SantéVet</td><td>~12 €/mois</td><td>~20 €/mois</td><td>~30 €/mois</td></tr>
+        <tr><td>Assur O'Poil</td><td>~10 €/mois</td><td>~17 €/mois</td><td>~24 €/mois</td></tr>
+        <tr><td>Lassie</td><td>~8 €/mois</td><td>~13 €/mois</td><td>~19 €/mois</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <p class="source">Estimations indicatives basées sur les grilles tarifaires publiques 2025-2026. Les tarifs définitifs dépendent de l'âge, du sexe, de la région et des options choisies.</p>
+  <p>→ <a href="/comparatif/par-race/eurasier">Voir le comparatif détaillé pour l'Eurasier</a></p>
+
+  <!-- 10. FAQ SEO -->
+  <h2>Questions fréquentes sur l'assurance Eurasier</h2>
+  <dl class="faq-list">
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-eurasier-0" id="faq-btn-eurasier-0">
+          <span>L'Eurasier est-il une race reconnue inscrite au LOF ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-eurasier-0" hidden>
+        <p>Oui. L'Eurasier est une race reconnue par la FCI (standard n° 291, groupe 5) et inscrite au Livre des Origines Français (LOF) géré par la SCC. Il bénéficie d'un suivi de santé officiel par le Club Français de l'Eurasier (clubfrancaiseurasier.fr). Cette reconnaissance offre une traçabilité sanitaire et des données de dépistage fiables, ce qui est un avantage pour évaluer les risques avant l'acquisition.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-eurasier-1" id="faq-btn-eurasier-1">
+          <span>Quelle est l'origine de l'Eurasier ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-eurasier-1" hidden>
+        <p>L'Eurasier a été créé en Allemagne dans les années 1960 par le cynologue Julius Wipfel, à partir de croisements entre le Chow-Chow et le Spitz Loup (Wolfspitz). Le Samoyède a ensuite été intégré dans les années 1970 pour élargir la base génétique. Reconnu par la FCI en 1973, il porte ce nom en référence à ses origines eurasiatiques mêlant des races d'Europe centrale et d'Asie orientale.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-eurasier-2" id="faq-btn-eurasier-2">
+          <span>L'hypothyroïdie de l'Eurasier est-elle couverte par l'assurance ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-eurasier-2" hidden>
+        <p>Oui, dans les formules couvrant les maladies chroniques, sous réserve de souscription avant tout bilan thyroïdien documentant une anomalie. Le traitement à la lévothyroxine coûte 60 à 180 €/an — peu élevé, mais permanent. Certains contrats limitent le remboursement des médicaments par prescription récurrente : vérifiez que votre formule prend en charge les traitements à vie sans plafond trop contraignant.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-eurasier-3" id="faq-btn-eurasier-3">
+          <span>Combien coûte une assurance pour un Eurasier par mois ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-eurasier-3" hidden>
+        <p>Entre 8 et 30 €/mois selon la formule et l'âge — les tarifs les plus bas des races de taille moyenne. L'Eurasier étant une race à faible sinistralité, les assureurs le tarificent favorablement. En formule intermédiaire, un chiot souscrit avant 12 mois coûte typiquement 13 à 20 €/mois, ce qui représente moins de 50 centimes par jour pour couvrir les principaux risques sur 12 à 14 ans de vie.</p>
+      </dd>
+    </div>
+    <div class="faq-item">
+      <dt>
+        <button class="faq-btn" aria-expanded="false"
+          aria-controls="faq-eurasier-4" id="faq-btn-eurasier-4">
+          <span>Faut-il tester l'Eurasier pour la PRA avant l'achat ?</span>
+          <span class="chevron" aria-hidden="true">▾</span>
+        </button>
+      </dt>
+      <dd class="faq-answer" id="faq-eurasier-4" hidden>
+        <p>Oui, c'est recommandé. L'atrophie progressive de la rétine (PRA) est une maladie héréditaire qui conduit à la cécité progressive et est incurable. Le test génétique coûte 60 à 100 € et détermine le statut du chien (libre, porteur ou atteint). Le Club Français de l'Eurasier recommande ce dépistage sur les reproducteurs. Un chiot dont les deux parents sont certifiés libres ne peut pas développer la forme génétique de la PRA.</p>
+      </dd>
+    </div>
+  </dl>
+
+  <!-- 11. Sources -->
+  <h2>Sources</h2>
+  <ul class="sources-list section-sources-list">
+    <li>Club Français de l'Eurasier, Bilan sanitaire et résultats de dépistage, <em>clubfrancaiseurasier.fr</em>, 2023.</li>
+    <li>OFA (Orthopedic Foundation for Animals), Hip Dysplasia Statistics by Breed – Eurasier, <em>ofa.org</em>, 2024.</li>
+    <li>FCI, Standard officiel de l'Eurasier (n° 291 / 29.11.2000), <em>fci.be</em>, 2000.</li>
+    <li>SCC (Société Centrale Canine), Résultats dépistage LOF Eurasier, 2023.</li>
+    <li>FACCO, Enquête nationale sur la démographie canine et féline en France, 2024.</li>
+    <li>SNVEL, Grilles tarifaires indicatives des actes vétérinaires spécialisés, 2024.</li>
+  </ul>
+
+</div>
+
+</RaceLayout>

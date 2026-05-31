@@ -25,6 +25,16 @@
       "source": "/guides/assurance-chiot",
       "destination": "/comparatif/assurance-chiot",
       "permanent": true
+    },
+    {
+      "source": "/races/welsh-corgi-pembroke",
+      "destination": "/races/corgi",
+      "permanent": true
+    },
+    {
+      "source": "/comparatif/par-race/welsh-corgi-pembroke",
+      "destination": "/comparatif/par-race/corgi",
+      "permanent": true
     }
   ]
 }

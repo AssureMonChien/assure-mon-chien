@@ -19,7 +19,7 @@ const jsonldItemList = JSON.stringify({
   "@context": "https://schema.org",
   "@type":    "ItemList",
   "name":     "Comparatifs assurance chien par race",
-  "description": "Recommandation d'assurance santé adaptée à chacune des 31 races analysées.",
+  "description": "Recommandation d'assurance santé adaptée à chacune des 41 races analysées.",
   "url":      pageUrl,
   "numberOfItems": RACES.length,
   "itemListElement": RACES.map((r, i) => ({
@@ -50,8 +50,8 @@ const risqueLabel: Record<string, string> = {
 ---
 
 <Layout
-  title="Comparatif assurance chien par race — 31 races analysées"
-  description="Comparatif assurance chien par race : 31 races analysées avec tarifs, maladies fréquentes et formule recommandée pour chaque profil santé."
+  title="Comparatif assurance chien par race — 41 races analysées"
+  description="Comparatif assurance chien par race : 41 races analysées avec tarifs, maladies fréquentes et formule recommandée pour chaque profil santé."
   ogType="website"
 >
   <Fragment slot="head">
@@ -69,7 +69,7 @@ const risqueLabel: Record<string, string> = {
           <li aria-current="page">Par race</li>
         </ol>
       </nav>
-      <span class="pill pill-soft">31 races analysées</span>
+      <span class="pill pill-soft">41 races analysées</span>
       <h1 class="display display-md">Comparatif assurance chien <em>par race</em></h1>
       <p class="lede">Chaque race a ses fragilités et ses pathologies typiques. Notre recommandation d'assurance est argumentée race par race, à partir du profil de risque, des coûts vétérinaires réels et des garanties prioritaires.</p>
     </div>
