@@ -15,7 +15,8 @@ const {
 
 const siteUrl    = "https://assure-mon-chien.fr";
 const currentPath = Astro.url.pathname;
-const canonical  = `${siteUrl}${currentPath}`;
+const cleanPath  = currentPath === '/' ? '' : currentPath.replace(/\/$/, '');
+const canonical  = `${siteUrl}${cleanPath}`;
 const ogImageUrl = ogImage ?? `${siteUrl}/og-default.jpg`;
 
 const POPULAR_RACES = [
