@@ -281,46 +281,8 @@ const jsonldBreadcrumb = JSON.stringify({
 </script>
 
 <style>
-  /* ── Breadcrumb (copié depuis ComparatifLayout — scoped ici) ── */
-  .ed-breadcrumb ol {
-    display: flex;
-    gap: 0;
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px;
-    font-size: 13px;
-    color: var(--c-ink-3);
-    flex-wrap: wrap;
-  }
-  .ed-breadcrumb li:not(:last-child)::after { content: " / "; margin: 0 6px; }
-  .ed-breadcrumb a { color: var(--c-ink-3); text-decoration: none; }
-  .ed-breadcrumb a:hover { color: var(--c-green); }
-  .ed-breadcrumb li[aria-current] { color: var(--c-ink); font-weight: 500; }
-
-  /* ── Hero figure (not in Layout.astro global CSS) ── */
-  .ed-hero-figure { margin: 0; position: relative; }
-  .ed-hero-img-wrap {
-    border-radius: 22px;
-    overflow: hidden;
-    aspect-ratio: 3 / 2;
-    box-shadow: 0 30px 60px -20px rgba(15,110,86,.28);
-    background: var(--c-green-50);
-    position: relative;
-  }
-  .ed-hero-img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    display: block;
-  }
-  .ed-hero-figure figcaption {
-    font-size: 13px;
-    color: var(--c-ink-2);
-    margin-top: 14px;
-    font-style: italic;
-    line-height: 1.5;
-  }
+  /* Image cadrée légèrement en haut pour bien voir la tête du chien */
+  .ed-hero .ed-hero-img { object-position: center 30%; }
 
   /* ── ul lists in article ── */
   .meth-ul {

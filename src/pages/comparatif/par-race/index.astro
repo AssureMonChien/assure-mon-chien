@@ -62,7 +62,7 @@ const risqueLabel: Record<string, string> = {
   <!-- ── Hero ── -->
   <section class="cmp-race-hub-hero">
     <div class="container">
-      <nav class="cmp-race-breadcrumb" aria-label="Fil d'Ariane">
+      <nav class="ed-breadcrumb is-centered" aria-label="Fil d'Ariane">
         <ol>
           <li><a href="/">Accueil</a></li>
           <li><a href="/comparatif">Comparatif</a></li>
@@ -148,16 +148,6 @@ const risqueLabel: Record<string, string> = {
   @media (max-width: 600px) { .cmp-race-hub-hero { padding: 36px 0 24px; } }
   .cmp-race-hub-hero h1 { margin: 16px 0 12px; text-wrap: balance; }
   .cmp-race-hub-hero .lede { max-width: 640px; margin: 0 auto; text-wrap: pretty; }
-
-  /* Breadcrumb */
-  .cmp-race-breadcrumb ol {
-    display: flex; gap: 0; list-style: none; padding: 0; margin: 0 auto 18px;
-    font-size: 13px; color: var(--c-ink-3); flex-wrap: wrap; justify-content: center;
-  }
-  .cmp-race-breadcrumb li:not(:last-child)::after { content: " / "; margin: 0 6px; }
-  .cmp-race-breadcrumb a { color: var(--c-ink-3); text-decoration: none; }
-  .cmp-race-breadcrumb a:hover { color: var(--c-green); }
-  .cmp-race-breadcrumb li[aria-current] { color: var(--c-ink); font-weight: 500; }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--gutter); }
   @media (max-width: 600px) { .container { padding: 0 var(--gutter-mobile); } }

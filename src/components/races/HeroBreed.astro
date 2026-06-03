@@ -33,13 +33,13 @@ const imgFile = imgMap[slug] ?? slug;
 ---
 
 <!-- Breadcrumb -->
-<div class="container">
-  <nav class="breadcrumb" aria-label="Fil d'Ariane">
-    <a href="/">Accueil</a>
-    <span class="breadcrumb-sep" aria-hidden="true">›</span>
-    <a href="/races">Races</a>
-    <span class="breadcrumb-sep" aria-hidden="true">›</span>
-    <span>{nom}</span>
+<div class="container hero-breed-breadcrumb-wrap">
+  <nav class="ed-breadcrumb" aria-label="Fil d'Ariane">
+    <ol>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/races">Races</a></li>
+      <li aria-current="page">{nom}</li>
+    </ol>
   </nav>
 </div>
 
@@ -150,4 +150,7 @@ const imgFile = imgMap[slug] ?? slug;
     flex-wrap: wrap;
     margin-top: 8px;
   }
+
+  /* Ariane au-dessus du hero (préserve l'espace vertical d'avant) */
+  .hero-breed-breadcrumb-wrap { padding-top: 24px; }
 </style>
