@@ -38,7 +38,8 @@
       "Bash(python3 -c ' *)",
       "PowerShell($dir = \"c:\\\\Users\\\\gaeta\\\\Documents\\\\Web\\\\assure-mon-chien\\\\public\\\\images\\\\races\"; if \\(Test-Path $dir\\) { Get-ChildItem $dir | Sort-Object Name | ForEach-Object { \"$\\($_.Name\\) \\($\\([math]::Round\\($_.Length/1KB, 0\\)\\) KB\\)\" } } else { \"DOSSIER INTROUVABLE\" })",
       "PowerShell(Copy-Item \"c:\\\\Users\\\\gaeta\\\\Documents\\\\Web\\\\assure-mon-chien\\\\src\\\\pages\\\\races\\\\welsh-corgi-pembroke.astro\" \"c:\\\\Users\\\\gaeta\\\\Documents\\\\Web\\\\assure-mon-chien\\\\src\\\\pages\\\\races\\\\corgi.astro\")",
-      "PowerShell(Rename-Item -Path \"c:\\\\Users\\\\gaeta\\\\Documents\\\\Web\\\\assure-mon-chien\\\\public\\\\images\\\\methodologie\\\\auteur-sheltie.webp.webp\" -NewName \"auteur-sheltie.webp\")"
+      "PowerShell(Rename-Item -Path \"c:\\\\Users\\\\gaeta\\\\Documents\\\\Web\\\\assure-mon-chien\\\\public\\\\images\\\\methodologie\\\\auteur-sheltie.webp.webp\" -NewName \"auteur-sheltie.webp\")",
+      "Bash(node scripts/pivot-race-titles.mjs)"
     ],
     "additionalDirectories": [
       "c:\\Users\\gaeta\\Documents\\Web\\assure-mon-chien"

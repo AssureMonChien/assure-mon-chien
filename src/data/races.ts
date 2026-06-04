@@ -101,7 +101,7 @@ export const RACES: Race[] = [
   { slug: "pomsky",               nom: "Pomsky",               taille: "petite",  risque: "modere", score: 45,                    cost: "180 – 320 €",  tags: RACE_TAGS["pomsky"] },
   { slug: "shar-pei",             nom: "Shar-Peï",             taille: "moyenne", risque: "eleve",  score: 75,                    cost: "300 – 480 €",  tags: RACE_TAGS["shar-pei"] },
   { slug: "spitz-pomeranien",     nom: "Spitz Poméranien",     taille: "petite",  risque: "modere", score: 48,                    cost: "180 – 320 €",  tags: RACE_TAGS["spitz-pomeranien"] },
-  { slug: "corgi",               nom: "Corgi (Welsh Corgi Pembroke)", taille: "moyenne",  risque: "modere", score: 55,                    cost: "220 – 400 €",  tags: RACE_TAGS["corgi"] },
+  { slug: "corgi",               nom: "Corgi", taille: "moyenne",  risque: "modere", score: 55,                    cost: "220 – 400 €",  tags: RACE_TAGS["corgi"] },
 ];
 
 // Lookup helper
